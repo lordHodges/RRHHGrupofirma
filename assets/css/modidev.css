@@ -1,0 +1,72 @@
+
+/* MODAL */
+
+.modal input{
+    background: #2a3f54;
+    color: #fff;
+    border-color: #26B99A;
+}
+
+.modal select{
+    background: #2a3f54;
+    color: #fff;
+    border-color: #26B99A;
+}
+
+
+.modal label{
+    color: #fff;
+}
+
+.modal-title{
+    color: #fff;
+}
+
+.modal input{
+    height:40%;
+}
+
+.close {
+    float: right;
+    font-size: 21px;
+    font-weight: 700;
+    line-height: 1;
+    color: #fff;
+}
+
+
+/* BOTONES  */
+
+
+.modidev-btn{
+    background: #2A3F54;
+    color: #fff;
+    border-radius:10px;
+}
+
+.modidev-btn:hover{
+    background: #26B99A;
+    color: #fff;
+    border-radius:10px;
+}
+
+.modidev-enlinea{
+  display: inline-block;
+}
+
+
+/* TABLAS */
+
+table thead tr th{
+    vertical-align: middle;
+}
+
+div.dataTables_wrapper {
+    margin: 0  auto;
+}
+
+
+/* INPUT  */
+input disabled{
+    color: #000;
+}

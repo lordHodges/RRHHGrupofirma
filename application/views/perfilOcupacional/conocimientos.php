@@ -1,0 +1,115 @@
+<div class="right_col" role="main">
+    <!-- Contenedor principal -->
+    <div class="x_content">
+      <h3 class="text-center">CONOCIMIENTOS BÁSICOS</h3>
+      <div class="col-md-6">
+          <br>
+          <label for="getSelectCargo">CARGO</label><br>
+          <select class="custom-select" id="getSelectCargo">
+
+          </select>
+      </div>
+
+      <div class="col-md-12">
+        <label style="margin-top:20px">LISTADO DE CONOCIMIENTOS BÁSICOS</label>
+      </div>
+
+      <!-- boton de agregar nuev input -->
+      <div class="container">
+        <div class="col-md-12" visible="false" >
+          <div class="col-md-1">
+            <button type="button" class="btn modidev-btn btn-sm center" style="display:none" id="btnAgregarConocimiento" >
+              <i class="glyphicon glyphicon-plus"></i>
+            </button>
+          </div>
+        </div>
+
+        <div class="col-md-12" >
+          <div class="col-md-3" >
+              <button type="button" class="btn modidev-btn btn-sm" id="btnAgregarListaDeConocimientos">GUARDAR</button>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- Listado de tareas para llenar -->
+      <div id="conocimientos">
+
+      </div>
+
+      <!-- Listado de tareas para llenar -->
+      <div id="conocimientosIngresados">
+
+      </div>
+
+
+
+
+
+    </div>
+
+
+</div>
+
+    <!-- /Contenedor principal-->
+
+    <!-- footer content -->
+    <footer>
+        <div class="clearfix"></div>
+    </footer>
+    <!-- /footer content -->
+
+
+
+    <!-- jQuery -->
+    <script src="<?php echo base_url() ?>assets/vendors/jquery/dist/jquery.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="<?php echo base_url() ?>assets/vendors/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom Theme Scripts -->
+    <script src="<?php echo base_url() ?>assets/build/js/custom.min.js"></script>
+    <!-- JS PROPIOS -->
+    <script src="<?php echo base_url() ?>assets/js/modidev.js"></script>
+    <script src="<?php echo base_url() ?>assets/js/perfilesOcupacionales/conocimientos.js"></script>
+    <!-- Toast -->
+    <script src="<?php echo base_url() ?>assets/js/toastr.min.js" type="text/javascript"></script>
+    <!-- Autocompletado -->
+    <script src="<?php echo base_url() ?>assets/js/jquery-ui.js" type="text/javascript"></script>
+
+
+    <script>
+      $(document).ready(function() {
+          getSelectCargos();
+          autocompleteConocimientos();
+          document.getElementById('btnAgregarListaDeConocimientos').style.display = 'none';
+          // cargarTareas();
+          // bloquearBoton();
+      });
+
+      $("#btnAgregarConocimiento").click(function (e){
+          e.preventDefault();
+          agregarConocimiento();
+      });
+
+      $("#getSelectCargo").change(function (e){
+          e.preventDefault();
+          //limpio campos
+          $("#conocimientosIngresados").empty();
+          $("#conocimientos").empty();
+          //oculto el boton de guardar
+          document.getElementById('btnAgregarListaDeConocimientos').style.display = 'none';
+          cargarConocimientos();
+      });
+
+      $("#btnAgregarListaDeConocimientos").click(function (e){
+          e.preventDefault();
+          agregarListaDeConocimientos();
+      });
+
+
+  </script>
+
+
+
+
+  </body>
+</html>
