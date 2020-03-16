@@ -62,6 +62,11 @@ create table fa_sucursal(
 create table fa_cargo(
     cp_cargo int auto_increment,
     atr_nombre varchar(100),
+    atr_jefeDirecto varchar(200),
+    atr_lugarTrabajo varchar(200),
+    atr_jornadaTrabajo varchar(200),
+    atr_sueldo varchar(100),
+    atr_diasTrabajo varchar(200),
     constraint pk_cargo primary key(cp_cargo)
 );
 
@@ -71,11 +76,15 @@ create table fa_tarea(
     constraint pk_tarea primary key(cp_tarea)
 );
 
+
+
 create table fa_requisitominimo(
     cp_requisitominimo int auto_increment,
     atr_descripcion varchar(500) unique not null,
     constraint pk_requisitominimo primary key(cp_requisitominimo)
 );
+
+
 
 create table fa_competencia(
     cp_competencia int auto_increment,
@@ -87,6 +96,24 @@ create table fa_conocimiento(
     cp_conocimiento int auto_increment,
     atr_descripcion varchar(500) unique not null,
     constraint pk_conocimiento primary key(cp_conocimiento)
+);
+
+create table fa_titulo(
+    cp_titulo int auto_increment,
+    atr_descripcion varchar(500) unique not null,
+    cf_cargo int,
+    constraint pk_titulo primary key(cp_titulo),
+    constraint fk_titulo_cargo foreign key(cf_cargo) references fa_cargo(cp_cargo)
+);
+
+create table fa_otrosantecedentes(
+    cp_otrosantecedentes int auto_increment,
+    atr_descripcion varchar(500) unique not null,
+    cf_titulo int,
+    cf_cargo int,
+    constraint pk_titulo primary key(cp_otrosantecedentes),
+    constraint fk_otrosantecedentes_titulo  foreign key(cf_titulo) references fa_titulo(cp_titulo),
+    constraint fk_otrosantecedentes_cargo  foreign key(cf_cargo) references fa_cargo(cp_cargo)
 );
 
 create table fa_trabajador(
@@ -116,6 +143,7 @@ create table fa_trabajador(
     constraint fk_trabajador_prevision foreign key(cf_prevision) references fa_prevision(cp_prevision),
     constraint fk_trabajador_empresa foreign key(cf_empresa) references fa_empresa(cp_empresa)
 );
+
 
 create table fa_conocimiento_cargo(
     cp_conocimiento_cargo int auto_increment,
@@ -190,8 +218,8 @@ VALUES ('Arica'),('Camarones'),('General Lagos'),('Putre'),('Alto Hospicio'),('I
   ('Río Verde'),('San Gregorio'),('Porvenir'),('Primavera'),('Timaukel'),('Cabo de Hornos'),('Antártica');
 
 
-INSERT INTO `fa_cargo` (`atr_nombre`) VALUES('Encargado de recursos humanos');
-INSERT INTO `fa_cargo` (`cp_cargo`, `atr_nombre`) VALUES (NULL, 'Desarrollador'), (NULL, 'Encargada de recepción');
+INSERT INTO `fa_cargo` (`cp_cargo`, `atr_nombre`, `atr_jefeDirecto`, `atr_lugarTrabajo`, `atr_jornadaTrabajo`, `atr_sueldo`) VALUES (NULL, 'Auxiliar de aseo, día domingo', 'Teresa Garrido, Miguel Vargas', '1 sur, 24 oriente #3155, Hostal Plaza Maule', '08:00 horas a 22:00 horas', '20.000'), (NULL, 'Cartero', 'Evelyn Gallegos, Nelvis Vilalobos', NULL, '9 a 13:30 horas', '150.500');
+INSERT INTO `fa_cargo` (`cp_cargo`, `atr_nombre`, `atr_jefeDirecto`, `atr_lugarTrabajo`, `atr_jornadaTrabajo`, `atr_sueldo`) VALUES (NULL, 'Ejecutivo de licitaciones publicas y privadas', 'Solanch Tejos Carrasco', NULL, 'horario de mañana: 9 a 13:00 horas, horario de tarde: 14:00 a 19:00 horas', '301.000');
 
 INSERT INTO `fa_sucursal` (`cp_sucursal`, `atr_nombre`, `cf_ciudad`) VALUES (NULL, 'Sucursal 1', '97'), (NULL, 'Sucursal 2', '120');
 
@@ -220,9 +248,13 @@ INSERT INTO `fa_requisitominimo` (`cp_requisitominimo`, `atr_descripcion`) VALUE
 INSERT INTO `fa_requisitominimo_cargo` (`cp_requisitominimo_cargo`, `cf_cargo`, `cf_requisitominimo`) VALUES (NULL, '2', '2'), (NULL, '1', '1');
 INSERT INTO `fa_requisitominimo_cargo` (`cp_requisitominimo_cargo`, `cf_cargo`, `cf_requisitominimo`) VALUES (NULL, '2', '1');
 
-INSERT INTO `fa_competencia` (`cp_competencia`, `atr_descripcion`) VALUES (NULL, 'Buen racionamiento interpersonal'), (NULL, 'Puntual');
+INSERT INTO `fa_competencia` (`cp_competencia`, `atr_descripcion`) VALUES (NULL, 'Buen relacionamiento interpersonal'), (NULL, 'Puntual');
 INSERT INTO `fa_competencia_cargo` (`cp_competencia_cargo`, `cf_cargo`, `cf_competencia`) VALUES (NULL, '2', '1'), (NULL, '2', '2');
 
 INSERT INTO `fa_conocimiento` (`cp_conocimiento`, `atr_descripcion`) VALUES (NULL, 'Excelente redacción y ortografía pues deberá efectuar informes internos y propuestas para licitaciones.'), (NULL, 'Manejo de microsoft office nivel avanzado (dominio de tabla dinámicas).');
 INSERT INTO `fa_conocimiento_cargo` (`cp_conocimiento_cargo`, `cf_cargo`, `cf_conocimiento`) VALUES (NULL, '2', '1'), (NULL, '2', '2');
 INSERT INTO `fa_conocimiento_cargo` (`cp_conocimiento_cargo`, `cf_cargo`, `cf_conocimiento`) VALUES (NULL, '1', '2');
+
+
+INSERT INTO `fa_titulo` (`cp_titulo`, `atr_descripcion`,`cf_cargo`) VALUES (NULL, 'Otros antecedentes','2'), (NULL, 'Tiempo de duración por licitación','3');
+INSERT INTO `fa_otrosantecedentes` (`cp_otrosantecedentes`, `atr_descripcion`, `cf_titulo`, `cf_cargo`) VALUES (NULL, 'En doblar y sellar 50 cartas: 60 minutos.', '2', '3'), (NULL, 'Capacidad de orden, análisis y toma de desiciones en beneficio del correcto manejo y uso de los dineros de la empresa.', '1', '2');

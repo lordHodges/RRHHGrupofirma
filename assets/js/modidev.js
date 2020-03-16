@@ -293,18 +293,34 @@ function agregarSucursal() {
 
 function agregarCargo() {
     var nombre = $("#nombre").val();
-    if (nombre == "" ) {
+    var jefeDirecto = $("#jefeDirecto").val();
+    var lugarTrabajo = $("#lugarTrabajo").val();
+    var jornadaTrabajo = $("#jornadaTrabajo").val();
+    var diasTrabajo = $("#diasTrabajo").val();
+    var sueldo = $("#sueldo").val();
+
+    if (nombre == "" || jefeDirecto == "" || lugarTrabajo == "" || jornadaTrabajo == "" || sueldo == "" || diasTrabajo == "") {
         toastr.error("Rellene todos los campos");
     } else {
         $.ajax({
             url: 'addCargo',
             type: 'POST',
             dataType: 'json',
-            data: { "nombre":nombre }
+            data: { "nombre":nombre,
+                    "jefeDirecto" : jefeDirecto,
+                    "lugarTrabajo" : lugarTrabajo,
+                    "jornadaTrabajo" : jornadaTrabajo,
+                    "diasTrabajo" : diasTrabajo,
+                    "sueldo" : sueldo}
         }).then(function (msg) {
             if (msg.msg == "ok") {
-               toastr.success('Cargo ingresado')
+               toastr.success('Cargo ingresado');
                document.getElementById("nombre").value = "";
+               document.getElementById("jefeDirecto").value = "";
+               document.getElementById("lugarTrabajo").value = "";
+               document.getElementById("jornadaTrabajo").value = "";
+               document.getElementById("diasTrabajo").value = "";
+               document.getElementById("sueldo").value = "";
                $('#myModal').modal('hide');
             } else {
                 toastr.error("Error en el ingreso.");

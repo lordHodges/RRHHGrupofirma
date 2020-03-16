@@ -18,7 +18,7 @@
                             <th class="text-center">LUGAR DE TRABAJO</th>
                             <th class="text-center">JORNADA DE TRABAJO</th>
                             <th class="text-center">SUELDO</th>
-                            <!-- <th class="text-center">ACCIONES</th> -->
+                            <th class="text-center">ACCIONES</th>
                         </tr>
                     </thead>
                     <tbody id="tbodyDetalle">
@@ -67,11 +67,6 @@
                         <br>
                         <label for="jornadaTrabajo">JORNADA DE TRABAJO</label>
                         <input type="text" class="form-control custom-input-sm" id="jornadaTrabajo">
-                    </div>
-                    <div class="col-md-12">
-                        <br>
-                        <label for="diasTrabajo">DÍAS DE TRABAJO</label>
-                        <input type="text" class="form-control custom-input-sm" id="diasTrabajo">
                     </div>
                     <div class="col-md-12">
                         <br>
@@ -141,7 +136,9 @@
                     type: 'GET'
                 },
                 "columnDefs": [{
-
+                  "targets": 6,
+                  "data": null,
+                  "defaultContent": '<button type="button" id="btnVerDocumentoPerfilOcupacional" class="btn btn-info"><i class="glyphicon glyphicon-file"></i></button>'
                 }
                 ],dom: '<"html5buttons"B>lTfgitp',
                   buttons: [{

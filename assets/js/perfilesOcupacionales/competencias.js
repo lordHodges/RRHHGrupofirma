@@ -29,7 +29,7 @@ function cargarCompetencias(){
         $("#competenciasIngresadas").append(fila);
       }
       document.getElementById('btnAgregarCompetencia').removeAttribute("style");  //ESTE SIRVE PARA MOSTRAR EL BOTON
-    
+
   });
 }
 
@@ -60,9 +60,10 @@ function agregarListaDeCompetencias(){
             data: {"competencia":competencia,
                    "cargo":cargo}
         }).then(function (msg) {
-            toastr.success("Competencias actualizadas");
+            // toastr.success("Competencias actualizadas");
         });
       }
+      toastr.success("Competencias y características actualizadas");
   }
   cargarCompetencias();
   //Se inicializa en 0 para que al cambiar de cargo los inputs nuevamente comiencen desde 0

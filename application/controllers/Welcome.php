@@ -7,6 +7,11 @@ class Welcome extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->model("CompetenciasModel");
+		$this->load->model("MantenedoresModel");
+		$this->load->model("ConocimientosModel");
+		$this->load->model("RequisitosMinimosModel");
+		$this->load->model("FuncionesModel");
+		$this->load->model("OtrosModel");
 	}
 
 	public function index()
@@ -27,18 +32,20 @@ class Welcome extends CI_Controller {
 	}
 
 	function testDoc(){
-		$titulo = "Contrato laboral";
+		$titulo = "PERFIL OCUPACIONAL DEL PUESTO O VACANTE";
 		$cargo = 2;
-
-
 
 		//datos que se enviaran a la Vista
 		$data = array(
 			'titulo'								=> $titulo,
-			'competencias'						=> $this->CompetenciasModel->getListadoCompetencias($cargo)
+			'cargo'									=> $this->MantenedoresModel->buscarCargo($cargo),
+			'competencias'					=> $this->CompetenciasModel->getListadoCompetencias($cargo),
+			'conocimientos'					=> $this->ConocimientosModel->getListadoConocimientos($cargo),
+			'requisitosMinimos'			=> $this->RequisitosMinimosModel->getListadoRequisitosMinimos($cargo),
+			'funciones'							=> $this->FuncionesModel->getListadoTareas($cargo),
+			'titulos'								=> $this->MantenedoresModel->getListadoTitulos($cargo),
+			'antecedentes'					=> $this->OtrosModel->getAntecedentes()
 		);
-
-		var_dump( $this->CompetenciasModel->getListadoCompetencias($cargo) );
 
 
 		$html = $this->load->view('pdf/test', $data, TRUE);
@@ -48,5 +55,10 @@ class Welcome extends CI_Controller {
 		$filename = 'test';
 		// generamos el PDF. Pasemos por encima de la configuración general y definamos otro tipo de papel
 		$this->pdfgenerator->generate($html, $filename, true, 'Letter', 'portrait');
+	}
+
+	function testGroupBy(){
+		$resultado = $this->FuncionesModel->groupBy();
+		echo json_encode(array("msg" => $resultado));
 	}
 }

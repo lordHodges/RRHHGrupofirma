@@ -4,7 +4,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $route['default_controller'] = 'Welcome/index';
 $route['dashboard'] = 'welcome/index';
 
+
+
 $route['testDoc'] = 'welcome/testDoc';
+
+
 
 
 
@@ -30,6 +34,13 @@ $route['getNacionalidades'] = 'TrabajadorController/getNacionalidades';
   //contratos
   $route['inicioMenuContratos'] = 'ContratosController/index';
 
+//DOCUMENTOS
+$route['perfilOcupacionalVista'] = 'PDFController/cargarPerfilesOcupacionales';
+$route['docPerfilesOcupacionales'] = 'PDFController/view_perfilesOcupacionales';
+
+
+
+
 //PERFILES OCUPACIONALES
   //funciones
   $route['inicioFunciones'] = 'FuncionesController/index';
@@ -47,6 +58,11 @@ $route['getNacionalidades'] = 'TrabajadorController/getNacionalidades';
   $route['inicioConocimientos'] = 'ConocimientosController/index';
   $route['getListadoConocimientos'] = 'ConocimientosController/getListadoConocimientos';
   $route['addConocimiento'] = 'ConocimientosController/addConocimiento';
+  //otros
+  $route['inicioOtros'] = 'OtrosController/index';
+  $route['getListadoOtros'] = 'OtrosController/getListadoOtros';
+  $route['addAntecedente'] = 'OtrosController/addAntecedente';
+
 
 
 //MANTENEDORES
@@ -103,11 +119,8 @@ $route['addPrevision'] = 'PrevisionesController/addPrevision';
 $route['getListadoEmpresa'] = 'EmpresaController/getListadoEmpresas';
 $route['addEmpresa'] = 'EmpresaController/addEmpresa';
 
-
-
-    //perfil
-// $route['getListadoCargos'] = 'SucursalController/getListadoCargos';
-// $route['addCargo'] = 'SucursalController/addCargo';
+    //getTitulos
+$route['getTitulos'] = 'TitulosController/getTitulos';
 
 
 

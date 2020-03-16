@@ -17,8 +17,6 @@ class CompetenciasModel extends CI_Model {
     }
 
 
-
-
     function addCompetencia($competencia, $cargo){
         $this->db->select('count(*)');
         $this->db->from("fa_competencia c");

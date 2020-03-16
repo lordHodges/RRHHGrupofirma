@@ -23,10 +23,26 @@ class CargoController extends CI_Controller {
 		$books = $this->MantenedoresModel->getListadoCargos();
 		$data = array();
 		foreach ($books->result() as $r) {
-				$data[] = array(
-					$r->cp_cargo,
-					$r->atr_nombre,
-				);
+
+				if($r->atr_lugarTrabajo == ""){
+					$data[] = array(
+						$r->cp_cargo,
+						$r->atr_nombre,
+						$r->atr_jefeDirecto,
+						"-",
+						$r->atr_jornadaTrabajo,
+						$r->atr_sueldo
+					);
+				}else{
+					$data[] = array(
+						$r->cp_cargo,
+						$r->atr_nombre,
+						$r->atr_jefeDirecto,
+						$r->atr_lugarTrabajo,
+						$r->atr_jornadaTrabajo,
+						$r->atr_sueldo
+					);
+				}
 		}
 		$output = array(
 				"draw" => $draw,
@@ -40,8 +56,13 @@ class CargoController extends CI_Controller {
 
 	public function addCargo(){
 		$nombre = $this->input->post("nombre");
+		$jefeDirecto = $this->input->post("jefeDirecto");
+		$lugarTrabajo = $this->input->post("lugarTrabajo");
+		$jornadaTrabajo = $this->input->post("jornadaTrabajo");
+		$diasTrabajo = $this->input->post("diasTrabajo");
+		$sueldo = $this->input->post("sueldo");
 
-		$resultado = $this->MantenedoresModel->addCargo($nombre);
+		$resultado = $this->MantenedoresModel->addCargo($nombre, $jefeDirecto,$lugarTrabajo,$jornadaTrabajo,$diasTrabajo,$sueldo);
 		echo json_encode(array("msg" => $resultado));
 
 	}

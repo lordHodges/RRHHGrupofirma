@@ -20,8 +20,6 @@ class ConocimientosModel extends CI_Model {
 
 
     function addConocimiento($conocimiento, $cargo){
-        var_dump("PARAM_TAREA: ",$conocimiento);
-        var_dump("PARAM_CARGO: ",$cargo);
         $this->db->select('count(*)');
         $this->db->from("fa_conocimiento c");
         $this->db->where("c.atr_descripcion", $conocimiento);

@@ -41,14 +41,27 @@ class MantenedoresModel extends CI_Model {
 
     // CARGOS
     function getListadoCargos(){
-      $this->db->select("c.cp_cargo, c.atr_nombre");
+      $this->db->select("c.cp_cargo, c.atr_nombre, c.atr_jefeDirecto, c.atr_lugarTrabajo, c.atr_jornadaTrabajo, c.atr_sueldo");
       $this->db->from("fa_cargo c");
       return $this->db->get();
     }
 
-    function addCargo($nombre){
+    function buscarCargo($cargo){
+      $this->db->select("c.cp_cargo, c.atr_nombre, c.atr_jefeDirecto, c.atr_lugarTrabajo, c.atr_jornadaTrabajo, c.atr_sueldo");
+      $this->db->from("fa_cargo c");
+      $this->db->where("c.cp_cargo",$cargo);
+      // var_dump( $this->db->get()->result());
+      return $this->db->get()->result();
+    }
+
+    function addCargo($nombre, $jefeDirecto,$lugarTrabajo,$jornadaTrabajo,$diasTrabajo,$sueldo){
         $data = array(
-            "atr_nombre" => $nombre
+            "atr_nombre" => $nombre,
+            "atr_jefeDirecto" => $jefeDirecto,
+            "atr_lugarTrabajo" => $lugarTrabajo,
+            "atr_jornadaTrabajo" => $jornadaTrabajo,
+            "atr_sueldo" => $sueldo,
+            "atr_diasTrabajo" => $diasTrabajo
         );
         $this->db->insert("fa_cargo", $data);
         return "ok";
@@ -122,11 +135,32 @@ class MantenedoresModel extends CI_Model {
       return $this->db->get();
     }
 
+
+
     function addPrevision($nombre){
         $data = array(
             "atr_nombre" => $nombre
         );
         $this->db->insert("fa_prevision", $data);
+        return "ok";
+    }
+
+    // TITULO
+    function getListadoTitulos($cargo){
+      $this->db->select("ti.cp_titulo, ti.atr_descripcion");
+      $this->db->from("fa_titulo ti");
+      $this->db->where("ti.cf_cargo",$cargo);
+      return $this->db->get()->result();
+    }
+
+    
+
+    function addTitulo($nombre, $cargo){
+        $data = array(
+            "atr_nombre" => $nombre,
+            "cf_cargo"   => $cargo
+        );
+        $this->db->insert("fa_titulo", $data);
         return "ok";
     }
 

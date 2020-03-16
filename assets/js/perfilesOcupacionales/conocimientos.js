@@ -58,9 +58,10 @@ function agregarListaDeConocimientos(){
             data: {"conocimiento":conocimiento,
                    "cargo":cargo}
         }).then(function (msg) {
-            alert("ahora lanzara una alerta");
+            // alert("ahora lanzara una alerta");
         });
       }
+      toastr.success("Conocimientos actualizados");
   }
   //Se inicializa en 0 para que al cambiar de cargo los inputs nuevamente comiencen desde 0
   constante = 0;
