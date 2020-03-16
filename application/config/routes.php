@@ -4,6 +4,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $route['default_controller'] = 'Welcome/index';
 $route['dashboard'] = 'welcome/index';
 
+$route['testDoc'] = 'welcome/testDoc';
+
+
 
 
 // TRABAJADORES
