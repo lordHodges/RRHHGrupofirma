@@ -17,7 +17,9 @@ function cargarRequisitosMinimos(){
       if(msg == ""){
         toastr.error("No tiene requisitos asociados");
       }else{
-        $("#requisitosMinimosIngresados").empty();
+        // $("#requisitosMinimosIngresados").empty();
+        document.getElementById("requisitosMinimosIngresados").innerHTML = "";
+        document.getElementById("requisitosMinimos").innerHTML = "";
         var fila = "";
         $.each(msg, function (i, o) {
 

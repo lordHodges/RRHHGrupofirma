@@ -17,7 +17,9 @@ function cargarConocimientos(){
       if(msg == ""){
         toastr.error("No tiene conocimientos asociados");
       }else{
-        $("#conocimientosIngresados").empty();
+        // $("#conocimientosIngresados").empty();
+        document.getElementById("conocimientosIngresados").innerHTML = "";
+        document.getElementById("conocimientos").innerHTML = "";
         var fila = "";
         $.each(msg, function (i, o) {
 

@@ -6,7 +6,6 @@ function cargarCompetencias(){
 
   const selectCargo = document.querySelector('#getSelectCargo');
 
-
   var cargo = $("#getSelectCargo").val();
   $.ajax({
       url: 'getListadoCompetencias',
@@ -17,15 +16,20 @@ function cargarCompetencias(){
       if(msg == ""){
         toastr.error("No tiene competencias asociadas");
       }else{
-        $("#competenciasIngresadas").empty();
+        // $("#competenciasIngresadas").empty();
+        // $("#competencias").empty();
+
+        document.getElementById("competenciasIngresadas").innerHTML = "";
+        document.getElementById("competencias").innerHTML = "";
+
         var fila = "";
         $.each(msg, function (i, o) {
-
             fila +='<div class="col-md-12" style="margin-top:10px"><input type="text" class="form-control custom-input-sm" disabled value="'+o.atr_descripcion+'"></div>';
         });
         $("#competenciasIngresadas").append(fila);
       }
       document.getElementById('btnAgregarCompetencia').removeAttribute("style");  //ESTE SIRVE PARA MOSTRAR EL BOTON
+    
   });
 }
 
@@ -60,12 +64,9 @@ function agregarListaDeCompetencias(){
         });
       }
   }
+  cargarCompetencias();
   //Se inicializa en 0 para que al cambiar de cargo los inputs nuevamente comiencen desde 0
   constante = 0;
-
-  $("#competenciasIngresadas").empty();
-  $("#competencias").empty();
-  cargarCompetencias();
   document.getElementById('btnAgregarListaDeCompetencias').style.display = 'none';
 
 }

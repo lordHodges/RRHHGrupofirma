@@ -17,7 +17,9 @@ function cargarTareas(){
       if(msg == ""){
         toastr.error("No tiene funcionalidades asociadas");
       }else{
-        $("#tareasIngresadas").empty();
+        // $("#tareasIngresadas").empty();
+        document.getElementById("tareasIngresadas").innerHTML = "";
+        document.getElementById("tareas").innerHTML = "";
         var fila = "";
         $.each(msg, function (i, o) {
 
