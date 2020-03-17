@@ -97,6 +97,7 @@ function getDetalleTrabajador(id){
       data: {"id": id}
   }).then(function (msg) {
       $("#modalDetalleTrabajador").empty();
+
       var fila = "";
       $.each(msg.msg, function (i, o) {
           fila +='<div class="col-md-12"><br><label for="rut">RUT</label><input type="text" style="color:#848484" class="form-control custom-input-sm" id="rut" value="'+o.atr_rut+'" disabled></div>';
@@ -302,30 +303,7 @@ function agregarCargo() {
     if (nombre == "" || jefeDirecto == "" || lugarTrabajo == "" || jornadaTrabajo == "" || sueldo == "" || diasTrabajo == "") {
         toastr.error("Rellene todos los campos");
     } else {
-        $.ajax({
-            url: 'addCargo',
-            type: 'POST',
-            dataType: 'json',
-            data: { "nombre":nombre,
-                    "jefeDirecto" : jefeDirecto,
-                    "lugarTrabajo" : lugarTrabajo,
-                    "jornadaTrabajo" : jornadaTrabajo,
-                    "diasTrabajo" : diasTrabajo,
-                    "sueldo" : sueldo}
-        }).then(function (msg) {
-            if (msg.msg == "ok") {
-               toastr.success('Cargo ingresado');
-               document.getElementById("nombre").value = "";
-               document.getElementById("jefeDirecto").value = "";
-               document.getElementById("lugarTrabajo").value = "";
-               document.getElementById("jornadaTrabajo").value = "";
-               document.getElementById("diasTrabajo").value = "";
-               document.getElementById("sueldo").value = "";
-               $('#myModal').modal('hide');
-            } else {
-                toastr.error("Error en el ingreso.");
-            }
-        });
+
     }
 }
 
@@ -373,6 +351,49 @@ function agregarAFP() {
         });
     }
 }
+
+function getDetalleAFP(id){
+  var afp = id;
+  $.ajax({
+      url: 'getDetalleAFP',
+      type: 'POST',
+      dataType: 'json',
+      data: {"afp": afp}
+  }).then(function (msg) {
+      $("#modalDetalleAFP").empty();
+      var fila = "";
+      $.each(msg.msg, function (i, o) {
+        fila += '<div class="col-md-12"><br><label for="nombre">NOMBRE</label><input type="text" style="color:#848484" class="form-control custom-input-sm" id="nombre" value="'+o.atr_nombre+'" ></div>';
+        fila +='<button type="submit" class="btn btn-success" id="btnAgregarAFP">Guardar</button>';
+        $("#modalDetalleAFP").append(fila);
+      });
+
+  });
+}
+
+
+function editarAFP() {
+    var nombre = $("#nombre").val();
+    if (nombre == "" ) {
+        toastr.error("Rellene todos los campos");
+    } else {
+        $.ajax({
+            url: 'updateAFP',
+            type: 'POST',
+            dataType: 'json',
+            data: { "nombre":nombre }
+        }).then(function (msg) {
+            if (msg.msg == "ok") {
+               toastr.success('AFP actualizada')
+               document.getElementById("nombre").value = "";
+               $('#myModal').modal('hide');
+            } else {
+                toastr.error("Error en el ingreso.");
+            }
+        });
+    }
+}
+
 
 
 function agregarNacionalidad() {
@@ -473,161 +494,4 @@ function agregarEmpresa() {
             }
         });
     }
-}
-
-
-
-
-/***************************VALIDACIONES****************************/
-
-
-
-function checkRutA(rut) {
-    // Despejar Puntos
-    var valor = rut.value.replace('.','');
-    // Despejar Guión
-    valor = valor.replace('-','');
-
-    // Aislar Cuerpo y Dígito Verificador
-    cuerpo = valor.slice(0,-1);
-    dv = valor.slice(-1).toUpperCase();
-
-    // Formatear RUN
-   // rut.value = cuerpo + '-'+ dv
-
-    // Si no cumple con el mínimo ej. (n.nnn.nnn)
-    if(cuerpo.length < 7) { rut.setCustomValidity("RUT Incompleto"); return false;}
-
-    // Calcular Dígito Verificador
-    suma = 0;
-    multiplo = 2;
-
-    // Para cada dígito del Cuerpo
-    for(i=1;i<=cuerpo.length;i++) {
-
-        // Obtener su Producto con el Múltiplo Correspondiente
-        index = multiplo * valor.charAt(cuerpo.length - i);
-
-        // Sumar al Contador General
-        suma = suma + index;
-
-        // Consolidar Múltiplo dentro del rango [2,7]
-        if(multiplo < 7) { multiplo = multiplo + 1; } else { multiplo = 2; }
-
-    }
-
-    // Calcular Dígito Verificador en base al Módulo 11
-    dvEsperado = 11 - (suma % 11);
-
-    // Casos Especiales (0 y K)
-    dv = (dv == 'K')?10:dv;
-    dv = (dv == 0)?11:dv;
-
-    // Validar que el Cuerpo coincide con su Dígito Verificador
-    if(dvEsperado != dv) { rut.setCustomValidity("RUT Inválido"); return false; }
-
-    // Si todo sale bien, eliminar errores (decretar que es válido)
-    var sRut1 = rut.value;      //contador de para saber cuando insertar el . o la -
-    var nPos = 0; //Guarda el rut invertido con los puntos y el guión agregado
-    var sInvertido = ""; //Guarda el resultado final del rut como debe ser
-    var sRut = "";
-    for(var i = sRut1.length - 1; i >= 0; i-- )
-    {
-        sInvertido += sRut1.charAt(i);
-        if (i == sRut1.length - 1 )
-            sInvertido += "-";
-        else if (nPos == 3)
-        {
-            sInvertido += ".";
-            nPos = 0;
-        }
-        nPos++;
-    }
-    for(var j = sInvertido.length - 1; j >= 0; j-- )
-    {
-        if (sInvertido.charAt(sInvertido.length - 1) != ".")
-            sRut += sInvertido.charAt(j);
-        else if (j != sInvertido.length - 1 )
-            sRut += sInvertido.charAt(j);
-    }
-    //Pasamos al campo el valor formateado
-    rut.value = sRut.toUpperCase();
-    rut.setCustomValidity('');
-}
-
-function checkRutOficial(rut) {
-    // Despejar Puntos
-    var valor = rut.value.replace('.','');
-    // Despejar Guión
-    valor = valor.replace('-','');
-
-    // Aislar Cuerpo y Dígito Verificador
-    cuerpo = valor.slice(0,-1);
-    dv = valor.slice(-1).toUpperCase();
-
-    // Formatear RUN
-   // rut.value = cuerpo + '-'+ dv
-
-    // Si no cumple con el mínimo ej. (n.nnn.nnn)
-    if(cuerpo.length < 7) { rut.setCustomValidity("RUT Incompleto"); return false;}
-
-    // Calcular Dígito Verificador
-    suma = 0;
-    multiplo = 2;
-
-    // Para cada dígito del Cuerpo
-    for(i=1;i<=cuerpo.length;i++) {
-
-        // Obtener su Producto con el Múltiplo Correspondiente
-        index = multiplo * valor.charAt(cuerpo.length - i);
-
-        // Sumar al Contador General
-        suma = suma + index;
-
-        // Consolidar Múltiplo dentro del rango [2,7]
-        if(multiplo < 7) { multiplo = multiplo + 1; } else { multiplo = 2; }
-
-    }
-
-    // Calcular Dígito Verificador en base al Módulo 11
-    dvEsperado = 11 - (suma % 11);
-
-    // Casos Especiales (0 y K)
-    dv = (dv == 'K')?10:dv;
-    dv = (dv == 0)?11:dv;
-
-    // Validar que el Cuerpo coincide con su Dígito Verificador
-    if(dvEsperado != dv) { rut.setCustomValidity("RUT Inválido"); return false; }
-
-    // Si todo sale bien, eliminar errores (decretar que es válido)
-    var sRut1 = rut.value;      //contador de para saber cuando insertar el . o la -
-    var nPos = 0; //Guarda el rut invertido con los puntos y el guión agregado
-    var sInvertido = ""; //Guarda el resultado final del rut como debe ser
-    var sRut = "";
-    for(var i = sRut1.length - 1; i >= 0; i-- )
-    {
-        sInvertido += sRut1.charAt(i);
-        if (i == sRut1.length - 1 )
-            sInvertido += "-";
-        else if (nPos == 3)
-        {
-            sInvertido += ".";
-            nPos = 0;
-        }
-        nPos++;
-    }
-    for(var j = sInvertido.length - 1; j >= 0; j-- )
-    {
-        if (sInvertido.charAt(sInvertido.length - 1) != ".")
-            sRut += sInvertido.charAt(j);
-        else if (j != sInvertido.length - 1 )
-            sRut += sInvertido.charAt(j);
-    }
-    //Pasamos al campo el valor formateado
-    rut.value = sRut.toUpperCase();
-    rut.setCustomValidity('');
-}
-
-function mayus(e) {
-     e.value = e.value.toUpperCase();
 }

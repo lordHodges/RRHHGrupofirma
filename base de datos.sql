@@ -61,7 +61,7 @@ create table fa_sucursal(
 
 create table fa_cargo(
     cp_cargo int auto_increment,
-    atr_nombre varchar(100),
+    atr_nombre varchar(100) unique,
     atr_jefeDirecto varchar(200),
     atr_lugarTrabajo varchar(200),
     atr_jornadaTrabajo varchar(200),
@@ -115,6 +115,23 @@ create table fa_otrosantecedentes(
     constraint fk_otrosantecedentes_titulo  foreign key(cf_titulo) references fa_titulo(cp_titulo),
     constraint fk_otrosantecedentes_cargo  foreign key(cf_cargo) references fa_cargo(cp_cargo)
 );
+
+create table fa_responsabilidad(
+    cp_responsabilidad int auto_increment,
+    atr_descripcion varchar(500) not null,
+    cf_cargo int not null,
+    constraint pk_responsabilidad primary key(cp_responsabilidad),
+    constraint fk_responsabilidad_cargo foreign key(cf_cargo) references fa_cargo(cp_cargo)
+);
+
+-- create table fa_remuneraciones(
+--     cp_remuneraciones int auto_increment,
+--     atr_descripcion varchar(500) not null,
+--     cf_cargo int not null,
+--     constraint pk_responsabilidad primary key(cp_responsabilidad),
+--     constraint fk_responsabilidad_cargo foreign key(cf_cargo) references fa_cargo(cp_cargo)
+-- );
+
 
 create table fa_trabajador(
     cp_trabajador int auto_increment,

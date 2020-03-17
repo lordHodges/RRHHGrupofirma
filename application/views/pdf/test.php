@@ -20,9 +20,13 @@
       <ul>
         <li><h4 style="display:inline;">  Jefe Directo:</h4> <p style="display:inline;"><?php  echo(" ".$c->atr_jefeDirecto)?> </p><br><br></li>
         <li><h4 style="display:inline;">  Nombre del cargo:</h4><p style="display:inline;"><?php  echo(" ".$c->atr_nombre)?> </p><br><br></li>
-        <li><h4 style="display:inline;">  Jornada de trabajo: </h4><p style="display:inline;"><?php  echo(" ".$c->atr_jornadaTrabajo)?> </p><br><br></li>
-        <li><h4 style="display:inline;">  Días de trabajo: </h4><p style="display:inline;"><?php  echo("")?> </p><br><br></li>
-        <li><h4 style="display:inline;">  Principales responsabilidades:</h4><p style="display:inline;"><?php  echo(" ".$titulo)?> </p><br><br></li>
+        <li><h4 style="display:inline;">  Jornada de trabajo: </h4><p style="display:inline;"><?php  echo($c->atr_jornadaTrabajo)?> </p><br><br></li>
+        <li><h4 style="display:inline;">  Días de trabajo: </h4><p style="display:inline;"><?php  echo(" ".$c->atr_diasTrabajo)?> </p><br><br></li>
+        <li><h4 style="display:inline;">  Principales responsabilidades:</h4>
+            <?php foreach($responsablidades as $key=>$r){ ?>
+              <p>-<?php echo $r->atr_descripcion ?><p>
+            <?php } ?>
+        </li>
       </ul>
     <?php } ?>
     <!-- SUELDO A PAGAR -->

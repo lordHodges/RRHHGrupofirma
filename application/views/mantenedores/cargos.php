@@ -53,6 +53,18 @@
                         <label for="nombre">NOMBRE</label>
                         <input type="text" class="form-control custom-input-sm" id="nombre">
                     </div>
+
+                    <div class="col-md-12">
+                      <br>
+                      <label >RESPONSABILIDADES PRINCIPALES</label>
+                      <button type="button" class="btn btn-success btn-sm center"  id="btnAgregarInputResponsabilidad" >
+                        <i class="glyphicon glyphicon-plus"></i>
+                      </button>
+                    </div>
+                    <div class="col-md-12" id="containerResponsabilidades">
+
+                    </div>
+
                     <div class="col-md-12">
                         <br>
                         <label for="jefeDirecto">JEFE DIRECTO</label>
@@ -78,6 +90,7 @@
                         <label for="sueldo">SUELDO</label>
                         <input type="text" class="form-control custom-input-sm" id="sueldo">
                     </div>
+
                 </div>
                 <br>
                 <button type="submit" class="btn btn-success" id="btnAgregarCargo">Guardar</button>
@@ -99,6 +112,7 @@
     <script src="<?php echo base_url() ?>assets/build/js/custom.min.js"></script>
     <!-- MODIDEV -->
     <script src="<?php echo base_url() ?>assets/js/modidev.js"></script>
+    <script src="<?php echo base_url() ?>assets/js/perfilesOcupacionales/responsabilidades.js"></script>
     <!-- Toast -->
     <script src="<?php echo base_url() ?>assets/js/toastr.min.js" type="text/javascript"></script>
 
@@ -192,11 +206,18 @@
       $("#btnAgregarCargo").click(function (e){
           e.preventDefault();
           agregarCargo();
+          // agregarResponsabilidades();
           var table = $('#tabla_cargo').DataTable();
           table.ajax.reload(function(json) {
             $('#btnAgregarCargo').val(json.lastInput);
           });
       });
+
+      $("#btnAgregarInputResponsabilidad").click(function (e){
+          e.preventDefault();
+          agregaInputResponsabilidad();
+      });
+
   </script>
 
   </body>

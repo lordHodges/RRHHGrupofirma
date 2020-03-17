@@ -7,13 +7,14 @@
     <div class="row">
         <div class="x_panel">
             <div class="x_content">
-                <button type="button" class="btn modidev-btn" data-toggle="modal" data-target=".bd-example-modal-lg" style="margin-bottom:20px;">INGRESAR AFP</button>
+                <button type="button" class="btn modidev-btn" data-toggle="modal" data-target="#modalCrearAFP" style="margin-bottom:20px;">INGRESAR AFP</button>
 
                 <table id="tabla_AFP" class="table table-striped table-bordered table-hover dataTables-AFP" style="margin-top:20px;">
                     <thead >
                         <tr style="width:100%;">
                             <th class="text-center">ID</th>
                             <th class="text-center">AFP</th>
+                            <th class="text-center" style="width:10%">ACCIONES</th>
                         </tr>
                     </thead>
                     <tbody id="tbodyDetalle">
@@ -34,8 +35,8 @@
     </footer>
     <!-- /footer content -->
 
-    <!-- Modal crear -->
-    <div id="myModal" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="crearTrabajador"  aria-hidden="true" >
+    <!-- Modal editar -->
+    <div id="modalCrearAFP" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog"  aria-hidden="true" >
         <div class="modal-dialog modal-lg">
             <div class="modal-content" style="padding:20px; background: #2a3f54" >
                 <div class="form-row">
@@ -48,14 +49,38 @@
                         <label for="nombre">NOMBRE</label>
                         <input type="text" class="form-control custom-input-sm" id="nombre" >
                     </div>
-
                 </div>
                 <br>
                 <button type="submit" class="btn btn-success" id="btnAgregarAFP">Guardar</button>
             </div>
         </div>
     </div>
-    <!-- /Modal de crear -->
+    <!-- /Modal de editar -->
+
+    <!-- Modal ver -->
+    <div id="modaleditarAFP" class="modal fade" tabindex="-1" role="dialog"  aria-hidden="true" >
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content" style="padding:20px; background: #2a3f54" >
+                <div class="row">
+                    <div class="col-md-12">
+                      <h5 class="modal-title mx-auto" style="display:inline;">TRABAJADOR</h5>
+                      <button type="button" class="close"  data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <div class="row" id="modalDetalleAFP">
+
+
+                      </div>
+                    </div>
+
+                </div>
+                <br>
+            </div>
+        </div>
+    </div>
+    <!-- /Modal de ver -->
 
 
 
@@ -112,9 +137,11 @@
                     type: 'GET'
                 },
                 "columnDefs": [{
-
+                  "targets": 2,
+                  "data": null,
+                  "defaultContent": '<button type="button" id="btnVerAFP" class="btn btn-info" data-toggle="modal" data-target="#modaleditarAFP"><i class="glyphicon glyphicon-pencil"></i></button>'
                 }
-                ],dom: '<"html5buttons"B>lTfgitp',
+              ],dom: '<"html5buttons"B>lTfgitp',
                   buttons: [{
                           extend: 'copy'
                       },
@@ -154,6 +181,26 @@
             $('#btnAgregarAFP').val(json.lastInput);
           });
       });
+
+      $("body").on("click", "#btnVerAFP", function(e) {
+           e.preventDefault();
+           var id = $(this).parent().parent().children()[0];
+           getDetalleAFP($(id).text());
+       });
+
+       $("#btnAgregarAFP").click(function (e){
+           e.preventDefault();
+           editarAFP();
+           var table = $('#tabla_AFP').DataTable();
+           table.ajax.reload(function(json) {
+             $('#btnAgregarAFP').val(json.lastInput);
+           });
+       });
+
+       $("#myModal").click(function (e){
+           $('#myModal').modal('show');
+       });
+
   </script>
 
   </body>

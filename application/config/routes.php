@@ -5,10 +5,7 @@ $route['default_controller'] = 'Welcome/index';
 $route['dashboard'] = 'welcome/index';
 
 
-
 $route['testDoc'] = 'welcome/testDoc';
-
-
 
 
 
@@ -91,6 +88,7 @@ $route['addSucursal'] = 'SucursalController/addSucursal';
     //cargos
 $route['getlistadecargos'] = 'CargoController/getListadoCargos';
 $route['addCargo'] = 'CargoController/addCargo';
+$route['addResponsabilidades'] = 'CargoController/addResponsabilidades';
 
     //estados civiles
 $route['getListadoEstadosCiviles'] = 'EstadoCivilController/getListadoEstadosCiviles';
@@ -99,6 +97,9 @@ $route['addEstadoCivil'] = 'EstadoCivilController/addEstadoCivil';
     //AFP
 $route['getListadoAFP'] = 'AFPController/getListadoAFP';
 $route['addAFP'] = 'AFPController/addAFP';
+$route['getDetalleAFP'] = 'AFPController/getDetalleAFP';
+$route['updateAFP'] = 'AFPController/updateAFP';
+
 
     //nacionalidades
 $route['getListadoNacionalidades'] = 'NacionalidadController/getListadoNacionalidades';

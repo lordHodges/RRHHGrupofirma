@@ -94,6 +94,7 @@
     <script src="<?php echo base_url() ?>assets/build/js/custom.min.js"></script>
     <!-- MODIDEV -->
     <script src="<?php echo base_url() ?>assets/js/modidev.js"></script>
+    <script src="<?php echo base_url() ?>assets/js/generarPDF.js"></script>
     <!-- Toast -->
     <script src="<?php echo base_url() ?>assets/js/toastr.min.js" type="text/javascript"></script>
 
@@ -194,6 +195,15 @@
             $('#btnAgregarCargo').val(json.lastInput);
           });
       });
+
+      $("body").on("click", "#btnVerDocumentoPerfilOcupacional", function(e) {
+           e.preventDefault();
+           var cargo = $(this).parent().parent().children()[0];
+           var idCargo = $(cargo).text()
+           var url = 'http://localhost/FA_RECURSOS-HUMANOS/testDoc?cargo='+idCargo;
+           window.open(url, '_blank');
+       });
+
   </script>
 
   </body>

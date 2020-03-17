@@ -43,7 +43,19 @@ class AFPController extends CI_Controller {
 
 		$resultado = $this->MantenedoresModel->addAFP($nombre);
 		echo json_encode(array("msg" => $resultado));
+	}
 
+	public function getDetalleAFP(){
+		$afp = $this->input->post("afp");
+
+		$resultado = $this->MantenedoresModel->getDetalleAFP($afp);
+		echo json_encode(array("msg" => $resultado));
+	}
+
+	public function updateAFP(){
+		$afp = $this->input->post("afp");
+		$nombre = $this->input->post("nombre");
+		$this->MantenedoresModel->updateAFP($afp, $nombre);
 	}
 
 

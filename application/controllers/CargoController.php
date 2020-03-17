@@ -15,6 +15,14 @@ class CargoController extends CI_Controller {
 		$this->load->view('mantenedores/cargos');
 	}
 
+	public function addResponsabilidades(){
+		$responsabilidad = $this->input->post("responsabilidad");
+		$cargo = $this->input->post("cargo");
+
+		$resultado = $this->MantenedoresModel->addResponsabilidades($cargo, $responsabilidad);
+		echo json_encode(array("msg" => $resultado));
+	}
+
 
 	public function getListadoCargos(){
 		$draw = intval($this->input->get("draw"));
