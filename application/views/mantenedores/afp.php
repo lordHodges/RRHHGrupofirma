@@ -12,7 +12,7 @@
                 <table id="tabla_AFP" class="table table-striped table-bordered table-hover dataTables-AFP" style="margin-top:20px;">
                     <thead >
                         <tr style="width:100%;">
-                            <th class="text-center">ID</th>
+                            <th class="text-center" style="width:10%">ID</th>
                             <th class="text-center">AFP</th>
                             <th class="text-center" style="width:10%">ACCIONES</th>
                         </tr>
@@ -35,7 +35,7 @@
     </footer>
     <!-- /footer content -->
 
-    <!-- Modal editar -->
+    <!-- Modal crear -->
     <div id="modalCrearAFP" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog"  aria-hidden="true" >
         <div class="modal-dialog modal-lg">
             <div class="modal-content" style="padding:20px; background: #2a3f54" >
@@ -55,32 +55,34 @@
             </div>
         </div>
     </div>
-    <!-- /Modal de editar -->
+    <!-- /Modal de crear -->
 
-    <!-- Modal ver -->
+    <!-- Modal editar -->
     <div id="modaleditarAFP" class="modal fade" tabindex="-1" role="dialog"  aria-hidden="true" >
         <div class="modal-dialog modal-lg">
             <div class="modal-content" style="padding:20px; background: #2a3f54" >
                 <div class="row">
                     <div class="col-md-12">
-                      <h5 class="modal-title mx-auto" style="display:inline;">TRABAJADOR</h5>
-                      <button type="button" class="close"  data-dismiss="modal" aria-label="Close">
+                      <h5 class="modal-title text-center">AFP</h5>
+                      <button type="button" class="close" style="margin-top:-27px;"  data-dismiss="modal" aria-label="Close">
                           <span aria-hidden="true">&times;</span>
                       </button>
                     </div>
                     <div class="modal-body">
-                      <div class="row" id="modalDetalleAFP">
-
+                      <div id="modalDetalleAFP">
 
                       </div>
+                      <div class="col-md-12">
+                        <br>
+                        <button type="submit" class="btn btn-success" style="width:100%"  id="btnUpdateAFP">Guardar cambios</button>
+                      </div>
                     </div>
-
                 </div>
                 <br>
             </div>
         </div>
     </div>
-    <!-- /Modal de ver -->
+    <!-- /Modal de editar -->
 
 
 
@@ -188,7 +190,7 @@
            getDetalleAFP($(id).text());
        });
 
-       $("#btnAgregarAFP").click(function (e){
+       $("#btnUpdateAFP").click(function (e){
            e.preventDefault();
            editarAFP();
            var table = $('#tabla_AFP').DataTable();
@@ -197,8 +199,8 @@
            });
        });
 
-       $("#myModal").click(function (e){
-           $('#myModal').modal('show');
+       $("#modalCrearAFP").click(function (e){
+           $('#modalCrearAFP').modal('show');
        });
 
   </script>

@@ -86,11 +86,79 @@ class MantenedoresModel extends CI_Model {
         return "ok";
     }
 
+    function addResponsabilidadesPorIDCargo($cargo, $responsabilidad){
+        $data = array(
+            "atr_descripcion" => $responsabilidad,
+            "cf_cargo" => $cargo
+        );
+        $this->db->insert("fa_responsabilidad", $data);
+        return "ok";
+    }
+
     function getListadoResponsabilidades($cargo){
       $this->db->select("r.atr_descripcion");
       $this->db->from("fa_responsabilidad r");
       $this->db->where("r.cf_cargo",$cargo);
       return $this->db->get()->result();
+    }
+
+    function getDetalleCargo($cargo){
+        $this->db->select("c.cp_cargo, c.atr_nombre, c.atr_jefeDirecto, c.atr_lugarTrabajo, c.atr_jornadaTrabajo, c.atr_sueldo, c.atr_diasTrabajo");
+        $this->db->from("fa_cargo c");
+        // $this->db->join("fa_responsabilidad r", "r.cf_cargo == c.cp_cargo")
+        $this->db->where("c.cp_cargo",$cargo);
+        $arrayCargo = $this->db->get()->result();
+
+
+        $this->db->select("r.cp_responsabilidad, r.atr_descripcion");
+        $this->db->from("fa_responsabilidad r");
+        // $this->db->join("fa_responsabilidad r", "r.cf_cargo == c.cp_cargo")
+        $this->db->where("r.cf_cargo",$cargo);
+        $arrayResponsabilidades = $this->db->get()->result();
+
+        $data = array(
+            "mensaje" => "este es el mensaje del modelo",
+            "array_cargo" => $arrayCargo,
+            "array_responsabilidades" => $arrayResponsabilidades,
+        );
+
+        return $data;
+    }
+
+    function updateCargo($id, $nombre, $jefeDirecto, $lugarTrabajo, $jornadaTrabajo, $diasTrabajo, $sueldo){
+        $data = array(
+            "atr_nombre" => $nombre,
+            "atr_jefeDirecto" => $jefeDirecto,
+            "atr_lugarTrabajo" => $lugarTrabajo,
+            "atr_jornadaTrabajo" => $jornadaTrabajo,
+            "atr_diasTrabajo" => $diasTrabajo,
+            "atr_sueldo" => $sueldo
+        );
+        $this->db->where('cp_cargo', $id);
+        $resultado =  $this->db->update("fa_cargo", $data);
+        if($resultado){
+          return "ok";
+        }else{
+          return "error";
+        }
+    }
+
+    function updateResponsabilidad($descripcionActual,$descripcionNueva,$idCargo){
+      $data = array(
+          "atr_descripcion" => $descripcionNueva
+      );
+
+      $this->db->where('r.cf_cargo', $idCargo);
+      $this->db->where('r.atr_descripcion', $descripcionActual);
+      $resultado =  $this->db->update("fa_responsabilidad r", $data);
+
+      var_dump("descripcion actual: ",$descripcionActual);
+      var_dump("descripcion nueva: ",$descripcionNueva);
+      if($resultado){
+        return "ok";
+      }else{
+        return "error";
+      }
     }
 
     // ESTADO CIVIL
@@ -130,12 +198,11 @@ class MantenedoresModel extends CI_Model {
         return $this->db->get()->result();
     }
 
-    function updateAFP($afp,$nombre){
+    function updateAFP($afpNuevo, $id){
         $data = array(
-            "cp_afp" => $afp,
-            "atr_nombre" => $nombre
+            "atr_nombre" => $afpNuevo
         );
-        $this->db->where('cp_afp', $afp);
+        $this->db->where('cp_afp', $id);
         $this->db->update("fa_afp", $data);
         return "ok";
     }

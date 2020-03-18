@@ -89,6 +89,11 @@ $route['addSucursal'] = 'SucursalController/addSucursal';
 $route['getlistadecargos'] = 'CargoController/getListadoCargos';
 $route['addCargo'] = 'CargoController/addCargo';
 $route['addResponsabilidades'] = 'CargoController/addResponsabilidades';
+$route['addResponsabilidadesPorIDCargo'] = 'CargoController/addResponsabilidadesPorIDCargo';
+$route['getDetalleCargo'] = 'CargoController/getDetalleCargo';
+$route['getDetalleResponsabilidades'] = 'CargoController/getDetalleResponsablidades';
+$route['updateCargo'] = 'CargoController/updateCargo';
+$route['updateResponsabilidad'] = 'CargoController/updateResponsabilidad';
 
     //estados civiles
 $route['getListadoEstadosCiviles'] = 'EstadoCivilController/getListadoEstadosCiviles';

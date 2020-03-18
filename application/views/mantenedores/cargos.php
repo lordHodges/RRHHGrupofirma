@@ -18,7 +18,7 @@
                             <th class="text-center">LUGAR DE TRABAJO</th>
                             <th class="text-center">JORNADA DE TRABAJO</th>
                             <th class="text-center">SUELDO</th>
-                            <!-- <th class="text-center">ACCIONES</th> -->
+                            <th class="text-center">ACCIONES</th>
                         </tr>
                     </thead>
                     <tbody id="tbodyDetalle">
@@ -99,6 +99,33 @@
     </div>
     <!-- /Modal de crear -->
 
+    <!-- Modal editar -->
+    <div id="modaleditarCargo" class="modal fade" tabindex="-1" role="dialog"  aria-hidden="true" >
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content" style="padding:20px; background: #2a3f54" >
+                <div class="row">
+                    <div class="col-md-12">
+                      <h5 class="modal-title text-center">CARGO</h5>
+                      <button type="button" class="close" style="margin-top:-27px;"  data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <div id="modalDetalleCargo">
+
+                      </div>
+                      <div class="col-md-12">
+                        <br>
+                        <button type="submit" class="btn btn-success" style="width:100%"  id="btnUpdateCargo">Guardar cambios</button>
+                      </div>
+                    </div>
+                </div>
+                <br>
+            </div>
+        </div>
+    </div>
+    <!-- /Modal de editar -->
+
 
 
 
@@ -155,7 +182,9 @@
                     type: 'GET'
                 },
                 "columnDefs": [{
-
+                    "targets": 6,
+                    "data": null,
+                    "defaultContent": '<button type="button" id="btnVerCargo" class="btn btn-info" data-toggle="modal" data-target="#modaleditarCargo"><i class="glyphicon glyphicon-pencil"></i></button>'
                 }
                 ],dom: '<"html5buttons"B>lTfgitp',
                   buttons: [{
@@ -206,10 +235,25 @@
       $("#btnAgregarCargo").click(function (e){
           e.preventDefault();
           agregarCargo();
-          // agregarResponsabilidades();
           var table = $('#tabla_cargo').DataTable();
           table.ajax.reload(function(json) {
             $('#btnAgregarCargo').val(json.lastInput);
+          });
+      });
+
+     $("body").on("click", "#btnVerCargo", function(e) {
+          e.preventDefault();
+          var id = $(this).parent().parent().children()[0];
+          getDetalleCargo($(id).text());
+       });
+
+     $("body").on("click", "#btnUpdateCargo", function(e) {
+          e.preventDefault();
+          var id = $(this).parent().parent().children()[0];
+          updateCargo($(id).text());
+          var table = $('#tabla_cargo').DataTable();
+          table.ajax.reload(function(json) {
+            $('#btnUpdateCargo').val(json.lastInput);
           });
       });
 
@@ -217,6 +261,13 @@
           e.preventDefault();
           agregaInputResponsabilidad();
       });
+
+      $("body").on("click", "#btnAgregarInputResponsabilidadEditar", function(e) {
+           e.preventDefault();
+           agregaInputResponsabilidadEditar();
+       });
+
+
 
   </script>
 

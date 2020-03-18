@@ -292,20 +292,7 @@ function agregarSucursal() {
     }
 }
 
-function agregarCargo() {
-    var nombre = $("#nombre").val();
-    var jefeDirecto = $("#jefeDirecto").val();
-    var lugarTrabajo = $("#lugarTrabajo").val();
-    var jornadaTrabajo = $("#jornadaTrabajo").val();
-    var diasTrabajo = $("#diasTrabajo").val();
-    var sueldo = $("#sueldo").val();
 
-    if (nombre == "" || jefeDirecto == "" || lugarTrabajo == "" || jornadaTrabajo == "" || sueldo == "" || diasTrabajo == "") {
-        toastr.error("Rellene todos los campos");
-    } else {
-
-    }
-}
 
 function agregarEstadoCivil() {
     var nombre = $("#nombre").val();
@@ -363,35 +350,39 @@ function getDetalleAFP(id){
       $("#modalDetalleAFP").empty();
       var fila = "";
       $.each(msg.msg, function (i, o) {
-        fila += '<div class="col-md-12"><br><label for="nombre">NOMBRE</label><input type="text" style="color:#848484" class="form-control custom-input-sm" id="nombre" value="'+o.atr_nombre+'" ></div>';
-        fila +='<button type="submit" class="btn btn-success" id="btnAgregarAFP">Guardar</button>';
+        fila += '<label value="'+o.cp_afp+'"></label>'
+        fila += '<div class="col-md-12"><br><label for="nombre">NOMBRE: &nbsp;&nbsp;</label><label id="nombreAntiguo"> '+o.atr_nombre+' </label> <label id="idAFP" style="color:#2a3f54">'+o.cp_afp+'</label> <input type="text" placeholder="Ingrese nuevo nombre" style="color:#848484" class="form-control custom-input-sm" id="nombreNuevo"></div>';
         $("#modalDetalleAFP").append(fila);
       });
-
   });
 }
 
 
-function editarAFP() {
-    var nombre = $("#nombre").val();
-    if (nombre == "" ) {
+function editarAFP(id) {
+    var idAFP = $("#idAFP").text();
+    var nombreNuevo = $("#nombreNuevo").val();
+
+    if (nombreNuevo == "" ) {
         toastr.error("Rellene todos los campos");
     } else {
         $.ajax({
             url: 'updateAFP',
             type: 'POST',
             dataType: 'json',
-            data: { "nombre":nombre }
+            data: { "nombreNuevo":nombreNuevo,
+                    "idAFP":idAFP}
         }).then(function (msg) {
             if (msg.msg == "ok") {
-               toastr.success('AFP actualizada')
-               document.getElementById("nombre").value = "";
-               $('#myModal').modal('hide');
+               toastr.success('AFP modificada')
+               document.getElementById("nombreNuevo").value = "";
+               document.getElementById("nombreAntiguo").value = "";
+               $('#modaleditarAFP').modal('hide');
             } else {
                 toastr.error("Error en el ingreso.");
             }
         });
     }
+
 }
 
 

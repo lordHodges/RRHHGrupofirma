@@ -23,6 +23,15 @@ class CargoController extends CI_Controller {
 		echo json_encode(array("msg" => $resultado));
 	}
 
+	public function addResponsabilidadesPorIDCargo(){
+		$responsabilidad = $this->input->post("responsabilidad");
+		$cargo = $this->input->post("cargo");
+
+		$resultado = $this->MantenedoresModel->addResponsabilidadesPorIDCargo($cargo, $responsabilidad);
+		echo json_encode(array("msg" => $resultado));
+	}
+
+
 
 	public function getListadoCargos(){
 		$draw = intval($this->input->get("draw"));
@@ -74,6 +83,42 @@ class CargoController extends CI_Controller {
 		echo json_encode(array("msg" => $resultado));
 
 	}
+
+
+	public function getDetalleCargo(){
+		$cargo = $this->input->post("cargo");
+
+		$resultado = $this->MantenedoresModel->getDetalleCargo($cargo);
+
+		echo json_encode(array("msg" => $resultado));
+	}
+
+
+	public function updateCargo(){
+		$id = $this->input->post("id");
+		$nombre = $this->input->post("nombre");
+		$jefeDirecto = $this->input->post("jefeDirecto");
+		$lugarTrabajo = $this->input->post("lugarTrabajo");
+		$jornadaTrabajo = $this->input->post("jornadaTrabajo");
+		$diasTrabajo = $this->input->post("diasTrabajo");
+		$sueldo = $this->input->post("sueldo");
+
+		$resultado = $this->MantenedoresModel->updateCargo($id, $nombre, $jefeDirecto, $lugarTrabajo, $jornadaTrabajo, $diasTrabajo, $sueldo);
+		echo json_encode(array("msg" => $resultado));
+	}
+
+	public function updateResponsabilidad(){
+		$descripcionActual = $this->input->post("descripcionActual");
+		$descripcionNueva = $this->input->post("descripcionNueva");
+		$idCargo = $this->input->post("idCargo");
+		var_dump("nueva: ",$descripcionNueva);
+		var_dump("actual: ",$descripcionActual);
+		var_dump("idCargo: ",$idCargo);
+
+		$resultado = $this->MantenedoresModel->updateResponsabilidad($descripcionActual,$descripcionNueva,$idCargo);
+		echo json_encode(array("msg" => $resultado));
+	}
+
 
 
 
