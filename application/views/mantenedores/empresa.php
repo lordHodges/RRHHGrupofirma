@@ -23,6 +23,7 @@
                             <!-- REPRESENTANTE -->
                             <th class="text-center">REPRESENTANTE</th>
                             <th class="text-center">CEDULA</th>
+                            <th class="text-center">ACCIONES</th>
                         </tr>
                     </thead>
                     <tbody id="tbodyDetalle">
@@ -83,7 +84,7 @@
                         <input type="text" class="form-control custom-input-sm" id="cedulaRepre">
                     </div>
 
-                    <div class="col-md-6">
+                    <div class="col-md-12">
                         <br>
                         <label for="getSelectCiudad">CIUDAD</label><br>
                         <select class="custom-select" id="getSelectCiudad">
@@ -98,6 +99,24 @@
         </div>
     </div>
     <!-- /Modal de crear -->
+
+
+
+
+    <!-- Modal editar -->
+    <div id="modalEditarEmpresa" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="crearTrabajador"  aria-hidden="true" >
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content" style="padding:20px; background: #2a3f54" >
+                <div class="form-row" id="contenedorDetalleEmpresa">
+
+
+                </div>
+                <br>
+                <button type="submit" class="btn btn-success" id="btnEditarEmpresa">Guardar</button>
+            </div>
+        </div>
+    </div>
+    <!-- /Modal de editar -->
 
 
 
@@ -155,7 +174,9 @@
                     type: 'GET'
                 },
                 "columnDefs": [{
-
+                  "targets": 7,
+                  "data": null,
+                  "defaultContent": '<button type="button" id="getDetalleEmpresa" class="btn btn-info" data-toggle="modal" data-target="#modalEditarEmpresa"><i class="glyphicon glyphicon-pencil"></i></button>'
                 }
                 ],dom: '<"html5buttons"B>lTfgitp',
                   buttons: [{
@@ -204,14 +225,33 @@
             });
       });
 
-      $("#btnAgregarPrevisión").click(function (e){
+
+      $("body").on("click", "#btnAgregarEmpresa", function(e) {
           e.preventDefault();
-          agregarSucursal();
+          agregarEmpresa();
           var table = $('#tabla_empresa').DataTable();
           table.ajax.reload(function(json) {
-            $('#btnAgregarPrevisión').val(json.lastInput);
+            $('#btnAgregarEmpresa').val(json.lastInput);
           });
       });
+
+      $("body").on("click", "#getDetalleEmpresa", function(e) {
+          e.preventDefault();
+          var id = $(this).parent().parent().children()[0];
+          getDetalleEmpresa($(id).text());
+      });
+
+      $("body").on("click", "#btnEditarEmpresa", function(e) {
+          e.preventDefault();
+          var id = $(this).parent().parent().children()[0];
+          editarEmpresa();
+          var table = $('#tabla_empresa').DataTable();
+          table.ajax.reload(function(json) {
+            $('#btnEditarEmpresa').val(json.lastInput);
+          });
+      });
+
+
   </script>
 
   </body>

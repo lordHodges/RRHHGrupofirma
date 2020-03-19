@@ -46,6 +46,20 @@ class  NacionalidadController extends CI_Controller {
 
 	}
 
+	public function getDetalleNacionalidad(){
+			$idNacionalidad = $this->input->post("idNacionalidad");
+
+			$resultado = $this->MantenedoresModel->getDetalleNacionalidad($idNacionalidad);
+			echo json_encode(array("msg" => $resultado));
+		}
+
+		public function updateNacionalidad(){
+			$idNacionalidad = $this->input->post("idNacionalidad");
+			$nombre = $this->input->post("nombre");
+
+			$resultado = $this->MantenedoresModel->updateNacionalidad($idNacionalidad, $nombre);
+			echo json_encode(array("msg" => $resultado));
+		}
 
 
 

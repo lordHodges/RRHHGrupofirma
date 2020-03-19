@@ -12,8 +12,9 @@
                 <table id="tabla_prevision" class="table table-striped table-bordered table-hover dataTables-prevision" style="margin-top:20px;">
                     <thead >
                         <tr style="width:100%;">
-                            <th class="text-center">ID</th>
+                            <th class="text-center" style="width:10%;">ID</th>
                             <th class="text-center">PREVISIÓN</th>
+                            <th class="text-center" style="width:10%;">ACCIONES</th>
                         </tr>
                     </thead>
                     <tbody id="tbodyDetalle">
@@ -56,6 +57,22 @@
         </div>
     </div>
     <!-- /Modal de crear -->
+
+
+    <!-- Modal editar -->
+    <div id="modalEditarPrevision" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="crearTrabajador"  aria-hidden="true" >
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content" style="padding:20px; background: #2a3f54" >
+                <div class="form-row" id="contenedorDetallePrevision">
+
+
+                </div>
+                <br>
+                <button type="submit" class="btn btn-success" id="btnEditarPrevision">Guardar</button>
+            </div>
+        </div>
+    </div>
+    <!-- /Modal de editar -->
 
 
 
@@ -112,7 +129,9 @@
                     type: 'GET'
                 },
                 "columnDefs": [{
-
+                  "targets": 2,
+                  "data": null,
+                  "defaultContent": '<button type="button" id="getDetallePrevision" class="btn btn-info" data-toggle="modal" data-target="#modalEditarPrevision"><i class="glyphicon glyphicon-pencil"></i></button>'
                 }
                 ],dom: '<"html5buttons"B>lTfgitp',
                   buttons: [{
@@ -167,6 +186,22 @@
           var table = $('#tabla_prevision').DataTable();
           table.ajax.reload(function(json) {
             $('#btnAgregarPrevisión').val(json.lastInput);
+          });
+      });
+
+
+      $("body").on("click", "#getDetallePrevision", function(e) {
+          e.preventDefault();
+          var id = $(this).parent().parent().children()[0];
+          getDetallePrevision($(id).text());
+      });
+
+      $("body").on("click", "#btnEditarPrevision", function(e) {
+          e.preventDefault();
+          updatePrevision();
+          var table = $('#tabla_prevision').DataTable();
+          table.ajax.reload(function(json) {
+            $('#btnEditarPrevision').val(json.lastInput);
           });
       });
   </script>

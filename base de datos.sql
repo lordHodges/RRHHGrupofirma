@@ -38,12 +38,6 @@ create table fa_ciudad(
     constraint pk_ciudad primary key(cp_ciudad)
 );
 
-create table fa_remuneracion(
-    cp_remuneracion int auto_increment,
-    atr_sueldo varchar(100),
-    atr_cotizaciones int,
-    constraint pk_remuneracion primary key(cp_remuneracion)
-);
 
 
 create table fa_empresa(
@@ -75,6 +69,23 @@ create table fa_cargo(
     atr_jornadaTrabajo varchar(200),
     atr_diasTrabajo varchar(200),
     constraint pk_cargo primary key(cp_cargo)
+);
+
+create table fa_remuneracion(
+    cp_remuneracion int auto_increment,
+    atr_sueldo varchar(100),
+    atr_cotizaciones int,
+    cf_cargo int,
+    constraint pk_remuneracion primary key(cp_remuneracion),
+    constraint fk_remuneracion_cargo foreign key(cf_cargo) references fa_cargo(cp_cargo)
+);
+
+create table fa_remuneracion_extra(
+    cp_remuneracionExtra int auto_increment,
+    atr_descripcion varchar(200),
+    cf_remuneracion int,
+    constraint pk_remuneracionExtra primary key(cp_remuneracionExtra),
+    constraint fk_remunercionExtra_remuneracion foreign key(cf_remuneracion) references fa_remuneracion(cp_remuneracion)
 );
 
 create table fa_tarea(

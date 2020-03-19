@@ -38,12 +38,26 @@ class EstadoContratoController extends CI_Controller {
 	}
 
 	public function addEstadoContrato(){
-	$nombre = $this->input->post("nombre");
+		$nombre = $this->input->post("nombre");
 
-	$resultado = $this->MantenedoresModel->addEstadoContrato($nombre);
-	echo json_encode(array("msg" => $resultado));
+		$resultado = $this->MantenedoresModel->addEstadoContrato($nombre);
+		echo json_encode(array("msg" => $resultado));
+	}
 
-}
+	public function getDetalleEstadosContrato(){
+		$nombre = $this->input->post("idEstadoContrato");
+
+		$resultado = $this->MantenedoresModel->getDetalleEstadosContrato($nombre);
+		echo json_encode(array("msg" => $resultado));
+	}
+
+	public function updateEstadoContrato(){
+		$idEstadoContrato = $this->input->post("idEstadoContrato");
+		$nombre = $this->input->post("nombre");
+		
+		$resultado = $this->MantenedoresModel->updateEstadoContrato($idEstadoContrato,$nombre);
+		echo json_encode(array("msg" => $resultado));
+	}
 
 
 

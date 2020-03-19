@@ -15,6 +15,11 @@ $route['inicioTrabajadores'] = 'TrabajadorController/index';
 $route['addTrabajador'] = 'TrabajadorController/addTrabajador';
 $route['getListadoTrabajadores'] = 'TrabajadorController/getListadoTrabajadores';
 $route['getDetalleTrabajador'] = 'TrabajadorController/getDetalleTrabajador';
+
+$route['updateTrabajador'] = 'TrabajadorController/updateTrabajador';
+$route['getDetalleTrabajadorViewEdit'] = 'TrabajadorController/getDetalleTrabajadorViewEdit';
+
+
     //Lo necesario para ingresar trabajadores
 $route['getCiudades'] = 'TrabajadorController/getCiudades';
 $route['getCargos'] = 'TrabajadorController/getCargos';
@@ -109,21 +114,29 @@ $route['updateAFP'] = 'AFPController/updateAFP';
     //nacionalidades
 $route['getListadoNacionalidades'] = 'NacionalidadController/getListadoNacionalidades';
 $route['addNacionalidad'] = 'NacionalidadController/addNacionalidad';
+$route['updateNacionalidad'] = 'NacionalidadController/updateNacionalidad';
+$route['getDetalleNacionalidad'] = 'NacionalidadController/getDetalleNacionalidad';
 
 
     //estado contrato
 $route['getEstadoContrato'] = 'EstadoContratoController/getEstadoContrato';
 $route['addEstadoContrato'] = 'EstadoContratoController/addEstadoContrato';
+$route['updateEstadoContrato'] = 'EstadoContratoController/updateEstadoContrato';
+$route['getDetalleEstadosContrato'] = 'EstadoContratoController/getDetalleEstadosContrato';
 
 
     //previsiones
 $route['getListadoPrevisiones'] = 'PrevisionesController/getListadoPrevisiones';
 $route['addPrevision'] = 'PrevisionesController/addPrevision';
+$route['updatePrevision'] = 'PrevisionesController/updatePrevision';
+$route['getDetallePrevision'] = 'PrevisionesController/getDetallePrevision';
 
 
     //empresa
 $route['getListadoEmpresa'] = 'EmpresaController/getListadoEmpresas';
 $route['addEmpresa'] = 'EmpresaController/addEmpresa';
+$route['updateEmpresa'] = 'EmpresaController/updateEmpresa';
+$route['getDetalleEmpresa'] = 'EmpresaController/getDetalleEmpresa';
 
     //getTitulos
 $route['getTitulos'] = 'TitulosController/getTitulos';

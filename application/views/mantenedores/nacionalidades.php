@@ -12,8 +12,9 @@
                 <table id="tabla_nacionalidad" class="table table-striped table-bordered table-hover dataTables-sucursales" style="margin-top:20px;">
                     <thead >
                         <tr style="width:100%;">
-                            <th class="text-center">ID</th>
+                            <th class="text-center" style="width:10%;">ID</th>
                             <th class="text-center">NACIONALIDAD</th>
+                            <th class="text-center" style="width:10%;">ACCIONES</th>
                         </tr>
                     </thead>
                     <tbody id="tbodyDetalle">
@@ -57,6 +58,20 @@
     </div>
     <!-- /Modal de crear -->
 
+    <!-- Modal editar -->
+    <div id="modalEditarNacionalidad" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="crearTrabajador"  aria-hidden="true" >
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content" style="padding:20px; background: #2a3f54" >
+                <div class="form-row" id="contenedorDetalleNacionalidad">
+
+
+                </div>
+                <br>
+                <button type="submit" class="btn btn-success" id="btnEditarNacionalidad">Guardar</button>
+            </div>
+        </div>
+    </div>
+    <!-- /Modal de editar -->
 
 
 
@@ -115,7 +130,9 @@
                     type: 'GET'
                 },
                 "columnDefs": [{
-
+                  "targets": 2,
+                  "data": null,
+                  "defaultContent": '<button type="button" id="getDetalleNacionalidad" class="btn btn-info" data-toggle="modal" data-target="#modalEditarNacionalidad"><i class="glyphicon glyphicon-pencil"></i></button>'
                 }
                 ],dom: '<"html5buttons"B>lTfgitp',
                   buttons: [{
@@ -169,6 +186,21 @@
           var table = $('#tabla_nacionalidad').DataTable();
           table.ajax.reload(function(json) {
             $('#btnAgregarNacionalidad').val(json.lastInput);
+          });
+      });
+
+      $("body").on("click", "#getDetalleNacionalidad", function(e) {
+          e.preventDefault();
+          var id = $(this).parent().parent().children()[0];
+          getDetalleNacionalidad($(id).text());
+      });
+
+      $("body").on("click", "#btnEditarNacionalidad", function(e) {
+          e.preventDefault();
+          updateNacionalidad();
+          var table = $('#tabla_nacionalidad').DataTable();
+          table.ajax.reload(function(json) {
+            $('#btnEditarNacionalidad').val(json.lastInput);
           });
       });
   </script>

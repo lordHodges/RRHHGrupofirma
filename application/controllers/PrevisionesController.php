@@ -45,6 +45,21 @@ class PrevisionesController extends CI_Controller {
 		echo json_encode(array("msg" => $resultado));
 	}
 
+	public function getDetallePrevision(){
+	$idPrevision = $this->input->post("idPrevision");
+
+	$resultado = $this->MantenedoresModel->getDetallePrevision($idPrevision);
+	echo json_encode(array("msg" => $resultado));
+}
+
+	public function updatePrevision(){
+		$idPrevision = $this->input->post("idPrevision");
+		$nombre = $this->input->post("nombre");
+
+		$resultado = $this->MantenedoresModel->updatePrevision($idPrevision,$nombre);
+		echo json_encode(array("msg" => $resultado));
+	}
+
 
 
 

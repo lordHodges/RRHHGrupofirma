@@ -6,7 +6,7 @@ class TrabajadorController extends CI_Controller {
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->model("trabajadorModel");
+		$this->load->model("TrabajadorModel");
 	}
 
 	public function index()
@@ -37,13 +37,13 @@ class TrabajadorController extends CI_Controller {
 		$time = strtotime($fecha);
 		$fechaNacimiento = date('d-m-Y', $time); //formateo de fecha
 
-		$resultado = $this->trabajadorModel->addTrabajador($rut,$nombres,$apellidos,$direccion,$fechaNacimiento,$ciudad,$sucursal,$cargo,$empresa,$afp, $prevision, $estadoContrato, $estadoCivil, $nacionalidad);
+		$resultado = $this->TrabajadorModel->addTrabajador($rut,$nombres,$apellidos,$direccion,$fechaNacimiento,$ciudad,$sucursal,$cargo,$empresa,$afp, $prevision, $estadoContrato, $estadoCivil, $nacionalidad);
 		echo json_encode(array("msg" => $resultado));
 
 	}
 
 	public function getCiudades(){
-		$resultado = $this->trabajadorModel->getCiudades();
+		$resultado = $this->TrabajadorModel->getCiudades();
 		if ($resultado == []) {
 			echo json_encode(array("msg" => "No se encuentran ciudades en la base de datos"));
 		} else {
@@ -52,7 +52,7 @@ class TrabajadorController extends CI_Controller {
 	}
 
 	public function getCargos(){
-		$resultado = $this->trabajadorModel->getCargos();
+		$resultado = $this->TrabajadorModel->getCargos();
 		if ($resultado == []) {
 			echo json_encode(array("msg" => "No se encuentran cargos en la base de datos"));
 		} else {
@@ -61,7 +61,7 @@ class TrabajadorController extends CI_Controller {
 	}
 
 	public function getSucursales(){
-		$resultado = $this->trabajadorModel->getSucursales();
+		$resultado = $this->TrabajadorModel->getSucursales();
 		if ($resultado == []) {
 			echo json_encode(array("msg" => "No se encuentran cargos en la base de datos"));
 		} else {
@@ -70,7 +70,7 @@ class TrabajadorController extends CI_Controller {
 	}
 
 	public function getEmpresas(){
-		$resultado = $this->trabajadorModel->getEmpresas();
+		$resultado = $this->TrabajadorModel->getEmpresas();
 		if ($resultado == []) {
 			echo json_encode(array("msg" => "No se encuentran cargos en la base de datos"));
 		} else {
@@ -79,7 +79,7 @@ class TrabajadorController extends CI_Controller {
 	}
 
 	public function getAFP(){
-		$resultado = $this->trabajadorModel->getAFP();
+		$resultado = $this->TrabajadorModel->getAFP();
 		if ($resultado == []) {
 			echo json_encode(array("msg" => "No se encuentran cargos en la base de datos"));
 		} else {
@@ -88,7 +88,7 @@ class TrabajadorController extends CI_Controller {
 	}
 
 	public function getPrevisiones(){
-		$resultado = $this->trabajadorModel->getPrevisiones();
+		$resultado = $this->TrabajadorModel->getPrevisiones();
 		if ($resultado == []) {
 			echo json_encode(array("msg" => "No se encuentran cargos en la base de datos"));
 		} else {
@@ -97,7 +97,7 @@ class TrabajadorController extends CI_Controller {
 	}
 
 	public function getEstadosContrato(){
-		$resultado = $this->trabajadorModel->getEstadosContrato();
+		$resultado = $this->TrabajadorModel->getEstadosContrato();
 		if ($resultado == []) {
 			echo json_encode(array("msg" => "No se encuentran cargos en la base de datos"));
 		} else {
@@ -106,7 +106,7 @@ class TrabajadorController extends CI_Controller {
 	}
 
 	public function getEstadosCiviles(){
-		$resultado = $this->trabajadorModel->getEstadosCiviles();
+		$resultado = $this->TrabajadorModel->getEstadosCiviles();
 		if ($resultado == []) {
 			echo json_encode(array("msg" => "No se encuentran cargos en la base de datos"));
 		} else {
@@ -115,7 +115,7 @@ class TrabajadorController extends CI_Controller {
 	}
 
 	public function getNacionalidades(){
-		$resultado = $this->trabajadorModel->getNacionalidades();
+		$resultado = $this->TrabajadorModel->getNacionalidades();
 		if ($resultado == []) {
 			echo json_encode(array("msg" => "No se encuentran cargos en la base de datos"));
 		} else {
@@ -129,7 +129,7 @@ class TrabajadorController extends CI_Controller {
     $draw = intval($this->input->get("draw"));
     $start = intval($this->input->get("start"));
     $length = intval($this->input->get("length"));
-    $books = $this->trabajadorModel->getListadoTrabajadores();
+    $books = $this->TrabajadorModel->getListadoTrabajadores();
     $data = array();
     foreach ($books->result() as $r) {
         $data[] = array(
@@ -157,8 +157,41 @@ class TrabajadorController extends CI_Controller {
 
 
 	public function getDetalleTrabajador(){
-		$id = $this->input->post("id");
-		$resultado = $this->trabajadorModel->getDetalleTrabajador($id);
+		$idTrabajador = $this->input->post("id");
+
+		$resultado = $this->TrabajadorModel->getDetalleTrabajador($idTrabajador);
+		echo json_encode(array("msg" => $resultado));
+	}
+
+	public function getDetalleTrabajadorViewEdit(){
+		$idTrabajador = $this->input->post("id");
+
+		$resultado = $this->TrabajadorModel->getDetalleTrabajador($idTrabajador);
+		echo json_encode(array("msg" => $resultado));
+	}
+
+
+
+	public function updateTrabajador(){
+		$idTrabajador = $this->input->post("idTrabajador");
+		$rut = $this->input->post("rut");
+		$nombres = $this->input->post("nombres");
+		$apellidos = $this->input->post("apellidos");
+		$direccion = $this->input->post("direccion");
+		$ciudad = $this->input->post("ciudad");
+		$sucursal = $this->input->post("sucursal");
+		$cargo = $this->input->post("cargo");
+		$empresa = $this->input->post("empresa");
+		$afp = $this->input->post("afp");
+		$prevision = $this->input->post("prevision");
+		$estadoContrato = $this->input->post("estadoContrato");
+		$estadoCivil = $this->input->post("estadoCivil");
+		$nacionalidad = $this->input->post("nacionalidad");
+		$fechaNacimiento = $this->input->post("fechaNacimiento");
+
+
+
+		$resultado = $this->TrabajadorModel->updateTrabajador( $idTrabajador,$rut, $nombres,$apellidos,$direccion,$ciudad,$sucursal,$cargo,$empresa,$afp,$prevision,$estadoContrato,$estadoCivil,$nacionalidad,$fechaNacimiento);
 		echo json_encode(array("msg" => $resultado));
 	}
 

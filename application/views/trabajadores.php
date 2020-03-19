@@ -165,7 +165,7 @@
 
 
     <!-- Modal ver -->
-    <div id="modaleditarTrabajador" class="modal fade" tabindex="-1" role="dialog"  aria-hidden="true" >
+    <div id="modalVerTrabajador" class="modal fade" tabindex="-1" role="dialog"  aria-hidden="true" >
         <div class="modal-dialog modal-lg">
             <div class="modal-content" style="padding:20px; background: #2a3f54" >
                 <div class="form-row">
@@ -187,6 +187,22 @@
     </div>
     <!-- /Modal de ver -->
 
+    <!-- Modal editar -->
+    <div id="modalEditarTrabajador" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="crearTrabajador"  aria-hidden="true" >
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content" style="padding:20px; background: #2a3f54" >
+                <div class="form-row" id="contenedorDetalleTrabajador">
+
+
+                </div>
+                <br><button type="submit" class="btn btn-success" id="btnEditarTrabajador">Guardar</button>
+            </div>
+        </div>
+    </div>
+    <!-- /Modal de editar -->
+
+
+
     <!-- jQuery -->
     <script src="<?php echo base_url() ?>assets/vendors/jquery/dist/jquery.min.js"></script>
     <!-- Bootstrap -->
@@ -198,6 +214,7 @@
     <script src="<?php echo base_url() ?>assets/build/js/custom.min.js"></script>
     <!-- MODIDEV -->
     <script src="<?php echo base_url() ?>assets/js/modidev.js"></script>
+    <script src="<?php echo base_url() ?>assets/js/trabajador.js"></script>
     <script src="<?php echo base_url() ?>assets/js/validaciones.js"></script>
     <!-- Toast -->
     <script src="<?php echo base_url() ?>assets/js/toastr.min.js" type="text/javascript"></script>
@@ -253,7 +270,7 @@
                   "columnDefs": [{
                           "targets": 8,
                           "data": null,
-                          "defaultContent": '<button type="button" id="btnVerTrabajador" class="btn btn-info" data-toggle="modal" data-target="#modaleditarTrabajador"><i class="glyphicon glyphicon-eye-open"></i></button>'
+                          "defaultContent": '<button style="display:inline" type="button" id="btnVerTrabajador" class="btn btn-info" data-toggle="modal" data-target="#modalVerTrabajador"><i class="glyphicon glyphicon-eye-open"></i></button> <button style="display:inline" type="button" id="getDetalleTrabajadorViewEdit" class="btn btn-info" data-toggle="modal" data-target="#modalEditarTrabajador"><i class="glyphicon glyphicon-pencil"></i></button>'
                       }
 
                   ],dom: '<"html5buttons"B>lTfgitp',
@@ -319,18 +336,24 @@
                });
         });
 
-
         $("body").on("click", "#btnVerTrabajador", function(e) {
              e.preventDefault();
              var id = $(this).parent().parent().children()[0];
              getDetalleTrabajador($(id).text());
          });
 
+         $("body").on("click", "#getDetalleTrabajadorViewEdit", function(e) {
+              e.preventDefault();
+              var id = $(this).parent().parent().children()[0];
+              getDetalleTrabajadorViewEdit($(id).text());
+          });
+
+          $("body").on("click", "#btnEditarTrabajador", function(e) {
+               e.preventDefault();
+               updateTrabajador();
+           });
 
 
-        $("#myModal").click(function (e){
-            $('#myModal').modal('show');
-        });
     </script>
 
 

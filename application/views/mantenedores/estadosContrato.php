@@ -12,8 +12,9 @@
                 <table id="tabla_estadoContrato" class="table table-striped table-bordered table-hover dataTables-estadoContrato " style="margin-top:20px;">
                     <thead >
                         <tr style="width:100%;">
-                            <th class="text-center">ID</th>
+                            <th class="text-center" style="width:10%;">ID</th>
                             <th class="text-center">ESTADOS</th>
+                            <th class="text-center"style="width:10%;">ACCIONES</th>
                         </tr>
                     </thead>
                     <tbody id="tbodyDetalle">
@@ -56,7 +57,20 @@
     </div>
     <!-- /Modal de crear -->
 
+    <!-- Modal editar -->
+    <div id="modalEditarEstadosContrato" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="crearTrabajador"  aria-hidden="true" >
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content" style="padding:20px; background: #2a3f54" >
+                <div class="form-row" id="contenedorDetalleEstadoContrato">
 
+
+                </div>
+                <br>
+                <button type="submit" class="btn btn-success" id="btnEditarEstadoContrato">Guardar</button>
+            </div>
+        </div>
+    </div>
+    <!-- /Modal de editar -->
 
 
     <!-- jQuery -->
@@ -110,7 +124,9 @@
                     type: 'GET'
                 },
                 "columnDefs": [{
-
+                  "targets": 2,
+                  "data": null,
+                  "defaultContent": '<button type="button" id="getDetalleEstadosContrato" class="btn btn-info" data-toggle="modal" data-target="#modalEditarEstadosContrato"><i class="glyphicon glyphicon-pencil"></i></button>'
                 }
                 ],dom: '<"html5buttons"B>lTfgitp',
                   buttons: [{
@@ -167,6 +183,22 @@
             $('#btnAgregarEstado').val(json.lastInput);
           });
       });
+
+      $("body").on("click", "#getDetalleEstadosContrato", function(e) {
+          e.preventDefault();
+          var id = $(this).parent().parent().children()[0];
+          getDetalleEstadosContrato($(id).text());
+      });
+
+      $("body").on("click", "#btnEditarEstadoContrato", function(e) {
+          e.preventDefault();
+          updateEstadoContrato();
+          var table = $('#tabla_estadoContrato').DataTable();
+          table.ajax.reload(function(json) {
+            $('#btnEditarEstadoContrato').val(json.lastInput);
+          });
+      });
+
   </script>
 
   </body>

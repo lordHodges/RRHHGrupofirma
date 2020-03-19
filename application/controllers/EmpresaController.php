@@ -54,9 +54,26 @@ class EmpresaController extends CI_Controller {
 		echo json_encode(array("msg" => $resultado));
 	}
 
+	public function getDetalleEmpresa(){
+		$idEmpresa = $this->input->post("idEmpresa");
 
+		$resultado = $this->MantenedoresModel->getDetalleEmpresa($idEmpresa);
+		echo json_encode(array("msg" => $resultado));
+	}
 
+	public function updateEmpresa(){
+		$esNuevo = $this->input->post("esNuevo");
+		$idEmpresa = $this->input->post("idEmpresa");
+		$nombre = $this->input->post("nombre");
+		$rut = $this->input->post("rut");
+		$representante = $this->input->post("representante");
+		$cedula_representante = $this->input->post("cedula_representante");
+		$domicilio = $this->input->post("domicilio");
+		$ciudad = $this->input->post("ciudad");
 
+		$resultado = $this->MantenedoresModel->updateEmpresa($esNuevo,$idEmpresa,$nombre,$rut,$representante,$cedula_representante,$domicilio,$ciudad);
+		echo json_encode(array("msg" => $resultado));
+	}
 
 
 
