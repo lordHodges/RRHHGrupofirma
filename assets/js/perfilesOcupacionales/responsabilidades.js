@@ -10,9 +10,8 @@ function agregarCargo(){
   var lugarTrabajo = $("#lugarTrabajo").val();
   var jornadaTrabajo = $("#jornadaTrabajo").val();
   var diasTrabajo = $("#diasTrabajo").val();
-  var sueldo = $("#sueldo").val();
   // Valor del cargo seleccionado
-  if(nombre == "" || jefeDirecto == "" || lugarTrabajo == "" || jornadaTrabajo == "" || sueldo == "" || diasTrabajo == ""){
+  if(nombre == "" || jefeDirecto == "" || lugarTrabajo == "" || jornadaTrabajo == ""  || diasTrabajo == ""){
     toastr.error("Complete todos los campos");
   }
   else{
@@ -25,8 +24,7 @@ function agregarCargo(){
                 "jefeDirecto" : jefeDirecto,
                 "lugarTrabajo" : lugarTrabajo,
                 "jornadaTrabajo" : jornadaTrabajo,
-                "diasTrabajo" : diasTrabajo,
-                "sueldo" : sueldo}
+                "diasTrabajo" : diasTrabajo}
     }).then(function (msg) {
         if (msg.msg == "ok") {
           var cargo = $("#nombre").val();
@@ -67,7 +65,6 @@ function agregarCargo(){
           document.getElementById("lugarTrabajo").value = "";
           document.getElementById("jornadaTrabajo").value = "";
           document.getElementById("diasTrabajo").value = "";
-          document.getElementById("sueldo").value = "";
           $('#myModal').modal('hide');
           toastr.success('Cargo ingresado');
         } else {
@@ -109,7 +106,7 @@ function getDetalleCargo(id){
           fila +='<div class="col-md-12"><br><label for="lugarTrabajoNuevo">LUGAR DE TRABAJO:  &nbsp;</label> <label id="lugarTrabajoActual">'+o.atr_lugarTrabajo+'</label> <input type="text" style="color:#848484" class="form-control custom-input-sm" id="lugarTrabajoNuevo"></div>';
           fila +='<div class="col-md-12"><br><label for="jornadaTrabajoNuevo">JORNADA DE TRABAJO:  &nbsp;</label> <label id="jornadaTrabajoActual">'+o.atr_jornadaTrabajo+'</label> <input type="text" style="color:#848484" class="form-control custom-input-sm" id="jornadaTrabajoNuevo"></div>';
           fila +='<div class="col-md-12"><br><label for="diasTrabajoNuevo">DÍAS DE TRABAJO:  &nbsp;</label> <label id="diasTrabajoActual">'+o.atr_diasTrabajo+'</label> <input type="text" style="color:#848484" class="form-control custom-input-sm" id="diasTrabajoNuevo"></div>';
-          fila +='<div class="col-md-12"><br><label for="sueldo">SUELDO:  &nbsp;</label> <label id="sueldoActual">'+o.atr_sueldo+'</label> <input type="text" style="color:#848484" class="form-control custom-input-sm" id="sueldoNuevo"></div>';
+
           $("#modalDetalleCargo").append(fila);
       });
     });
@@ -122,7 +119,6 @@ function updateCargo(){
   var lugarTrabajo = $("#lugarTrabajoNuevo").val();
   var jornadaTrabajo = $("#jornadaTrabajoNuevo").val();
   var diasTrabajo = $("#diasTrabajoNuevo").val();
-  var sueldo = $("#sueldoNuevo").val();
 
   // VALIDACIÓN DE CAMPOS DE TEXTO VACIOS. Si los campos son vacios se mantiene el valor original en la base de datos.
 
@@ -141,9 +137,6 @@ function updateCargo(){
   if( diasTrabajo == ""){
     diasTrabajo = $("#diasTrabajoActual").text();
   }
-  if( sueldo == ""){
-    sueldo = $("#sueldoActual").text();
-  }
 
   // ACTUALIZACION DE CARGOS
   $.ajax({
@@ -155,8 +148,7 @@ function updateCargo(){
               "jefeDirecto": jefeDirecto,
               "lugarTrabajo":lugarTrabajo,
               "jornadaTrabajo":jornadaTrabajo,
-              "diasTrabajo":diasTrabajo,
-              "sueldo":sueldo},
+              "diasTrabajo":diasTrabajo},
     }).then(function (msg) {
       if(msg.msg == "ok"){
         toastr.success('Cargo actualizado');
@@ -214,7 +206,6 @@ function updateCargo(){
     for (var i = 0; i < constante; i++) {
         //genero el id del input
         identificadorInput = "input_tarea"+cnt;
-        alert("identificadorInput: "+identificadorInput);
         //controlo el autoincrementable del id de los inputs generados
         cnt = cnt+1;
 

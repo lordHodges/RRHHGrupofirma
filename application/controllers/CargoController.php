@@ -47,8 +47,7 @@ class CargoController extends CI_Controller {
 						$r->atr_nombre,
 						$r->atr_jefeDirecto,
 						"-",
-						$r->atr_jornadaTrabajo,
-						$r->atr_sueldo
+						$r->atr_jornadaTrabajo
 					);
 				}else{
 					$data[] = array(
@@ -56,8 +55,7 @@ class CargoController extends CI_Controller {
 						$r->atr_nombre,
 						$r->atr_jefeDirecto,
 						$r->atr_lugarTrabajo,
-						$r->atr_jornadaTrabajo,
-						$r->atr_sueldo
+						$r->atr_jornadaTrabajo
 					);
 				}
 		}
@@ -77,9 +75,8 @@ class CargoController extends CI_Controller {
 		$lugarTrabajo = $this->input->post("lugarTrabajo");
 		$jornadaTrabajo = $this->input->post("jornadaTrabajo");
 		$diasTrabajo = $this->input->post("diasTrabajo");
-		$sueldo = $this->input->post("sueldo");
 
-		$resultado = $this->MantenedoresModel->addCargo($nombre, $jefeDirecto,$lugarTrabajo,$jornadaTrabajo,$diasTrabajo,$sueldo);
+		$resultado = $this->MantenedoresModel->addCargo($nombre, $jefeDirecto,$lugarTrabajo,$jornadaTrabajo,$diasTrabajo);
 		echo json_encode(array("msg" => $resultado));
 
 	}
@@ -101,9 +98,8 @@ class CargoController extends CI_Controller {
 		$lugarTrabajo = $this->input->post("lugarTrabajo");
 		$jornadaTrabajo = $this->input->post("jornadaTrabajo");
 		$diasTrabajo = $this->input->post("diasTrabajo");
-		$sueldo = $this->input->post("sueldo");
 
-		$resultado = $this->MantenedoresModel->updateCargo($id, $nombre, $jefeDirecto, $lugarTrabajo, $jornadaTrabajo, $diasTrabajo, $sueldo);
+		$resultado = $this->MantenedoresModel->updateCargo($id, $nombre, $jefeDirecto, $lugarTrabajo, $jornadaTrabajo, $diasTrabajo);
 		echo json_encode(array("msg" => $resultado));
 	}
 

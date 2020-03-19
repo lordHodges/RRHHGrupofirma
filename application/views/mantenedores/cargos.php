@@ -17,7 +17,6 @@
                             <th class="text-center">JEFE(S) DIRECTO(S)</th>
                             <th class="text-center">LUGAR DE TRABAJO</th>
                             <th class="text-center">JORNADA DE TRABAJO</th>
-                            <th class="text-center">SUELDO</th>
                             <th class="text-center">ACCIONES</th>
                         </tr>
                     </thead>
@@ -85,12 +84,6 @@
                         <label for="diasTrabajo">DÍAS DE TRABAJO</label>
                         <input type="text" class="form-control custom-input-sm" id="diasTrabajo">
                     </div>
-                    <div class="col-md-12">
-                        <br>
-                        <label for="sueldo">SUELDO</label>
-                        <input type="text" class="form-control custom-input-sm" id="sueldo">
-                    </div>
-
                 </div>
                 <br>
                 <button type="submit" class="btn btn-success" id="btnAgregarCargo">Guardar</button>
@@ -182,7 +175,7 @@
                     type: 'GET'
                 },
                 "columnDefs": [{
-                    "targets": 6,
+                    "targets": 5,
                     "data": null,
                     "defaultContent": '<button type="button" id="btnVerCargo" class="btn btn-info" data-toggle="modal" data-target="#modaleditarCargo"><i class="glyphicon glyphicon-pencil"></i></button>'
                 }

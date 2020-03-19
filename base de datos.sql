@@ -38,6 +38,14 @@ create table fa_ciudad(
     constraint pk_ciudad primary key(cp_ciudad)
 );
 
+create table fa_remuneracion(
+    cp_remuneracion int auto_increment,
+    atr_sueldo varchar(100),
+    atr_cotizaciones int,
+    constraint pk_remuneracion primary key(cp_remuneracion)
+);
+
+
 create table fa_empresa(
     cp_empresa int auto_increment,
     atr_nombre varchar(100),
@@ -65,7 +73,6 @@ create table fa_cargo(
     atr_jefeDirecto varchar(200),
     atr_lugarTrabajo varchar(200),
     atr_jornadaTrabajo varchar(200),
-    atr_sueldo varchar(100),
     atr_diasTrabajo varchar(200),
     constraint pk_cargo primary key(cp_cargo)
 );
@@ -235,8 +242,8 @@ VALUES ('Arica'),('Camarones'),('General Lagos'),('Putre'),('Alto Hospicio'),('I
   ('Río Verde'),('San Gregorio'),('Porvenir'),('Primavera'),('Timaukel'),('Cabo de Hornos'),('Antártica');
 
 
-INSERT INTO `fa_cargo` (`cp_cargo`, `atr_nombre`, `atr_jefeDirecto`, `atr_lugarTrabajo`, `atr_jornadaTrabajo`, `atr_sueldo`) VALUES (NULL, 'Auxiliar de aseo, día domingo', 'Teresa Garrido, Miguel Vargas', '1 sur, 24 oriente #3155, Hostal Plaza Maule', '08:00 horas a 22:00 horas', '20.000'), (NULL, 'Cartero', 'Evelyn Gallegos, Nelvis Vilalobos', NULL, '9 a 13:30 horas', '150.500');
-INSERT INTO `fa_cargo` (`cp_cargo`, `atr_nombre`, `atr_jefeDirecto`, `atr_lugarTrabajo`, `atr_jornadaTrabajo`, `atr_sueldo`) VALUES (NULL, 'Ejecutivo de licitaciones publicas y privadas', 'Solanch Tejos Carrasco', NULL, 'horario de mañana: 9 a 13:00 horas, horario de tarde: 14:00 a 19:00 horas', '301.000');
+INSERT INTO `fa_cargo` (`cp_cargo`, `atr_nombre`, `atr_jefeDirecto`, `atr_lugarTrabajo`, `atr_jornadaTrabajo`) VALUES (NULL, 'Auxiliar de aseo, día domingo', 'Teresa Garrido, Miguel Vargas', '1 sur, 24 oriente #3155, Hostal Plaza Maule', '08:00 horas a 22:00 horas'), (NULL, 'Cartero', 'Evelyn Gallegos, Nelvis Vilalobos', NULL, '9 a 13:30 horas');
+INSERT INTO `fa_cargo` (`cp_cargo`, `atr_nombre`, `atr_jefeDirecto`, `atr_lugarTrabajo`, `atr_jornadaTrabajo`) VALUES (NULL, 'Ejecutivo de licitaciones publicas y privadas', 'Solanch Tejos Carrasco', NULL, 'horario de mañana: 9 a 13:00 horas, horario de tarde: 14:00 a 19:00 horas');
 
 INSERT INTO `fa_sucursal` (`cp_sucursal`, `atr_nombre`, `cf_ciudad`) VALUES (NULL, 'Sucursal 1', '97'), (NULL, 'Sucursal 2', '120');
 

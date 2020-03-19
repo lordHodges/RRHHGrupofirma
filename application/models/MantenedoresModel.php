@@ -41,19 +41,19 @@ class MantenedoresModel extends CI_Model {
 
     // CARGOS
     function getListadoCargos(){
-      $this->db->select("c.cp_cargo, c.atr_nombre, c.atr_jefeDirecto, c.atr_lugarTrabajo, c.atr_jornadaTrabajo, c.atr_sueldo");
+      $this->db->select("c.cp_cargo, c.atr_nombre, c.atr_jefeDirecto, c.atr_lugarTrabajo, c.atr_jornadaTrabajo");
       $this->db->from("fa_cargo c");
       return $this->db->get();
     }
 
     function buscarCargo($cargo){
-      $this->db->select("c.cp_cargo, c.atr_nombre, c.atr_jefeDirecto, c.atr_lugarTrabajo, c.atr_jornadaTrabajo, c.atr_sueldo, c.atr_diasTrabajo");
+      $this->db->select("c.cp_cargo, c.atr_nombre, c.atr_jefeDirecto, c.atr_lugarTrabajo, c.atr_jornadaTrabajo, c.atr_diasTrabajo");
       $this->db->from("fa_cargo c");
       $this->db->where("c.cp_cargo",$cargo);
       return $this->db->get()->result();
     }
 
-    function addCargo($nombre, $jefeDirecto,$lugarTrabajo,$jornadaTrabajo,$diasTrabajo,$sueldo){
+    function addCargo($nombre, $jefeDirecto,$lugarTrabajo,$jornadaTrabajo,$diasTrabajo){
 
 
         $data = array(
@@ -61,7 +61,6 @@ class MantenedoresModel extends CI_Model {
             "atr_jefeDirecto" => $jefeDirecto,
             "atr_lugarTrabajo" => $lugarTrabajo,
             "atr_jornadaTrabajo" => $jornadaTrabajo,
-            "atr_sueldo" => $sueldo,
             "atr_diasTrabajo" => $diasTrabajo
         );
         $this->db->insert("fa_cargo", $data);
@@ -103,7 +102,7 @@ class MantenedoresModel extends CI_Model {
     }
 
     function getDetalleCargo($cargo){
-        $this->db->select("c.cp_cargo, c.atr_nombre, c.atr_jefeDirecto, c.atr_lugarTrabajo, c.atr_jornadaTrabajo, c.atr_sueldo, c.atr_diasTrabajo");
+        $this->db->select("c.cp_cargo, c.atr_nombre, c.atr_jefeDirecto, c.atr_lugarTrabajo, c.atr_jornadaTrabajo, c.atr_diasTrabajo");
         $this->db->from("fa_cargo c");
         // $this->db->join("fa_responsabilidad r", "r.cf_cargo == c.cp_cargo")
         $this->db->where("c.cp_cargo",$cargo);
@@ -125,14 +124,13 @@ class MantenedoresModel extends CI_Model {
         return $data;
     }
 
-    function updateCargo($id, $nombre, $jefeDirecto, $lugarTrabajo, $jornadaTrabajo, $diasTrabajo, $sueldo){
+    function updateCargo($id, $nombre, $jefeDirecto, $lugarTrabajo, $jornadaTrabajo, $diasTrabajo){
         $data = array(
             "atr_nombre" => $nombre,
             "atr_jefeDirecto" => $jefeDirecto,
             "atr_lugarTrabajo" => $lugarTrabajo,
             "atr_jornadaTrabajo" => $jornadaTrabajo,
-            "atr_diasTrabajo" => $diasTrabajo,
-            "atr_sueldo" => $sueldo
+            "atr_diasTrabajo" => $diasTrabajo
         );
         $this->db->where('cp_cargo', $id);
         $resultado =  $this->db->update("fa_cargo", $data);
