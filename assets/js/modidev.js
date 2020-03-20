@@ -445,9 +445,11 @@ function agregarEstadoContrato() {
 
 function agregarPrevision() {
     var nombre = $("#nombre").val();
-    if (nombre == "" ) {
+    
+    if (nombre == "" || nombre == null ) {
         toastr.error("Rellene todos los campos");
     } else {
+
         $.ajax({
             url: 'addPrevision',
             type: 'POST',
@@ -511,11 +513,11 @@ function getDetalleEmpresa(idEmpresa){
       var fila = "";
       $.each(msg.msg, function (i, o) {
           fila +='<h5 class="modal-title mx-auto">EMPRESA</h5><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>';
-          fila +='<div class="col-md-12"><br><label for="nombre">NOMBRE:&nbsp; </label><label id="nombreActual">'+o.atr_nombre+'</label><label id="idEmpresa" style="color:#2A3F54;">'+o.cp_empresa+'</label><input type="text" class="form-control custom-input-sm" id="nombreNuevo"></div>';
-          fila +='<div class="col-md-12"><br><label for="rut">ROL UNICO TRIBUTARIO:&nbsp;</label><label id="rutActual">'+o.atr_run+'</label><input type="text" class="form-control custom-input-sm" id="rutNuevo"></div>';
-          fila +='<div class="col-md-12"><br><label for="ubicacion">UBICACIÓN:&nbsp;</label><label id="ubicacionActual">'+o.atr_domicilio+'</label><input type="text" class="form-control custom-input-sm" id="ubicacionNuevo"></div>';
-          fila +='<div class="col-md-12"><br><label for="nombreRepre">NOMBRE DE REPRESENTANTE:&nbsp;</label><label id="nombreRepreActual">'+o.atr_representante+'</label><input type="text" class="form-control custom-input-sm" id="nombreRepreNuevo"></div>';
-          fila +='<div class="col-md-12"><br><label for="cedulaRepre">CÉLUDA DE REPRESENTANTE:&nbsp;</label><label id="cedulaRepreActual">'+o.atr_cedula_representante+'</label><input type="text" class="form-control custom-input-sm" id="cedulaRepreNuevo"></div>';
+          fila +='<div class="col-md-12"><br><label for="nombre">NOMBRE:&nbsp; </label><label id="nombreActual">'+o.atr_nombre+'</label><label id="idEmpresa" style="color:#2A3F54;">'+o.cp_empresa+'</label><input type="text" class="form-control custom-input-sm" id="nombreNuevo" oninput="mayus(this);"></div>';
+          fila +='<div class="col-md-12"><br><label for="rut">ROL UNICO TRIBUTARIO:&nbsp;</label><label id="rutActual">'+o.atr_run+'</label><input type="text" class="form-control custom-input-sm" id="rutNuevo" onkeyup="this.value=caracteresRUT(this.value)" oninput="checkRutOficial(this)"></div>';
+          fila +='<div class="col-md-12"><br><label for="ubicacion">UBICACIÓN:&nbsp;</label><label id="ubicacionActual">'+o.atr_domicilio+'</label><input type="text" class="form-control custom-input-sm" id="ubicacionNuevo" oninput="mayus(this);"></div>';
+          fila +='<div class="col-md-12"><br><label for="nombreRepre">NOMBRE DE REPRESENTANTE:&nbsp;</label><label id="nombreRepreActual">'+o.atr_representante+'</label><input type="text" class="form-control custom-input-sm" id="nombreRepreNuevo" oninput="mayus(this);" onkeyup="this.value=soloLetras(this.value)" ></div>';
+          fila +='<div class="col-md-12"><br><label for="cedulaRepre">CÉLUDA DE REPRESENTANTE:&nbsp;</label><label id="cedulaRepreActual">'+o.atr_cedula_representante+'</label><input type="text" class="form-control custom-input-sm" id="cedulaRepreNuevo" onkeyup="this.value=caracteresRUT(this.value)" oninput="checkRutOficial(this)"></div>';
 
           fila +='<div class="col-md-12"><br> <label for="getSelectCiudad">CIUDAD:&nbsp;</label><label id="ciudadActual">'+o.nombreCiudad+'</label><br> <select class="custom-select" id="getSelectCiudad2"> ';
 

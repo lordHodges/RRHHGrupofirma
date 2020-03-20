@@ -64,6 +64,17 @@ class MantenedoresModel extends CI_Model {
             "atr_diasTrabajo" => $diasTrabajo
         );
         $this->db->insert("fa_cargo", $data);
+        $ultimoCargo = $this->db->insert_id();
+
+        $dataRemuneracion = array(
+            "atr_sueldoMensual" => "0",
+            "atr_cotizaciones" => "0",
+            "atr_colacion" => "0",
+            "atr_movilizacion" => "0",
+            "cf_cargo" => $ultimoCargo
+        );
+        $this->db->insert("fa_remuneracion", $dataRemuneracion);
+
         return "ok";
     }
 
@@ -116,7 +127,6 @@ class MantenedoresModel extends CI_Model {
         $arrayResponsabilidades = $this->db->get()->result();
 
         $data = array(
-            "mensaje" => "este es el mensaje del modelo",
             "array_cargo" => $arrayCargo,
             "array_responsabilidades" => $arrayResponsabilidades,
         );
@@ -361,7 +371,7 @@ class MantenedoresModel extends CI_Model {
         $this->db->insert("fa_empresa", $data);
         return "ok";
     }
-    
+
     function updateEmpresa($esNuevo, $idEmpresa, $nombre, $run, $representante, $cedula_representante, $domicilio, $ciudad){
 
         if($esNuevo == false){

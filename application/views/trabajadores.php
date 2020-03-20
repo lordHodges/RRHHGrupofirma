@@ -7,7 +7,7 @@
     <div class="row">
         <div class="x_panel">
             <div class="x_content">
-                <button type="button" class="btn modidev-btn" data-toggle="modal" data-target=".bd-example-modal-lg" style="margin-bottom:20px;">INGRESAR TRABAJADOR</button>
+                <button type="button" id="abrirModalCrear" class="btn modidev-btn" data-toggle="modal" data-target=".bd-example-modal-lg" style="margin-bottom:20px;">INGRESAR TRABAJADOR</button>
                 <table id="tabla_trabajador" class="table table-striped table-bordered table-hover dataTables-trabajadores" style="margin-top:20px;">
                     <thead>
                         <tr>
@@ -52,19 +52,19 @@
                     <div class="col-md-12">
                         <br>
                         <label for="rut">RUT</label>
-                        <input type="text" class="form-control custom-input-sm" id="rut" required oninput="checkRutOficial(this)">
+                        <input type="text" class="form-control custom-input-sm" id="rut" required onkeyup="this.value=caracteresRUT(this.value)" oninput="checkRutOficial(this)">
                     </div>
 
                     <div class="col-md-6 col-sm-12">
                         <br>
                         <label for="nombres">NOMBRES</label>
-                        <input type="text" class="form-control" id="nombres" oninput="mayus(this);" required>
+                        <input type="text" class="form-control" id="nombres" oninput="mayus(this);" onkeyup="this.value=soloLetras(this.value)"   required>
                     </div>
 
                     <div class="col-md-6 col-sm-12">
                         <br>
                         <label for="apellidos">APELLIDOS</label>
-                        <input type="text" class="form-control" id="apellidos" oninput="mayus(this);" required>
+                        <input type="text" class="form-control" id="apellidos" oninput="mayus(this);" onkeyup="this.value=soloLetras(this.value)" required>
                     </div>
 
                     <div class="col-md-12 col-sm-12">
@@ -326,6 +326,17 @@
                     ]
               });
         });
+
+
+
+
+        $("body").on("click", "#abrirModalCrear", function(e) {
+             e.preventDefault();
+             //Limpio campo rut despues de las validaciones en donde se bloquea y cambia de color el campo.
+             document.getElementById('rut').disabled = false;
+             document.getElementById('rut').style.color = '#000';
+             document.getElementById("rut").value = "";
+         });
 
         $("#btnAgregarTrabajador").click(function (e){
             e.preventDefault();

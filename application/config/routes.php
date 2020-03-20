@@ -42,7 +42,6 @@ $route['docPerfilesOcupacionales'] = 'PDFController/view_perfilesOcupacionales';
 
 
 
-
 //PERFILES OCUPACIONALES
   //funciones
   $route['inicioFunciones'] = 'FuncionesController/index';
@@ -99,6 +98,11 @@ $route['getDetalleCargo'] = 'CargoController/getDetalleCargo';
 $route['getDetalleResponsabilidades'] = 'CargoController/getDetalleResponsablidades';
 $route['updateCargo'] = 'CargoController/updateCargo';
 $route['updateResponsabilidad'] = 'CargoController/updateResponsabilidad';
+    //remuneracion de cargo
+$route['getDetalleRemuneracion'] = 'RemuneracionController/getDetalleRemuneracion';
+$route['updateRemuneracion'] = 'RemuneracionController/updateRemuneracion';
+$route['updateRemuneracionExtra'] = 'RemuneracionController/updateRemuneracionExtra';
+$route['addRemuneracionPorIDCargo'] = 'RemuneracionController/addRemuneracionPorIDCargo';
 
     //estados civiles
 $route['getListadoEstadosCiviles'] = 'EstadoCivilController/getListadoEstadosCiviles';

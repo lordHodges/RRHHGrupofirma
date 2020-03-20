@@ -182,7 +182,7 @@
 
       $("#btnAgregarPrevisión").click(function (e){
           e.preventDefault();
-          agregarSucursal();
+          agregarPrevision();
           var table = $('#tabla_prevision').DataTable();
           table.ajax.reload(function(json) {
             $('#btnAgregarPrevisión').val(json.lastInput);

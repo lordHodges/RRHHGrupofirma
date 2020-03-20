@@ -1,6 +1,7 @@
 /*************************** TRABAJADOR ****************************/
 
 function agregarTrabajador() {
+
     var rut = $("#rut").val();
     var nombres = $("#nombres").val();
     var apellidos = $("#apellidos").val();
@@ -49,18 +50,20 @@ function agregarTrabajador() {
                document.getElementById("direccion").value = "";
                document.getElementById("getSelectCiudad").value = "";
                document.getElementById("getSelectCargo").value = "";
-               document.getElementById("getSelectSucursal").value = "";
+               document.getElementById("getSelectEmpresa").value = "";
+               document.getElementById("getSelectAFP").value = "";
+               document.getElementById("getSelectPrevision").value = "";
+               document.getElementById("getSelectEstadoContrato").value = "";
+               document.getElementById("getSelectCivil").value = "";
+               document.getElementById("getSelectNacionalidad").value = "";
                document.getElementById("fechaNacimiento").value = "";
-               document.getElementById("empresa").value = "";
-               document.getElementById("prevision").value = "";
-               document.getElementById("estadoContrato").value = "";
-               document.getElementById("estadoCivil").value = "";
-               document.getElementById("nacionalidad").value = "";
+
                $('#myModal').modal('hide');
             } else {
                 toastr.error("Error en el ingreso.");
             }
         });
+
     }
 }
 
@@ -68,6 +71,7 @@ function agregarTrabajador() {
 
 //Se utiliza cuando quiero VER LA INFORMACIÓN
 function getDetalleTrabajador(id){
+
   var id = id;
   $.ajax({
       url: 'getDetalleTrabajador',
@@ -75,13 +79,14 @@ function getDetalleTrabajador(id){
       dataType: 'json',
       data: {"id": id}
   }).then(function (msg) {
+
       $("#modalDetalleTrabajador").empty();
 
       var fila = "";
       $.each(msg.msg, function (i, o) {
 
           fila +='<div class="col-md-12"><br><label for="rut">RUT</label><input type="text" style="color:#848484" class="form-control custom-input-sm" id="rut" value="'+o.atr_rut+'" disabled></div>';
-          fila +='<div class="col-md-6 col-sm-12"><br><label for="nombres">NOMBRES</label><input type="text" style="color:#848484" class="form-control" id="nombres" value="'+o.atr_nombres+'" disabled></div>';
+          fila +='<div class="col-md-6 col-sm-12"><br><label for="nombres">NOMBRES</label><input type="text" style="color:#848484" class="form-control" id="nombres" value="'+o.atr_nombres+'"  disabled></div>';
           fila +='<div class="col-md-6 col-sm-12"><br><label for="apellidos">APELLIDOS</label><input type="text" style="color:#848484" class="form-control" id="apellidos" value="'+o.atr_apellidos+'"disabled></div>';
           fila +='<div class="col-md-12 col-sm-12"><br><label for="direccion">DIRECCIÓN</label><input type="text" style="color:#848484" class="form-control" id="direccion" value="'+o.atr_direccion+'"disabled></div><br><br>';
           fila +='<div class="col-md-6"><br><label for="ciudad">CIUDAD / COMUNA</label><input type="text" style="color:#848484" class="form-control" id="ciudad" value="'+o.ciudad+'"disabled></div>';
@@ -116,13 +121,13 @@ function getDetalleTrabajadorViewEdit(id){
       var fila = "";
       $.each(msg.msg, function (i, o) {
         fila +='<h5 class="modal-title mx-auto">EDITAR TRABAJADOR</h5><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>';
-          fila +='<div class="col-md-12"><br><label for="rut">RUT:&nbsp;</label><label id="rutActual">'+o.atr_rut+'</label><label id="idTrabajador" style="color:#2a3f54">'+o.cp_trabajador+'</label><input type="text" style="color:#848484" class="form-control custom-input-sm" id="rutNuevo" ></div>';
+          fila +='<div class="col-md-12"><br><label for="rut">RUT:&nbsp;</label><label id="rutActual">'+o.atr_rut+'</label><label id="idTrabajador"  style="color:#2a3f54">'+o.cp_trabajador+'</label><input type="text" style="color:#848484" oninput="checkRutOficial(this)"  onkeyup="this.value=caracteresRUT(this.value)" class="form-control custom-input-sm" id="rutNuevo" ></div>';
 
-          fila +='<div class="col-md-12 col-sm-12"><br><label for="nombres">NOMBRES:&nbsp;</label><label id="nombresActual">'+o.atr_nombres+'</label><input type="text" style="color:#848484" class="form-control" id="nombresNuevo"></div>';
+          fila +='<div class="col-md-12 col-sm-12"><br><label for="nombres">NOMBRES:&nbsp;</label><label id="nombresActual">'+o.atr_nombres+'</label><input type="text" style="color:#848484" class="form-control" id="nombresNuevo" oninput="mayus(this);" onkeyup="this.value=soloLetras(this.value)"></div>';
 
-          fila +='<div class="col-md-12 col-sm-12"><br><label for="apellidos">APELLIDOS:&nbsp;</label><label id="apellidosActual">'+o.atr_apellidos+'</label><input type="text" style="color:#848484" class="form-control" id="apellidosNuevo"></div>';
+          fila +='<div class="col-md-12 col-sm-12"><br><label for="apellidos">APELLIDOS:&nbsp;</label><label id="apellidosActual">'+o.atr_apellidos+'</label><input type="text" style="color:#848484" class="form-control" id="apellidosNuevo" oninput="mayus(this);" onkeyup="this.value=soloLetras(this.value)"></div>';
 
-          fila +='<div class="col-md-12 col-sm-12"><br><label for="direccion">DIRECCIÓN:&nbsp;</label><label id="direccionActual">'+o.atr_direccion+'</label><input type="text" style="color:#848484" class="form-control" id="direccionNuevo"></div><br><br>';
+          fila +='<div class="col-md-12 col-sm-12"><br><label for="direccion">DIRECCIÓN:&nbsp;</label><label id="direccionActual">'+o.atr_direccion+'</label><input type="text" style="color:#848484" class="form-control" id="direccionNuevo" oninput="mayus(this);"></div><br><br>';
 
 
           //SELECTOR DE CIUDAD

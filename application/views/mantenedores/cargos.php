@@ -120,6 +120,21 @@
     <!-- /Modal de editar -->
 
 
+    <!-- Modal editar remuneración -->
+    <div id="modalEditarRemuneración" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="crearTrabajador"  aria-hidden="true" >
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content" style="padding:20px; background: #2a3f54" >
+                <div class="form-row" id="contenedorDetalleRemuneración">
+
+
+                </div>
+                <br><button type="submit" class="btn btn-success" id="btnGuardarRemuneracion">Guardar</button>
+            </div>
+        </div>
+    </div>
+    <!-- /Modal de editar remuneración -->
+
+
 
 
     <!-- jQuery -->
@@ -133,8 +148,12 @@
     <!-- MODIDEV -->
     <script src="<?php echo base_url() ?>assets/js/modidev.js"></script>
     <script src="<?php echo base_url() ?>assets/js/perfilesOcupacionales/responsabilidades.js"></script>
+    <script src="<?php echo base_url() ?>assets/js/remuneracion.js"></script>
+    <script src="<?php echo base_url() ?>assets/js/validaciones.js"></script>
     <!-- Toast -->
-    <script src="<?php echo base_url() ?>assets/js/toastr.min.js" type="text/javascript"></script>
+    <script src="<?php echo base_url() ?>assets/js/toastr.min.js" type="text/javascript"></script>}
+    <!-- Switchery -->
+    <script src="<?php echo base_url() ?>assets/vendors/switchery/dist/switchery.min.js"></script>
 
 
     <script>
@@ -177,7 +196,7 @@
                 "columnDefs": [{
                     "targets": 5,
                     "data": null,
-                    "defaultContent": '<button type="button" id="btnVerCargo" class="btn btn-info" data-toggle="modal" data-target="#modaleditarCargo"><i class="glyphicon glyphicon-pencil"></i></button>'
+                    "defaultContent": '<button type="button" id="btnVerCargo" class="btn btn-info" data-toggle="modal" data-target="#modaleditarCargo"><i class="glyphicon glyphicon-pencil"></i></button>    <button type="button" id="btnEditarRemuneracion" class="btn btn-info" data-toggle="modal" data-target="#modalEditarRemuneración"><i class="glyphicon glyphicon-usd"></i></button>'
                 }
                 ],dom: '<"html5buttons"B>lTfgitp',
                   buttons: [{
@@ -259,6 +278,22 @@
            e.preventDefault();
            agregaInputResponsabilidadEditar();
        });
+
+       $("body").on("click", "#btnEditarRemuneracion", function(e) {
+            e.preventDefault();
+            var id = $(this).parent().parent().children()[0];
+            getDetalleRemuneracion($(id).text());
+        });
+
+        $("body").on("click", "#btnGuardarRemuneracion", function(e) {
+             e.preventDefault();
+             updateRemuneracion();
+         });
+
+        $("body").on("click", "#btnAgregarInputRemuneracionesExtra", function(e) {
+             e.preventDefault();
+             agregaInputRemuneracionesExtra();
+         });
 
 
 

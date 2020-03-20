@@ -7,7 +7,7 @@
     <div class="row">
         <div class="x_panel">
             <div class="x_content">
-                <button type="button" class="btn modidev-btn" data-toggle="modal" data-target=".bd-example-modal-lg" style="margin-bottom:20px;">INGRESAR EMPRESA</button>
+                <button type="button" id="btnAbrirModalCrear" class="btn modidev-btn" data-toggle="modal" data-target=".bd-example-modal-lg" style="margin-bottom:20px;">INGRESAR EMPRESA</button>
 
                 <table id="tabla_empresa"
                        class="table table-striped table-bordered table-hover dataTables-prevision"
@@ -57,13 +57,13 @@
                     <div class="col-md-12">
                         <br>
                         <label for="nombre">NOMBRE</label>
-                        <input type="text" class="form-control custom-input-sm" id="nombre">
+                        <input type="text" class="form-control custom-input-sm" id="nombre" >
                     </div>
 
                     <div class="col-md-12">
                         <br>
                         <label for="nombre">ROL UNICO TRIBUTARIO</label>
-                        <input type="text" class="form-control custom-input-sm" id="RUT">
+                        <input type="text" class="form-control custom-input-sm" id="RUT" onkeyup="this.value=caracteresRUT(this.value)" oninput="checkRutOficial(this)">
                     </div>
 
                     <div class="col-md-12">
@@ -75,13 +75,13 @@
                     <div class="col-md-12">
                         <br>
                         <label for="nombreRepre">NOMBRE DE REPRESENTANTE</label>
-                        <input type="text" class="form-control custom-input-sm" id="nombreRepre">
+                        <input type="text" class="form-control custom-input-sm" id="nombreRepre" onkeyup="this.value=soloLetras(this.value)">
                     </div>
 
                     <div class="col-md-12">
                         <br>
                         <label for="cedulaRepre">CÉLUDA DE REPRESENTANTE</label>
-                        <input type="text" class="form-control custom-input-sm" id="cedulaRepre">
+                        <input type="text" class="form-control custom-input-sm" id="cedulaRepre" onkeyup="this.value=caracteresRUT(this.value)" oninput="checkRutOficial(this)">
                     </div>
 
                     <div class="col-md-12">
@@ -131,6 +131,7 @@
     <script src="<?php echo base_url() ?>assets/build/js/custom.min.js"></script>
     <!-- MODIDEV -->
     <script src="<?php echo base_url() ?>assets/js/modidev.js"></script>
+    <script src="<?php echo base_url() ?>assets/js/validaciones.js"></script>
     <!-- Toast -->
     <script src="<?php echo base_url() ?>assets/js/toastr.min.js" type="text/javascript"></script>
 
@@ -234,6 +235,8 @@
             $('#btnAgregarEmpresa').val(json.lastInput);
           });
       });
+
+
 
       $("body").on("click", "#getDetalleEmpresa", function(e) {
           e.preventDefault();

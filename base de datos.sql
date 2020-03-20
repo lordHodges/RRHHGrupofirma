@@ -73,8 +73,10 @@ create table fa_cargo(
 
 create table fa_remuneracion(
     cp_remuneracion int auto_increment,
-    atr_sueldo varchar(100),
-    atr_cotizaciones int,
+    atr_sueldoMensual varchar(100),
+    atr_cotizaciones varchar(100),
+    atr_colacion varchar(100),
+    atr_movilizacion varchar(100),
     cf_cargo int,
     constraint pk_remuneracion primary key(cp_remuneracion),
     constraint fk_remuneracion_cargo foreign key(cf_cargo) references fa_cargo(cp_cargo)
@@ -84,8 +86,10 @@ create table fa_remuneracion_extra(
     cp_remuneracionExtra int auto_increment,
     atr_descripcion varchar(200),
     cf_remuneracion int,
+    cf_cargo int,
     constraint pk_remuneracionExtra primary key(cp_remuneracionExtra),
-    constraint fk_remunercionExtra_remuneracion foreign key(cf_remuneracion) references fa_remuneracion(cp_remuneracion)
+    constraint fk_remunercionExtra_remuneracion foreign key(cf_remuneracion) references fa_remuneracion(cp_remuneracion),
+    constraint fk_remunercionExtra_cargo foreign key(cf_cargo) references fa_cargo(cp_cargo)
 );
 
 create table fa_tarea(
@@ -255,6 +259,10 @@ VALUES ('Arica'),('Camarones'),('General Lagos'),('Putre'),('Alto Hospicio'),('I
 
 INSERT INTO `fa_cargo` (`cp_cargo`, `atr_nombre`, `atr_jefeDirecto`, `atr_lugarTrabajo`, `atr_jornadaTrabajo`) VALUES (NULL, 'Auxiliar de aseo, día domingo', 'Teresa Garrido, Miguel Vargas', '1 sur, 24 oriente #3155, Hostal Plaza Maule', '08:00 horas a 22:00 horas'), (NULL, 'Cartero', 'Evelyn Gallegos, Nelvis Vilalobos', NULL, '9 a 13:30 horas');
 INSERT INTO `fa_cargo` (`cp_cargo`, `atr_nombre`, `atr_jefeDirecto`, `atr_lugarTrabajo`, `atr_jornadaTrabajo`) VALUES (NULL, 'Ejecutivo de licitaciones publicas y privadas', 'Solanch Tejos Carrasco', NULL, 'horario de mañana: 9 a 13:00 horas, horario de tarde: 14:00 a 19:00 horas');
+
+INSERT INTO `fa_remuneracion` (`cp_remuneracion`, `atr_sueldoMensual`, `atr_cotizaciones`, `atr_colacion`, `atr_movilizacion`, `cf_cargo`) VALUES (NULL, '0', '0', '0', '0', '1'), (NULL, '0', '0', '0', '0', '2'), (NULL, '0', '0', '0', '0', '3');
+
+INSERT INTO `fa_remuneracion_extra` (`cp_remuneracionExtra`, `atr_descripcion`, `cf_remuneracion`, `cf_cargo`) VALUES (NULL, '3% de comisión por carta entregada', '2','2'), (NULL, '5% de comisión por venta realizada', '3','3'), (NULL, 'Remuneración extra por definir (ejemplo)', '1','1');
 
 INSERT INTO `fa_sucursal` (`cp_sucursal`, `atr_nombre`, `cf_ciudad`) VALUES (NULL, 'Sucursal 1', '97'), (NULL, 'Sucursal 2', '120');
 
