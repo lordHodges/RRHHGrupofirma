@@ -58,7 +58,7 @@ function agregarListaDeTareas(){
             data: {"tarea":tarea,
                    "cargo":cargo}
         }).then(function (msg) {
-          
+
         });
       }
       toastr.success("Funciones actualizadas");

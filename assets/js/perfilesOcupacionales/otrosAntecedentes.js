@@ -38,7 +38,7 @@ function cargarOtrosAntecedentes(){
         document.getElementById("otros").innerHTML = "";
         var fila = "";
         $.each(msg, function (i, o) {
-            fila +='<div class="col-md-12" style="margin-top:10px"><textarea type="text" class="form-control custom-input-sm" disabled>'+o.atr_descripcion+'</textarea></div>';
+            fila +='<div id="'+o.cp_otrosantecedentes+'" class="col-md-12" style="margin-top:10px"><textarea type="text" class="form-control custom-input-sm" >'+o.atr_descripcion+'</textarea></div>';
         });
         $("#otrosIngresados").append(fila);
       }

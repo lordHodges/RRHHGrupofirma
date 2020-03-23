@@ -445,7 +445,7 @@ function agregarEstadoContrato() {
 
 function agregarPrevision() {
     var nombre = $("#nombre").val();
-    
+
     if (nombre == "" || nombre == null ) {
         toastr.error("Rellene todos los campos");
     } else {

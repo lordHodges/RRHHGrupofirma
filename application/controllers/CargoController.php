@@ -31,8 +31,6 @@ class CargoController extends CI_Controller {
 		echo json_encode(array("msg" => $resultado));
 	}
 
-
-
 	public function getListadoCargos(){
 		$draw = intval($this->input->get("draw"));
 		$start = intval($this->input->get("start"));
@@ -40,24 +38,17 @@ class CargoController extends CI_Controller {
 		$books = $this->MantenedoresModel->getListadoCargos();
 		$data = array();
 		foreach ($books->result() as $r) {
+			if( $r->atr_lugarTrabajo == "" || $r->atr_lugarTrabajo == " " ) { $lugarTrabajo = "-"; } else { $lugarTrabajo = $r->atr_lugarTrabajo;  }
+			if( $r->atr_jornadaTrabajo == "" || $r->atr_jornadaTrabajo == " " ) { $jornadaTrabajo = "-"; } else{ $jornadaTrabajo = $r->atr_jornadaTrabajo; }
 
-				if($r->atr_lugarTrabajo == ""){
-					$data[] = array(
-						$r->cp_cargo,
-						$r->atr_nombre,
-						$r->atr_jefeDirecto,
-						"-",
-						$r->atr_jornadaTrabajo
-					);
-				}else{
-					$data[] = array(
-						$r->cp_cargo,
-						$r->atr_nombre,
-						$r->atr_jefeDirecto,
-						$r->atr_lugarTrabajo,
-						$r->atr_jornadaTrabajo
-					);
-				}
+			$data[] = array(
+				$r->cp_cargo,
+				$r->atr_nombre,
+				$r->atr_jefeDirecto,
+				$lugarTrabajo,
+				$jornadaTrabajo
+			);
+
 		}
 		$output = array(
 				"draw" => $draw,

@@ -37,7 +37,21 @@ class RemuneracionesModel extends CI_Model {
         $this->db->select("re.atr_descripcion, r.atr_cotizaciones, r.atr_colacion, r.atr_movilizacion, ");
         $this->db->from("fa_remuneracionExtra re");
         $this->db->join("fa_remuneracion r", "r.cp_remuneracion = re.cp_remuneracionExtra");
-        $this->db->where("re.cf_remuneracionExtra", $idRemuneracion);
+        $this->db->where("re.cf_remuneracion_extra", $idRemuneracion);
+        return $this->db->get()->result();
+    }
+
+    function getDetalleRemuneracionPDF($idCargo){
+        $this->db->select("r.atr_sueldoMensual, r.atr_cotizaciones, r.atr_colacion, r.atr_movilizacion");
+        $this->db->from("fa_remuneracion r");
+        $this->db->where("r.cf_cargo",$idCargo);
+        return $this->db->get()->result();
+    }
+
+    function getDetalleRemuneracionExtraPDF($idCargo){
+        $this->db->select("re.atr_descripcion");
+        $this->db->from("fa_remuneracion_extra re");
+        $this->db->where("re.cf_cargo", $idCargo);
         return $this->db->get()->result();
     }
 

@@ -1,4 +1,5 @@
 var base_url = 'http://localhost/FA_RECURSOS-HUMANOS/';
+
 var constante = 0;
 var constanteResponsabilidades = 0;
 
@@ -11,11 +12,10 @@ function agregarCargo(){
   var jornadaTrabajo = $("#jornadaTrabajo").val();
   var diasTrabajo = $("#diasTrabajo").val();
   // Valor del cargo seleccionado
-  if(nombre == "" || jefeDirecto == "" || lugarTrabajo == "" || jornadaTrabajo == ""  || diasTrabajo == ""){
+  if(nombre == "" || jefeDirecto == ""){
     toastr.error("Complete todos los campos");
   }
   else{
-
     $.ajax({
         url: 'addCargo',
         type: 'POST',

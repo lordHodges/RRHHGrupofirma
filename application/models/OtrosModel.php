@@ -10,7 +10,7 @@ class OtrosModel extends CI_Model {
     }
 
     function getListadoOtrosAntecedentes($cargo, $titulo){
-      $this->db->select("oa.atr_descripcion");
+      $this->db->select("oa.atr_descripcion", "oa.cp_otrosantecedentes");
       $this->db->from("fa_otrosantecedentes oa");
       $this->db->where("oa.cf_titulo", $titulo);
       $this->db->where("oa.cf_cargo", $cargo);

@@ -7,7 +7,7 @@
     <div class="row">
         <div class="x_panel">
             <div class="x_content">
-                <button type="button" class="btn modidev-btn" data-toggle="modal" data-target=".bd-example-modal-lg" style="margin-bottom:20px;">INGRESAR CARGO</button>
+                <!-- <button type="button" class="btn modidev-btn" data-toggle="modal" data-target=".bd-example-modal-lg" style="margin-bottom:20px;">INGRESAR CARGO</button> -->
 
                 <table id="tabla_cargo" class="table table-striped table-bordered table-hover dataTables-cargos" style="margin-top:20px;">
                     <thead >
@@ -17,7 +17,6 @@
                             <th class="text-center">JEFE(S) DIRECTO(S)</th>
                             <th class="text-center">LUGAR DE TRABAJO</th>
                             <th class="text-center">JORNADA DE TRABAJO</th>
-                            <th class="text-center">SUELDO</th>
                             <th class="text-center">ACCIONES</th>
                         </tr>
                     </thead>
@@ -137,7 +136,7 @@
                     type: 'GET'
                 },
                 "columnDefs": [{
-                  "targets": 6,
+                  "targets": 5,
                   "data": null,
                   "defaultContent": '<button type="button" id="btnVerDocumentoPerfilOcupacional" class="btn btn-info"><i class="glyphicon glyphicon-file"></i></button>'
                 }

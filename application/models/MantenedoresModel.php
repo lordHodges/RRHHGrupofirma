@@ -172,7 +172,7 @@ class MantenedoresModel extends CI_Model {
     // ESTADO CIVIL
     function getListadoEstadosCiviles(){
       $this->db->select("ec.cp_estadoCivil, ec.atr_nombre");
-      $this->db->from("fa_estadocivil ec");
+      $this->db->from("fa_estadoCivil ec");
       return $this->db->get();
     }
 
@@ -180,7 +180,7 @@ class MantenedoresModel extends CI_Model {
         $data = array(
             "atr_nombre" => $nombre
         );
-        $this->db->insert("fa_estadocivil", $data);
+        $this->db->insert("fa_estadoCivil", $data);
         return "ok";
     }
 

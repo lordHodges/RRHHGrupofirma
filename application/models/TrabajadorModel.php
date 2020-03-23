@@ -81,7 +81,7 @@ class TrabajadorModel extends CI_Model {
 
     function getEstadosCiviles(){
         $this->db->select("cp_estadoCivil, atr_nombre");
-        $this->db->from("fa_estadocivil");
+        $this->db->from("fa_estadoCivil");
         $this->db->order_by('atr_nombre', 'ASC');
         return $this->db->get()->result();
     }
@@ -111,7 +111,7 @@ class TrabajadorModel extends CI_Model {
       $this->db->join("fa_cargo ca", "t.cf_cargo = ca.cp_cargo");
       $this->db->join("fa_sucursal su","t.cf_sucursal = su.cp_sucursal");
       $this->db->join("fa_nacionalidad n", "t.cf_nacionalidad = n.cp_nacionalidad");
-      $this->db->join("fa_estadocivil ec", "t.cf_estadoCivil = ec.cp_estadocivil");
+      $this->db->join("fa_estadoCivil ec", "t.cf_estadoCivil = ec.cp_estadoCivil");
       $this->db->join("fa_afp a", "t.cf_afp = a.cp_afp");
       $this->db->join("fa_prevision p", "t.cf_prevision = p.cp_prevision");
       $this->db->join("fa_empresa em ", "t.cf_empresa = em.cp_empresa");
