@@ -36,15 +36,29 @@
       <div id="competencias">
 
       </div>
+      <br>
 
-      <!-- Listado de tareas para llenar -->
-      <div id="competenciasIngresadas">
+      <br>
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-12" id="ocultarTabla">
+            <table id="tabla_competencias"
+                   class="table table-striped table-bordered table-hover dataTables-competencias"
+                   style="margin-top:20px; width:100%">
+                <thead >
+                    <tr style="width:100%;">
+                        <th class="text-center" style="width:10%;">ID</th>
+                        <th class="text-center">DESCRIPCIÓN</th>
+                        <th class="text-center" style="width:5%;">ACCIONES</th>
+                    </tr>
+                </thead>
+                <tbody id="tbodyDetalle">
 
+                </tbody>
+            </table>
+          </div>
+        </div>
       </div>
-
-
-
-
 
     </div>
 
@@ -65,6 +79,8 @@
     <script src="<?php echo base_url() ?>assets/vendors/jquery/dist/jquery.min.js"></script>
     <!-- Bootstrap -->
     <script src="<?php echo base_url() ?>assets/vendors/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Datatables -->
+    <script src="<?php echo base_url() ?>assets/js/datatables.min.js" type="text/javascript"></script>
     <!-- Custom Theme Scripts -->
     <script src="<?php echo base_url() ?>assets/build/js/custom.min.js"></script>
     <!-- JS PROPIOS -->
@@ -74,6 +90,8 @@
     <script src="<?php echo base_url() ?>assets/js/toastr.min.js" type="text/javascript"></script>
     <!-- Autocompletado -->
     <script src="<?php echo base_url() ?>assets/js/jquery-ui.js" type="text/javascript"></script>
+    <!-- SweetAlert -->
+    <script src="<?php echo base_url() ?>assets/js/sweetalert2@9.js" type="text/javascript"></script>
 
 
     <script>
@@ -81,6 +99,7 @@
           getSelectCargos();
           autocompleteCompetencias();
           document.getElementById('btnAgregarListaDeCompetencias').style.display = 'none';
+          document.getElementById('ocultarTabla').style.display = 'none';
       });
 
       $("#btnAgregarCompetencia").click(function (e){
@@ -91,11 +110,15 @@
       $("#getSelectCargo").change(function (e){
           e.preventDefault();
           //limpio campos
-          $("#competenciasIngresadas").empty();
           $("#competencias").empty();
           //oculto el boton de guardar
           document.getElementById('btnAgregarListaDeCompetencias').style.display = 'none';
-          cargarCompetencias();
+          document.getElementById('btnAgregarCompetencia').removeAttribute("style");
+          document.getElementById('ocultarTabla').removeAttribute("style");
+
+          var cargo = $("#getSelectCargo").val();
+
+          cargarTabla(cargo);
       });
 
       $("#btnAgregarListaDeCompetencias").click(function (e){
@@ -103,7 +126,28 @@
           agregarListaDeCompetencias();
       });
 
+      $("body").on("click", "#btnEliminarCompetencias", function(e) {
 
+          e.preventDefault();
+          Swal.fire({
+            title: '¿Estas seguro?',
+            text: "El registro será eliminado permanentemente",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#1abb9c',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Confirmar',
+            cancelButtonText: 'Cancelar',
+
+          }).then((result) => {
+            if (result.value) {
+              var id = $(this).parent().parent().children()[0];
+              var idCompetencia = $(id).text();
+              eliminarCompetencia(idCompetencia);
+            }
+          })
+
+         });
   </script>
 
 

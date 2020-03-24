@@ -18,7 +18,7 @@
       <div class="container">
         <div class="col-md-12" visible="false" >
           <div class="col-md-1">
-            <button type="button" class="btn modidev-btn btn-sm center" style="display:none" id="btnAgregarConocimiento" >
+            <button type="button" class="btn modidev-btn btn-sm center" id="btnAgregarConocimiento" >
               <i class="glyphicon glyphicon-plus"></i>
             </button>
           </div>
@@ -37,9 +37,27 @@
 
       </div>
 
-      <!-- Listado de tareas para llenar -->
-      <div id="conocimientosIngresados">
+      <br>
 
+      <br>
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-12" id="ocultarTabla">
+            <table id="tabla_conocimientos"
+                   class="table table-striped table-bordered table-hover dataTables-conocimientos" style="margin-top:20px; width:100%">
+                <thead >
+                    <tr style="width:100%;">
+                        <th class="text-center" style="width:5%;">ID</th>
+                        <th class="text-center" style="width:100%;">DESCRIPCIÓN</th>
+                        <th class="text-center" style="width:5%;">ACCIONES</th>
+                    </tr>
+                </thead>
+                <tbody id="tbodyDetalle">
+
+                </tbody>
+            </table>
+          </div>
+        </div>
       </div>
 
 
@@ -65,6 +83,8 @@
     <script src="<?php echo base_url() ?>assets/vendors/jquery/dist/jquery.min.js"></script>
     <!-- Bootstrap -->
     <script src="<?php echo base_url() ?>assets/vendors/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Datatables -->
+    <script src="<?php echo base_url() ?>assets/js/datatables.min.js" type="text/javascript"></script>
     <!-- Custom Theme Scripts -->
     <script src="<?php echo base_url() ?>assets/build/js/custom.min.js"></script>
     <!-- JS PROPIOS -->
@@ -74,6 +94,8 @@
     <script src="<?php echo base_url() ?>assets/js/toastr.min.js" type="text/javascript"></script>
     <!-- Autocompletado -->
     <script src="<?php echo base_url() ?>assets/js/jquery-ui.js" type="text/javascript"></script>
+    <!-- SweetAlert -->
+    <script src="<?php echo base_url() ?>assets/js/sweetalert2@9.js" type="text/javascript"></script>
 
 
     <script>
@@ -81,8 +103,6 @@
           getSelectCargos();
           autocompleteConocimientos();
           document.getElementById('btnAgregarListaDeConocimientos').style.display = 'none';
-          // cargarTareas();
-          // bloquearBoton();
       });
 
       $("#btnAgregarConocimiento").click(function (e){
@@ -93,17 +113,41 @@
       $("#getSelectCargo").change(function (e){
           e.preventDefault();
           //limpio campos
-          $("#conocimientosIngresados").empty();
           $("#conocimientos").empty();
           //oculto el boton de guardar
           document.getElementById('btnAgregarListaDeConocimientos').style.display = 'none';
-          cargarConocimientos();
+
+          var cargo = $("#getSelectCargo").val();
+          cargarTabla(cargo);
       });
 
       $("#btnAgregarListaDeConocimientos").click(function (e){
           e.preventDefault();
           agregarListaDeConocimientos();
       });
+
+      $("body").on("click", "#btnEliminarConocimiento", function(e) {
+
+        e.preventDefault();
+        Swal.fire({
+          title: '¿Estas seguro?',
+          text: "El registro será eliminado permanentemente",
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#1abb9c',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Confirmar',
+          cancelButtonText: 'Cancelar',
+
+        }).then((result) => {
+          if (result.value) {
+            var id = $(this).parent().parent().children()[0];
+            var id_conocimiento = $(id).text();
+            eliminarConocimiento(id_conocimiento);
+          }
+        })
+
+       });
 
 
   </script>

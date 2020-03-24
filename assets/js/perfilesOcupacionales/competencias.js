@@ -2,34 +2,65 @@ var base_url = 'http://localhost/FA_RECURSOS-HUMANOS/';
 var constante = 0;
 
 
-function cargarCompetencias(){
+function cargarTabla(cargo){
+  var table = $('#tabla_competencias').DataTable();
+  table.destroy();
+  $('.dataTables-competencias').DataTable({
+      "info":false,
+      language: {
+          "sProcessing": "Procesando...",
+          "sLengthMenu": "Registros _MENU_ ",
+          "sZeroRecords": "No se encontraron resultados",
+          "sEmptyTable": "Ningún dato disponible en esta tabla",
+          // "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+          "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+          "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+          "sInfoPostFix": "",
+          "sSearch": "Buscar:",
+          "sUrl": "",
+          "sInfoThousands": ",",
+          "sLoadingRecords": "Cargando...",
+          "oPaginate": {
+              "sFirst": "Primero",
+              "sLast": "Último",
+              "sNext": "Siguiente",
+              "sPrevious": "Anterior"
+          },
+          "oAria": {
+              "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
+              "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+          },
+      },
+      "ajax": {
+          url: 'http://localhost/FA_RECURSOS-HUMANOS/getListadoCompetenciasDataTable?id='+cargo,
+          type: 'GET',
+      },
+      "columnDefs": [{
+        "targets": 2,
+        "defaultContent": '<button type="button" id="btnEliminarCompetencias" class="btn btn-danger" data-toggle="modal" data-target="#modalEliminarRequisitoMinimo"><i class="glyphicon glyphicon-trash"></i></button>'
+      }]
+      ,dom: '<"html5buttons"B>lTfgitp',
+      buttons: [
+      ]
 
-  const selectCargo = document.querySelector('#getSelectCargo');
+  });
+}
 
-  var cargo = $("#getSelectCargo").val();
+function eliminarCompetencia(idCompetencia){
+  var cargo =  $("#getSelectCargo").val();
   $.ajax({
-      url: 'getListadoCompetencias',
+      url: 'deleteCompetencia',
       type: 'POST',
       dataType: 'json',
-      data: { "id": cargo}
+      data: {"idCompetencia":idCompetencia}
   }).then(function (msg) {
-      if(msg == ""){
-        toastr.error("No tiene competencias asociadas");
-      }else{
-        // $("#competenciasIngresadas").empty();
-        // $("#competencias").empty();
+      toastr.success("Eliminado con éxito");
 
-        document.getElementById("competenciasIngresadas").innerHTML = "";
-        document.getElementById("competencias").innerHTML = "";
-
-        var fila = "";
-        $.each(msg, function (i, o) {
-            fila +='<div class="col-md-12" style="margin-top:10px"><input type="text" class="form-control custom-input-sm" disabled value="'+o.atr_descripcion+'"></div>';
-        });
-        $("#competenciasIngresadas").append(fila);
-      }
-      document.getElementById('btnAgregarCompetencia').removeAttribute("style");  //ESTE SIRVE PARA MOSTRAR EL BOTON
-
+      //destuir datatable actual
+      var table = $('#tabla_competencias').DataTable();
+      table.destroy();
+      //recargar el datatable
+      cargarTabla(cargo);
   });
 }
 
@@ -60,16 +91,24 @@ function agregarListaDeCompetencias(){
             data: {"competencia":competencia,
                    "cargo":cargo}
         }).then(function (msg) {
-            // toastr.success("Competencias actualizadas");
+            if(msg.msg == "ok"){
+              toastr.success("Competencias y características actualizadas");
+            }
         });
       }
-      toastr.success("Competencias y características actualizadas");
+
+      //Se inicializa en 0 para que al cambiar de cargo los inputs nuevamente comiencen desde 0
+      constante = 0;
+
+      $("#competencias").empty();
+      cargarTabla(cargo);
+      document.getElementById('btnAgregarCompetencia').removeAttribute("style");
   }
-  cargarCompetencias();
+
+  cargarTabla(cargo);
   //Se inicializa en 0 para que al cambiar de cargo los inputs nuevamente comiencen desde 0
   constante = 0;
   document.getElementById('btnAgregarListaDeCompetencias').style.display = 'none';
-
 }
 
 function bloquearBoton(){
@@ -98,7 +137,7 @@ function agregarCompetencia() {
    constante = constante+1;
    var fila = document.getElementById("competencias");
    var count = contar();
-   fila.innerHTML += '<div class="col-md-12" style="margin-top:10px"><input type="text" class="form-control custom-input-sm " onkeypress="bloquearBoton()" id="input_tarea'+count+'"></div>';
+   fila.innerHTML += '<div class="col-md-12 perfilOcupacional"><input type="text" style="margin-bottom:15px;"  class="form-control custom-input-sm " onkeypress="bloquearBoton()" id="input_tarea'+count+'"></div>';
 }
 
 // la función contar me devuelve la cantidad de inputs que comienzen con id='input_tarea'

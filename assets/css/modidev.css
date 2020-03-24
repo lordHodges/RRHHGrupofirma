@@ -7,6 +7,7 @@
     border-color: #26B99A;
 }
 
+
 .modal select{
     background: #2a3f54;
     color: #fff;
@@ -69,4 +70,12 @@ div.dataTables_wrapper {
 /* INPUT  */
 input disabled{
     color: #000;
+}
+
+/* PERFILES OCUPACIONALES - GESTIÓN */
+
+.perfilOcupacional input{
+    /* background: #1abb9c; */
+    /* color: #fff; */
+    border-color: #73879c;
 }

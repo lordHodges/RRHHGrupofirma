@@ -47,18 +47,29 @@ $route['docPerfilesOcupacionales'] = 'PDFController/view_perfilesOcupacionales';
   $route['inicioFunciones'] = 'FuncionesController/index';
   $route['getListadoTareas'] = 'FuncionesController/getListadoTareas';
   $route['addTarea'] = 'FuncionesController/addTarea';
+  $route['getListadoTareasDataTable'] = 'FuncionesController/getListadoTareasDataTable';
+  $route['deleteTarea'] = 'FuncionesController/deleteTarea';
+
   //requisitos mínimos
   $route['inicioRequisitosMinimos'] = 'RequisitosMinimosController/index';
   $route['getListadoRequisitosMinimos'] = 'RequisitosMinimosController/getListadoRequisitosMinimos';
   $route['addRequisitoMinimo'] = 'RequisitosMinimosController/addRequisitoMinimo';
+  $route['getListadoRequisitosMinimosDataTable'] = 'RequisitosMinimosController/getListadoRequisitosMinimosDataTable';
+  $route['deleteRequisitoMinimo'] = 'RequisitosMinimosController/deleteRequisitoMinimo';
+
   //competencias
   $route['inicioCompetencias'] = 'CompetenciasController/index';
   $route['getListadoCompetencias'] = 'CompetenciasController/getListadoCompetencias';
   $route['addCompetencia'] = 'CompetenciasController/addCompetencia';
+  $route['getListadoCompetenciasDataTable'] = 'CompetenciasController/getListadoCompetenciasDataTable';
+  $route['deleteCompetencia'] = 'CompetenciasController/deleteCompetencia';
+
   //conocimientos
   $route['inicioConocimientos'] = 'ConocimientosController/index';
   $route['getListadoConocimientos'] = 'ConocimientosController/getListadoConocimientos';
   $route['addConocimiento'] = 'ConocimientosController/addConocimiento';
+  $route['getListadoConocimientosDataTable'] = 'ConocimientosController/getListadoConocimientosDataTable';
+  $route['deleteConocimiento'] = 'ConocimientosController/deleteConocimiento';
   //otros
   $route['inicioOtros'] = 'OtrosController/index';
   $route['getListadoOtros'] = 'OtrosController/getListadoOtros';

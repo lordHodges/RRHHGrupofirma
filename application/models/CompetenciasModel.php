@@ -8,12 +8,30 @@ class CompetenciasModel extends CI_Model {
         parent::__construct();
     }
 
+    function deleteCompetencia($idCompetencia){
+        $resultado = $this->db->delete('fa_competencia_cargo', array('cp_competencia_cargo' => $idCompetencia));
+
+        if($resultado){
+          return "ok";
+        }else{
+          return "error";
+        }
+    }
+
     function getListadoCompetencias($id){
         $this->db->select("co.atr_descripcion");
         $this->db->from("fa_competencia_cargo cc");
         $this->db->join("fa_competencia co", "co.cp_competencia = cc.cf_competencia");
         $this->db->where("cc.cf_cargo", $id);
         return $this->db->get()->result();
+    }
+
+    function getListadoCompetenciasDataTable($id){
+        $this->db->select("cc.cp_competencia_cargo ,co.atr_descripcion");
+        $this->db->from("fa_competencia_cargo cc");
+        $this->db->join("fa_competencia co", "co.cp_competencia = cc.cf_competencia");
+        $this->db->where("cc.cf_cargo", $id);
+        return $this->db->get();
     }
 
 
@@ -39,7 +57,6 @@ class CompetenciasModel extends CI_Model {
               $this->db->insert("fa_competencia", $data);
 
               $id_competencia = $this->CompetenciasModel->getUltimaCompetencia();
-              var_dump("id_competencia: ",$id_competencia);
 
               //recupero el id del registro ingresado
 
@@ -57,7 +74,6 @@ class CompetenciasModel extends CI_Model {
               $this->db->where("c.atr_descripcion",$competencia);
               $algo = $this->db->get()->result();
               $id_competencia = ($algo[0]->cp_competencia);
-              var_dump("valor de competencia ya existente con metodo nuevo",$id_competencia);
 
 
               //INSERTO EN FA_COMPETENCIA_CARGO

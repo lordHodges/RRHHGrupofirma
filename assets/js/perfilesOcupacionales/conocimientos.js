@@ -2,32 +2,63 @@ var base_url = 'http://localhost/FA_RECURSOS-HUMANOS/';
 var constante = 0;
 
 
-function cargarConocimientos(){
+function cargarTabla(cargo){
+  var table = $('#tabla_conocimientos').DataTable();
+  table.destroy();
 
-  const selectCargo = document.querySelector('#getSelectCargo');
+  $('.dataTables-conocimientos').DataTable({
+        "info":false,
+        language: {
+            "autoWidth": false,
+            "info":false,
+            "sInfoEmpty":false,
+            "sInfoFiltered":false,
+            "sProcessing": "Procesando...",
+            "sLengthMenu": "Registros _MENU_ ",
+            "sZeroRecords": "No se encontraron resultados",
+            "sEmptyTable": "Ningún dato disponible en esta tabla",
+            "sInfoPostFix": "",
+            "sSearch": "Buscar:",
+            "sUrl": "",
+            "sInfoThousands": ",",
+            "sLoadingRecords": "Cargando...",
+            "oPaginate": {
+                "sFirst": "Primero",
+                "sLast": "Último",
+                "sNext": "Siguiente",
+                "sPrevious": "Anterior"
+            },
+            "oAria": {
+                "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
+                "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+            },
+        },
+        "ajax": {
+            url: 'http://localhost/FA_RECURSOS-HUMANOS/getListadoConocimientosDataTable?id='+cargo,
+            type: 'GET',
+        },
+        "columnDefs": [{
+          "targets": 2,
+          "defaultContent": '<button type="button" id="btnEliminarConocimiento" class="btn btn-danger"><i class="glyphicon glyphicon-trash"></i></button>'
+        }]
+        ,dom: '<"html5buttons"B>lTfgitp',
+        buttons: [
+        ]
 
+    });
+}
 
-  var cargo = $("#getSelectCargo").val();
+function eliminarConocimiento(id_conocimiento){
+  var cargo =  $("#getSelectCargo").val();
   $.ajax({
-      url: 'getListadoConocimientos',
+      url: 'deleteConocimiento',
       type: 'POST',
       dataType: 'json',
-      data: { "id": cargo}
+      data: {"id_conocimiento":id_conocimiento}
   }).then(function (msg) {
-      if(msg == ""){
-        toastr.error("No tiene conocimientos asociados");
-      }else{
-        // $("#conocimientosIngresados").empty();
-        document.getElementById("conocimientosIngresados").innerHTML = "";
-        document.getElementById("conocimientos").innerHTML = "";
-        var fila = "";
-        $.each(msg, function (i, o) {
+      toastr.success("Conocimiento eliminado");
 
-            fila +='<div class="col-md-12" style="margin-top:10px"><input type="text" class="form-control custom-input-sm autocompleteConocimientos" disabled value="'+o.atr_descripcion+'"></div>';
-        });
-        $("#conocimientosIngresados").append(fila);
-      }
-      document.getElementById('btnAgregarConocimiento').removeAttribute("style");  //ESTE SIRVE PARA MOSTRAR EL BOTON
+      cargarTabla(cargo);
   });
 }
 
@@ -58,17 +89,18 @@ function agregarListaDeConocimientos(){
             data: {"conocimiento":conocimiento,
                    "cargo":cargo}
         }).then(function (msg) {
-            // alert("ahora lanzara una alerta");
+            if( msg.msg == "ok"){
+              toastr.success("Conocimientos actualizados");
+            }
         });
       }
-      toastr.success("Conocimientos actualizados");
+
   }
   //Se inicializa en 0 para que al cambiar de cargo los inputs nuevamente comiencen desde 0
   constante = 0;
 
-  $("#conocimientosIngresados").empty();
   $("#conocimientos").empty();
-  cargarConocimientos();
+  cargarTabla(cargo);
   document.getElementById('btnAgregarListaDeConocimientos').style.display = 'none';
 }
 
@@ -98,7 +130,7 @@ function agregarConocimiento() {
    constante = constante+1;
    var fila = document.getElementById("conocimientos");
    var count = contar();
-   fila.innerHTML += '<div class="col-md-12" style="margin-top:10px"><input type="text" class="form-control custom-input-sm " onkeypress="bloquearBoton()" id="input_tarea'+count+'"></div>';
+   fila.innerHTML += '<div class="col-md-12 perfilOcupacional" ><input type="text" style="margin-bottom:15px;" class="form-control custom-input-sm " onkeypress="bloquearBoton()" id="input_tarea'+count+'"></div>';
 }
 
 // la función contar me devuelve la cantidad de inputs que comienzen con id='input_tarea'

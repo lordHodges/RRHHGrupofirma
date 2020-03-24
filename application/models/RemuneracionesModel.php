@@ -56,11 +56,12 @@ class RemuneracionesModel extends CI_Model {
     }
 
 
-    function updateRemuneracion($idCargo,$sueldoMensual,$colacion,$movilizacion){
+    function updateRemuneracion($idCargo,$sueldoMensual,$colacion,$movilizacion,$imposiciones){
       $data = array(
           "atr_sueldoMensual" => $sueldoMensual,
           "atr_colacion" => $colacion,
-          "atr_movilizacion" => $movilizacion
+          "atr_movilizacion" => $movilizacion,
+          "atr_cotizaciones" => $imposiciones
       );
 
       $this->db->where('r.cf_cargo', $idCargo);

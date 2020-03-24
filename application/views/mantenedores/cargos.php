@@ -154,6 +154,8 @@
     <script src="<?php echo base_url() ?>assets/js/toastr.min.js" type="text/javascript"></script>}
     <!-- Switchery -->
     <script src="<?php echo base_url() ?>assets/vendors/switchery/dist/switchery.min.js"></script>
+    <!-- iCheck -->
+    <script src="<?php echo base_url() ?>assets/vendors/iCheck/icheck.min.js"></script>
 
 
     <script>

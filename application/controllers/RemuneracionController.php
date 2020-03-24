@@ -26,8 +26,9 @@ class RemuneracionController extends CI_Controller {
 		$sueldoMensual = $this->input->post("sueldoMensual");
 		$colacion = $this->input->post("colacion");
 		$movilizacion = $this->input->post("movilizacion");
-
-		$resultado = $this->RemuneracionesModel->updateRemuneracion($idCargo,$sueldoMensual,$colacion,$movilizacion);
+		$imposiciones = $this->input->post("imposiciones");
+		var_dump("El valor de imposiciones es: ",$imposiciones);
+		$resultado = $this->RemuneracionesModel->updateRemuneracion($idCargo,$sueldoMensual,$colacion,$movilizacion,$imposiciones);
 		echo json_encode(array("msg" => $resultado));
 	}
 

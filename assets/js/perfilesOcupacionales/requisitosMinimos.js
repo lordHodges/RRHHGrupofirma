@@ -1,36 +1,67 @@
 var base_url = 'http://localhost/FA_RECURSOS-HUMANOS/';
 var constante = 0;
 
+function cargarTabla(cargo){
 
-function cargarRequisitosMinimos(){
+  $('.dataTables-requerimientosMinimos').DataTable({
+        "info":false,
+        language: {
+            "sProcessing": "Procesando...",
+            "sLengthMenu": "Registros _MENU_ ",
+            "sZeroRecords": "No se encontraron resultados",
+            "sEmptyTable": "Ningún dato disponible en esta tabla",
+            // "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+            "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+            "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+            "sInfoPostFix": "",
+            "sSearch": "Buscar:",
+            "sUrl": "",
+            "sInfoThousands": ",",
+            "sLoadingRecords": "Cargando...",
+            "oPaginate": {
+                "sFirst": "Primero",
+                "sLast": "Último",
+                "sNext": "Siguiente",
+                "sPrevious": "Anterior"
+            },
+            "oAria": {
+                "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
+                "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+            },
+        },
+        "ajax": {
+            url: 'http://localhost/FA_RECURSOS-HUMANOS/getListadoRequisitosMinimosDataTable?id='+cargo,
+            type: 'GET',
+        },
+        "columnDefs": [{
+          "targets": 2,
+          "defaultContent": '<button type="button" id="btnEliminarRequisitoMínimo" class="btn btn-danger" data-toggle="modal" data-target="#modalEliminarRequisitoMinimo"><i class="glyphicon glyphicon-trash"></i></button>'
+        }]
+        ,dom: '<"html5buttons"B>lTfgitp',
+        buttons: [
+        ]
 
-  const selectCargo = document.querySelector('#getSelectCargo');
-
-
-  var cargo = $("#getSelectCargo").val();
-  $.ajax({
-      url: 'getListadoRequisitosMinimos',
-      type: 'POST',
-      dataType: 'json',
-      data: { "id": cargo}
-  }).then(function (msg) {
-      if(msg == ""){
-        toastr.error("No tiene requisitos asociados");
-      }else{
-        // $("#requisitosMinimosIngresados").empty();
-        document.getElementById("requisitosMinimosIngresados").innerHTML = "";
-        document.getElementById("requisitosMinimos").innerHTML = "";
-        var fila = "";
-        $.each(msg, function (i, o) {
-
-            fila +='<div class="col-md-12" style="margin-top:10px"><input type="text" class="form-control custom-input-sm " disabled value="'+o.atr_descripcion+'"></div>';
-        });
-        $("#requisitosMinimosIngresados").append(fila);
-      }
-      document.getElementById('btnAgregarRequisitoMinimo').removeAttribute("style");  //ESTE SIRVE PARA MOSTRAR EL BOTON
-  });
+    });
 }
 
+function eliminarRequisitoMinimo(idRequisitoMinimo){
+  var cargo =  $("#getSelectCargo").val();
+  $.ajax({
+      url: 'deleteRequisitoMinimo',
+      type: 'POST',
+      dataType: 'json',
+      data: {"idRequisitoMinimo":idRequisitoMinimo,
+             "cargo":cargo}
+  }).then(function (msg) {
+      toastr.success("Requisitos mínimo eliminado");
+
+      //destuir datatable actual
+      var table = $('#tabla_requerimientosMinimos').DataTable();
+      table.destroy();
+      //recargar el datatable
+      cargarTabla(cargo);
+  });
+}
 
 //Aquí realizamos el comienzo del proceso para guardar todas las tareas que fueron ingresadas con un determinado cargo.
 function agregarListaDeRequisitosMinimos(){
@@ -58,18 +89,22 @@ function agregarListaDeRequisitosMinimos(){
             data: {"requisitoMinimo":requisito,
                    "cargo":cargo}
         }).then(function (msg) {
-            toastr.success("Requisitos mínimos actualizados");
+          if(msg.msg == "ok"){
+            toastr.success("Requisito mínimo agregado");
+          }
         });
       }
   }
   //Se inicializa en 0 para que al cambiar de cargo los inputs nuevamente comiencen desde 0
   constante = 0;
 
-  $("#requisitosMinimosIngresados").empty();
   $("#requisitosMinimos").empty();
-  cargarRequisitosMinimos();
-  document.getElementById('btnAgregarListaDeRequisitosMinimos').style.display = 'none';
 
+  document.getElementById('btnAgregarListaDeRequisitosMinimos').style.display = 'none';
+  document.getElementById('btnAgregarRequisitoMinimo').removeAttribute("style");
+
+  cargarTabla(cargo);
+  
 }
 
 function bloquearBoton(){
@@ -98,7 +133,7 @@ function agregarRequisitoMinimo() {
    constante = constante+1;
    var fila = document.getElementById("requisitosMinimos");
    var count = contar();
-   fila.innerHTML += '<div class="col-md-12" style="margin-top:10px"><input type="text" class="form-control custom-input-sm " onkeypress="bloquearBoton()" id="input_tarea'+count+'"></div>';
+   fila.innerHTML += '<div class="col-md-12 perfilOcupacional"><input type="text" style="margin-bottom:15px;" class="form-control custom-input-sm " onkeypress="bloquearBoton()" id="input_tarea'+count+'"></div>';
 }
 
 // la función contar me devuelve la cantidad de inputs que comienzen con id='input_tarea'

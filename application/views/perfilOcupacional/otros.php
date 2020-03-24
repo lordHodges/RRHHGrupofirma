@@ -101,10 +101,11 @@
           getSelectTitulos();
           //limpio campos
           $("#requisitosMinimosIngresados").empty();
+          $("#otrosIngresados").empty();
           $("#requisitosMinimos").empty();
           //oculto el boton de guardar
           document.getElementById('btnAgregarListaDeOtrosAntecedentes').style.display = 'none';
-          // cargarOtrosAntecedentes();
+
       });
 
       $("#getSelectTitulos").change(function (e){

@@ -8,18 +8,35 @@ class RequisitosMinimosModel extends CI_Model {
         parent::__construct();
     }
 
+    function deleteRequisitoMinimo($idRequisitoMinimo){
+        $resultado = $this->db->delete('fa_requisitominimo_cargo', array('cp_requisitominimo_cargo' => $idRequisitoMinimo));
+
+        if($resultado){
+          return "ok";
+        }else{
+          return "error";
+        }
+    }
+
     function getListadoRequisitosMinimos($id){
-        $this->db->select("r.atr_descripcion");
+        $this->db->select("rc.cp_requisitominimo_cargo , r.atr_descripcion");
         $this->db->from("fa_requisitominimo_cargo rc");
         $this->db->join("fa_requisitominimo r", "r.cp_requisitominimo = rc.cf_requisitominimo");
         $this->db->where("rc.cf_cargo", $id);
         return $this->db->get()->result();
     }
 
+    function getListadoRequisitosMinimosDataTable($id){
+        $this->db->select("rc.cp_requisitominimo_cargo , r.atr_descripcion");
+        $this->db->from("fa_requisitominimo_cargo rc");
+        $this->db->join("fa_requisitominimo r", "r.cp_requisitominimo = rc.cf_requisitominimo");
+        $this->db->where("rc.cf_cargo", $id);
+        return $this->db->get();
+    }
+
 
     function addRequisitoMinimo($requisitoMinimo, $cargo){
-        // var_dump("PARAM_TAREA: ",$requisitoMinimo);
-        // var_dump("PARAM_CARGO: ",$cargo);
+
         $this->db->select('count(*)');
         $this->db->from("fa_requisitominimo r");
         $this->db->where("r.atr_descripcion", $requisitoMinimo);

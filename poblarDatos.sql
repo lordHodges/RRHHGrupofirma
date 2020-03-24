@@ -61,3 +61,33 @@ INSERT INTO `fa_titulo` (`cp_titulo`, `atr_descripcion`, `cf_cargo`) VALUES (NUL
 INSERT INTO `fa_otrosantecedentes` (`cp_otrosantecedentes`, `atr_descripcion`, `cf_titulo`, `cf_cargo`) VALUES (NULL, 'En leer, revisar si va la licitación: 5 minutos', '1', '1'), (NULL, 'En subir la licitación: puede demorar entre medio día y una hora.', '1', '1');
 
 INSERT INTO `fa_responsabilidad` (`cp_responsabilidad`, `atr_descripcion`, `cf_cargo`) VALUES (NULL, 'Revisar licitaciones públicas y privadas, subir o generar oferta de las mismas.', '1');
+
+INSERT INTO `fa_empresa` (`cp_empresa`, `atr_nombre`, `atr_run`, `atr_representante`, `atr_cedula_representante`, `atr_domicilio`, `cf_ciudad`) VALUES (NULL, 'FIRMA ABOGADOS CHILE LIMITADA', '76.438.914-K', 'MIGUEL EDUARDO VARGAS GARRIDO', '17.886.328-2', '1 poniente 4 y 5 norte N° 1588', '177'), (NULL, 'MIGUEL VARGAS ESPINOSA E HIJOS LIMITADA', '76.849.793-1', 'DIEGO ANTONIO VARGAS GARRIDO', '18.891.594-9', '1 sur 24 1⁄2 oriente N° 3183', '177');
+
+INSERT INTO `fa_estadocivil` (`cp_estadoCivil`, `atr_nombre`) VALUES (NULL, 'Soltero/a.'), (NULL, 'Comprometido/a'), (NULL, 'Casado/a.'), (NULL, 'Separado/a.'), (NULL, 'Divorciado/a.'), (NULL, 'Viudo/a.'), (NULL, 'Unión libre o unión de hecho.');
+
+INSERT INTO `fa_nacionalidad` (`cp_nacionalidad`, `atr_nombre`) VALUES (NULL, 'Chilena'), (NULL, 'Venezolana');
+
+INSERT INTO `fa_prevision` (`cp_prevision`, `atr_nombre`) VALUES (NULL, 'AFP'), (NULL, 'Fonasa');
+
+INSERT INTO `fa_remuneracion_extra` (`cp_remuneracionExtra`, `atr_descripcion`, `cf_remuneracion`, `cf_cargo`) VALUES (NULL, '5% de licitación de la utilidad que deja la licitación.', '1', '1'), (NULL, 'Horas extras semanales', '2', '2');
+
+INSERT INTO `fa_responsabilidad` (`cp_responsabilidad`, `atr_descripcion`, `cf_cargo`) VALUES (NULL, 'Recepción de vehículos', '2');
+
+INSERT INTO `fa_sucursal` (`cp_sucursal`, `atr_nombre`, `cf_ciudad`) VALUES (NULL, 'Linares', '187'), (NULL, 'Talca', '177'), (NULL, 'Curico', '168');
+
+INSERT INTO `fa_estado` (`cp_estado`, `atr_nombre`) VALUES (NULL, 'Contrato a plazo fijo'), (NULL, 'Honorarios'), (NULL, 'Contrato indefinido'), (NULL, 'Contrato por proyecto'), (NULL, 'Freelance');
+
+INSERT INTO `fa_trabajador` (`cp_trabajador`, `atr_rut`, `atr_nombres`, `atr_apellidos`, `atr_direccion`, `atr_fechaNacimiento`, `cf_estado`, `cf_ciudad`, `cf_cargo`, `cf_sucursal`, `cf_nacionalidad`, `cf_estadoCivil`, `cf_afp`, `cf_prevision`, `cf_empresa`) VALUES (NULL, '18.656.816-8', 'ESTEFANY NICOL', 'VALLEJOS FONSECA', 'Villa los portones calle las obras N° 594', '12-01-1994', '1', '177', '1', '2', '1', '1', '1', '2', '1'), (NULL, '19.105.559-4', 'IGNACIO ANDRÉS', 'CIFUENTES DÍAZ', 'Camino a Colín, los Maitenes casa N°6', '14-07-1995', '1', '177', '2', '2', '1', '1', '1', '2', '2');
+
+INSERT INTO `fa_requisitominimo_cargo` (`cp_requisitominimo_cargo`, `cf_cargo`, `cf_requisitominimo`) VALUES (NULL, '3', '1'), (NULL, '3', '6')
+
+INSERT INTO `fa_requisitominimo` (`cp_requisitominimo`, `atr_descripcion`) VALUES (NULL, 'Manejo de GPS; aplicación de internet.'), (NULL, 'Manejo en direcciones según comuna.'), (NULL, 'Estar domiciliado al menos por mas de 1 año en la localidad del puesto de trabajo a postular.'), (NULL, 'Nociones básicas de operaciones(suma, resta, multiplicación y división).'), (NULL, 'Manejo de aplicación whatsapp, tal como enviar dirección, fotografías, compartir información solicitada.'), (NULL, 'Poseer un teléfono celular con internet y aplicación whatsapp.');
+
+INSERT INTO `fa_requisitominimo_cargo` (`cp_requisitominimo_cargo`, `cf_cargo`, `cf_requisitominimo`) VALUES (NULL, '3', '9'), (NULL, '3', '11'), (NULL, '3', '7'), (NULL, '3', '8'), (NULL, '3', '10'), (NULL, '3', '12'), (NULL, '3', '5');
+
+INSERT INTO `fa_remuneracion_extra` (`cp_remuneracionExtra`, `atr_descripcion`, `cf_remuneracion`, `cf_cargo`) VALUES (NULL, '$2.000 por cliente que se atienda por medio de la carta, o llegue a la oficina con la carta.', '3', '3'), (NULL, '$49.000 bonos', '3', '3');
+
+INSERT INTO `fa_tarea` (`cp_tarea`, `atr_descripcion`) VALUES (NULL, 'Entregar cartas privadas y públicas en los domicilios señalados en ellas.'), (NULL, 'Trabajar con fluidez y de forma cuidadosa (dentro de la oficina).'), (NULL, 'Armar rutas de domicilios para la entrega posterior de cartas.'), (NULL, 'Seguir programas, señalados por su superior jerárquico.'), (NULL, 'Doblar y sellar cartas para posteriormente entregarlas.'), (NULL, 'No entregar información señalada en las cartas a personas distintas del destinatario.');
+
+INSERT INTO `fa_tareas_cargo` (`cp_tareas_cargo`, `cf_cargo`, `cf_tarea`) VALUES (NULL, '3', '6'), (NULL, '3', '7'), (NULL, '3', '8'), (NULL, '3', '9'), (NULL, '3', '10'), (NULL, '3', '11');

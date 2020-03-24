@@ -9,6 +9,38 @@ class ConocimientosController extends CI_Controller {
 		$this->load->model("ConocimientosModel");
 	}
 
+	public function deleteConocimiento(){
+		$id_conocimiento = $this->input->post("id_conocimiento");
+		echo json_encode($this->ConocimientosModel->deleteConocimiento($id_conocimiento));
+	}
+
+	public function getListadoConocimientosDataTable(){
+		$id = $this->input->get("id");
+
+		$draw = intval($this->input->get("draw"));
+		$start = intval($this->input->get("start"));
+		$length = intval($this->input->get("length"));
+
+		$books = $this->ConocimientosModel->getListadoConocimientosDataTable($id);
+		$data = array();
+		foreach ($books->result() as $r) {
+				$data[] = array(
+					$r->cp_conocimiento_cargo,
+					$r->atr_descripcion,
+				);
+		}
+		$output = array(
+				"draw" => $draw,
+				"recordsTotal" => $books->num_rows(),
+				"recordsFiltered" => $books->num_rows(),
+				"data" => $data
+		);
+		echo json_encode($output);
+		exit();
+	}
+
+
+
 	public function index()
 	{
 		$this->load->view('template/menu');

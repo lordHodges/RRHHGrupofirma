@@ -1,33 +1,67 @@
 var base_url = 'http://localhost/FA_RECURSOS-HUMANOS/';
 var constante = 0;
 
+function cargarTabla(cargo){
+  var table = $('#tabla_funciones').DataTable();
+  table.destroy();
 
-function cargarTareas(){
+  $('.dataTables-funciones').DataTable({
+        "info":false,
+        language: {
+            "autoWidth": false,
+            "info":false,
+            "sInfoEmpty":false,
+            "sInfoFiltered":false,
+            "sProcessing": "Procesando...",
+            "sLengthMenu": "Registros _MENU_ ",
+            "sZeroRecords": "No se encontraron resultados",
+            "sEmptyTable": "Ningún dato disponible en esta tabla",
+            "sInfoPostFix": "",
+            "sSearch": "Buscar:",
+            "sUrl": "",
+            "sInfoThousands": ",",
+            "sLoadingRecords": "Cargando...",
+            "oPaginate": {
+                "sFirst": "Primero",
+                "sLast": "Último",
+                "sNext": "Siguiente",
+                "sPrevious": "Anterior"
+            },
+            "oAria": {
+                "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
+                "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+            },
+        },
+        "ajax": {
+            url: 'http://localhost/FA_RECURSOS-HUMANOS/getListadoTareasDataTable?id='+cargo,
+            type: 'GET',
+        },
+        "columnDefs": [{
+          "targets": 2,
+          "defaultContent": '<button type="button" id="btnEliminarTarea" class="btn btn-danger"><i class="glyphicon glyphicon-trash"></i></button>'
+        }]
+        ,dom: '<"html5buttons"B>lTfgitp',
+        buttons: [
+        ]
 
-  const selectCargo = document.querySelector('#getSelectCargo');
+    });
+}
 
-
-  var cargo = $("#getSelectCargo").val();
+function eliminarTarea(idTarea){
+  var cargo =  $("#getSelectCargo").val();
   $.ajax({
-      url: 'getListadoTareas',
+      url: 'deleteTarea',
       type: 'POST',
       dataType: 'json',
-      data: { "id": cargo}
+      data: {"idTarea":idTarea}
   }).then(function (msg) {
-      if(msg == ""){
-        toastr.error("No tiene funcionalidades asociadas");
-      }else{
-        // $("#tareasIngresadas").empty();
-        document.getElementById("tareasIngresadas").innerHTML = "";
-        document.getElementById("tareas").innerHTML = "";
-        var fila = "";
-        $.each(msg, function (i, o) {
+      toastr.success("Función eliminada");
 
-            fila +='<div class="col-md-12" style="margin-top:10px"><input type="text" class="form-control custom-input-sm autocompleteTareas" disabled value="'+o.atr_descripcion+'"></div>';
-        });
-        $("#tareasIngresadas").append(fila);
-      }
-      document.getElementById('btnAgregarTarea').removeAttribute("style");  //ESTE SIRVE PARA MOSTRAR EL BOTON
+      //destuir datatable actual
+      var table = $('#tabla_funciones').DataTable();
+      table.destroy();
+      //recargar el datatable
+      cargarTabla(cargo);
   });
 }
 
@@ -58,18 +92,18 @@ function agregarListaDeTareas(){
             data: {"tarea":tarea,
                    "cargo":cargo}
         }).then(function (msg) {
-
+          if(msg.msg == "ok"){
+            toastr.success("Requisitos mínimos agregados");
+          }
         });
       }
-      toastr.success("Funciones actualizadas");
 
   }
   //Se inicializa en 0 para que al cambiar de cargo los inputs nuevamente comiencen desde 0
   constante = 0;
 
-  $("#tareasIngresadas").empty();
   $("#tareas").empty();
-  cargarTareas();
+  cargarTabla(cargo);
   document.getElementById('btnAgregarListaDeTareas').style.display = 'none';
 
 }
@@ -100,8 +134,8 @@ function agregarTarea() {
    constante = constante+1;
    var fila = document.getElementById("tareas");
    var count = contar();
-   fila.innerHTML += '<div class="col-md-12" style="margin-top:10px"><input type="text" class="form-control custom-input-sm " onkeypress="bloquearBoton()" id="input_tarea'+count+'"></div>';
-}s
+   fila.innerHTML += '<div class="col-md-12 perfilOcupacional"><input type="text" style="margin-bottom:15px;" class="form-control custom-input-sm " onkeypress="bloquearBoton()" id="input_tarea'+count+'"></div>';
+}
 
 // la función contar me devuelve la cantidad de inputs que comienzen con id='input_tarea'
 function contar (){

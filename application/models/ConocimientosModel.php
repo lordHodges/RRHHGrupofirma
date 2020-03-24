@@ -8,12 +8,30 @@ class ConocimientosModel extends CI_Model {
         parent::__construct();
     }
 
+    function deleteConocimiento($id_conocimiento){
+        $resultado = $this->db->delete('fa_conocimiento_cargo', array('cp_conocimiento_cargo' => $id_conocimiento));
+
+        if($resultado){
+          return "ok";
+        }else{
+          return "error";
+        }
+    }
+
     function getListadoConocimientos($id){
         $this->db->select("c.atr_descripcion");
         $this->db->from("fa_conocimiento_cargo cc");
         $this->db->join("fa_conocimiento c", "c.cp_conocimiento = cc.cf_conocimiento");
         $this->db->where("cc.cf_cargo", $id);
         return $this->db->get()->result();
+    }
+
+    function getListadoConocimientosDataTable($id){
+        $this->db->select("cc.cp_conocimiento_cargo, c.atr_descripcion");
+        $this->db->from("fa_conocimiento_cargo cc");
+        $this->db->join("fa_conocimiento c", "c.cp_conocimiento = cc.cf_conocimiento");
+        $this->db->where("cc.cf_cargo", $id);
+        return $this->db->get();
     }
 
 

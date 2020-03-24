@@ -7,19 +7,25 @@
     <div class="row">
         <div class="x_panel">
             <div class="x_content">
-                <button type="button" class="btn modidev-btn" data-toggle="modal" data-target=".bd-example-modal-lg" style="margin-bottom:20px;">INGRESAR CIUDAD</button>
+                <div class="container-fluid">
+                  <button type="button" class="btn modidev-btn" data-toggle="modal" data-target=".bd-example-modal-lg" style="margin-bottom:20px;">INGRESAR CIUDAD</button>
 
-                <table id="tabla_ciudad" class="table table-striped table-bordered table-hover dataTables-ciudades" style="margin-top:20px;">
-                    <thead >
-                        <tr style="width:100%;">
-                            <th class="text-center">ID</th>
-                            <th class="text-center">CIUDAD</th>
-                        </tr>
-                    </thead>
-                    <tbody id="tbodyDetalle">
+                  <div class="row">
+                    <div class="col-md-12">
+                      <table id="tabla_ciudad" class="table table-striped table-bordered table-hover dataTables-ciudades" style="margin-top:20px;">
+                          <thead >
+                              <tr style="width:100%;">
+                                  <th class="text-center">ID</th>
+                                  <th class="text-center">CIUDAD</th>
+                              </tr>
+                          </thead>
+                          <tbody id="tbodyDetalle">
 
-                    </tbody>
-                </table>
+                          </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
 
             </div>
         </div>
@@ -82,14 +88,14 @@
 
           $('.dataTables-ciudades').DataTable({
               "autoWidth": false,
+              "info":false,
+              "sInfoEmpty":false,
+              "sInfoFiltered":false,
                 language: {
                     "sProcessing": "Procesando...",
                     "sLengthMenu": "Registros _MENU_ ",
                     "sZeroRecords": "No se encontraron resultados",
                     "sEmptyTable": "Ningún dato disponible en esta tabla",
-                    "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-                    "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
-                    "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
                     "sInfoPostFix": "",
                     "sSearch": "Buscar:",
                     "sUrl": "",
