@@ -55,10 +55,6 @@ function eliminarCompetencia(idCompetencia){
       data: {"idCompetencia":idCompetencia}
   }).then(function (msg) {
       toastr.success("Eliminado con éxito");
-
-      //destuir datatable actual
-      var table = $('#tabla_competencias').DataTable();
-      table.destroy();
       //recargar el datatable
       cargarTabla(cargo);
   });
@@ -93,6 +89,9 @@ function agregarListaDeCompetencias(){
         }).then(function (msg) {
             if(msg.msg == "ok"){
               toastr.success("Competencias y características actualizadas");
+              cargarTabla(cargo);
+            }else{
+              toastr.warning("Competencia o Característica ya existe");
             }
         });
       }

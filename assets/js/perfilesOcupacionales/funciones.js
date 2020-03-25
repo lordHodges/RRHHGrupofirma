@@ -56,10 +56,6 @@ function eliminarTarea(idTarea){
       data: {"idTarea":idTarea}
   }).then(function (msg) {
       toastr.success("Función eliminada");
-
-      //destuir datatable actual
-      var table = $('#tabla_funciones').DataTable();
-      table.destroy();
       //recargar el datatable
       cargarTabla(cargo);
   });
@@ -94,6 +90,9 @@ function agregarListaDeTareas(){
         }).then(function (msg) {
           if(msg.msg == "ok"){
             toastr.success("Requisitos mínimos agregados");
+            cargarTabla(cargo);
+          }else{
+            toastr.warning("Función ya existe");
           }
         });
       }

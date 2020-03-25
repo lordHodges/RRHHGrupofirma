@@ -15,13 +15,6 @@ class TitulosController extends CI_Controller {
 		$this->load->view('mantenedores/titulos');
 	}
 
-	// function getTitulos($id){
-	// 		$this->db->select("oa.atr_descripcion");
-	// 		$this->db->from("fa_otrosantecedentes oa");
-	// 		$this->db->join("fa_titulo ti", "ti.cp_titulo= oa.cf_titulo");
-	// 		$this->db->where("ti.cf_cargo", $id);
-	// 		return $this->db->get();
-	//
 	function getTitulos(){
 		$cargo = $this->input->post("cargo");
 		$resultado = $this->MantenedoresModel->getListadoTitulos($cargo);
@@ -30,8 +23,9 @@ class TitulosController extends CI_Controller {
 
 
 	public function addTitulo(){
-		$nombre = $this->input->post("nombre");
-		$resultado = $this->MantenedoresModel->addTitulo($nombre);
+		$descripcion = $this->input->post("descripcion");
+		$cargo = $this->input->post("cargo");
+		$resultado = $this->MantenedoresModel->addTitulo($descripcion, $cargo);
 		echo json_encode(array("msg" => $resultado));
 	}
 

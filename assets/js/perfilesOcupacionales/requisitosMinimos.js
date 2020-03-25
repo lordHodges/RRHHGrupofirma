@@ -2,6 +2,9 @@ var base_url = 'http://localhost/FA_RECURSOS-HUMANOS/';
 var constante = 0;
 
 function cargarTabla(cargo){
+  //destuir datatable actual
+  var table = $('#tabla_requerimientosMinimos').DataTable();
+  table.destroy();
 
   $('.dataTables-requerimientosMinimos').DataTable({
         "info":false,
@@ -55,9 +58,6 @@ function eliminarRequisitoMinimo(idRequisitoMinimo){
   }).then(function (msg) {
       toastr.success("Requisitos mínimo eliminado");
 
-      //destuir datatable actual
-      var table = $('#tabla_requerimientosMinimos').DataTable();
-      table.destroy();
       //recargar el datatable
       cargarTabla(cargo);
   });
@@ -91,6 +91,9 @@ function agregarListaDeRequisitosMinimos(){
         }).then(function (msg) {
           if(msg.msg == "ok"){
             toastr.success("Requisito mínimo agregado");
+            cargarTabla(cargo);
+          }else{
+            toastr.warning("Requisito mínimo ya existe");
           }
         });
       }
@@ -102,9 +105,6 @@ function agregarListaDeRequisitosMinimos(){
 
   document.getElementById('btnAgregarListaDeRequisitosMinimos').style.display = 'none';
   document.getElementById('btnAgregarRequisitoMinimo').removeAttribute("style");
-
-  cargarTabla(cargo);
-  
 }
 
 function bloquearBoton(){

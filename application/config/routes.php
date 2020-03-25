@@ -74,7 +74,8 @@ $route['docPerfilesOcupacionales'] = 'PDFController/view_perfilesOcupacionales';
   $route['inicioOtros'] = 'OtrosController/index';
   $route['getListadoOtros'] = 'OtrosController/getListadoOtros';
   $route['addAntecedente'] = 'OtrosController/addAntecedente';
-
+  $route['getListadoOtrosAntecedentesDataTable'] = 'OtrosController/getListadoOtrosAntecedentesDataTable';
+  $route['deleteOtroAntecedente'] = 'OtrosController/deleteOtroAntecedente';
 
 
 //MANTENEDORES
@@ -155,6 +156,7 @@ $route['getDetalleEmpresa'] = 'EmpresaController/getDetalleEmpresa';
 
     //getTitulos
 $route['getTitulos'] = 'TitulosController/getTitulos';
+$route['addTitulo'] = 'TitulosController/addTitulo';
 
 
 

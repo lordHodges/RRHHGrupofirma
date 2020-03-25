@@ -1,6 +1,69 @@
 var base_url = 'http://localhost/FA_RECURSOS-HUMANOS/';
 var constante = 0;
 
+function cargarTabla(){
+  //obteneción de valores
+  var cargo =  $("#getSelectCargo").val();
+  var antecedente =  $("#getSelectTitulos").val();
+
+  //destuir datatable actual
+  var table = $('#tabla_otrosAntecedentes').DataTable();
+  table.destroy();
+
+  $('.dataTables-otrosAntecedentes').DataTable({
+        "info":false,
+        language: {
+            "sProcessing": "Procesando...",
+            "sLengthMenu": "Registros _MENU_ ",
+            "sZeroRecords": "No se encontraron resultados",
+            "sEmptyTable": "Ningún dato disponible en esta tabla",
+            // "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+            "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+            "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+            "sInfoPostFix": "",
+            "sSearch": "Buscar:",
+            "sUrl": "",
+            "sInfoThousands": ",",
+            "sLoadingRecords": "Cargando...",
+            "oPaginate": {
+                "sFirst": "Primero",
+                "sLast": "Último",
+                "sNext": "Siguiente",
+                "sPrevious": "Anterior"
+            },
+            "oAria": {
+                "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
+                "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+            },
+        },
+        "ajax": {
+            url: 'http://localhost/FA_RECURSOS-HUMANOS/getListadoOtrosAntecedentesDataTable?idCargo='+cargo+'&idAntecedente='+antecedente,
+            type: 'GET',
+        },
+        "columnDefs": [{
+          "targets": 2,
+          "defaultContent": '<button type="button" id="btnEliminarOtroAntecedente" class="btn btn-danger"><i class="glyphicon glyphicon-trash"></i></button>'
+        }]
+        ,dom: '<"html5buttons"B>lTfgitp',
+        buttons: [
+        ]
+
+    });
+}
+
+function eliminarOtroAntecedente(idOtroAntecedente){
+  $.ajax({
+      url: 'deleteOtroAntecedente',
+      type: 'POST',
+      dataType: 'json',
+      data: {"idOtroAntecedente":idOtroAntecedente}
+  }).then(function (msg) {
+      toastr.success("Otro antecedente eliminado");
+      cargarTabla();
+  });
+}
+
+
 
 function getSelectTitulos(){
   var cargo = $("#getSelectCargo").val();
@@ -16,34 +79,22 @@ function getSelectTitulos(){
   }, 'json');
 }
 
-
-function cargarOtrosAntecedentes(){
-
-  const selectCargo = document.querySelector('#getSelectCargo');
-
+function agregarTitulo(){
   var cargo = $("#getSelectCargo").val();
-  var titulo = $("#getSelectTitulos").val();
+  var descripcion = $("#nombre").val();
 
   $.ajax({
-      url: 'getListadoOtros',
+      url: 'addTitulo',
       type: 'POST',
       dataType: 'json',
-      data: { "id": cargo,
-              "titulo": titulo}
+      data: { "descripcion": descripcion,
+              "cargo": cargo }
   }).then(function (msg) {
-      if(msg == ""){
-        toastr.error("Listado vacío");
-      }else{
-        document.getElementById("otrosIngresados").innerHTML = "";
-        document.getElementById("otros").innerHTML = "";
-        var fila = "";
-        $.each(msg, function (i, o) {
-            fila +='<div id="'+o.cp_otrosantecedentes+'" class="col-md-12" style="margin-top:10px"><textarea type="text" class="form-control custom-input-sm" >'+o.atr_descripcion+'</textarea></div>';
-        });
-        $("#otrosIngresados").append(fila);
+      if( msg.msg == "ok"){
+        toastr.success("Titulo agregado");
+        $('#modalCrearTitulo').modal('hide');
+        getSelectTitulos();
       }
-      document.getElementById('btnAgregarOtrosAntecedentes').removeAttribute("style");  //ESTE SIRVE PARA MOSTRAR EL BOTON
-
   });
 }
 
@@ -76,14 +127,22 @@ function agregarListaDeOtrosAntecedentes(){
                    "cargo":cargo,
                     "titulo":titulo}
         }).then(function (msg) {
-            toastr.success("Listado actualizado");
+            if( msg.msg == "ok"){
+              toastr.success("Listado actualizado");
+              cargarTabla();
+            }else{
+              toastr.warning("El antecedente ya existe");
+            }
         });
       }
   }
-  cargarOtrosAntecedentes();
+
   //Se inicializa en 0 para que al cambiar de cargo los inputs nuevamente comiencen desde 0
   constante = 0;
+  $("#otros").empty();
   document.getElementById('btnAgregarListaDeOtrosAntecedentes').style.display = 'none';
+  //muestro el boton de guardar
+  document.getElementById('btnAgregarOtrosAntecedentes').removeAttribute("style");
 
 }
 
@@ -102,7 +161,7 @@ function agregarOtroAntecedente() {
    constante = constante+1;
    var fila = document.getElementById("otros");
    var count = contar();
-   fila.innerHTML += '<div class="col-md-12" style="margin-top:10px"><textarea type="text" class="form-control custom-input-sm " onkeypress="bloquearBoton()" id="textarea'+count+'"></textarea></div>';
+   fila.innerHTML += '<div class="col-md-12 perfilOcupacional"><textarea type="text" style="margin-bottom:15px;" class="form-control custom-input-sm " onkeypress="bloquearBoton()" id="textarea'+count+'"></textarea></div>';
 }
 
 // la función contar me devuelve la cantidad de inputs que comienzen con id='input_tarea'

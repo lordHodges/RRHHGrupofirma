@@ -57,7 +57,6 @@ function eliminarConocimiento(id_conocimiento){
       data: {"id_conocimiento":id_conocimiento}
   }).then(function (msg) {
       toastr.success("Conocimiento eliminado");
-
       cargarTabla(cargo);
   });
 }
@@ -91,6 +90,9 @@ function agregarListaDeConocimientos(){
         }).then(function (msg) {
             if( msg.msg == "ok"){
               toastr.success("Conocimientos actualizados");
+              cargarTabla(cargo);
+            }else{
+              toastr.warning("Conocimiento ya existe");
             }
         });
       }
@@ -98,10 +100,9 @@ function agregarListaDeConocimientos(){
   }
   //Se inicializa en 0 para que al cambiar de cargo los inputs nuevamente comiencen desde 0
   constante = 0;
-
   $("#conocimientos").empty();
-  cargarTabla(cargo);
   document.getElementById('btnAgregarListaDeConocimientos').style.display = 'none';
+  document.getElementById('btnAgregarConocimiento').removeAttribute("style");
 }
 
 function bloquearBoton(){

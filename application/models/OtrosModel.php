@@ -9,6 +9,16 @@ class OtrosModel extends CI_Model {
 
     }
 
+    function deleteOtroAntecedente($idOtroAntecedente){
+        $resultado = $this->db->delete('fa_otrosantecedentes', array('cp_otrosantecedentes' => $idOtroAntecedente));
+
+        if($resultado){
+          return "ok";
+        }else{
+          return "error";
+        }
+    }
+
     function getListadoOtrosAntecedentes($cargo, $titulo){
       $this->db->select("oa.atr_descripcion", "oa.cp_otrosantecedentes");
       $this->db->from("fa_otrosantecedentes oa");
@@ -17,14 +27,34 @@ class OtrosModel extends CI_Model {
       return $this->db->get()->result();
     }
 
+    function getListadoOtrosAntecedentesDataTable($idCargo, $idAntecedente){
+      $this->db->select("oa.cp_otrosantecedentes, oa.atr_descripcion ");
+      $this->db->from("fa_otrosantecedentes oa");
+      $this->db->where("oa.cf_titulo", $idAntecedente);
+      $this->db->where("oa.cf_cargo", $idCargo);
+      return $this->db->get();
+    }
+
+
     function addAntecedente($cargo, $titulo,$antecedente){
-      $data = array(
-          "atr_descripcion" => $antecedente,
-          "cf_cargo"        => $cargo,
-          "cf_titulo"       => $titulo
-      );
-      $this->db->insert("fa_otrosantecedentes", $data);
-      return "ok";
+      $this->db->select('count(*)');
+      $this->db->from("fa_otrosantecedentes o");
+      $this->db->where("o.atr_descripcion", $antecedente);
+      $this->db->where("o.cf_cargo", $cargo);
+      $this->db->where("o.cf_titulo", $titulo);
+      $cantidad = $this->db->count_all_results();
+
+      if( $cantidad == 0){
+        $data = array(
+            "atr_descripcion" => $antecedente,
+            "cf_cargo"        => $cargo,
+            "cf_titulo"       => $titulo
+        );
+        $this->db->insert("fa_otrosantecedentes", $data);
+        return "ok";
+      }else{
+        return "error";
+      }
     }
 
     function getAntecedentes(){

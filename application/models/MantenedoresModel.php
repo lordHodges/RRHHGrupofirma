@@ -342,13 +342,18 @@ class MantenedoresModel extends CI_Model {
 
 
 
-    function addTitulo($nombre, $cargo){
+    function addTitulo($descripcion, $cargo){
         $data = array(
-            "atr_nombre" => $nombre,
+            "atr_descripcion" => $descripcion,
             "cf_cargo"   => $cargo
         );
-        $this->db->insert("fa_titulo", $data);
-        return "ok";
+        $resultado = $this->db->insert("fa_titulo", $data);
+
+        if($resultado){
+          return "ok";
+        }else{
+          return "error";
+        }
     }
 
     // EMPRESA

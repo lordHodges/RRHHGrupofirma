@@ -75,7 +75,9 @@ input disabled{
 /* PERFILES OCUPACIONALES - GESTIÓN */
 
 .perfilOcupacional input{
-    /* background: #1abb9c; */
-    /* color: #fff; */
+    border-color: #73879c;
+}
+
+.perfilOcupacional textarea{
     border-color: #73879c;
 }

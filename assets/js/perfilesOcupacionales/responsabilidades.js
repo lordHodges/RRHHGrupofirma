@@ -71,9 +71,6 @@ function agregarCargo(){
             toastr.error("Error en el ingreso.");
         }
     });
-
-
-
   }
 }
 
