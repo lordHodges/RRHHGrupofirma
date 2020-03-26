@@ -5,11 +5,6 @@ $route['default_controller'] = 'Welcome/index';
 $route['dashboard'] = 'welcome/index';
 
 
-$route['testDoc'] = 'welcome/testDoc';
-
-
-
-
 // TRABAJADORES
 $route['inicioTrabajadores'] = 'TrabajadorController/index';
 $route['addTrabajador'] = 'TrabajadorController/addTrabajador';
@@ -34,7 +29,10 @@ $route['getNacionalidades'] = 'TrabajadorController/getNacionalidades';
 
 //CONTRATOS
   //contratos
-  $route['inicioMenuContratos'] = 'ContratosController/index';
+  $route['inicioContratos'] = 'ContratosController/index';
+  $route['getListadoTrabajadoresContrato'] = 'ContratosController/getListadoTrabajadoresContrato';
+  $route['getContratosTrabajador'] = 'ContratosController/getContratosTrabajador';
+
 
 //DOCUMENTOS
 $route['perfilOcupacionalVista'] = 'PDFController/cargarPerfilesOcupacionales';
@@ -163,15 +161,6 @@ $route['addTitulo'] = 'TitulosController/addTitulo';
 
 
 
-
-
-
-
-
-// LABORES
-$route['inicioCiruela'] = 'CiruelaController/index';
-$route['inicioPoda'] = 'PodaController/index';
-$route['inicioDeshoje'] = 'DeshojeController/index';
 
 
 

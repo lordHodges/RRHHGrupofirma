@@ -199,7 +199,7 @@
            e.preventDefault();
            var cargo = $(this).parent().parent().children()[0];
            var idCargo = $(cargo).text()
-           var url = 'http://localhost/FA_RECURSOS-HUMANOS/testDoc?cargo='+idCargo;
+           var url = 'http://localhost/FA_RECURSOS-HUMANOS/docPerfilesOcupacionales?cargo='+idCargo;
            window.open(url, '_blank');
        });
 

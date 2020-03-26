@@ -80,11 +80,10 @@
                   </li>
                   <li><a><i class="fa fa-folder-open"></i> Documentos <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <!-- <li><a href="<?php echo base_url() ?>index.php/testDoc">TEST DOCUMENTO</a></li> -->
-                      <li><a href="<?php echo base_url() ?>index.php/perfilOcupacionalVista">Perfiles Ocupacionales</a></li>
-                      <li><a href="<?php echo base_url() ?>index.php/dashboard">Cartas de amonestación</a></li>
-                      <li><a href="<?php echo base_url() ?>index.php/inicioMenuContratos">Contratos</a></li>
+                      <li><a href="<?php echo base_url() ?>index.php/inicioContratos">Contratos</a></li>
                       <li><a href="<?php echo base_url() ?>index.php/dashboard">Finiquitos</a></li>
+                      <li><a href="<?php echo base_url() ?>index.php/dashboard">Cartas de amonestación</a></li>
+                      <li><a href="<?php echo base_url() ?>index.php/perfilOcupacionalVista">Perfiles Ocupacionales</a></li>
                     </ul>
                   </li>
                   <li><a><i class="fa fa-user"></i> Perfiles Ocupacionales <span class="fa fa-chevron-down"></span></a>

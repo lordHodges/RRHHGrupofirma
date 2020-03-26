@@ -4,49 +4,47 @@ use fa_rrhh;
 
 create table fa_estado(
     cp_estado int auto_increment,
-    atr_nombre varchar(100),
+    atr_nombre varchar(100) not null,
     constraint pk_estado primary key(cp_estado)
 );
 
 create table fa_nacionalidad(
     cp_nacionalidad int auto_increment,
-    atr_nombre varchar(100),
+    atr_nombre varchar(100) not null,
     constraint pk_nacionalidad primary key(cp_nacionalidad)
 );
 
 create table fa_estadoCivil(
     cp_estadoCivil int auto_increment,
-    atr_nombre varchar(100),
+    atr_nombre varchar(100) not null,
     constraint pk_estadoCivil primary key(cp_estadoCivil)
 );
 
 create table fa_afp(
     cp_afp int auto_increment,
-    atr_nombre varchar(100),
+    atr_nombre varchar(100) not null,
     constraint pk_afp primary key(cp_afp)
 );
 
 create table fa_prevision(
     cp_prevision int auto_increment,
-    atr_nombre varchar(100),
+    atr_nombre varchar(100) not null,
     constraint pk_prevision primary key(cp_prevision)
 );
 
 create table fa_ciudad(
     cp_ciudad int auto_increment,
-    atr_nombre varchar(100),
+    atr_nombre varchar(100) not null,
     constraint pk_ciudad primary key(cp_ciudad)
 );
 
-
-
 create table fa_empresa(
     cp_empresa int auto_increment,
-    atr_nombre varchar(100),
-    atr_run varchar(50),
-    atr_representante varchar(100),
-    atr_cedula_representante varchar(50),
-    atr_domicilio varchar(100),
+    atr_nombre varchar(100) not null,
+    atr_run varchar(50) not null unique,
+    atr_representante varchar(100) not null,
+    atr_cedula_representante varchar(50) not null,
+    atr_domicilio varchar(100) not null,
     cf_ciudad int,
     constraint pk_empresa primary key(cp_empresa),
     constraint fk_empresa_ciudad foreign key(cf_ciudad) references fa_ciudad(cp_ciudad)
@@ -55,7 +53,7 @@ create table fa_empresa(
 
 create table fa_sucursal(
     cp_sucursal int auto_increment,
-    atr_nombre varchar(100),
+    atr_nombre varchar(100) not null,
     cf_ciudad int,
     constraint pk_sucursal primary key(cp_sucursal),
     constraint fk_sucursal_ciudad foreign key(cf_ciudad) references fa_ciudad(cp_ciudad)
@@ -63,8 +61,8 @@ create table fa_sucursal(
 
 create table fa_cargo(
     cp_cargo int auto_increment,
-    atr_nombre varchar(100) unique,
-    atr_jefeDirecto varchar(200),
+    atr_nombre varchar(100) not null unique,
+    atr_jefeDirecto varchar(200) not null,
     atr_lugarTrabajo varchar(200),
     atr_jornadaTrabajo varchar(200),
     atr_diasTrabajo varchar(200),
@@ -73,10 +71,10 @@ create table fa_cargo(
 
 create table fa_remuneracion(
     cp_remuneracion int auto_increment,
-    atr_sueldoMensual varchar(100),
-    atr_cotizaciones varchar(100),
-    atr_colacion varchar(100),
-    atr_movilizacion varchar(100),
+    atr_sueldoMensual varchar(100) not null,
+    atr_cotizaciones varchar(100) not null,
+    atr_colacion varchar(100) not null,
+    atr_movilizacion varchar(100) not null,
     cf_cargo int,
     constraint pk_remuneracion primary key(cp_remuneracion),
     constraint fk_remuneracion_cargo foreign key(cf_cargo) references fa_cargo(cp_cargo)
@@ -84,7 +82,7 @@ create table fa_remuneracion(
 
 create table fa_remuneracion_extra(
     cp_remuneracionExtra int auto_increment,
-    atr_descripcion varchar(200),
+    atr_descripcion varchar(200) not null,
     cf_remuneracion int,
     cf_cargo int,
     constraint pk_remuneracionExtra primary key(cp_remuneracionExtra),
@@ -146,22 +144,13 @@ create table fa_responsabilidad(
     constraint fk_responsabilidad_cargo foreign key(cf_cargo) references fa_cargo(cp_cargo)
 );
 
--- create table fa_remuneraciones(
---     cp_remuneraciones int auto_increment,
---     atr_descripcion varchar(500) not null,
---     cf_cargo int not null,
---     constraint pk_responsabilidad primary key(cp_responsabilidad),
---     constraint fk_responsabilidad_cargo foreign key(cf_cargo) references fa_cargo(cp_cargo)
--- );
-
-
 create table fa_trabajador(
     cp_trabajador int auto_increment,
-    atr_rut varchar(20),
-    atr_nombres varchar(50),
-    atr_apellidos varchar(50),
+    atr_rut varchar(20) not null unique,
+    atr_nombres varchar(50) not null,
+    atr_apellidos varchar(50) not null,
     atr_direccion varchar(100),
-    atr_fechaNacimiento varchar(20),
+    atr_fechaNacimiento varchar(10),
     cf_estado int,
     cf_ciudad int,
     cf_cargo int,
@@ -218,4 +207,37 @@ create table fa_competencia_cargo(
     constraint cp_competencia_cargo primary key(cp_competencia_cargo),
     constraint fk_competencia_cargo_cargo foreign key(cf_cargo) references fa_cargo(cp_cargo),
     constraint fk_competencia_cargo_competencia foreign key(cf_competencia) references fa_competencia(cp_competencia)
+);
+
+
+
+------------------ CONTRATOS
+
+create table fa_items_contrato(
+    cp_itemContrato int auto_increment,
+    atr_nombre varchar(100),
+    constraint cp_itemContrato primary key(cp_itemContrato)
+);
+
+create table fa_descripcion_item(
+    cp_descripcionItem int auto_increment,
+    atr_descripcion varchar(1000),
+    atr_posicionItem int,
+    cf_itemContrato int,
+    cf_cargo int,
+    constraint cp_descripcionItem primary key(cp_descripcionItem),
+    constraint fk_descripcionItem_cargo foreign key(cf_cargo) references fa_cargo(cp_cargo),
+    constraint fk_descripcionItem_itemContrato foreign key(cf_itemContrato) references fa_items_contrato(cp_itemContrato)
+);
+
+create table fa_contrato(
+    cp_contrato int auto_increment,
+    cf_cargo int,
+    cf_trabajador int,
+    atr_fechaInicio varchar(10),
+    atr_fechaTermino varchar(10),
+    atr_documento varchar(200),
+    constraint cp_contrato primary key(cp_contrato),
+    constraint fk_contrato_cargo foreign key(cf_cargo) references fa_cargo(cp_cargo),
+    constraint fk_contrato_trabajador foreign key(cf_trabajador) references fa_trabajador(cp_trabajador)
 );

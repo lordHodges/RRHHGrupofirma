@@ -1,3 +1,6 @@
+/* FUENTE ROBOTO: font-family: 'Roboto', sans-serif; */
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+
 
 /* MODAL */
 
@@ -65,6 +68,23 @@ table thead tr th{
 div.dataTables_wrapper {
     margin: 0  auto;
 }
+
+.tableInModal table{
+  /* background-color: #3c5875; */
+}
+
+.tableInModal thead tr{
+  background-color:#3c5875;
+  color: #fff;
+  letter-spacing: 1px;
+}
+
+.tableInModal tbody tr{
+  background-color:#ffffff;
+  font-family: 'Roboto', sans-serif;
+  color: #1C1C1C;
+}
+
 
 
 /* INPUT  */
