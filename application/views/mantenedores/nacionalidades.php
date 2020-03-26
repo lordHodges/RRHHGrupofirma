@@ -126,7 +126,7 @@
                     }
                 },
                 "ajax": {
-                    url: "http://localhost/RRHH-FIRMA/getListadoNacionalidades",
+                    url: "http://localhost/RRHH-FIRMA/index.php/getListadoNacionalidades",
                     type: 'GET'
                 },
                 "columnDefs": [{

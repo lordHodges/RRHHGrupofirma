@@ -125,7 +125,7 @@
                     }
                 },
                 "ajax": {
-                    url: "http://localhost/RRHH-FIRMA/getListadoPrevisiones",
+                    url: "http://localhost/RRHH-FIRMA/index.php/getListadoPrevisiones",
                     type: 'GET'
                 },
                 "columnDefs": [{

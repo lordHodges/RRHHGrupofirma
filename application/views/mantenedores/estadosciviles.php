@@ -108,7 +108,7 @@
                     }
                 },
                 "ajax": {
-                    url: "http://localhost/RRHH-FIRMA/getListadoEstadosCiviles",
+                    url: "http://localhost/RRHH-FIRMA/index.php/getListadoEstadosCiviles",
                     type: 'GET'
                 },
                 "columnDefs": [{

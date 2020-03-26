@@ -120,7 +120,7 @@
                     }
                 },
                 "ajax": {
-                    url: "http://localhost/RRHH-FIRMA/getEstadoContrato",
+                    url: "http://localhost/RRHH-FIRMA/index.php/getEstadoContrato",
                     type: 'GET'
                 },
                 "columnDefs": [{
