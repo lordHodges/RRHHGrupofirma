@@ -124,6 +124,7 @@
       $("#btnAgregarListaDeCompetencias").click(function (e){
           e.preventDefault();
           agregarListaDeCompetencias();
+          // frfffff
       });
 
       $("body").on("click", "#btnEliminarCompetencias", function(e) {
