@@ -38,7 +38,7 @@ function cargarTabla(){
             }
         },
         "ajax": {
-            url: "http://localhost/RRHH-FIRMA/getListadoTrabajadoresContrato",
+            url: "http://localhost/RRHH-FIRMA/index.php/getListadoTrabajadoresContrato",
             type: 'GET'
         },
         "columnDefs": [{

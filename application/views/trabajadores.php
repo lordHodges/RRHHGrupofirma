@@ -264,7 +264,7 @@
                       }
                   },
                   "ajax": {
-                      url: "http://localhost/RRHH-FIRMA/getListadoTrabajadores",
+                      url: "http://localhost/RRHH-FIRMA/index.php/getListadoTrabajadores",
                       type: 'GET'
                   },
                   "columnDefs": [{

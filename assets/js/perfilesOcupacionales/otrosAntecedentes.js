@@ -1,4 +1,4 @@
-var base_url = 'http://localhost/RRHH-FIRMA/';
+var base_url = 'http://localhost/RRHH-FIRMA/index.php/';
 var constante = 0;
 
 function cargarTabla(){
