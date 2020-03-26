@@ -114,11 +114,7 @@
             document.getElementById('ocultarTabla').removeAttribute("style");
 
             var cargo = $("#getSelectCargo").val();
-
-            var table = $('#tabla_requerimientosMinimos').DataTable();
-            table.destroy();
             cargarTabla(cargo);
-
         });
 
         $("#btnAgregarListaDeRequisitosMinimos").click(function (e){
