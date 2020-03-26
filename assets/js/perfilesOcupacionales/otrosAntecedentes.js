@@ -37,7 +37,7 @@ function cargarTabla(){
             },
         },
         "ajax": {
-            url: 'http://localhost/RRHH-FIRMA/getListadoOtrosAntecedentesDataTable?idCargo='+cargo+'&idAntecedente='+antecedente,
+            url: 'http://localhost/RRHH-FIRMA/index.php/getListadoOtrosAntecedentesDataTable?idCargo='+cargo+'&idAntecedente='+antecedente,
             type: 'GET',
         },
         "columnDefs": [{

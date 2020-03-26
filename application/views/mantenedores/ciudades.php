@@ -117,7 +117,7 @@
                     }
                 },
                 "ajax": {
-                    url: "http://localhost/RRHH-FIRMA/getListadoCiudades",
+                    url: "http://localhost/RRHH-FIRMA/index.php/getListadoCiudades",
                     type: 'GET'
                 },
                 "columnDefs": [{

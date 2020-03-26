@@ -33,7 +33,7 @@ function cargarTabla(cargo){
             },
         },
         "ajax": {
-            url: 'http://localhost/RRHH-FIRMA/getListadoTareasDataTable?id='+cargo,
+            url: 'http://localhost/RRHH-FIRMA/index.php/getListadoTareasDataTable?id='+cargo,
             type: 'GET',
         },
         "columnDefs": [{

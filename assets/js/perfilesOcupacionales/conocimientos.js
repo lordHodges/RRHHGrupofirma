@@ -34,7 +34,7 @@ function cargarTabla(cargo){
             },
         },
         "ajax": {
-            url: 'http://localhost/RRHH-FIRMA/getListadoConocimientosDataTable?id='+cargo,
+            url: 'http://localhost/RRHH-FIRMA/index.php/getListadoConocimientosDataTable?id='+cargo,
             type: 'GET',
         },
         "columnDefs": [{

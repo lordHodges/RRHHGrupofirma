@@ -33,7 +33,7 @@ function cargarTabla(cargo){
             },
         },
         "ajax": {
-            url: 'http://localhost/FA_RECURSOS-HUMANOS/getListadoRequisitosMinimosDataTable?id='+cargo,
+            url: 'http://localhost/FA_RECURSOS-HUMANOS/index.php/getListadoRequisitosMinimosDataTable?id='+cargo,
             type: 'GET',
         },
         "columnDefs": [{
