@@ -108,7 +108,7 @@
                     }
                 },
                 "ajax": {
-                    url: "http://localhost/FA_RECURSOS-HUMANOS/getListadoEstadosCiviles",
+                    url: "http://localhost/RRHH-FIRMA/getListadoEstadosCiviles",
                     type: 'GET'
                 },
                 "columnDefs": [{

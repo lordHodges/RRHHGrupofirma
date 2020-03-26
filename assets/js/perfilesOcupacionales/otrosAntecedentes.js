@@ -1,4 +1,4 @@
-var base_url = 'http://localhost/FA_RECURSOS-HUMANOS/';
+var base_url = 'http://localhost/RRHH-FIRMA/';
 var constante = 0;
 
 function cargarTabla(){
@@ -37,7 +37,7 @@ function cargarTabla(){
             },
         },
         "ajax": {
-            url: 'http://localhost/FA_RECURSOS-HUMANOS/getListadoOtrosAntecedentesDataTable?idCargo='+cargo+'&idAntecedente='+antecedente,
+            url: 'http://localhost/RRHH-FIRMA/getListadoOtrosAntecedentesDataTable?idCargo='+cargo+'&idAntecedente='+antecedente,
             type: 'GET',
         },
         "columnDefs": [{

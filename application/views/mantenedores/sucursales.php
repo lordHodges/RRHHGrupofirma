@@ -111,7 +111,7 @@
                     }
                 },
                 "ajax": {
-                    url: "http://localhost/FA_RECURSOS-HUMANOS/getListadoSucursales",
+                    url: "http://localhost/RRHH-FIRMA/getListadoSucursales",
                     type: 'GET'
                 },
                 "columnDefs": [{

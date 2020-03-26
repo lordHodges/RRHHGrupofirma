@@ -264,7 +264,7 @@
                       }
                   },
                   "ajax": {
-                      url: "http://localhost/FA_RECURSOS-HUMANOS/getListadoTrabajadores",
+                      url: "http://localhost/RRHH-FIRMA/getListadoTrabajadores",
                       type: 'GET'
                   },
                   "columnDefs": [{

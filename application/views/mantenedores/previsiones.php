@@ -125,7 +125,7 @@
                     }
                 },
                 "ajax": {
-                    url: "http://localhost/FA_RECURSOS-HUMANOS/getListadoPrevisiones",
+                    url: "http://localhost/RRHH-FIRMA/getListadoPrevisiones",
                     type: 'GET'
                 },
                 "columnDefs": [{

@@ -135,7 +135,7 @@
                     }
                 },
                 "ajax": {
-                    url: "http://localhost/FA_RECURSOS-HUMANOS/getListadoAFP",
+                    url: "http://localhost/RRHH-FIRMA/getListadoAFP",
                     type: 'GET'
                 },
                 "columnDefs": [{

@@ -120,7 +120,7 @@
                     }
                 },
                 "ajax": {
-                    url: "http://localhost/FA_RECURSOS-HUMANOS/getEstadoContrato",
+                    url: "http://localhost/RRHH-FIRMA/getEstadoContrato",
                     type: 'GET'
                 },
                 "columnDefs": [{

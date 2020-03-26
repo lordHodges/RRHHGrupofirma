@@ -1,4 +1,4 @@
-var base_url = 'http://localhost/FA_RECURSOS-HUMANOS/';
+var base_url = 'http://localhost/RRHH-FIRMA/';
 var constante = 0;
 
 function cargarTabla(cargo){
@@ -33,7 +33,7 @@ function cargarTabla(cargo){
             },
         },
         "ajax": {
-            url: 'http://localhost/FA_RECURSOS-HUMANOS/getListadoTareasDataTable?id='+cargo,
+            url: 'http://localhost/RRHH-FIRMA/getListadoTareasDataTable?id='+cargo,
             type: 'GET',
         },
         "columnDefs": [{

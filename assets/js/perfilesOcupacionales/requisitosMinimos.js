@@ -1,4 +1,4 @@
-var base_url = 'http://localhost/FA_RECURSOS-HUMANOS/';
+var base_url = 'http://localhost/RRHH-FIRMA/';
 var constante = 0;
 
 function cargarTabla(cargo){

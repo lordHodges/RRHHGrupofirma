@@ -117,7 +117,7 @@
                     }
                 },
                 "ajax": {
-                    url: "http://localhost/FA_RECURSOS-HUMANOS/getListadoCiudades",
+                    url: "http://localhost/RRHH-FIRMA/getListadoCiudades",
                     type: 'GET'
                 },
                 "columnDefs": [{

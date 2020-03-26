@@ -1,4 +1,4 @@
-var base_url = 'http://localhost/FA_RECURSOS-HUMANOS/';
+var base_url = 'http://localhost/RRHH-FIRMA/';
 
 
 

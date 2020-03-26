@@ -126,7 +126,7 @@
                     }
                 },
                 "ajax": {
-                    url: "http://localhost/FA_RECURSOS-HUMANOS/getListadoNacionalidades",
+                    url: "http://localhost/RRHH-FIRMA/getListadoNacionalidades",
                     type: 'GET'
                 },
                 "columnDefs": [{

@@ -1,4 +1,4 @@
-var base_url = 'http://localhost/FA_RECURSOS-HUMANOS/';
+var base_url = 'http://localhost/RRHH-FIRMA/';
 
 /*************************** CONTRATO ****************************/
 
@@ -38,7 +38,7 @@ function cargarTabla(){
             }
         },
         "ajax": {
-            url: "http://localhost/FA_RECURSOS-HUMANOS/getListadoTrabajadoresContrato",
+            url: "http://localhost/RRHH-FIRMA/getListadoTrabajadoresContrato",
             type: 'GET'
         },
         "columnDefs": [{

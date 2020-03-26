@@ -1,4 +1,4 @@
-var base_url = 'http://localhost/FA_RECURSOS-HUMANOS/';
+var base_url = 'http://localhost/RRHH-FIRMA/';
 var constante = 0;
 
 
@@ -34,7 +34,7 @@ function cargarTabla(cargo){
             },
         },
         "ajax": {
-            url: 'http://localhost/FA_RECURSOS-HUMANOS/getListadoConocimientosDataTable?id='+cargo,
+            url: 'http://localhost/RRHH-FIRMA/getListadoConocimientosDataTable?id='+cargo,
             type: 'GET',
         },
         "columnDefs": [{

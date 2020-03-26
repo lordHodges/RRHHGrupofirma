@@ -192,7 +192,7 @@
                     }
                 },
                 "ajax": {
-                    url: "http://localhost/FA_RECURSOS-HUMANOS/getlistadecargos",
+                    url: "http://localhost/RRHH-FIRMA/getlistadecargos",
                     type: 'GET'
                 },
                 "columnDefs": [{
