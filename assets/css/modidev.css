@@ -58,6 +58,11 @@
   display: inline-block;
 }
 
+.isDisabled {
+  color: currentColor;
+  cursor: not-allowed;
+}
+
 
 /* TABLAS */
 

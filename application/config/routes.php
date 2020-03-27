@@ -32,6 +32,8 @@ $route['getNacionalidades'] = 'TrabajadorController/getNacionalidades';
   $route['inicioContratos'] = 'ContratosController/index';
   $route['getListadoTrabajadoresContrato'] = 'ContratosController/getListadoTrabajadoresContrato';
   $route['getContratosTrabajador'] = 'ContratosController/getContratosTrabajador';
+  $route['cargar_archivo'] = 'ContratosController/cargar_archivo';
+  $route['descargarContrato'] = 'ContratosController/descargarContrato';
 
 
 //DOCUMENTOS

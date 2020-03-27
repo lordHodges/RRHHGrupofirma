@@ -53,6 +53,38 @@
     </div>
     <!-- /Modal de ver lista de contratos -->
 
+    <!-- Modal ver cargar archivo -->
+    <div id="modalCargarArchivo" class="modal fade" tabindex="-1" role="dialog"  aria-hidden="true" >
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content" style="padding:20px; background: #2a3f54" >
+                <div class="form-row">
+                  <div class="col-md-12">
+                    <h5 class="modal-title mx-auto">CARGAR CONTRATO</h5><br>
+                    <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button> -->
+                  </div>
+                  <div class="col-md-12">
+                    <!-- <form action="cargar_archivo" method="post" enctype="multipart/form-data" target="_blank"> -->
+                      <form  method="post" enctype="multipart/form-data"  >
+                      <div class="col-md-12">
+                        <input type="file" name="mi_archivo" id="mi_archivo">
+                      </div>
+                      <br>
+                      <!-- <input type="submit" value="GUARDAR"class="btn btn-success" class="btn btn-success btn-sm" style="width:100%" > -->
+                      <div class="col-md-12" style="margin-top:20px; margin-bottom:-20px;">
+                        <button type="submit" class="btn btn-success btn-sm" id="btnCargar" style="width:100%;" >GUARDAR</button>
+                      </div>
+                    </form>
+                  </div>
+
+                </div>
+                <br>
+            </div>
+        </div>
+    </div>
+    <!-- /Modal de cargar archivo -->
+
     <!-- /Contenedor principal-->
 
     <!-- footer content -->
@@ -87,13 +119,26 @@
             cargarTabla();
         })
 
-
         $("body").on("click", "#btnVerListaContratos", function(e) {
              e.preventDefault();
              var id = $(this).parent().parent().children()[0];
              var idTrabajador = $(id).text();
              getContratosTrabajador(idTrabajador);
          });
+
+         $("body").on("click", "#btnCargar", function(e) {
+              e.preventDefault();
+              cargar_archivo();
+          });
+
+
+         $("body").on("click", "#btnDescargarContrato", function(e) {
+              e.preventDefault();
+              var id = $(this).parent().parent().children()[0];
+              var idContrato = $(id).text();
+              descargarContrato(idContrato);
+          });
+
     </script>
 
 

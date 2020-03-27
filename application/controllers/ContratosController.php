@@ -7,6 +7,7 @@ class ContratosController extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->model("ContratosModel");
+		$this->folder = 'uploads/';
 	}
 
 	public function index()
@@ -50,6 +51,68 @@ class ContratosController extends CI_Controller {
 		echo json_encode($output);
 		exit();
 	}
+
+	public function cargar_archivo(){
+		 $arraykey = array("NR70RG", "LSL74T", "42IIQW", "VH6MPA","Z_0RTN","VF88JP0","WT96QF", "E077ES","IF72LE","DG62XK","VP59FY","TJ12BX","TD13MX");
+
+		 // GENERAR KEY
+		 $arrayN=rand(0,12);
+		 $key=rand(1,999999);
+
+		 $nombreDoc = $arraykey[$arrayN]."".$key;
+
+		 //INSERTAR DATOS EN FA_CONTRATO
+
+		 // $mi_archivo = 'mi_archivo';
+		 $mi_archivo = $this->input->post("file");
+		 $config['upload_path'] = "uploads/";
+		 $config['file_name'] = $nombreDoc;
+		 $config['allowed_types'] = "pdf";
+		 $config['max_size'] = "50000"; //kb
+		 $config['max_width'] = "2000";
+		 $config['max_height'] = "2000";
+
+		 $this->load->library('upload', $config);
+
+		 //do_upload es para cargar el archivo, regresa true o false.
+		 if (!$this->upload->do_upload($mi_archivo)) {
+				 //*** ocurrio un error
+				 echo json_encode( array("msg" => $this->upload->display_errors() ) );
+		 }else{
+			 $this->upload->data();
+			 echo json_encode( array("msg" => "ok") );
+		 }
+
+
+		 // echo "<script languaje='javascript' type='text/javascript'> window.close(); </script";
+		 // echo "ok";
+		 // print_r($result['file_name']);
+	}
+
+	public function descargarContrato($id){
+				// importo libreria helper download
+				$this->load->helper('download');
+
+				// Solicito al modelo registro del contrato
+				$contrato = $this->ContratosModel->getURLContrato($id);
+				foreach ($contrato as $key => $value) {
+					 $nombre = $value->atr_documento;
+				}
+
+				// armo la ubicación en que se encuentra el archivo junto con su nombre
+				// uploads = nombre de la carpeta
+				// $nombre = nombre asignado al documento en bd
+				$file = 'uploads/'.$nombre;
+
+
+				//si quiero el nombre por defecto al descargar
+				// force_download($file, NULL);
+
+				//si quiero asignar el nombre manualmente
+				$name = "".$nombre;
+				force_download($name, $file);
+
+    }
 
 
 

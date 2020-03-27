@@ -109,17 +109,25 @@ function getContratosTrabajador(idTrabajador){
       data: {"idTrabajador": idTrabajador}
   }).then(function (response) {
       var fila = "";
+      var download = "";
 
       $("#modalDetalleTrabajador").empty();
 
       fila +='<h5 class="modal-title mx-auto">LISTADO DE CONTRATOS</h5><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>';
-      fila +='<table class="table table-bordered tableInModal" style="margin-top:20px;"> <thead> <tr> <td class="text-center">Fecha de inicio</td> <td class="text-center">Fecha de termino</td> <td class="text-center">Cargo</td> <td class="text-center">Descargar</td> </tr> </thead> <tbody>';
+      fila +='<table class="table table-bordered tableInModal" style="margin-top:20px;"> <thead> <tr> <td class="text-center">ID</td> <td class="text-center">Fecha de inicio</td> <td class="text-center">Fecha de termino</td> <td class="text-center">Cargo</td> <td class="text-center">Descargar</td> </tr> </thead> <tbody>';
       $.each(response.msg, function (i, o) {
+
         fila +='<tr>';
+        fila +='<td>'+o.cp_contrato+'</td>';
         fila +='<td>'+o.atr_fechaInicio+'</td>';
         fila +='<td>'+o.atr_fechaTermino+'</td>';
         fila +='<td>'+o.atr_nombre+'</td>';
-        fila +='<td> <button style="display:inline" type="button" id="btnDescargarContrato" class="btn btn-info"><i class="glyphicon glyphicon-download-alt"></i></button> </td>';
+        if(o.atr_ruta == "vacio"){
+          fila +='<td> <a class="btn btn-ded" class="isDisabled" href="#"><i class="glyphicon glyphicon-download-alt"></i></a> </td>';
+        }else{
+          download = "http://localhost/RRHH-FIRMA/index.php/ContratosController/descargarContrato/"+o.cp_contrato;
+          fila +='<td> <a class="btn btn-info" href="'+download+'" download><i class="glyphicon glyphicon-download-alt"></i></a> </td>';
+        }
         fila +='</tr>';
       });
       fila +='</body> </table>';
@@ -127,3 +135,34 @@ function getContratosTrabajador(idTrabajador){
 
   });
 }
+
+
+  function cargar_archivo(id){
+
+
+    var file = $("#mi_archivo").val();
+
+    if(file == null  || file == ""){
+      alert("vacio");
+    }else{
+      alert(file);
+    }
+    $.ajax({
+      url: 'cargar_archivo',
+      type: "POST",
+      enctype: 'multipart/form-data',
+      processData: false,  // Important!
+      contentType: false,
+      cache: false,
+      type: 'POST',
+      dataType: 'json',
+      data: { "file": file}
+    }).then(function (msg) {
+        alert(msg.msg);
+    });
+  }
+
+  function seCargo(){
+    $('#modalCargarArchivo').modal('hide');
+    toastr.success('Información actualizada');
+  }
