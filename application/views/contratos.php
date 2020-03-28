@@ -66,9 +66,9 @@
                   </div>
                   <div class="col-md-12">
                     <!-- <form action="cargar_archivo" method="post" enctype="multipart/form-data" target="_blank"> -->
-                      <form  method="post" enctype="multipart/form-data"  >
+                      <form id="uploader" method="post" enctype="multipart/form-data" action="cargar_archivo"  >
                       <div class="col-md-12">
-                        <input type="file" name="mi_archivo" id="mi_archivo">
+                        <input type="file" name="file" id="file">
                       </div>
                       <br>
                       <!-- <input type="submit" value="GUARDAR"class="btn btn-success" class="btn btn-success btn-sm" style="width:100%" > -->
@@ -126,10 +126,27 @@
              getContratosTrabajador(idTrabajador);
          });
 
-         $("body").on("click", "#btnCargar", function(e) {
-              e.preventDefault();
-              cargar_archivo();
-          });
+         // $("body").on("click", "#btnCargar", function(e) {
+         //      // e.preventDefault();
+         //      // cargar_archivo();
+         //  });
+
+         $('#uploader').submit(function(e){
+             e.preventDefault();
+                  $.ajax({
+                      url:$('#uploader').attr('action'),
+                      type:"post",
+                      data:new FormData(this), // form
+                      processData:false,
+                      contentType:false,
+                      cache:false,
+                      async:false,
+                       success: function(data){
+                         console.log('success');
+                         $('#modalCargarArchivo').modal('hide');
+                    }
+                  });
+             });
 
 
          $("body").on("click", "#btnDescargarContrato", function(e) {

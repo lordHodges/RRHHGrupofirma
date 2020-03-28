@@ -236,7 +236,7 @@ create table fa_contrato(
     cf_trabajador int,
     atr_fechaInicio varchar(10),
     atr_fechaTermino varchar(10),
-    atr_ruta varchar(200);
+    atr_ruta varchar(200),
     atr_documento varchar(200),
     constraint cp_contrato primary key(cp_contrato),
     constraint fk_contrato_cargo foreign key(cf_cargo) references fa_cargo(cp_cargo),

@@ -53,8 +53,33 @@ class ContratosController extends CI_Controller {
 	}
 
 	public function cargar_archivo(){
+
+        $config['upload_path']="./uploads/";
+        $config['allowed_types']='pdf';
+        $config['encrypt_name'] = TRUE;
+
+				$this->load->library('upload',$config);
+				if ( ! $this->upload->do_upload('file'))
+        {
+                $out = array('error' => $this->upload->display_errors());
+        }
+        else
+        {
+                $out = array('upload_data' => $this->upload->data());
+        }
+				
+				echo json_encode($out);
+     }
+
+	public function cargar_archivo_(){
 		 $arraykey = array("NR70RG", "LSL74T", "42IIQW", "VH6MPA","Z_0RTN","VF88JP0","WT96QF", "E077ES","IF72LE","DG62XK","VP59FY","TJ12BX","TD13MX");
 
+		 $variable = $this->input->post('file');
+echo '<pre>';
+		 var_dump($variable);
+		 // echo json_encode($arraykey);
+
+		 // exit;
 		 // GENERAR KEY
 		 $arrayN=rand(0,12);
 		 $key=rand(1,999999);
@@ -64,7 +89,7 @@ class ContratosController extends CI_Controller {
 		 //INSERTAR DATOS EN FA_CONTRATO
 
 		 // $mi_archivo = 'mi_archivo';
-		 $mi_archivo = $this->input->post("file");
+		 $mi_archivo = 'file';
 		 $config['upload_path'] = "uploads/";
 		 $config['file_name'] = $nombreDoc;
 		 $config['allowed_types'] = "pdf";
@@ -75,7 +100,7 @@ class ContratosController extends CI_Controller {
 		 $this->load->library('upload', $config);
 
 		 //do_upload es para cargar el archivo, regresa true o false.
-		 if (!$this->upload->do_upload($mi_archivo)) {
+		 if (!$this->upload->do_upload('file')) {
 				 //*** ocurrio un error
 				 echo json_encode( array("msg" => $this->upload->display_errors() ) );
 		 }else{
