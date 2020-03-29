@@ -211,7 +211,8 @@ create table fa_competencia_cargo(
 
 
 
------------------- CONTRATOS
+
+
 
 create table fa_items_contrato(
     cp_itemContrato int auto_increment,
@@ -230,15 +231,29 @@ create table fa_descripcion_item(
     constraint fk_descripcionItem_itemContrato foreign key(cf_itemContrato) references fa_items_contrato(cp_itemContrato)
 );
 
+
+
+
+
+
 create table fa_contrato(
     cp_contrato int auto_increment,
-    cf_cargo int,
-    cf_trabajador int,
     atr_fechaInicio varchar(10),
     atr_fechaTermino varchar(10),
-    atr_ruta varchar(200),
     atr_documento varchar(200),
+    cf_cargo int,
+    cf_trabajador int,
     constraint cp_contrato primary key(cp_contrato),
     constraint fk_contrato_cargo foreign key(cf_cargo) references fa_cargo(cp_cargo),
     constraint fk_contrato_trabajador foreign key(cf_trabajador) references fa_trabajador(cp_trabajador)
+);
+
+create table fa_documento(
+    cp_documento varchar(200),
+    atr_nombreReal varchar(200) not null,
+    cf_contrato int,
+    atr_ruta varchar(200) not null,
+    atr_fechaCarga varchar(20) not null,
+    constraint cp_documento primary key(cp_documento),
+    constraint fk_documento_contrato foreign key(cf_contrato) references fa_contrato(cp_contrato)
 );

@@ -271,6 +271,7 @@ function agregarCiudad() {
             dataType: 'json',
             data: { "nombre":nombre }
         }).then(function (msg) {
+
             if (msg.msg == "ok") {
                toastr.success('Ciudad ingresada')
                document.getElementById("nombre").value = "";

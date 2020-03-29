@@ -7,7 +7,7 @@ class ContratosController extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->model("ContratosModel");
-		$this->folder = 'uploads/';
+		// $this->folder = 'uploads/';
 	}
 
 	public function index()
@@ -54,28 +54,66 @@ class ContratosController extends CI_Controller {
 
 	public function cargar_archivo(){
 
-        $config['upload_path']="./uploads/";
-        $config['allowed_types']='pdf';
-        $config['encrypt_name'] = TRUE;
+      $config['upload_path']="./uploads/";
+      $config['allowed_types']='pdf';
+      $config['encrypt_name'] = TRUE;
 
-				$this->load->library('upload',$config);
-				if ( ! $this->upload->do_upload('file'))
-        {
-                $out = array('error' => $this->upload->display_errors());
-        }
-        else
-        {
-                $out = array('upload_data' => $this->upload->data());
-        }
-				
-				echo json_encode($out);
-     }
+			$this->load->library('upload',$config);
+
+
+			if ( ! $this->upload->do_upload('file')){
+        $out = array('error' => $this->upload->display_errors());
+				exit();
+      }
+      else{
+				//LA VARIABLE $OUT TRAE LOS SIGUIENTES DATOS
+					// file_name   => contrato_wom9.pdf
+					// file_type   => application/pdf
+					// file_path   => C:/xampp/htdocs/RRHH-FIRMA/uploads/
+					// full_path  => C:/xampp/htdocs/RRHH-FIRMA/uploads/contrato_wom9.pdf
+					// raw_name   => contrato_wom9
+					// orig_name   => contrato_wom.pdf
+					// client_name   => contrato wom.pdf
+					// file_ext   => .pdf
+					// file_size   => 76.42
+					// is_image   => false
+					// image_width   => no se
+					// image_height   => no se
+					// image_type   => no se
+					// image_size_str => no se
+
+        $out = array('upload_data' => $this->upload->data());
+
+				//CAPTURA DE DATOS
+
+				$nombreReal  =  	$out['upload_data']['orig_name'];
+				$nombreFinal =    $out['upload_data']['file_name'];
+				$ruta        =  	$out['upload_data']['file_path'];
+
+
+				date_default_timezone_set("America/Santiago");
+				$fechaActual = date("d-m-Y G:i:s");
+
+				//Obtengo y transformo fecha a formato dia-mes-año
+				$fechaInicio = date('d-m-Y',strtotime($this->input->post('fechaInicio')));
+				$fechaTermino = date('d-m-Y',strtotime($this->input->post('fechaTermino')));
+
+
+				//AQUI COMIENZO ENVIO DE DATOS PARA EL MODELO Y PROCEDER EL INGRESO A BASE DE DATOS
+
+
+
+				//REGRESO RESULTADO POSITIVO PARA DESPLEGAR MENSAJE DE EXITO
+				// echo json_encode("ok");
+				exit();
+      }
+   }
 
 	public function cargar_archivo_(){
 		 $arraykey = array("NR70RG", "LSL74T", "42IIQW", "VH6MPA","Z_0RTN","VF88JP0","WT96QF", "E077ES","IF72LE","DG62XK","VP59FY","TJ12BX","TD13MX");
 
 		 $variable = $this->input->post('file');
-echo '<pre>';
+		 echo '<pre>';
 		 var_dump($variable);
 		 // echo json_encode($arraykey);
 

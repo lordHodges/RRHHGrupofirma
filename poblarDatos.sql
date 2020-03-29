@@ -86,7 +86,8 @@ INSERT INTO `fa_requisitominimo` (`cp_requisitominimo`, `atr_descripcion`) VALUE
 INSERT INTO `fa_requisitominimo_cargo` (`cp_requisitominimo_cargo`, `cf_cargo`, `cf_requisitominimo`) VALUES (NULL, '3', '1'), (NULL, '3', '6')
 
 
-INSERT INTO `fa_requisitominimo_cargo` (`cp_requisitominimo_cargo`, `cf_cargo`, `cf_requisitominimo`) VALUES (NULL, '3', '9'), (NULL, '3', '11'), (NULL, '3', '7'), (NULL, '3', '8'), (NULL, '3', '10'), (NULL, '3', '12'), (NULL, '3', '5');
+INSERT INTO `fa_requisitominimo_cargo` (`cp_requisitominimo_cargo`, `cf_cargo`, `cf_requisitominimo`) VALUES (NULL, '3', '9'), (NULL, '3', '11'), (NULL, '3', '7'), (NULL, '3', '8'),(NULL, '3', '10');
+INSERT INTO `fa_requisitominimo_cargo` (`cp_requisitominimo_cargo`, `cf_cargo`, `cf_requisitominimo`) VALUES (NULL, '3', '12'), (NULL, '3', '5');
 
 INSERT INTO `fa_remuneracion_extra` (`cp_remuneracionExtra`, `atr_descripcion`, `cf_remuneracion`, `cf_cargo`) VALUES (NULL, '$2.000 por cliente que se atienda por medio de la carta, o llegue a la oficina con la carta.', '3', '3'), (NULL, '$49.000 bonos', '3', '3');
 
@@ -101,8 +102,8 @@ INSERT INTO `fa_tareas_cargo` (`cp_tareas_cargo`, `cf_cargo`, `cf_tarea`) VALUES
 
 
 
+
+
 INSERT INTO `fa_items_contrato` (`cp_itemContrato`, `atr_nombre`) VALUES (NULL, 'Partes'), (NULL, 'Naturaleza de servicios'), (NULL, 'Lugar de prestación de servicios'), (NULL, 'Jornada de trabajo'), (NULL, 'Remuneraciones'), (NULL, 'Duración de relación jurídica laboral'), (NULL, 'Cláusula de vigencia'), (NULL, 'A tener en cuenta');
 
 INSERT INTO `fa_descripcion_item` (`cp_descripcionItem`, `atr_descripcion`, `atr_posicionItem`, `cf_itemContrato`, `cf_cargo`) VALUES (NULL, NULL, '1', '1', '1'), (NULL, NULL, '2', '2', '1'), (NULL, NULL, '3', '3', '1'), (NULL, NULL, '4', '4', '1'), (NULL, NULL, '5', '5', '1'), (NULL, NULL, '6', '6', '1'), (NULL, NULL, '7', '7', '1'), (NULL, NULL, '8', '8', '1');
-
-INSERT INTO `fa_contrato` (`cp_contrato`, `cf_cargo`, `cf_trabajador`, `atr_fechaInicio`, `atr_fechaTermino`, `atr_documento`) VALUES (NULL, '1', '1', '09-03-2020', '09-04-2020', NULL), (NULL, '3', '2', '09-04-2020', '09-05-2020', NULL);

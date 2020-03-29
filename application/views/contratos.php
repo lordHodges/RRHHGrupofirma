@@ -65,16 +65,25 @@
                     </button> -->
                   </div>
                   <div class="col-md-12">
-                    <!-- <form action="cargar_archivo" method="post" enctype="multipart/form-data" target="_blank"> -->
                       <form id="uploader" method="post" enctype="multipart/form-data" action="cargar_archivo"  >
-                      <div class="col-md-12">
-                        <input type="file" name="file" id="file">
-                      </div>
-                      <br>
-                      <!-- <input type="submit" value="GUARDAR"class="btn btn-success" class="btn btn-success btn-sm" style="width:100%" > -->
-                      <div class="col-md-12" style="margin-top:20px; margin-bottom:-20px;">
-                        <button type="submit" class="btn btn-success btn-sm" id="btnCargar" style="width:100%;" >GUARDAR</button>
-                      </div>
+                        <!-- <label id="labelTrabajador"></label> -->
+                        <div class="col-md-6">
+                          <br>
+                          <label for="fechaInicio">COMIENZO DE CONTRATO</label>
+                          <input type="date" class="form-control" name="fechaInicio" required>
+                        </div>
+                        <div class="col-md-6">
+                          <br>
+                          <label for="fechaTermino">TERMINO DE CONTRATO</label>
+                          <input type="date" class="form-control" name="fechaTermino" required>
+                        </div><br>
+                        <div class="col-md-12" style="margin-top:20px" >
+                          <input lang="es" type="file" name="file" id="file">
+                        </div>
+                        <br>
+                        <div class="col-md-12" style="margin-top:20px; margin-bottom:-20px;">
+                          <button type="submit" class="btn btn-success btn-sm" id="btnCargar" style="width:100%;" >GUARDAR</button>
+                        </div>
                     </form>
                   </div>
 
@@ -104,7 +113,7 @@
      <!-- Datatables -->
     <script src="<?php echo base_url() ?>assets/js/datatables.min.js" type="text/javascript"></script>
     <!-- Custom Theme Scripts -->
-    <script src="<?php echo base_url() ?>assets/build/js/custom.min.js"></script>
+    <script src="<?php echo base_url() ?>assets/build/js/custom.js"></script>
     <!-- MODIDEV -->
     <script src="<?php echo base_url() ?>assets/js/modidev.js"></script>
     <script src="<?php echo base_url() ?>assets/js/contratos.js"></script>
@@ -126,27 +135,37 @@
              getContratosTrabajador(idTrabajador);
          });
 
-         // $("body").on("click", "#btnCargar", function(e) {
-         //      // e.preventDefault();
-         //      // cargar_archivo();
-         //  });
 
          $('#uploader').submit(function(e){
-             e.preventDefault();
-                  $.ajax({
-                      url:$('#uploader').attr('action'),
-                      type:"post",
-                      data:new FormData(this), // form
-                      processData:false,
-                      contentType:false,
-                      cache:false,
-                      async:false,
-                       success: function(data){
-                         console.log('success');
-                         $('#modalCargarArchivo').modal('hide');
+           e.preventDefault();
+              $.ajax({
+                  url:$('#uploader').attr('action'),
+                  type:"post",
+                  data:new FormData(this), // form
+                  processData:false,
+                  contentType:false,
+                  cache:false,
+                  async:false,
+                  success: function(data){
+                    if (data == "" || data == null) {
+                      toastr.error("Error al guardar");
+                    }else{
+                      $('#modalCargarArchivo').modal('hide');
+                      toastr.success('Documento guardado')
                     }
-                  });
-             });
+                  }
+              });
+        });
+
+
+        // $("body").on("click", "#modalCargarArchivo", function(e) {
+        //      e.preventDefault();
+        //      var id = $(this).parent().parent().children()[0];
+        //      var idTrabajador = $(id).text();
+        //      document.getElementById("labelTrabajador").text = "HOLA MUNDO";
+        //  });
+
+
 
 
          $("body").on("click", "#btnDescargarContrato", function(e) {
