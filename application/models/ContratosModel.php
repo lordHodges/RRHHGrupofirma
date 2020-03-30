@@ -17,18 +17,19 @@ class ContratosModel extends CI_Model {
     }
 
     function getContratosTrabajador($idTrabajador){
-      $this->db->select("c.atr_ruta, c.cp_contrato, c.atr_fechaInicio, c.atr_fechaTermino, ca.atr_nombre ");
+      $this->db->select("c.cp_contrato, c.atr_fechaInicio, c.atr_fechaTermino, ca.atr_nombre,  ");
       $this->db->from("fa_contrato c");
       $this->db->join("fa_cargo ca","ca.cp_cargo = c.cf_cargo");
+      $this->db->join("fa_documento doc","c.cp_contrato = doc.cf_contrato ");
       $this->db->where("c.cf_trabajador", $idTrabajador);
       $resultado =  $this->db->get()->result();
       return $resultado;
     }
 
     function getURLContrato($idContrato){
-      $this->db->select("c.atr_documento, c.atr_ruta");
-      $this->db->from("fa_contrato c");
-      $this->db->where("c.cp_contrato", $idContrato);
+      $this->db->select("doc.atr_nombreDoc, doc.atr_nombreReal");
+      $this->db->from("fa_documento doc");
+      $this->db->where("doc.cf_contrato", $idContrato);
       $resultado =  $this->db->get()->result();
       return $resultado;
     }

@@ -111,49 +111,6 @@ class ContratosController extends CI_Controller {
       }
    }
 
-	public function cargar_archivo_(){
-		 $arraykey = array("NR70RG", "LSL74T", "42IIQW", "VH6MPA","Z_0RTN","VF88JP0","WT96QF", "E077ES","IF72LE","DG62XK","VP59FY","TJ12BX","TD13MX");
-
-		 $variable = $this->input->post('file');
-		 echo '<pre>';
-		 var_dump($variable);
-		 // echo json_encode($arraykey);
-
-		 // exit;
-		 // GENERAR KEY
-		 $arrayN=rand(0,12);
-		 $key=rand(1,999999);
-
-		 $nombreDoc = $arraykey[$arrayN]."".$key;
-
-		 //INSERTAR DATOS EN FA_CONTRATO
-
-		 // $mi_archivo = 'mi_archivo';
-		 $mi_archivo = 'file';
-		 $config['upload_path'] = "uploads/";
-		 $config['file_name'] = $nombreDoc;
-		 $config['allowed_types'] = "pdf";
-		 $config['max_size'] = "50000"; //kb
-		 $config['max_width'] = "2000";
-		 $config['max_height'] = "2000";
-
-		 $this->load->library('upload', $config);
-
-		 //do_upload es para cargar el archivo, regresa true o false.
-		 if (!$this->upload->do_upload('file')) {
-				 //*** ocurrio un error
-				 echo json_encode( array("msg" => $this->upload->display_errors() ) );
-		 }else{
-			 $this->upload->data();
-			 echo json_encode( array("msg" => "ok") );
-		 }
-
-
-		 // echo "<script languaje='javascript' type='text/javascript'> window.close(); </script";
-		 // echo "ok";
-		 // print_r($result['file_name']);
-	}
-
 	public function descargarContrato($id){
 				// importo libreria helper download
 				$this->load->helper('download');
@@ -161,7 +118,8 @@ class ContratosController extends CI_Controller {
 				// Solicito al modelo registro del contrato
 				$contrato = $this->ContratosModel->getURLContrato($id);
 				foreach ($contrato as $key => $value) {
-					 $nombre = $value->atr_documento;
+					 $nombre = $value->atr_nombreDoc;
+					 $nombreReal = $value->atr_nombreReal;
 				}
 
 				// armo la ubicación en que se encuentra el archivo junto con su nombre
@@ -173,9 +131,7 @@ class ContratosController extends CI_Controller {
 				//si quiero el nombre por defecto al descargar
 				// force_download($file, NULL);
 
-				//si quiero asignar el nombre manualmente
-				$name = "".$nombre;
-				force_download($name, $file);
+				force_download($nombreReal, $file);
 
     }
 
