@@ -53,7 +53,7 @@ class ContratosController extends CI_Controller {
 	}
 
 	public function cargar_archivo(){
-			$config['upload_path']="./uploads/";
+			$config['upload_path']="./uploads/contratos/";
       $config['allowed_types']='pdf';
       $config['encrypt_name'] = TRUE;
 
@@ -122,16 +122,14 @@ class ContratosController extends CI_Controller {
 					 $nombreReal = $value->atr_nombreReal;
 				}
 
-				// armo la ubicación en que se encuentra el archivo junto con su nombre
-				// uploads = nombre de la carpeta
+				// uploads/contratos = ruta de la carpeta que contiene los documentos
 				// $nombre = nombre asignado al documento en bd
-				$file = 'uploads/'.$nombre;
+				$file = 'uploads/contratos/'.$nombre;
 
 
-				//si quiero el nombre por defecto al descargar
-				// force_download($file, NULL);
+				//si quiero el nombre por defecto al descargar -->  force_download($file, NULL);
 
-				force_download($nombreReal, $file);
+				force_download($file, NULL);
 
     }
 
