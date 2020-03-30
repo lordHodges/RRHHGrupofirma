@@ -64,12 +64,11 @@
                         <span aria-hidden="true">&times;</span>
                     </button> -->
                   </div>
-                  <div class="col-md-12">
-                      <form id="uploader" method="post" enctype="multipart/form-data" action="cargar_archivo"  >
-                        <!-- <label id="labelTrabajador"></label> -->
+                  <div class="col-md-12" id="detalleCargaArchivo">
+                      <form id="uploader" method="post" enctype="multipart/form-data" action="cargar_archivo">
                         <div class="col-md-6">
                           <br>
-                          <label for="fechaInicio">COMIENZO DE CONTRATO</label>
+                          <label for="fechaInicio">COMIENZO DE CONTRATO <input type="text" name="labelTrabajador" id="labelTrabajador" style="color:#2a3f54;border:none;border-color:#2a3f54"></label>
                           <input type="date" class="form-control" name="fechaInicio" required>
                         </div>
                         <div class="col-md-6">
@@ -136,44 +135,43 @@
          });
 
 
-         $('#uploader').submit(function(e){
-           e.preventDefault();
-              $.ajax({
-                  url:$('#uploader').attr('action'),
-                  type:"post",
-                  data:new FormData(this), // form
-                  processData:false,
-                  contentType:false,
-                  cache:false,
-                  async:false,
-                  success: function(data){
-                    if (data == "" || data == null) {
-                      toastr.error("Error al guardar");
-                    }else{
-                      $('#modalCargarArchivo').modal('hide');
-                      toastr.success('Documento guardado')
-                    }
-                  }
-              });
+
+       $("body").on("click", "#btnModalCargarArchivo", function(e) {
+            e.preventDefault();
+            var id = $(this).parent().parent().children()[0];
+            var idTrabajador = $(id).text();
+            // $("#labelTrabajador").append(idTrabajador);
+            document.getElementById("labelTrabajador").value = idTrabajador;
         });
 
+       $('#uploader').submit(function(e){
+        e.preventDefault();
+           $.ajax({
+               url:$('#uploader').attr('action'),
+               type:"post",
+               data:new FormData(this), // form
+               processData:false,
+               contentType:false,
+               cache:false,
+               async:false,
+               success: function(data){
+                 if (data == "" || data == null) {
+                   toastr.error("Error al guardar");
+                 }else{
+                   $('#modalCargarArchivo').modal('hide');
+                   toastr.success('Documento guardado')
+                 }
+               }
+           });
+       });
 
-        // $("body").on("click", "#modalCargarArchivo", function(e) {
-        //      e.preventDefault();
-        //      var id = $(this).parent().parent().children()[0];
-        //      var idTrabajador = $(id).text();
-        //      document.getElementById("labelTrabajador").text = "HOLA MUNDO";
-        //  });
 
-
-
-
-         $("body").on("click", "#btnDescargarContrato", function(e) {
-              e.preventDefault();
-              var id = $(this).parent().parent().children()[0];
-              var idContrato = $(id).text();
-              descargarContrato(idContrato);
-          });
+       $("body").on("click", "#btnDescargarContrato", function(e) {
+            e.preventDefault();
+            var id = $(this).parent().parent().children()[0];
+            var idContrato = $(id).text();
+            descargarContrato(idContrato);
+        });
 
     </script>
 

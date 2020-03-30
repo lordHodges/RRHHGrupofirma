@@ -237,10 +237,9 @@ create table fa_descripcion_item(
 
 
 create table fa_contrato(
-    cp_contrato int auto_increment,
+    cp_contrato varchar(200),
     atr_fechaInicio varchar(10),
     atr_fechaTermino varchar(10),
-    atr_documento varchar(200),
     cf_cargo int,
     cf_trabajador int,
     constraint cp_contrato primary key(cp_contrato),
@@ -249,11 +248,12 @@ create table fa_contrato(
 );
 
 create table fa_documento(
-    cp_documento varchar(200),
+    cp_documento int auto_increment,
+    atr_nombreDoc varchar(200),
     atr_nombreReal varchar(200) not null,
-    cf_contrato int,
     atr_ruta varchar(200) not null,
     atr_fechaCarga varchar(20) not null,
+    cf_contrato varchar(200),
     constraint cp_documento primary key(cp_documento),
     constraint fk_documento_contrato foreign key(cf_contrato) references fa_contrato(cp_contrato)
 );

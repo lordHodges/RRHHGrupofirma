@@ -33,4 +33,64 @@ class ContratosModel extends CI_Model {
       return $resultado;
     }
 
+    function cargar_archivo( $nombreReal, $nombreFinal, $ruta, $fechaInicio, $fechaTermino, $fechaActual, $idTrabajador ){
+      // 1: Buscar trabajador y obtener id del cargo
+      $this->db->select("t.cf_cargo");
+      $this->db->from("fa_trabajador t");
+      $this->db->where("t.cp_trabajador", $idTrabajador);
+      $resultado =  $this->db->get()->result();
+
+      foreach ($resultado as $key=>$t){
+        $cargo = $t->cf_cargo;
+      }
+
+      // 2: Obtener total de contratos + 1
+      $this->db->select('count(*)');
+      $this->db->from("fa_contrato c");
+      $cantidad_contratos = $this->db->count_all_results();
+
+      // 3: Generar clave de atr_documento
+      $arraykey = array("NR70RG", "LSL74T", "42IIQW", "VH6MPA","Z_0RTN","VF88JP0","WT96QF", "E077ES","IF72LE","DG62XK","VP59FY","TJ12BX","TD13MX");
+      $arrayN=rand(0,12);
+      $key=rand(1,999999);
+      $atr_documento = $arraykey[$arrayN]."".$key."".$cantidad_contratos;
+
+      // 3: Crear contrato con atr_documento = codigo generado
+      $data = array(
+          "cp_contrato" => $atr_documento,
+          "atr_fechaInicio" => $fechaInicio,
+          "atr_fechaTermino" => $fechaTermino,
+          "cf_cargo" => $cargo,
+          "cf_trabajador" => $idTrabajador,
+      );
+      $insert = $this->db->insert("fa_contrato", $data);
+      if($insert){
+        // 4: Crear doumento con clave primeria = atr_documento descrito en contrato
+        $this->db->select('count(*)');
+        $this->db->from("fa_contrato c");
+        $cantidad_contratos = $this->db->count_all_results();
+
+        $data = array(
+            "atr_nombreReal" => $nombreReal,
+            "atr_nombreDoc" => $nombreFinal,
+            "cf_contrato" => $atr_documento,
+            "atr_ruta" => $ruta,
+            "atr_fechaCarga" => $fechaActual
+        );
+        $insert = $this->db->insert("fa_documento", $data);
+        if($insert){
+          return "ok";
+        }else{
+          return "error";
+        }
+      }else{
+        return "error";
+      }
+    }
+
+
+
+
+
+
 }

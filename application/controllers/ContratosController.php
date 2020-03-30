@@ -53,13 +53,11 @@ class ContratosController extends CI_Controller {
 	}
 
 	public function cargar_archivo(){
-
-      $config['upload_path']="./uploads/";
+			$config['upload_path']="./uploads/";
       $config['allowed_types']='pdf';
       $config['encrypt_name'] = TRUE;
 
 			$this->load->library('upload',$config);
-
 
 			if ( ! $this->upload->do_upload('file')){
         $out = array('error' => $this->upload->display_errors());
@@ -83,6 +81,7 @@ class ContratosController extends CI_Controller {
 					// image_size_str => no se
 
         $out = array('upload_data' => $this->upload->data());
+				$cargaExitosa = true;
 
 				//CAPTURA DE DATOS
 
@@ -98,13 +97,16 @@ class ContratosController extends CI_Controller {
 				$fechaInicio = date('d-m-Y',strtotime($this->input->post('fechaInicio')));
 				$fechaTermino = date('d-m-Y',strtotime($this->input->post('fechaTermino')));
 
+				//este valor esta insertado de forma oculta en el formulario
+				$idTrabajador = $this->input->post('labelTrabajador');
+
 
 				//AQUI COMIENZO ENVIO DE DATOS PARA EL MODELO Y PROCEDER EL INGRESO A BASE DE DATOS
-
+				$resultado = $this->ContratosModel->cargar_archivo( $nombreReal, $nombreFinal, $ruta, $fechaInicio, $fechaTermino, $fechaActual, $idTrabajador );
 
 
 				//REGRESO RESULTADO POSITIVO PARA DESPLEGAR MENSAJE DE EXITO
-				// echo json_encode("ok");
+				echo json_encode("ok");
 				exit();
       }
    }

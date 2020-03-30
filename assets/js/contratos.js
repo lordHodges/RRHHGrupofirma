@@ -2,8 +2,43 @@ var base_url = 'http://localhost/RRHH-FIRMA/';
 
 /*************************** CONTRATO ****************************/
 
-function cargarTabla(){
+// function detalleCargaArchivo(idTrabajador){
+//   var fila = '';
+//   $("#detalleCargaArchivo").empty();
+//
+//   fila += '<form id="uploader" method="post" enctype="multipart/form-data" action="cargar_archivo">';
+//   fila += '<div class="col-md-6"><br><label for="fechaInicio">COMIENZO DE CONTRATO</label><label id="labelTrabajador" style="color:#2a3f54">'+idTrabajador+'</label><input type="date" class="form-control" name="fechaInicio" required></div>';
+//   fila += '<div class="col-md-6"><br><label for="fechaTermino">TERMINO DE CONTRATO</label><input type="date" class="form-control" name="fechaTermino" required></div><br>';
+//   fila += '<div class="col-md-12" style="margin-top:20px" ><input lang="es" type="file" name="file" id="file"></div><br>';
+//   fila += '<div class="col-md-12" style="margin-top:20px; margin-bottom:-20px;"><button type="submit" class="btn btn-success btn-sm" id="btnCargar" style="width:100%;" >GUARDAR</button></div>';
+//   fila += '</form>';
+//
+//   $("#detalleCargaArchivo").append(fila);
+//
+// }
 
+// function cargar_archivo(){
+//   $.ajax({
+//       url:$('#uploader').attr('action'),
+//       type:"post",
+//       data:new FormData(this), // form
+//       processData:false,
+//       contentType:false,
+//       cache:false,
+//       async:false,
+//       success: function(data){
+//         if (data == "" || data == null) {
+//           toastr.error("Error al guardar");
+//         }else{
+//           window.location = '/';
+//           // $('#modalCargarArchivo').modal('hide');
+//           toastr.success('Documento guardado');
+//         }
+//       }
+//   });
+// }
+
+function cargarTabla(){
   var table = $('#tabla_trabajador').DataTable();
   table.destroy();
 
@@ -135,6 +170,8 @@ function getContratosTrabajador(idTrabajador){
 
   });
 }
+
+// <label id="labelTrabajador" name="labelTrabajador" style="color:#2a3f54"></label>
 
 
   function cargar_archivo(id){
