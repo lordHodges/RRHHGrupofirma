@@ -14,6 +14,9 @@ $route['getDetalleTrabajador'] = 'TrabajadorController/getDetalleTrabajador';
 $route['updateTrabajador'] = 'TrabajadorController/updateTrabajador';
 $route['getDetalleTrabajadorViewEdit'] = 'TrabajadorController/getDetalleTrabajadorViewEdit';
 
+$route['getTrabajadores'] = 'TrabajadorController/getTrabajadores';
+$route['getDetalleTrabajadorContrato'] = 'ContratosController/getDetalleTrabajadorContrato';
+
 
     //Lo necesario para ingresar trabajadores
 $route['getCiudades'] = 'TrabajadorController/getCiudades';
@@ -30,6 +33,7 @@ $route['getNacionalidades'] = 'TrabajadorController/getNacionalidades';
 //CONTRATOS
   //contratos
   $route['inicioContratos'] = 'ContratosController/index';
+  $route['inicioGestorContratos'] = 'ContratosController/indexGestorContratos';
   $route['getListadoTrabajadoresContrato'] = 'ContratosController/getListadoTrabajadoresContrato';
   $route['getContratosTrabajador'] = 'ContratosController/getContratosTrabajador';
   $route['cargar_archivo'] = 'ContratosController/cargar_archivo';
@@ -39,6 +43,7 @@ $route['getNacionalidades'] = 'TrabajadorController/getNacionalidades';
 //DOCUMENTOS
 $route['perfilOcupacionalVista'] = 'PDFController/cargarPerfilesOcupacionales';
 $route['docPerfilesOcupacionales'] = 'PDFController/view_perfilesOcupacionales';
+$route['docContratoEstandar'] = 'PDFController/view_contratoEstandar';
 
 
 

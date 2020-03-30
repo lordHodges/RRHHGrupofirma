@@ -106,3 +106,17 @@ input disabled{
 .perfilOcupacional textarea{
     border-color: #73879c;
 }
+
+
+/* TABS */
+.tabGestorContratos{
+    background-color: #2a3f54;
+    color:#fafafa;
+}
+
+.botonLargo{
+    width:100%;
+    margin-top:20px;
+    background-color:#2a3f54; 
+    border:none
+}

@@ -13,6 +13,7 @@ class  PDFController extends CI_Controller {
 		$this->load->model("FuncionesModel");
 		$this->load->model("OtrosModel");
 		$this->load->model("RemuneracionesModel");
+		$this->load->model("ContratosModel");
 
 	}
 
@@ -54,11 +55,53 @@ class  PDFController extends CI_Controller {
 			 $nombreCargo = $key->$atr_nombre;
 		}
 
-		$html = $this->load->view('pdf/test', $data, TRUE);
+		$html = $this->load->view('pdf/perfilOcupacional', $data, TRUE);
 		// Cargamos la librería
 		$this->load->library('Pdfgenerator');
 		// definamos un nombre para el archivo. No es necesario agregar la extension .pdf
 		$filename = 'perfilOcupacional_'.$nombreCargo.'';
+		// generamos el PDF. Pasemos por encima de la configuración general y definamos otro tipo de papel
+		$this->pdfgenerator->generate($html, $filename, TRUE, 'Letter', 'portrait', 0);
+	}
+
+
+
+
+	function view_contratoEstandar(){
+		$trabajador = $this->input->get("trabajador");
+		$titulo = "CONTRATO DE TRABAJO A PLAZO";
+
+		$informacion = $this->ContratosModel->getDetalleTrabajadorContrato($trabajador);
+
+		// var_dump($informacion);
+
+		$contador = 0;
+		foreach ($informacion as $key => $i) {
+			if($contador == 0){
+				$arrayTrabajador = $i;
+			}
+			if($contador == 1){
+				$arrayRemuneracion = $i;
+			}
+			if($contador == 2){
+				$arrayRemuneracionExtra = $i;
+			}
+			$contador = $contador + 1;
+		}
+
+		$data = array(
+			'titulo'										=> $titulo,
+			'arrayTrabajador'						=> $arrayTrabajador,
+			'arrayRemuneracion'					=> $arrayRemuneracion,
+			'arrayRemuneracionExtra'		=> $arrayRemuneracionExtra
+		);
+
+
+		$html = $this->load->view('pdf/contratoEstandar', $data, TRUE);
+		// Cargamos la librería
+		$this->load->library('Pdfgenerator');
+		// definamos un nombre para el archivo. No es necesario agregar la extension .pdf
+		$filename = 'contrato';
 		// generamos el PDF. Pasemos por encima de la configuración general y definamos otro tipo de papel
 		$this->pdfgenerator->generate($html, $filename, TRUE, 'Letter', 'portrait', 0);
 	}

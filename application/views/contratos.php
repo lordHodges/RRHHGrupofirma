@@ -1,14 +1,15 @@
 <div class="right_col" role="main">
     <!-- Contenedor principal -->
-    <div class="x_content">
+    <!-- <div class="x_content">
 
-    </div>
+    </div> -->
 
     <div class="row">
         <div class="x_panel">
+
             <div class="x_content">
-                <button type="button" id="abrirModalCrear" class="btn modidev-btn" data-toggle="modal" data-target=".bd-example-modal-lg" style="margin-bottom:20px;">CREAR CONTRATO</button>
-                <table id="tabla_trabajador" class="table table-striped table-bordered table-hover dataTables-trabajadores" style="margin-top:20px;">
+              <h3 class="text-center">CONTRATOS</h3><br>
+                  <table id="tabla_trabajador" class="table table-striped table-bordered table-hover dataTables-trabajadores" style="margin-top:20px;">
                     <thead>
                         <tr>
                             <th class="text-center">ID</th>
@@ -68,15 +69,16 @@
                       <form id="uploader" method="post" enctype="multipart/form-data" action="cargar_archivo">
                         <div class="col-md-6">
                           <br>
-                          <label for="fechaInicio">COMIENZO DE CONTRATO <input type="text" name="labelTrabajador" id="labelTrabajador" style="color:#2a3f54;border:none;border-color:#2a3f54"></label>
+                          <label for="fechaInicio">COMIENZO DE CONTRATO</label>
                           <input type="date" class="form-control" name="fechaInicio" required>
                         </div>
                         <div class="col-md-6">
                           <br>
                           <label for="fechaTermino">TERMINO DE CONTRATO</label>
                           <input type="date" class="form-control" name="fechaTermino" required>
-                        </div><br>
-                        <div class="col-md-12" style="margin-top:20px" >
+                        </div>
+                        <input type="text" name="labelTrabajador" id="labelTrabajador" style="color:#2a3f54;border:none;border-color:#2a3f54">
+                        <div class="col-md-12" >
                           <input lang="es" type="file" name="file" id="file">
                         </div>
                         <br>

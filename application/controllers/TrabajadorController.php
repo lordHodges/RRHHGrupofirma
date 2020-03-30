@@ -16,6 +16,15 @@ class TrabajadorController extends CI_Controller {
 
 	}
 
+	public function getTrabajadores(){
+		$resultado = $this->TrabajadorModel->getTrabajadores();
+		if ($resultado == []) {
+			echo json_encode(array("msg" => "No se encuentran trabajadores en la base de datos"));
+		} else {
+			echo json_encode($resultado);
+		}
+	}
+
 	public function addTrabajador(){
 		$rut = $this->input->post("rut");
 		$nombres = $this->input->post("nombres");

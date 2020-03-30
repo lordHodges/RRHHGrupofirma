@@ -87,6 +87,7 @@ INSERT INTO `fa_requisitominimo_cargo` (`cp_requisitominimo_cargo`, `cf_cargo`, 
 
 
 INSERT INTO `fa_requisitominimo_cargo` (`cp_requisitominimo_cargo`, `cf_cargo`, `cf_requisitominimo`) VALUES (NULL, '3', '9'), (NULL, '3', '11'), (NULL, '3', '7'), (NULL, '3', '8'),(NULL, '3', '10');
+
 INSERT INTO `fa_requisitominimo_cargo` (`cp_requisitominimo_cargo`, `cf_cargo`, `cf_requisitominimo`) VALUES (NULL, '3', '12'), (NULL, '3', '5');
 
 INSERT INTO `fa_remuneracion_extra` (`cp_remuneracionExtra`, `atr_descripcion`, `cf_remuneracion`, `cf_cargo`) VALUES (NULL, '$2.000 por cliente que se atienda por medio de la carta, o llegue a la oficina con la carta.', '3', '3'), (NULL, '$49.000 bonos', '3', '3');
@@ -95,6 +96,13 @@ INSERT INTO `fa_tarea` (`cp_tarea`, `atr_descripcion`) VALUES (NULL, 'Entregar c
 
 INSERT INTO `fa_tareas_cargo` (`cp_tareas_cargo`, `cf_cargo`, `cf_tarea`) VALUES (NULL, '3', '6'), (NULL, '3', '7'), (NULL, '3', '8'), (NULL, '3', '9'), (NULL, '3', '10'), (NULL, '3', '11');
 
+
+
+
+
+
+
+INSERT INTO `fa_items_contrato` (`cp_itemContrato`, `atr_nombre`) VALUES (NULL, 'Naturaleza de los servicios'), (NULL, 'Lugar de la prestación de servicios'), (NULL, 'Jornada de trabajo'), (NULL, 'Remuneración'), (NULL, 'Duración de la relación jurídica laboral'), (NULL, 'Cláusula de vigencia'), (NULL, 'A tener en cuenta');
 
 
 

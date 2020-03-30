@@ -91,6 +91,54 @@ class ContratosModel extends CI_Model {
 
 
 
+    function getDetalleTrabajadorContrato($id){
+      $this->db->select("t.cp_trabajador, t.atr_rut, t.atr_nombres, t.atr_apellidos, t.atr_direccion, t.atr_fechaNacimiento, ca.atr_jefeDirecto , e.atr_nombre as estado, ci.atr_nombre as ciudad, ca.atr_nombre as cargo, ca.cp_cargo as idCargo, su.atr_nombre as sucursal, n.atr_nombre as nacionalidad, ec.atr_nombre as estadocivil, a.atr_nombre as afp, p.atr_nombre as prevision, em.atr_nombre as empresa, em.atr_representante as repre_legal, em.atr_cedula_representante as repre_rut");
+      $this->db->from("fa_trabajador t");
+      $this->db->join("fa_estado e", "t.cf_estado = e.cp_estado");
+      $this->db->join("fa_ciudad ci","t.cf_ciudad = ci.cp_ciudad");
+      $this->db->join("fa_cargo ca", "t.cf_cargo = ca.cp_cargo");
+      $this->db->join("fa_sucursal su","t.cf_sucursal = su.cp_sucursal");
+      $this->db->join("fa_nacionalidad n", "t.cf_nacionalidad = n.cp_nacionalidad");
+      $this->db->join("fa_estadoCivil ec", "t.cf_estadoCivil = ec.cp_estadoCivil");
+      $this->db->join("fa_afp a", "t.cf_afp = a.cp_afp");
+      $this->db->join("fa_prevision p", "t.cf_prevision = p.cp_prevision");
+      $this->db->join("fa_empresa em ", "t.cf_empresa = em.cp_empresa");
+      $this->db->where("t.cp_trabajador", $id);
+      $trabajador =  $this->db->get()->result();
+
+      foreach ($trabajador as $key => $t) {
+        $cargo = $t->idCargo;
+      }
+
+      $this->db->select("r.cp_remuneracion, r.atr_sueldoMensual, r.atr_cotizaciones, r.atr_colacion, r.atr_movilizacion");
+      $this->db->from("fa_remuneracion r");
+      $this->db->where("r.cf_cargo", $cargo);
+      $remuneracion =  $this->db->get()->result();
+
+      foreach ($remuneracion as $key => $r) {
+        $idRemuneracion = $r->cp_remuneracion;
+      }
+
+      $this->db->select("re.atr_descripcion");
+      $this->db->from("fa_remuneracion_extra re");
+      $this->db->where("re.cf_cargo", $cargo);
+      $this->db->where("re.cf_remuneracion", $idRemuneracion);
+      $remuneracionExtra =  $this->db->get()->result();
+
+      $data = array(
+          "arrayTrabajador"           => $trabajador,
+          "arrayRemuneracion"         => $remuneracion,
+          "arrayRemuneracionExtra"     => $remuneracionExtra
+      );
+
+      // echo "<pre>";
+      // var_dump($data);
+      // echo "</pre>";
+      return $data;
+    }
+
+
+
 
 
 

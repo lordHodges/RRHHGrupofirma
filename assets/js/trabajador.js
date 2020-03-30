@@ -1,5 +1,6 @@
 /*************************** TRABAJADOR ****************************/
 var base_url = 'http://localhost/RRHH-FIRMA/index.php/';
+
 function agregarTrabajador() {
 
     var rut = $("#rut").val();

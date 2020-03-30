@@ -8,6 +8,13 @@ class TrabajadorModel extends CI_Model {
         parent::__construct();
     }
 
+    function getTrabajadores(){
+        $this->db->select("t.cp_trabajador, t.atr_nombres, t.atr_apellidos, t.cf_cargo");
+        $this->db->from("fa_trabajador t");
+        $this->db->order_by('t.atr_nombres', 'ASC');
+        return $this->db->get()->result();
+    }
+
 
     function addTrabajador($rut,$nombres,$apellidos,$direccion,$fechaNacimiento,$ciudad,$sucursal,$cargo,$empresa,$afp, $prevision, $estadoContrato, $estadoCivil, $nacionalidad){
         $data = array(

@@ -134,3 +134,77 @@ function getContratosTrabajador(idTrabajador){
 
   });
 }
+
+function seleccionTabs(nombre){
+  cargarElementosDeContrato();
+  var elemento = document.getElementById(nombre);
+  elemento.style.color = "#fafafa";
+  elemento.style.backgroundColor  = "#2a3f54";
+  if(nombre == "estandar"){
+    document.getElementById('personalizado').style = "";
+  }else{
+    document.getElementById('estandar').style = "";
+  }
+}
+
+function cargarElementosDeContrato(){
+  var url = base_url+'getTrabajadores';
+  $("#selectTrabajador1").empty();
+  $("#selectTrabajador2").empty();
+  var fila = "<option disabled selected>Seleccione una opción</option>";
+  $.getJSON(url, function (result) {
+      $.each(result, function (i, o) {
+          fila += "<option value='" + o.cp_trabajador + "'>" + o.atr_nombres +" "+o.atr_apellidos+ "</option>";
+      });
+      $("#selectTrabajador1").append(fila);
+      $("#selectTrabajador2").append(fila);
+  });
+}
+
+function cargarDatosEsenciales(idTrabajador){
+  $.ajax({
+      url: 'getDetalleTrabajadorContrato',
+      type: 'POST',
+      dataType: 'json',
+      data: {"id": idTrabajador}
+  }).then(function (msg) {
+      // información del trabajador
+      $.each(msg.arrayTrabajador, function (i, o) {
+
+        $("#rut").val(o.atr_rut);
+        $("#direccion").val(o.atr_direccion);
+        $("#cargo").val(o.cargo);
+        $("#empresa").val(o.empresa);
+        $("#jefeDirecto").val(o.atr_jefeDirecto);
+        $("#afp").val(o.afp);
+        $("#prevision").val(o.prevision);
+        $("#nacionalidad").val(o.nacionalidad);
+        $("#fechaNacimiento").val(o.atr_fechaNacimiento);
+        $("#ciudad").val(o.ciudad);
+        $("#estadoCivil").val(o.estadocivil);
+        $("#repre_legal").val(o.repre_legal);
+        $("#repre_rut").val(o.repre_rut);
+      });
+
+      // informacion de remuneración
+      var filaRemuneracion = "";
+      $.each(msg.arrayRemuneracion, function (i, o) {
+        filaRemuneracion += '<ul>';
+        filaRemuneracion += '<li><h6 style="color:#49505c;">Sueldo: $'+o.atr_sueldoMensual+'</h6></li>';
+        if(o.atr_cotizaciones == 1){
+          filaRemuneracion += '<li><h6 style="color:#49505c;">+Imposiciones</h6></li>';
+        }
+        if(o.atr_colacion > 0){
+          filaRemuneracion += '<li><h6 style="color:#49505c;">Colación: $'+o.atr_colacion+' </h6></li>';
+        }
+        if(o.atr_movilizacion > 0){
+          filaRemuneracion += '<li><h6 style="color:#49505c;">Movilización: $'+o.atr_colacion+' </h6></li>';
+        }
+        $.each(msg.arrayRemuneracionExtra, function (i, o) {
+          filaRemuneracion += '<li><h6 style="color:#49505c;">'+o.atr_descripcion+' </h6></li>';
+        });
+        filaRemuneracion += '</ul>';
+        $("#getDetalleRemuneracion").append(filaRemuneracion);
+      });
+  });
+}
