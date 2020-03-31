@@ -15,6 +15,13 @@ class MantenedoresModel extends CI_Model {
       return $this->db->get();
     }
 
+    function getCiudadPorID($id){
+      $this->db->select("c.atr_nombre");
+      $this->db->from("fa_ciudad c");
+      $this->db->where("c.cp_ciudad",$id);
+      return $this->db->get()->result();
+    }
+
     function addCiudad($nombre){
         $data = array(
             "atr_nombre" => $nombre

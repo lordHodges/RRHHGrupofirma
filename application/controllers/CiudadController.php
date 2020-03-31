@@ -42,8 +42,7 @@ class CiudadController extends CI_Controller {
 
 	$resultado = $this->MantenedoresModel->addCiudad($nombre);
 	echo json_encode(array("msg" => $resultado));
-
-}
+	}
 
 
 

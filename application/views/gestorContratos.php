@@ -23,10 +23,16 @@
               </div>
             </div>
 
-              <div class="col-md-12">
+              <div class="col-md-6 col-sm-12">
                 <br><label for="selectTrabajador">TRABAJADOR</label><br>
                 <select class="custom-select" id="selectTrabajador1">
                   <!-- se cargan los trabajadores -->
+                </select>
+              </div>
+              <div class="col-md-6 col-sm-12">
+                <br><label for="getSelectCiudad">CIUDAD EN QUE SE FIRMA CONTRATO</label><br>
+                <select class="custom-select" id="getSelectCiudad">
+                  <!-- se cargan las ciudades -->
                 </select>
               </div>
 
@@ -211,10 +217,10 @@
     <script>
       $(document).ready(function() {
         cargarElementosDeContrato();
+        getSelectCiudad();
         var elemento = document.getElementById('estandar');
         elemento.style.color = "#fafafa";
         elemento.style.backgroundColor  = "#2a3f54";
-
       });
 
 
@@ -242,7 +248,8 @@
           var idTrabajador = $("#selectTrabajador1").val();
           var fechaInicio = $("#fechaInicio").val();
           var fechaTermino = $("#terminoContrato").val();
-          var url = 'http://localhost/RRHH-FIRMA/docContratoEstandar?trabajador='+idTrabajador+'&&fechaInicio='+fechaInicio+'&&fechaTermino='+fechaTermino;;
+          var ciudadFirma = $("#getSelectCiudad").val();
+          var url = 'http://localhost/RRHH-FIRMA/docContratoEstandar?trabajador='+idTrabajador+'&&fechaInicio='+fechaInicio+'&&fechaTermino='+fechaTermino+'&&ciudadFirma='+ciudadFirma;
           window.open(url, '_blank');
       });
 

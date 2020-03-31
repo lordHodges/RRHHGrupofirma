@@ -34,6 +34,14 @@ class FuncionesModel extends CI_Model {
       return $this->db->get();
     }
 
+    function getListadoTareasViewContrato($id){
+      $this->db->select("ta.atr_descripcion");
+      $this->db->from("fa_tareas_cargo tc");
+      $this->db->join("fa_tarea ta", "ta.cp_tarea = tc.cf_tarea");
+      $this->db->where("tc.cf_cargo", $id);
+      return $this->db->get()->result();
+    }
+
     function addTarea($tarea, $cargo){
         //Obtengo la cantidad de registros con la misma descripción
         $this->db->select('count(*)');
