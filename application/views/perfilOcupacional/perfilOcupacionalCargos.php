@@ -199,7 +199,7 @@
            e.preventDefault();
            var cargo = $(this).parent().parent().children()[0];
            var idCargo = $(cargo).text()
-           var url = 'http://10.10.11.240/RRHH-FIRMA/docPerfilesOcupacionales?cargo='+idCargo;
+           var url = 'http://10.10.11.240/RRHH-FIRMA/index.php/docPerfilesOcupacionales?cargo='+idCargo;
            window.open(url, '_blank');
        });
 
