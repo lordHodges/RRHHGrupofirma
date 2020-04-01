@@ -13,15 +13,18 @@ class ContratosModel extends CI_Model {
       $this->db->from("fa_trabajador t");
       $this->db->join("fa_empresa e", "t.cf_empresa = e.cp_empresa");
       $this->db->join("fa_estado es", "t.cf_estado = es.cp_estado");
+      $this->db->order_by('t.atr_nombres', 'ASC');
       return $this->db->get();
     }
 
     function getContratosTrabajador($idTrabajador){
-      $this->db->select("c.cp_contrato, c.atr_fechaInicio, c.atr_fechaTermino, ca.atr_nombre,  ");
+      $this->db->select("c.cp_contrato, c.atr_fechaInicio, c.atr_fechaTermino, ca.atr_nombre  ");
       $this->db->from("fa_contrato c");
       $this->db->join("fa_cargo ca","ca.cp_cargo = c.cf_cargo");
       $this->db->join("fa_documento doc","c.cp_contrato = doc.cf_contrato ");
+      $this->db->order_by('c.atr_fechaInicio', 'DESC');
       $this->db->where("c.cf_trabajador", $idTrabajador);
+
       $resultado =  $this->db->get()->result();
       return $resultado;
     }

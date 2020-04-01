@@ -36,9 +36,13 @@ VALUES ('Arica'),('Camarones'),('General Lagos'),('Putre'),('Alto Hospicio'),('I
 
 INSERT INTO `fa_afp` (`cp_afp`, `atr_nombre`) VALUES (NULL, 'Capital'), (NULL, 'Cuprum'), (NULL, 'Habitat'), (NULL, 'Modelo'), (NULL, 'Planvital'), (NULL, 'Provida');
 
-INSERT INTO `fa_cargo` (`cp_cargo`, `atr_nombre`, `atr_jefeDirecto`, `atr_lugarTrabajo`, `atr_jornadaTrabajo`, `atr_diasTrabajo`) VALUES (NULL, 'Ejecutivo de licitaciones publicas y privadas', 'Solanch Tejos Carrasco', NULL, 'Horario de mañana: 9 a 13:00 horas, horario de tarde: 14:00 a 19:00 horas', 'De lunes a viernes de 09:00 hasta las 19:00 horas. Sábados de 09:00 a 14:00 horas'), (NULL, 'Recepcionista administrativa Rent A Car Maule', 'Diego Vargas, Miguel Vargas, Solanch Tejos', NULL, 'Turno de mañana: 09:00 a 13:00 horas. Turno de tarde 14:00 a 19:00 horas', NULL), (NULL, 'Cartero', 'Evelyn Gallegos, Nelvis Villalobos', NULL, '09:00 a 14:00 horas - 15:00 a 19:00 horas.', NULL);
 
-INSERT INTO `fa_remuneracion` (`cp_remuneracion`, `atr_sueldoMensual`, `atr_cotizaciones`, `atr_colacion`, `atr_movilizacion`, `cf_cargo`) VALUES (NULL, '301.000', '1', '0', '0', '1'), (NULL, '600.000', '1', '0', '0', '2'), (NULL, '301.000', '1', '0', '0', '3');
+
+INSERT INTO `fa_cargo` (`cp_cargo`, `atr_nombre`, `atr_jefeDirecto`, `atr_lugarTrabajo`, `atr_jornadaTrabajo`, `atr_diasTrabajo`) VALUES (NULL, 'Ejecutivo de licitaciones publicas y privadas', 'Solanch Tejos Carrasco', 'Los servicios se prestarán en las dos sucursales de Hostal Plaza Maule Limitada ubicadas en 1 Sir 24 y media oriente N°3183 y 1 Sur 24 oriente N°3155 de la ciudad de Talca.', 'La jornada de trabajo será de 45 horas semanales, las que serán distribuidas de lunes a viernes, de la siguiente manera: jornada de la mañana de 09:00 horas a 14:00 horas, y en la jornada de la tarde de 15:00 horas a 19:00 horas.', 'De lunes a viernes de 09:00 hasta las 19:00 horas. Sábados de 09:00 a 14:00 horas'), (NULL, 'Recepcionista administrativa Rent A Car Maule', 'Diego Vargas, Miguel Vargas, Solanch Tejos', 'Los servicios se prestarán en las dos sucursales de Hostal Plaza Maule Limitada ubicadas en 1 Sir 24 y media oriente N°3183 y 1 Sur 24 oriente N°3155 de la ciudad de Talca.\', \'La jornada de trabajo será de 45 horas semanales, las que serán distribuidas de lunes a viernes, de la siguiente manera: jornada de la mañana de 09:00 horas a 14:00 horas, y en la jornada de la tarde de 15:00 horas a 19:00 horas.', 'La jornada de trabajo será de 45 horas semanales, las que serán distribuidas de lunes a viernes, de la siguiente manera: jornada de la mañana de 09:00 horas a 14:00 horas, y en la jornada de la tarde de 15:00 horas a 19:00 horas.', 'De lunes a viernes de 09:00 hasta las 19:00 horas. Sábados de 09:00 a 14:00 horas');
+
+
+INSERT INTO `fa_remuneracion` (`cp_remuneracion`, `atr_sueldoMensual`, `atr_cotizaciones`, `atr_colacion`, `atr_movilizacion`, `atr_asistencia`, `cf_cargo`) VALUES (NULL, '301.000', '1', '25.000', '0', '15.000', '1'), (NULL, '600.000', '1', '23.000', '0', '67.000', '2');
+
 
 INSERT INTO `fa_competencia` (`cp_competencia`, `atr_descripcion`) VALUES (NULL, 'Capacidad para aprender a manejar sistemas informáticos'), (NULL, 'Organizada y metódica'), (NULL, 'Capadidad para trabajar en equipo'), (NULL, 'Vocación de servicio, compromiso con el trabajo y la institución.'), (NULL, 'Habilidades en el lenguaje oral y escrito, tanto en fluidez como en claridad.'), (NULL, 'Buen racionamiento interpersonal.'), (NULL, 'Autodidacta y proactiva');
 
@@ -83,19 +87,19 @@ INSERT INTO `fa_trabajador` (`cp_trabajador`, `atr_rut`, `atr_nombres`, `atr_ape
 INSERT INTO `fa_requisitominimo` (`cp_requisitominimo`, `atr_descripcion`) VALUES (NULL, 'Manejo de GPS; aplicación de internet.'), (NULL, 'Manejo en direcciones según comuna.'), (NULL, 'Estar domiciliado al menos por mas de 1 año en la localidad del puesto de trabajo a postular.'), (NULL, 'Nociones básicas de operaciones(suma, resta, multiplicación y división).'), (NULL, 'Manejo de aplicación whatsapp, tal como enviar dirección, fotografías, compartir información solicitada.'), (NULL, 'Poseer un teléfono celular con internet y aplicación whatsapp.');
 
 
-INSERT INTO `fa_requisitominimo_cargo` (`cp_requisitominimo_cargo`, `cf_cargo`, `cf_requisitominimo`) VALUES (NULL, '3', '1'), (NULL, '3', '6')
-
-
-INSERT INTO `fa_requisitominimo_cargo` (`cp_requisitominimo_cargo`, `cf_cargo`, `cf_requisitominimo`) VALUES (NULL, '3', '9'), (NULL, '3', '11'), (NULL, '3', '7'), (NULL, '3', '8'),(NULL, '3', '10');
-
-INSERT INTO `fa_requisitominimo_cargo` (`cp_requisitominimo_cargo`, `cf_cargo`, `cf_requisitominimo`) VALUES (NULL, '3', '12'), (NULL, '3', '5');
-
-INSERT INTO `fa_remuneracion_extra` (`cp_remuneracionExtra`, `atr_descripcion`, `cf_remuneracion`, `cf_cargo`) VALUES (NULL, '$2.000 por cliente que se atienda por medio de la carta, o llegue a la oficina con la carta.', '3', '3'), (NULL, '$49.000 bonos', '3', '3');
-
-INSERT INTO `fa_tarea` (`cp_tarea`, `atr_descripcion`) VALUES (NULL, 'Entregar cartas privadas y públicas en los domicilios señalados en ellas.'), (NULL, 'Trabajar con fluidez y de forma cuidadosa (dentro de la oficina).'), (NULL, 'Armar rutas de domicilios para la entrega posterior de cartas.'), (NULL, 'Seguir programas, señalados por su superior jerárquico.'), (NULL, 'Doblar y sellar cartas para posteriormente entregarlas.'), (NULL, 'No entregar información señalada en las cartas a personas distintas del destinatario.');
-
-INSERT INTO `fa_tareas_cargo` (`cp_tareas_cargo`, `cf_cargo`, `cf_tarea`) VALUES (NULL, '3', '6'), (NULL, '3', '7'), (NULL, '3', '8'), (NULL, '3', '9'), (NULL, '3', '10'), (NULL, '3', '11');
-
+-- INSERT INTO `fa_requisitominimo_cargo` (`cp_requisitominimo_cargo`, `cf_cargo`, `cf_requisitominimo`) VALUES (NULL, '2', '1'), (NULL, '2', '6');
+--
+--
+-- INSERT INTO `fa_requisitominimo_cargo` (`cp_requisitominimo_cargo`, `cf_cargo`, `cf_requisitominimo`) VALUES (NULL, '2', '9'), (NULL, '2', '11'), (NULL, '2', '7'), (NULL, '2', '8'),(NULL, '2', '10');
+--
+-- INSERT INTO `fa_requisitominimo_cargo` (`cp_requisitominimo_cargo`, `cf_cargo`, `cf_requisitominimo`) VALUES (NULL, '2', '12'), (NULL, '2', '5');
+--
+-- INSERT INTO `fa_remuneracion_extra` (`cp_remuneracionExtra`, `atr_descripcion`, `cf_remuneracion`, `cf_cargo`) VALUES (NULL, '$2.000 por cliente que se atienda por medio de la carta, o llegue a la oficina con la carta.', '3', '2'), (NULL, '$49.000 bonos', '3', '2');
+--
+-- INSERT INTO `fa_tarea` (`cp_tarea`, `atr_descripcion`) VALUES (NULL, 'Entregar cartas privadas y públicas en los domicilios señalados en ellas.'), (NULL, 'Trabajar con fluidez y de forma cuidadosa (dentro de la oficina).'), (NULL, 'Armar rutas de domicilios para la entrega posterior de cartas.'), (NULL, 'Seguir programas, señalados por su superior jerárquico.'), (NULL, 'Doblar y sellar cartas para posteriormente entregarlas.'), (NULL, 'No entregar información señalada en las cartas a personas distintas del destinatario.');
+--
+-- INSERT INTO `fa_tareas_cargo` (`cp_tareas_cargo`, `cf_cargo`, `cf_tarea`) VALUES (NULL, '3', '6'), (NULL, '3', '7'), (NULL, '3', '8'), (NULL, '3', '9'), (NULL, '3', '10'), (NULL, '3', '11');
+--
 
 
 

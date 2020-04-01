@@ -63,7 +63,7 @@ create table fa_cargo(
     cp_cargo int auto_increment,
     atr_nombre varchar(100) not null unique,
     atr_jefeDirecto varchar(200),
-    atr_lugarTrabajo varchar(5000 not null),
+    atr_lugarTrabajo varchar(5000) not null,
     atr_jornadaTrabajo varchar(5000) not null,
     atr_diasTrabajo varchar(2000),
     constraint pk_cargo primary key(cp_cargo)

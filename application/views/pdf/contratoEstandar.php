@@ -10,6 +10,20 @@
       .puesto-trabajo{white-space:nowrap;}
       ul {  list-style-type: disc; }
       ul li{ margin-top:10px; }
+
+      .padre{
+         border: 1px;
+         display: inline-block;
+         width: auto;
+         margin: auto;
+         text-align: left;
+      }
+
+      .caja1 { float:left;margin-left:5px; }
+      .caja2 { float:right;;margin-right: :5px;}
+
+
+
     </style>
   </head>
   <body>
@@ -202,6 +216,41 @@
 
     <p style="text-align:justify; line-height:25px;">El presente contrato se firma en 2 ejemplares, declarando el trabajador haber recibido en este acto un ejemplar de dicho instrumento,
     que es el fiel reflejo de la relación laboral convenida entre las partes.</p>
+
+
+    <br><br><br><br>
+
+    <!-- Firma trabajador -->
+    <!-- <div class="linea"></div> -->
+
+
+
+    <!-- Firma Trabajador -->
+     <div class="caja1">
+        <p>__________________________________</p>
+        <?php foreach ($arrayTrabajador as $key => $t){ ?>
+          <div style="display:inline-block">
+
+            <h5 style="margin-top:-12px;"><strong> <?php echo $t->atr_nombres." ".$t->atr_apellidos ?> </strong></h5>
+        		<h5 style="margin-top:-12px;">R.U.T N° <?php echo $t->atr_rut ?></h5>
+            <h5 style="margin-top:-12px;">TRABAJADOR.</h5>
+        	</div>
+        <?php } ?>
+     </div>
+
+     <!-- Firma empleador -->
+     <div class="caja2">
+        <p>__________________________________</p>
+        <?php foreach ($arrayTrabajador as $key => $t){ ?>
+          <div style="display:inline-block">
+
+            <h5 style="margin-top:-12px;"><strong> <?php echo $t->empresa ?> </strong></h5>
+        		<h5 style="margin-top:-12px;">R.U.T N° <?php echo $t->runEmpresa?></h5>
+            <h5 style="margin-top:-12px;">EMPLEADOR.</h5>
+        	</div>
+        <?php } ?>
+     </div>
+
 
 
 
