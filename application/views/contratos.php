@@ -161,6 +161,7 @@
                    toastr.error("Error al guardar");
                  }else{
                    $('#modalCargarArchivo').modal('hide');
+                   alert(data);
                    toastr.success('Documento guardado')
                  }
                }
