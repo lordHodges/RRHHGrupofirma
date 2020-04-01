@@ -68,7 +68,7 @@ INSERT INTO `fa_responsabilidad` (`cp_responsabilidad`, `atr_descripcion`, `cf_c
 
 INSERT INTO `fa_empresa` (`cp_empresa`, `atr_nombre`, `atr_run`, `atr_representante`, `atr_cedula_representante`, `atr_domicilio`, `cf_ciudad`) VALUES (NULL, 'FIRMA ABOGADOS CHILE LIMITADA', '76.438.914-K', 'MIGUEL EDUARDO VARGAS GARRIDO', '17.886.328-2', '1 poniente 4 y 5 norte N° 1588', '177'), (NULL, 'MIGUEL VARGAS ESPINOSA E HIJOS LIMITADA', '76.849.793-1', 'DIEGO ANTONIO VARGAS GARRIDO', '18.891.594-9', '1 sur 24 1⁄2 oriente N° 3183', '177');
 
-INSERT INTO `fa_estadocivil` (`cp_estadoCivil`, `atr_nombre`) VALUES (NULL, 'Soltero/a.'), (NULL, 'Comprometido/a'), (NULL, 'Casado/a.'), (NULL, 'Separado/a.'), (NULL, 'Divorciado/a.'), (NULL, 'Viudo/a.'), (NULL, 'Unión libre o unión de hecho.');
+INSERT INTO `fa_estadoCivil` (`cp_estadoCivil`, `atr_nombre`) VALUES (NULL, 'Soltero/a.'), (NULL, 'Comprometido/a'), (NULL, 'Casado/a.'), (NULL, 'Separado/a.'), (NULL, 'Divorciado/a.'), (NULL, 'Viudo/a.'), (NULL, 'Unión libre o unión de hecho.');
 
 INSERT INTO `fa_nacionalidad` (`cp_nacionalidad`, `atr_nombre`) VALUES (NULL, 'Chilena'), (NULL, 'Venezolana');
 
