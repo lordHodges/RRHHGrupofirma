@@ -63,7 +63,7 @@ class ContratosController extends CI_Controller {
 
 	public function cargar_archivo(){
 		 // $config['upload_path']="./uploads/contratos/";
-		 $config['upload_path']="./uploads";
+		 $config['upload_path']="http://10.10.11.240/RRHH-FIRMA/uploads/contratos/";
 		 $config['allowed_types']='pdf';
 		 $config['encrypt_name'] = TRUE;
 
