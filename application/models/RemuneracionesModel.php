@@ -9,7 +9,7 @@ class RemuneracionesModel extends CI_Model {
     }
 
     function getDetalleRemuneracion($idCargo){
-        $this->db->select("r.cp_remuneracion,r.atr_sueldoMensual, r.atr_cotizaciones, r.atr_colacion, r.atr_movilizacion, c.cp_cargo, c.atr_nombre ");
+        $this->db->select("r.cp_remuneracion,r.atr_sueldoMensual, r.atr_cotizaciones, r.atr_colacion, r.atr_movilizacion, r.atr_asistencia, c.cp_cargo, c.atr_nombre ");
         $this->db->from("fa_remuneracion r");
         $this->db->join("fa_cargo c", "r.cf_cargo = c.cp_cargo");
         $this->db->where("r.cf_cargo", $idCargo);
@@ -42,7 +42,7 @@ class RemuneracionesModel extends CI_Model {
     }
 
     function getDetalleRemuneracionPDF($idCargo){
-        $this->db->select("r.atr_sueldoMensual, r.atr_cotizaciones, r.atr_colacion, r.atr_movilizacion");
+        $this->db->select("r.atr_sueldoMensual, r.atr_cotizaciones, r.atr_colacion, r.atr_movilizacion, r.atr_asistencia");
         $this->db->from("fa_remuneracion r");
         $this->db->where("r.cf_cargo",$idCargo);
         return $this->db->get()->result();
@@ -56,12 +56,13 @@ class RemuneracionesModel extends CI_Model {
     }
 
 
-    function updateRemuneracion($idCargo,$sueldoMensual,$colacion,$movilizacion,$imposiciones){
+    function updateRemuneracion($idCargo,$sueldoMensual,$colacion,$movilizacion,$imposiciones, $asistencia){
       $data = array(
           "atr_sueldoMensual" => $sueldoMensual,
           "atr_colacion" => $colacion,
           "atr_movilizacion" => $movilizacion,
-          "atr_cotizaciones" => $imposiciones
+          "atr_cotizaciones" => $imposiciones,
+          "atr_asistencia"   => $asistencia
       );
 
       $this->db->where('r.cf_cargo', $idCargo);

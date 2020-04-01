@@ -180,7 +180,7 @@ function cargarDatosEsenciales(idTrabajador){
         $("#prevision").val(o.prevision);
         $("#nacionalidad").val(o.nacionalidad);
         $("#fechaNacimiento").val(o.atr_fechaNacimiento);
-        $("#ciudad").val(o.ciudad);
+        $("#ciudad").val(o.ciudadEmpresa);
         $("#estadoCivil").val(o.estadocivil);
         $("#repre_legal").val(o.repre_legal);
         $("#repre_rut").val(o.repre_rut);

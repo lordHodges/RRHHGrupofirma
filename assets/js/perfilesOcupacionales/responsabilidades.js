@@ -94,14 +94,14 @@ function getDetalleCargo(id){
           fila += '<div id="responsabilidadesActuales"></div>'
           $.each(response.msg.array_responsabilidades, function (i, r) {
 
-            fila += '<div class="col-md-12"><br><label id="responsabilidadActual_'+contadorResponsabilidades+'">'+r.atr_descripcion+'</label><input type="text" id="responsabilidadNuevo_'+contadorResponsabilidades+'" placeholder="Escriba aquí para modificar" class="form-control custom-input-sm" id="responsabilidadNuevo_'+r.cp_responsabilidad+'"></div>';
+            fila += '<div class="col-md-12"><br><label id="responsabilidadActual_'+contadorResponsabilidades+'">'+r.atr_descripcion+'</label><input type="text" id="responsabilidadNuevo_'+contadorResponsabilidades+'"  class="form-control custom-input-sm" id="responsabilidadNuevo_'+r.cp_responsabilidad+'"></div>';
             contadorResponsabilidades = contadorResponsabilidades+1;
             constanteResponsabilidades = constanteResponsabilidades +1;
           });
 
           fila +='<div class="col-md-12"><br><label for="jefeDirectoNuevo">JEFE DIRECTO:  &nbsp;</label> <label id="jefeDirectoActual">'+o.atr_jefeDirecto+'</label> <input type="text" style="color:#848484" class="form-control custom-input-sm" id="jefeDirectoNuevo"></div>';
-          fila +='<div class="col-md-12"><br><label for="lugarTrabajoNuevo">LUGAR DE TRABAJO:  &nbsp;</label> <label id="lugarTrabajoActual">'+o.atr_lugarTrabajo+'</label> <input type="text" style="color:#848484" class="form-control custom-input-sm" id="lugarTrabajoNuevo"></div>';
-          fila +='<div class="col-md-12"><br><label for="jornadaTrabajoNuevo">JORNADA DE TRABAJO:  &nbsp;</label> <label id="jornadaTrabajoActual">'+o.atr_jornadaTrabajo+'</label> <input type="text" style="color:#848484" class="form-control custom-input-sm" id="jornadaTrabajoNuevo"></div>';
+          fila +='<div class="col-md-12"><br><label for="lugarTrabajoNuevo">LUGAR DE PRESTACIÓN DE SERVICIOS:  &nbsp;</label> <label id="lugarTrabajoActual">'+o.atr_lugarTrabajo+'</label> <textarea type="text" placeholder="Es importante que se detalle este dato porque aparecerá en el contrato textualmente." style="color:#848484" class="form-control" rows="3" id="lugarTrabajoNuevo"></textarea></div>';
+          fila +='<div class="col-md-12"><br><label for="jornadaTrabajoNuevo">JORNADA DE TRABAJO:  &nbsp;</label> <label id="jornadaTrabajoActual">'+o.atr_jornadaTrabajo+'</label> <textarea type="text" placeholder="Es importante que se detalle este dato porque aparecerá en el contrato textualmente." style="color:#848484" class="form-control" rows="3" id="jornadaTrabajoNuevo"></textarea></div>';
           fila +='<div class="col-md-12"><br><label for="diasTrabajoNuevo">DÍAS DE TRABAJO:  &nbsp;</label> <label id="diasTrabajoActual">'+o.atr_diasTrabajo+'</label> <input type="text" style="color:#848484" class="form-control custom-input-sm" id="diasTrabajoNuevo"></div>';
 
           $("#modalDetalleCargo").append(fila);

@@ -126,11 +126,6 @@ class  PDFController extends CI_Controller {
 
 		$informacion = $this->ContratosModel->getDetalleTrabajadorContrato($trabajador);
 
-		// Obtener nombre de la ciudad
-		$ciudadFirma = $this->MantenedoresModel->getCiudadPorID($ciudadFirma);
-		foreach ($ciudadFirma as $key => $value) {
-			$ciudadFirma = $value->atr_nombre;
-		}
 
 		$contador = 0;
 		foreach ($informacion as $key => $i) {
@@ -175,6 +170,7 @@ class  PDFController extends CI_Controller {
 			$sueldo = $r->atr_sueldoMensual;
 			$colacion = $r->atr_colacion;
 			$movilizacion = $r->atr_movilizacion;
+			$asistencia = $r->atr_asistencia;
 		}
 
 
@@ -186,6 +182,9 @@ class  PDFController extends CI_Controller {
 
 		$movilizacion = str_replace ( "." , "" , $movilizacion  );
 		$letrasMovilizacion = strtolower($this->convertir($movilizacion));
+
+		$asistencia = str_replace ( "." , "" , $asistencia  );
+		$letrasAsistencia = strtolower($this->convertir($asistencia));
 
 
 
@@ -202,7 +201,8 @@ class  PDFController extends CI_Controller {
 			'arrayFunciones'						=> $funciones,
 			'letrasSueldo'							=> $letras,
 			'letrasColacion'						=> $letrasColacion,
-			'letrasMovilizacion'				=> $letrasMovilizacion
+			'letrasMovilizacion'				=> $letrasMovilizacion,
+			'letrasAsistencia'					=> $letrasAsistencia
 		);
 
 

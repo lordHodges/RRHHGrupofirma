@@ -78,6 +78,7 @@ class MantenedoresModel extends CI_Model {
             "atr_cotizaciones" => "0",
             "atr_colacion" => "0",
             "atr_movilizacion" => "0",
+            "atr_asistencia" => "0",
             "cf_cargo" => $ultimoCargo
         );
         $this->db->insert("fa_remuneracion", $dataRemuneracion);

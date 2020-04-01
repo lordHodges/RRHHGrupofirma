@@ -30,6 +30,8 @@ function getDetalleRemuneracion(id){
 
         fila +='<div class="col-md-12"><br><label for="nombre">Movilización:&nbsp; $</label><label id="movilizacionActual">'+o.atr_movilizacion+'</label><input type="text" class="form-control custom-input-sm" onkeyup="this.value=soloNumeros(this.value); formatoMiles(this);" id="movilizacionNuevo"></div>';
 
+        fila +='<div class="col-md-12"><br><label for="nombre">Asistencia:&nbsp; $</label><label id="asistenciaActual">'+o.atr_asistencia+'</label><input type="text" class="form-control custom-input-sm" onkeyup="this.value=soloNumeros(this.value); formatoMiles(this);" id="asistenciaNuevo"></div>';
+
 
         fila +='<div class="col-md-10"><br><label > OTRAS REMUNERACIONES &nbsp</label><button type="button" class="btn btn-success btn-sm center"  id="btnAgregarInputRemuneracionesExtra" ><i class="glyphicon glyphicon-plus"></i></button></div>';
         fila +='<div id="contenedorDeRemuneraciones" class="col-md-12"></div>';
@@ -79,8 +81,9 @@ function updateRemuneracion(){
   var colacion = $("#colacionNuevo").val();
   var movilizacion = $("#movilizacionNuevo").val();
   var imposiciones = $("#getSelectImposiciones").val();
+  var asistencia = $("#asistenciaNuevo").val();
 
-  if( sueldoMensual == "" && colacion == "" && movilizacion == "" && imposiciones == null){
+  if( sueldoMensual == "" && colacion == "" && movilizacion == "" && imposiciones == null && asistencia == ""){
     // SI ENTRA AQUI ES PORQUE NO SE MODIFICO NINGUN DATO, POR ENDE NO SE EJECUTA NADA MAS.
   }else{
     // VALIDACIÓN DE CAMPOS DE TEXTO VACIOS. Si los campos son vacios se mantiene el valor original en la base de datos.
@@ -93,6 +96,9 @@ function updateRemuneracion(){
     if( movilizacion == ""){
       movilizacion = $("#movilizacionActual").text();
     }
+    if( asistencia == ""){
+      asistencia = $("#asistenciaActual").text();
+    }
     // ACTUALIZACION DE CARGOS
     $.ajax({
         url: 'updateRemuneracion',
@@ -102,9 +108,11 @@ function updateRemuneracion(){
                 "sueldoMensual": sueldoMensual,
                 "colacion": colacion,
                 "movilizacion":movilizacion,
-                "imposiciones":imposiciones}
+                "imposiciones":imposiciones,
+                "asistencia":asistencia,}
       }).then(function (msg) {
-        if(msg.msg == "ok"){
+        // console.log(msg);
+        if(msg == "ok"){
           toastr.success('Remuneración actualizada');
         }else{
           toastr.error('Ha ocurrido un error, favor contáctese con el soporte.');

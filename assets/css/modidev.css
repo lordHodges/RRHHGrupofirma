@@ -17,6 +17,12 @@
     border-color: #26B99A;
 }
 
+.modal textarea{
+    background: #2a3f54;
+    color: #fff;
+    border-color: #26B99A;
+}
+
 
 .modal label{
     color: #fff;
@@ -117,6 +123,6 @@ input disabled{
 .botonLargo{
     width:100%;
     margin-top:20px;
-    background-color:#2a3f54; 
+    background-color:#2a3f54;
     border:none
 }

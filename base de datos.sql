@@ -62,10 +62,10 @@ create table fa_sucursal(
 create table fa_cargo(
     cp_cargo int auto_increment,
     atr_nombre varchar(100) not null unique,
-    atr_jefeDirecto varchar(200) not null,
-    atr_lugarTrabajo varchar(200),
-    atr_jornadaTrabajo varchar(2000),
-    atr_diasTrabajo varchar(200),
+    atr_jefeDirecto varchar(200),
+    atr_lugarTrabajo varchar(5000 not null),
+    atr_jornadaTrabajo varchar(5000) not null,
+    atr_diasTrabajo varchar(2000),
     constraint pk_cargo primary key(cp_cargo)
 );
 
@@ -75,6 +75,7 @@ create table fa_remuneracion(
     atr_cotizaciones varchar(100) not null,
     atr_colacion varchar(100) not null,
     atr_movilizacion varchar(100) not null,
+    atr_asistencia varchar(100) not null,
     cf_cargo int,
     constraint pk_remuneracion primary key(cp_remuneracion),
     constraint fk_remuneracion_cargo foreign key(cf_cargo) references fa_cargo(cp_cargo)

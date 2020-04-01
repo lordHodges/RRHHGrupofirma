@@ -94,7 +94,7 @@ class ContratosModel extends CI_Model {
     function getDetalleTrabajadorContrato($id){
       $this->db->select("
       t.cp_trabajador, t.atr_rut, t.atr_nombres, t.atr_apellidos, t.atr_direccion, t.atr_fechaNacimiento,
-      ca.atr_jefeDirecto , ca.atr_nombre as cargo, ca.cp_cargo as idCargo, ca.atr_jornadaTrabajo,
+      ca.atr_jefeDirecto , ca.atr_nombre as cargo, ca.cp_cargo as idCargo, ca.atr_jornadaTrabajo, ca.atr_lugarTrabajo,
       e.atr_nombre as estado,
       ci.atr_nombre as ciudadEmpresa,
       su.atr_nombre as sucursal,
@@ -121,7 +121,7 @@ class ContratosModel extends CI_Model {
         $cargo = $t->idCargo;
       }
 
-      $this->db->select("r.cp_remuneracion, r.atr_sueldoMensual, r.atr_cotizaciones, r.atr_colacion, r.atr_movilizacion");
+      $this->db->select("r.cp_remuneracion, r.atr_sueldoMensual, r.atr_cotizaciones, r.atr_colacion, r.atr_movilizacion, r.atr_asistencia");
       $this->db->from("fa_remuneracion r");
       $this->db->where("r.cf_cargo", $cargo);
       $remuneracion =  $this->db->get()->result();

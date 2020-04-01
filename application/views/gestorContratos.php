@@ -248,9 +248,14 @@
           var idTrabajador = $("#selectTrabajador1").val();
           var fechaInicio = $("#fechaInicio").val();
           var fechaTermino = $("#terminoContrato").val();
-          var ciudadFirma = $("#getSelectCiudad").val();
-          var url = 'http://localhost/RRHH-FIRMA/docContratoEstandar?trabajador='+idTrabajador+'&&fechaInicio='+fechaInicio+'&&fechaTermino='+fechaTermino+'&&ciudadFirma='+ciudadFirma;
-          window.open(url, '_blank');
+          var ciudadFirma = $("#ciudad").val();
+          if(fechaInicio == "" || fechaInicio == null || fechaTermino == "" || fechaTermino == null){
+            toastr.error("Debe llenar los campos de fecha");
+          }else{
+            var url = 'http://localhost/RRHH-FIRMA/docContratoEstandar?trabajador='+idTrabajador+'&&fechaInicio='+fechaInicio+'&&fechaTermino='+fechaTermino+'&&ciudadFirma='+ciudadFirma;
+            window.open(url, '_blank');
+          }
+
       });
 
     </script>
