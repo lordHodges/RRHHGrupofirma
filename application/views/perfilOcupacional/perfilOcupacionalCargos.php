@@ -132,7 +132,7 @@
                     }
                 },
                 "ajax": {
-                    url: "http://10.10.11.240/RRHH-FIRMA/getlistadecargos",
+                    url: "http://10.10.11.240/RRHH-FIRMA/index.php/getlistadecargos",
                     type: 'GET'
                 },
                 "columnDefs": [{
