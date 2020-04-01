@@ -43,6 +43,10 @@
       <ul>
         <li><p style="display:inline;">$<?php  echo($r->atr_sueldoMensual)?> ingreso mínimo mensual.</p></li>
 
+        <?php if( $r->atr_cotizaciones == 1){ ?>
+          <li><p style="display:inline;">+ Imposiciones.</p></li>
+        <?php } ?>
+
         <?php if( !$r->atr_movilizacion == 0){ ?>
           <li><p style="display:inline;">$<?php  echo($r->atr_movilizacion)?> por bono de movilización.</p></li>
         <?php } ?>
@@ -51,8 +55,8 @@
           <li><p style="display:inline;">$<?php  echo($r->atr_colacion)?> por bono de colación.</p></li>
         <?php } ?>
 
-        <?php if( $r->atr_cotizaciones == 1){ ?>
-          <li><p style="display:inline;">Imposiciones.</p></li>
+        <?php if( !$r->atr_asistencia == 0){ ?>
+          <li><p style="display:inline;">$<?php  echo($r->atr_asistencia)?> por bono de asistencia.</p></li>
         <?php } ?>
 
     <?php } ?>

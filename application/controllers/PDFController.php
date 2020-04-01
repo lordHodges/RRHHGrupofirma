@@ -217,6 +217,126 @@ class  PDFController extends CI_Controller {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+	function view_contratoPersonalizado(){
+		$trabajador = $this->input->get("trabajador");
+		$ciudadFirma = $this->input->get("ciudadFirma");
+		$fechaInicioContrato = $this->input->get("fechaInicio");
+		$fechaTerminoContrato = $this->input->get("fechaTermino");
+		$items = $this->input->get("items");
+		$titulo = "CONTRATO DE TRABAJO A PLAZO";
+
+
+
+		$informacion = $this->ContratosModel->getDetalleTrabajadorContrato($trabajador);
+
+
+		$contador = 0;
+		foreach ($informacion as $key => $i) {
+			if($contador == 0){
+				$arrayTrabajador = $i;
+			}
+			if($contador == 1){
+				$arrayRemuneracion = $i;
+			}
+			if($contador == 2){
+				$arrayRemuneracionExtra = $i;
+			}
+			$contador = $contador + 1;
+		}
+
+		// Tranformación de fecha actual
+		$fechaDeHoy = date("d-m-Y");
+		$fechaDeHoy = $this->transformarFecha( $fechaDeHoy );
+
+		// Tranformación de fecha de inicio del contrato
+		$fechaInicioContrato = explode("-", $fechaInicioContrato);
+		$fechaInicioContrato = $this->transformarFecha( $fechaInicioContrato[2]."-".$fechaInicioContrato[1]."-".$fechaInicioContrato[0] );
+
+		// Tranformación de fecha de termino del contrato
+		$fechaTerminoContrato = explode("-", $fechaTerminoContrato);
+		$fechaTerminoContrato = $this->transformarFecha( $fechaTerminoContrato[2]."-".$fechaTerminoContrato[1]."-".$fechaTerminoContrato[0] );
+
+
+
+		// Tranformación de fecha de nacimiento
+		foreach ($arrayTrabajador as $key => $t) {
+			$idCargo = $t->idCargo;
+			$fecha = $this->transformarFecha( $t->atr_fechaNacimiento );
+			$t->atr_fechaNacimiento = $fecha;
+			$t->prevision = strtoupper( $t->prevision );
+			$t->cargo = strtoupper( $t->cargo );
+		}
+		$funciones = $this->FuncionesModel->getListadoTareasViewContrato($idCargo);
+
+
+		foreach ($arrayRemuneracion as $key => $r) {
+			$sueldo = $r->atr_sueldoMensual;
+			$colacion = $r->atr_colacion;
+			$movilizacion = $r->atr_movilizacion;
+			$asistencia = $r->atr_asistencia;
+		}
+
+
+		$sueldo = str_replace ( "." , "" , $sueldo  );
+		$letras = strtolower($this->convertir($sueldo));
+
+		$colacion = str_replace ( "." , "" , $colacion  );
+		$letrasColacion = strtolower($this->convertir($colacion));
+
+		$movilizacion = str_replace ( "." , "" , $movilizacion  );
+		$letrasMovilizacion = strtolower($this->convertir($movilizacion));
+
+		$asistencia = str_replace ( "." , "" , $asistencia  );
+		$letrasAsistencia = strtolower($this->convertir($asistencia));
+
+
+
+
+		$data = array(
+			'titulo'										=> $titulo,
+			'items'											=> $items,
+			'ciudadFirma'								=> $ciudadFirma,
+			'fechaDeHoy'								=> $fechaDeHoy,
+			'fechaInicioContrato'				=> $fechaInicioContrato,
+			'fechaTerminoContrato'			=> $fechaTerminoContrato,
+			'arrayTrabajador'						=> $arrayTrabajador,
+			'arrayRemuneracion'					=> $arrayRemuneracion,
+			'arrayRemuneracionExtra'		=> $arrayRemuneracionExtra,
+			'arrayFunciones'						=> $funciones,
+			'letrasSueldo'							=> $letras,
+			'letrasColacion'						=> $letrasColacion,
+			'letrasMovilizacion'				=> $letrasMovilizacion,
+			'letrasAsistencia'					=> $letrasAsistencia
+		);
+
+
+		$html = $this->load->view('pdf/contratoPersonalizado', $data, TRUE);
+		// Cargamos la librería
+		$this->load->library('Pdfgenerator');
+		// definamos un nombre para el archivo. No es necesario agregar la extension .pdf
+		$filename = 'contrato';
+		// generamos el PDF. Pasemos por encima de la configuración general y definamos otro tipo de papel
+		$this->pdfgenerator->generate($html, $filename, TRUE, 'Letter', 'portrait', 0);
+	}
+
+
+
+
+
+
+
 	function transformarFecha( $fecha ){
 		// Convertir fecha guardada en bd al formato 14 enero 2001
 		$partesFecha = explode("-", $fecha);

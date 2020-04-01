@@ -38,12 +38,14 @@ $route['getNacionalidades'] = 'TrabajadorController/getNacionalidades';
   $route['getContratosTrabajador'] = 'ContratosController/getContratosTrabajador';
   $route['cargar_archivo'] = 'ContratosController/cargar_archivo';
   $route['descargarContrato'] = 'ContratosController/descargarContrato';
+  $route['getItemsContrato'] = 'ContratosController/getItemsContrato';
 
 
 //DOCUMENTOS
 $route['perfilOcupacionalVista'] = 'PDFController/cargarPerfilesOcupacionales';
 $route['docPerfilesOcupacionales'] = 'PDFController/view_perfilesOcupacionales';
 $route['docContratoEstandar'] = 'PDFController/view_contratoEstandar';
+$route['docContratoPersonalizado'] = 'PDFController/view_contratoPersonalizado';
 
 
 

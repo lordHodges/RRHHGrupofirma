@@ -14,6 +14,14 @@
         </ul>
         <div class="tab-content" id="myTabContent">
 
+
+
+
+
+
+
+
+
           <!-- TAB : FORMATO ESTÁNDAR -->
           <div class="tab-pane fade show active" id="estandarContent" role="tabpanel" aria-labelledby="estandar">
             <br>
@@ -24,7 +32,7 @@
             </div>
 
               <div class="col-md-6 col-sm-12">
-                <br><label for="selectTrabajador">TRABAJADOR</label><br>
+                <br><label for="selectTrabajador1">TRABAJADOR</label><br>
                 <select class="custom-select" id="selectTrabajador1">
                   <!-- se cargan los trabajadores -->
                 </select>
@@ -166,17 +174,162 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
           <!-- TAB : FORMATO PERSONALIZADO -->
           <div class="tab-pane fade" id="estandarPersonalizado" role="tabpanel" aria-labelledby="personalizado">
 
             <br>
-
-            <div class="col-md-12">
-              <label for="selectTrabajador">TRABAJADOR</label><br>
-              <select class="custom-select" id="selectTrabajador2">
-                <!-- se cargan los trabajadores -->
-              </select>
+            <div id="informacionTrabajador2">
+              <div class="col-md-12">
+                <h4 style="color:#2a3f54"><b>I ) INFORMACIÓN DE TRABAJADOR</b></h4>
+              </div>
             </div>
+
+              <div class="col-md-6 col-sm-12">
+                <br><label for="selectTrabajador2">TRABAJADOR</label><br>
+                <select class="custom-select" id="selectTrabajador2">
+                  <!-- se cargan los trabajadores -->
+                </select>
+              </div>
+              <div class="col-md-6 col-sm-12">
+                <br><label for="getSelectCiudad">CIUDAD EN QUE SE FIRMA CONTRATO</label><br>
+                <select class="custom-select" id="getSelectCiudad2">
+                  <!-- se cargan las ciudades -->
+                </select>
+              </div>
+
+              <div id="datosTrabajador2" style="display:none">
+                <div class="col-md-6 col-sm-12">
+                  <br><label for="rut">RUT</label>
+                  <input type="text" class="form-control" id="rut2" disabled>
+                </div>
+                <div class="col-md-6 col-sm-12">
+                  <br><label for="direccion">Direccion</label>
+                  <input type="text" class="form-control" id="direccion2" disabled>
+                </div>
+                <div class="col-md-6 col-sm-12">
+                  <br><label for="afp">AFP</label>
+                  <input type="text" class="form-control" id="afp2" disabled>
+                </div>
+                <div class="col-md-6 col-sm-12">
+                  <br><label for="ciudad">Ciudad</label>
+                  <input type="text" class="form-control" id="ciudad2" disabled>
+                </div>
+                <div class="col-md-6 col-sm-12">
+                  <br><label for="prevision">Previsión</label>
+                  <input type="text" class="form-control" id="prevision2" disabled>
+                </div>
+                <div class="col-md-6 col-sm-12">
+                  <br><label for="nacionalidad">Nacionalidad</label>
+                  <input type="text" class="form-control" id="nacionalidad2" disabled>
+                </div>
+                <div class="col-md-6 col-sm-12">
+                  <br><label for="fechaNacimiento">Fecha de nacimiento</label>
+                  <input type="text" class="form-control" id="fechaNacimiento2" disabled>
+                </div>
+                <div class="col-md-6 col-sm-12">
+                  <br><label for="estadoCivil">Estado civil</label>
+                  <input type="text" class="form-control" id="estadoCivil2" disabled>
+                </div>
+              </div>
+            <!-- FIN INFORMACION DE TRABAJADOR -->
+
+
+            <!-- EMPRESA -->
+            <div id="detalleEmpresa2" style="display:none">
+              <div class="col-md-12">
+                <br><h4 style="color:#2a3f54"><b>II ) EMPRESA</b></h4>
+              </div>
+              <div class="col-md-12 col-sm-12">
+                <br><label for="empresa">Empresa</label>
+                <input type="text" class="form-control" id="empresa2" disabled>
+              </div>
+              <div class="col-md-6 col-sm-12">
+                <br><label for="cargo">Cargo</label>
+                <input type="text" class="form-control" id="cargo2" disabled>
+              </div>
+              <div class="col-md-6 col-sm-12">
+                <br><label for="jefeDirecto">Jefe(s) directo(s)</label>
+                <input type="text" class="form-control" id="jefeDirecto2" disabled>
+              </div>
+              <div class="col-md-6 col-sm-12">
+                <br><label for="repre_legal">Representante legal</label>
+                <input type="text" class="form-control" id="repre_legal2" disabled>
+              </div>
+              <div class="col-md-6 col-sm-12">
+                <br><label for="repre_rut">RUT de representante legal</label>
+                <input type="text" class="form-control" id="repre_rut2" disabled>
+              </div>
+            </div>
+            <!-- FIN EMPRESA -->
+
+            <!-- REMUNERACION -->
+            <div id="remuneración2" style="display:none">
+              <div class="col-md-12">
+                <br><h4 style="color:#2a3f54"><b>III ) REMUNERACIÓN</b></h4>
+              </div>
+              <div id="getDetalleRemuneracion2">
+
+              </div>
+            </div>
+
+
+            <!-- FIN REMUNERACION -->
+
+            <!-- VIGENCIA -->
+            <div id="vigencia2" style="display:none">
+              <div class="col-md-12">
+                <br><h4 style="color:#2a3f54"><b>IV ) VIGENCIA</b></h4>
+              </div>
+              <div class="col-md-6">
+                  <br>
+                  <label for="fechaInicio">Inicio de contrato</label>
+                  <input type="date" class="form-control" id="fechaInicio2" required>
+              </div>
+              <div class="col-md-6">
+                  <br>
+                  <label for="terminoContrato">Termino de contrato</label>
+                  <input type="date" class="form-control" id="terminoContrato2" required>
+              </div>
+            </div>
+            <!-- FIN VIGENCIA -->
+
+            <!-- CONTRATO -->
+            <div id="itemsContrato2" style="display:none">
+              <div class="col-md-12">
+                <br><h4 style="color:#2a3f54"><b>V ) ITEMS DEL CONTRATO</b></h4>
+              </div>
+              <div class="row">
+                <div class="col-md-12" style="margin-top:10px;">
+                  <ul id="ordenable" style="list-style-type:none">
+
+                  </ul>
+                </div>
+              </div>
+              <button type="submit" id="boton" class="btn btn-success botonLargo" style="display:none">TESTING</button>
+            </div>
+            <!-- FIN CONTRATO -->
+
+            <br>
+            <button type="submit" id="btnGenerarContrato2" class="btn btn-success botonLargo" style="display:none" id="btnAgregarTrabajador">GENERAR CONTRATO</button>
+
 
           </div>
 
@@ -214,16 +367,34 @@
 
 
 
+
     <script>
       $(document).ready(function() {
         cargarElementosDeContrato();
         getSelectCiudad();
+        getSelectCiudad2();
+        getItemsContrato();
         var elemento = document.getElementById('estandar');
         elemento.style.color = "#fafafa";
         elemento.style.backgroundColor  = "#2a3f54";
+
+        $("#ordenable").sortable();
+
+        $("#boton").click(function(){
+  	       $("#ordenable").each(function(){
+        	   alert($(this).text())
+        	 });
+    	  });
+
+
       });
 
 
+
+
+
+
+      // SECCION DE TAB 1
       $("#selectTrabajador1").change(function (e){
           e.preventDefault();
           document.getElementById("datosTrabajador").style = "";
@@ -237,7 +408,7 @@
           cargarDatosEsenciales(idTrabajador);
       });
 
-      $("#selectTrabajador2").change(function (e){
+      $("#selectTrabajador1").change(function (e){
           e.preventDefault();
           var idTrabajador = $("#selectTrabajador2").val();
           cargarDatosEsenciales(idTrabajador);
@@ -257,10 +428,59 @@
           }
 
       });
+      // FIN SECCION TAB 1
+
+
+
+
+
+
+
+
+
+
+      // SECCION DE TAB 2
+      $("#selectTrabajador2").change(function (e){
+          e.preventDefault();
+          document.getElementById("datosTrabajador2").style = "";
+          document.getElementById("detalleEmpresa2").style = "";
+          document.getElementById("remuneración2").style = "";
+          document.getElementById("vigencia2").style = "";
+          document.getElementById("itemsContrato2").style = "";
+          document.getElementById("btnGenerarContrato2").style = "";
+
+          var idTrabajador = $("#selectTrabajador2").val();
+          cargarDatosEsenciales2(idTrabajador);
+      });
+
+      $("#selectTrabajador2").change(function (e){
+          e.preventDefault();
+          var idTrabajador = $("#selectTrabajador2").val();
+          cargarDatosEsenciales2(idTrabajador);
+      });
+
+      $("body").on("click", "#btnGenerarContrato2", function(e) {
+          e.preventDefault();
+          var idTrabajador = $("#selectTrabajador2").val();
+          var fechaInicio = $("#fechaInicio2").val();
+          var fechaTermino = $("#terminoContrato2").val();
+          var ciudadFirma = $("#ciudad2").val();
+          if(fechaInicio == "" || fechaInicio == null || fechaTermino == "" || fechaTermino == null){
+            toastr.error("Debe llenar los campos de fecha");
+          }else{
+            var url = 'http://localhost/RRHH-FIRMA/docContratoPersonalizado?trabajador='+idTrabajador+'&&fechaInicio='+fechaInicio+'&&fechaTermino='+fechaTermino+'&&ciudadFirma='+ciudadFirma;
+            window.open(url, '_blank');
+        }
+
+      });
+      // FIN SECCION TAB 2
+
+
+
+
+
 
     </script>
-
-
 
 
   </body>

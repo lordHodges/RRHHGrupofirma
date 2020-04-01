@@ -18,6 +18,20 @@ function getSelectCiudad(){
     });
 }
 
+// USADO PARA LA GESTION DE CONTRATOS
+function getSelectCiudad2(){
+    var url = base_url+'getCiudades';
+    $("#getSelectCiudad2").empty();
+    var fila = "<option disabled selected>Seleccione una opción</option>";
+    $.getJSON(url, function (result) {
+        $.each(result, function (i, o) {
+            fila += "<option value='" + o.cp_ciudad + "'>" + o.atr_nombre + "</option>";
+        });
+        $("#getSelectCiudad2").append(fila);
+    });
+}
+
+
 function getSelectCargos(){
 
     var url = base_url+'getCargos';

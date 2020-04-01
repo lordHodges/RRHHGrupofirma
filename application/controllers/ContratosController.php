@@ -142,6 +142,14 @@ class ContratosController extends CI_Controller {
     }
 
 
+		public function getItemsContrato(){
+				// Solicito al modelo registro del contrato
+				$items = $this->ContratosModel->getItemsContrato();
+
+				echo json_encode($items);
+	    }
+
+
 
 
 

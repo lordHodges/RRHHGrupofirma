@@ -149,7 +149,12 @@ class ContratosModel extends CI_Model {
     }
 
 
-
+    function getItemsContrato(){
+      $this->db->select(" ic.atr_nombre  ");
+      $this->db->from("fa_items_contrato ic");
+      $resultado =  $this->db->get()->result();
+      return $resultado;
+    }
 
 
 

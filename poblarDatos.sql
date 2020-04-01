@@ -87,35 +87,8 @@ INSERT INTO `fa_trabajador` (`cp_trabajador`, `atr_rut`, `atr_nombres`, `atr_ape
 INSERT INTO `fa_requisitominimo` (`cp_requisitominimo`, `atr_descripcion`) VALUES (NULL, 'Manejo de GPS; aplicación de internet.'), (NULL, 'Manejo en direcciones según comuna.'), (NULL, 'Estar domiciliado al menos por mas de 1 año en la localidad del puesto de trabajo a postular.'), (NULL, 'Nociones básicas de operaciones(suma, resta, multiplicación y división).'), (NULL, 'Manejo de aplicación whatsapp, tal como enviar dirección, fotografías, compartir información solicitada.'), (NULL, 'Poseer un teléfono celular con internet y aplicación whatsapp.');
 
 
--- INSERT INTO `fa_requisitominimo_cargo` (`cp_requisitominimo_cargo`, `cf_cargo`, `cf_requisitominimo`) VALUES (NULL, '2', '1'), (NULL, '2', '6');
---
---
--- INSERT INTO `fa_requisitominimo_cargo` (`cp_requisitominimo_cargo`, `cf_cargo`, `cf_requisitominimo`) VALUES (NULL, '2', '9'), (NULL, '2', '11'), (NULL, '2', '7'), (NULL, '2', '8'),(NULL, '2', '10');
---
--- INSERT INTO `fa_requisitominimo_cargo` (`cp_requisitominimo_cargo`, `cf_cargo`, `cf_requisitominimo`) VALUES (NULL, '2', '12'), (NULL, '2', '5');
---
--- INSERT INTO `fa_remuneracion_extra` (`cp_remuneracionExtra`, `atr_descripcion`, `cf_remuneracion`, `cf_cargo`) VALUES (NULL, '$2.000 por cliente que se atienda por medio de la carta, o llegue a la oficina con la carta.', '3', '2'), (NULL, '$49.000 bonos', '3', '2');
---
--- INSERT INTO `fa_tarea` (`cp_tarea`, `atr_descripcion`) VALUES (NULL, 'Entregar cartas privadas y públicas en los domicilios señalados en ellas.'), (NULL, 'Trabajar con fluidez y de forma cuidadosa (dentro de la oficina).'), (NULL, 'Armar rutas de domicilios para la entrega posterior de cartas.'), (NULL, 'Seguir programas, señalados por su superior jerárquico.'), (NULL, 'Doblar y sellar cartas para posteriormente entregarlas.'), (NULL, 'No entregar información señalada en las cartas a personas distintas del destinatario.');
---
--- INSERT INTO `fa_tareas_cargo` (`cp_tareas_cargo`, `cf_cargo`, `cf_tarea`) VALUES (NULL, '3', '6'), (NULL, '3', '7'), (NULL, '3', '8'), (NULL, '3', '9'), (NULL, '3', '10'), (NULL, '3', '11');
---
-
-
-
-
-
-
-INSERT INTO `fa_items_contrato` (`cp_itemContrato`, `atr_nombre`) VALUES (NULL, 'Naturaleza de los servicios'), (NULL, 'Lugar de la prestación de servicios'), (NULL, 'Jornada de trabajo'), (NULL, 'Remuneración'), (NULL, 'Duración de la relación jurídica laboral'), (NULL, 'Cláusula de vigencia'), (NULL, 'A tener en cuenta');
-
-
-
-
-
-
-
-
-
-INSERT INTO `fa_items_contrato` (`cp_itemContrato`, `atr_nombre`) VALUES (NULL, 'Partes'), (NULL, 'Naturaleza de servicios'), (NULL, 'Lugar de prestación de servicios'), (NULL, 'Jornada de trabajo'), (NULL, 'Remuneraciones'), (NULL, 'Duración de relación jurídica laboral'), (NULL, 'Cláusula de vigencia'), (NULL, 'A tener en cuenta');
-
 INSERT INTO `fa_descripcion_item` (`cp_descripcionItem`, `atr_descripcion`, `atr_posicionItem`, `cf_itemContrato`, `cf_cargo`) VALUES (NULL, NULL, '1', '1', '1'), (NULL, NULL, '2', '2', '1'), (NULL, NULL, '3', '3', '1'), (NULL, NULL, '4', '4', '1'), (NULL, NULL, '5', '5', '1'), (NULL, NULL, '6', '6', '1'), (NULL, NULL, '7', '7', '1'), (NULL, NULL, '8', '8', '1');
+
+
+INSERT INTO `fa_items_contrato` (`cp_itemContrato`, `atr_nombre`) VALUES (NULL, 'Partes'), (NULL, 'Naturaleza de los servicios'), (NULL, 'Lugar de prestación de servicios'), (NULL, 'Jornada de trabajo'), (NULL, 'Remuneraciones'), (NULL, 'Duración de la relación jurídica laboral'), (NULL, 'Cláusula de vigencia'), (NULL, 'A tener en cuenta ');
+INSERT INTO `fa_items_contrato` (`cp_itemContrato`, `atr_nombre`) VALUES (NULL, 'Cláusula de confidencialidad'), (NULL, 'Propiedad intelectual');
