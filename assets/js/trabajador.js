@@ -294,7 +294,7 @@ function updateTrabajador() {
       cargo = $("#cargoActual").text();
     }
     if( empresa == null || empresa == "Seleccione una opción"){
-      empresa = $("#empresaActual").text();
+      empresa = $("#empresaContratranteActual").text();
     }
     if( afp == null || afp == "Seleccione una opción" ){
       afp = $("#afpActual").text();
@@ -314,7 +314,7 @@ function updateTrabajador() {
     if( fechaNacimiento == ""){
       fechaNacimiento = $("#fechaNacimientoActual").text();
     }
-    
+
 
   }
 
