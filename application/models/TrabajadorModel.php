@@ -200,6 +200,42 @@ class TrabajadorModel extends CI_Model {
         }
       }
 
+      if( !is_numeric($estadoContrato) ){
+        //Buscar la ID del estado de contrato ingresado
+        $this->db->select("e.cp_estado");
+        $this->db->where("e.atr_nombre",$estadoContrato);
+        $this->db->from("fa_estado e");
+        $Result = $this->db->get()->result();
+        // obtener la id del estado de contrato desde el resultado en la consulta anterior
+        foreach ($Result as $key=>$e){
+          $estadoContrato = $e->cp_estado;
+        }
+      }
+
+      if( !is_numeric($nacionalidad) ){
+        //Buscar la ID del estado de contrato ingresado
+        $this->db->select("n.cp_nacionalidad");
+        $this->db->where("n.atr_nombre",$nacionalidad);
+        $this->db->from("fa_nacionalidad n");
+        $Result = $this->db->get()->result();
+        // obtener la id de la nacionalidad desde el resultado en la consulta anterior
+        foreach ($Result as $key=>$n){
+          $nacionalidad = $n->cp_nacionalidad;
+        }
+      }
+
+      if( !is_numeric($estadoCivil) ){
+        //Buscar la ID del estado de contrato ingresado
+        $this->db->select("e.cp_estadoCivil");
+        $this->db->where("e.atr_nombre",$estadoCivil);
+        $this->db->from("fa_estadoCivil e");
+        $Result = $this->db->get()->result();
+        // obtener la id de la nacionalidad desde el resultado en la consulta anterior
+        foreach ($Result as $key=>$n){
+          $estadoCivil = $n->cp_estadoCivil;
+        }
+      }
+
       $dataTrabajador = array(
         "atr_nombres"               => $nombres,
         "atr_apellidos"             => $apellidos,
