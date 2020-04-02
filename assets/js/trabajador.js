@@ -314,6 +314,7 @@ function updateTrabajador() {
     if( fechaNacimiento == ""){
       fechaNacimiento = $("#fechaNacimientoActual").text();
     }
+    
 
   }
 

@@ -172,7 +172,7 @@ class TrabajadorModel extends CI_Model {
         $Result = $this->db->get()->result();
         // obtener la id de la empresa desde el resultado en la consulta anterior
         foreach ($Result as $key=>$e){
-          $empresa = $c->cp_empresa;
+          $empresa = $e->cp_empresa;
         }
       }
 
