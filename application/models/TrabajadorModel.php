@@ -200,21 +200,25 @@ class TrabajadorModel extends CI_Model {
         }
       }
 
-
-        $data = array(
-            "atr_nombre"                => $empresa,
-            "atr_run"                   => $run,
-            "atr_representante"         => $representante,
-            "atr_cedula_representante"  => $cedula_representante,
-            "atr_domicilio"             => $domicilio,
-            "cf_ciudad"                 => $idCiudad
-        );
-        $this->db->where('e.cp_empresa', $idEmpresa);
-        $resultado =  $this->db->update("fa_empresa e", $data);
+        //
+        // $data = array(
+        //     "atr_nombre"                => $empresa,
+        //     "atr_run"                   => $run,
+        //     "atr_representante"         => $representante,
+        //     "atr_cedula_representante"  => $cedula_representante,
+        //     "atr_domicilio"             => $domicilio,
+        //     "cf_ciudad"                 => $idCiudad
+        // );
+        // $this->db->where('e.cp_empresa', $idEmpresa);
+        // $resultado =  $this->db->update("fa_empresa e", $data);
 
 
 
         $dataTrabajador = array(
+          "atr_nombres"               => $nombres,
+          "atr_apellidos"             => $apellidos,
+          "atr_direccion"             => $direccion,
+          "atr_fechaNacimiento"       => $fechaNacimiento,
           "cf_prevision"              => $prevision,
           "cf_estado"                 => $estado,
           "cf_cargo"                  => $cargo,
