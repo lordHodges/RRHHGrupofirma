@@ -132,7 +132,7 @@ function caracteresRUT(string){//Solo numeros
 // onkeyup="this.value=soloLetras(this.value)"
 function soloLetras(string){//Solo numeros
     var out = '';
-    var filtro = 'qwertyuioplkjhgfdsazxcvbnmñQWERTYUIOPÑLKJHGFDSAZXCVBNMáéíóúÁÉÍÓÚ';//Caracteres validos
+    var filtro = 'qwertyuioplkjhgfdsazxcvbnmñQWERTYUIOPÑLKJHGFDSAZXCVBNMáéíóúÁÉÍÓÚ ';//Caracteres validos
 
     //Recorrer el texto y verificar si el caracter se encuentra en la lista de validos
     for (var i=0; i<string.length; i++)
