@@ -252,7 +252,7 @@ function getDetalleTrabajadorViewEdit(id){
 }
 
 function updateTrabajador() {
-  var idTrabajador = $("#idTrabajador").val();
+  var idTrabajador = $("#idTrabajador").text();
   var rut = $("#rutNuevo").val();
   var nombres = $("#nombresNuevo").val();
   var apellidos = $("#apellidosNuevo").val();
@@ -314,6 +314,8 @@ function updateTrabajador() {
     if( fechaNacimiento == ""){
       fechaNacimiento = $("#fechaNacimientoActual").text();
     }
+
+    
 
 
   }

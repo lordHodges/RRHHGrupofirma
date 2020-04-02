@@ -254,6 +254,9 @@ class TrabajadorModel extends CI_Model {
       $this->db->where('t.cp_trabajador', $idTrabajador);
       $resultado =  $this->db->update("fa_trabajador t", $dataTrabajador);
 
+      var_dump("ID: ",$idTrabajador);
+      var_dump("DATA TRABAJADOR: ",$dataTrabajador);
+
       return $resultado;
       // if($resultado){
       //   return "ok";
