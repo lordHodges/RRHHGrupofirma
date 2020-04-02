@@ -218,7 +218,7 @@ class TrabajadorModel extends CI_Model {
       $resultado =  $this->db->update("fa_trabajador t", $dataTrabajador);
 
       if($resultado){
-        return "ok";
+        return $dataTrabajador;
       }else{
         return "error";
       }
