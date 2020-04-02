@@ -216,7 +216,7 @@ class TrabajadorController extends CI_Controller {
 
 
 		$resultado = $this->TrabajadorModel->updateTrabajador( $idTrabajador,$rut, $nombres,$apellidos,$direccion,$ciudad,$sucursal,$cargo,$empresa,$afp,$prevision,$estadoContrato,$estadoCivil,$nacionalidad,$fechaNacimiento);
-		return echo json_encode(array($resultado));
+		echo json_encode(array($resultado));
 	}
 
 
