@@ -1,6 +1,93 @@
 var base_url = 'http://10.10.11.240/RRHH-FIRMA/index.php/';
 
+function cargarTablaEmpresa(){
+  var table = $('#tabla_empresa').DataTable();
+  table.destroy();
+  $('.dataTables-prevision').DataTable({
+        // "scrollX": true,
+        language: {
+            "sProcessing": "Procesando...",
+            "sLengthMenu": "Registros _MENU_ ",
+            "sZeroRecords": "No se encontraron resultados",
+            "sEmptyTable": "Ningún dato disponible en esta tabla",
+            "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+            "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+            "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+            "sInfoPostFix": "",
+            "sSearch": "Buscar:",
+            "sUrl": "",
+            "sInfoThousands": ",",
+            "sLoadingRecords": "Cargando...",
+            "oPaginate": {
+                "sFirst": "Primero",
+                "sLast": "Último",
+                "sNext": "Siguiente",
+                "sPrevious": "Anterior"
+            },
+            "oAria": {
+                "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
+                "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+            },
+            "buttons": {
+                "copy": "Copiar",
+                "colvis": "Visibilidad"
+            }
+        },
+        "ajax": {
+            url: "http://10.10.11.240/RRHH-FIRMA/index.php/getListadoEmpresa",
+            type: 'GET'
+        },
+        "columnDefs": [{
+          "targets": 7,
+          "data": null,
+          "defaultContent": '<button type="button" id="getDetalleEmpresa" class="btn btn-info" data-toggle="modal" data-target="#modalEditarEmpresa"><i class="glyphicon glyphicon-pencil"></i></button>'
+        }
+        ],dom: '<"html5buttons"B>lTfgitp',
+          buttons: [{
+                  extend: 'copy',
+                  exportOptions: {
+                      columns: [ 1,2,3,4,5,6 ]
+                  }
+              },
+              {
+                  extend: 'csv',
+                  exportOptions: {
+                      columns: [ 1,2,3,4,5,6 ]
+                  }
+              },
+              {
+                  extend: 'excel',
+                  title: 'Lista de Empresas',
+                  exportOptions: {
+                      columns: [ 1,2,3,4,5,6 ]
+                  }
 
+              },
+              {
+                  extend: 'pdf',
+                  title: 'Lista de Empresas',
+                  exportOptions: {
+                      columns: [ 1,2,3,4,5,6 ]
+                  }
+
+              },
+              {
+                  extend: 'print',
+                  title: 'Firma de abogados',
+                  exportOptions: {
+                      columns: [ 1,2,3,4,5,6 ]
+                  },
+                  customize: function(win) {
+                      $(win.document.body).addClass('white-bg');
+                      $(win.document.body).css('font-size', '10px');
+                      $(win.document.body).find('table')
+                          .addClass('compact')
+                          .css('font-size', 'inherit');
+                  }
+              }
+          ]
+    });
+}
 
 
 /*************************** RELLENO DE SELECTS ****************************/

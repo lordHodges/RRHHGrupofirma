@@ -248,10 +248,8 @@
           e.preventDefault();
           var id = $(this).parent().parent().children()[0];
           editarEmpresa();
-          var table = $('#tabla_empresa').DataTable();
-          table.ajax.reload(function(json) {
-            $('#btnEditarEmpresa').val(json.lastInput);
-          });
+
+          cargarTablaEmpresa();
       });
 
 
