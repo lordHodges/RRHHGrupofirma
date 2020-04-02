@@ -190,7 +190,7 @@ class TrabajadorModel extends CI_Model {
 
       if( !is_numeric($prevision) ){
         //Buscar la ID de la afp ingresada
-        $this->db->select("p.cp_afp");
+        $this->db->select("p.cp_prevision");
         $this->db->where("p.atr_nombre",$prevision);
         $this->db->from("fa_prevision p");
         $Result = $this->db->get()->result();
