@@ -364,6 +364,7 @@
           $("body").on("click", "#btnEditarTrabajador", function(e) {
                e.preventDefault();
                updateTrabajador();
+               $('#modalEditarTrabajador').modal('hide');
            });
 
 
