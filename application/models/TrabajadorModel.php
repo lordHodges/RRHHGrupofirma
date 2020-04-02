@@ -220,7 +220,7 @@ class TrabajadorModel extends CI_Model {
           "atr_direccion"             => $direccion,
           "atr_fechaNacimiento"       => $fechaNacimiento,
           "cf_prevision"              => $prevision,
-          "cf_estado"                 => $estado,
+          "cf_estado"                 => $estadoContrato,
           "cf_cargo"                  => $cargo,
           "cf_sucursal"               => $sucursal,
           "cf_nacionalidad"           => $nacionalidad,
