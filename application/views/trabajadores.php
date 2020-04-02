@@ -365,6 +365,7 @@
                e.preventDefault();
                updateTrabajador();
                $('#modalEditarTrabajador').modal('hide');
+               cargarTablaTrabajador();
            });
 
 
