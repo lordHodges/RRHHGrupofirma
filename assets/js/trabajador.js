@@ -284,31 +284,31 @@ function updateTrabajador() {
     if( direccion == ""){
       direccion = $("#direccionActual").text();
     }
-    if( ciudad == null){
+    if( ciudad == null || ciudad == "Seleccione una opción"){
       ciudad = $("#ciudadActual").text();
     }
-    if( sucursal == null){
+    if( sucursal == null || sucursal == "Seleccione una opción"){
       sucursal = $("#sucursalActual").text();
     }
-    if( cargo == null){
+    if( cargo == null || cargo == "Seleccione una opción"){
       cargo = $("#cargoActual").text();
     }
-    if( empresa == null){
+    if( empresa == null || empresa == "Seleccione una opción"){
       empresa = $("#empresaActual").text();
     }
-    if( afp == null){
+    if( afp == null || afp = "Seleccione una opción" ){
       afp = $("#afpActual").text();
     }
-    if( prevision == null){
+    if( prevision == null || prevision == "Seleccione una opción"){
       prevision = $("#previsionActual").text();
     }
-    if( estadoContrato == null){
+    if( estadoContrato == null || estadoContrato == "Seleccione una opción"){
       estadoContrato = $("#estadoActual").text();
     }
-    if( estadoCivil == null){
+    if( estadoCivil == null || estadoCivil == "Seleccione una opción"){
       estadoCivil = $("#estadoCivilActual").text();
     }
-    if( nacionalidad == null){
+    if( nacionalidad == null || nacionalidad == "Seleccione una opción"){
       nacionalidad = $("#nacionalidadActual").text();
     }
     if( fechaNacimiento == ""){
