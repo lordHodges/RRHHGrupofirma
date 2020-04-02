@@ -47,56 +47,8 @@ function cargarTabla(){
             }
 
         ],dom: '<"html5buttons"B>lTfgitp',
-          buttons: [{
-                  extend: 'copy',
-                  exportOptions: {
-                      columns: [ 1,2,3,4,5,6,7 ]
-                  },
-              },
-              {
-                  extend: 'csv',
-                  exportOptions: {
-                      columns: [ 1,2,3,4,5,6,7 ]
-                  },
-              },
-              {
-                  extend: 'excel',
-                  title: 'Lista de Trabajadores',
-                  exportOptions: {
-                      columns: [ 1,2,3,4,5,6,7 ]
-                  },
-              },
-              {
-                  extend: 'pdf',
-                  title: 'Lista de Trabajadores',
-                  exportOptions: {
-                      columns: [ 1,2,3,4,5,6,7 ]
-                  },
-                  customize:function(doc) {
-                      doc.styles.title = {
-                          fontSize: '25',
-                          alignment: 'center'
-                      }
-                      doc.styles['td:nth-child(2)'] = {
-                          'padding': '100px'
-                      }
-                  }
-              },
-              {
-                  extend: 'print',
-                  title: 'Firma de abogados',
-                  exportOptions: {
-                      columns: [ 1,2,3,4,5,6,7 ]
-                  },
-                  customize: function(win) {
-                      $(win.document.body).addClass('white-bg');
-                      $(win.document.body).css('font-size', '10px');
-                      $(win.document.body).find('table')
-                          .addClass('compact')
-                          .css('font-size', 'inherit');
-                  }
-              }
-          ]
+        buttons: [
+        ]
     });
 }
 
