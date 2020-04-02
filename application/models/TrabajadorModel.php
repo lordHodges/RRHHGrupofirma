@@ -201,10 +201,8 @@ class TrabajadorModel extends CI_Model {
       }
 
 
-
-
         $data = array(
-            "atr_nombre"                => $nombre,
+            "atr_nombre"                => $empresa,
             "atr_run"                   => $run,
             "atr_representante"         => $representante,
             "atr_cedula_representante"  => $cedula_representante,
