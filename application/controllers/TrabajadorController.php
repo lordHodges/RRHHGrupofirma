@@ -187,7 +187,7 @@ class TrabajadorController extends CI_Controller {
 		$rut = $this->input->post("rut");
 		var_dump($rut);
 		$nombres = $this->input->post("nombres");
-		var_dump(nombres);
+		var_dump($nombres);
 		$apellidos = $this->input->post("apellidos");
 		var_dump($apellidos);
 		$direccion = $this->input->post("direccion");
