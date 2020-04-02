@@ -203,22 +203,37 @@ class TrabajadorModel extends CI_Model {
 
 
 
-        // $data = array(
-        //     "atr_nombre" => $nombre,
-        //     "atr_run" => $run,
-        //     "atr_representante" => $representante,
-        //     "atr_cedula_representante" => $cedula_representante,
-        //     "atr_domicilio" => $domicilio,
-        //     "cf_ciudad" => $idCiudad
-        // );
-        // $this->db->where('e.cp_empresa', $idEmpresa);
-        // $resultado =  $this->db->update("fa_empresa e", $data);
-        //
-        // if($resultado){
-        //   return "ok";
-        // }else{
-        //   return "error";
-        // }
+        $data = array(
+            "atr_nombre"                => $nombre,
+            "atr_run"                   => $run,
+            "atr_representante"         => $representante,
+            "atr_cedula_representante"  => $cedula_representante,
+            "atr_domicilio"             => $domicilio,
+            "cf_ciudad"                 => $idCiudad
+        );
+        $this->db->where('e.cp_empresa', $idEmpresa);
+        $resultado =  $this->db->update("fa_empresa e", $data);
+
+
+
+        $dataTrabajador = array(
+          "cf_prevision"              => $prevision,
+          "cf_estado"                 => $estado,
+          "cf_cargo"                  => $cargo,
+          "cf_sucursal"               => $sucursal,
+          "cf_nacionalidad"           => $nacionalidad,
+          "cf_estadoCivil"            => $estadoCivil,
+          "cf_afp"                    => $afp
+        );
+        $this->db->where('t.cp_trabajador', $idTrabajador);
+        $resultado =  $this->db->update("fa_trabajador t", $dataTrabajador);
+
+
+        if($resultado){
+          return "ok";
+        }else{
+          return "error";
+        }
     }
 
 
