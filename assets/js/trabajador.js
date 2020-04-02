@@ -296,7 +296,7 @@ function updateTrabajador() {
     if( empresa == null || empresa == "Seleccione una opción"){
       empresa = $("#empresaActual").text();
     }
-    if( afp == null || afp = "Seleccione una opción" ){
+    if( afp == null || afp == "Seleccione una opción" ){
       afp = $("#afpActual").text();
     }
     if( prevision == null || prevision == "Seleccione una opción"){
