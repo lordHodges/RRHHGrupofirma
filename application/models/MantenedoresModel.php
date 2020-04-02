@@ -387,18 +387,17 @@ class MantenedoresModel extends CI_Model {
 
     function updateEmpresa($esNuevo, $idEmpresa, $nombre, $run, $representante, $cedula_representante, $domicilio, $ciudad){
 
-        if($esNuevo == false){
-          // Buscar la ID de la ciudad ingresada
+
+        if( !is_numeric($ciudad) ){
+          //Buscar la ID de la ciudad ingresada
           $this->db->select("c.cp_ciudad");
           $this->db->where("c.atr_nombre",$ciudad);
           $this->db->from("fa_ciudad c");
-          $ciudad = $this->db->get()->result();
+          $Result = $this->db->get()->result();
           // obtener la id de la ciudad desde el resultado en la consulta anterior
-          foreach ($ciudad as $key=>$c){
-            $idCiudad = $c->cp_ciudad;
+          foreach ($Result as $key=>$c){
+            $ciudad = $c->cp_ciudad;
           }
-        }else{
-          $idCiudad = $ciudad;
         }
 
 
@@ -408,7 +407,7 @@ class MantenedoresModel extends CI_Model {
             "atr_representante" => $representante,
             "atr_cedula_representante" => $cedula_representante,
             "atr_domicilio" => $domicilio,
-            "cf_ciudad" => $idCiudad
+            "cf_ciudad" => $ciudad
         );
         $this->db->where('e.cp_empresa', $idEmpresa);
         $resultado =  $this->db->update("fa_empresa e", $data);
