@@ -250,11 +250,12 @@ class TrabajadorModel extends CI_Model {
         "cf_estadoCivil"            => $estadoCivil,
         "cf_afp"                    => $afp
       );
+
       $this->db->where('t.cp_trabajador', $idTrabajador);
       $resultado =  $this->db->update("fa_trabajador t", $dataTrabajador);
 
       if($resultado){
-        return $dataTrabajador;
+        return "ok";
       }else{
         return "error";
       }
