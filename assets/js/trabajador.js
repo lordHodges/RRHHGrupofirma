@@ -323,7 +323,7 @@ function updateTrabajador() {
       dataType: 'json',
       data: { "idTrabajador": idTrabajador,  "rut":rut, "nombres":nombres, "apellidos":apellidos, "direccion":direccion, "ciudad":ciudad, "sucursal":sucursal, "cargo":cargo, "empresa":empresa, "afp":afp, "prevision":prevision, "estadoContrato":estadoContrato, "estadoCivil":estadoCivil, "nacionalidad":nacionalidad, "fechaNacimiento":fechaNacimiento }
   }).then(function (msg) {
-      if (msg == "ok") {
+      if (msg.msg == "ok") {
           toastr.success("Información actualizada.");
           $('#modalEditarTrabajador').modal('hide');
       } else {

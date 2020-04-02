@@ -200,43 +200,29 @@ class TrabajadorModel extends CI_Model {
         }
       }
 
-        //
-        // $data = array(
-        //     "atr_nombre"                => $empresa,
-        //     "atr_run"                   => $run,
-        //     "atr_representante"         => $representante,
-        //     "atr_cedula_representante"  => $cedula_representante,
-        //     "atr_domicilio"             => $domicilio,
-        //     "cf_ciudad"                 => $idCiudad
-        // );
-        // $this->db->where('e.cp_empresa', $idEmpresa);
-        // $resultado =  $this->db->update("fa_empresa e", $data);
+      $dataTrabajador = array(
+        "atr_nombres"               => $nombres,
+        "atr_apellidos"             => $apellidos,
+        "atr_direccion"             => $direccion,
+        "atr_fechaNacimiento"       => $fechaNacimiento,
+        "cf_prevision"              => $prevision,
+        "cf_empresa"                => $empresa,
+        "cf_estado"                 => $estadoContrato,
+        "cf_cargo"                  => $cargo,
+        "cf_sucursal"               => $sucursal,
+        "cf_nacionalidad"           => $nacionalidad,
+        "cf_estadoCivil"            => $estadoCivil,
+        "cf_afp"                    => $afp
+      );
+      $this->db->where('t.cp_trabajador', $idTrabajador);
+      $resultado =  $this->db->update("fa_trabajador t", $dataTrabajador);
 
-
-
-        $dataTrabajador = array(
-          "atr_nombres"               => $nombres,
-          "atr_apellidos"             => $apellidos,
-          "atr_direccion"             => $direccion,
-          "atr_fechaNacimiento"       => $fechaNacimiento,
-          "cf_prevision"              => $prevision,
-          "cf_estado"                 => $estadoContrato,
-          "cf_cargo"                  => $cargo,
-          "cf_sucursal"               => $sucursal,
-          "cf_nacionalidad"           => $nacionalidad,
-          "cf_estadoCivil"            => $estadoCivil,
-          "cf_afp"                    => $afp
-        );
-        $this->db->where('t.cp_trabajador', $idTrabajador);
-        $resultado =  $this->db->update("fa_trabajador t", $dataTrabajador);
-
-
-        if($resultado){
-          return "ok";
-        }else{
-          return "error";
-        }
-    }
+      if($resultado){
+        return "ok";
+      }else{
+        return "error";
+      }
+  }
 
 
 
