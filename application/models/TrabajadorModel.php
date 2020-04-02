@@ -257,7 +257,6 @@ class TrabajadorModel extends CI_Model {
       // var_dump("ID: ",$idTrabajador);
       // var_dump("DATA TRABAJADOR: ",$dataTrabajador);
 
-      return $resultado;
       if($resultado){
         return "ok";
       }else{
