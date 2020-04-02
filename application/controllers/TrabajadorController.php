@@ -183,20 +183,35 @@ class TrabajadorController extends CI_Controller {
 
 	public function updateTrabajador(){
 		$idTrabajador = $this->input->post("idTrabajador");
+		var_dump("idTrabajador");
 		$rut = $this->input->post("rut");
+		var_dump("rut");
 		$nombres = $this->input->post("nombres");
+		var_dump("nombres");
 		$apellidos = $this->input->post("apellidos");
+		var_dump("apellidos");
 		$direccion = $this->input->post("direccion");
+		var_dump("direccion");
 		$ciudad = $this->input->post("ciudad");
+		var_dump("ciudad");
 		$sucursal = $this->input->post("sucursal");
+		var_dump("sucursal");
 		$cargo = $this->input->post("cargo");
+		var_dump("cargo");
 		$empresa = $this->input->post("empresa");
+		var_dump("empresa");
 		$afp = $this->input->post("afp");
+		var_dump("afp");
 		$prevision = $this->input->post("prevision");
+		var_dump("prevision");
 		$estadoContrato = $this->input->post("estadoContrato");
+		var_dump("estadoContrato");
 		$estadoCivil = $this->input->post("estadoCivil");
+		var_dump("estadoCivil");
 		$nacionalidad = $this->input->post("nacionalidad");
+		var_dump("nacionalidad");
 		$fechaNacimiento = $this->input->post("fechaNacimiento");
+		var_dump("fechaNacimiento");
 
 
 
