@@ -592,9 +592,14 @@ function editarEmpresa() {
             dataType: 'json',
             data: { "esNuevo":esNuevo, "idEmpresa":idEmpresa, "nombre":nombre, "rut":rut, "domicilio":domicilio, "representante":representante, "cedula_representante":cedula_representante, "ciudad":ciudad },
         }).then(function (msg) {
-
+          if(msg.msg == "ok"){
+            toastr.success('Información actualizada')
+            $('#modalEditarEmpresa').modal('hide');
+          }else{
+            toastr.error('Ups, ha ocurrido un problema');
+            $('#modalEditarEmpresa').modal('hide');
+          }
         });
-        toastr.success('Información actualizada')
-        $('#modalEditarEmpresa').modal('hide');
+
     }
 }
