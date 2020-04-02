@@ -2,34 +2,36 @@
     <!-- Contenedor principal -->
     <div class="x_content">
 
+      <div class="row">
+          <div class="x_panel">
+              <div class="x_content">
+                  <button type="button" id="abrirModalCrear" class="btn modidev-btn" data-toggle="modal" data-target=".bd-example-modal-lg" style="margin-bottom:20px;">INGRESAR TRABAJADOR</button>
+                  <table id="tabla_trabajador" class="table table-striped table-bordered table-hover dataTables-trabajadores" style="margin-top:20px;">
+                      <thead>
+                          <tr>
+                            <th class="text-center">ID</th>
+                              <th class="text-center">RUT</th>
+                              <th class="text-center">NOMBRES</th>
+                              <th class="text-center">APELLIDOS</th>
+                              <th class="text-center">EMPRESA</th>
+                              <th class="text-center">SUCURSAL</th>
+                              <th class="text-center">DIRECCION</th>
+                              <th class="text-center">CARGO</th>
+                              <th class="text-center">ACCIONES</th>
+                          </tr>
+                      </thead>
+                      <tbody id="tbodyDetalle">
+
+                      </tbody>
+                    </table>
+
+              </div>
+          </div>
+      </div>
+
     </div>
 
-    <div class="row">
-        <div class="x_panel">
-            <div class="x_content">
-                <button type="button" id="abrirModalCrear" class="btn modidev-btn" data-toggle="modal" data-target=".bd-example-modal-lg" style="margin-bottom:20px;">INGRESAR TRABAJADOR</button>
-                <table id="tabla_trabajador" class="table table-striped table-bordered table-hover dataTables-trabajadores" style="margin-top:20px;">
-                    <thead>
-                        <tr>
-                          <th class="text-center">ID</th>
-                            <th class="text-center">RUT</th>
-                            <th class="text-center">NOMBRES</th>
-                            <th class="text-center">APELLIDOS</th>
-                            <th class="text-center">EMPRESA</th>
-                            <th class="text-center">SUCURSAL</th>
-                            <th class="text-center">DIRECCION</th>
-                            <th class="text-center">CARGO</th>
-                            <th class="text-center">ACCIONES</th>
-                        </tr>
-                    </thead>
-                    <tbody id="tbodyDetalle">
 
-                    </tbody>
-                  </table>
-
-            </div>
-        </div>
-    </div>
 </div>
 
     <!-- /Contenedor principal-->
