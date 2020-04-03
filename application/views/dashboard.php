@@ -1,6 +1,6 @@
 <div class="right_col" role="main">
 
-            <div class="col-md-6 col-sm-12 ">
+            <div class="col-md-6 col-sm-12 " id="contenedorDeContratosPorCaducar">
               <div class="x_panel tile fixed_height_320">
                 <div class="x_title">
                   <h2>CONTRATOS PRÓXIMOS A VENCER</h2>
@@ -16,17 +16,7 @@
 
                 <div class="x_content">
                   <ul class="list-unstyled msg_list" id="contenedorTrabajadores">
-                    <li>
-                      <a >
-                        <span>
-                          <span>John Smith</span>
-                          <span class="time">3 mins ago</span>
-                        </span>
-                        <span class="message">
-                          Film festivals used to be do-or-die moments for movie makers. They were where you met the producers that
-                        </span>
-                      </a>
-                    </li>
+                    
                   </ul>
                 </div>
 
@@ -135,12 +125,16 @@
         tiempo = Math.round(tiempo);
         if( tiempo <= 5){
           fila = '<li style="background-color:#cb3234; color:#fff"><a><span><span>'+o.atr_nombres+" "+o.atr_apellidos+'</span><span class="time">'+tiempo+' días para caducar</span></span>';
-        }else{
-          fila = '<li style="background-color:#2A3F54; color:#fff"><a><span><span>'+o.atr_nombres+" "+o.atr_apellidos+'</span><span class="time">'+tiempo+' días para caducar</span></span>';
+          fila += '<span class="message">El trabajador desempeña el cargo de '+o.cargo+'. <br> El contrato comenzo el '+o.atr_fechaInicio+'</span></a></li>';
+      
+          $("#contenedorTrabajadores").append(fila);
         }
-        fila += '<span class="message">El trabajador desempeña el cargo de '+o.cargo+'. <br> El contrato comenzo el '+o.atr_fechaInicio+'</span></a></li>';
-      });
-      $("#contenedorTrabajadores").append(fila);
+        });
+      
+
+      if( $("#contenedorTrabajadores").html()=="" ){
+        $("#contenedorDeContratosPorCaducar").css({ display: "none" });
+      }
 
     });
 
