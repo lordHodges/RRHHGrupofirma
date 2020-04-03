@@ -234,8 +234,14 @@ class  PDFController extends CI_Controller {
 		$ciudadFirma = $this->input->get("ciudadFirma");
 		$fechaInicioContrato = $this->input->get("fechaInicio");
 		$fechaTerminoContrato = $this->input->get("fechaTermino");
-		$items = $this->input->get("items");
+		$itemsContrato = $_GET["arrayItems"];
+		$itemsContrato = explode(",", $itemsContrato);
+		// var_dump("ESTE ES EL ARREGLO DE ITEMS: ".count($itemsContrato));
+		// exit();
+		// $items = $this->input->get("items");
 		$titulo = "CONTRATO DE TRABAJO A PLAZO";
+
+
 
 
 
@@ -302,8 +308,6 @@ class  PDFController extends CI_Controller {
 		$letrasAsistencia = strtolower($this->convertir($asistencia));
 
 
-
-
 		$data = array(
 			'titulo'										=> $titulo,
 			'items'											=> $items,
@@ -318,7 +322,8 @@ class  PDFController extends CI_Controller {
 			'letrasSueldo'							=> $letras,
 			'letrasColacion'						=> $letrasColacion,
 			'letrasMovilizacion'				=> $letrasMovilizacion,
-			'letrasAsistencia'					=> $letrasAsistencia
+			'letrasAsistencia'					=> $letrasAsistencia,
+			'itemsContrato'							=> $itemsContrato
 		);
 
 
@@ -330,6 +335,20 @@ class  PDFController extends CI_Controller {
 		// generamos el PDF. Pasemos por encima de la configuración general y definamos otro tipo de papel
 		$this->pdfgenerator->generate($html, $filename, TRUE, 'Letter', 'portrait', 0);
 	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -381,38 +400,6 @@ class  PDFController extends CI_Controller {
 		}
 		return $fecha = $partesFecha[0]." de ".$nombreMes." de ".$partesFecha[2];
 	}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

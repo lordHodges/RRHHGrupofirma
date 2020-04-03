@@ -32,52 +32,80 @@
 
     <br>
 
-    <h4 style="display:inline">I. &nbsp;&nbsp; <h4 style="text-decoration: underline;display:inline">Partes</h4></h4>
+  <!-- foreach que recorrerá el arreglo de items que debe contener el contrato -->
+  <?php for($i=0; $i<count($itemsContrato); $i++) { ?>
 
-    <?php foreach ($arrayTrabajador as $key => $t){ ?>
+    <?php switch ($itemsContrato[$i]) {
 
-    <p style="text-align:justify; line-height:25px;"> En <?php echo($ciudadFirma); ?>, a  <?php echo $fechaDeHoy ?>, entre <b><?php echo $t->empresa ?></b>, Rol Único Tributario <b><?php echo 'N°'.$t->runEmpresa ?></b>,
-       representada legalmente por <b><?php echo $t->repre_legal ?></b>, cédula de Identidad N° <b><?php echo $t->repre_rut ?></b>, ambos con domicilio en <?php echo $t->direccionEmpresa ?> , comuna
-       y ciudad de <?php echo $t->ciudadEmpresa ?>, en adelante <b>"el empleador"</b> y don <b><?php echo $t->atr_nombres." ".$t->atr_apellidos ?></b>, cédula de identidad N°<b><?php echo $t->atr_rut ?></b> domiciliado en
-       <b><?php echo $t->atr_direccion ?> </b>,de nacionalidad <?php echo $t->nacionalidad ?>  nacido el <?php echo $t->atr_fechaNacimiento ?>, afiliado a AFP <?php echo $t->afp ?>  y Sistema de Salud <?php echo $t->prevision ?>, en adelante <b>"el trabajador",</b>
-       se ha convenido el siguiente contrato de trabajo:</p>
-    <?php } ?>
+              case "Partes": ?>
+                <p>Entro en Partes</p>
+            <?php break; ?>
 
 
+        <?php case "Naturaleza de los servicios": ?>
+            <p>Entro en naturaleza </p>
+            <?php break; ?>
 
 
-    <br><br><br><br><br><br><br>
-
-    <!-- Firma trabajador -->
-    <!-- <div class="linea"></div> -->
-
+        <?php case "Lugar de prestación de servicios": ?>
+            <p>Entro en lugar de prestación</p>
+            <?php break; ?>
 
 
-    <!-- Firma Trabajador -->
-     <div class="caja1">
-        <p>__________________________________</p>
-        <?php foreach ($arrayTrabajador as $key => $t){ ?>
-          <div style="display:inline-block">
+        <?php case "Jornada de trabajo": ?>
+            <p>Entro en jornada de trabajo</p>
+            <?php break; ?>
 
-            <h5 style="margin-top:-12px;"><strong> <?php echo $t->atr_nombres." ".$t->atr_apellidos ?> </strong></h5>
-        		<h5 style="margin-top:-12px;">R.U.T N° <?php echo $t->atr_rut ?></h5>
-            <h5 style="margin-top:-12px;">TRABAJADOR.</h5>
-        	</div>
-        <?php } ?>
-     </div>
 
-     <!-- Firma empleador -->
-     <div class="caja2">
-        <p>__________________________________</p>
-        <?php foreach ($arrayTrabajador as $key => $t){ ?>
-          <div style="display:inline-block">
+        <?php case "Remuneraciones": ?>
+            <p>Entro en remuneraciones</p>
+            <?php break; ?>
 
-            <h5 style="margin-top:-12px;"><strong> <?php echo $t->empresa ?> </strong></h5>
-        		<h5 style="margin-top:-12px;">R.U.T N° <?php echo $t->runEmpresa?></h5>
-            <h5 style="margin-top:-12px;">EMPLEADOR.</h5>
-        	</div>
-        <?php } ?>
-     </div>
+
+        <?php case "Duración de la relación jurídica laboral": ?>
+            <p>Entro en duración de la relación jurídica laboral</p>
+            <?php break; ?>
+
+
+        <?php case "Cláusula de vigencia": ?>
+            <p>Entro en cláusula de vigencia</p>
+            <?php break; ?>
+
+
+        <?php case "A tener en cuenta": ?>
+            <p>Entro en a tener en cuenta</p>
+            <?php break; ?>
+
+        <?php case "Cláusula de confidencialidad": ?>
+            <p>Entro en clausula de confidencialidad</p>
+            <?php break; ?>
+
+
+        <?php case "Propiedad intelectual": ?>
+            <p>Entro en propiedad intelectual</p>
+            <?php break; ?>
+    <?php
+    }
+    ?>
+
+  <?php } ?>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

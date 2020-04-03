@@ -324,12 +324,13 @@
                   </ul>
                 </div>
               </div>
-              <button type="submit" id="boton" class="btn btn-success botonLargo" style="display:none">TESTING</button>
+
             </div>
             <!-- FIN CONTRATO -->
 
+
             <br>
-            <button type="submit" id="btnGenerarContrato2" class="btn btn-success botonLargo" style="display:none" id="btnAgregarTrabajador">GENERAR CONTRATO</button>
+            <button type="submit" id="btnGenerarContrato2" class="btn btn-success botonLargo">GENERAR CONTRATO</button>
 
 
           </div>
@@ -383,12 +384,13 @@
         document.getElementById("itemsValidos").style.cursor = "pointer";
 
 
+        // permitir que todos los elementos dentro del div #ordenable se cambien de posición
         $("#ordenable").sortable();
 
+
+        // Permite obtener el valor de cada uno de los items de contrato existentes
         $("#boton").click(function(){
-  	       $("#ordenable").each(function(){
-        	   alert($(this).text())
-        	 });
+
     	  });
 
 
@@ -473,7 +475,13 @@
           if(fechaInicio == "" || fechaInicio == null || fechaTermino == "" || fechaTermino == null){
             toastr.error("Debe llenar los campos de fecha");
           }else{
-            var url = 'http://localhost/RRHH-FIRMA/index.php/docContratoPersonalizado?trabajador='+idTrabajador+'&&fechaInicio='+fechaInicio+'&&fechaTermino='+fechaTermino+'&&ciudadFirma='+ciudadFirma;
+            var arrayItems = [];
+            $("#ordenable").each(function(){
+      	       $(".itemContrato").each(function(){
+                 arrayItems.push($(this).text());
+            	 });
+            });
+            var url = 'http://localhost/RRHH-FIRMA/index.php/docContratoPersonalizado?trabajador='+idTrabajador+'&&fechaInicio='+fechaInicio+'&&fechaTermino='+fechaTermino+'&&ciudadFirma='+ciudadFirma+'&&arrayItems='+arrayItems;
             window.open(url, '_blank');
         }
 
