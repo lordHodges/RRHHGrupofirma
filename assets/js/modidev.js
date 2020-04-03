@@ -1,4 +1,4 @@
-var base_url = 'http://10.10.11.240/RRHH-FIRMA/index.php/';
+var base_url = 'http://localhost/RRHH-FIRMA/index.php/';
 
 function cargarTablaEmpresa(){
   var table = $('#tabla_empresa').DataTable();
@@ -34,7 +34,7 @@ function cargarTablaEmpresa(){
             }
         },
         "ajax": {
-            url: "http://10.10.11.240/RRHH-FIRMA/index.php/getListadoEmpresa",
+            url: "http://localhost/RRHH-FIRMA/index.php/getListadoEmpresa",
             type: 'GET'
         },
         "columnDefs": [{

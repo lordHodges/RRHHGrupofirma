@@ -25,9 +25,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 */
 // $config['base_url'] = 'https://firmaabogadoschile.tudesarrollo.cl/';
 
-// $config['base_url'] = 'http://10.10.11.240/RRHH-FIRMA/';
+// $config['base_url'] = 'http://localhost/RRHH-FIRMA/';
 
-$config['base_url'] = 'http://10.10.11.240/RRHH-FIRMA/';
+$config['base_url'] = 'http://localhost/RRHH-FIRMA/';
 
 
 /*
