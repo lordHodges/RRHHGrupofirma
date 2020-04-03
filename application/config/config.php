@@ -23,9 +23,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-// $config['base_url'] = 'https://firmaabogadoschile.tudesarrollo.cl/';
-
-// $config['base_url'] = 'http://10.10.11.240/RRHH-FIRMA/';
 
 $config['base_url'] = 'http://10.10.11.240/RRHH-FIRMA/';
 
