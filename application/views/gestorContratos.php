@@ -317,8 +317,9 @@
                 <br><h4 style="color:#2a3f54"><b>V ) ITEMS DEL CONTRATO</b></h4>
               </div>
               <div class="row">
-                <div class="col-md-12" style="margin-top:10px;">
+                <div id="itemsValidos" class="col-md-12" style="margin-top:10px;">
                   <ul id="ordenable" style="list-style-type:none">
+
 
                   </ul>
                 </div>
@@ -377,6 +378,10 @@
         var elemento = document.getElementById('estandar');
         elemento.style.color = "#fafafa";
         elemento.style.backgroundColor  = "#2a3f54";
+
+        // Cambia cursor a manito cuando pasa por el div #itemsValidos
+        document.getElementById("itemsValidos").style.cursor = "pointer";
+
 
         $("#ordenable").sortable();
 
