@@ -253,7 +253,7 @@
               El trabajador confiere los derechos de propiedad intelectual al empleador sobre todo el desarrollo, cediendo todos los derechos de explotación y propiedad
               de estos. En este sentido, el trabajador, garantiza al empleador que el desarrollo es absolutamente original y confidencial, como también que CEDE la totalidad
               de los derechos de propiedad intelectual sobre el mismo, habiendo sido completamente realizado por éste, por lo que puede garantizar que todo el software y
-              las herramientas utilizadas no vulneran ninguna normativa, contrato, derecho, interés o propiedad de teceros.
+              las herramientas utilizadas no vulneran ninguna normativa, contrato, derecho, interés o propiedad de terceros.
             </p>
             <?php break; ?>
     <?php
