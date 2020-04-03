@@ -234,12 +234,12 @@ class  PDFController extends CI_Controller {
 		$ciudadFirma = $this->input->get("ciudadFirma");
 		$fechaInicioContrato = $this->input->get("fechaInicio");
 		$fechaTerminoContrato = $this->input->get("fechaTermino");
+		$items = $this->input->get("items");
 		$itemsContrato = $_GET["arrayItems"];
 		$itemsContrato = explode(",", $itemsContrato);
-		// var_dump("ESTE ES EL ARREGLO DE ITEMS: ".count($itemsContrato));
-		// exit();
-		// $items = $this->input->get("items");
 		$titulo = "CONTRATO DE TRABAJO A PLAZO";
+
+		$arrayNumerosRomanos = ["I", "II","III","IV","V","VI","VII","VIII","IX","X","XI","XII","XIII", "XIV","XV","XVI","XVII","XVIII","XIX","XX"];
 
 
 
@@ -308,6 +308,7 @@ class  PDFController extends CI_Controller {
 		$letrasAsistencia = strtolower($this->convertir($asistencia));
 
 
+
 		$data = array(
 			'titulo'										=> $titulo,
 			'items'											=> $items,
@@ -323,7 +324,8 @@ class  PDFController extends CI_Controller {
 			'letrasColacion'						=> $letrasColacion,
 			'letrasMovilizacion'				=> $letrasMovilizacion,
 			'letrasAsistencia'					=> $letrasAsistencia,
-			'itemsContrato'							=> $itemsContrato
+			'itemsContrato'							=> $itemsContrato,
+			'numeroRomano'							=> $arrayNumerosRomanos,
 		);
 
 
