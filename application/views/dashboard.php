@@ -80,8 +80,7 @@
 <script src="<?php echo base_url() ?>assets/vendors/Chart.js/dist/Chart.min.js"></script>
 <!-- DateJS -->
 <script src="<?php echo base_url() ?>assets/vendors/DateJS/build/date.js"></script>
-<!-- Moment.js -->
-<script src="http://momentjs.com/downloads/moment.min.js"></script>
+
 <!-- Custom Theme Scripts -->
 <script src="<?php echo base_url() ?>assets/build/js/custom.min.js"></script>
 <!-- MIS SCRIPTS -->
