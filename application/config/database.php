@@ -11,7 +11,7 @@ $db['default'] = array(
 	'username' => 'root',
 	'password' => 'almendra',
 	'database' => 'fa_rrhh',
-	'dbdriver' => 'mysqli',
+	'dbdriver' => 'mysql',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
 	'db_debug' => (ENVIRONMENT !== 'production'),
