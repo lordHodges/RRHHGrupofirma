@@ -16,17 +16,7 @@
 
                 <div class="x_content">
                   <ul class="list-unstyled msg_list" id="contenedorTrabajadores">
-                    <li>
-                      <a >
-                        <span>
-                          <span>John Smith</span>
-                          <span class="time">3 mins ago</span>
-                        </span>
-                        <span class="message">
-                          Film festivals used to be do-or-die moments for movie makers. They were where you met the producers that
-                        </span>
-                      </a>
-                    </li>
+                    <!-- Aquí relleno con js -->
                   </ul>
                 </div>
 
@@ -133,14 +123,15 @@
         // calculo diferencia de fechas para saber cuántos días quedan antes de caducar el contrato.
         tiempo = calcularDias(fechaActual,fechaTermino);
         tiempo = Math.round(tiempo);
-        if( tiempo <= 5){
-          fila = '<li style="background-color:#cb3234; color:#fff"><a><span><span>'+o.atr_nombres+" "+o.atr_apellidos+'</span><span class="time">'+tiempo+' días para caducar</span></span>';
-        }else{
-          fila = '<li style="background-color:#2A3F54; color:#fff"><a><span><span>'+o.atr_nombres+" "+o.atr_apellidos+'</span><span class="time">'+tiempo+' días para caducar</span></span>';
+        if( tiempo < 6 && tiempo>0){
+          fila = '<li style="background-color:#BC0011; color:#fff"><a><span><span>'+o.atr_nombres+" "+o.atr_apellidos+'</span><span class="time">'+tiempo+' días para caducar</span></span>';
+          fila += '<span class="message">El trabajador desempeña el cargo de '+o.cargo+'. <br> El contrato comenzo el '+o.atr_fechaInicio+'</span></a></li>';
         }
-        fila += '<span class="message">El trabajador desempeña el cargo de '+o.cargo+'. <br> El contrato comenzo el '+o.atr_fechaInicio+'</span></a></li>';
+
+        $("#contenedorTrabajadores").append(fila);
       });
-      $("#contenedorTrabajadores").append(fila);
+      
+
 
     });
 
