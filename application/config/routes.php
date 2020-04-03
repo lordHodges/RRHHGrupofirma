@@ -2,7 +2,11 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 $route['default_controller'] = 'Welcome/index';
-$route['dashboard'] = 'welcome/index';
+
+// DASHBOARD
+$route['dashboard'] = 'DashboardController/index';
+$route['buscarContratosPorVencer'] = 'DashboardController/buscarContratosPorVencer';
+
 
 
 // TRABAJADORES
