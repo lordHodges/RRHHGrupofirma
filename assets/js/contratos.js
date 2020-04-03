@@ -224,24 +224,6 @@ function cargarDatosEsenciales2(idTrabajador){
 }
 
 
-// function getItemsContrato(){
-//     var url = base_url+'getItemsContrato';
-//     $("#ordenable").empty();
-//     var fila = '';
-//     $.getJSON(url, function (result) {
-//         fila += '';
-//         $.each(result, function (i, o) {
-//             fila += '<li class="form-control" style="margin-bottom:10px;" ondblclick="alertDobleClick(this)">'+o.atr_nombre+'</li>';
-//         });
-//         $("#ordenable").append(fila);
-//     });
-// }
-//
-// function alertDobleClick(){
-//   $(".itemContrato").remove();
-// }
-
-
 
 function getItemsContrato(){
     var url = base_url+'getItemsContrato';
