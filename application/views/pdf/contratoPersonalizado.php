@@ -268,7 +268,7 @@
   <div>
     <!-- Firma Trabajador -->
      <div class="caja1">
-        <p>________________________</p>
+        <p>___________________________________</p>
         <?php foreach ($arrayTrabajador as $key => $t){ ?>
           <div style="display:inline-block">
 
@@ -281,7 +281,7 @@
 
      <!-- Firma empleador -->
      <div class="caja2">
-        <p>________________________</p>
+        <p>___________________________________</p>
         <?php foreach ($arrayTrabajador as $key => $t){ ?>
           <div style="display:inline-block">
 
