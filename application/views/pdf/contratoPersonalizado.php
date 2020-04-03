@@ -55,7 +55,9 @@
                 <br>
                 <h4 style="display:inline"><?php  echo( $numeroRomano[$i] )  ?>.&nbsp;&nbsp; <h4 style="text-decoration: underline;display:inline">Naturaleza de los servicios</h4></h4>
 
-                <p style="text-align:justify; line-height:25px;">El trabajador se compromete y obliga a ejecutar el trabajo de <b><?php echo $t->cargo ?></b>, debiendo realizar las actividades que se le sean encomendadas, entre ellas: </p>
+                <?php foreach ($arrayTrabajador as $key => $t){ ?>
+                  <p style="text-align:justify; line-height:25px;">El trabajador se compromete y obliga a ejecutar el trabajo de <b><?php echo $t->cargo ?></b>, debiendo realizar las actividades que se le sean encomendadas, entre ellas: </p>
+                <?php } ?>
                 <ul>
                 <?php foreach ($arrayFunciones as $key => $f){ ?>
                   <li> <?php echo $f->atr_descripcion ?> </li>
@@ -266,7 +268,7 @@
   <div>
     <!-- Firma Trabajador -->
      <div class="caja1">
-        <p>__________________________________</p>
+        <p>___________________________________</p>
         <?php foreach ($arrayTrabajador as $key => $t){ ?>
           <div style="display:inline-block">
 
@@ -279,7 +281,7 @@
 
      <!-- Firma empleador -->
      <div class="caja2">
-        <p>__________________________________</p>
+        <p>___________________________________</p>
         <?php foreach ($arrayTrabajador as $key => $t){ ?>
           <div style="display:inline-block">
 
