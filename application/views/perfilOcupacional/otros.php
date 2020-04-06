@@ -139,11 +139,13 @@
     <!-- SweetAlert -->
     <script src="<?php echo base_url() ?>assets/js/sweetalert2@9.js" type="text/javascript"></script>
 
+    <script src="<?php echo base_url() ?>assets/js/dashboard.js"></script>
+
 
     <script>
       $(document).ready(function() {
           getSelectCargos();
-          // autocompleteOtros();
+          cargarNotificaciones();
           document.getElementById('btnAgregarListaDeOtrosAntecedentes').style.display = 'none';
       });
 

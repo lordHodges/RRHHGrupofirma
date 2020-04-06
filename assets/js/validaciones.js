@@ -94,7 +94,7 @@ function formatoMiles(input){
   input.value = num;
   }
 
-  else{ alert('Solo se permiten numeros');
+  else{ 
   input.value = input.value.replace(/[^\d\.]*/g,'');
   }
 }

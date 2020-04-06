@@ -330,7 +330,7 @@
 
 
             <br>
-            <button type="submit" id="btnGenerarContrato2" class="btn btn-success botonLargo">GENERAR CONTRATO</button>
+            <button type="submit" id="btnGenerarContrato2" class="btn btn-success botonLargo" style="display:none">GENERAR CONTRATO</button>
 
 
           </div>
@@ -367,11 +367,14 @@
     <!-- SweetAlert -->
     <script src="<?php echo base_url() ?>assets/js/sweetalert2@9.js" type="text/javascript"></script>
 
+    <script src="<?php echo base_url() ?>assets/js/dashboard.js"></script>
+
 
 
 
     <script>
       $(document).ready(function() {
+        cargarNotificaciones();
         cargarElementosDeContrato();
         getSelectCiudad();
         getSelectCiudad2();
@@ -455,6 +458,8 @@
           document.getElementById("vigencia2").style = "";
           document.getElementById("itemsContrato2").style = "";
           document.getElementById("btnGenerarContrato2").style = "";
+
+          document.getElementById("estandarPersonalizado").style = "";
 
           var idTrabajador = $("#selectTrabajador2").val();
           cargarDatosEsenciales2(idTrabajador);

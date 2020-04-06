@@ -1,3 +1,48 @@
+function cargarNotificaciones(){
+	$.ajax({
+			url: 'buscarContratosPorVencer',
+			type: 'GET',
+			dataType: 'json',
+			data: {}
+	}).then(function (msg) {
+		// Obtener y convertir fecha actual
+		var fecha = new Date();
+		var dia = fecha.getDate(); var mes = fecha.getMonth()+1; var ano = fecha.getFullYear();
+
+		var fechaActual = dia+"-"+mes+"-"+ano;
+
+
+		$("#contenedorNotificaciones").empty();
+		var fila = "", tiempo = 0;
+
+		$.each(msg.msg, function (i, o) {
+
+			// Obtengo fecha desde la base de datos
+			var fechaTermino = o.atr_fechaTermino;
+			// calculo diferencia de fechas para saber cuántos días quedan antes de caducar el contrato.
+			tiempo = calcularDias(fechaActual,fechaTermino);
+			tiempo = Math.round(tiempo);
+
+			// Establecer la cantidad de días de anticipacipón en que se mostraran las alertas
+			if( tiempo <= 5 && tiempo >= 0){
+				fila += '<li class="col-sm-12 col-md-12" style="padding-left:3px; padding-right:3px; background-color:#C40012; color:#fff"><a><span><span style="margin-left:9px;"><b>Vence en '+tiempo+' días</b></span><br><span style="margin-left:12px;">'+o.atr_nombres+" "+o.atr_apellidos+'</span></span><br><span class="message" style="margin-left:12px;">'+o.cargo+'</span></a></li>';
+			}
+		});
+
+		$("#contenedorNotificaciones").append(fila);
+
+		if( $("#contenedorNotificaciones").html()=="" ){
+			$("#contenedorDeContratosPorCaducar").css({ display: "none" });
+		}
+
+	});
+
+}
+
+
+
+
+
 function isValidDate(day,month,year)
 	{
 		var dteDate;

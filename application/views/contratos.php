@@ -122,11 +122,14 @@
     <!-- Toast -->
     <script src="<?php echo base_url() ?>assets/js/toastr.min.js" type="text/javascript"></script>
 
+    <script src="<?php echo base_url() ?>assets/js/dashboard.js"></script>
+
 
     <script>
         $(document).ready(function() {
             getSelectCargos();
             cargarTabla();
+            cargarNotificaciones();
         })
 
         $("body").on("click", "#btnVerListaContratos", function(e) {
@@ -161,7 +164,6 @@
                    toastr.error("Error al guardar");
                  }else{
                    $('#modalCargarArchivo').modal('hide');
-                   alert(data);
                    toastr.success('Documento guardado')
                  }
                }

@@ -157,8 +157,11 @@
     <!-- iCheck -->
     <script src="<?php echo base_url() ?>assets/vendors/iCheck/icheck.min.js"></script>
 
+    <script src="<?php echo base_url() ?>assets/js/dashboard.js"></script>
+
 
     <script>
+      cargarNotificaciones();
       $(document).ready(function() {
 
           $('.dataTables-cargos').DataTable({

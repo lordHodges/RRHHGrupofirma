@@ -94,12 +94,15 @@
     <!-- SweetAlert -->
     <script src="<?php echo base_url() ?>assets/js/sweetalert2@9.js" type="text/javascript"></script>
 
+    <script src="<?php echo base_url() ?>assets/js/dashboard.js"></script>
+
 
 
     <script>
       $(document).ready(function() {
           getSelectCargos();
           autocompleteTareas();
+          cargarNotificaciones();
           document.getElementById('btnAgregarListaDeRequisitosMinimos').style.display = 'none';
           document.getElementById('ocultarTabla').style.display = 'none';
           document.getElementById('btnAgregarRequisitoMinimo').removeAttribute("style");  //ESTE SIRVE PARA MOSTRAR EL BOTON

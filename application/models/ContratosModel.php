@@ -79,7 +79,8 @@ class ContratosModel extends CI_Model {
             "atr_nombreDoc" => $nombreFinal,
             "cf_contrato" => $atr_documento,
             "atr_ruta" => $ruta,
-            "atr_fechaCarga" => $fechaActual
+            "atr_fechaCarga" => $fechaActual,
+            "atr_tipo" => 'contrato'
         );
         $insert = $this->db->insert("fa_documento", $data);
         if($insert){

@@ -100,9 +100,12 @@
     <!-- Toast -->
     <script src="<?php echo base_url() ?>assets/js/toastr.min.js" type="text/javascript"></script>
 
+    <script src="<?php echo base_url() ?>assets/js/dashboard.js"></script>
+
 
     <script>
       $(document).ready(function() {
+          cargarNotificaciones();
 
           $('.dataTables-AFP').DataTable({
               "autoWidth": false,

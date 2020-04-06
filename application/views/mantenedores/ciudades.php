@@ -79,80 +79,16 @@
     <!-- Toast -->
     <script src="<?php echo base_url() ?>assets/js/toastr.min.js" type="text/javascript"></script>
 
+    <script src="<?php echo base_url() ?>assets/js/dashboard.js"></script>
+
 
     <script>
       $(document).ready(function() {
           getSelectCiudad();
           getSelectCargos();
           getSucursales();
-
-          $('.dataTables-ciudades').DataTable({
-              "autoWidth": false,
-              "info":false,
-              "sInfoEmpty":false,
-              "sInfoFiltered":false,
-                language: {
-                    "sProcessing": "Procesando...",
-                    "sLengthMenu": "Registros _MENU_ ",
-                    "sZeroRecords": "No se encontraron resultados",
-                    "sEmptyTable": "Ningún dato disponible en esta tabla",
-                    "sInfoPostFix": "",
-                    "sSearch": "Buscar:",
-                    "sUrl": "",
-                    "sInfoThousands": ",",
-                    "sLoadingRecords": "Cargando...",
-                    "oPaginate": {
-                        "sFirst": "Primero",
-                        "sLast": "Último",
-                        "sNext": "Siguiente",
-                        "sPrevious": "Anterior"
-                    },
-                    "oAria": {
-                        "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
-                        "sSortDescending": ": Activar para ordenar la columna de manera descendente"
-                    },
-                    "buttons": {
-                        "copy": "Copiar",
-                        "colvis": "Visibilidad"
-                    }
-                },
-                "ajax": {
-                    url: "http://localhost/RRHH-FIRMA/index.php/getListadoCiudades",
-                    type: 'GET'
-                },
-                "columnDefs": [{
-
-                }
-                ],dom: '<"html5buttons"B>lTfgitp',
-                  buttons: [{
-                          extend: 'copy'
-                      },
-                      {
-                          extend: 'csv'
-                      },
-                      {
-                          extend: 'excel',
-                          title: 'Listado de ciudades',
-
-                      },
-                      {
-                          extend: 'pdf',
-                          title: 'Listado de ciudades'
-
-                      },
-                      {
-                          extend: 'print',
-                          title: 'Firma de abogados',
-                          customize: function(win) {
-                              $(win.document.body).addClass('white-bg');
-                              $(win.document.body).css('font-size', '10px');
-                              $(win.document.body).find('table')
-                                  .addClass('compact')
-                                  .css('font-size', 'inherit');
-                          }
-                      }
-                  ]
-            });
+          cargarTablaCiudades();
+          cargarNotificaciones();
       });
 
       $("#btnAgregarCiudad").click(function (e){
@@ -162,6 +98,7 @@
           table.ajax.reload(function(json) {
             $('#btnAgregarCiudad').val(json.lastInput);
           });
+          cargarTablaCiudades();
       });
   </script>
 

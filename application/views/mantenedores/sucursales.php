@@ -73,12 +73,15 @@
     <!-- Toast -->
     <script src="<?php echo base_url() ?>assets/js/toastr.min.js" type="text/javascript"></script>
 
+    <script src="<?php echo base_url() ?>assets/js/dashboard.js"></script>
+
 
     <script>
       $(document).ready(function() {
           getSelectCiudad();
           getSelectCargos();
           getSucursales();
+          cargarNotificaciones();
 
           $('.dataTables-sucursales').DataTable({
               "autoWidth": false,

@@ -9,14 +9,14 @@
 
             <div class="x_content">
               <h3 class="text-center">TRANSFERENCIAS</h3><br>
-                  <table id="tabla_transferencia" class="table table-striped table-bordered table-hover dataTables-transferencias" style="margin-top:20px;">
+                  <table id="tabla_trabajador" class="table table-striped table-bordered table-hover dataTables-trabajadores" style="margin-top:20px;">
                     <thead>
                         <tr>
                             <th class="text-center">ID</th>
                             <th class="text-center">RUT</th>
-                            <th class="text-center">TIPO</th>
-                            <th class="text-center">FECHA</th>
-                            <th class="text-center">CANTIDAD</th>
+                            <th class="text-center">NOMBRE COMPLETO</th>
+                            <th class="text-center">CONTRATACIÓN</th>
+                            <th class="text-center">EMPRESA</th>
                             <th class="text-center">ACCIONES</th>
                         </tr>
                     </thead>
@@ -31,15 +31,11 @@
 </div>
 
 
-    <!-- Modal ver lista de contratos -->
+    <!-- Modal ver lista de transferencias -->
     <div id="modalVerListaTransferencias" class="modal fade" tabindex="-1" role="dialog"  aria-hidden="true" >
         <div class="modal-dialog modal-lg">
             <div class="modal-content" style="padding:20px; background: #2a3f54" >
                 <div class="form-row">
-                    <!-- <h5 class="modal-title mx-auto">Listado de contratos</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button> -->
                     <div class="modal-body">
                       <div class="row" id="modalDetalleTransferencias">
 
@@ -52,25 +48,31 @@
             </div>
         </div>
     </div>
-    <!-- /Modal de ver lista de contratos -->
+    <!-- /Modal de ver lista de transferencias -->
 
-    <!-- Modal ver cargar comprobante -->
-    <div id="modalCargarComprobante" class="modal fade" tabindex="-1" role="dialog"  aria-hidden="true" >
+    <!-- Modal ver cargar archivo -->
+    <div id="modalCargarArchivo" class="modal fade" tabindex="-1" role="dialog"  aria-hidden="true" >
         <div class="modal-dialog modal-lg">
             <div class="modal-content" style="padding:20px; background: #2a3f54" >
                 <div class="form-row">
                   <div class="col-md-12">
-                    <h5 class="modal-title mx-auto">CARGAR COMPROBANTE</h5><br>
+                    <h5 class="modal-title mx-auto" style="margin-left:50px;">CARGAR COMPROBANTE</h5><br>
                   </div>
                   <div class="col-md-12" id="detalleCargaArchivo">
-                      <form id="uploader" method="post" enctype="multipart/form-data" action="cargar_archivo">
-                        <div class="col-md-6">
+                      <form id="uploader" method="post" enctype="multipart/form-data" action="cargar_comprobante">
+                        <div class="col-md-12">
                           <br>
-                          <label for="fechaInicio">FECHA DE TRANSFERENCIA</label>
-                          <input type="date" class="form-control" name="fechaInicio" required>
+                          <label for="fechaTransferencia">FECHA DE TRANSFERENCIA</label>
+                          <input type="date" class="form-control" name="fechaTransferencia" required>
                         </div>
-                        <input type="text" name="labelTransferencia" id="labelTrabajador" style="color:#2a3f54;border:none;border-color:#2a3f54">
+                        <div class="col-md-12">
+                          <br>
+                          <label for="monto">MONTO</label>
+                          <input type="text" class="form-control" onkeyup="soloNumeros(this.value);formatoMiles(this)" name="monto" required>
+                        </div>
+                        <input type="text" name="labelTrabajador" id="labelTrabajador" style="color:#2a3f54;border:none;border-color:#2a3f54">
                         <div class="col-md-12" >
+                          <br>
                           <input lang="es" type="file" name="file" id="file">
                         </div>
                         <br>
@@ -85,7 +87,7 @@
             </div>
         </div>
     </div>
-    <!-- /Modal de cargar comprobante -->
+    <!-- /Modal de cargar archivo -->
 
     <!-- /Contenedor principal-->
 
@@ -114,27 +116,27 @@
     <!-- Toast -->
     <script src="<?php echo base_url() ?>assets/js/toastr.min.js" type="text/javascript"></script>
 
+    <script src="<?php echo base_url() ?>assets/js/dashboard.js"></script>
+
 
     <script>
         $(document).ready(function() {
-            getSelectCargos();
+            cargarNotificaciones();
             cargarTabla();
         })
 
-        $("body").on("click", "#btnVerListaContratos", function(e) {
+        $("body").on("click", "#btnVerListaTransferencias", function(e) {
              e.preventDefault();
              var id = $(this).parent().parent().children()[0];
              var idTrabajador = $(id).text();
-             getContratosTrabajador(idTrabajador);
+             getTransferenciasTrabajador(idTrabajador);
          });
-
-
 
        $("body").on("click", "#btnModalCargarArchivo", function(e) {
             e.preventDefault();
             var id = $(this).parent().parent().children()[0];
             var idTrabajador = $(id).text();
-            // $("#labelTrabajador").append(idTrabajador);
+
             document.getElementById("labelTrabajador").value = idTrabajador;
         });
 
@@ -153,8 +155,7 @@
                    toastr.error("Error al guardar");
                  }else{
                    $('#modalCargarArchivo').modal('hide');
-                   alert(data);
-                   toastr.success('Documento guardado')
+                   toastr.success('Comprobante guardado')
                  }
                }
            });

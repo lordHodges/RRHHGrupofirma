@@ -8,7 +8,7 @@
         <div class="x_panel">
             <div class="x_content">
                 <!-- <button type="button" class="btn modidev-btn" data-toggle="modal" data-target=".bd-example-modal-lg" style="margin-bottom:20px;">INGRESAR CARGO</button> -->
-
+                <h3 class="text-center">PERFILES OCUPACIONALES</h3><br>
                 <table id="tabla_cargo" class="table table-striped table-bordered table-hover dataTables-cargos" style="margin-top:20px;">
                     <thead >
                         <tr style="width:100%;">
@@ -97,9 +97,13 @@
     <!-- Toast -->
     <script src="<?php echo base_url() ?>assets/js/toastr.min.js" type="text/javascript"></script>
 
+    <script src="<?php echo base_url() ?>assets/js/dashboard.js"></script>
+
 
     <script>
       $(document).ready(function() {
+
+          cargarNotificaciones();
 
           $('.dataTables-cargos').DataTable({
               "autoWidth": false,
@@ -141,47 +145,7 @@
                   "defaultContent": '<button type="button" id="btnVerDocumentoPerfilOcupacional" class="btn btn-info"><i class="glyphicon glyphicon-file"></i></button>'
                 }
                 ],dom: '<"html5buttons"B>lTfgitp',
-                  buttons: [{
-                          extend: 'copy',
-                          exportOptions: {
-                              columns: [ 1,2,3,4,5 ]
-                          }
-                      },
-                      {
-                          extend: 'csv',
-                          exportOptions: {
-                              columns: [ 1,2,3,4,5 ]
-                          }
-                      },
-                      {
-                          extend: 'excel',
-                          title: 'Lista de cargos',
-                          exportOptions: {
-                              columns: [ 1,2,3,4,5 ]
-                          }
-                      },
-                      {
-                          extend: 'pdf',
-                          title: 'Lista de cargos',
-                          exportOptions: {
-                              columns: [ 1,2,3,4,5 ]
-                          }
-
-                      },
-                      {
-                          extend: 'print',
-                          title: 'Firma de abogados',
-                          customize: function(win) {
-                              $(win.document.body).addClass('white-bg');
-                              $(win.document.body).css('font-size', '10px');
-                              $(win.document.body).find('table')
-                                  .addClass('compact')
-                                  .css('font-size', 'inherit');
-                          },
-                          exportOptions: {
-                              columns: [ 1,2,3,4,5 ]
-                          }
-                      }
+                  buttons: [
                   ]
             });
       });

@@ -248,13 +248,25 @@ create table fa_contrato(
     constraint fk_contrato_trabajador foreign key(cf_trabajador) references fa_trabajador(cp_trabajador)
 );
 
+create table fa_transferencia (
+	cp_transferencia varchar(200) unique,
+  atr_fecha varchar(200),
+  atr_monto varchar(200),
+  cf_trabajador int,
+  constraint pk_transferencia PRIMARY KEY (cp_transferencia),
+  constraint fk_transferencia_trabajador foreign key(cf_trabajador) references fa_trabajador(cp_trabajador)
+);
+
 create table fa_documento(
     cp_documento int auto_increment,
     atr_nombreDoc varchar(200),
     atr_nombreReal varchar(200) not null,
     atr_ruta varchar(200) not null,
     atr_fechaCarga varchar(20) not null,
+    atr_tipo varchar(200) not null,
     cf_contrato varchar(200),
+    cf_transferencia varchar(200),
     constraint cp_documento primary key(cp_documento),
-    constraint fk_documento_contrato foreign key(cf_contrato) references fa_contrato(cp_contrato)
+    constraint fk_documento_contrato foreign key(cf_contrato) references fa_contrato(cp_contrato),
+    constraint fk_documento_transferencia foreign key(cf_transferencia) references fa_transferencia(cp_transferencia)
 );

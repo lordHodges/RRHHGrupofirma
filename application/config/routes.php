@@ -169,7 +169,9 @@ $route['docContratoPersonalizado'] = 'PDFController/view_contratoPersonalizado';
 // TRANSFERENCIAS
 $route['inicioTransferencias'] = 'TransferenciasController/index';
 $route['getListadoTransferencias'] = 'TransferenciasController/getListadoTransferencias';
-
+$route['getTransferenciasTrabajador'] = 'TransferenciasController/getTransferenciasTrabajador';
+$route['cargar_comprobante'] = 'TransferenciasController/cargar_comprobante';
+$route['descargarComprobante'] = 'TransferenciasController/descargarComprobante';
 
 
 

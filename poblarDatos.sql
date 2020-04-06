@@ -87,8 +87,6 @@ INSERT INTO `fa_trabajador` (`cp_trabajador`, `atr_rut`, `atr_nombres`, `atr_ape
 INSERT INTO `fa_requisitominimo` (`cp_requisitominimo`, `atr_descripcion`) VALUES (NULL, 'Manejo de GPS; aplicación de internet.'), (NULL, 'Manejo en direcciones según comuna.'), (NULL, 'Estar domiciliado al menos por mas de 1 año en la localidad del puesto de trabajo a postular.'), (NULL, 'Nociones básicas de operaciones(suma, resta, multiplicación y división).'), (NULL, 'Manejo de aplicación whatsapp, tal como enviar dirección, fotografías, compartir información solicitada.'), (NULL, 'Poseer un teléfono celular con internet y aplicación whatsapp.');
 
 
-INSERT INTO `fa_descripcion_item` (`cp_descripcionItem`, `atr_descripcion`, `atr_posicionItem`, `cf_itemContrato`, `cf_cargo`) VALUES (NULL, NULL, '1', '1', '1'), (NULL, NULL, '2', '2', '1'), (NULL, NULL, '3', '3', '1'), (NULL, NULL, '4', '4', '1'), (NULL, NULL, '5', '5', '1'), (NULL, NULL, '6', '6', '1'), (NULL, NULL, '7', '7', '1'), (NULL, NULL, '8', '8', '1');
-
 
 INSERT INTO `fa_items_contrato` (`cp_itemContrato`, `atr_nombre`) VALUES (NULL, 'Partes'), (NULL, 'Naturaleza de los servicios'), (NULL, 'Lugar de prestación de servicios'), (NULL, 'Jornada de trabajo'), (NULL, 'Remuneraciones'), (NULL, 'Duración de la relación jurídica laboral'), (NULL, 'Cláusula de vigencia'), (NULL, 'A tener en cuenta ');
 INSERT INTO `fa_items_contrato` (`cp_itemContrato`, `atr_nombre`) VALUES (NULL, 'Cláusula de confidencialidad'), (NULL, 'Propiedad intelectual');

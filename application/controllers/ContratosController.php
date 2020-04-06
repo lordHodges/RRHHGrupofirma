@@ -122,33 +122,33 @@ class ContratosController extends CI_Controller {
 	}
 
 	public function descargarContrato($id){
-		// importo libreria helper download
-			$this->load->helper('download');
+	// importo libreria helper download
+		$this->load->helper('download');
 
-			// Solicito al modelo registro del contrato
-			$contrato = $this->ContratosModel->getURLContrato($id);
-			foreach ($contrato as $key => $value) {
-				 $nombre = $value->atr_nombreDoc;
-				 $nombreReal = $value->atr_nombreReal;
-			}
+		// Solicito al modelo registro del contrato
+		$contrato = $this->ContratosModel->getURLContrato($id);
+		foreach ($contrato as $key => $value) {
+			 $nombre = $value->atr_nombreDoc;
+			 $nombreReal = $value->atr_nombreReal;
+		}
 
-			// uploads/contratos = ruta de la carpeta que contiene los documentos
-			// $nombre = nombre asignado al documento en bd
-			$file = 'uploads/contratos/'.$nombre;
-
-
-			//si quiero el nombre por defecto al descargar -->  force_download($file, NULL);
-
-			force_download($file, NULL);
-    }
+		// uploads/contratos = ruta de la carpeta que contiene los documentos
+		// $nombre = nombre asignado al documento en bd
+		$file = 'uploads/contratos/'.$nombre;
 
 
-		public function getItemsContrato(){
-				// Solicito al modelo registro del contrato
-				$items = $this->ContratosModel->getItemsContrato();
+		//si quiero el nombre por defecto al descargar -->  force_download($file, NULL);
 
-				echo json_encode($items);
-	    }
+		force_download($file, NULL);
+  }
+
+
+	public function getItemsContrato(){
+		// Solicito al modelo registro del contrato
+		$items = $this->ContratosModel->getItemsContrato();
+
+		echo json_encode($items);
+  }
 
 
 
