@@ -1,6 +1,6 @@
 <div class="right_col" role="main">
 
-            <div class="col-md-6 col-sm-12 ">
+            <div class="col-md-6 col-sm-12 " id="contenedorDeContratosPorCaducar">
               <div class="x_panel tile fixed_height_320">
                 <div class="x_title">
                   <h2>CONTRATOS PRÓXIMOS A VENCER</h2>
@@ -16,7 +16,7 @@
 
                 <div class="x_content">
                   <ul class="list-unstyled msg_list" id="contenedorTrabajadores">
-                    <!-- Aquí relleno con js -->
+                    
                   </ul>
                 </div>
 
@@ -80,8 +80,12 @@
 <script src="<?php echo base_url() ?>assets/vendors/Chart.js/dist/Chart.min.js"></script>
 <!-- DateJS -->
 <script src="<?php echo base_url() ?>assets/vendors/DateJS/build/date.js"></script>
+<<<<<<< HEAD
 <!-- Moment.js -->
 <!-- <script src="http://momentjs.com/downloads/moment.min.js"></script> -->
+=======
+
+>>>>>>> d7bb61443c49074e25995bae30ce90b58aff93f6
 <!-- Custom Theme Scripts -->
 <script src="<?php echo base_url() ?>assets/build/js/custom.min.js"></script>
 <!-- MIS SCRIPTS -->
@@ -117,14 +121,19 @@
         // calculo diferencia de fechas para saber cuántos días quedan antes de caducar el contrato.
         tiempo = calcularDias(fechaActual,fechaTermino);
         tiempo = Math.round(tiempo);
-        if( tiempo < 6 && tiempo>0){
-          fila = '<li style="background-color:#BC0011; color:#fff"><a><span><span>'+o.atr_nombres+" "+o.atr_apellidos+'</span><span class="time">'+tiempo+' días para caducar</span></span>';
+        if( tiempo <= 5){
+          fila = '<li style="background-color:#cb3234; color:#fff"><a><span><span>'+o.atr_nombres+" "+o.atr_apellidos+'</span><span class="time">'+tiempo+' días para caducar</span></span>';
           fila += '<span class="message">El trabajador desempeña el cargo de '+o.cargo+'. <br> El contrato comenzo el '+o.atr_fechaInicio+'</span></a></li>';
+      
+          $("#contenedorTrabajadores").append(fila);
         }
         $("#contenedorTrabajadores").append(fila);
       });
 
 
+      if( $("#contenedorTrabajadores").html()=="" ){
+        $("#contenedorDeContratosPorCaducar").css({ display: "none" });
+      }
 
     });
 
