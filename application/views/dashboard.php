@@ -1,6 +1,6 @@
 <div class="right_col" role="main">
 
-  <div class="col-md-4">
+  <!-- <div class="col-md-4">
     <div class="x_panel" style="background-color:#f7f7f7; border:none">
       <div class="row card-group">
         <div class="card text-white bg-primary">
@@ -45,7 +45,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
 
 
 
