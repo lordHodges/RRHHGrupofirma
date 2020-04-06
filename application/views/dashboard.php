@@ -81,7 +81,7 @@
 <!-- DateJS -->
 <script src="<?php echo base_url() ?>assets/vendors/DateJS/build/date.js"></script>
 <!-- Moment.js -->
-<script src="http://momentjs.com/downloads/moment.min.js"></script>
+<!-- <script src="http://momentjs.com/downloads/moment.min.js"></script> -->
 <!-- Custom Theme Scripts -->
 <script src="<?php echo base_url() ?>assets/build/js/custom.min.js"></script>
 <!-- MIS SCRIPTS -->
@@ -105,12 +105,6 @@
       var fecha = new Date();
       var dia = fecha.getDate(); var mes = fecha.getMonth()+1; var ano = fecha.getFullYear();
 
-      // if( dia.length == 1){
-      //   dia = "0"+dia;
-      // }
-      // if( mes.length == 1){
-      //   mes = "0"+mes;
-      // }
       var fechaActual = dia+"-"+mes+"-"+ano;
 
 
@@ -127,10 +121,9 @@
           fila = '<li style="background-color:#BC0011; color:#fff"><a><span><span>'+o.atr_nombres+" "+o.atr_apellidos+'</span><span class="time">'+tiempo+' días para caducar</span></span>';
           fila += '<span class="message">El trabajador desempeña el cargo de '+o.cargo+'. <br> El contrato comenzo el '+o.atr_fechaInicio+'</span></a></li>';
         }
-
         $("#contenedorTrabajadores").append(fila);
       });
-      
+
 
 
     });
