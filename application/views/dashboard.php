@@ -16,18 +16,13 @@
 
                 <div class="x_content">
                   <ul class="list-unstyled msg_list" id="contenedorTrabajadores">
-                    
+
                   </ul>
                 </div>
 
 
               </div>
             </div>
-
-
-
-
-
 
 
 
@@ -76,24 +71,15 @@
 <script src="<?php echo base_url() ?>assets/vendors/jquery/dist/jquery.min.js"></script>
 <!-- Bootstrap -->
 <script src="<?php echo base_url() ?>assets/vendors/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
 <!-- Chart.js -->
 <script src="<?php echo base_url() ?>assets/vendors/Chart.js/dist/Chart.min.js"></script>
-<!-- DateJS -->
-<script src="<?php echo base_url() ?>assets/vendors/DateJS/build/date.js"></script>
-<<<<<<< HEAD
-<!-- Moment.js -->
-<!-- <script src="http://momentjs.com/downloads/moment.min.js"></script> -->
-=======
 
->>>>>>> d7bb61443c49074e25995bae30ce90b58aff93f6
 <!-- Custom Theme Scripts -->
+<!-- <script src="<?php echo base_url() ?>assets/js/funciones.js"></script> -->
 <script src="<?php echo base_url() ?>assets/build/js/custom.min.js"></script>
-<!-- MIS SCRIPTS -->
+<!-- Mis JS -->
 <script src="<?php echo base_url() ?>assets/js/dashboard.js"></script>
-
-
-
-
 
 
 <script>
@@ -116,20 +102,22 @@
       var fila = "", tiempo = 0;
 
       $.each(msg.msg, function (i, o) {
+
         // Obtengo fecha desde la base de datos
         var fechaTermino = o.atr_fechaTermino;
         // calculo diferencia de fechas para saber cuántos días quedan antes de caducar el contrato.
         tiempo = calcularDias(fechaActual,fechaTermino);
         tiempo = Math.round(tiempo);
-        if( tiempo <= 5){
+
+        // Establecer la cantidad de días de anticipacipón en que se mostraran las alertas
+        if( tiempo <= 5 && tiempo >= 0){
           fila = '<li style="background-color:#cb3234; color:#fff"><a><span><span>'+o.atr_nombres+" "+o.atr_apellidos+'</span><span class="time">'+tiempo+' días para caducar</span></span>';
-          fila += '<span class="message">El trabajador desempeña el cargo de '+o.cargo+'. <br> El contrato comenzo el '+o.atr_fechaInicio+'</span></a></li>';
-      
+          fila += '<span class="message">El trabajador desempeña el cargo de '+o.cargo+'. <br> El contrato termina el '+o.atr_fechaTermino+'</span></a></li>';
+
           $("#contenedorTrabajadores").append(fila);
         }
-        $("#contenedorTrabajadores").append(fila);
-      });
 
+      });
 
       if( $("#contenedorTrabajadores").html()=="" ){
         $("#contenedorDeContratosPorCaducar").css({ display: "none" });

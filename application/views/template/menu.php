@@ -91,9 +91,10 @@
                       </a>
                     </li>
                     <li>
-                      <a href="<?php echo base_url() ?>index.php/adelantos">
-                      <i class="fa fa-bank"></i> Transferencias
-                    </a></li>
+                      <a href="<?php echo base_url() ?>index.php/inicioTransferencias">
+                        <i class="fa fa-bank"></i> Transferencias
+                      </a>
+                    </li>
                     <li><a><i class="fa fa-folder-open"></i> Documentos <span class="fa fa-chevron-down"></span></a>
                       <ul class="nav child_menu">
                         <li><a href="<?php echo base_url() ?>index.php/inicioContratos">Contratos</a></li>

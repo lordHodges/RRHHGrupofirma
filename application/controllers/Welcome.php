@@ -20,7 +20,6 @@ class Welcome extends CI_Controller {
 	{
 		$this->load->view('template/menu');
 		$this->load->view('dashboard');
-		$this->load->view('template/footer');
 	}
 
 	function testpdf(){
