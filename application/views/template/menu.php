@@ -115,8 +115,7 @@
                     </li>
                     <li><a><i class="fa fa-building"></i> Mantenedores <span class="fa fa-chevron-down"></span></a>
                       <ul class="nav child_menu">
-                        
-                        <li><a href="<?php echo base_url() ?>index.php/inicioCargos">Cargos</a></li>
+                      <li><a href="<?php echo base_url() ?>index.php/inicioCargos">Cargos</a></li>
                         <li><a href="<?php echo base_url() ?>index.php/inicioCiudades">Ciudades</a></li>
                         <li><a href="<?php echo base_url() ?>index.php/inicioEmpresa">Empresas</a></li>
                         <li><a href="<?php echo base_url() ?>index.php/inicioEstadosCiviles">Estado Civil</a></li>
