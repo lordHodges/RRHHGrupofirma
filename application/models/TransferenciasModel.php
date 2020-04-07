@@ -8,7 +8,7 @@ class TransferenciasModel extends CI_Model {
         parent::__construct();
     }
 
-    function cargar_comprobante( $nombreReal, $nombreFinal, $ruta, $fechaTransferencia, $monto, $fechaActual, $idTrabajador ){
+    function cargar_comprobante( $motivo, $banco, $nombreReal, $nombreFinal, $ruta, $fechaTransferencia, $monto, $fechaActual, $idTrabajador ){
       // 1: Buscar trabajador y obtener id del cargo
       $this->db->select("t.cf_cargo");
       $this->db->from("fa_trabajador t");
@@ -36,6 +36,7 @@ class TransferenciasModel extends CI_Model {
           "atr_fecha" => $fechaTransferencia,
           "atr_monto" => $monto,
           "cf_trabajador" => $idTrabajador,
+          "cf_banco" => $banco,
       );
       $insert = $this->db->insert("fa_transferencia", $data);
 
@@ -51,7 +52,7 @@ class TransferenciasModel extends CI_Model {
             "cf_transferencia" => $atr_documento,
             "atr_ruta" => $ruta,
             "atr_fechaCarga" => $fechaActual,
-            "atr_tipo" => 'comprobante de transferencia'
+            "atr_tipo" => $motivo
         );
         $insert = $this->db->insert("fa_documento", $data);
         if($insert){

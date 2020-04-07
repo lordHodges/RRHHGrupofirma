@@ -77,7 +77,7 @@ INSERT INTO `fa_estadoCivil` (`cp_estadoCivil`, `atr_nombre`) VALUES (NULL, 'Sol
 
 INSERT INTO `fa_nacionalidad` (`cp_nacionalidad`, `atr_nombre`) VALUES (NULL, 'Chilena'), (NULL, 'Venezolana');
 
-INSERT INTO `fa_prevision` (`cp_prevision`, `atr_nombre`) VALUES (NULL, 'AFP'), (NULL, 'Fonasa');
+INSERT INTO `fa_prevision` (`cp_prevision`, `atr_nombre`) VALUES (NULL, 'Fonasa'), (NULL, 'Banmedica'), (NULL, 'Consalud');
 
 INSERT INTO `fa_remuneracion_extra` (`cp_remuneracionExtra`, `atr_descripcion`, `cf_remuneracion`, `cf_cargo`) VALUES (NULL, '5% de licitación de la utilidad que deja la licitación.', '1', '1'), (NULL, 'Horas extras semanales', '2', '2');
 

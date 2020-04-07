@@ -62,7 +62,7 @@
                         <div class="col-md-6">
                             <br>
                             <label for="getSelectBanco">BANCO</label><br>
-                            <select class="custom-select" id="getSelectBanco">
+                            <select class="custom-select" id="getSelectBanco" name="getSelectBanco">
 
                             </select>
                         </div>
@@ -71,10 +71,26 @@
                           <label for="fechaTransferencia">FECHA DE TRANSFERENCIA</label>
                           <input type="date" class="form-control" name="fechaTransferencia" required style="border-radius:5px;">
                         </div>
+
+                        <div class="col-md-6">
+                            <br>
+                            <label for="getSelectMotivo">MOTIVO</label><br>
+                            <select class="custom-select" id="getSelectMotivo">
+                              <option value="">Seleccionar opción</option>
+                              <option value="Adelanto">Adelanto</option>
+                              <option value="Otro">Otro</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6" id="contenedorOtroMotivo" style="display:none">
+                          <br>
+                          <label for="otroMotivo">OTRO MOTIVO</label>
+                          <input type="text" class="form-control"  name="otroMotivo" style="border-radius:5px; padding:8px;">
+                        </div>
+
                         <div class="col-md-12">
                           <br>
                           <label for="monto">MONTO</label>
-                          <input type="text" class="form-control" onkeyup="soloNumeros(this.value);formatoMiles(this)" name="monto" required>
+                          <input type="text" class="form-control" onkeyup="soloNumeros(this.value);formatoMiles(this)" name="monto"  style="border-radius:5px; padding:7px;" required>
                         </div>
                         <input type="text" name="labelTrabajador" id="labelTrabajador" style="color:#2a3f54;border:none;border-color:#2a3f54">
                         <div class="col-md-12" >
@@ -148,15 +164,11 @@
           });
         });
 
-
-
-
-
-
-
-
-
-
+        $("#getSelectMotivo").change(function (e){
+          if( $("#getSelectMotivo").val() == "Otro" ){
+            document.getElementById('contenedorOtroMotivo').removeAttribute("style");
+          }
+        });
 
 
         $("body").on("click", "#btnVerListaTransferencias", function(e) {

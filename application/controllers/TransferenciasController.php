@@ -65,10 +65,16 @@ class TransferenciasController extends CI_Controller {
 
 				 //este valor esta insertado de forma oculta en el formulario
 				 $idTrabajador = $this->input->post('labelTrabajador');
+				 $banco = $this->input->post('getSelectBanco');
+				 
 
+				 $motivo = $this->input->post('getSelectMotivo');
+				 if($motivo == ""){
+					 $motivo = $this->input->post('otroMotivo');
+				 }
 
 				 //AQUI COMIENZO ENVIO DE DATOS PARA EL MODELO Y PROCEDER EL INGRESO A BASE DE DATOS
-				 $resultado = $this->TransferenciasModel->cargar_comprobante( $nombreReal, $nombreFinal, $ruta, $fechaTransferencia, $monto, $fechaActual, $idTrabajador );
+				 $resultado = $this->TransferenciasModel->cargar_comprobante( $motivo, $banco, $nombreReal, $nombreFinal, $ruta, $fechaTransferencia, $monto, $fechaActual, $idTrabajador );
 
 				 //REGRESO RESULTADO POSITIVO PARA DESPLEGAR MENSAJE DE EXITO
 				 echo json_encode("ok");
