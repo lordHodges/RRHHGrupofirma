@@ -86,21 +86,20 @@
                       </a>
                     </li>
                     <li>
-                      <a href="<?php echo base_url() ?>index.php/inicioGestorContratos">
-                        <i class="fa fa-file"></i> Gestor de contratos
+                      <a href="<?php echo base_url() ?>index.php/inicioTrabajadores">
+                        <i class="fa fa-users"></i> Historial del trabajador
                       </a>
                     </li>
-                    <!-- <li>
-                      <a href="<?php echo base_url() ?>index.php/inicioTransferencias">
-                        <i class="fa fa-bank"></i> Transferencias
+                    <li>
+                      <a href="<?php echo base_url() ?>index.php/inicioGestorContratos">
+                        <i class="fa fa-file"></i> Generar contrato
                       </a>
-                    </li> -->
+                    </li>
                     <li><a><i class="fa fa-folder-open"></i> Documentos <span class="fa fa-chevron-down"></span></a>
                       <ul class="nav child_menu">
                         <li><a href="<?php echo base_url() ?>index.php/inicioContratos">Contratos</a></li>
-
-                        <!-- <li><a href="<?php echo base_url() ?>index.php/dashboard">Finiquitos</a></li> -->
-                        <!-- <li><a href="<?php echo base_url() ?>index.php/dashboard">Cartas de amonestación</a></li> -->
+                        <li><a href="<?php echo base_url() ?>index.php/inicioTransferencias">Transferencias</a></li>
+                        <li><a href="<?php echo base_url() ?>index.php/inicioCartasAmonestacion">Cartas de amonestación</a></li>
                         <li><a href="<?php echo base_url() ?>index.php/perfilOcupacionalVista">Perfiles Ocupacionales</a></li>
                       </ul>
                     </li>

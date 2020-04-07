@@ -2,7 +2,7 @@
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class TransferenciasModel extends CI_Model {
+class CartaAmonestacionModel extends CI_Model {
 
     public function __construct() {
         parent::__construct();
@@ -62,13 +62,6 @@ class TransferenciasModel extends CI_Model {
       }else{
         return "error";
       }
-    }
-
-    function getBancos(){
-      $this->db->select("b.cp_banco, b.atr_nombre, b.atr_sitio");
-      $this->db->from("fa_banco b");
-      $resultado =  $this->db->get()->result();
-      return $resultado;
     }
 
     function getTransferenciasTrabajador($idTrabajador){

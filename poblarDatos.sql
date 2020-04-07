@@ -1,3 +1,8 @@
+INSERT INTO `fa_banco` (`cp_banco`, `atr_nombre`, `atr_sitio`) VALUES (NULL, 'BANCO SANTANDER', ''), (NULL, 'CORPBANCA', NULL), (NULL, 'BCI-TBANC', NULL), (NULL, 'BANCO FALABELLA', NULL), (NULL, 'BANCO ITAU', NULL), (NULL, 'BANCO DE CHILE', NULL);
+INSERT INTO `fa_banco` (`cp_banco`, `atr_nombre`, `atr_sitio`) VALUES (NULL, 'BANCO ESTADO', NULL), (NULL, 'BANCO BICE', NULL), (NULL, 'BANCO SECURITY', NULL), (NULL, 'BANCO CONSORCIO', NULL), (NULL, 'BANCO RIPLEY', NULL), (NULL, 'SCOTIABANK', NULL);
+INSERT INTO `fa_banco` (`cp_banco`, `atr_nombre`, `atr_sitio`) VALUES (NULL, 'COOPEUCH', NULL);
+
+
 INSERT INTO `fa_ciudad` (`atr_nombre`)
 VALUES ('Arica'),('Camarones'),('General Lagos'),('Putre'),('Alto Hospicio'),('Iquique'),('Camiña'),('Colchane'),('Huara'),('Pica'),('Pozo Almonte'),('Tocopilla'),('María Elena'),
 	('Calama'),('Ollague'),('San Pedro de Atacama'),('Antofagasta'),('Mejillones'),('Sierra Gorda'),('Taltal'),('Chañaral'),('Diego de Almagro'),('Copiapó'),

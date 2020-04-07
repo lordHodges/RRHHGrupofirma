@@ -172,8 +172,11 @@ $route['getListadoTransferencias'] = 'TransferenciasController/getListadoTransfe
 $route['getTransferenciasTrabajador'] = 'TransferenciasController/getTransferenciasTrabajador';
 $route['cargar_comprobante'] = 'TransferenciasController/cargar_comprobante';
 $route['descargarComprobante'] = 'TransferenciasController/descargarComprobante';
+$route['getBancos'] = 'TransferenciasController/getBancos';
 
 
+// CARTAS DE AMONESTACIÓN
+$route['inicioCartasAmonestacion'] = 'CartaAmonestacionController/index';
 
 
 

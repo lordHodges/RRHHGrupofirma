@@ -1,18 +1,18 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class TransferenciasController extends CI_Controller {
+class CartaAmonestacionController extends CI_Controller {
 
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->model("TransferenciasModel");
+		$this->load->model("CartaAmonestacionModel");
 	}
 
 	public function index()
 	{
 		$this->load->view('template/menu');
-		$this->load->view('transferencias');
+		$this->load->view('cartasDeAmonestacion');
 	}
 
 	public function cargar_comprobante(){
@@ -75,11 +75,6 @@ class TransferenciasController extends CI_Controller {
 				 exit();
 
 		 }
-	}
-
-	public function getBancos(){
-		$resultado = $this->TransferenciasModel->getBancos();
-		echo json_encode($resultado);
 	}
 
 	public function getURLTransferencia(){

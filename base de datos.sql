@@ -2,6 +2,13 @@ drop database fa_rrhh;
 create database fa_rrhh;
 use fa_rrhh;
 
+create table fa_banco(
+    cp_banco int auto_increment,
+    atr_nombre varchar (200),
+    atr_sitio varchar(200),
+    constraint pk_banco primary key(cp_banco)
+);
+
 create table fa_estado(
     cp_estado int auto_increment,
     atr_nombre varchar(100) not null,
@@ -253,8 +260,10 @@ create table fa_transferencia (
   atr_fecha varchar(200),
   atr_monto varchar(200),
   cf_trabajador int,
+  cf_banco int,
   constraint pk_transferencia PRIMARY KEY (cp_transferencia),
-  constraint fk_transferencia_trabajador foreign key(cf_trabajador) references fa_trabajador(cp_trabajador)
+  constraint fk_transferencia_trabajador foreign key(cf_trabajador) references fa_trabajador(cp_trabajador),
+  constraint fk_transferencia_banco foreign key(cf_banco) references fa_banco(cp_banco)
 );
 
 create table fa_documento(

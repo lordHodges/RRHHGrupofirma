@@ -8,7 +8,7 @@
         <div class="x_panel">
 
             <div class="x_content">
-              <h3 class="text-center">TRANSFERENCIAS</h3><br>
+              <h3 class="text-center">CARTAS DE AMONESTACIÓN</h3><br>
                   <table id="tabla_trabajador" class="table table-striped table-bordered table-hover dataTables-trabajadores" style="margin-top:20px;">
                     <thead>
                         <tr>
@@ -24,6 +24,7 @@
 
                     </tbody>
                   </table>
+
             </div>
         </div>
     </div>
@@ -59,17 +60,10 @@
                   </div>
                   <div class="col-md-12" id="detalleCargaArchivo">
                       <form id="uploader" method="post" enctype="multipart/form-data" action="cargar_comprobante">
-                        <div class="col-md-6">
-                            <br>
-                            <label for="getSelectBanco">BANCO</label><br>
-                            <select class="custom-select" id="getSelectBanco">
-
-                            </select>
-                        </div>
-                        <div class="col-md-6">
+                        <div class="col-md-12">
                           <br>
                           <label for="fechaTransferencia">FECHA DE TRANSFERENCIA</label>
-                          <input type="date" class="form-control" name="fechaTransferencia" required style="border-radius:5px;">
+                          <input type="date" class="form-control" name="fechaTransferencia" required>
                         </div>
                         <div class="col-md-12">
                           <br>
@@ -129,35 +123,7 @@
         $(document).ready(function() {
             cargarNotificaciones();
             cargarTabla();
-            cargarBancos();
         })
-
-        $("#getSelectBanco").change(function (e){
-          $.ajax({
-              url: 'getBancos',
-              type: 'GET',
-              dataType: 'json'
-          }).then(function (response) {
-              $.each(response, function (i, o) {
-                if( $("#getSelectBanco").val()  == o.cp_banco ){
-                  if(!o.atr_sitio == ""){
-                    window.open(o.atr_sitio);
-                  }
-                }
-              });
-          });
-        });
-
-
-
-
-
-
-
-
-
-
-
 
         $("body").on("click", "#btnVerListaTransferencias", function(e) {
              e.preventDefault();

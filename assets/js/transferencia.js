@@ -52,6 +52,23 @@ function cargarTabla(){
     });
 }
 
+function cargarBancos(){
+  $.ajax({
+      url: 'getBancos',
+      type: 'GET',
+      dataType: 'json'
+  }).then(function (response) {
+      var fila = "";
+
+      $("#getSelectBanco").empty();
+      fila += '<option value="">Seleccione una opción</opion>'
+      $.each(response, function (i, o) {
+        fila += '<option value="'+o.cp_banco+'">'+o.atr_nombre+'</opion>';
+      });
+      $("#getSelectBanco").append(fila);
+  });
+}
+
 function getTransferenciasTrabajador(idTrabajador){
   $.ajax({
       url: 'getTransferenciasTrabajador',
