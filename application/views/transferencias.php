@@ -75,7 +75,7 @@
                         <div class="col-md-6">
                             <br>
                             <label for="getSelectMotivo">MOTIVO</label><br>
-                            <select class="custom-select" id="getSelectMotivo">
+                            <select class="custom-select" id="getSelectMotivo" name="getSelectMotivo">
                               <option value="">Seleccionar opción</option>
                               <option value="Adelanto">Adelanto</option>
                               <option value="Otro">Otro</option>
