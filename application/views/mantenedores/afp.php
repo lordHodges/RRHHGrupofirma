@@ -7,13 +7,13 @@
     <div class="row">
         <div class="x_panel">
             <div class="x_content">
-                <button type="button" class="btn modidev-btn" data-toggle="modal" data-target="#modalCrearAFP" style="margin-bottom:20px;">INGRESAR AFP</button>
+                <button type="button" class="btn modidev-btn" data-toggle="modal" data-target="#modalCrearAFP" style="margin-bottom:20px;">INGRESAR PREVISIÓN</button>
 
                 <table id="tabla_AFP" class="table table-striped table-bordered table-hover dataTables-AFP" style="margin-top:20px;">
                     <thead >
                         <tr style="width:100%;">
                             <th class="text-center" style="width:10%">ID</th>
-                            <th class="text-center">AFP</th>
+                            <th class="text-center">PREVISIÓN</th>
                             <th class="text-center" style="width:10%">ACCIONES</th>
                         </tr>
                     </thead>

@@ -93,10 +93,10 @@ $route['docContratoPersonalizado'] = 'PDFController/view_contratoPersonalizado';
     $route['inicioCargos'] = 'CargoController/index';
     $route['inicioPerfiles'] = 'PerfilController/index';
     $route['inicioEstadosCiviles'] = 'EstadoCivilController/index';
-    $route['inicioAFP'] = 'AFPController/index';
+    $route['inicioPrevision'] = 'AFPController/index';
     $route['inicioNacionalidades'] = 'NacionalidadController/index';
     $route['inicioEstadoContrato'] = 'EstadoContratoController/index';
-    $route['inicioPrevisiones'] = 'PrevisionesController/index';
+    $route['inicioSalud'] = 'PrevisionesController/index';
     $route['inicioEmpresa'] = 'EmpresaController/index';
 
 
