@@ -59,14 +59,17 @@ class TransferenciasController extends CI_Controller {
 				 $fechaActual = date("d-m-Y G:i:s");
 
 				 //Obtengo y transformo fecha a formato dia-mes-año
-				 $fechaTransferencia = date('d-m-Y',strtotime($this->input->post('fechaTransferencia')));
+				 $fechaTransferencia = date('Y-m-d',strtotime($this->input->post('fechaTransferencia')));
 				 $monto = $this->input->post('monto');
+
+				 // valor a buscar - valor por el que se reemplazara - string sobre el que se hará todo.
+				 $monto = str_replace(".", "", $monto);
 
 
 				 //este valor esta insertado de forma oculta en el formulario
 				 $idTrabajador = $this->input->post('labelTrabajador');
 				 $banco = $this->input->post('getSelectBanco');
-				 
+
 
 				 $motivo = $this->input->post('getSelectMotivo');
 				 if($motivo == ""){

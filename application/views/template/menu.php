@@ -85,11 +85,11 @@
                         <i class="fa fa-users"></i> Trabajadores
                       </a>
                     </li>
-                    <li>
+                    <!-- <li>
                       <a href="<?php echo base_url() ?>index.php/inicioTrabajadores">
                         <i class="fa fa-archive"></i> Historial de trabajadores
                       </a>
-                    </li>
+                    </li> -->
                     <li>
                       <a href="<?php echo base_url() ?>index.php/inicioGestorContratos">
                         <i class="fa fa-file"></i> Generar contrato
@@ -99,7 +99,7 @@
                       <ul class="nav child_menu">
                         <li><a href="<?php echo base_url() ?>index.php/inicioContratos">Contratos</a></li>
                         <li><a href="<?php echo base_url() ?>index.php/inicioTransferencias">Transferencias</a></li>
-                        <!-- <li><a href="<?php echo base_url() ?>index.php/inicioCartasAmonestacion">Cartas de amonestación</a></li> -->
+                        <li><a href="<?php echo base_url() ?>index.php/inicioCartasAmonestacion">Cartas de amonestación</a></li>
                         <li><a href="<?php echo base_url() ?>index.php/perfilOcupacionalVista">Perfiles Ocupacionales</a></li>
                       </ul>
                     </li>

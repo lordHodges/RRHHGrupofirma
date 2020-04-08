@@ -1,8 +1,8 @@
 /**
  * Resize function without multiple trigger
- * 
+ *
  * Usage:
- * $(window).smartresize(function(){  
+ * $(window).smartresize(function(){
  *     // code here
  * });
  */
@@ -16,8 +16,8 @@
             var obj = this, args = arguments;
             function delayed () {
                 if (!execAsap)
-                    func.apply(obj, args); 
-                timeout = null; 
+                    func.apply(obj, args);
+                timeout = null;
             }
 
             if (timeout)
@@ -25,11 +25,11 @@
             else if (execAsap)
                 func.apply(obj, args);
 
-            timeout = setTimeout(delayed, threshold || 100); 
+            timeout = setTimeout(delayed, threshold || 100);
         };
     };
 
-    // smartresize 
+    // smartresize
     jQuery.fn[sr] = function(fn){  return fn ? this.bind('resize', debounce(fn)) : this.trigger(sr); };
 
 })(jQuery,'smartresize');
@@ -611,7 +611,7 @@ function init_starrr() {
 
 function init_JQVmap() {
 
-    //console.log('check init_JQVmap [' + typeof (VectorCanvas) + '][' + typeof (jQuery.fn.vectorMap) + ']' );	
+    //console.log('check init_JQVmap [' + typeof (VectorCanvas) + '][' + typeof (jQuery.fn.vectorMap) + ']' );
 
     if (typeof (jQuery.fn.vectorMap) === 'undefined') { return; }
 
@@ -2283,39 +2283,6 @@ function init_charts() {
 
 
     // Pie chart
-    if ($('#pieChart').length) {
-
-        var ctx = document.getElementById("pieChart");
-        var data = {
-            datasets: [{
-                data: [120, 50, 140, 180, 100],
-                backgroundColor: [
-                    "#455C73",
-                    "#9B59B6",
-                    "#BDC3C7",
-                    "#26B99A",
-                    "#3498DB"
-                ],
-                label: 'My dataset' // for legend
-            }],
-            labels: [
-                "Dark Gray",
-                "Purple",
-                "Gray",
-                "Green",
-                "Blue"
-            ]
-        };
-
-        var pieChart = new Chart(ctx, {
-            data: data,
-            type: 'pie',
-            otpions: {
-                legend: false
-            }
-        });
-
-    }
 
 
     // PolarArea chart
@@ -2574,7 +2541,7 @@ function init_morris_charts() {
         Morris.Bar({
             element: 'graph_bar',
             data: [
-                { device: 'iPhone 4', geekbench: 380 },
+                { device: 'Banco Santander', geekbench: 3000 },
                 { device: 'iPhone 4S', geekbench: 655 },
                 { device: 'iPhone 3GS', geekbench: 275 },
                 { device: 'iPhone 5', geekbench: 1571 },
@@ -5036,4 +5003,4 @@ $(document).ready(function () {
     init_autosize();
     init_autocomplete();
 
-});	
+});
