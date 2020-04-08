@@ -27,7 +27,9 @@
             <h4 class="text-center">Contrato indefinido</h4>
           </div>
           <div class="card-body"  style="padding:10px; background-color:#fff; color:#000">
-            <h4 class="card-text text-center">150</h4>
+            <div id="contratosIndefinido">
+
+            </div>
           </div>
         </div>
       </div>
@@ -42,7 +44,9 @@
             <h4 class="text-center">Contrato por proyecto</h4>
           </div>
           <div class="card-body"  style="padding:10px; background-color:#fff; color:#000">
-            <h4 class="card-text text-center">150</h4>
+            <div id="contratosProyecto">
+
+            </div>
           </div>
         </div>
       </div>
@@ -145,11 +149,8 @@
 
 <script>
   $(document).ready(function() {
+    cargarCantidadContratos();
     cargarGraficoTransferenciasMes();
-
-
-
-    <h4 class="card-text text-center">150</h4>
   });
 
 

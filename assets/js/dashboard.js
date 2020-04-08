@@ -1,5 +1,37 @@
 var base_url = 'http://localhost/RRHH-FIRMA/index.php/';
 
+function cargarCantidadContratos(){
+
+	var url = base_url+'totalContratosPlazo';
+	var fila = "";
+	$.getJSON(url, function(result){
+		$.each(result, function(i, o){
+			fila += '<h4 class="card-text text-center">'+o.total+'</h4>';
+		});
+		$("#contratosPlazo").append(fila);
+		fila = "";
+	});
+
+
+	url = base_url+'totalContratosIndefinidos';
+	$.getJSON(url, function(result){
+		$.each(result, function(i, o){
+			fila += '<h4 class="card-text text-center">'+o.total+'</h4>';
+		});
+		$("#contratosIndefinido").append(fila);
+		fila = "";
+	});
+
+	url = base_url+'totalContratosPorProyecto';
+	$.getJSON(url, function(result){
+		$.each(result, function(i, o){
+			fila += '<h4 class="card-text text-center">'+o.total+'</h4>';
+		});
+		$("#contratosProyecto").append(fila);
+		fila = "";
+	});
+}
+
 
 
 function cargarGraficoTransferenciasMes(){
