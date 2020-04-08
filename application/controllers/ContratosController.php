@@ -106,13 +106,14 @@ class ContratosController extends CI_Controller {
 			 //Obtengo y transformo fecha a formato dia-mes-año
 			 $fechaInicio = date('d-m-Y',strtotime($this->input->post('fechaInicio')));
 			 $fechaTermino = date('d-m-Y',strtotime($this->input->post('fechaTermino')));
+			 $getSelectEstadoContrato = $this->input->post('getSelectEstadoContrato');
 
 			 //este valor esta insertado de forma oculta en el formulario
 			 $idTrabajador = $this->input->post('labelTrabajador');
 
 
 			 //AQUI COMIENZO ENVIO DE DATOS PARA EL MODELO Y PROCEDER EL INGRESO A BASE DE DATOS
-			 $resultado = $this->ContratosModel->cargar_archivo( $nombreReal, $nombreFinal, $ruta, $fechaInicio, $fechaTermino, $fechaActual, $idTrabajador );
+			 $resultado = $this->ContratosModel->cargar_archivo( $getSelectEstadoContrato, $nombreReal, $nombreFinal, $ruta, $fechaInicio, $fechaTermino, $fechaActual, $idTrabajador );
 
 
 			 //REGRESO RESULTADO POSITIVO PARA DESPLEGAR MENSAJE DE EXITO

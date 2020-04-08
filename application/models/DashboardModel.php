@@ -8,6 +8,29 @@ class DashboardModel extends CI_Model {
         parent::__construct();
     }
 
+    function totalContratosPlazo(){
+      $this->db->select('count(*)');
+      $this->db->from('fa_trabajador t');
+      $this->db->where('t.cf_estado',1);
+      return  $this->db->get()->result();
+    }
+
+    function totalContratosIndefinidos(){
+      $this->db->select('count(*)');
+      $this->db->from('fa_trabajador t');
+      $this->db->where('t.cf_estado',2);
+      return  $this->db->get()->result();
+    }
+
+    function totalContratosPorProyecto(){
+      $this->db->select('count(*)');
+      $this->db->from('fa_trabajador t');
+      $this->db->where('t.cf_estado',3);
+      return  $this->db->get()->result();
+    }
+
+
+
     function buscarContratosPorVencer(){
       $this->db->select(" c.atr_fechaTermino, c.atr_fechaInicio, t.atr_nombres, t.atr_apellidos, ca.atr_nombre as cargo");
       $this->db->from("fa_contrato c");

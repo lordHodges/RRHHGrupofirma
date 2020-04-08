@@ -37,7 +37,7 @@ class ContratosModel extends CI_Model {
       return $resultado;
     }
 
-    function cargar_archivo( $nombreReal, $nombreFinal, $ruta, $fechaInicio, $fechaTermino, $fechaActual, $idTrabajador ){
+    function cargar_archivo( $getSelectEstadoContrato, $nombreReal, $nombreFinal, $ruta, $fechaInicio, $fechaTermino, $fechaActual, $idTrabajador ){
       // 1: Buscar trabajador y obtener id del cargo
       $this->db->select("t.cf_cargo");
       $this->db->from("fa_trabajador t");
@@ -68,6 +68,16 @@ class ContratosModel extends CI_Model {
           "cf_trabajador" => $idTrabajador,
       );
       $insert = $this->db->insert("fa_contrato", $data);
+
+
+      $dataTrabajadorEdit = array(
+        "cf_estado"   =>   $getSelectEstadoContrato
+      );
+
+      $this->db->where('t.cp_trabajador', $idTrabajador);
+      $resultado =  $this->db->update("fa_trabajador t", $dataTrabajadorEdit);
+
+
       if($insert){
         // 4: Crear doumento con clave primeria = atr_documento descrito en contrato
         $this->db->select('count(*)');

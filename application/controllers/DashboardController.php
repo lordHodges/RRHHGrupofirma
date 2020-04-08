@@ -15,6 +15,23 @@ class DashboardController extends CI_Controller {
 		$this->load->view('dashboard');
 	}
 
+	public function totalContratosPlazo(){
+		$resultado = $this->DashboardModel->totalContratosPlazo();
+		echo json_encode($resultado);
+	}
+
+	public function totalContratosIndefinidos(){
+		$resultado = $this->DashboardModel->totalContratosIndefinidos();
+		echo json_encode($resultado);
+	}
+
+	public function totalContratosPorProyecto(){
+		$resultado = $this->DashboardModel->totalContratosPorProyecto();
+		echo json_encode($resultado);
+	}
+
+
+
 	public function buscarContratosPorVencer(){
 		$resultado = $this->DashboardModel->buscarContratosPorVencer();
 		echo json_encode(array("msg" => $resultado));

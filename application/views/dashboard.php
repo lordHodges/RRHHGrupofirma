@@ -3,12 +3,14 @@
   <div class="col-md-4">
     <div class="x_panel" style="background-color:#f7f7f7; border:none">
       <div class="row card-group">
-        <div class="card text-white bg-primary">
+        <div class="card text-white" style="background-color:#1abb9c">
           <div class="card-header" style="padding:7px;">
             <h4 class="text-center">Contrato a plazo</h4>
           </div>
           <div class="card-body" style="padding:10px; background-color:#fff; color:#000">
-            <h4 class="card-text text-center">150</h4>
+            <div id="contratosPlazo">
+              
+            </div>
           </div>
         </div>
       </div>
@@ -20,7 +22,7 @@
   <div class="col-md-4">
     <div class="x_panel" style="background-color:#f7f7f7; border:none">
       <div class="row card-group">
-        <div class="card text-white bg-primary">
+        <div class="card text-white" style="background-color:#1abb9c">
           <div class="card-header"  style="padding:7px;">
             <h4 class="text-center">Contrato indefinido</h4>
           </div>
@@ -35,7 +37,7 @@
   <div class="col-md-4">
     <div class="x_panel" style="background-color:#f7f7f7; border:none">
       <div class="row card-group">
-        <div class="card text-white bg-primary">
+        <div class="card text-white" style="background-color:#1abb9c">
           <div class="card-header"  style="padding:7px;">
             <h4 class="text-center">Contrato por proyecto</h4>
           </div>
@@ -52,7 +54,7 @@
 
 
   <!-- TRANSFERENCIAS DE DINERO POR BANCO -->
-  <!-- <div class="col-md-6 col-sm-6  ">
+  <div class="col-md-6 col-sm-6  ">
     <div class="x_panel">
       <div class="x_title">
         <h2>Transferencias en el último mes</h2>
@@ -76,31 +78,7 @@
         <canvas id="pieChart"></canvas>
       </div>
     </div>
-  </div> -->
-
-
-
-
-
-<div class="col-md-12 col-sm-12  widget_tally_box">
-   <div class="x_panel">
-     <div class="x_title">
-       <h2>Transferencias por banco en el último mes</h2>
-       <ul class="nav navbar-right panel_toolbox">
-         <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-         </li>
-         <li><a class="close-link"><i class="fa fa-close"></i></a>
-         </li>
-       </ul>
-       <div class="clearfix"></div>
-     </div>
-     <div class="x_content">
-
-       <div id="graph_bar" style="width:100%; height:auto;"></div>
-
-     </div>
-   </div>
- </div>
+  </div>
 
 
 
@@ -108,7 +86,9 @@
 
 
 
-  <div class="col-md-6" id="contenedorDeContratosPorCaducar">
+
+
+  <!-- <div class="col-md-6" id="contenedorDeContratosPorCaducar">
     <div class="x_panel">
       <div class="x_title">
         <h2 style="margin-left:12px;"><b>Contratos por vencer</b></h2>
@@ -124,7 +104,7 @@
         </ul>
       </div>
     </div>
-  </div>
+  </div> -->
 
 
 
@@ -165,8 +145,7 @@
 
 <script>
   $(document).ready(function() {
-    cargarGrafico();
-    // cargarGraficoTransferenciasMes();
+    cargarGraficoTransferenciasMes();
   });
 
 

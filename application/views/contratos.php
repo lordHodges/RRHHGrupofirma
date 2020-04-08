@@ -75,7 +75,14 @@
                         <div class="col-md-6">
                           <br>
                           <label for="fechaTermino">TERMINO DE CONTRATO</label>
-                          <input type="date" class="form-control" name="fechaTermino" required>
+                          <input type="date" class="form-control" name="fechaTermino">
+                        </div>
+                        <div class="col-md-12">
+                            <br>
+                            <label for="getSelectEstadoContrato">ESTADO DE CONTRATO</label><br>
+                            <select class="custom-select"  id="getSelectEstadoContrato" name="getSelectEstadoContrato">
+
+                            </select>
                         </div>
                         <input type="text" name="labelTrabajador" id="labelTrabajador" style="color:#2a3f54;border:none;border-color:#2a3f54">
                         <div class="col-md-12" >
@@ -130,6 +137,7 @@
             getSelectCargos();
             cargarTabla();
             cargarNotificaciones();
+            getEstadosContrato();
         })
 
         $("body").on("click", "#btnVerListaContratos", function(e) {

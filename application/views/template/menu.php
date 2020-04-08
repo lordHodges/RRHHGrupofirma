@@ -31,9 +31,6 @@
     <!-- bootstrap-daterangepicker -->
     <link href="<?php echo base_url() ?>assets/vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
 
-    <!-- Custom Theme Style -->
-    <link href="<?php echo base_url() ?>assets/build/css/custom.min.css" rel="stylesheet">
-
     <link href="<?php echo base_url() ?>assets/css/toastr.min.css" rel="stylesheet" type="text/css" />
 
     <!-- MODIDEV -->
@@ -41,6 +38,9 @@
 
     <!-- Autocompletado -->
     <link href="<?php echo base_url() ?>assets/css/jquery-ui.css" rel="stylesheet">
+
+    <!-- Custom Theme Style -->
+    <link href="<?php echo base_url() ?>assets/build/css/custom.min.css" rel="stylesheet">
 
 
   </head>

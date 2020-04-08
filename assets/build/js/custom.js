@@ -2535,7 +2535,7 @@ function init_morris_charts() {
 
     if (typeof (Morris) === 'undefined') { return; }
     console.log('init_morris_charts');
-
+    
     if ($('#graph_bar').length) {
 
         Morris.Bar({
