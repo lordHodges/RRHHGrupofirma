@@ -9,7 +9,7 @@
           </div>
           <div class="card-body" style="padding:10px; background-color:#fff; color:#000">
             <div id="contratosPlazo">
-              
+
             </div>
           </div>
         </div>
@@ -146,6 +146,10 @@
 <script>
   $(document).ready(function() {
     cargarGraficoTransferenciasMes();
+
+
+
+    <h4 class="card-text text-center">150</h4>
   });
 
 
