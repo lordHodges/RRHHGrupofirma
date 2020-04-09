@@ -2,6 +2,15 @@ drop database fa_rrhh;
 create database fa_rrhh;
 use fa_rrhh;
 
+create table fa_cartaAmonestacion(
+    cp_cartaAmonestacion int auto_increment,
+    atr_motivo varchar(200),
+    atr_grado varchar(200),
+    cf_trabajador int,
+    constraint pk_cartaAmonestacion primary key(cp_cartaAmonestacion),
+    constraint fk_cartaAmonestacion_trabajador foreign key(cf_trabajador) references fa_trabajador(cp_trabajador)
+);
+
 create table fa_banco(
     cp_banco int auto_increment,
     atr_nombre varchar (200),

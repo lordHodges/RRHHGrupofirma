@@ -71,9 +71,9 @@ class TransferenciasController extends CI_Controller {
 				 $banco = $this->input->post('getSelectBanco');
 
 
-				 $motivo = $this->input->post('getSelectMotivo');
+				 $motivo = $this->input->post('otroMotivo');
 				 if($motivo == ""){
-					 $motivo = $this->input->post('otroMotivo');
+					 $motivo = $this->input->post('getSelectMotivo');
 				 }
 
 				 //AQUI COMIENZO ENVIO DE DATOS PARA EL MODELO Y PROCEDER EL INGRESO A BASE DE DATOS

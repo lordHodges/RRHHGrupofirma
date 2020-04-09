@@ -83,7 +83,7 @@ function getTransferenciasTrabajador(idTrabajador){
       $("#modalDetalleTransferencias").empty();
 
       fila +='<h5 class="modal-title mx-auto">LISTADO DE TRANSFERENCIAS</h5><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>';
-      fila +='<table class="table table-bordered tableInModal" style="margin-top:20px;"> <thead> <tr> <td class="text-center">Transferencia</td> <td class="text-center">Fecha</td> <td class="text-center">Monto</td> <td class="text-center">Descargar</td> </tr> </thead> <tbody>';
+      fila +='<table class="table table-bordered tableInModal" style="margin-top:20px;"> <thead> <tr> <td class="text-center">Transferencia</td> <td class="text-center">Fecha</td> <td class="text-center">Motivo</td> <td class="text-center">Monto</td> <td class="text-center">Descargar</td> </tr> </thead> <tbody>';
       importarScript("http://localhost/RRHH-FIRMA/assets/js/validaciones.js");
       $.each(response.msg, function (i, o) {
         arrayFecha =  o.atr_fecha.split("-");
@@ -91,6 +91,7 @@ function getTransferenciasTrabajador(idTrabajador){
         fila +='<tr>';
         fila +='<td>'+o.cp_transferencia+'</td>';
         fila +='<td>'+fecha+'</td>';
+        fila +='<td>'+o.atr_tipo+'</td>';
         fila +='<td>$'+o.atr_monto+'</td>';
         if(o.atr_ruta == "vacio"){
           fila +='<td> <a class="btn btn-ded" class="isDisabled" href="#"><i class="glyphicon glyphicon-download-alt"></i></a> </td>';

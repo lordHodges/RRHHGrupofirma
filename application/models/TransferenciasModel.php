@@ -73,7 +73,7 @@ class TransferenciasModel extends CI_Model {
     }
 
     function getTransferenciasTrabajador($idTrabajador){
-      $this->db->select("tr.cp_transferencia, tr.atr_fecha, tr.atr_monto");
+      $this->db->select("tr.cp_transferencia, tr.atr_fecha, tr.atr_monto, doc.atr_tipo");
       $this->db->from("fa_transferencia tr");
       $this->db->join("fa_documento doc","tr.cp_transferencia = doc.cf_transferencia ");
       $this->db->join("fa_trabajador t","t.cp_trabajador = tr.cf_trabajador");
@@ -91,7 +91,7 @@ class TransferenciasModel extends CI_Model {
       return $resultado;
     }
 
-    
+
 
 
 
