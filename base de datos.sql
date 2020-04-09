@@ -3,7 +3,7 @@ create database fa_rrhh;
 use fa_rrhh;
 
 create table fa_cartaAmonestacion(
-    cp_cartaAmonestacion int auto_increment,
+    cp_cartaAmonestacion varchar(200) unique,
     atr_motivo varchar(200),
     atr_grado varchar(200),
     cf_trabajador int,
@@ -284,7 +284,9 @@ create table fa_documento(
     atr_tipo varchar(200) not null,
     cf_contrato varchar(200),
     cf_transferencia varchar(200),
+    cf_cartaamonestacion varchar(200),
     constraint cp_documento primary key(cp_documento),
     constraint fk_documento_contrato foreign key(cf_contrato) references fa_contrato(cp_contrato),
-    constraint fk_documento_transferencia foreign key(cf_transferencia) references fa_transferencia(cp_transferencia)
+    constraint fk_documento_transferencia foreign key(cf_transferencia) references fa_transferencia(cp_transferencia),
+    constraint fk_documento_cartaamonestacion foreign key(cf_cartaamonestacion) references fa_cartaAmonestacion(cp_cartaAmonestacion)
 );

@@ -127,6 +127,8 @@ $route['docContratoPersonalizado'] = 'PDFController/view_contratoPersonalizado';
     $route['updateRemuneracion'] = 'RemuneracionController/updateRemuneracion';
     $route['updateRemuneracionExtra'] = 'RemuneracionController/updateRemuneracionExtra';
     $route['addRemuneracionPorIDCargo'] = 'RemuneracionController/addRemuneracionPorIDCargo';
+    $route['deleteRemuneracionExtra'] = 'RemuneracionController/deleteRemuneracionExtra';
+
 
     //estados civiles
     $route['getListadoEstadosCiviles'] = 'EstadoCivilController/getListadoEstadosCiviles';

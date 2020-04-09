@@ -14,6 +14,14 @@ class RemuneracionController extends CI_Controller {
 
 	}
 
+	public function deleteRemuneracionExtra(){
+		$idCargo = $this->input->post("idCargo");
+		$detalle = $this->input->post("descripcionRemuneracionExtra");
+
+		$resultado = $this->RemuneracionesModel->deleteRemuneracionExtra($idCargo,$detalle);
+		echo json_encode(array("msg" => $resultado));
+	}
+
 	public function getDetalleRemuneracion(){
 		$idCargo = $this->input->post("idCargo");
 

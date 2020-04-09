@@ -3,6 +3,26 @@ var base_url = 'http://localhost/RRHH-FIRMA/index.php/';
 var constante = 0;
 var constanteRemuneraciones = 0;
 
+function deleteRemuneracionExtra(boton){
+
+  var descripcionRemuneracionExtra = boton.value;
+  var idCargo = $("#idCargo").text();
+
+  $.ajax({
+      url: 'deleteRemuneracionExtra',
+      type: 'POST',
+      dataType: 'json',
+      data: {"idCargo": idCargo, "descripcionRemuneracionExtra": descripcionRemuneracionExtra}
+  }).then(function (response) {
+    if(response.msg == "ok"){
+      toastr.success('Remuneración extra eliminada');
+      getDetalleRemuneracion( $("#idCargo").text() );
+    }else{
+
+    }
+  });
+}
+
 
 function getDetalleRemuneracion(id){
   var idCargo = id;
@@ -40,7 +60,7 @@ function getDetalleRemuneracion(id){
 
         $.each(response.msg.array_remuneracionExtra, function (i, r) {
 
-          fila += '<div class="col-md-12"><br><label id="remuneracionActual_'+contadorRemuneraciones+'">'+r.atr_descripcion+'</label><input type="text" id="remuneracionNuevo_'+contadorRemuneraciones+'" placeholder="Escriba aquí para modificar" class="form-control custom-input-sm" id="remuneracionNuevo_'+r.cp_remuneracion+'"></div>';
+          fila += '<div class="col-md-12"><br><label id="remuneracionActual_'+contadorRemuneraciones+'">'+r.atr_descripcion+'</label>&nbsp;<button type="button" class="btn btn-danger btn-sm center"  id="btnEliminarRemuneración" value="'+r.atr_descripcion+'" onclick="deleteRemuneracionExtra(this)"><i class="glyphicon glyphicon-minus"></i></button><input type="text" id="remuneracionNuevo_'+contadorRemuneraciones+'" placeholder="Escriba aquí para modificar" class="form-control custom-input-sm" id="remuneracionNuevo_'+r.cp_remuneracion+'"></div>';
           contadorRemuneraciones = contadorRemuneraciones+1;
           constanteRemuneraciones = constanteRemuneraciones +1;
         });
@@ -111,7 +131,6 @@ function updateRemuneracion(){
                 "imposiciones":imposiciones,
                 "asistencia":asistencia,}
       }).then(function (msg) {
-        // console.log(msg);
         if(msg == "ok"){
           toastr.success('Remuneración actualizada');
         }else{
@@ -182,12 +201,13 @@ function updateRemuneracion(){
             if(msg.msg == "ok"){
               toastr.success('Remuneración extra agregada');
             }else{
-              toastr.error('Ha ocurrido un error, favor contáctese con el soporte.');
+              // toastr.error('Ha ocurrido un error, favor contáctese con el soporte.');
             }
           });
         }
       }
 
     constanteRemuneraciones = 0;
-    $('#modalEditarRemuneración').modal('hide');
+    getDetalleRemuneracion( $("#idCargo").text() );
+    // $('#modalEditarRemuneración').modal('hide');
 }

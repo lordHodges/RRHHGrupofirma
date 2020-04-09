@@ -8,6 +8,16 @@ class RemuneracionesModel extends CI_Model {
         parent::__construct();
     }
 
+    function deleteRemuneracionExtra($cargo, $descripcion){
+      $resultado = $this->db->delete('fa_remuneracion_extra', array('cf_cargo' => $cargo, 'atr_descripcion' => $descripcion ));
+
+      if($resultado){
+        return "ok";
+      }else{
+        return "error";
+      }
+    }
+
     function getDetalleRemuneracion($idCargo){
         $this->db->select("r.cp_remuneracion,r.atr_sueldoMensual, r.atr_cotizaciones, r.atr_colacion, r.atr_movilizacion, r.atr_asistencia, c.cp_cargo, c.atr_nombre ");
         $this->db->from("fa_remuneracion r");

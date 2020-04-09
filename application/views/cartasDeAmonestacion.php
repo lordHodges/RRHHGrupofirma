@@ -56,19 +56,30 @@
             <div class="modal-content" style="padding:20px; background: #2a3f54" >
                 <div class="form-row">
                   <div class="col-md-12">
-                    <h5 class="modal-title mx-auto" style="margin-left:50px;">CARGAR COMPROBANTE</h5><br>
+                    <h5 class="modal-title mx-auto" style="margin-left:50px;">CARGAR CARTA DE AMONESTACIÓN</h5><br>
                   </div>
                   <div class="col-md-12" id="detalleCargaArchivo">
                       <form id="uploader" method="post" enctype="multipart/form-data" action="cargar_comprobante">
                         <div class="col-md-12">
                           <br>
-                          <label for="fechaTransferencia">FECHA DE TRANSFERENCIA</label>
-                          <input type="date" class="form-control" name="fechaTransferencia" required>
+                          <label for="fecha">FECHA DE EMISIÓN</label>
+                          <input type="date" class="form-control" name="fecha" required>
                         </div>
                         <div class="col-md-12">
                           <br>
-                          <label for="monto">MONTO</label>
-                          <input type="text" class="form-control" onkeyup="soloNumeros(this.value);formatoMiles(this)" name="monto" required>
+                          <label for="monto">GRADO DE LA FALTA</label>
+                          <select name="grado" class="custom-select" required>
+                            <option value="">Seleccionar opción</option>
+                            <option value="Menor">Menor</option>
+                            <option value="Medio">Medio</option>
+                            <option value="Grave">Grave</option>
+                          </select>
+                        </div>
+                        <div class="col-md-12">
+                          <br>
+                          <label for="monto">MOTIVO</label>
+                          <textarea rows="3" class="form-control" name="motivo">
+                          </textarea>
                         </div>
                         <input type="text" name="labelTrabajador" id="labelTrabajador" style="color:#2a3f54;border:none;border-color:#2a3f54">
                         <div class="col-md-12" >

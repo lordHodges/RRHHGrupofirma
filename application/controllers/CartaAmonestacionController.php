@@ -16,8 +16,8 @@ class CartaAmonestacionController extends CI_Controller {
 	}
 
 	public function cargar_comprobante(){
-		 $config['upload_path']="./uploads/transferencias/";
-		 $config['allowed_types']='pdf|jpg|jpeg|png';
+		 $config['upload_path']="./uploads/cartas_amonestacion/";
+		 $config['allowed_types']='pdf';
 		 $config['encrypt_name'] = TRUE;
 		 $config['max_size'] = "50000";
 		 $config['max_width'] = "2000";
@@ -58,22 +58,20 @@ class CartaAmonestacionController extends CI_Controller {
 				 date_default_timezone_set("America/Santiago");
 				 $fechaActual = date("d-m-Y G:i:s");
 
-				 //Obtengo y transformo fecha a formato dia-mes-año
-				 $fechaTransferencia = date('d-m-Y',strtotime($this->input->post('fechaTransferencia')));
-				 $monto = $this->input->post('monto');
-
 
 				 //este valor esta insertado de forma oculta en el formulario
+				 $fecha = $this->input->post('fecha');
+				 $grado = $this->input->post('grado');
+				 $motivo = $this->input->post('motivo');
 				 $idTrabajador = $this->input->post('labelTrabajador');
 
 
 				 //AQUI COMIENZO ENVIO DE DATOS PARA EL MODELO Y PROCEDER EL INGRESO A BASE DE DATOS
-				 $resultado = $this->TransferenciasModel->cargar_comprobante( $nombreReal, $nombreFinal, $ruta, $fechaTransferencia, $monto, $fechaActual, $idTrabajador );
+				 $resultado = $this->TransferenciasModel->cargar_comprobante( $nombreReal, $nombreFinal, $ruta, $fecha, $motivo, $grado, $fechaActual, $idTrabajador );
 
 				 //REGRESO RESULTADO POSITIVO PARA DESPLEGAR MENSAJE DE EXITO
 				 echo json_encode("ok");
 				 exit();
-
 		 }
 	}
 
