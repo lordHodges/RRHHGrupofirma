@@ -15,6 +15,14 @@ class CargoController extends CI_Controller {
 		$this->load->view('mantenedores/cargos');
 	}
 
+	public function deleteResponsabilidad(){
+		$idCargo = $this->input->post("idCargo");
+		$detalle = $this->input->post("descripcionResponsabilidad");
+
+		$resultado = $this->MantenedoresModel->deleteResponsabilidad($idCargo,$detalle);
+		echo json_encode(array("msg" => $resultado));
+	}
+
 	public function addResponsabilidades(){
 		$responsabilidad = $this->input->post("responsabilidad");
 		$cargo = $this->input->post("cargo");

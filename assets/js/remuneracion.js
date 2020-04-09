@@ -60,7 +60,7 @@ function getDetalleRemuneracion(id){
 
         $.each(response.msg.array_remuneracionExtra, function (i, r) {
 
-          fila += '<div class="col-md-12"><br><label id="remuneracionActual_'+contadorRemuneraciones+'">'+r.atr_descripcion+'</label>&nbsp;<button type="button" class="btn btn-danger btn-sm center"  id="btnEliminarRemuneración" value="'+r.atr_descripcion+'" onclick="deleteRemuneracionExtra(this)"><i class="glyphicon glyphicon-minus"></i></button><input type="text" id="remuneracionNuevo_'+contadorRemuneraciones+'" placeholder="Escriba aquí para modificar" class="form-control custom-input-sm" id="remuneracionNuevo_'+r.cp_remuneracion+'"></div>';
+          fila += '<div class="col-md-12"><br><button type="button" class="btn btn-danger btn-sm center" value="'+r.atr_descripcion+'" onclick="deleteRemuneracionExtra(this)"><i class="glyphicon glyphicon-minus"></i></button>&nbsp;<label id="remuneracionActual_'+contadorRemuneraciones+'">'+r.atr_descripcion+'</label><input type="text" id="remuneracionNuevo_'+contadorRemuneraciones+'" placeholder="Escriba aquí para modificar" class="form-control custom-input-sm" id="remuneracionNuevo_'+r.cp_remuneracion+'"></div>';
           contadorRemuneraciones = contadorRemuneraciones+1;
           constanteRemuneraciones = constanteRemuneraciones +1;
         });

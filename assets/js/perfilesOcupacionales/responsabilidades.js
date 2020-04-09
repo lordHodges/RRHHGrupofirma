@@ -87,26 +87,54 @@ function getDetalleCargo(id){
       $("#modalDetalleCargo").empty();
       var contadorResponsabilidades = 1;
       $.each(response.msg.array_cargo, function (i, o) {
-          fila +='<div class="col-md-12"><br>  <label for="nombreNuevo">NOMBRE:  &nbsp;</label>  <label id="nombreActual">'+o.atr_nombre+'</label>  <label id="idCargo" style="color:#2a3f54">'+o.cp_cargo+'</label> <input type="text" style="color:#848484" class="form-control custom-input-sm" id="nombreNuevo"></div>';
+          fila +='<div class="col-md-12"><br>  <label for="nombreNuevo">NOMBRE:  &nbsp;</label> <label id="idCargo" style="color:#2a3f54">'+o.cp_cargo+'</label> <input type="text" style="color:#848484" class="form-control  custom-input-sm" id="nombreNuevo"></div>';
           fila +='<div class="col-md-10"><br><label >RESPONSABILIDADES PRINCIPALES &nbsp</label><button type="button" class="btn btn-success btn-sm center"  id="btnAgregarInputResponsabilidadEditar" ><i class="glyphicon glyphicon-plus"></i></button></div>';
           fila +='<div id="contenedorDeResponsabilidades"></div>';
 
           fila += '<div id="responsabilidadesActuales"></div>'
           $.each(response.msg.array_responsabilidades, function (i, r) {
 
-            fila += '<div class="col-md-12"><br><label id="responsabilidadActual_'+contadorResponsabilidades+'">'+r.atr_descripcion+'</label><input type="text" id="responsabilidadNuevo_'+contadorResponsabilidades+'"  class="form-control custom-input-sm" id="responsabilidadNuevo_'+r.cp_responsabilidad+'"></div>';
+            fila += '<div class="col-md-12"><br><button type="button" class="btn btn-danger btn-sm center"  value="'+r.atr_descripcion+'" onclick="deleteResponsabilidad(this)"><i class="glyphicon glyphicon-minus"></i></button>&nbsp;<label id="responsabilidadActual_'+contadorResponsabilidades+'">'+r.atr_descripcion+'</label><input type="text" id="responsabilidadNuevo_'+contadorResponsabilidades+'"  class="form-control custom-input-sm" id="responsabilidadNuevo_'+r.cp_responsabilidad+'"></div>';
             contadorResponsabilidades = contadorResponsabilidades+1;
             constanteResponsabilidades = constanteResponsabilidades +1;
+            // var idResposabilidadParaEach = "responsabilidadNuevo_"+r.cp_responsabilidad;
+
+            // $("#"+idResposabilidadParaEach).val() = "hola";
           });
 
-          fila +='<div class="col-md-12"><br><label for="jefeDirectoNuevo">JEFE DIRECTO:  &nbsp;</label> <label id="jefeDirectoActual">'+o.atr_jefeDirecto+'</label> <input type="text" style="color:#848484" class="form-control custom-input-sm" id="jefeDirectoNuevo"></div>';
-          fila +='<div class="col-md-12"><br><label for="lugarTrabajoNuevo">LUGAR DE PRESTACIÓN DE SERVICIOS:  &nbsp;</label> <label id="lugarTrabajoActual">'+o.atr_lugarTrabajo+'</label> <textarea type="text" placeholder="Es importante que se detalle este dato porque aparecerá en el contrato textualmente." style="color:#848484" class="form-control" rows="3" id="lugarTrabajoNuevo"></textarea></div>';
-          fila +='<div class="col-md-12"><br><label for="jornadaTrabajoNuevo">JORNADA DE TRABAJO:  &nbsp;</label> <label id="jornadaTrabajoActual">'+o.atr_jornadaTrabajo+'</label> <textarea type="text" placeholder="Es importante que se detalle este dato porque aparecerá en el contrato textualmente." style="color:#848484" class="form-control" rows="3" id="jornadaTrabajoNuevo"></textarea></div>';
-          fila +='<div class="col-md-12"><br><label for="diasTrabajoNuevo">DÍAS DE TRABAJO:  &nbsp;</label> <label id="diasTrabajoActual">'+o.atr_diasTrabajo+'</label> <input type="text" style="color:#848484" class="form-control custom-input-sm" id="diasTrabajoNuevo"></div>';
+          fila +='<div class="col-md-12"><br><label for="jefeDirectoNuevo">JEFE DIRECTO:  &nbsp;</label>  <input type="text" style="color:#848484" class="form-control custom-input-sm" id="jefeDirectoNuevo"></div>';
+          fila +='<div class="col-md-12"><br><label for="lugarTrabajoNuevo">LUGAR DE PRESTACIÓN DE SERVICIOS:  &nbsp;</label>  <textarea type="text"  style="color:#848484" class="form-control" rows="5" id="lugarTrabajoNuevo"></textarea></div>';
+          fila +='<div class="col-md-12"><br><label for="jornadaTrabajoNuevo">JORNADA DE TRABAJO:  &nbsp;</label>  <textarea type="text" style="color:#848484" class="form-control" rows="5" id="jornadaTrabajoNuevo"></textarea></div>';
+          fila +='<div class="col-md-12"><br><label for="diasTrabajoNuevo">DÍAS DE TRABAJO:  &nbsp;</label>  <input type="text" style="color:#848484" class="form-control custom-input-sm" id="diasTrabajoNuevo"></div>';
 
           $("#modalDetalleCargo").append(fila);
+
+          document.getElementById("nombreNuevo").value = o.atr_nombre;
+          document.getElementById("jefeDirectoNuevo").value = o.atr_jefeDirecto;
+          document.getElementById("lugarTrabajoNuevo").value = o.atr_lugarTrabajo;
+          document.getElementById("jornadaTrabajoNuevo").value = o.atr_jornadaTrabajo;
+          document.getElementById("diasTrabajoNuevo").value = o.atr_diasTrabajo;
       });
     });
+}
+
+function deleteResponsabilidad(boton){
+  var descripcionResponsabilidad = boton.value;
+  var idCargo = $("#idCargo").text();
+
+  $.ajax({
+      url: 'deleteResponsabilidad',
+      type: 'POST',
+      dataType: 'json',
+      data: {"idCargo": idCargo, "descripcionResponsabilidad": descripcionResponsabilidad}
+  }).then(function (response) {
+    if(response.msg == "ok"){
+      toastr.success('Responsabilidad eliminada');
+      getDetalleCargo( $("#idCargo").text() );
+    }else{
+
+    }
+  });
 }
 
 function updateCargo(){
@@ -116,24 +144,6 @@ function updateCargo(){
   var lugarTrabajo = $("#lugarTrabajoNuevo").val();
   var jornadaTrabajo = $("#jornadaTrabajoNuevo").val();
   var diasTrabajo = $("#diasTrabajoNuevo").val();
-
-  // VALIDACIÓN DE CAMPOS DE TEXTO VACIOS. Si los campos son vacios se mantiene el valor original en la base de datos.
-
-  if( nombre == ""){
-    nombre = $("#nombreActual").text();
-  }
-  if( jefeDirecto == ""){
-    jefeDirecto = $("#jefeDirectoActual").text();
-  }
-  if( lugarTrabajo == ""){
-    lugarTrabajo = $("#lugarTrabajoActual").text();
-  }
-  if( jornadaTrabajo == ""){
-    jornadaTrabajo =  $("#jornadaTrabajoActual").text();
-  }
-  if( diasTrabajo == ""){
-    diasTrabajo = $("#diasTrabajoActual").text();
-  }
 
   // ACTUALIZACION DE CARGOS
   $.ajax({
@@ -216,13 +226,14 @@ function updateCargo(){
             data: { "responsabilidad": responsabilidad,
                     "cargo": id},
           }).then(function (msg) {
-            toastr.success('Nuevas responsabilidades agregadas');
+            // toastr.success('Nuevas responsabilidades agregadas');
           });
         }
       }
 
     constanteResponsabilidades = 0;
-    $('#modaleditarCargo').modal('hide');
+    getDetalleCargo(id);
+    // $('#modaleditarCargo').modal('hide');
 }
 
 function bloquearBoton(){
@@ -244,7 +255,7 @@ function agregaInputResponsabilidad() {
    constante = constante+1;
    var fila = document.getElementById("containerResponsabilidades");
    var count = contar();
-   fila.innerHTML += '<div class="col-md-12" style="margin-top:10px"><input type="text" class="form-control custom-input-sm " onkeypress="bloquearBoton()" id="input_tarea'+count+'" required></div>';
+   fila.innerHTML += '<div class="col-md-12" style="margin-top:10px; color:#848484;"><input type="text" class="form-control custom-input-sm "  onkeypress="bloquearBoton()" id="input_tarea'+count+'" required></div>';
 }
 
 function agregaInputResponsabilidadEditar() {

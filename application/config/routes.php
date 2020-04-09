@@ -122,6 +122,7 @@ $route['docContratoPersonalizado'] = 'PDFController/view_contratoPersonalizado';
     $route['getDetalleResponsabilidades'] = 'CargoController/getDetalleResponsablidades';
     $route['updateCargo'] = 'CargoController/updateCargo';
     $route['updateResponsabilidad'] = 'CargoController/updateResponsabilidad';
+    $route['deleteResponsabilidad'] = 'CargoController/deleteResponsabilidad';
         //remuneracion de cargo
     $route['getDetalleRemuneracion'] = 'RemuneracionController/getDetalleRemuneracion';
     $route['updateRemuneracion'] = 'RemuneracionController/updateRemuneracion';

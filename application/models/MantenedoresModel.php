@@ -47,6 +47,17 @@ class MantenedoresModel extends CI_Model {
     }
 
     // CARGOS
+
+    function deleteResponsabilidad($cargo, $descripcion){
+      $resultado = $this->db->delete('fa_responsabilidad', array('cf_cargo' => $cargo, 'atr_descripcion' => $descripcion ));
+
+      if($resultado){
+        return "ok";
+      }else{
+        return "error";
+      }
+    }
+
     function getListadoCargos(){
       $this->db->select("c.cp_cargo, c.atr_nombre, c.atr_jefeDirecto, c.atr_lugarTrabajo, c.atr_jornadaTrabajo");
       $this->db->from("fa_cargo c");
