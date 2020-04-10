@@ -15,7 +15,7 @@ class CartaAmonestacionController extends CI_Controller {
 		$this->load->view('cartasDeAmonestacion');
 	}
 
-	public function cargar_comprobante(){
+	public function cargar_carta_amonestacion(){
 		 $config['upload_path']="./uploads/cartas_amonestacion/";
 		 $config['allowed_types']='pdf';
 		 $config['encrypt_name'] = TRUE;
@@ -67,7 +67,7 @@ class CartaAmonestacionController extends CI_Controller {
 
 
 				 //AQUI COMIENZO ENVIO DE DATOS PARA EL MODELO Y PROCEDER EL INGRESO A BASE DE DATOS
-				 $resultado = $this->TransferenciasModel->cargar_comprobante( $nombreReal, $nombreFinal, $ruta, $fecha, $motivo, $grado, $fechaActual, $idTrabajador );
+				 $resultado = $this->CartaAmonestacionModel->cargar_carta_amonestacion( $nombreReal, $nombreFinal, $ruta, $fecha, $motivo, $grado, $fechaActual, $idTrabajador );
 
 				 //REGRESO RESULTADO POSITIVO PARA DESPLEGAR MENSAJE DE EXITO
 				 echo json_encode("ok");
@@ -75,29 +75,35 @@ class CartaAmonestacionController extends CI_Controller {
 		 }
 	}
 
-	public function getURLTransferencia(){
+	public function getURLCartaAmonestacion(){
 		$idTrabajador = $this->input->post("idTrabajador");
 
-		$resultado = $this->TransferenciasModel->getTransferenciasTrabajador( $idTrabajador );
+		$resultado = $this->CartaAmonestacionModel->getURLCartaAmonestacion( $idTrabajador );
 		echo json_encode( array("msg" => $resultado) );
 	}
 
 
 
-	public function getTransferenciasTrabajador(){
+
+
+	public function getCartasAmonestacionTrabajador(){
 		$idTrabajador = $this->input->post("idTrabajador");
 
 
-		$resultado = $this->TransferenciasModel->getTransferenciasTrabajador( $idTrabajador );
+		$resultado = $this->CartaAmonestacionModel->getCartasAmonestacionTrabajador( $idTrabajador );
 		echo json_encode( array("msg" => $resultado) );
 	}
 
-	public function descargarComprobante($idTransferencia){
+
+
+
+
+	public function descargarCartaAmonestacion($idTransferencia){
 	// importo libreria helper download
 		$this->load->helper('download');
 
 		// Solicito al modelo registro de la transferencia
-		$transferencia = $this->TransferenciasModel->getURLTransferencia($idTransferencia);
+		$transferencia = $this->CartaAmonestacionModel->getURLCartaAmonestacion($idTransferencia);
 
 		foreach ($transferencia as $key => $value) {
 			 $nombre = $value->atr_nombreDoc;

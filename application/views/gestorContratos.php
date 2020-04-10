@@ -433,7 +433,7 @@
           if(fechaInicio == "" || fechaInicio == null || fechaTermino == "" || fechaTermino == null){
             toastr.error("Debe llenar los campos de fecha");
           }else{
-            var url = 'http://localhost/RRHH-FIRMA/index.php/docContratoEstandar?trabajador='+idTrabajador+'&&fechaInicio='+fechaInicio+'&&fechaTermino='+fechaTermino+'&&ciudadFirma='+ciudadFirma;
+            var url = 'http://localhost/RRHH-FIRMA/docContratoEstandar?trabajador='+idTrabajador+'&&fechaInicio='+fechaInicio+'&&fechaTermino='+fechaTermino+'&&ciudadFirma='+ciudadFirma;
             window.open(url, '_blank');
           }
 
@@ -486,7 +486,7 @@
                  arrayItems.push($(this).text());
             	 });
             });
-            var url = 'http://localhost/RRHH-FIRMA/index.php/docContratoPersonalizado?trabajador='+idTrabajador+'&&fechaInicio='+fechaInicio+'&&fechaTermino='+fechaTermino+'&&ciudadFirma='+ciudadFirma+'&&arrayItems='+arrayItems;
+            var url = 'http://localhost/RRHH-FIRMA/docContratoPersonalizado?trabajador='+idTrabajador+'&&fechaInicio='+fechaInicio+'&&fechaTermino='+fechaTermino+'&&ciudadFirma='+ciudadFirma+'&&arrayItems='+arrayItems;
             window.open(url, '_blank');
         }
 

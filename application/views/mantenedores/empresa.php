@@ -142,7 +142,7 @@
       $(document).ready(function() {
           getSelectCiudad();
           cargarNotificaciones();
-          
+
           $('.dataTables-prevision').DataTable({
                 // "scrollX": true,
                 language: {
@@ -174,7 +174,7 @@
                     }
                 },
                 "ajax": {
-                    url: "http://localhost/RRHH-FIRMA/index.php/getListadoEmpresa",
+                    url: "http://localhost/RRHH-FIRMA/getListadoEmpresa",
                     type: 'GET'
                 },
                 "columnDefs": [{

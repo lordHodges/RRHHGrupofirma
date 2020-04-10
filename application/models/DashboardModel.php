@@ -37,7 +37,7 @@ class DashboardModel extends CI_Model {
       $this->db->join("fa_trabajador t", " t.cp_trabajador = c.cf_trabajador");
       $this->db->join("fa_cargo ca", "ca.cp_cargo = c.cf_cargo");
       $this->db->order_by('c.atr_fechaTermino', 'ASC');
-      return $this->db->get();
+      return $this->db->get()->result();
     }
 
     // Suma los montos transferidos por banco

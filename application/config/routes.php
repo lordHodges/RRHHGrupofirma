@@ -184,6 +184,10 @@ $route['getBancos'] = 'TransferenciasController/getBancos';
 
 // CARTAS DE AMONESTACIÓN
 $route['inicioCartasAmonestacion'] = 'CartaAmonestacionController/index';
+$route['carga_carta'] = 'CartaAmonestacionController/cargar_carta_amonestacion';
+$route['getURLCartaAmonestacion'] = 'CartaAmonestacionController/getURLCartaAmonestacion';
+$route['getCartasAmonestacionTrabajador'] = 'CartaAmonestacionController/getCartasAmonestacionTrabajador';
+$route['descargarCartaAmonestacion'] = 'CartaAmonestacionController/descargarCartaAmonestacion';
 
 
 

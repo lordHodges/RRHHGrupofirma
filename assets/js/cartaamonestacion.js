@@ -1,4 +1,4 @@
-var base_url = 'http://localhost/RRHH-FIRMA/index.php/';
+var base_url = 'http://localhost/RRHH-FIRMA/';
 
 /*************************** TRANSFERENCIAS ****************************/
 
@@ -37,13 +37,13 @@ function cargarTabla(){
             }
         },
         "ajax": {
-            url: "http://localhost/RRHH-FIRMA/index.php/getListadoTrabajadoresContrato",
+            url: "http://localhost/RRHH-FIRMA/getListadoTrabajadoresContrato",
             type: 'GET'
         },
         "columnDefs": [{
                 "targets": 5,
                 "data": null,
-                "defaultContent": '<button style="display:inline" type="button" id="btnVerListaTransferencias" class="btn btn-info" data-toggle="modal" data-target="#modalVerListaTransferencias"><i class="glyphicon glyphicon-folder-open"></i></button>   <button style="display:inline" type="button" id="btnModalCargarArchivo" class="btn btn-info" data-toggle="modal" data-target="#modalCargarArchivo"><i class="glyphicon glyphicon-open"></i></button>'
+                "defaultContent": '<button style="display:inline" type="button" id="btnVerListaCartasAmonestacion" class="btn btn-info" data-toggle="modal" data-target="#modalVerListaCartasAmonestacion"><i class="glyphicon glyphicon-folder-open"></i></button>   <button style="display:inline" type="button" id="btnCargar" class="btn btn-info" data-toggle="modal" data-target="#btnModalCargarCartaAmonestacion"><i class="glyphicon glyphicon-open"></i></button>'
             }
 
         ],dom: '<"html5buttons"B>lTfgitp',
@@ -54,7 +54,7 @@ function cargarTabla(){
 
 
 
-function getTransferenciasTrabajador(idTrabajador){
+function getCartasAmonestacionTrabajador(idTrabajador){
   $.ajax({
       url: 'getCartasAmonestacionTrabajador',
       type: 'POST',
@@ -65,30 +65,29 @@ function getTransferenciasTrabajador(idTrabajador){
       var download = "";
       var monto, fecha, arrayFecha;
 
-      $("#modalDetalleTransferencias").empty();
+      $("#modalDetalleCartasAmonestacion").empty();
 
-      fila +='<h5 class="modal-title mx-auto">LISTADO DE TRANSFERENCIAS</h5><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>';
-      fila +='<table class="table table-bordered tableInModal" style="margin-top:20px;"> <thead> <tr> <td class="text-center">Transferencia</td> <td class="text-center">Fecha</td> <td class="text-center">Motivo</td> <td class="text-center">Monto</td> <td class="text-center">Descargar</td> </tr> </thead> <tbody>';
+      fila +='<h5 class="modal-title mx-auto">LISTADO DE CARTAS DE AMONESTACIÓN</h5><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>';
+      fila +='<table class="table table-bordered tableInModal" style="margin-top:20px;"> <thead> <tr> <td class="text-center">Carta de amonestación</td> <td class="text-center">Fecha</td> <td class="text-center">Motivo</td> <td class="text-center">Grado</td> <td class="text-center">Descargar</td> </tr> </thead> <tbody>';
       importarScript("http://localhost/RRHH-FIRMA/assets/js/validaciones.js");
       $.each(response.msg, function (i, o) {
         arrayFecha =  o.atr_fecha.split("-");
         fecha = arrayFecha[2]+"-"+arrayFecha[1]+"-"+arrayFecha[0];
         fila +='<tr>';
-        fila +='<td>'+o.cp_transferencia+'</td>';
+        fila +='<td>'+o.cp_cartaAmonestacion+'</td>';
         fila +='<td>'+fecha+'</td>';
-        fila +='<td>'+o.atr_tipo+'</td>';
-        fila +='<td>$'+o.atr_monto+'</td>';
+        fila +='<td>'+o.atr_motivo+'</td>';
+        fila +='<td>'+o.atr_grado+'</td>';
         if(o.atr_ruta == "vacio"){
           fila +='<td> <a class="btn btn-ded" class="isDisabled" href="#"><i class="glyphicon glyphicon-download-alt"></i></a> </td>';
         }else{
-          download = "http://localhost/RRHH-FIRMA/index.php/TransferenciasController/descargarComprobante/"+o.cp_transferencia;
+          download = "http://localhost/RRHH-FIRMA/TransferenciasController/descargarCarta/"+o.cp_cartaAmonestacion;
           fila +='<td> <a class="btn btn-info" href="'+download+'" download><i class="glyphicon glyphicon-download-alt"></i></a> </td>';
         }
         fila +='</tr>';
       });
       fila +='</body> </table>';
-      $("#modalDetalleTransferencias").append(fila);
-
+      $("#modalDetalleCartasAmonestacion").append(fila);
   });
 }
 

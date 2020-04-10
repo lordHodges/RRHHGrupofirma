@@ -1,4 +1,4 @@
-var base_url = 'http://localhost/RRHH-FIRMA/index.php/';
+var base_url = 'http://localhost/RRHH-FIRMA/';
 
 function cargarCantidadContratos(){
 
@@ -73,6 +73,17 @@ function cargarGraficoTransferenciasMes(){
 
 }
 
+// Función para calcular los días transcurridos entre dos fechas
+function restarFechas(f1,f2){
+	 var aFecha1 = f1.split('-');
+	 var aFecha2 = f2.split('-');
+	 var fFecha1 = Date.UTC(aFecha1[2],aFecha1[1]-1,aFecha1[0]);
+	 var fFecha2 = Date.UTC(aFecha2[2],aFecha2[1]-1,aFecha2[0]);
+	 var dif = fFecha2 - fFecha1;
+	 var dias = Math.floor(dif / (1000 * 60 * 60 * 24));
+	 return dias;
+}
+
 
 function cargarNotificaciones(){
 	$.ajax({
@@ -85,6 +96,13 @@ function cargarNotificaciones(){
 		var fecha = new Date();
 		var dia = fecha.getDate(); var mes = fecha.getMonth()+1; var ano = fecha.getFullYear();
 
+
+		if(dia > 10){
+			dia = "0"+dia;
+		}
+		if(mes < 10){
+			mes = "0"+mes;
+		}
 		var fechaActual = dia+"-"+mes+"-"+ano;
 
 
@@ -95,8 +113,9 @@ function cargarNotificaciones(){
 
 			// Obtengo fecha desde la base de datos
 			var fechaTermino = o.atr_fechaTermino;
+
 			// calculo diferencia de fechas para saber cuántos días quedan antes de caducar el contrato.
-			tiempo = calcularDias(fechaActual,fechaTermino);
+			tiempo = restarFechas(fechaActual,fechaTermino);
 			tiempo = Math.round(tiempo);
 
 			// Establecer la cantidad de días de anticipacipón en que se mostraran las alertas
@@ -113,66 +132,4 @@ function cargarNotificaciones(){
 
 	});
 
-}
-
-
-
-
-
-function isValidDate(day,month,year)
-	{
-		var dteDate;
-		month=month-1;
-		dteDate=new Date(year,month,day);
-		return ((day==dteDate.getDate()) && (month==dteDate.getMonth()) && (year==dteDate.getFullYear()));
-	}
-
-
-
-function validate_fecha(fecha){
-	var patron=new RegExp("^([0-9]{1,2})([-])([0-9]{1,2})([-])(19|20)+([0-9]{2})$");
-
-	if(fecha.search(patron)==0)
-	{
-		var values=fecha.split("-");
-		if(isValidDate(values[0],values[1],values[2]))
-		{
-			return true;
-		}
-	}
-	return false;
-}
-
-
-
-
-
-
-// FUNCIÓN QUE CALCULA LA CANTIDAD DE DÍAS DE DIFERENCIA ENTRE 2 FECHAS INGRESADAS
-function calcularDias(fechaInicial, fechaFinal){
-  // LAS FECHAS DE PARAMETROS DEBEN IR EN FORMATO DD-MM-YYYY
-	var resultado="";
-	if(validate_fecha(fechaInicial) && validate_fecha(fechaFinal))
-	{
-		inicial=fechaInicial.split("-");
-		final=fechaFinal.split("-");
-		// obtenemos las fechas en milisegundos
-		var dateStart=new Date(inicial[2],(inicial[1]-1),inicial[0]);
-          var dateEnd=new Date(final[2],(final[1]-1),final[0]);
-          if(dateStart<dateEnd)
-          {
-			// la diferencia entre las dos fechas, la dividimos entre 86400 segundos
-			// que tiene un dia, y posteriormente entre 1000 ya que estamos
-			// trabajando con milisegundos.
-			resultado=(((dateEnd-dateStart)/86400)/1000);
-		}else{
-			resultado="La fecha inicial es posterior a la fecha final";
-		}
-	}else{
-		if(!validate_fecha(fechaInicial))
-			resultado="La fecha inicial es incorrecta";
-		if(!validate_fecha(fechaFinal))
-			resultado="La fecha final es incorrecta";
-	}
-	return resultado;
 }

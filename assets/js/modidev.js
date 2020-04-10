@@ -1,4 +1,4 @@
-var base_url = 'http://localhost/RRHH-FIRMA/index.php/';
+var base_url = 'http://localhost/RRHH-FIRMA/';
 
 function cargarTablaPrevision(){
   var table = $('#tabla_prevision').DataTable();
@@ -35,7 +35,7 @@ function cargarTablaPrevision(){
             }
         },
         "ajax": {
-            url: "http://localhost/RRHH-FIRMA/index.php/getListadoPrevisiones",
+            url: "http://localhost/RRHH-FIRMA/getListadoPrevisiones",
             type: 'GET'
         },
         "columnDefs": [{
@@ -125,7 +125,7 @@ function cargarTablaNacionalidades(){
             }
         },
         "ajax": {
-            url: "http://localhost/RRHH-FIRMA/index.php/getListadoNacionalidades",
+            url: "http://localhost/RRHH-FIRMA/getListadoNacionalidades",
             type: 'GET'
         },
         "columnDefs": [{
@@ -214,7 +214,7 @@ function cargarTablaEstadosContrato(){
             }
         },
         "ajax": {
-            url: "http://localhost/RRHH-FIRMA/index.php/getEstadoContrato",
+            url: "http://localhost/RRHH-FIRMA/getEstadoContrato",
             type: 'GET'
         },
         "columnDefs": [{
@@ -304,7 +304,7 @@ function cargarTablaEstadosCiviles(){
             }
         },
         "ajax": {
-            url: "http://localhost/RRHH-FIRMA/index.php/getListadoEstadosCiviles",
+            url: "http://localhost/RRHH-FIRMA/getListadoEstadosCiviles",
             type: 'GET'
         },
         "columnDefs": [{
@@ -392,7 +392,7 @@ function cargarTablaCiudades(){
             }
         },
         "ajax": {
-            url: "http://localhost/RRHH-FIRMA/index.php/getListadoCiudades",
+            url: "http://localhost/RRHH-FIRMA/getListadoCiudades",
             type: 'GET'
         },
         "columnDefs": [{
@@ -464,7 +464,7 @@ function cargarTablaEmpresa(){
             }
         },
         "ajax": {
-            url: "http://localhost/RRHH-FIRMA/index.php/getListadoEmpresa",
+            url: "http://localhost/RRHH-FIRMA/getListadoEmpresa",
             type: 'GET'
         },
         "columnDefs": [{
@@ -627,7 +627,7 @@ function getDetallePrevision(idPrevision){
         var fila = "";
         $.each(msg.msg, function (i, o) {
           fila +='<h5 class="modal-title mx-auto">PREVISIÓN</h5><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>';
-          fila +='<div class="col-md-12"><br><label for="nombre">NOMBRE:&nbsp; </label><label id="nombreActual">'+o.atr_nombre+'</label><label id="idPrevision" style="color:#2A3F54;">'+o.cp_prevision+'</label><input type="text" class="form-control custom-input-sm" id="nombreNuevo"></div>';
+          fila +='<div class="col-md-12"><br><label for="nombre">NOMBRE:&nbsp; </label><label id="idPrevision" style="color:#2A3F54;">'+o.cp_prevision+'</label><input type="text" style="color:#848484" class="form-control custom-input-sm" id="nombreNuevo" value="'+o.atr_nombre+'"></div>';
           $("#contenedorDetallePrevision").append(fila);
         });
 
@@ -638,9 +638,6 @@ function updatePrevision(){
     var idPrevision = $("#idPrevision").text();
     var nombre = $("#nombreNuevo").val();
 
-    if( nombre == ""){
-      nombre = $("#nombreActual").text();
-    }
 
     $.ajax({
         url: 'updatePrevision',
@@ -684,7 +681,7 @@ function getDetalleEstadosContrato(idEstadoContrato){
         var fila = "";
         $.each(msg.msg, function (i, o) {
           fila +='<h5 class="modal-title mx-auto">ESTADO CONTRATO</h5><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>';
-          fila +='<div class="col-md-12"><br><label for="nombre">NOMBRE:&nbsp; </label><label id="nombreActual">'+o.atr_nombre+'</label><label id="idEstadoContrato" style="color:#2A3F54;">'+o.cp_estado+'</label><input type="text" class="form-control custom-input-sm" id="nombreNuevo"></div>';
+          fila +='<div class="col-md-12"><br><label for="nombre">NOMBRE:&nbsp; </label><label id="idEstadoContrato" style="color:#2A3F54;">'+o.cp_estado+'</label><input type="text" style="color:#848484" class="form-control custom-input-sm" id="nombreNuevo" value="'+o.atr_nombre+'"></div>';
           $("#contenedorDetalleEstadoContrato").append(fila);
         });
 
@@ -694,10 +691,6 @@ function getDetalleEstadosContrato(idEstadoContrato){
 function updateEstadoContrato(){
     var idEstadoContrato = $("#idEstadoContrato").text();
     var nombre = $("#nombreNuevo").val();
-
-    if( nombre == ""){
-      nombre = $("#nombreActual").text();
-    }
 
     $.ajax({
         url: 'updateEstadoContrato',
@@ -754,7 +747,7 @@ function getDetalleNacionalidad(idNacionalidad){
         var fila = "";
         $.each(msg.msg, function (i, o) {
           fila +='<h5 class="modal-title mx-auto">NACIONALIDAD</h5><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>';
-          fila +='<div class="col-md-12"><br><label for="nombre">NOMBRE:&nbsp; </label><label id="nombreActual">'+o.atr_nombre+'</label><label id="idNacionalidad" style="color:#2A3F54;">'+o.cp_nacionalidad+'</label><input type="text" class="form-control custom-input-sm" id="nombreNuevo"></div>';
+          fila +='<div class="col-md-12"><br><label for="nombre">NOMBRE:&nbsp; </label><label id="idNacionalidad" style="color:#2A3F54;">'+o.cp_nacionalidad+'</label><input type="text" style="color:#848484" class="form-control custom-input-sm" id="nombreNuevo" value="'+o.atr_nombre+'"></div>';
           $("#contenedorDetalleNacionalidad").append(fila);
         });
 
@@ -765,9 +758,6 @@ function updateNacionalidad(){
     var idNacionalidad = $("#idNacionalidad").text();
     var nombre = $("#nombreNuevo").val();
 
-    if( nombre == ""){
-      nombre = $("#nombreActual").text();
-    }
 
     $.ajax({
         url: 'updateNacionalidad',
@@ -895,7 +885,7 @@ function getDetalleAFP(id){
       var fila = "";
       $.each(msg.msg, function (i, o) {
         fila += '<label value="'+o.cp_afp+'"></label>'
-        fila += '<div class="col-md-12"><br><label for="nombre">NOMBRE: &nbsp;&nbsp;</label><label id="nombreAntiguo"> '+o.atr_nombre+' </label> <label id="idAFP" style="color:#2a3f54">'+o.cp_afp+'</label> <input type="text" placeholder="Ingrese nuevo nombre" style="color:#848484" class="form-control custom-input-sm" id="nombreNuevo"></div>';
+        fila += '<div class="col-md-12"><br><label for="nombre">NOMBRE: &nbsp;&nbsp;</label><label id="idAFP" style="color:#2a3f54">'+o.cp_afp+'</label> <input type="text" placeholder="Ingrese nuevo nombre" style="color:#848484" value="'+o.atr_nombre+'" class="form-control custom-input-sm" id="nombreNuevo"></div>';
         $("#modalDetalleAFP").append(fila);
       });
   });
@@ -918,11 +908,12 @@ function editarAFP(id) {
         }).then(function (msg) {
             if (msg.msg == "ok") {
                toastr.success('AFP modificada')
+               $('#modaleditarAFP').modal('hide');
                document.getElementById("nombreNuevo").value = "";
                document.getElementById("nombreAntiguo").value = "";
-               $('#modaleditarAFP').modal('hide');
             } else {
                 toastr.error("Error en el ingreso.");
+                $('#modaleditarAFP').modal('hide');
             }
         });
     }
@@ -1045,11 +1036,11 @@ function getDetalleEmpresa(idEmpresa){
       var fila = "";
       $.each(msg.msg, function (i, o) {
           fila +='<h5 class="modal-title mx-auto">EMPRESA</h5><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>';
-          fila +='<div class="col-md-12"><br><label for="nombre">NOMBRE:&nbsp; </label><label id="nombreActual">'+o.atr_nombre+'</label><label id="idEmpresa" style="color:#2A3F54;">'+o.cp_empresa+'</label><input type="text" class="form-control custom-input-sm" id="nombreNuevo" oninput="mayus(this);"></div>';
-          fila +='<div class="col-md-12"><br><label for="rut">ROL UNICO TRIBUTARIO:&nbsp;</label><label id="rutActual">'+o.atr_run+'</label><input type="text" class="form-control custom-input-sm" id="rutNuevo" onkeyup="this.value=caracteresRUT(this.value)" oninput="checkRutOficial(this)"></div>';
-          fila +='<div class="col-md-12"><br><label for="ubicacion">UBICACIÓN:&nbsp;</label><label id="ubicacionActual">'+o.atr_domicilio+'</label><input type="text" class="form-control custom-input-sm" id="ubicacionNuevo" oninput="mayus(this);"></div>';
-          fila +='<div class="col-md-12"><br><label for="nombreRepre">NOMBRE DE REPRESENTANTE:&nbsp;</label><label id="nombreRepreActual">'+o.atr_representante+'</label><input type="text" class="form-control custom-input-sm" id="nombreRepreNuevo" oninput="mayus(this);" onkeyup="this.value=soloLetras(this.value)" ></div>';
-          fila +='<div class="col-md-12"><br><label for="cedulaRepre">CÉLUDA DE REPRESENTANTE:&nbsp;</label><label id="cedulaRepreActual">'+o.atr_cedula_representante+'</label><input type="text" class="form-control custom-input-sm" id="cedulaRepreNuevo" onkeyup="this.value=caracteresRUT(this.value)" oninput="checkRutOficial(this)"></div>';
+          fila +='<div class="col-md-12"><br><label for="nombre">NOMBRE:&nbsp; </label><label id="idEmpresa" style="color:#2A3F54;">'+o.cp_empresa+'</label><input type="text" class="form-control custom-input-sm" value="'+o.atr_nombre+'" style="color:#848484;" id="nombreNuevo" oninput="mayus(this);"></div>';
+          fila +='<div class="col-md-12"><br><label for="rut">ROL UNICO TRIBUTARIO:&nbsp;</label><input type="text" class="form-control custom-input-sm" id="rutNuevo" onkeyup="this.value=caracteresRUT(this.value)" value="'+o.atr_run+'" style="color:#848484;" oninput="checkRutOficial(this)"></div>';
+          fila +='<div class="col-md-12"><br><label for="ubicacion">UBICACIÓN:&nbsp;</label><input type="text" class="form-control custom-input-sm" id="ubicacionNuevo" value="'+o.atr_domicilio+'" style="color:#848484;" oninput="mayus(this);"></div>';
+          fila +='<div class="col-md-12"><br><label for="nombreRepre">NOMBRE DE REPRESENTANTE:&nbsp;</label><input type="text" class="form-control custom-input-sm" id="nombreRepreNuevo" oninput="mayus(this);" value="'+o.atr_representante+'" style="color:#848484;" onkeyup="this.value=soloLetras(this.value)" ></div>';
+          fila +='<div class="col-md-12"><br><label for="cedulaRepre">CÉLUDA DE REPRESENTANTE:&nbsp;</label><input type="text" class="form-control custom-input-sm" value="'+o.atr_cedula_representante+'" style="color:#848484;" id="cedulaRepreNuevo" onkeyup="this.value=caracteresRUT(this.value)" oninput="checkRutOficial(this)"></div>';
 
           fila +='<div class="col-md-12"><br> <label for="getSelectCiudad">CIUDAD:&nbsp;</label><label id="ciudadActual">'+o.nombreCiudad+'</label><br> <select class="custom-select" id="getSelectCiudad2"> ';
 
@@ -1064,11 +1055,14 @@ function getDetalleEmpresa(idEmpresa){
           });
 
 
+
       });
   });
 }
 
 function editarEmpresa() {
+
+
     var idEmpresa = $("#idEmpresa").text();
     var nombre = $("#nombreNuevo").val();
     var rut = $("#rutNuevo").val();
@@ -1078,45 +1072,27 @@ function editarEmpresa() {
     var ciudad = $("#getSelectCiudad2").val();
     var esNuevo = true;
 
-
-    // alert("la ciudad nueva es: "+ciudad);
-
-    if (nombre == "" && rut == "" && domicilio == "" && representante == "" && cedula_representante == "" && ciudad == "" ) {
-        toastr.error("No se ha moficiado ningún registro");
-    } else {
-        if(nombre == ""){
-          nombre = $("#nombreActual").text();
-        }
-        if(rut == ""){
-          rut = $("#rutActual").text();
-        }
-        if(domicilio == ""){
-          domicilio = $("#ubicacionActual").text();
-        }
-        if(representante == ""){
-          representante = $("#nombreRepreActual").text();
-        }
-        if(cedula_representante == ""){
-          cedula_representante = $("#cedulaRepreActual").text();
-        }
-        if(ciudad == null || ciudad == ""){
-          ciudad = $("#ciudadActual").text();
-          esNuevo = false;
-        }
-        $.ajax({
-            url: 'updateEmpresa',
-            type: 'POST',
-            dataType: 'json',
-            data: { "esNuevo":esNuevo, "idEmpresa":idEmpresa, "nombre":nombre, "rut":rut, "domicilio":domicilio, "representante":representante, "cedula_representante":cedula_representante, "ciudad":ciudad },
-        }).then(function (msg) {
-          if(msg.msg == "ok"){
-            toastr.success('Información actualizada')
-            $('#modalEditarEmpresa').modal('hide');
-          }else{
-            toastr.error('Ups, ha ocurrido un problema');
-            $('#modalEditarEmpresa').modal('hide');
-          }
-        });
-
+    if( ciudad == "" || ciudad == null){
+      ciudad = $("#ciudadActual").text();
+      esNuevo == false;
     }
+
+      $.ajax({
+          url: 'updateEmpresa',
+          type: 'POST',
+          dataType: 'json',
+          data: { "esNuevo":esNuevo, "idEmpresa":idEmpresa, "nombre":nombre, "rut":rut, "domicilio":domicilio, "representante":representante, "cedula_representante":cedula_representante, "ciudad":ciudad },
+      }).then(function (msg) {
+        if(msg.msg == "ok"){
+          toastr.success('Información actualizada')
+          $('#modalEditarEmpresa').modal('hide');
+        }else{
+          toastr.error('Ups, ha ocurrido un problema');
+          $('#modalEditarEmpresa').modal('hide');
+        }
+      });
+
+
+
+
 }

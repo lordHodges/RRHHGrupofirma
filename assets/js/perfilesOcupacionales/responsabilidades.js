@@ -1,4 +1,4 @@
-var base_url = 'http://localhost/RRHH-FIRMA/index.php/';
+var base_url = 'http://localhost/RRHH-FIRMA/';
 
 var constante = 0;
 var constanteResponsabilidades = 0;
@@ -255,14 +255,14 @@ function agregaInputResponsabilidad() {
    constante = constante+1;
    var fila = document.getElementById("containerResponsabilidades");
    var count = contar();
-   fila.innerHTML += '<div class="col-md-12" style="margin-top:10px; color:#848484;"><input type="text" class="form-control custom-input-sm "  onkeypress="bloquearBoton()" id="input_tarea'+count+'" required></div>';
+   fila.innerHTML += '<div class="col-md-12" style="margin-top:10px; color:#848484;"><input type="text" class="form-control custom-input-sm " style="color:#848484" nkeypress="bloquearBoton()" id="input_tarea'+count+'" required></div>';
 }
 
 function agregaInputResponsabilidadEditar() {
    constante = constante+1;
    var fila = document.getElementById("contenedorDeResponsabilidades");
    var count = contar();
-   fila.innerHTML += '<div class="col-md-12" style="margin-top:10px; color:#848484"><input type="text" class="form-control custom-input-sm " onkeypress="bloquearBotonEditar()" id="input_tarea'+count+'" required></div>';
+   fila.innerHTML += '<div class="col-md-12" style="margin-top:10px; color:#848484"><input type="text" class="form-control custom-input-sm " onkeypress="bloquearBotonEditar()"  style="color:#848484" id="input_tarea'+count+'" required></div>';
 }
 
 // la función contar me devuelve la cantidad de inputs que comienzen con id='input_tarea'

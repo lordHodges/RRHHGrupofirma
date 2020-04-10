@@ -136,7 +136,7 @@
                     }
                 },
                 "ajax": {
-                    url: "http://localhost/RRHH-FIRMA/index.php/getlistadecargos",
+                    url: "http://localhost/RRHH-FIRMA/getlistadecargos",
                     type: 'GET'
                 },
                 "columnDefs": [{
@@ -163,7 +163,7 @@
            e.preventDefault();
            var cargo = $(this).parent().parent().children()[0];
            var idCargo = $(cargo).text()
-           var url = 'http://localhost/RRHH-FIRMA/index.php/docPerfilesOcupacionales?cargo='+idCargo;
+           var url = 'http://localhost/RRHH-FIRMA/docPerfilesOcupacionales?cargo='+idCargo;
            window.open(url, '_blank');
        });
 

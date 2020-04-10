@@ -114,7 +114,7 @@
                     }
                 },
                 "ajax": {
-                    url: "http://localhost/RRHH-FIRMA/index.php/getListadoSucursales",
+                    url: "http://localhost/RRHH-FIRMA/getListadoSucursales",
                     type: 'GET'
                 },
                 "columnDefs": [{

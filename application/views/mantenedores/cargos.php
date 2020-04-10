@@ -50,7 +50,7 @@
                     <div class="col-md-12">
                         <br>
                         <label for="nombre">NOMBRE</label>
-                        <input type="text" class="form-control custom-input-sm" id="nombre">
+                        <input type="text" class="form-control custom-input-sm" style="color:#848484" id="nombre">
                     </div>
 
                     <div class="col-md-12">
@@ -67,24 +67,24 @@
                     <div class="col-md-12">
                         <br>
                         <label for="jefeDirecto">JEFE DIRECTO</label>
-                        <input type="text" class="form-control custom-input-sm" id="jefeDirecto">
+                        <input type="text" class="form-control custom-input-sm" style="color:#848484" id="jefeDirecto">
                     </div>
                     <div class="col-md-12">
                         <br>
                         <label for="lugarTrabajo">LUGAR DE TRABAJO</label>
-                        <input type="text" class="form-control custom-input-sm" id="lugarTrabajo">
+                        <textarea type="text" rows="5" class="form-control custom-input-sm" style="color:#848484" id="lugarTrabajo"></textarea>
                     </div>
                     <div class="col-md-12">
                         <br>
                         <label for="jornadaTrabajo">JORNADA DE TRABAJO</label>
                         <!-- <input type="text" class="form-control custom-input-sm" id="jornadaTrabajo"> -->
-                        <textarea class="form-control" id="jornadaTrabajo" rows="3"></textarea>
+                        <textarea class="form-control" id="jornadaTrabajo" style="color:#848484" rows="5"></textarea>
                     </div>
                     <div class="col-md-12">
                         <br>
                         <label for="diasTrabajo">DÍAS DE TRABAJO</label>
                         <!-- <input type="text" class="form-control custom-input-sm" id="diasTrabajo"> -->
-                        <textarea class="form-control" id="diasTrabajo" rows="3"></textarea>
+                        <textarea class="form-control" id="diasTrabajo" style="color:#848484" rows="5"></textarea>
                     </div>
                 </div>
                 <br>
@@ -167,7 +167,7 @@
 
         document.getElementById("jornadaTrabajo").value = "La jornada de trabajo será de 45 horas semanales, las que serán distribuidas de lunes a viernes, de la siguiente manera: jornada de la mañana de 09:00 horas a 14:00 horas, y en la jornada de la tarde de 15:00 horas a 19:00 horas.";
         document.getElementById("diasTrabajo").value = "De lunes a viernes de 09:00 hasta las 19:00 horas. Sábados de 09:00 a 14:00 horas";
-
+        document.getElementById("lugarTrabajo").value = "Los servicios se prestarán en las dos sucursales de Hostal Plaza Maule Limitada ubicadas en 1 Sir 24 y media oriente N°3183 y 1 Sur 24 oriente N°3155 de la ciudad de Talca. La jornada de trabajo será de 45 horas semanales, las que serán distribuidas de lunes a viernes, de la siguiente manera: jornada de la mañana de 09:00 horas a 14:00 horas, y en la jornada de la tarde de 15:00 horas a 19:00 horas.";
           $('.dataTables-cargos').DataTable({
               "autoWidth": false,
                 language: {
@@ -199,7 +199,7 @@
                     }
                 },
                 "ajax": {
-                    url: "http://localhost/RRHH-FIRMA/index.php/getlistadecargos",
+                    url: "http://localhost/RRHH-FIRMA/getlistadecargos",
                     type: 'GET'
                 },
                 "columnDefs": [{

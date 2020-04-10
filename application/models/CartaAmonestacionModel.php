@@ -8,7 +8,7 @@ class CartaAmonestacionModel extends CI_Model {
         parent::__construct();
     }
 
-    function cargar_comprobante( $nombreReal, $nombreFinal, $ruta, $fecha, $motivo, $grado, $fechaActual, $idTrabajador ){
+    function cargar_carta_amonestacion( $nombreReal, $nombreFinal, $ruta, $fecha, $motivo, $grado, $fechaActual, $idTrabajador ){
       // 1: Buscar trabajador y obtener id del cargo
       $this->db->select("t.cf_cargo");
       $this->db->from("fa_trabajador t");
@@ -65,21 +65,21 @@ class CartaAmonestacionModel extends CI_Model {
       }
     }
 
-    function getTransferenciasTrabajador($idTrabajador){
-      $this->db->select("ca.cp_transferencia, ca.atr_motivo, ca.atr_grado");
+    function getCartasAmonestacionTrabajador($idTrabajador){
+      $this->db->select("ca.cp_cartaAmonestacion, ca.atr_motivo, ca.atr_grado, ca.atr_fecha");
       $this->db->from("fa_cartaamonestacion ca");
-      $this->db->join("fa_documento doc","ca.cp_transferencia = doc.cf_cartaamonestacion");
-      $this->db->join("fa_trabajador t","t.cp_trabajador = tr.cf_trabajador");
+      $this->db->join("fa_documento doc","ca.cp_cartaAmonestacion = doc.cf_cartaamonestacion");
+      $this->db->join("fa_trabajador t","t.cp_trabajador = ca.cf_trabajador");
       $this->db->order_by('ca.atr_fecha', 'DESC');
       $this->db->where("ca.cf_trabajador", $idTrabajador);
       $resultado =  $this->db->get()->result();
       return $resultado;
     }
 
-    function getURLTransferencia($idTransferencia){
+    function getURLCartaAmonestacion($idCartaAmonestacion){
       $this->db->select("doc.atr_nombreDoc, doc.atr_nombreReal");
       $this->db->from("fa_documento doc");
-      $this->db->where("doc.cf_transferencia", $idTransferencia);
+      $this->db->where("doc.cf_cartaamonestacion", $idCartaAmonestacion);
       $resultado =  $this->db->get()->result();
       return $resultado;
     }

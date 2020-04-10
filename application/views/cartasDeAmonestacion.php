@@ -32,12 +32,12 @@
 
 
     <!-- Modal ver lista de transferencias -->
-    <div id="modalVerListaTransferencias" class="modal fade" tabindex="-1" role="dialog"  aria-hidden="true" >
+    <div id="modalVerListaCartasAmonestacion" class="modal fade" tabindex="-1" role="dialog"  aria-hidden="true" >
         <div class="modal-dialog modal-lg">
             <div class="modal-content" style="padding:20px; background: #2a3f54" >
                 <div class="form-row">
                     <div class="modal-body">
-                      <div class="row" id="modalDetalleTransferencias">
+                      <div class="row" id="modalDetalleCartasAmonestacion">
 
 
                       </div>
@@ -51,7 +51,7 @@
     <!-- /Modal de ver lista de transferencias -->
 
     <!-- Modal ver cargar archivo -->
-    <div id="modalCargarArchivo" class="modal fade" tabindex="-1" role="dialog"  aria-hidden="true" >
+    <div id="btnModalCargarCartaAmonestacion" class="modal fade" tabindex="-1" role="dialog"  aria-hidden="true" >
         <div class="modal-dialog modal-lg">
             <div class="modal-content" style="padding:20px; background: #2a3f54" >
                 <div class="form-row">
@@ -59,7 +59,7 @@
                     <h5 class="modal-title mx-auto" style="margin-left:50px;">CARGAR CARTA DE AMONESTACIÓN</h5><br>
                   </div>
                   <div class="col-md-12" id="detalleCargaArchivo">
-                      <form id="uploader" method="post" enctype="multipart/form-data" action="cargar_comprobante">
+                      <form id="uploader" method="post" enctype="multipart/form-data" action="cargar_carta_amonestacion">
                         <div class="col-md-12">
                           <br>
                           <label for="fecha">FECHA DE EMISIÓN</label>
@@ -122,7 +122,7 @@
     <script src="<?php echo base_url() ?>assets/build/js/custom.js"></script>
     <!-- MODIDEV -->
     <script src="<?php echo base_url() ?>assets/js/modidev.js"></script>
-    <script src="<?php echo base_url() ?>assets/js/transferencia.js"></script>
+    <script src="<?php echo base_url() ?>assets/js/cartaamonestacion.js"></script>
     <script src="<?php echo base_url() ?>assets/js/validaciones.js"></script>
     <!-- Toast -->
     <script src="<?php echo base_url() ?>assets/js/toastr.min.js" type="text/javascript"></script>
@@ -136,14 +136,14 @@
             cargarTabla();
         })
 
-        $("body").on("click", "#btnVerListaTransferencias", function(e) {
-             e.preventDefault();
-             var id = $(this).parent().parent().children()[0];
-             var idTrabajador = $(id).text();
-             getTransferenciasTrabajador(idTrabajador);
-         });
+       $("body").on("click", "#btnVerListaCartasAmonestacion", function(e) {
+           e.preventDefault();
+           var id = $(this).parent().parent().children()[0];
+           var idTrabajador = $(id).text();
+           getCartasAmonestacionTrabajador(idTrabajador);
+       });
 
-       $("body").on("click", "#btnModalCargarArchivo", function(e) {
+       $("body").on("click", "#btnModalCargarCartaAmonestacion", function(e) {
             e.preventDefault();
             var id = $(this).parent().parent().children()[0];
             var idTrabajador = $(id).text();
@@ -165,19 +165,19 @@
                  if (data == "" || data == null) {
                    toastr.error("Error al guardar");
                  }else{
-                   $('#modalCargarArchivo').modal('hide');
-                   toastr.success('Comprobante guardado')
+                   $('#btnModalCargarCartaAmonestacion').modal('hide');
+                   toastr.success('Carta de amonestación guardada');
                  }
                }
            });
        });
 
 
-       $("body").on("click", "#btnDescargarContrato", function(e) {
+       $("body").on("click", "#btnDescargarCartaAmonestacion", function(e) {
             e.preventDefault();
             var id = $(this).parent().parent().children()[0];
             var idContrato = $(id).text();
-            descargarContrato(idContrato);
+            descargarCarta(idContrato);
         });
 
     </script>

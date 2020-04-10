@@ -1,4 +1,4 @@
-var base_url = 'http://localhost/RRHH-FIRMA/index.php/';
+var base_url = 'http://localhost/RRHH-FIRMA/';
 
 /*************************** CONTRATO ****************************/
 
@@ -37,7 +37,7 @@ function cargarTabla(){
             }
         },
         "ajax": {
-            url: "http://localhost/RRHH-FIRMA/index.php/getListadoTrabajadoresContrato",
+            url: "http://localhost/RRHH-FIRMA/getListadoTrabajadoresContrato",
             type: 'GET'
         },
         "columnDefs": [{
@@ -76,7 +76,7 @@ function getContratosTrabajador(idTrabajador){
         if(o.atr_ruta == "vacio"){
           fila +='<td> <a class="btn btn-ded" class="isDisabled" href="#"><i class="glyphicon glyphicon-download-alt"></i></a> </td>';
         }else{
-          download = "http://localhost/RRHH-FIRMA/index.php/ContratosController/descargarContrato/"+o.cp_contrato;
+          download = "http://localhost/RRHH-FIRMA/ContratosController/descargarContrato/"+o.cp_contrato;
           fila +='<td> <a class="btn btn-info" href="'+download+'" download><i class="glyphicon glyphicon-download-alt"></i></a> </td>';
         }
         fila +='</tr>';
