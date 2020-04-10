@@ -1,4 +1,4 @@
-var base_url = 'http://localhost/RRHH-FIRMA/';
+var base_url = 'http://10.10.11.240/RRHH-FIRMA/';
 
 function cargarTablaPrevision(){
   var table = $('#tabla_prevision').DataTable();
@@ -35,7 +35,7 @@ function cargarTablaPrevision(){
             }
         },
         "ajax": {
-            url: "http://localhost/RRHH-FIRMA/getListadoPrevisiones",
+            url: "http://10.10.11.240/RRHH-FIRMA/getListadoPrevisiones",
             type: 'GET'
         },
         "columnDefs": [{
@@ -125,7 +125,7 @@ function cargarTablaNacionalidades(){
             }
         },
         "ajax": {
-            url: "http://localhost/RRHH-FIRMA/getListadoNacionalidades",
+            url: "http://10.10.11.240/RRHH-FIRMA/getListadoNacionalidades",
             type: 'GET'
         },
         "columnDefs": [{
@@ -214,7 +214,7 @@ function cargarTablaEstadosContrato(){
             }
         },
         "ajax": {
-            url: "http://localhost/RRHH-FIRMA/getEstadoContrato",
+            url: "http://10.10.11.240/RRHH-FIRMA/getEstadoContrato",
             type: 'GET'
         },
         "columnDefs": [{
@@ -304,7 +304,7 @@ function cargarTablaEstadosCiviles(){
             }
         },
         "ajax": {
-            url: "http://localhost/RRHH-FIRMA/getListadoEstadosCiviles",
+            url: "http://10.10.11.240/RRHH-FIRMA/getListadoEstadosCiviles",
             type: 'GET'
         },
         "columnDefs": [{
@@ -392,7 +392,7 @@ function cargarTablaCiudades(){
             }
         },
         "ajax": {
-            url: "http://localhost/RRHH-FIRMA/getListadoCiudades",
+            url: "http://10.10.11.240/RRHH-FIRMA/getListadoCiudades",
             type: 'GET'
         },
         "columnDefs": [{
@@ -464,7 +464,7 @@ function cargarTablaEmpresa(){
             }
         },
         "ajax": {
-            url: "http://localhost/RRHH-FIRMA/getListadoEmpresa",
+            url: "http://10.10.11.240/RRHH-FIRMA/getListadoEmpresa",
             type: 'GET'
         },
         "columnDefs": [{

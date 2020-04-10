@@ -174,7 +174,7 @@
                     }
                 },
                 "ajax": {
-                    url: "http://localhost/RRHH-FIRMA/getListadoEmpresa",
+                    url: "http://10.10.11.240/RRHH-FIRMA/getListadoEmpresa",
                     type: 'GET'
                 },
                 "columnDefs": [{

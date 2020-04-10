@@ -1,4 +1,4 @@
-var base_url = 'http://localhost/RRHH-FIRMA/';
+var base_url = 'http://10.10.11.240/RRHH-FIRMA/';
 
 var constante = 0;
 var constanteRemuneraciones = 0;
