@@ -1,5 +1,5 @@
 /*************************** TRABAJADOR ****************************/
-var base_url = 'http://localhost/RRHH-FIRMA/';
+var base_url = 'http://10.10.11.240/RRHH-FIRMA/';
 
 function cargarTablaTrabajador(){
   var table = $('#tabla_trabajador').DataTable();
@@ -36,7 +36,7 @@ function cargarTablaTrabajador(){
             }
         },
         "ajax": {
-            url: "http://localhost/RRHH-FIRMA/getListadoTrabajadores",
+            url: "http://10.10.11.240/RRHH-FIRMA/getListadoTrabajadores",
             type: 'GET'
         },
         "columnDefs": [{

@@ -1,4 +1,4 @@
-var base_url = 'http://localhost/RRHH-FIRMA/';
+var base_url = 'http://10.10.11.240/RRHH-FIRMA/';
 var constante = 0;
 
 function cargarTabla(cargo){
@@ -33,7 +33,7 @@ function cargarTabla(cargo){
             },
         },
         "ajax": {
-            url: 'http://localhost/RRHH-FIRMA/getListadoRequisitosMinimosDataTable?id='+cargo,
+            url: 'http://10.10.11.240/RRHH-FIRMA/getListadoRequisitosMinimosDataTable?id='+cargo,
             type: 'GET',
         },
         "columnDefs": [{
