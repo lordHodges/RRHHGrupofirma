@@ -88,7 +88,6 @@
           getSelectCargos();
           getSucursales();
           cargarTablaCiudades();
-          cargarNotificaciones();
       });
 
       $("#btnAgregarCiudad").click(function (e){

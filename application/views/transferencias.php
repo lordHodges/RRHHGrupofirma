@@ -143,7 +143,6 @@
 
     <script>
         $(document).ready(function() {
-            cargarNotificaciones();
             cargarTabla();
             cargarBancos();
         })

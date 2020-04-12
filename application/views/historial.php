@@ -229,7 +229,6 @@
 
     <script>
         $(document).ready(function() {
-            cargarNotificaciones();
             getSelectCiudad();
             getSelectCargos();
             getSucursales();

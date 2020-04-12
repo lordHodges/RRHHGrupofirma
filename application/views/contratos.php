@@ -136,7 +136,6 @@
         $(document).ready(function() {
             getSelectCargos();
             cargarTabla();
-            cargarNotificaciones();
             getEstadosContrato();
         })
 

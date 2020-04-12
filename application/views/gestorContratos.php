@@ -374,7 +374,6 @@
 
     <script>
       $(document).ready(function() {
-        cargarNotificaciones();
         cargarElementosDeContrato();
         getSelectCiudad();
         getSelectCiudad2();

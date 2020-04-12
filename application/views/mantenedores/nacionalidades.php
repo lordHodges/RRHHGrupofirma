@@ -97,7 +97,6 @@
           getSelectCargos();
           getSucursales();
           cargarTablaNacionalidades();
-          cargarNotificaciones();
       });
 
       $("#btnAgregarNacionalidad").click(function (e){

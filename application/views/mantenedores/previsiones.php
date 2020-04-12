@@ -96,7 +96,6 @@
     <script>
       $(document).ready(function() {
         cargarTablaPrevision();
-        cargarNotificaciones();
       });
 
       $("#btnAgregarPrevisión").click(function (e){

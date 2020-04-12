@@ -105,7 +105,6 @@
 
     <script>
       $(document).ready(function() {
-          cargarNotificaciones();
 
           $('.dataTables-AFP').DataTable({
               "autoWidth": false,
@@ -138,7 +137,7 @@
                     }
                 },
                 "ajax": {
-                    url: "http://10.10.11.240/RRHH-FIRMA/getListadoAFP",
+                    url: "http://10.10.11.240/RRHH-FIRMA/index.php/getListadoAFP",
                     type: 'GET'
                 },
                 "columnDefs": [{

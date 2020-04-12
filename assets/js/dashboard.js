@@ -116,7 +116,7 @@ function cargarNotificaciones(){
 			// calculo diferencia de fechas para saber cuántos días quedan antes de caducar el contrato.
 			tiempo = restarFechas(fechaActual,fechaTermino);
 			tiempo = Math.round(tiempo);
-			alert("math round es :"+tiempo);
+			// alert("math round es :"+tiempo);
 
 			// Establecer la cantidad de días de anticipacipón en que se mostraran las alertas
 			if( tiempo <= 5 && tiempo >= 0){

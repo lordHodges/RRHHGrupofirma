@@ -81,7 +81,6 @@
           getSelectCiudad();
           getSelectCargos();
           getSucursales();
-          cargarNotificaciones();
 
           $('.dataTables-sucursales').DataTable({
               "autoWidth": false,
@@ -114,7 +113,7 @@
                     }
                 },
                 "ajax": {
-                    url: "http://10.10.11.240/RRHH-FIRMA/getListadoSucursales",
+                    url: "http://10.10.11.240/RRHH-FIRMA/index.php/getListadoSucursales",
                     type: 'GET'
                 },
                 "columnDefs": [{

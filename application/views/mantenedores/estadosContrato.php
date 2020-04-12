@@ -92,7 +92,6 @@
     <script>
       $(document).ready(function() {
           cargarTablaEstadosContrato();
-          cargarNotificaciones();
       });
 
       $("#btnAgregarEstado").click(function (e){

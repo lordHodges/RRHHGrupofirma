@@ -79,7 +79,6 @@
     <script>
       $(document).ready(function() {
           cargarTablaEstadosCiviles();
-          cargarNotificaciones();
       });
 
       $("#btnAgregarEstadoCivil").click(function (e){
