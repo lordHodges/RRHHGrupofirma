@@ -1,4 +1,4 @@
-var base_url = 'http://10.10.11.240/RRHH-FIRMA/index.php/';
+var base_url = 'http://localhost/RRHH-FIRMA/index.php/';
 var constante = 0;
 
 function cargarTabla(){
@@ -18,7 +18,7 @@ function cargarTabla(){
             "sZeroRecords": "No se encontraron resultados",
             "sEmptyTable": "Ningún dato disponible en esta tabla",
             // "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-            "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+            "sInfoEmpty": "",
             "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
             "sInfoPostFix": "",
             "sSearch": "Buscar:",
@@ -37,7 +37,7 @@ function cargarTabla(){
             },
         },
         "ajax": {
-            url: 'http://10.10.11.240/RRHH-FIRMA/index.php/getListadoOtrosAntecedentesDataTable?idCargo='+cargo+'&idAntecedente='+antecedente,
+            url: 'http://localhost/RRHH-FIRMA/index.php/getListadoOtrosAntecedentesDataTable?idCargo='+cargo+'&idAntecedente='+antecedente,
             type: 'GET',
         },
         "columnDefs": [{

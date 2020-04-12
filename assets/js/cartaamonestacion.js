@@ -1,4 +1,4 @@
-var base_url = 'http://10.10.11.240/RRHH-FIRMA/index.php/';
+var base_url = 'http://localhost/RRHH-FIRMA/index.php/';
 
 /*************************** TRANSFERENCIAS ****************************/
 
@@ -8,12 +8,14 @@ function cargarTabla(){
 
   $('.dataTables-trabajadores').DataTable({
     "autoWidth": false,
+    "sInfo": false,
+    "sInfoEmpty": false,
         language: {
             "sProcessing": "Procesando...",
             "sLengthMenu": "Registros _MENU_ ",
             "sZeroRecords": "No se encontraron resultados",
             "sEmptyTable": "Ningún dato disponible en esta tabla",
-            "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+            "sInfo": "",
             "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
             "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
             "sInfoPostFix": "",
@@ -37,7 +39,7 @@ function cargarTabla(){
             }
         },
         "ajax": {
-            url: "http://10.10.11.240/RRHH-FIRMA/index.php/getListadoTrabajadoresContrato",
+            url: "http://localhost/RRHH-FIRMA/index.php/getListadoTrabajadoresContrato",
             type: 'GET'
         },
         "columnDefs": [{
@@ -68,7 +70,7 @@ function getCartasAmonestacionTrabajador(idTrabajador){
 
       fila +='<h5 class="modal-title mx-auto">LISTADO DE CARTAS DE AMONESTACIÓN</h5><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>';
       fila +='<table class="table table-bordered tableInModal" style="margin-top:20px;"> <thead> <tr> <td class="text-center">Carta de amonestación</td> <td class="text-center">Fecha</td> <td class="text-center">Motivo</td> <td class="text-center">Grado</td> <td class="text-center">Descargar</td> </tr> </thead> <tbody>';
-      importarScript("http://10.10.11.240/RRHH-FIRMA/assets/js/validaciones.js");
+      importarScript("http://localhost/RRHH-FIRMA/assets/js/validaciones.js");
       $.each(response.msg, function (i, o) {
         arrayFecha =  o.atr_fecha.split("-");
         fecha = arrayFecha[2]+"-"+arrayFecha[1]+"-"+arrayFecha[0];
@@ -80,7 +82,7 @@ function getCartasAmonestacionTrabajador(idTrabajador){
         if(o.atr_ruta == "vacio"){
           fila +='<td> <a class="btn btn-ded" class="isDisabled" href="#"><i class="glyphicon glyphicon-download-alt"></i></a> </td>';
         }else{
-          download = "http://10.10.11.240/RRHH-FIRMA/index.php/CartaAmonestacionController/descargarCartaAmonestacion/"+o.cp_cartaAmonestacion;
+          download = "http://localhost/RRHH-FIRMA/index.php/CartaAmonestacionController/descargarCartaAmonestacion/"+o.cp_cartaAmonestacion;
           fila +='<td> <a class="btn btn-info" href="'+download+'" download><i class="glyphicon glyphicon-download-alt"></i></a> </td>';
         }
         fila +='</tr>';

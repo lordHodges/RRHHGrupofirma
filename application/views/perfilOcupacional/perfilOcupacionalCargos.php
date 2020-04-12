@@ -112,7 +112,7 @@
                     "sLengthMenu": "Registros _MENU_ ",
                     "sZeroRecords": "No se encontraron resultados",
                     "sEmptyTable": "Ningún dato disponible en esta tabla",
-                    "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+                    "sInfo": "",
                     "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
                     "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
                     "sInfoPostFix": "",
@@ -136,7 +136,7 @@
                     }
                 },
                 "ajax": {
-                    url: "http://10.10.11.240/RRHH-FIRMA/index.php/getlistadecargos",
+                    url: "http://localhost/RRHH-FIRMA/index.php/getlistadecargos",
                     type: 'GET'
                 },
                 "columnDefs": [{
@@ -163,7 +163,7 @@
            e.preventDefault();
            var cargo = $(this).parent().parent().children()[0];
            var idCargo = $(cargo).text()
-           var url = 'http://10.10.11.240/RRHH-FIRMA/index.php/docPerfilesOcupacionales?cargo='+idCargo;
+           var url = 'http://localhost/RRHH-FIRMA/index.php/docPerfilesOcupacionales?cargo='+idCargo;
            window.open(url, '_blank');
        });
 
