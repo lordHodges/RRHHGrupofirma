@@ -102,7 +102,7 @@ create table fa_remuneracion_extra(
 
 create table fa_tarea(
     cp_tarea int auto_increment,
-    atr_descripcion varchar(500) unique not null,
+    atr_descripcion varchar(200) unique not null,
     constraint pk_tarea primary key(cp_tarea)
 );
 
@@ -110,7 +110,7 @@ create table fa_tarea(
 
 create table fa_requisitominimo(
     cp_requisitominimo int auto_increment,
-    atr_descripcion varchar(500) unique not null,
+    atr_descripcion varchar(200) unique not null,
     constraint pk_requisitominimo primary key(cp_requisitominimo)
 );
 
@@ -118,19 +118,19 @@ create table fa_requisitominimo(
 
 create table fa_competencia(
     cp_competencia int auto_increment,
-    atr_descripcion varchar(500) unique not null,
+    atr_descripcion varchar(200) unique not null,
     constraint pk_competencia primary key(cp_competencia)
 );
 
 create table fa_conocimiento(
     cp_conocimiento int auto_increment,
-    atr_descripcion varchar(500) unique not null,
+    atr_descripcion varchar(200) unique not null,
     constraint pk_conocimiento primary key(cp_conocimiento)
 );
 
 create table fa_titulo(
     cp_titulo int auto_increment,
-    atr_descripcion varchar(500) unique not null,
+    atr_descripcion varchar(200) unique not null,
     cf_cargo int,
     constraint pk_titulo primary key(cp_titulo),
     constraint fk_titulo_cargo foreign key(cf_cargo) references fa_cargo(cp_cargo)
@@ -138,7 +138,7 @@ create table fa_titulo(
 
 create table fa_otrosantecedentes(
     cp_otrosantecedentes int auto_increment,
-    atr_descripcion varchar(500) unique not null,
+    atr_descripcion varchar(200) unique not null,
     cf_titulo int,
     cf_cargo int,
     constraint pk_titulo primary key(cp_otrosantecedentes),
@@ -148,7 +148,7 @@ create table fa_otrosantecedentes(
 
 create table fa_responsabilidad(
     cp_responsabilidad int auto_increment,
-    atr_descripcion varchar(500) not null,
+    atr_descripcion varchar(200) not null,
     cf_cargo int not null,
     constraint pk_responsabilidad primary key(cp_responsabilidad),
     constraint fk_responsabilidad_cargo foreign key(cf_cargo) references fa_cargo(cp_cargo)
@@ -182,7 +182,7 @@ create table fa_trabajador(
     constraint fk_trabajador_empresa foreign key(cf_empresa) references fa_empresa(cp_empresa)
 );
 
-create table fa_cartaAmonestacion(
+create table fa_cartaamonestacion(
     cp_cartaAmonestacion varchar(200) unique,
     atr_motivo varchar(200),
     atr_grado varchar(200),
@@ -294,5 +294,5 @@ create table fa_documento(
     constraint fk_documento_contrato foreign key(cf_contrato) references fa_contrato(cp_contrato),
     constraint fk_documento_trabajador foreign key(cf_trabajador) references fa_trabajador(cp_trabajador),
     constraint fk_documento_transferencia foreign key(cf_transferencia) references fa_transferencia(cp_transferencia),
-    constraint fk_documento_cartaamonestacion foreign key(cf_cartaamonestacion) references fa_cartaAmonestacion(cp_cartaAmonestacion)
+    constraint fk_documento_cartaamonestacion foreign key(cf_cartaamonestacion) references fa_cartaamonestacion(cp_cartaAmonestacion)
 );

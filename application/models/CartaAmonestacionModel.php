@@ -21,7 +21,7 @@ class CartaAmonestacionModel extends CI_Model {
 
       // 2: Obtener total de transferencias + 1
       $this->db->select('count(*)');
-      $this->db->from("fa_cartaamonestacion c");
+      $this->db->from("fa_cartaamonestacion");
       $cantidad_cartas = $this->db->count_all_results();
 
       // 3: Generar clave de atr_documento
