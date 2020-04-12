@@ -6,6 +6,7 @@ create table fa_cartaAmonestacion(
     cp_cartaAmonestacion varchar(200) unique,
     atr_motivo varchar(200),
     atr_grado varchar(200),
+    atr_fecha varchar(200),
     cf_trabajador int,
     constraint pk_cartaAmonestacion primary key(cp_cartaAmonestacion),
     constraint fk_cartaAmonestacion_trabajador foreign key(cf_trabajador) references fa_trabajador(cp_trabajador)
@@ -282,11 +283,14 @@ create table fa_documento(
     atr_ruta varchar(200) not null,
     atr_fechaCarga varchar(20) not null,
     atr_tipo varchar(200) not null,
+    atr_fechacronologica varchar(200),
     cf_contrato varchar(200),
     cf_transferencia varchar(200),
     cf_cartaamonestacion varchar(200),
+    cf_trabajador int,
     constraint cp_documento primary key(cp_documento),
     constraint fk_documento_contrato foreign key(cf_contrato) references fa_contrato(cp_contrato),
+    constraint fk_documento_trabajador foreign key(cf_trabajador) references fa_trabajador(cp_trabajador),
     constraint fk_documento_transferencia foreign key(cf_transferencia) references fa_transferencia(cp_transferencia),
     constraint fk_documento_cartaamonestacion foreign key(cf_cartaamonestacion) references fa_cartaAmonestacion(cp_cartaAmonestacion)
 );

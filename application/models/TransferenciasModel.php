@@ -52,7 +52,9 @@ class TransferenciasModel extends CI_Model {
             "cf_transferencia" => $atr_documento,
             "atr_ruta" => $ruta,
             "atr_fechaCarga" => $fechaActual,
-            "atr_tipo" => $motivo
+            "atr_tipo" => $motivo,
+            "atr_fechacronologica" => $fechaTransferencia,
+            "cf_trabajador" => $idTrabajador,
         );
         $insert = $this->db->insert("fa_documento", $data);
         if($insert){

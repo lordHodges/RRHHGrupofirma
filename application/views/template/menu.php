@@ -85,11 +85,11 @@
                         <i class="fa fa-users"></i> Trabajadores
                       </a>
                     </li>
-                    <!-- <li>
-                      <a href="<?php echo base_url() ?>inicioTrabajadores">
+                    <li>
+                      <a href="<?php echo base_url() ?>inicioHistorial">
                         <i class="fa fa-archive"></i> Historial de trabajadores
                       </a>
-                    </li> -->
+                    </li>
                     <li>
                       <a href="<?php echo base_url() ?>inicioGestorContratos">
                         <i class="fa fa-file"></i> Generar contrato

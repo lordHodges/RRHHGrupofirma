@@ -61,7 +61,7 @@
   <div class="col-md-6 col-sm-6  ">
     <div class="x_panel">
       <div class="x_title">
-        <h2><b>Transferencias en el último mes</b></h2>
+        <h2>Transferencias en el último mes</h2>
         <ul class="nav navbar-right panel_toolbox">
           <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
           </li>
@@ -95,7 +95,7 @@
   <div class="col-md-6" id="contenedorDeContratosPorCaducar">
     <div class="x_panel">
       <div class="x_title">
-        <h2 style="margin-left:12px;"><b>Contratos por vencer</b></h2>
+        <h2 style="margin-left:12px;">Contratos por vencer</h2>
         <ul class="nav navbar-right panel_toolbox" >
           <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
           </li>

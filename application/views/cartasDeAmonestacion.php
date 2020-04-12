@@ -4,6 +4,7 @@
 
     </div> -->
 
+
     <div class="row">
         <div class="x_panel">
 
@@ -31,7 +32,7 @@
 </div>
 
 
-    <!-- Modal ver lista de transferencias -->
+    <!-- Modal ver lista de cartas de amonestación -->
     <div id="modalVerListaCartasAmonestacion" class="modal fade" tabindex="-1" role="dialog"  aria-hidden="true" >
         <div class="modal-dialog modal-lg">
             <div class="modal-content" style="padding:20px; background: #2a3f54" >
@@ -48,49 +49,63 @@
             </div>
         </div>
     </div>
-    <!-- /Modal de ver lista de transferencias -->
+    <!-- /Modal de ver lista de cartas de amonestación -->
+
+
+
+
+
+
+
+
+
+
+
+
 
     <!-- Modal ver cargar archivo -->
-    <div id="btnModalCargarCartaAmonestacion" class="modal fade" tabindex="-1" role="dialog"  aria-hidden="true" >
+    <div id="modalCargarArchivo" class="modal fade" tabindex="-1" role="dialog"  aria-hidden="true" >
         <div class="modal-dialog modal-lg">
             <div class="modal-content" style="padding:20px; background: #2a3f54" >
                 <div class="form-row">
                   <div class="col-md-12">
-                    <h5 class="modal-title mx-auto" style="margin-left:50px;">CARGAR CARTA DE AMONESTACIÓN</h5><br>
+                    <h5 class="modal-title mx-auto">CARGAR CARTA DE AMONESTACIÓN</h5><br>
+                    <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button> -->
                   </div>
                   <div class="col-md-12" id="detalleCargaArchivo">
                       <form id="uploader" method="post" enctype="multipart/form-data" action="cargar_carta_amonestacion">
-                        <div class="col-md-12">
+                          <div class="col-md-12">
+                              <br>
+                              <label for="fecha">FECHA DE EMISIÓN</label>
+                              <input type="date" class="form-control" name="fecha" required>
+                          </div>
+                          <div class="col-md-12">
+                              <br>
+                              <label for="grado">GRADO DE LA FALTA</label>
+                              <select name="grado" class="custom-select" required>
+                                <option value="">Seleccionar opción</option>
+                                <option value="Menor">Menor</option>
+                                <option value="Medio">Medio</option>
+                                <option value="Grave">Grave</option>
+                              </select>
+                          </div>
+                          <div class="col-md-12">
+                              <br>
+                              <label for="motivo">MOTIVO</label>
+                              <textarea rows="3" class="form-control" name="motivo"> </textarea>
+                          </div>
+                          <input type="text" name="labelTrabajador" id="labelTrabajador" style="color:#2a3f54;border:none;border-color:#2a3f54"/>
+                          <div class="col-md-12" >
+                              <br>
+                              <input lang="es" type="file" name="file" id="file">
+                          </div>
                           <br>
-                          <label for="fecha">FECHA DE EMISIÓN</label>
-                          <input type="date" class="form-control" name="fecha" required>
-                        </div>
-                        <div class="col-md-12">
-                          <br>
-                          <label for="monto">GRADO DE LA FALTA</label>
-                          <select name="grado" class="custom-select" required>
-                            <option value="">Seleccionar opción</option>
-                            <option value="Menor">Menor</option>
-                            <option value="Medio">Medio</option>
-                            <option value="Grave">Grave</option>
-                          </select>
-                        </div>
-                        <div class="col-md-12">
-                          <br>
-                          <label for="monto">MOTIVO</label>
-                          <textarea rows="3" class="form-control" name="motivo">
-                          </textarea>
-                        </div>
-                        <input type="text" name="labelTrabajador" id="labelTrabajador" style="color:#2a3f54;border:none;border-color:#2a3f54">
-                        <div class="col-md-12" >
-                          <br>
-                          <input lang="es" type="file" name="file" id="file">
-                        </div>
-                        <br>
-                        <div class="col-md-12" style="margin-top:20px; margin-bottom:-20px;">
-                          <button type="submit" class="btn btn-success btn-sm" id="btnCargar" style="width:100%;" >GUARDAR</button>
-                        </div>
-                    </form>
+                          <div class="col-md-12" style="margin-top:20px; margin-bottom:-20px;">
+                              <button type="submit" class="btn btn-success btn-sm" id="btnCargar" style="width:100%;" >GUARDAR</button>
+                          </div>
+                      </form>
                   </div>
 
                 </div>
@@ -99,6 +114,41 @@
         </div>
     </div>
     <!-- /Modal de cargar archivo -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     <!-- /Contenedor principal-->
 
@@ -116,6 +166,8 @@
     <!-- Bootstrap -->
     <script src="<?php echo base_url() ?>assets/vendors/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="<?php echo base_url() ?>assets/vendors/DateJS/build/date.js"></script>
+
+
      <!-- Datatables -->
     <script src="<?php echo base_url() ?>assets/js/datatables.min.js" type="text/javascript"></script>
     <!-- Custom Theme Scripts -->
@@ -128,6 +180,8 @@
     <script src="<?php echo base_url() ?>assets/js/toastr.min.js" type="text/javascript"></script>
 
     <script src="<?php echo base_url() ?>assets/js/dashboard.js"></script>
+
+
 
 
     <script>
@@ -152,6 +206,7 @@
         });
 
        $('#uploader').submit(function(e){
+
         e.preventDefault();
            $.ajax({
                url:$('#uploader').attr('action'),
@@ -165,12 +220,17 @@
                  if (data == "" || data == null) {
                    toastr.error("Error al guardar");
                  }else{
-                   $('#btnModalCargarCartaAmonestacion').modal('hide');
+                   $('#modalCargarArchivo').modal('hide');
                    toastr.success('Carta de amonestación guardada');
                  }
                }
            });
+
+
        });
+
+
+
 
 
        $("body").on("click", "#btnDescargarCartaAmonestacion", function(e) {
@@ -179,6 +239,14 @@
             var idContrato = $(id).text();
             descargarCarta(idContrato);
         });
+
+
+        $("body").on("click", "#btnSubirArchivo", function(e) {
+             e.preventDefault();
+             var id = $(this).parent().parent().children()[0];
+             var idTrabajador = $(id).text();
+             document.getElementById("labelTrabajador").value = idTrabajador;
+         });
 
     </script>
 

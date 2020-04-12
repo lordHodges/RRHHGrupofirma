@@ -90,7 +90,9 @@ class ContratosModel extends CI_Model {
             "cf_contrato" => $atr_documento,
             "atr_ruta" => $ruta,
             "atr_fechaCarga" => $fechaActual,
-            "atr_tipo" => 'contrato'
+            "atr_tipo" => 'Contrato',
+            "atr_fechacronologica" => $fechaInicio,
+            "cf_trabajador" => $idTrabajador,
         );
         $insert = $this->db->insert("fa_documento", $data);
         if($insert){

@@ -11,6 +11,10 @@ $route['totalContratosPlazo'] = 'DashboardController/totalContratosPlazo';
 $route['totalContratosIndefinidos'] = 'DashboardController/totalContratosIndefinidos';
 $route['totalContratosPorProyecto'] = 'DashboardController/totalContratosPorProyecto';
 
+// HISTORIAL
+$route['inicioHistorial'] = 'HistorialController/index';
+$route['vistaCronologica'] = 'HistorialController/vistaCronologica';
+
 // TRABAJADORES
 $route['inicioTrabajadores'] = 'TrabajadorController/index';
 $route['addTrabajador'] = 'TrabajadorController/addTrabajador';
@@ -184,7 +188,7 @@ $route['getBancos'] = 'TransferenciasController/getBancos';
 
 // CARTAS DE AMONESTACIÓN
 $route['inicioCartasAmonestacion'] = 'CartaAmonestacionController/index';
-$route['carga_carta'] = 'CartaAmonestacionController/cargar_carta_amonestacion';
+$route['cargar_carta_amonestacion'] = 'CartaAmonestacionController/cargar_carta_amonestacion';
 $route['getURLCartaAmonestacion'] = 'CartaAmonestacionController/getURLCartaAmonestacion';
 $route['getCartasAmonestacionTrabajador'] = 'CartaAmonestacionController/getCartasAmonestacionTrabajador';
 $route['descargarCartaAmonestacion'] = 'CartaAmonestacionController/descargarCartaAmonestacion';

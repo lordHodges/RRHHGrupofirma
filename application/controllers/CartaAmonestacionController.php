@@ -70,7 +70,7 @@ class CartaAmonestacionController extends CI_Controller {
 				 $resultado = $this->CartaAmonestacionModel->cargar_carta_amonestacion( $nombreReal, $nombreFinal, $ruta, $fecha, $motivo, $grado, $fechaActual, $idTrabajador );
 
 				 //REGRESO RESULTADO POSITIVO PARA DESPLEGAR MENSAJE DE EXITO
-				 echo json_encode("ok");
+				 echo json_encode($resultado);
 				 exit();
 		 }
 	}
@@ -98,21 +98,21 @@ class CartaAmonestacionController extends CI_Controller {
 
 
 
-	public function descargarCartaAmonestacion($idTransferencia){
+	public function descargarCartaAmonestacion($idCarta){
 	// importo libreria helper download
 		$this->load->helper('download');
 
 		// Solicito al modelo registro de la transferencia
-		$transferencia = $this->CartaAmonestacionModel->getURLCartaAmonestacion($idTransferencia);
+		$carta = $this->CartaAmonestacionModel->getURLCartaAmonestacion($idCarta);
 
-		foreach ($transferencia as $key => $value) {
+		foreach ($carta as $key => $value) {
 			 $nombre = $value->atr_nombreDoc;
 			 $nombreReal = $value->atr_nombreReal;
 		}
 
 		// uploads/transferencias = ruta de la carpeta que contiene los documentos
 		// $nombre = nombre asignado al documento en bd
-		$file = 'uploads/transferencias/'.$nombre;
+		$file = 'uploads/cartas_amonestacion/'.$nombre;
 
 
 		//si quiero el nombre por defecto al descargar -->  force_download($file, NULL);

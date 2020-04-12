@@ -104,8 +104,8 @@ class ContratosController extends CI_Controller {
 			 $fechaActual = date("d-m-Y G:i:s");
 
 			 //Obtengo y transformo fecha a formato dia-mes-año
-			 $fechaInicio = date('d-m-Y',strtotime($this->input->post('fechaInicio')));
-			 $fechaTermino = date('d-m-Y',strtotime($this->input->post('fechaTermino')));
+			 $fechaInicio = date('Y-m-d',strtotime($this->input->post('fechaInicio')));
+			 $fechaTermino = date('Y-m-d',strtotime($this->input->post('fechaTermino')));
 			 $getSelectEstadoContrato = $this->input->post('getSelectEstadoContrato');
 
 			 //este valor esta insertado de forma oculta en el formulario

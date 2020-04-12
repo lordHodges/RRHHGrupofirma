@@ -269,7 +269,7 @@
                       }
                   },
                   "ajax": {
-                      url: "http://10.10.11.240/RRHH-FIRMA/getListadoTrabajadores",
+                      url: "http://localhost/RRHH-FIRMA/getListadoTrabajadores",
                       type: 'GET'
                   },
                   "columnDefs": [{

@@ -31,14 +31,16 @@ class CartaAmonestacionModel extends CI_Model {
       $atr_documento = $arraykey[$arrayN]."".$key."".$cantidad_cartas;
 
       // 3: Crear carta de amonestación con atr_documento = codigo generado
-      $data = array(
+      $dataCarta = array(
           "cp_cartaAmonestacion" => $atr_documento,
           "atr_motivo" => $motivo,
           "atr_grado" => $grado,
           "atr_fecha" => $fecha,
           "cf_trabajador" => $idTrabajador,
       );
-      $insert = $this->db->insert("fa_cartaamonestacion", $data);
+      $insert = $this->db->insert("fa_cartaamonestacion", $dataCarta);
+
+      var_dump( "documento: ",$atr_documento," motivo: ",$motivo," grado: ",$grado," fecha: ",$fecha," ID TRABAJADOR: ",$idTrabajador);
 
       if($insert){
         // 4: Crear doumento con clave primeria = atr_documento descrito en contrato
@@ -52,9 +54,14 @@ class CartaAmonestacionModel extends CI_Model {
             "cf_cartaamonestacion" => $atr_documento,
             "atr_ruta" => $ruta,
             "atr_fechaCarga" => $fechaActual,
-            "atr_tipo" => 'carta de amonestación'
+            "atr_tipo" => 'Carta de amonestación',
+            "atr_fechacronologica" => $fecha,
+            "cf_trabajador" => $idTrabajador,
         );
         $insert = $this->db->insert("fa_documento", $data);
+
+        var_dump("insert documento es: ",$insert);
+
         if($insert){
           return "ok";
         }else{
