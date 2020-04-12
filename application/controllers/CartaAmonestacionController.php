@@ -19,7 +19,7 @@ class CartaAmonestacionController extends CI_Controller {
 		 $config['upload_path']="./uploads/cartas_amonestacion/";
 		 $config['allowed_types']='pdf';
 		 $config['encrypt_name'] = TRUE;
-		 $config['max_size'] = "50000";
+		 $config['max_size'] = "200000";
 		 $config['max_width'] = "2000";
 		 $config['max_height'] = "2000";
 

@@ -19,7 +19,7 @@ class TransferenciasController extends CI_Controller {
 		 $config['upload_path']="./uploads/transferencias/";
 		 $config['allowed_types']='pdf|jpg|jpeg|png';
 		 $config['encrypt_name'] = TRUE;
-		 $config['max_size'] = "50000";
+		 $config['max_size'] = "200000";
 		 $config['max_width'] = "2000";
 		 $config['max_height'] = "2000";
 
