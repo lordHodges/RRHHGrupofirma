@@ -70,7 +70,7 @@ class CartaAmonestacionController extends CI_Controller {
 				 $resultado = $this->CartaAmonestacionModel->cargar_carta_amonestacion( $nombreReal, $nombreFinal, $ruta, $fecha, $motivo, $grado, $fechaActual, $idTrabajador );
 
 				 //REGRESO RESULTADO POSITIVO PARA DESPLEGAR MENSAJE DE EXITO
-				 echo json_encode($resultado);
+				 echo json_encode('ok');
 				 exit();
 		 }
 	}
