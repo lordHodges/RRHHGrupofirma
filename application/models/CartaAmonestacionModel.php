@@ -40,7 +40,7 @@ class CartaAmonestacionModel extends CI_Model {
       );
       $insert = $this->db->insert("fa_cartaamonestacion", $dataCarta);
 
-      var_dump( "documento: ",$atr_documento," motivo: ",$motivo," grado: ",$grado," fecha: ",$fecha," ID TRABAJADOR: ",$idTrabajador);
+      // var_dump( "documento: ",$atr_documento," motivo: ",$motivo," grado: ",$grado," fecha: ",$fecha," ID TRABAJADOR: ",$idTrabajador);
 
       if($insert){
         // 4: Crear doumento con clave primeria = atr_documento descrito en contrato
@@ -60,7 +60,7 @@ class CartaAmonestacionModel extends CI_Model {
         );
         $insert = $this->db->insert("fa_documento", $data);
 
-        var_dump("insert documento es: ",$insert);
+        // var_dump("insert documento es: ",$insert);
 
         if($insert){
           return "ok";
