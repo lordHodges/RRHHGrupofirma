@@ -21,6 +21,24 @@ class HistorialController extends CI_Controller {
 		echo json_encode( array("msg" => $resultado) );
 	}
 
+	public function vistaContratos(){
+		$idTrabajador = $this->input->post("idTrabajador");
+		$resultado = $this->HistorialModel->vistaContratos($idTrabajador);
+		echo json_encode( array("msg" => $resultado) );
+	}
+
+	public function vistaTransferencias(){
+		$idTrabajador = $this->input->post("idTrabajador");
+		$resultado = $this->HistorialModel->vistaTransferencias($idTrabajador);
+		echo json_encode( array("msg" => $resultado) );
+	}
+
+	public function vistaCartasAmonestacion(){
+		$idTrabajador = $this->input->post("idTrabajador");
+		$resultado = $this->HistorialModel->vistaCartasAmonestacion($idTrabajador);
+		echo json_encode( array("msg" => $resultado) );
+	}
+
 
 
 

@@ -14,6 +14,10 @@ $route['totalContratosPorProyecto'] = 'DashboardController/totalContratosPorProy
 // HISTORIAL
 $route['inicioHistorial'] = 'HistorialController/index';
 $route['vistaCronologica'] = 'HistorialController/vistaCronologica';
+$route['vistaContratos'] = 'HistorialController/vistaContratos';
+$route['vistaTransferencias'] = 'HistorialController/vistaTransferencias';
+$route['vistaCartasAmonestacion'] = 'HistorialController/vistaCartasAmonestacion';
+
 
 // TRABAJADORES
 $route['inicioTrabajadores'] = 'TrabajadorController/index';

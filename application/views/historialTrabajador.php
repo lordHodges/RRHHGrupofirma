@@ -24,13 +24,13 @@
               <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Cronológico</a>
               </li>
               <li class="nav-item">
-              <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Contratos</a>
+              <a class="nav-link" id="contrato-tab" data-toggle="tab" href="#contratos" role="tab" aria-controls="profile" aria-selected="false">Contratos</a>
               </li>
               <li class="nav-item">
               <a class="nav-link" id="transferencias-tab" data-toggle="tab" href="#transferencias" role="tab" aria-controls="transferencias" aria-selected="false">Transferencias</a>
               </li>
               <li class="nav-item">
-              <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Cartas de amonestación</a>
+              <a class="nav-link" id="cartas-tab" data-toggle="tab" href="#cartasAmonestacion" role="tab" aria-controls="contact" aria-selected="false">Cartas de amonestación</a>
               </li>
 
           </ul>
@@ -52,8 +52,8 @@
 
 
 
-              <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                  Contratos
+              <div class="tab-pane fade" id="contratos" role="tabpanel" aria-labelledby="contrato-tab">
+                <p>Contratos</p>
               </div>
 
 
@@ -68,7 +68,7 @@
 
 
 
-              <div class="tab-pane fade-" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+              <div class="tab-pane fade-" id="cartasAmonestacion" role="tabpanel" aria-labelledby="cartas-tab">
                   Cartas de amonestación
               </div>
 
@@ -89,6 +89,8 @@
               <div class="tab-pane fade" id="transferencias" role="tabpanel" aria-labelledby="contact-tab">
                   Transferencias
               </div>
+
+
           </div>
           </div>
       </div>
@@ -137,8 +139,10 @@
 
     $("#getSelectTrabajadores").change(function (e){
         e.preventDefault();
-        // alert( $("#getSelectTrabajadores").val() );
         var idTrabajador = $("#getSelectTrabajadores").val();
         cargarDetalleHistorial(idTrabajador);
+        cargarDetalleContratos(idTrabajador);
+        cargarDetalleTransferencias(idTrabajador);
+        cargarDetalleCartasDeAmonestación(idTrabajador);
     });
 </script>
