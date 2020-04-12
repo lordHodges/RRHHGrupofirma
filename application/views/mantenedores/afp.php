@@ -138,7 +138,7 @@
                     }
                 },
                 "ajax": {
-                    url: "http://localhost/RRHH-FIRMA/getListadoAFP",
+                    url: "http://10.10.11.240/RRHH-FIRMA/getListadoAFP",
                     type: 'GET'
                 },
                 "columnDefs": [{
