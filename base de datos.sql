@@ -2,15 +2,7 @@ drop database fa_rrhh;
 create database fa_rrhh;
 use fa_rrhh;
 
-create table fa_cartaAmonestacion(
-    cp_cartaAmonestacion varchar(200) unique,
-    atr_motivo varchar(200),
-    atr_grado varchar(200),
-    atr_fecha varchar(200),
-    cf_trabajador int,
-    constraint pk_cartaAmonestacion primary key(cp_cartaAmonestacion),
-    constraint fk_cartaAmonestacion_trabajador foreign key(cf_trabajador) references fa_trabajador(cp_trabajador)
-);
+
 
 create table fa_banco(
     cp_banco int auto_increment,
@@ -188,6 +180,16 @@ create table fa_trabajador(
     constraint fk_trabajador_afp foreign key(cf_afp) references fa_afp(cp_afp),
     constraint fk_trabajador_prevision foreign key(cf_prevision) references fa_prevision(cp_prevision),
     constraint fk_trabajador_empresa foreign key(cf_empresa) references fa_empresa(cp_empresa)
+);
+
+create table fa_cartaAmonestacion(
+    cp_cartaAmonestacion varchar(200) unique,
+    atr_motivo varchar(200),
+    atr_grado varchar(200),
+    atr_fecha varchar(200),
+    cf_trabajador int,
+    constraint pk_cartaAmonestacion primary key(cp_cartaAmonestacion),
+    constraint fk_cartaAmonestacion_trabajador foreign key(cf_trabajador) references fa_trabajador(cp_trabajador)
 );
 
 

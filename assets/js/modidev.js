@@ -1,4 +1,4 @@
-var base_url = 'http://localhost/RRHH-FIRMA/';
+var base_url = 'http://localhost/RRHH-FIRMA/index.php/';
 
 function cargarTablaPrevision(){
   var table = $('#tabla_prevision').DataTable();
@@ -35,7 +35,7 @@ function cargarTablaPrevision(){
             }
         },
         "ajax": {
-            url: "http://localhost/RRHH-FIRMA/getListadoPrevisiones",
+            url: "http://localhost/RRHH-FIRMA/index.php/getListadoPrevisiones",
             type: 'GET'
         },
         "columnDefs": [{
@@ -125,7 +125,7 @@ function cargarTablaNacionalidades(){
             }
         },
         "ajax": {
-            url: "http://localhost/RRHH-FIRMA/getListadoNacionalidades",
+            url: "http://localhost/RRHH-FIRMA/index.php/getListadoNacionalidades",
             type: 'GET'
         },
         "columnDefs": [{
@@ -214,7 +214,7 @@ function cargarTablaEstadosContrato(){
             }
         },
         "ajax": {
-            url: "http://localhost/RRHH-FIRMA/getEstadoContrato",
+            url: "http://localhost/RRHH-FIRMA/index.php/getEstadoContrato",
             type: 'GET'
         },
         "columnDefs": [{
@@ -304,7 +304,7 @@ function cargarTablaEstadosCiviles(){
             }
         },
         "ajax": {
-            url: "http://localhost/RRHH-FIRMA/getListadoEstadosCiviles",
+            url: "http://localhost/RRHH-FIRMA/index.php/getListadoEstadosCiviles",
             type: 'GET'
         },
         "columnDefs": [{
@@ -392,7 +392,7 @@ function cargarTablaCiudades(){
             }
         },
         "ajax": {
-            url: "http://localhost/RRHH-FIRMA/getListadoCiudades",
+            url: "http://localhost/RRHH-FIRMA/index.php/getListadoCiudades",
             type: 'GET'
         },
         "columnDefs": [{
@@ -464,7 +464,7 @@ function cargarTablaEmpresa(){
             }
         },
         "ajax": {
-            url: "http://localhost/RRHH-FIRMA/getListadoEmpresa",
+            url: "http://localhost/RRHH-FIRMA/index.php/getListadoEmpresa",
             type: 'GET'
         },
         "columnDefs": [{

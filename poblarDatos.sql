@@ -49,6 +49,10 @@ INSERT INTO `fa_cargo` (`cp_cargo`, `atr_nombre`, `atr_jefeDirecto`, `atr_lugarT
 INSERT INTO `fa_remuneracion` (`cp_remuneracion`, `atr_sueldoMensual`, `atr_cotizaciones`, `atr_colacion`, `atr_movilizacion`, `atr_asistencia`, `cf_cargo`) VALUES (NULL, '301.000', '1', '25.000', '0', '15.000', '1'), (NULL, '600.000', '1', '23.000', '0', '67.000', '2');
 
 
+
+
+
+
 INSERT INTO `fa_competencia` (`cp_competencia`, `atr_descripcion`) VALUES (NULL, 'Capacidad para aprender a manejar sistemas informáticos'), (NULL, 'Organizada y metódica'), (NULL, 'Capadidad para trabajar en equipo'), (NULL, 'Vocación de servicio, compromiso con el trabajo y la institución.'), (NULL, 'Habilidades en el lenguaje oral y escrito, tanto en fluidez como en claridad.'), (NULL, 'Buen racionamiento interpersonal.'), (NULL, 'Autodidacta y proactiva');
 
 INSERT INTO `fa_competencia_cargo` (`cp_competencia_cargo`, `cf_cargo`, `cf_competencia`) VALUES (NULL, '1', '7'), (NULL, '1', '6'), (NULL, '1', '1'), (NULL, '1', '3'), (NULL, '1', '5'), (NULL, '1', '2'), (NULL, '1', '4');
@@ -85,7 +89,13 @@ INSERT INTO `fa_responsabilidad` (`cp_responsabilidad`, `atr_descripcion`, `cf_c
 
 INSERT INTO `fa_sucursal` (`cp_sucursal`, `atr_nombre`, `cf_ciudad`) VALUES (NULL, 'Linares', '187'), (NULL, 'Talca', '177'), (NULL, 'Curico', '168');
 
-INSERT INTO `fa_estado` (`cp_estado`, `atr_nombre`) VALUES (NULL, 'Contrato a plazo fijo'), (NULL, 'Honorarios'), (NULL, 'Contrato indefinido'), (NULL, 'Contrato por proyecto'), (NULL, 'Freelance');
+
+
+
+INSERT INTO `fa_estado` (`cp_estado`, `atr_nombre`) VALUES (NULL, 'Contrato a plazo fijo'), (NULL, 'Contrato indefinido'), (NULL, 'Contrato por proyecto'), (NULL, 'Honorarios'), (NULL, 'Freelance');
+
+
+
 
 INSERT INTO `fa_trabajador` (`cp_trabajador`, `atr_rut`, `atr_nombres`, `atr_apellidos`, `atr_direccion`, `atr_fechaNacimiento`, `cf_estado`, `cf_ciudad`, `cf_cargo`, `cf_sucursal`, `cf_nacionalidad`, `cf_estadoCivil`, `cf_afp`, `cf_prevision`, `cf_empresa`) VALUES (NULL, '18.656.816-8', 'ESTEFANY NICOL', 'VALLEJOS FONSECA', 'Villa los portones calle las obras N° 594', '12-01-1994', '1', '177', '1', '2', '1', '1', '1', '2', '1'), (NULL, '19.105.559-4', 'IGNACIO ANDRÉS', 'CIFUENTES DÍAZ', 'Camino a Colín, los Maitenes casa N°6', '14-07-1995', '1', '177', '2', '2', '1', '1', '1', '2', '2');
 

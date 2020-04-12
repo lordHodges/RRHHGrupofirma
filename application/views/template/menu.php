@@ -76,53 +76,53 @@
                   <!-- <h3>General</h3> -->
                   <ul class="nav side-menu">
                     <li>
-                      <a href="<?php echo base_url() ?>dashboard">
+                      <a href="<?php echo base_url() ?>index.php/dashboard">
                         <i class="fa fa-home"></i> Inicio
                       </a>
                     </li>
                     <li>
-                      <a href="<?php echo base_url() ?>inicioTrabajadores">
+                      <a href="<?php echo base_url() ?>index.php/inicioTrabajadores">
                         <i class="fa fa-users"></i> Trabajadores
                       </a>
                     </li>
                     <li>
-                      <a href="<?php echo base_url() ?>inicioHistorial">
+                      <a href="<?php echo base_url() ?>index.php/inicioHistorial">
                         <i class="fa fa-archive"></i> Historial de trabajadores
                       </a>
                     </li>
                     <li>
-                      <a href="<?php echo base_url() ?>inicioGestorContratos">
+                      <a href="<?php echo base_url() ?>index.php/inicioGestorContratos">
                         <i class="fa fa-file"></i> Generar contrato
                       </a>
                     </li>
                     <li><a><i class="fa fa-folder-open"></i> Documentos <span class="fa fa-chevron-down"></span></a>
                       <ul class="nav child_menu">
-                        <li><a href="<?php echo base_url() ?>inicioContratos">Contratos</a></li>
-                        <li><a href="<?php echo base_url() ?>inicioTransferencias">Transferencias</a></li>
-                        <li><a href="<?php echo base_url() ?>inicioCartasAmonestacion">Cartas de amonestación</a></li>
-                        <li><a href="<?php echo base_url() ?>perfilOcupacionalVista">Perfiles Ocupacionales</a></li>
+                        <li><a href="<?php echo base_url() ?>index.php/inicioContratos">Contratos</a></li>
+                        <li><a href="<?php echo base_url() ?>index.php/inicioTransferencias">Transferencias</a></li>
+                        <li><a href="<?php echo base_url() ?>index.php/inicioCartasAmonestacion">Cartas de amonestación</a></li>
+                        <li><a href="<?php echo base_url() ?>index.php/perfilOcupacionalVista">Perfiles Ocupacionales</a></li>
                       </ul>
                     </li>
                     <li><a><i class="fa fa-user"></i> Perfiles Ocupacionales <span class="fa fa-chevron-down"></span></a>
                       <ul class="nav child_menu">
-                        <li><a href="<?php echo base_url() ?>inicioRequisitosMinimos">Requisitos Mínimos</a></li>
-                        <li><a href="<?php echo base_url() ?>inicioFunciones">Funciones</a></li>
-                        <li><a href="<?php echo base_url() ?>inicioCompetencias">Competencias y Características</a></li>
-                        <li><a href="<?php echo base_url() ?>inicioConocimientos">Conocimientos Básicos</a></li>
-                        <li><a href="<?php echo base_url() ?>inicioOtros">Otros Antecedentes</a></li>
+                        <li><a href="<?php echo base_url() ?>index.php/inicioRequisitosMinimos">Requisitos Mínimos</a></li>
+                        <li><a href="<?php echo base_url() ?>index.php/inicioFunciones">Funciones</a></li>
+                        <li><a href="<?php echo base_url() ?>index.php/inicioCompetencias">Competencias y Características</a></li>
+                        <li><a href="<?php echo base_url() ?>index.php/inicioConocimientos">Conocimientos Básicos</a></li>
+                        <li><a href="<?php echo base_url() ?>index.php/inicioOtros">Otros Antecedentes</a></li>
                       </ul>
                     </li>
                     <li><a><i class="fa fa-building"></i> Mantenedores <span class="fa fa-chevron-down"></span></a>
                       <ul class="nav child_menu">
-                      <li><a href="<?php echo base_url() ?>inicioCargos">Cargos</a></li>
-                        <li><a href="<?php echo base_url() ?>inicioCiudades">Ciudades</a></li>
-                        <li><a href="<?php echo base_url() ?>inicioEmpresa">Empresas</a></li>
-                        <li><a href="<?php echo base_url() ?>inicioEstadosCiviles">Estado Civil</a></li>
-                        <li><a href="<?php echo base_url() ?>inicioEstadoContrato">Estados de contrato</a></li>
-                        <li><a href="<?php echo base_url() ?>inicioNacionalidades">Nacionalidades</a></li>
-                        <li><a href="<?php echo base_url() ?>inicioSalud">Previsión de salud</a></li>
-                        <li><a href="<?php echo base_url() ?>inicioPrevision">Previsión</a></li>
-                        <li><a href="<?php echo base_url() ?>inicioSucursales">Sucursales</a></li>
+                      <li><a href="<?php echo base_url() ?>index.php/inicioCargos">Cargos</a></li>
+                        <li><a href="<?php echo base_url() ?>index.php/inicioCiudades">Ciudades</a></li>
+                        <li><a href="<?php echo base_url() ?>index.php/inicioEmpresa">Empresas</a></li>
+                        <li><a href="<?php echo base_url() ?>index.php/inicioEstadosCiviles">Estado Civil</a></li>
+                        <li><a href="<?php echo base_url() ?>index.php/inicioEstadoContrato">Estados de contrato</a></li>
+                        <li><a href="<?php echo base_url() ?>index.php/inicioNacionalidades">Nacionalidades</a></li>
+                        <li><a href="<?php echo base_url() ?>index.php/inicioSalud">Previsión de salud</a></li>
+                        <li><a href="<?php echo base_url() ?>index.php/inicioPrevision">Previsión</a></li>
+                        <li><a href="<?php echo base_url() ?>index.php/inicioSucursales">Sucursales</a></li>
                       </ul>
                     </li>
 

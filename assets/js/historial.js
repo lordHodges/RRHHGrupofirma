@@ -1,5 +1,5 @@
 /*************************** TRABAJADOR ****************************/
-var base_url = 'http://localhost/RRHH-FIRMA/';
+var base_url = 'http://localhost/RRHH-FIRMA/index.php/';
 
 function cargarTablaTrabajadorHistorial(){
   var table = $('#tabla_trabajador').DataTable();
@@ -36,7 +36,7 @@ function cargarTablaTrabajadorHistorial(){
             }
         },
         "ajax": {
-            url: "http://localhost/RRHH-FIRMA/getListadoTrabajadores",
+            url: "http://localhost/RRHH-FIRMA/index.php/getListadoTrabajadores",
             type: 'GET'
         },
         "columnDefs": [{
@@ -182,7 +182,7 @@ function cargarDetalleTransferencias(idTrabajador){
         fila += '<a>'+o.tipo+'</a>';
         fila += '</h2>';
         fila += '<div class="byline">';
-        fila += '<span>$'+o.atr_monto+'&nbsp;</span><a href="'+urlDescarga+'" style="color:#1ABB9C;">Descargar</a>';
+        fila += '<span>$'+o.atr_monto+'&nbsp;</span><br><a href="'+urlDescarga+'" style="color:#1ABB9C;">Descargar</a>';
         fila += '</div>';
         fila += '</div>';
         fila += '</div>';
@@ -223,7 +223,7 @@ function cargarDetalleCartasDeAmonestación(idTrabajador){
         fila += '<a>'+o.atr_motivo+'</a>';
         fila += '</h2>';
         fila += '<div class="byline">';
-        fila += '<span>$'+o.atr_grado+'&nbsp;</span><a href="'+urlDescarga+'" style="color:#1ABB9C;">Descargar</a>';
+        fila += '<span>Grado: '+o.atr_grado+'&nbsp;</span><br><a href="'+urlDescarga+'" style="color:#1ABB9C;">Descargar</a>';
         fila += '</div>';
         fila += '</div>';
         fila += '</div>';
