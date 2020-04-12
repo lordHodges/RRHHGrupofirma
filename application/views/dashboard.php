@@ -103,7 +103,8 @@
         <div class="clearfix"></div>
       </div>
       <div class="x_content">
-        <ul class="list-unstyled msg_list" style="display:inline;" id="contenedorNotificaciones">
+        <!-- <ul class="list-unstyled msg_list" style="display:inline;" id="contenedorNotificaciones"> -->
+        <ul class="list-unstyled msg_list" id="contenedorNotificaciones">
 
         </ul>
       </div>

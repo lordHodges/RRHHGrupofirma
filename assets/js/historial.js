@@ -80,11 +80,11 @@ function cargarDetalleHistorial(idTrabajador){
     fila += '<div class="x_content"> <ul class="list-unstyled timeline">';
     $.each(msg.msg, function (i, o) {
         if(o.atr_tipo == "Contrato"){
-          urlDescarga = base_url+"index.php/ContratosController/descargarContrato/"+o.cf_contrato;
+          urlDescarga = base_url+"ContratosController/descargarContrato/"+o.cf_contrato;
         }else if( o.atr_tipo == "Carta de amonestación"){
-          urlDescarga = base_url+"index.php/CartaAmonestacionController/descargarCartaAmonestacion/"+o.cf_cartaamonestacion;
+          urlDescarga = base_url+"CartaAmonestacionController/descargarCartaAmonestacion/"+o.cf_cartaamonestacion;
         }else{
-          urlDescarga = base_url+"index.php/TransferenciasController/descargarComprobante/"+o.cf_transferencia;
+          urlDescarga = base_url+"TransferenciasController/descargarComprobante/"+o.cf_transferencia;
         }
         fecha = o.atr_fechacronologica.split("-");
 
@@ -124,7 +124,7 @@ function cargarDetalleContratos(idTrabajador){
     fila += '<div class="x_content"> <ul class="list-unstyled timeline">';
     $.each(msg.msg, function (i, o) {
 
-        urlDescarga = base_url+"index.php/ContratosController/descargarContrato/"+o.cp_contrato;
+        urlDescarga = base_url+"ContratosController/descargarContrato/"+o.cp_contrato;
 
         fecha = o.atr_fechaInicio.split("-");
 
@@ -166,7 +166,7 @@ function cargarDetalleTransferencias(idTrabajador){
     fila += '<div class="x_content"> <ul class="list-unstyled timeline">';
     $.each(msg.msg, function (i, o) {
 
-        urlDescarga = base_url+"index.php/TransferenciasController/descargarComprobante/"+o.cp_transferencia;
+        urlDescarga = base_url+"TransferenciasController/descargarComprobante/"+o.cp_transferencia;
 
         fecha = o.atr_fecha.split("-");
 
@@ -207,7 +207,7 @@ function cargarDetalleCartasDeAmonestación(idTrabajador){
     fila += '<div class="x_content"> <ul class="list-unstyled timeline">';
     $.each(msg.msg, function (i, o) {
 
-        urlDescarga = base_url+"index.php/CartaAmonestacionController/descargarCartaAmonestacion/"+o.cp_cartaAmonestacion;
+        urlDescarga = base_url+"CartaAmonestacionController/descargarCartaAmonestacion/"+o.cp_cartaAmonestacion;
 
         fecha = o.atr_fecha.split("-");
 

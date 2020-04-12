@@ -105,7 +105,6 @@ function cargarNotificaciones(){
 		}
 		var fechaActual = dia+"-"+mes+"-"+ano;
 
-
 		$("#contenedorNotificaciones").empty();
 		var fila = "", tiempo = 0;
 
@@ -113,22 +112,18 @@ function cargarNotificaciones(){
 
 			// Obtengo fecha desde la base de datos
 			var fechaTermino = o.atr_fechaTermino;
-
+			
 			// calculo diferencia de fechas para saber cuántos días quedan antes de caducar el contrato.
 			tiempo = restarFechas(fechaActual,fechaTermino);
 			tiempo = Math.round(tiempo);
+			alert("math round es :"+tiempo);
 
 			// Establecer la cantidad de días de anticipacipón en que se mostraran las alertas
 			if( tiempo <= 5 && tiempo >= 0){
 				fila += '<li class="col-sm-12 col-md-12" style="padding-left:3px; padding-right:3px; background-color:#C40012; color:#fff"><a><span><span style="margin-left:9px;"><b>Vence en '+tiempo+' días</b></span><br><span style="margin-left:12px;">'+o.atr_nombres+" "+o.atr_apellidos+'</span></span><br><span class="message" style="margin-left:12px;">'+o.cargo+'</span></a></li>';
 			}
 		});
-
 		$("#contenedorNotificaciones").append(fila);
-
-		if( $("#contenedorNotificaciones").html()=="" ){
-			$("#contenedorDeContratosPorCaducar").css({ display: "none" });
-		}
 
 	});
 
