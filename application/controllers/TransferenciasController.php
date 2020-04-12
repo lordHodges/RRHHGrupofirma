@@ -27,6 +27,7 @@ class TransferenciasController extends CI_Controller {
 
 		 if ( ! $this->upload->do_upload('file')){
 			 $out = array('error' => $this->upload->display_errors());
+			 var_dump("algun error: ",$out);
 			 exit();
 			 //LA VARIABLE $OUT TRAE LOS SIGUIENTES DATOS
 				 // file_name   => contrato_wom9.pdf
