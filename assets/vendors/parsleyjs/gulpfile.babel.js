@@ -221,7 +221,7 @@ function testBrowser() {
   // the build from breaking due to poorly formatted code.
   runSequence(['lint-src', 'lint-test'], () => {
     _browserifyBundle();
-    $.livereload.listen({port: 35729, host: '10.10.11.240', start: true});
+    $.livereload.listen({port: 35729, host: 'localhost', start: true});
     gulp.watch(otherWatchFiles, ['lint-src', 'lint-test']);
   });
 }

@@ -9,12 +9,13 @@ class HistorialModel extends CI_Model {
     }
 
     function vistaCronologica($idTrabajador){
-      $this->db->select('doc.atr_nombreDoc, doc.atr_tipo, doc.atr_fechacronologica, cf_contrato, cf_transferencia, cf_cartaamonestacion');
+      $this->db->select('doc.atr_nombreDoc, doc.atr_tipo, doc.atr_fechacronologica, doc.cf_contrato, doc.cf_transferencia, doc.cf_cartaamonestacion');
       $this->db->from('fa_documento doc');
       $this->db->where('doc.cf_trabajador',$idTrabajador);
       $this->db->order_by('doc.atr_fechacronologica', 'DESC');
       return $this->db->get()->result();
     }
+
 
     function vistaContratos($idTrabajador){
       $this->db->select('con.cp_contrato ,con.atr_fechaInicio, con.atr_fechaTermino, con.cf_cargo, ca.atr_nombre as cargo, doc.atr_nombreDoc');

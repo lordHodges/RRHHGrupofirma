@@ -78,6 +78,7 @@
                             <select class="custom-select" id="getSelectMotivo" name="getSelectMotivo">
                               <option value="">Seleccionar opción</option>
                               <option value="Adelanto">Adelanto</option>
+                              <option value="Pago mensual">Pago mensual</option>
                               <option value="Otro">Otro</option>
                             </select>
                         </div>

@@ -1,4 +1,4 @@
-var base_url = 'http://10.10.11.240/RRHH-FIRMA/index.php/';
+var base_url = 'http://localhost/RRHH-FIRMA/index.php/';
 
 function cargarCantidadContratos(){
 
@@ -97,7 +97,7 @@ function cargarNotificaciones(){
 		var dia = fecha.getDate(); var mes = fecha.getMonth()+1; var ano = fecha.getFullYear();
 
 
-		if(dia > 10){
+		if(dia < 10){
 			dia = "0"+dia;
 		}
 		if(mes < 10){
@@ -112,7 +112,11 @@ function cargarNotificaciones(){
 
 			// Obtengo fecha desde la base de datos
 			var fechaTermino = o.atr_fechaTermino;
-			
+			fechaTermino = o.atr_fechaTermino.split("-");
+			fechaTermino = fechaTermino[2]+"-"+fechaTermino[1]+"-"+fechaTermino[0];
+
+			// alert("fecha actual: "+fechaActual+" fecha termino: "+fechaTermino);
+
 			// calculo diferencia de fechas para saber cuántos días quedan antes de caducar el contrato.
 			tiempo = restarFechas(fechaActual,fechaTermino);
 			tiempo = Math.round(tiempo);
