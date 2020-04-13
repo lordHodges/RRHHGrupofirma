@@ -144,6 +144,7 @@
 
     <script>
       $(document).ready(function() {
+          document.getElementById('ocultarTabla').style.display = 'none';
           getSelectCargos();
           cargarNotificaciones();
           document.getElementById('btnAgregarListaDeOtrosAntecedentes').style.display = 'none';

@@ -104,7 +104,8 @@
       $(document).ready(function() {
           getSelectCargos();
           autocompleteConocimientos();
-          cargarNotificaciones();
+          document.getElementById('ocultarTabla').style.display = 'none';
+          // cargarNotificaciones();
           document.getElementById('btnAgregarListaDeConocimientos').style.display = 'none';
       });
 
