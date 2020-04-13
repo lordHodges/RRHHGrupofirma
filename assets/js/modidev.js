@@ -1,4 +1,4 @@
-var base_url = 'http://localhost/RRHH-FIRMA/index.php/';
+var base_url = 'http://10.10.11.240/RRHH-FIRMA/index.php/';
 
 function cargarTablaPrevision(){
   var table = $('#tabla_prevision').DataTable();
@@ -36,7 +36,7 @@ function cargarTablaPrevision(){
             }
         },
         "ajax": {
-            url: "http://localhost/RRHH-FIRMA/index.php/getListadoPrevisiones",
+            url: "http://10.10.11.240/RRHH-FIRMA/index.php/getListadoPrevisiones",
             type: 'GET'
         },
         "columnDefs": [{
@@ -127,7 +127,7 @@ function cargarTablaNacionalidades(){
             }
         },
         "ajax": {
-            url: "http://localhost/RRHH-FIRMA/index.php/getListadoNacionalidades",
+            url: "http://10.10.11.240/RRHH-FIRMA/index.php/getListadoNacionalidades",
             type: 'GET'
         },
         "columnDefs": [{
@@ -217,7 +217,7 @@ function cargarTablaEstadosContrato(){
             }
         },
         "ajax": {
-            url: "http://localhost/RRHH-FIRMA/index.php/getEstadoContrato",
+            url: "http://10.10.11.240/RRHH-FIRMA/index.php/getEstadoContrato",
             type: 'GET'
         },
         "columnDefs": [{
@@ -308,7 +308,7 @@ function cargarTablaEstadosCiviles(){
             }
         },
         "ajax": {
-            url: "http://localhost/RRHH-FIRMA/index.php/getListadoEstadosCiviles",
+            url: "http://10.10.11.240/RRHH-FIRMA/index.php/getListadoEstadosCiviles",
             type: 'GET'
         },
         "columnDefs": [{
@@ -397,7 +397,7 @@ function cargarTablaCiudades(){
             }
         },
         "ajax": {
-            url: "http://localhost/RRHH-FIRMA/index.php/getListadoCiudades",
+            url: "http://10.10.11.240/RRHH-FIRMA/index.php/getListadoCiudades",
             type: 'GET'
         },
         "columnDefs": [{
@@ -470,7 +470,7 @@ function cargarTablaEmpresa(){
             }
         },
         "ajax": {
-            url: "http://localhost/RRHH-FIRMA/index.php/getListadoEmpresa",
+            url: "http://10.10.11.240/RRHH-FIRMA/index.php/getListadoEmpresa",
             type: 'GET'
         },
         "columnDefs": [{
