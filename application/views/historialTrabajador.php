@@ -10,14 +10,49 @@
           <div class="x_content">
 
           <div class="row">
-            <div class="col-md-12" style="margin-bottom:30px;">
+            <div class="col-md-6" style="margin-bottom:30px;">
                 <br>
                 <label for="getSelectTrabajadores">TRABAJADOR</label><br>
                 <select class="custom-select" id="getSelectTrabajadores">
 
                 </select>
             </div>
+
+
+
+            <div class="col-md-3" style="margin-bottom:30px;">
+                <br>
+                <label for="getSelectMes">MES</label><br>
+                <select class="custom-select" id="getSelectMes">
+                  <option value=""></option>
+                  <option value="01">Enero</option>
+                  <option value="02">Febrero</option>
+                  <option value="03">Marzo</option>
+                  <option value="04">Abril</option>
+                  <option value="05">Mayo</option>
+                  <option value="06">Junio</option>
+                  <option value="07">Julio</option>
+                  <option value="08">Agosto</option>
+                  <option value="09">Septiembre</option>
+                  <option value="10">Octubre</option>
+                  <option value="11">Noviembre</option>
+                  <option value="12">Diciembre</option>
+                </select>
+            </div>
+
+
+
+            <div class="col-md-3" style="margin-bottom:30px;">
+                <br>
+                <label for="getSelectAno">AÑO</label><br>
+                <select class="custom-select" id="getSelectAno">
+
+                </select>
+            </div>
+
+
           </div>
+
 
           <ul class="nav nav-tabs bar_tabs" id="myTab" role="tablist">
               <li class="nav-item">
@@ -151,6 +186,7 @@
     $(document).ready(function() {
         cargarTrabajadores();
         cargarTablaTrabajadorHistorial();
+        cargarAnos();
     });
 
     $("#getSelectTrabajadores").change(function (e){
@@ -160,6 +196,30 @@
         cargarDetalleContratos(idTrabajador);
         cargarDetalleAnexos(idTrabajador);
         cargarDetalleTransferencias(idTrabajador);
-        cargarDetalleCartasDeAmonestación(idTrabajador);
+        cargarDetalleCartasDeAmonestacion(idTrabajador);
+        $("#getSelectMes").val('0');
+        $("#getSelectAno").val('0');
+    });
+
+    $("#getSelectAno").change(function (e){
+        e.preventDefault();
+        var idTrabajador = $("#getSelectTrabajadores").val();
+        var mes = $("#getSelectMes").val();
+        var ano = $("#getSelectAno").val();
+        cargarDetalleContratosPorFecha(mes, ano, idTrabajador);
+        cargarDetalleCartasDeAmonestacionPorFecha(mes, ano, idTrabajador);
+        cargarDetalleTransferenciasPorFecha(mes, ano, idTrabajador);
+        cargarDetalleAnexosPorFecha(mes, ano, idTrabajador);
+    });
+
+    $("#getSelectMes").change(function (e){
+        e.preventDefault();
+        var idTrabajador = $("#getSelectTrabajadores").val();
+        var mes = $("#getSelectMes").val();
+        var ano = $("#getSelectAno").val();
+        cargarDetalleContratosPorFecha(mes, ano, idTrabajador);
+        cargarDetalleCartasDeAmonestacionPorFecha(mes, ano, idTrabajador);
+        cargarDetalleTransferenciasPorFecha(mes, ano, idTrabajador);
+        cargarDetalleAnexosPorFecha(mes, ano, idTrabajador);
     });
 </script>

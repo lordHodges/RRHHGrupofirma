@@ -68,6 +68,20 @@ function cargarTrabajadores(){
 
 }
 
+function cargarAnos(){
+    var fecha = new Date();
+    ano = fecha.getFullYear();
+    var comienzo = 2019;
+    var fila = "";
+    $("#getSelectAno").empty();
+    var fila = "<option disabled selected></option>";
+    while ( comienzo <= ano) {
+      fila += "<option value='" +comienzo+ "'>" + comienzo +"</option>";
+      comienzo = comienzo+1;
+    }
+    $("#getSelectAno").append(fila);
+}
+
 
 function cargarDetalleHistorial(idTrabajador){
   $.ajax({
@@ -240,7 +254,7 @@ function cargarDetalleTransferencias(idTrabajador){
 }
 
 
-function cargarDetalleCartasDeAmonestación(idTrabajador){
+function cargarDetalleCartasDeAmonestacion(idTrabajador){
   $.ajax({
       url: 'vistaCartasAmonestacion',
       type: 'POST',
@@ -274,6 +288,223 @@ function cargarDetalleCartasDeAmonestación(idTrabajador){
         fila += '</div>';
         fila += '</div>';
         fila += '</li>';
+    });
+    fila += '</ul></div>';
+    $("#cartasAmonestacion").append(fila);
+  });
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function cargarDetalleContratosPorFecha(mes, ano, idTrabajador){
+  $.ajax({
+      url: 'vistaContratos',
+      type: 'POST',
+      dataType: 'json',
+      data: {"idTrabajador" : idTrabajador}
+  }).then(function (msg) {
+    var fila = '';
+    var urlDescarga = '';
+    $("#contratos").empty();
+    fila += '<div class="x_content"> <ul class="list-unstyled timeline">';
+    $.each(msg.msg, function (i, o) {
+        fecha = o.atr_fechaInicio.split("-");
+
+        if( fecha[0] == ano && fecha[1] == mes ){
+          urlDescarga = base_url+"ContratosController/descargarContrato/"+o.cp_contrato;
+
+          fila += '<li>';
+          fila += '<div class="block">';
+          fila += '<div class="tags">';
+          fila += '<a href="" class="tag">';
+          fila += '<span>'+fecha[2]+"-"+fecha[1]+"-"+fecha[0]+'</span>';
+          fila += '</a>';
+          fila += '</div>';
+          fila += '<div class="block_content">';
+          fila += '<h2 class="title">';
+          fila += '<a>'+o.cargo+'</a>';
+          fila += '</h2>';
+          fila += '<div class="byline">';
+          fila += '<a href="'+urlDescarga+'" style="color:#1ABB9C;">Descargar</a>';
+          fila += '</div>';
+          fila += '</div>';
+          fila += '</div>';
+          fila += '</li>';
+        }
+    });
+    fila += '</ul></div>';
+    $("#contratos").append(fila);
+  });
+}
+
+
+function cargarDetalleAnexosPorFecha(mes, ano, idTrabajador){
+  $.ajax({
+      url: 'vistaAnexos',
+      type: 'POST',
+      dataType: 'json',
+      data: {"idTrabajador" : idTrabajador}
+  }).then(function (msg) {
+    var fila = '';
+    var urlDescarga = '';
+    $("#anexos").empty();
+    fila += '<div class="x_content"> <ul class="list-unstyled timeline">';
+    $.each(msg.msg, function (i, o) {
+
+        fecha = o.atr_fechaDesde.split("-");
+
+      if (  fecha[0] == ano && fecha[1] == mes   ) {
+        urlDescarga = base_url+"ContratosController/descargarAnexo/"+o.cp_anexo;
+
+        fila += '<li>';
+        fila += '<div class="block">';
+        fila += '<div class="tags">';
+        fila += '<a href="" class="tag">';
+        fila += '<span>'+fecha[2]+"-"+fecha[1]+"-"+fecha[0]+'</span>';
+        fila += '</a>';
+        fila += '</div>';
+        fila += '<div class="block_content">';
+        fila += '<h2 class="title">';
+        fila += '<a>'+o.atr_motivo+'</a>';
+        fila += '</h2>';
+        fila += '<div class="byline">';
+        fila += '<a href="'+urlDescarga+'" style="color:#1ABB9C;">Descargar</a>';
+        fila += '</div>';
+        fila += '</div>';
+        fila += '</div>';
+        fila += '</li>';
+      }
+    });
+    fila += '</ul></div>';
+    $("#anexos").append(fila);
+  });
+}
+
+
+
+function cargarDetalleTransferenciasPorFecha(mes, ano, idTrabajador){
+  $.ajax({
+      url: 'vistaTransferencias',
+      type: 'POST',
+      dataType: 'json',
+      data: {"idTrabajador" : idTrabajador}
+  }).then(function (msg) {
+    var fila = '';
+    var urlDescarga = '';
+    $("#transferencias").empty();
+    fila += '<div class="x_content"> <ul class="list-unstyled timeline">';
+    $.each(msg.msg, function (i, o) {
+
+      fecha = o.atr_fecha.split("-");
+
+      if (  fecha[0] == ano && fecha[1] == mes  ) {
+        urlDescarga = base_url+"TransferenciasController/descargarComprobante/"+o.cp_transferencia;
+
+        fila += '<li>';
+        fila += '<div class="block">';
+        fila += '<div class="tags">';
+        fila += '<a href="" class="tag">';
+        fila += '<span>'+fecha[2]+"-"+fecha[1]+"-"+fecha[0]+'</span>';
+        fila += '</a>';
+        fila += '</div>';
+        fila += '<div class="block_content">';
+        fila += '<h2 class="title">';
+        fila += '<a>'+o.tipo+'</a>';
+        fila += '</h2>';
+        fila += '<div class="byline">';
+        fila += '<span>$'+o.atr_monto+'&nbsp;</span><br><a href="'+urlDescarga+'" style="color:#1ABB9C;">Descargar</a>';
+        fila += '</div>';
+        fila += '</div>';
+        fila += '</div>';
+        fila += '</li>';
+      }
+
+
+    });
+    fila += '</ul></div>';
+    $("#transferencias").append(fila);
+  });
+}
+
+
+
+
+function cargarDetalleCartasDeAmonestacionPorFecha(mes, ano, idTrabajador){
+  $.ajax({
+      url: 'vistaCartasAmonestacion',
+      type: 'POST',
+      dataType: 'json',
+      data: {"idTrabajador" : idTrabajador}
+  }).then(function (msg) {
+    var fila = '';
+    var urlDescarga = '';
+    $("#cartasAmonestacion").empty();
+    fila += '<div class="x_content"> <ul class="list-unstyled timeline">';
+    $.each(msg.msg, function (i, o) {
+
+        fecha = o.atr_fecha.split("-");
+
+        if(  fecha[0] == ano && fecha[1] == mes  ){
+          urlDescarga = base_url+"CartaAmonestacionController/descargarCartaAmonestacion/"+o.cp_cartaAmonestacion;
+
+          fila += '<li>';
+          fila += '<div class="block">';
+          fila += '<div class="tags">';
+          fila += '<a href="" class="tag">';
+          fila += '<span>'+fecha[2]+"-"+fecha[1]+"-"+fecha[0]+'</span>';
+          fila += '</a>';
+          fila += '</div>';
+          fila += '<div class="block_content">';
+          fila += '<h2 class="title">';
+          fila += '<a>'+o.atr_motivo+'</a>';
+          fila += '</h2>';
+          fila += '<div class="byline">';
+          fila += '<span>Grado: '+o.atr_grado+'&nbsp;</span><br><a href="'+urlDescarga+'" style="color:#1ABB9C;">Descargar</a>';
+          fila += '</div>';
+          fila += '</div>';
+          fila += '</div>';
+          fila += '</li>';
+        }
+
     });
     fila += '</ul></div>';
     $("#cartasAmonestacion").append(fila);
