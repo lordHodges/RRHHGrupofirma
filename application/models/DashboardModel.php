@@ -40,8 +40,8 @@ class DashboardModel extends CI_Model {
       return $this->db->get()->result();
     }
 
-    // Suma los montos transferidos por banco
-    function transferenciasPorBancoMes(){
+    // Suma los montos transferidos por empresa
+    function transferenciasPorEmpresaMes(){
 
       date_default_timezone_set("America/Santiago");
       $fechaActual = date("Y-m-d");
@@ -64,9 +64,10 @@ class DashboardModel extends CI_Model {
 
       $condiciones =  array('t.atr_fecha >=' => $fechaBusquedaInicio, 't.atr_fecha <=' => $fechaActual);
 
-      $this->db->select("b.atr_nombre, SUM(t.atr_monto) as totalTransferencias");
+      $this->db->select("e.atr_nombre, SUM(t.atr_monto) as totalTransferencias");
       $this->db->from("fa_transferencia t");
-      $this->db->join("fa_banco b", " b.cp_banco = t.cf_banco");
+      $this->db->join("fa_trabajador b", " b.cp_trabajador = t.cf_trabajador");
+      $this->db->join("fa_empresa e", "b.cf_empresa = e.cp_empresa");
       $this->db->where($condiciones);
       $this->db->group_by("b.atr_nombre");
 

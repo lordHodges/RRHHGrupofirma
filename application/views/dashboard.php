@@ -61,7 +61,7 @@
   <div class="col-md-6 col-sm-6  ">
     <div class="x_panel">
       <div class="x_title">
-        <h2>Transferencias en el último mes</h2>
+        <h2>Transferencias por empresa</h2>
         <ul class="nav navbar-right panel_toolbox">
           <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
           </li>

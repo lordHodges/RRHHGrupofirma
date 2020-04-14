@@ -6,7 +6,7 @@ $route['default_controller'] = 'Welcome/index';
 // DASHBOARD
 $route['dashboard'] = 'DashboardController/index';
 $route['buscarContratosPorVencer'] = 'DashboardController/buscarContratosPorVencer';
-$route['transferenciasPorBancoMes'] = 'DashboardController/transferenciasPorBancoMes';
+$route['transferenciasPorEmpresaMes'] = 'DashboardController/transferenciasPorEmpresaMes';
 $route['totalContratosPlazo'] = 'DashboardController/totalContratosPlazo';
 $route['totalContratosIndefinidos'] = 'DashboardController/totalContratosIndefinidos';
 $route['totalContratosPorProyecto'] = 'DashboardController/totalContratosPorProyecto';

@@ -41,7 +41,7 @@ function cargarGraficoTransferenciasMes(){
 	var colors = ["#19b597","#19b5b1","#19d3b1","#4fb5b1","#4fb59f","#26B99A","#4fa29f","#428c9f","#428c82"];
 	var colores = [];
 
-	var url = base_url+'transferenciasPorBancoMes';
+	var url = base_url+'transferenciasPorEmpresaMes';
 
 	$.getJSON(url, function(result){
 		 $.each(result, function(i, o){
