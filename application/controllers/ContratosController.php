@@ -20,6 +20,11 @@ class ContratosController extends CI_Controller {
 		$this->load->view('gestorContratos');
 	}
 
+	public function indexGestorAnexos(){
+		$this->load->view('template/menu');
+		$this->load->view('gestorAnexos');
+	}
+
 	public function getDetalleTrabajadorContrato(){
 		$idTrabajador = $this->input->post("id");
 		$resultado = $this->ContratosModel->getDetalleTrabajadorContrato($idTrabajador);
@@ -103,22 +108,44 @@ class ContratosController extends CI_Controller {
 			 date_default_timezone_set("America/Santiago");
 			 $fechaActual = date("d-m-Y G:i:s");
 
-			 //Obtengo y transformo fecha a formato dia-mes-año
-			 $fechaInicio = date('Y-m-d',strtotime($this->input->post('fechaInicio')));
-			 $fechaTermino = date('Y-m-d',strtotime($this->input->post('fechaTermino')));
-			 $getSelectEstadoContrato = $this->input->post('getSelectEstadoContrato');
 
-			 //este valor esta insertado de forma oculta en el formulario
-			 $idTrabajador = $this->input->post('labelTrabajador');
+			 if( $this->input->post('getSelectTipoDocumento') == 'contrato'){
+				 //Obtengo y transformo fecha a formato dia-mes-año
+				 $fechaInicio = date('Y-m-d',strtotime($this->input->post('fechaInicio')));
+				 $fechaTermino = date('Y-m-d',strtotime($this->input->post('fechaTermino')));
+				 $getSelectEstadoContrato = $this->input->post('getSelectEstadoContrato');
 
-
-			 //AQUI COMIENZO ENVIO DE DATOS PARA EL MODELO Y PROCEDER EL INGRESO A BASE DE DATOS
-			 $resultado = $this->ContratosModel->cargar_archivo( $getSelectEstadoContrato, $nombreReal, $nombreFinal, $ruta, $fechaInicio, $fechaTermino, $fechaActual, $idTrabajador );
+				 //este valor esta insertado de forma oculta en el formulario
+				 $idTrabajador = $this->input->post('labelTrabajador');
 
 
-			 //REGRESO RESULTADO POSITIVO PARA DESPLEGAR MENSAJE DE EXITO
-			 echo json_encode("ok");
-			 exit();
+				 //AQUI COMIENZO ENVIO DE DATOS PARA EL MODELO Y PROCEDER EL INGRESO A BASE DE DATOS
+				 $resultado = $this->ContratosModel->cargar_archivo( $getSelectEstadoContrato, $nombreReal, $nombreFinal, $ruta, $fechaInicio, $fechaTermino, $fechaActual, $idTrabajador );
+
+
+				 //REGRESO RESULTADO POSITIVO PARA DESPLEGAR MENSAJE DE EXITO
+				 echo json_encode("ok");
+				 exit();
+			 }else{ //si es anexo
+				  $fechaFirma = date('Y-m-d',strtotime($this->input->post('fechaFirma')));
+					$fechaDesde = date('Y-m-d',strtotime($this->input->post('fechaDesde')));
+					$fechaHasta = date('Y-m-d',strtotime($this->input->post('fechaHasta')));
+					$motivo = $this->input->post('getSelectMotivo');
+
+					//este valor esta insertado de forma oculta en el formulario
+ 				  $idTrabajador = $this->input->post('labelTrabajador');
+
+					//AQUI COMIENZO ENVIO DE DATOS PARA EL MODELO Y PROCEDER EL INGRESO A BASE DE DATOS
+ 				 $resultado = $this->ContratosModel->cargar_archivoAnexo( $nombreReal, $nombreFinal, $ruta, $fechaFirma, $fechaDesde, $fechaHasta, $motivo, $fechaActual, $idTrabajador );
+
+
+ 				 //REGRESO RESULTADO POSITIVO PARA DESPLEGAR MENSAJE DE EXITO
+ 				 echo json_encode("ok");
+ 				 exit();
+
+			 }
+
+
 		 }
 	}
 
@@ -137,9 +164,28 @@ class ContratosController extends CI_Controller {
 		// $nombre = nombre asignado al documento en bd
 		$file = 'uploads/contratos/'.$nombre;
 
+		//si quiero el nombre por defecto al descargar -->  force_download($file, NULL);
+		force_download($file, NULL);
+  }
+
+	public function descargarAnexo($id){
+	// importo libreria helper download
+		$this->load->helper('download');
+
+		// var_dump("id parametro: ",$id);
+
+		// Solicito al modelo registro del contrato
+		$anexo = $this->ContratosModel->getURLAnexo($id);
+		foreach ($anexo as $key => $value) {
+			 $nombre = $value->atr_nombreDoc;
+			 $nombreReal = $value->atr_nombreReal;
+		}
+
+		// uploads/contratos = ruta de la carpeta que contiene los documentos
+		// $nombre = nombre asignado al documento en bd
+		$file = 'uploads/contratos/'.$nombre;
 
 		//si quiero el nombre por defecto al descargar -->  force_download($file, NULL);
-
 		force_download($file, NULL);
   }
 

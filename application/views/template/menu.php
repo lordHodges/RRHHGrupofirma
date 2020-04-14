@@ -95,6 +95,11 @@
                         <i class="fa fa-file"></i> Generar contrato
                       </a>
                     </li>
+                    <li>
+                      <a href="<?php echo base_url() ?>index.php/inicioGestorAnexos">
+                        <i class="fa fa-file"></i> Generar anexo
+                      </a>
+                    </li>
                     <li><a><i class="fa fa-folder-open"></i> Documentos <span class="fa fa-chevron-down"></span></a>
                       <ul class="nav child_menu">
                         <li><a href="<?php echo base_url() ?>index.php/inicioContratos">Contratos</a></li>

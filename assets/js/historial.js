@@ -85,7 +85,10 @@ function cargarDetalleHistorial(idTrabajador){
           urlDescarga = base_url+"ContratosController/descargarContrato/"+o.cf_contrato;
         }else if( o.atr_tipo == "Carta de amonestación"){
           urlDescarga = base_url+"CartaAmonestacionController/descargarCartaAmonestacion/"+o.cf_cartaamonestacion;
-        }else{
+        }else if( o.atr_tipo == "Anexo"){
+          urlDescarga = base_url+"ContratosController/descargarAnexo/"+o.cf_anexo;
+        }
+        else{
           urlDescarga = base_url+"TransferenciasController/descargarComprobante/"+o.cf_transferencia;
         }
         fecha = o.atr_fechacronologica.split("-");
@@ -150,6 +153,47 @@ function cargarDetalleContratos(idTrabajador){
     });
     fila += '</ul></div>';
     $("#contratos").append(fila);
+  });
+}
+
+
+function cargarDetalleAnexos(idTrabajador){
+  $.ajax({
+      url: 'vistaAnexos',
+      type: 'POST',
+      dataType: 'json',
+      data: {"idTrabajador" : idTrabajador}
+  }).then(function (msg) {
+    var fila = '';
+    var urlDescarga = '';
+    $("#anexos").empty();
+    fila += '<div class="x_content"> <ul class="list-unstyled timeline">';
+    $.each(msg.msg, function (i, o) {
+
+        urlDescarga = base_url+"ContratosController/descargarAnexo/"+o.cp_anexo;
+
+        fecha = o.atr_fechaDesde.split("-");
+
+        fila += '<li>';
+        fila += '<div class="block">';
+        fila += '<div class="tags">';
+        fila += '<a href="" class="tag">';
+        fila += '<span>'+fecha[2]+"-"+fecha[1]+"-"+fecha[0]+'</span>';
+        fila += '</a>';
+        fila += '</div>';
+        fila += '<div class="block_content">';
+        fila += '<h2 class="title">';
+        fila += '<a>'+o.atr_motivo+'</a>';
+        fila += '</h2>';
+        fila += '<div class="byline">';
+        fila += '<a href="'+urlDescarga+'" style="color:#1ABB9C;">Descargar</a>';
+        fila += '</div>';
+        fila += '</div>';
+        fila += '</div>';
+        fila += '</li>';
+    });
+    fila += '</ul></div>';
+    $("#anexos").append(fila);
   });
 }
 

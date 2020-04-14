@@ -67,23 +67,64 @@
                   </div>
                   <div class="col-md-12" id="detalleCargaArchivo">
                       <form id="uploader" method="post" enctype="multipart/form-data" action="cargar_archivo">
-                        <div class="col-md-6">
-                          <br>
-                          <label for="fechaInicio">COMIENZO DE CONTRATO</label>
-                          <input type="date" class="form-control" name="fechaInicio" required>
-                        </div>
-                        <div class="col-md-6">
-                          <br>
-                          <label for="fechaTermino">TERMINO DE CONTRATO</label>
-                          <input type="date" class="form-control" name="fechaTermino">
-                        </div>
+
                         <div class="col-md-12">
                             <br>
-                            <label for="getSelectEstadoContrato">ESTADO DE CONTRATO</label><br>
-                            <select class="custom-select"  id="getSelectEstadoContrato" name="getSelectEstadoContrato">
-
+                            <label for="getSelectTipoDocumento">TIPO</label><br>
+                            <select class="custom-select"  id="getSelectTipoDocumento" name="getSelectTipoDocumento">
+                              <option value="contrato">Contrato</option>
+                              <option value="anexo">Anexo</option>
                             </select>
                         </div>
+
+                        <div class="siEsContrato">
+                          <div class="col-md-6">
+                            <br>
+                            <label for="fechaInicio">COMIENZO DE CONTRATO</label>
+                            <input type="date" class="form-control" name="fechaInicio" >
+                          </div>
+                          <div class="col-md-6">
+                            <br>
+                            <label for="fechaTermino">TERMINO DE CONTRATO</label>
+                            <input type="date" class="form-control" name="fechaTermino">
+                          </div>
+                          <div class="col-md-12">
+                              <br>
+                              <label for="getSelectEstadoContrato">ESTADO DE CONTRATO</label><br>
+                              <select class="custom-select"  id="getSelectEstadoContrato" name="getSelectEstadoContrato">
+
+                              </select>
+                          </div>
+                        </div>
+
+                        <div class="siEsAnexo" style="display:none">
+                          <div class="col-md-6">
+                              <br>
+                              <label for="getSelectMotivo">TIPO</label><br>
+                              <select class="custom-select"  id="getSelectMotivo" name="getSelectMotivo">
+                                <option value="Prórroga">Prórroga</option>
+                                <option value="Modificación de cláusula">Modificación de cláusula</option>
+                                <option value="Pacto temporal">Pacto temporal</option>
+                              </select>
+                          </div>
+                          <div class="col-md-6">
+                            <br>
+                            <label for="fechaFirma">FECHA DE FIRMA</label>
+                            <input type="date" class="form-control" name="fechaFirma" >
+                          </div>
+                          <div class="col-md-6">
+                            <br>
+                            <label for="fechaDesde">DESDE</label>
+                            <input type="date" class="form-control" name="fechaDesde" >
+                          </div>
+                          <div class="col-md-6">
+                            <br>
+                            <label for="fechaHasta">HASTA</label>
+                            <input type="date" class="form-control" name="fechaHasta">
+                          </div>
+                        </div><br>
+
+
                         <input type="text" name="labelTrabajador" id="labelTrabajador" style="color:#2a3f54;border:none;border-color:#2a3f54">
                         <div class="col-md-12" >
                           <input lang="es" type="file" name="file" id="file">
@@ -92,6 +133,8 @@
                         <div class="col-md-12" style="margin-top:20px; margin-bottom:-20px;">
                           <button type="submit" class="btn btn-success btn-sm" id="btnCargar" style="width:100%;" >GUARDAR</button>
                         </div>
+
+
                     </form>
                   </div>
 
@@ -138,6 +181,19 @@
             cargarTabla();
             getEstadosContrato();
         })
+
+        $("#getSelectTipoDocumento").change(function (e){
+            e.preventDefault();
+            // alert("cambio");
+            var tipo = $("#getSelectTipoDocumento").val();
+            if(tipo == "contrato"){
+              $(".siEsContrato").removeAttr("style");
+              $(".siEsAnexo").css("display","none");
+            }else{
+              $(".siEsAnexo").removeAttr("style");
+              $(".siEsContrato").css("display","none");
+            }
+        });
 
         $("body").on("click", "#btnVerListaContratos", function(e) {
              e.preventDefault();

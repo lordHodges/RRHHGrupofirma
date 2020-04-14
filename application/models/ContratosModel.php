@@ -37,6 +37,14 @@ class ContratosModel extends CI_Model {
       return $resultado;
     }
 
+    function getURLAnexo($idAnexo){
+      $this->db->select("doc.atr_nombreDoc, doc.atr_nombreReal");
+      $this->db->from("fa_documento doc");
+      $this->db->where("doc.cf_anexo", $idAnexo);
+      $resultado =  $this->db->get()->result();
+      return $resultado;
+    }
+
     function cargar_archivo( $getSelectEstadoContrato, $nombreReal, $nombreFinal, $ruta, $fechaInicio, $fechaTermino, $fechaActual, $idTrabajador ){
       // 1: Buscar trabajador y obtener id del cargo
       $this->db->select("t.cf_cargo");
@@ -92,6 +100,68 @@ class ContratosModel extends CI_Model {
             "atr_fechaCarga" => $fechaActual,
             "atr_tipo" => 'Contrato',
             "atr_fechacronologica" => $fechaInicio,
+            "cf_trabajador" => $idTrabajador,
+        );
+        $insert = $this->db->insert("fa_documento", $data);
+        if($insert){
+          return "ok";
+        }else{
+          return "error";
+        }
+      }else{
+        return "error";
+      }
+    }
+
+
+
+
+
+    function cargar_archivoAnexo( $nombreReal, $nombreFinal, $ruta, $fechaFirma, $fechaDesde, $fechaHasta, $motivo, $fechaActual, $idTrabajador   ){
+      // 1: Obtener total de anexos + 1
+      $this->db->select('count(*)');
+      $this->db->from("fa_anexo");
+      $cantidad_anexos = $this->db->count_all_results();
+
+      // 2: Generar clave de atr_documento
+      $arraykey = array("NR70RG", "LSL74T", "42IIQW", "VH6MPA","Z_0RTN","VF88JP0","WT96QF", "E077ES","IF72LE","DG62XK","VP59FY","TJ12BX","TD13MX");
+      $arrayN=rand(0,12);
+      $key=rand(1,999999);
+      $atr_documento = $arraykey[$arrayN]."".$key."".$cantidad_anexos;
+
+      // 3: Crear contrato con atr_documento = codigo generado
+      $data = array(
+          "cp_anexo" => $atr_documento,
+          "atr_fechaDesde" => $fechaDesde,
+          "atr_fechaHasta" => $fechaHasta,
+          "atr_motivo" => $motivo,
+          "cf_trabajador" => $idTrabajador,
+      );
+      $insert = $this->db->insert("fa_anexo", $data);
+
+
+      // $dataTrabajadorEdit = array(
+      //   "cf_estado"   =>   $getSelectEstadoContrato
+      // );
+      //
+      // $this->db->where('t.cp_trabajador', $idTrabajador);
+      // $resultado =  $this->db->update("fa_trabajador t", $dataTrabajadorEdit);
+
+
+      if($insert){
+        // 4: Crear doumento con clave primeria = atr_documento descrito en contrato
+        // $this->db->select('count(*)');
+        // $this->db->from("fa_contrato c");
+        // $cantidad_contratos = $this->db->count_all_results();
+
+        $data = array(
+            "atr_nombreReal" => $nombreReal,
+            "atr_nombreDoc" => $nombreFinal,
+            "cf_anexo" => $atr_documento,
+            "atr_ruta" => $ruta,
+            "atr_fechaCarga" => $fechaActual,
+            "atr_tipo" => 'Anexo',
+            "atr_fechacronologica" => $fechaDesde,
             "cf_trabajador" => $idTrabajador,
         );
         $insert = $this->db->insert("fa_documento", $data);

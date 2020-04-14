@@ -79,6 +79,7 @@
                               <option value="">Seleccionar opción</option>
                               <option value="Adelanto">Adelanto</option>
                               <option value="Pago mensual">Pago mensual</option>
+                              <option value="Préstamo">Préstamo</option>
                               <option value="Otro">Otro</option>
                             </select>
                         </div>

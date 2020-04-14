@@ -15,6 +15,7 @@ $route['totalContratosPorProyecto'] = 'DashboardController/totalContratosPorProy
 $route['inicioHistorial'] = 'HistorialController/index';
 $route['vistaCronologica'] = 'HistorialController/vistaCronologica';
 $route['vistaContratos'] = 'HistorialController/vistaContratos';
+$route['vistaAnexos'] = 'HistorialController/vistaAnexos';
 $route['vistaTransferencias'] = 'HistorialController/vistaTransferencias';
 $route['vistaCartasAmonestacion'] = 'HistorialController/vistaCartasAmonestacion';
 
@@ -53,6 +54,9 @@ $route['cargar_archivo'] = 'ContratosController/cargar_archivo';
 $route['descargarContrato'] = 'ContratosController/descargarContrato';
 $route['getItemsContrato'] = 'ContratosController/getItemsContrato';
 
+//ANEXOS
+$route['inicioGestorAnexos'] = 'ContratosController/indexGestorAnexos';
+$route['docAnexoConFechaTermino'] = 'PDFController/view_anexoConFechaTermino';
 
 //DOCUMENTOS
 $route['perfilOcupacionalVista'] = 'PDFController/cargarPerfilesOcupacionales';

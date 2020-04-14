@@ -182,15 +182,6 @@ create table fa_trabajador(
     constraint fk_trabajador_empresa foreign key(cf_empresa) references fa_empresa(cp_empresa)
 );
 
-create table fa_cartaamonestacion(
-    cp_cartaAmonestacion varchar(200) unique,
-    atr_motivo varchar(200),
-    atr_grado varchar(200),
-    atr_fecha varchar(200),
-    cf_trabajador int,
-    constraint pk_cartaAmonestacion primary key(cp_cartaAmonestacion),
-    constraint fk_cartaAmonestacion_trabajador foreign key(cf_trabajador) references fa_trabajador(cp_trabajador)
-);
 
 
 create table fa_conocimiento_cargo(
@@ -278,6 +269,27 @@ create table fa_transferencia (
   constraint fk_transferencia_banco foreign key(cf_banco) references fa_banco(cp_banco)
 );
 
+create table fa_cartaamonestacion(
+    cp_cartaAmonestacion varchar(200) unique,
+    atr_motivo varchar(200),
+    atr_grado varchar(200),
+    atr_fecha varchar(200),
+    cf_trabajador int,
+    constraint pk_cartaAmonestacion primary key(cp_cartaAmonestacion),
+    constraint fk_cartaAmonestacion_trabajador foreign key(cf_trabajador) references fa_trabajador(cp_trabajador)
+);
+
+
+create table fa_anexo (
+	cp_anexo varchar(200) unique,
+  atr_fechaDesde varchar(200),
+  atr_fechaHasta varchar(200),
+  atr_motivo varchar(200),
+  cf_trabajador int,
+  constraint pk_anexo PRIMARY KEY (cp_anexo),
+  constraint fk_anexo_trabajador foreign key(cf_trabajador) references fa_trabajador(cp_trabajador)
+);
+
 create table fa_documento(
     cp_documento int auto_increment,
     atr_nombreDoc varchar(200),
@@ -287,11 +299,13 @@ create table fa_documento(
     atr_tipo varchar(200) not null,
     atr_fechacronologica varchar(200),
     cf_contrato varchar(200),
+    cf_anexo varchar(200),
     cf_transferencia varchar(200),
     cf_cartaamonestacion varchar(200),
     cf_trabajador int,
     constraint cp_documento primary key(cp_documento),
     constraint fk_documento_contrato foreign key(cf_contrato) references fa_contrato(cp_contrato),
+    constraint fk_documento_anexo foreign key(cf_anexo) references fa_anexo(cp_anexo),
     constraint fk_documento_trabajador foreign key(cf_trabajador) references fa_trabajador(cp_trabajador),
     constraint fk_documento_transferencia foreign key(cf_transferencia) references fa_transferencia(cp_transferencia),
     constraint fk_documento_cartaamonestacion foreign key(cf_cartaamonestacion) references fa_cartaamonestacion(cp_cartaAmonestacion)
