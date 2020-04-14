@@ -49,21 +49,34 @@
     <div id="myModal" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="crearTrabajador"  aria-hidden="true" >
         <div class="modal-dialog modal-lg">
             <div class="modal-content" style="padding:20px; background: #2a3f54" >
-                <div class="form-row">
+                <div class="">
                     <h5 class="modal-title mx-auto">INGRESAR EMPRESA</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
-                    <div class="col-md-12">
-                        <br>
-                        <label for="nombre">NOMBRE</label>
-                        <input type="text" class="form-control custom-input-sm" id="nombre" >
-                    </div>
 
                     <div class="col-md-12">
                         <br>
-                        <label for="nombre">ROL UNICO TRIBUTARIO</label>
-                        <input type="text" class="form-control custom-input-sm" id="RUT" onkeyup="this.value=caracteresRUT(this.value)" oninput="checkRutOficial(this)">
+                        <label for="getSelectTipo">TIPO</label><br>
+                        <select class="custom-select" id="getSelectTipo">
+                          <option value="" disabled selected>Seleccione una opción</option>
+                          <option value="empresa">Persona Jurídica</option>
+                          <option value="persona">Persona natural</option>
+                        </select>
+                    </div>
+
+                    <div id="siEsEmpresa" style="display:none">
+                      <div class="col-md-12">
+                          <br>
+                          <label for="nombre">NOMBRE</label>
+                          <input type="text" class="form-control custom-input-sm" id="nombre" >
+                      </div>
+
+                      <div class="col-md-12">
+                          <br>
+                          <label for="nombre">ROL UNICO TRIBUTARIO</label>
+                          <input type="text" class="form-control custom-input-sm" id="RUT" onkeyup="this.value=caracteresRUT(this.value)" oninput="checkRutOficial(this)">
+                      </div>
                     </div>
 
                     <div class="col-md-12">
@@ -75,7 +88,7 @@
                     <div class="col-md-12">
                         <br>
                         <label for="nombreRepre">NOMBRE DE REPRESENTANTE</label>
-                        <input type="text" class="form-control custom-input-sm" id="nombreRepre" onkeyup="this.value=soloLetras(this.value)">
+                        <input type="text" class="form-control custom-input-sm" id="nombreRepre" oninput="mayus(this);" onkeyup="this.value=soloLetras(this.value)">
                     </div>
 
                     <div class="col-md-12">
@@ -255,6 +268,15 @@
           cargarTablaEmpresa();
       });
 
+      $("#getSelectTipo").change(function (e){
+          e.preventDefault();
+          if( $("#getSelectTipo").val() == "empresa" ){
+            // $("#siEsEmpresa").css("display","block");
+            $("#siEsEmpresa").removeAttr("style");
+          }else{
+            $("#siEsEmpresa").css("display","none");
+          }
+      });
 
   </script>
 

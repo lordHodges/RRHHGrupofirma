@@ -1005,9 +1005,20 @@ function agregarEmpresa() {
     var representante = $("#nombreRepre").val();
     var cedula_representante = $("#cedulaRepre").val();
     var ciudad = $("#getSelectCiudad").val();
-    if (nombre == "" || rut == "" || domicilio == "" || representante == "" || cedula_representante == "" || ciudad == "" ) {
-        toastr.error("Rellene todos los campos");
-    } else {
+
+    var tipo = $("#getSelectTipo").val();
+    if( tipo == "persona" ){
+      nombre = representante;
+      rut = cedula_representante;
+      representante = "";
+      cedula_representante = "";
+    }
+
+    if (tipo == "empresa"){
+      if( nombre == "" || rut == "" || domicilio == "" || representante == "" || cedula_representante == "" || ciudad == "" ) {
+          toastr.error("Rellene todos los campos");
+      }
+    }else {
         $.ajax({
             url: 'addEmpresa',
             type: 'POST',

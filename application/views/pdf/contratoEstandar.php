@@ -36,12 +36,27 @@
 
     <?php foreach ($arrayTrabajador as $key => $t){ ?>
 
-    <p style="text-align:justify; line-height:25px;"> En <?php echo($ciudadFirma); ?>, a  <?php echo $fechaDeHoy ?>, entre <b><?php echo $t->empresa ?></b>, Rol Único Tributario <b><?php echo 'N°'.$t->runEmpresa ?></b>,
-       representada legalmente por <b><?php echo $t->repre_legal ?></b>, cédula de Identidad N° <b><?php echo $t->repre_rut ?></b>, ambos con domicilio en <?php echo $t->direccionEmpresa ?> , comuna
-       y ciudad de <?php echo $t->ciudadEmpresa ?>, en adelante <b>"el empleador"</b> y don <b><?php echo $t->atr_nombres." ".$t->atr_apellidos ?></b>, cédula de identidad N°<b><?php echo $t->atr_rut ?></b> domiciliado en
-       <b><?php echo $t->atr_direccion ?> </b>,de nacionalidad <?php echo $t->nacionalidad ?>  nacido el <?php echo $t->atr_fechaNacimiento ?>, afiliado a AFP <?php echo $t->afp ?>  y Sistema de Salud <?php echo $t->prevision ?>, en adelante <b>"el trabajador",</b>
-       se ha convenido el siguiente contrato de trabajo:</p>
+
+       <?php if( $t->repre_rut == "" || $t->repre_legal == "" ){ ?>
+         <p style="text-align:justify; line-height:25px;"> En <?php echo($ciudadFirma); ?>, a  <?php echo $fechaDeHoy ?>, entre <b><?php echo $t->empresa ?></b>, RUT <b><?php echo 'N°'.$t->runEmpresa ?></b>,
+          con domicilio en <?php echo $t->direccionEmpresa ?>, comuna
+          y ciudad de <?php echo $t->ciudadEmpresa ?>, en adelante <b>"el empleador"</b> y don <b><?php echo $t->atr_nombres." ".$t->atr_apellidos ?></b>, cédula de identidad N°<b><?php echo $t->atr_rut ?></b> domiciliado en
+          <b><?php echo $t->atr_direccion ?> </b>,de nacionalidad <?php echo $t->nacionalidad ?>  nacido el <?php echo $t->atr_fechaNacimiento ?>, afiliado a AFP <?php echo $t->afp ?>  y Sistema de Salud <?php echo $t->prevision ?>, en adelante <b>"el trabajador",</b>
+          se ha convenido el siguiente contrato de trabajo:</p>
+       <?php } ?>
+
+       <?php if( $t->repre_rut != "" || $t->repre_legal != "" ){ ?>
+         <p style="text-align:justify; line-height:25px;"> En <?php echo($ciudadFirma); ?>, a  <?php echo $fechaDeHoy ?>, entre <b><?php echo $t->empresa ?></b>, Rol Único Tributario <b><?php echo 'N°'.$t->runEmpresa ?></b>,
+            representada legalmente por <b><?php echo $t->repre_legal ?></b>, cédula de Identidad N° <b><?php echo $t->repre_rut ?></b>, ambos con domicilio en <?php echo $t->direccionEmpresa ?> , comuna
+            y ciudad de <?php echo $t->ciudadEmpresa ?>, en adelante <b>"el empleador"</b> y don <b><?php echo $t->atr_nombres." ".$t->atr_apellidos ?></b>, cédula de identidad N°<b><?php echo $t->atr_rut ?></b> domiciliado en
+            <b><?php echo $t->atr_direccion ?> </b>,de nacionalidad <?php echo $t->nacionalidad ?>  nacido el <?php echo $t->atr_fechaNacimiento ?>, afiliado a AFP <?php echo $t->afp ?>  y Sistema de Salud <?php echo $t->prevision ?>, en adelante <b>"el trabajador",</b>
+            se ha convenido el siguiente contrato de trabajo:</p>
+       <?php } ?>
+
+
     <?php } ?>
+
+
 
 
 
