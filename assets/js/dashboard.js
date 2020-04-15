@@ -33,19 +33,67 @@ function cargarCantidadContratos(){
 }
 
 
+function cargarGraficoTransferenciasPorEmpresaHoy(){
 
-function cargarGraficoTransferenciasMes(){
+	$("#myTabGraficTransferContent").empty();
+	var fila = '<div class="tab-pane fade" id="hoyTransEmpresa" role="tabpanel" aria-labelledby="hoyTransEmpresa-tab"><canvas id="pieChart"></canvas></div>';
+	$("#myTabGraficTransferContent").append(fila);
 
 	var montos = [];
-	var bancos = [];
+	var empresas = [];
 	var colors = ["#19b597","#19b5b1","#19d3b1","#4fb5b1","#4fb59f","#26B99A","#4fa29f","#428c9f","#428c82"];
 	var colores = [];
 
-	var url = base_url+'transferenciasPorEmpresaMes';
+ 	//  GRÁFICO DE TRANSFERENCIAS POR EMPRESAS --- AÑO ---
+ 	 var url = base_url+'transferenciasPorEmpresaHoy';
 
+ 	$.getJSON(url, function(result){
+ 		 $.each(result, function(i, o){
+ 			 empresas.push(o.atr_nombre);
+ 			 montos.push(o.totalTransferencias);
+ 			 colores.push("#000");
+ 		 });
+
+ 		 if ($('#pieChart').length) {
+ 	 		var ctx = document.getElementById("pieChart");
+ 	 		var data = {
+ 				datasets: [{
+ 					data: montos,
+ 					backgroundColor: colors,
+ 					label: 'My dataset2' // for legend
+ 				}],
+ 				labels: empresas
+ 	 		};
+
+ 	 		var pieChart = new Chart(ctx, {
+ 				data: data,
+ 				type: 'pie',
+ 				otpions: {
+ 					legend: false
+ 				}
+ 	 		});
+ 	 	}
+ 	 });
+}
+
+
+
+function cargarGraficoTransferenciasPorEmpresaMes(){
+
+	$("#myTabGraficTransferContent").empty();
+	var fila = '<div class="tab-pane fade" id="mesTransEmpresa" role="tabpanel" aria-labelledby="mesTransEmpresa-tab"><canvas id="pieChart"></canvas></div>';
+	$("#myTabGraficTransferContent").append(fila);
+
+
+	var montos = [];
+	var empresas = [];
+	var colors = ["#19b597","#19b5b1","#19d3b1","#4fb5b1","#4fb59f","#26B99A","#4fa29f","#428c9f","#428c82"];
+	var colores = [];
+	// GRÁFICO DE TRANSFERENCIAS POR EMPRESAS --- MES ---
+	var url = base_url+'transferenciasPorEmpresaMes';
 	$.getJSON(url, function(result){
 		 $.each(result, function(i, o){
-			 bancos.push(o.atr_nombre);
+			 empresas.push(o.atr_nombre);
 			 montos.push(o.totalTransferencias);
 			 colores.push("#000");
 		 });
@@ -53,25 +101,72 @@ function cargarGraficoTransferenciasMes(){
 		 if ($('#pieChart').length) {
 	 		var ctx = document.getElementById("pieChart");
 	 		var data = {
-	 				datasets: [{
-	 						data: montos,
-	 						backgroundColor: colors,
-	 						label: 'My dataset' // for legend
-	 				}],
-	 				labels: bancos
+				datasets: [{
+						data: montos,
+						backgroundColor: colors,
+						label: 'My dataset' // for legend
+				}],
+				labels: empresas
 	 		};
 
 	 		var pieChart = new Chart(ctx, {
-	 				data: data,
-	 				type: 'pie',
-	 				otpions: {
-	 						legend: false
-	 				}
+				data: data,
+				type: 'pie',
+				otpions: {
+					legend: false
+				}
 	 		});
 	 	}
 	 });
 
 }
+
+
+function cargarGraficoTransferenciasPorEmpresaAno(){
+
+	$("#myTabGraficTransferContent").empty();
+	var fila = '<div class="tab-pane fade-" id="anoTransEmpresa" role="tabpanel" aria-labelledby="anoTransEmpresa-tab"><canvas id="pieChart"></canvas></div>';
+	$("#myTabGraficTransferContent").append(fila);
+
+	var montos = [];
+	var empresas = [];
+	var colors = ["#19b597","#19b5b1","#19d3b1","#4fb5b1","#4fb59f","#26B99A","#4fa29f","#428c9f","#428c82"];
+	var colores = [];
+
+ 	//  GRÁFICO DE TRANSFERENCIAS POR EMPRESAS --- AÑO ---
+ 	 var url = base_url+'transferenciasPorEmpresaAno';
+
+ 	$.getJSON(url, function(result){
+ 		 $.each(result, function(i, o){
+ 			 empresas.push(o.atr_nombre);
+ 			 montos.push(o.totalTransferencias);
+ 			 colores.push("#000");
+ 		 });
+
+ 		 if ($('#pieChart').length) {
+ 	 		var ctx = document.getElementById("pieChart");
+ 	 		var data = {
+ 				datasets: [{
+ 					data: montos,
+ 					backgroundColor: colors,
+ 					label: 'My dataset2' // for legend
+ 				}],
+ 				labels: empresas
+ 	 		};
+
+ 	 		var pieChart = new Chart(ctx, {
+ 				data: data,
+ 				type: 'pie',
+ 				otpions: {
+ 					legend: false
+ 				}
+ 	 		});
+ 	 	}
+ 	 });
+}
+
+
+
 
 // Función para calcular los días transcurridos entre dos fechas
 function restarFechas(f1,f2){

@@ -87,55 +87,17 @@
               </div>
 
 
-
-
-
-
-
-
-
               <div class="tab-pane fade" id="contratos" role="tabpanel" aria-labelledby="contrato-tab">
 
               </div>
-
-
-
-
-
 
               <div class="tab-pane fade" id="anexos" role="tabpanel" aria-labelledby="anexo-tab">
 
               </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
               <div class="tab-pane fade-" id="cartasAmonestacion" role="tabpanel" aria-labelledby="cartas-tab">
 
               </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
               <div class="tab-pane fade" id="transferencias" role="tabpanel" aria-labelledby="contact-tab">
 

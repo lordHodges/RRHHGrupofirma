@@ -40,9 +40,8 @@ class DashboardModel extends CI_Model {
       return $this->db->get()->result();
     }
 
-    // Suma los montos transferidos por empresa
-    function transferenciasPorEmpresaMes(){
-
+    // transferencias en el dia de hoy
+    function transferenciasPorEmpresaHoy(){
       date_default_timezone_set("America/Santiago");
       $fechaActual = date("Y-m-d");
 
@@ -50,28 +49,94 @@ class DashboardModel extends CI_Model {
       $mes = date("m");
       $ano = date("Y");
 
-      if( $mes == "01"){
-        $mes = "12";
-        $ano = $ano - 1;
-        $fechaBusquedaInicio = $ano."-".$mes."-".$dia;
-      }else{
-        $mes = $mes - 1;
-        if( $mes < 10){
-          $mes = "0".$mes;
-        }
-        $fechaBusquedaInicio = $ano."-".$mes."-".$dia;
-      }
 
-      $condiciones =  array('t.atr_fecha >=' => $fechaBusquedaInicio, 't.atr_fecha <=' => $fechaActual);
+      $fechaBusqueda = $ano."-".$mes."-".$dia;
 
-      $this->db->select("e.atr_nombre, SUM(t.atr_monto) as totalTransferencias");
-      $this->db->from("fa_transferencia t");
-      $this->db->join("fa_trabajador b", " b.cp_trabajador = t.cf_trabajador");
-      $this->db->join("fa_empresa e", "b.cf_empresa = e.cp_empresa");
-      $this->db->where($condiciones);
-      $this->db->group_by("b.atr_nombre");
+      // var_dump($fechaBusqueda);
+
+      $this->db->select("e.atr_nombre, SUM(tr.atr_monto) as totalTransferencias");
+      $this->db->from("fa_transferencia tr");
+      $this->db->join("fa_trabajador t", " t.cp_trabajador = tr.cf_trabajador");
+      $this->db->join("fa_empresa e", "t.cf_empresa = e.cp_empresa");
+      $this->db->where("tr.atr_fecha",$fechaBusqueda);
+      $this->db->group_by("e.atr_nombre");
 
       $resultado = $this->db->get()->result();
       return $resultado;
     }
+
+
+    // transferencias en el último mes
+    function transferenciasPorEmpresaMes(){
+      date_default_timezone_set("America/Santiago");
+      $fechaActual = date("Y-m-d");
+
+      $dia = date("d");
+      $mes = date("m");
+      $ano = date("Y");
+
+
+      if( $mes == "04" || $mes == "06" || $mes == "09" || $mes == "11" ){
+        $fechaBusquedaInicio = $ano."-".$mes."-01";
+        $fechaBusquedaFinal = $ano."-".$mes."-30";
+      }else if(  $mes == "01" || $mes == "03" || $mes == "05" || $mes == "07" || $mes == "08" || $mes == "10" || $mes == "12"  ){
+        $fechaBusquedaInicio = $ano."-".$mes."-01";
+        $fechaBusquedaFinal = $ano."-".$mes."-31";
+      }else{
+        $bisiesto = $ano/4;
+        if( $bisiesto == 0){
+          $fechaBusquedaInicio = $ano."-".$mes."-01";
+          $fechaBusquedaFinal = $ano."-".$mes."-29";
+        }else{
+          $fechaBusquedaInicio = $ano."-".$mes."-01";
+          $fechaBusquedaFinal = $ano."-".$mes."-28";
+        }
+      }
+
+
+      $condiciones =  array('tr.atr_fecha >=' => $fechaBusquedaInicio, 'tr.atr_fecha <=' => $fechaBusquedaFinal);
+
+      $this->db->select("e.atr_nombre, SUM(tr.atr_monto) as totalTransferencias");
+      $this->db->from("fa_transferencia tr");
+      $this->db->join("fa_trabajador t", " t.cp_trabajador = tr.cf_trabajador");
+      $this->db->join("fa_empresa e", "t.cf_empresa = e.cp_empresa");
+      $this->db->where($condiciones);
+      $this->db->group_by("e.atr_nombre");
+
+      $resultado = $this->db->get()->result();
+      return $resultado;
+    }
+
+
+
+    // transferencias en el último año
+    function transferenciasPorEmpresaAno(){
+      date_default_timezone_set("America/Santiago");
+      $fechaActual = date("Y-m-d");
+
+      $ano = date("Y");
+      // var_dump($ano);
+      $fechaBusquedaInicio = $ano.'-01-01';
+      $fechaBusquedaFinal =  $ano.'-12-31';
+
+      // var_dump($fechaBusquedaInicio);
+
+
+      $condiciones =  array('tr.atr_fecha >=' => $fechaBusquedaInicio, 'tr.atr_fecha <=' => $fechaBusquedaFinal);
+
+      $this->db->select("e.atr_nombre, SUM(tr.atr_monto) as totalTransferencias");
+      $this->db->from("fa_transferencia tr");
+      $this->db->join("fa_trabajador t", " t.cp_trabajador = tr.cf_trabajador");
+      $this->db->join("fa_empresa e", "t.cf_empresa = e.cp_empresa");
+      $this->db->where($condiciones);
+      $this->db->group_by("e.atr_nombre");
+
+      $resultado = $this->db->get()->result();
+      return $resultado;
+    }
+
+
+
+
+
 }

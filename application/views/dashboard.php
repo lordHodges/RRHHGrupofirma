@@ -1,6 +1,6 @@
 <div class="right_col" role="main">
 
-  <div class="col-md-4">
+  <div class="col-md-4 col-sm-12">
     <div class="x_panel" style="background-color:#f7f7f7; border:none">
       <div class="row card-group">
         <div class="card text-white" style="background-color:#1abb9c">
@@ -19,7 +19,7 @@
 
 
 
-  <div class="col-md-4">
+  <div class="col-md-4 col-sm-6">
     <div class="x_panel" style="background-color:#f7f7f7; border:none">
       <div class="row card-group">
         <div class="card text-white" style="background-color:#1abb9c">
@@ -36,7 +36,7 @@
     </div>
   </div>
 
-  <div class="col-md-4">
+  <div class="col-md-4 col-sm-6">
     <div class="x_panel" style="background-color:#f7f7f7; border:none">
       <div class="row card-group">
         <div class="card text-white" style="background-color:#1abb9c">
@@ -58,7 +58,7 @@
 
 
   <!-- TRANSFERENCIAS DE DINERO POR BANCO -->
-  <div class="col-md-6 col-sm-6  ">
+  <div class="col-md-6 col-sm-12  ">
     <div class="x_panel">
       <div class="x_title">
         <h2>Transferencias por empresa</h2>
@@ -79,7 +79,28 @@
         <div class="clearfix"></div>
       </div>
       <div class="x_content">
-        <canvas id="pieChart"></canvas>
+
+          <ul class="nav nav-tabs bar_tabs" id="myTab" role="tablist">
+              <li class="nav-item">
+              <a class="nav-link" id="hoyTransEmpresa-tab" data-toggle="tab" href="#hoyTransEmpresa" onclick="cargarGraficoTransferenciasPorEmpresaHoy()" role="tab" aria-controls="home" aria-selected="true">Hoy</a>
+              </li>
+
+              <li class="nav-item">
+              <a class="nav-link active" id="mesTransEmpresa-tab" data-toggle="tab" href="#mesTransEmpresa" onclick="cargarGraficoTransferenciasPorEmpresaMes()"  role="tab" aria-controls="anexos" aria-selected="false">Mes</a>
+              </li>
+
+              <li class="nav-item">
+              <a class="nav-link" id="anoTransEmpresa-tab" data-toggle="tab" href="#anoTransEmpresa" onclick="cargarGraficoTransferenciasPorEmpresaAno()" role="tab" aria-controls="transferencias" aria-selected="false">Año</a>
+              </li>
+          </ul>
+          <div class="tab-content" id="myTabGraficTransferContent">
+              <!-- <div class="tab-pane fade" id="hoyTransEmpresa" role="tabpanel" aria-labelledby="hoyTransEmpresa-tab"><canvas id="pieChart"></canvas></div>
+
+              <div class="tab-pane fade" id="mesTransEmpresa" role="tabpanel" aria-labelledby="mesTransEmpresa-tab"><canvas id="pieChart"></canvas></div>
+
+              <div class="tab-pane fade-" id="anoTransEmpresa" role="tabpanel" aria-labelledby="anoTransEmpresa-tab"><canvas id="pieChart"></canvas></div> -->
+          </div>
+
       </div>
     </div>
   </div>
@@ -151,7 +172,7 @@
 <script>
   $(document).ready(function() {
     cargarCantidadContratos();
-    cargarGraficoTransferenciasMes();
+    cargarGraficoTransferenciasPorEmpresaMes();
     cargarNotificaciones();
   });
 </script>

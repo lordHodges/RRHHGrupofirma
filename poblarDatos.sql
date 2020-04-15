@@ -3,6 +3,20 @@ INSERT INTO `fa_banco` (`cp_banco`, `atr_nombre`, `atr_sitio`) VALUES (NULL, 'BA
 INSERT INTO `fa_banco` (`cp_banco`, `atr_nombre`, `atr_sitio`) VALUES (NULL, 'COOPEUCH', NULL);
 
 
+UPDATE `fa_banco` SET `atr_sitio` = 'https://www.santander.cl/empresas/index.asp' WHERE `fa_banco`.`cp_banco` = 1;
+UPDATE `fa_banco` SET `atr_sitio` = 'https://banco.itau.cl/wps/portal/newiol/web/login/!ut/p/z1/04_Sj9CPykssy0xPLMnMz0vMAfIjo8ziDVCAo4FTkJGTsYGBu7OJfjhYgb-BpauHYbCBn0WYhZmBo5-xoYungZe7QaCBfhQx-g1wAEey9KMoiMJvfLh-FFgJPh8QMqMgNzQ0wiDTEQCkdp5B/dz/d5/L2dBISEvZ0FBIS9nQSEh/' WHERE `fa_banco`.`cp_banco` = 2;
+UPDATE `fa_banco` SET `atr_nombre` = 'BCI', `atr_sitio` = 'https://www.bci.cl/empresas/' WHERE `fa_banco`.`cp_banco` = 3;
+UPDATE `fa_banco` SET `atr_sitio` = 'https://www.bancofalabella.cl/home' WHERE `fa_banco`.`cp_banco` = 4;
+UPDATE `fa_banco` SET `atr_sitio` = 'https://banco.itau.cl/wps/portal/newiol/web/login/!ut/p/z1/04_Sj9CPykssy0xPLMnMz0vMAfIjo8ziDVCAo4FTkJGTsYGBu7OJfjhYgb-BpauHYbCBn0WYhZmBo5-xoYungZe7QaCBfhQx-g1wAEey9KMoiMJvfLh-FFgJPh8QMqMgNzQ0wiDTEQCkdp5B/dz/d5/L2dBISEvZ0FBIS9nQSEh/' WHERE `fa_banco`.`cp_banco` = 5;
+UPDATE `fa_banco` SET `atr_sitio` = 'https://ww3.bancochile.cl/wps/wcm/connect/bch-empresas/bancodechile/empresas' WHERE `fa_banco`.`cp_banco` = 6;
+UPDATE `fa_banco` SET `atr_sitio` = 'https://empresas.bancoestado.cl/bancoestado/process.asp' WHERE `fa_banco`.`cp_banco` = 7;
+UPDATE `fa_banco` SET `atr_sitio` = 'https://login.bice.cl/loginempresa/index.html' WHERE `fa_banco`.`cp_banco` = 8;
+UPDATE `fa_banco` SET `atr_sitio` = 'https://www.bancosecurity.cl/widgets/wEmpresasLogin/index.asp' WHERE `fa_banco`.`cp_banco` = 9;
+UPDATE `fa_banco` SET `atr_sitio` = 'https://www.bancoconsorcio.cl/bancaempresas/Home/Login' WHERE `fa_banco`.`cp_banco` = 10;
+UPDATE `fa_banco` SET `atr_sitio` = 'https://miportal.bancoripley.cl/home/login.handler#saldosConsolidados' WHERE `fa_banco`.`cp_banco` = 11;
+UPDATE `fa_banco` SET `atr_sitio` = 'https://appservtrx.scotiabank.cl/portalempresas/login' WHERE `fa_banco`.`cp_banco` = 12;
+UPDATE `fa_banco` SET `atr_sitio` = 'https://www.coopeuch.cl/tef/#/' WHERE `fa_banco`.`cp_banco` = 13;
+
 INSERT INTO `fa_ciudad` (`atr_nombre`)
 VALUES ('Arica'),('Camarones'),('General Lagos'),('Putre'),('Alto Hospicio'),('Iquique'),('Camiña'),('Colchane'),('Huara'),('Pica'),('Pozo Almonte'),('Tocopilla'),('María Elena'),
 	('Calama'),('Ollague'),('San Pedro de Atacama'),('Antofagasta'),('Mejillones'),('Sierra Gorda'),('Taltal'),('Chañaral'),('Diego de Almagro'),('Copiapó'),
