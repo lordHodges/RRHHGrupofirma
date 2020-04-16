@@ -390,17 +390,12 @@
           e.preventDefault();
           document.getElementById("datosTrabajador").style = "";
           document.getElementById("detalleEmpresa").style = "";
-          document.getElementById("btnGenerarContrato").style = "";
+          // document.getElementById("btnGenerarContrato").style = "";
 
           var idTrabajador = $("#selectTrabajador1").val();
           cargarDatosEsenciales(idTrabajador);
       });
 
-      // $("#selectTrabajador1").change(function (e){
-      //     e.preventDefault();
-      //     var idTrabajador = $("#selectTrabajador2").val();
-      //     cargarDatosEsenciales(idTrabajador);
-      // });
 
       // este método controla lo que se ve y lo que no en la sección de vigencia
       $("#selectTipoProrroga").change(function (e){
@@ -427,7 +422,7 @@
       $("body").on("click", "#btnGenerarAnexoProrroga", function(e) {
           e.preventDefault();
           var idTrabajador = $("#selectTrabajador1").val();
-          var ciudadFirma = $("#getSelectCiudad").val();
+          var ciudadFirma = $('#getSelectCiudad option:selected').html();
           var tipoAnexoProrroga = $("#selectTipoProrroga").val();
 
           if(ciudadFirma == "" || tipoAnexoProrroga == null ){

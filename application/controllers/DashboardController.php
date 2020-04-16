@@ -50,8 +50,20 @@ class DashboardController extends CI_Controller {
 		echo json_encode($resultado);
 	}
 
+
+
 	public function transferenciasPorEmpresaAno(){
 		$resultado = $this->DashboardModel->transferenciasPorEmpresaAno();
+		echo json_encode($resultado);
+	}
+
+	public function transferenciasPorEmpresaPrimerSemestre(){
+		$resultado = $this->DashboardModel->transferenciasPorEmpresaPrimerSemestre();
+		echo json_encode($resultado);
+	}
+
+	public function transferenciasPorEmpresaSegundoSemestre(){
+		$resultado = $this->DashboardModel->transferenciasPorEmpresaSegundoSemestre();
 		echo json_encode($resultado);
 	}
 

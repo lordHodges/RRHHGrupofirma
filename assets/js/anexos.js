@@ -116,12 +116,14 @@ function cargarElementosDeContrato(){
 }
 
 function cargarDatosEsenciales(idTrabajador){
+
   $.ajax({
       url: 'getDetalleTrabajadorContrato',
       type: 'POST',
       dataType: 'json',
       data: {"id": idTrabajador}
   }).then(function (msg) {
+      $("#btnGenerarAnexoProrroga").removeAttr("style");
       // información del trabajador y empresa
       $.each(msg.arrayTrabajador, function (i, o) {
         $("#rut").val(o.atr_rut);

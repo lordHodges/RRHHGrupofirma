@@ -9,6 +9,8 @@ $route['buscarContratosPorVencer'] = 'DashboardController/buscarContratosPorVenc
 $route['transferenciasPorEmpresaHoy'] = 'DashboardController/transferenciasPorEmpresaHoy';
 $route['transferenciasPorEmpresaMes'] = 'DashboardController/transferenciasPorEmpresaMes';
 $route['transferenciasPorEmpresaAno'] = 'DashboardController/transferenciasPorEmpresaAno';
+$route['transferenciasPorEmpresaPrimerSemestre'] = 'DashboardController/transferenciasPorEmpresaPrimerSemestre';
+$route['transferenciasPorEmpresaSegundoSemestre'] = 'DashboardController/transferenciasPorEmpresaSegundoSemestre';
 $route['totalContratosPlazo'] = 'DashboardController/totalContratosPlazo';
 $route['totalContratosIndefinidos'] = 'DashboardController/totalContratosIndefinidos';
 $route['totalContratosPorProyecto'] = 'DashboardController/totalContratosPorProyecto';
@@ -59,6 +61,7 @@ $route['getItemsContrato'] = 'ContratosController/getItemsContrato';
 //ANEXOS
 $route['inicioGestorAnexos'] = 'ContratosController/indexGestorAnexos';
 $route['docAnexoConFechaTermino'] = 'PDFController/view_anexoConFechaTermino';
+$route['docAnexoPasarIndefinido'] = 'PDFController/docAnexoPasarIndefinido';
 
 //DOCUMENTOS
 $route['perfilOcupacionalVista'] = 'PDFController/cargarPerfilesOcupacionales';

@@ -48,6 +48,11 @@ function cargarGraficoTransferenciasPorEmpresaHoy(){
  	 var url = base_url+'transferenciasPorEmpresaHoy';
 
  	$.getJSON(url, function(result){
+		if( result == null || result == ""){
+			$("#myTabGraficTransferContent").empty();
+			var fila = 'No hay transferencias hoy';
+			$("#myTabGraficTransferContent").append(fila);
+		}
  		 $.each(result, function(i, o){
  			 empresas.push(o.atr_nombre);
  			 montos.push(o.totalTransferencias);
@@ -92,6 +97,11 @@ function cargarGraficoTransferenciasPorEmpresaMes(){
 	// GRÁFICO DE TRANSFERENCIAS POR EMPRESAS --- MES ---
 	var url = base_url+'transferenciasPorEmpresaMes';
 	$.getJSON(url, function(result){
+		if( result == null || result == ""){
+			$("#myTabGraficTransferContent").empty();
+			var fila = 'No hay transferencias este mes';
+			$("#myTabGraficTransferContent").append(fila);
+		}
 		 $.each(result, function(i, o){
 			 empresas.push(o.atr_nombre);
 			 montos.push(o.totalTransferencias);
@@ -118,7 +128,6 @@ function cargarGraficoTransferenciasPorEmpresaMes(){
 	 		});
 	 	}
 	 });
-
 }
 
 
@@ -137,6 +146,11 @@ function cargarGraficoTransferenciasPorEmpresaAno(){
  	 var url = base_url+'transferenciasPorEmpresaAno';
 
  	$.getJSON(url, function(result){
+		if( result == null || result == ""){
+			$("#myTabGraficTransferContent").empty();
+			var fila = 'No hay transferencias el presente año';
+			$("#myTabGraficTransferContent").append(fila);
+		}
  		 $.each(result, function(i, o){
  			 empresas.push(o.atr_nombre);
  			 montos.push(o.totalTransferencias);
@@ -164,6 +178,106 @@ function cargarGraficoTransferenciasPorEmpresaAno(){
  	 	}
  	 });
 }
+
+
+
+
+function cargarGraficoTransferenciasPorEmpresaPrimerSemestre(){
+
+	$("#myTabGraficTransferContent").empty();
+	var fila = '  <div class="tab-pane fade" id="primerSemestreTransEmpresa" role="tabpanel" aria-labelledby="primerSemestreTransEmpresa-tab"><canvas id="pieChart"></canvas></div>';
+	$("#myTabGraficTransferContent").append(fila);
+
+
+	var montos = [];
+	var empresas = [];
+	var colors = ["#19b597","#19b5b1","#19d3b1","#4fb5b1","#4fb59f","#26B99A","#4fa29f","#428c9f","#428c82"];
+	var colores = [];
+	// GRÁFICO DE TRANSFERENCIAS POR EMPRESAS --- MES ---
+	var url = base_url+'transferenciasPorEmpresaPrimerSemestre';
+	$.getJSON(url, function(result){
+		if( result == null || result == ""){
+			$("#myTabGraficTransferContent").empty();
+			var fila = 'No hay transferencias el primer semestre';
+			$("#myTabGraficTransferContent").append(fila);
+		}
+		 $.each(result, function(i, o){
+			 empresas.push(o.atr_nombre);
+			 montos.push(o.totalTransferencias);
+			 colores.push("#000");
+		 });
+
+		 if ($('#pieChart').length) {
+	 		var ctx = document.getElementById("pieChart");
+	 		var data = {
+				datasets: [{
+						data: montos,
+						backgroundColor: colors,
+						label: 'My dataset' // for legend
+				}],
+				labels: empresas
+	 		};
+
+	 		var pieChart = new Chart(ctx, {
+				data: data,
+				type: 'pie',
+				otpions: {
+					legend: false
+				}
+	 		});
+	 	}
+	 });
+}
+
+
+function cargarGraficoTransferenciasPorEmpresaSegundoSemestre(){
+
+	$("#myTabGraficTransferContent").empty();
+	var fila = '<div class="tab-pane fade" id="segundoSemestreTransEmpresa" role="tabpanel" aria-labelledby="segundoSemestreTransEmpresa-tab"><canvas id="pieChart"></canvas></div>';
+	$("#myTabGraficTransferContent").append(fila);
+
+
+	var montos = [];
+	var empresas = [];
+	var colors = ["#19b597","#19b5b1","#19d3b1","#4fb5b1","#4fb59f","#26B99A","#4fa29f","#428c9f","#428c82"];
+	var colores = [];
+	// GRÁFICO DE TRANSFERENCIAS POR EMPRESAS --- MES ---
+	var url = base_url+'transferenciasPorEmpresaSegundoSemestre';
+	$.getJSON(url, function(result){
+
+		 $.each(result, function(i, o){
+			 if( o == null || o == ""){
+	 			$("#myTabGraficTransferContent").empty();
+	 			var fila = 'No hay transferencias el segundo semestre';
+	 			$("#myTabGraficTransferContent").append(fila);
+	 		}
+			 empresas.push(o.atr_nombre);
+			 montos.push(o.totalTransferencias);
+			 colores.push("#000");
+		 });
+
+		 if ($('#pieChart').length) {
+	 		var ctx = document.getElementById("pieChart");
+	 		var data = {
+				datasets: [{
+						data: montos,
+						backgroundColor: colors,
+						label: 'My dataset' // for legend
+				}],
+				labels: empresas
+	 		};
+
+	 		var pieChart = new Chart(ctx, {
+				data: data,
+				type: 'pie',
+				otpions: {
+					legend: false
+				}
+	 		});
+	 	}
+	 });
+}
+
 
 
 

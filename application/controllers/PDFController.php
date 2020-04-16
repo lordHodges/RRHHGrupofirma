@@ -204,7 +204,7 @@ class  PDFController extends CI_Controller {
 		);
 
 
-		$html = $this->load->view('pdf/contratoEstandar', $data, TRUE);
+		$html = $this->load->view('pdf/contratos/contratoEstandar', $data, TRUE);
 		// Cargamos la librería
 		$this->load->library('Pdfgenerator');
 		// definamos un nombre para el archivo. No es necesario agregar la extension .pdf
@@ -332,7 +332,7 @@ class  PDFController extends CI_Controller {
 		);
 
 
-		$html = $this->load->view('pdf/contratoPersonalizado', $data, TRUE);
+		$html = $this->load->view('pdf/contratos/contratoPersonalizado', $data, TRUE);
 		// Cargamos la librería
 		$this->load->library('Pdfgenerator');
 		// definamos un nombre para el archivo. No es necesario agregar la extension .pdf
@@ -346,19 +346,21 @@ class  PDFController extends CI_Controller {
 		var_dump($this->ContratosModel->getDetalleTrabajadorContrato($trabajador));
 	}
 
+
+
 	function view_anexoConFechaTermino(){
 		$trabajador = $this->input->get("trabajador");
 		$fechaTermino = $this->input->get("fechaTermino");
+		$ciudadFirma = $this->input->get("ciudadFirma");
 		$titulo = "ANEXO DE CONTRATO";
 
 		// Tranformación de fecha actual
 		$fechaDeHoy = date("d-m-Y");
 		$fechaDeHoy = $this->transformarFecha( $fechaDeHoy );
 
-		// Tranformación de la fecha de término de la prórroga
-		// $fechaTermino = date("d-m-Y"); //SOLO SI LA FECHA DE MANDA CON EL FORMATO AÑO/MES/DIA
+		$fechaTermino = explode( '-', $fechaTermino );
+		$fechaTermino = $fechaTermino[2]."-".$fechaTermino[1]."-".$fechaTermino[0];
 		$fechaTermino = $this->transformarFecha( $fechaTermino );
-
 
 		$informacion = $this->ContratosModel->getDetalleTrabajadorContrato($trabajador);
 
@@ -381,13 +383,14 @@ class  PDFController extends CI_Controller {
 
 		$data = array(
 			'titulo'										=> $titulo,
+			'ciudadFirma'								=> $ciudadFirma,
 			'fechaDeHoy'								=> $fechaDeHoy,
 			'fechaTerminoProrroga'			=> $fechaTermino,
 			'arrayTrabajador'						=> $arrayTrabajador,
 		);
 
 
-		$html = $this->load->view('pdf/anexoConFechaTermino', $data, TRUE);
+		$html = $this->load->view('pdf/anexos/anexoConFechaTermino', $data, TRUE);
 		// Cargamos la librería
 		$this->load->library('Pdfgenerator');
 		// definamos un nombre para el archivo. No es necesario agregar la extension .pdf

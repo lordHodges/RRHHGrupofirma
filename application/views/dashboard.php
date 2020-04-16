@@ -58,20 +58,12 @@
 
 
   <!-- TRANSFERENCIAS DE DINERO POR BANCO -->
-  <div class="col-md-6 col-sm-12  ">
+  <div class="col-md-12 col-sm-12 ">
     <div class="x_panel">
       <div class="x_title">
         <h2>Transferencias por empresa</h2>
         <ul class="nav navbar-right panel_toolbox">
           <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-          </li>
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <a class="dropdown-item" href="#">Hoy</a>
-                <a class="dropdown-item" href="#">Mes</a>
-                <a class="dropdown-item" href="#">Año</a>
-              </div>
           </li>
           <li><a class="close-link"><i class="fa fa-close"></i></a>
           </li>
@@ -82,21 +74,33 @@
 
           <ul class="nav nav-tabs bar_tabs" id="myTab" role="tablist">
               <li class="nav-item">
-              <a class="nav-link" id="hoyTransEmpresa-tab" data-toggle="tab" href="#hoyTransEmpresa" onclick="cargarGraficoTransferenciasPorEmpresaHoy()" role="tab" aria-controls="home" aria-selected="true">Hoy</a>
+              <a class="nav-link" id="hoyTransEmpresa-tab" data-toggle="tab" href="#hoyTransEmpresa" onclick="cargarGraficoTransferenciasPorEmpresaHoy()" role="tab" aria-controls="hoy" aria-selected="true">Hoy</a>
               </li>
 
               <li class="nav-item">
-              <a class="nav-link active" id="mesTransEmpresa-tab" data-toggle="tab" href="#mesTransEmpresa" onclick="cargarGraficoTransferenciasPorEmpresaMes()"  role="tab" aria-controls="anexos" aria-selected="false">Mes</a>
+              <a class="nav-link" id="mesTransEmpresa-tab" data-toggle="tab" href="#mesTransEmpresa" onclick="cargarGraficoTransferenciasPorEmpresaMes()"  role="tab" aria-controls="mes" aria-selected="false">Mes</a>
               </li>
 
               <li class="nav-item">
-              <a class="nav-link" id="anoTransEmpresa-tab" data-toggle="tab" href="#anoTransEmpresa" onclick="cargarGraficoTransferenciasPorEmpresaAno()" role="tab" aria-controls="transferencias" aria-selected="false">Año</a>
+              <a class="nav-link" id="primerSemestreTransEmpresa-tab" data-toggle="tab" href="#primerSemestreTransEmpresa" onclick="cargarGraficoTransferenciasPorEmpresaPrimerSemestre()" role="tab" aria-controls="primer semestre" aria-selected="false">1° semestre</a>
+              </li>
+
+              <li class="nav-item">
+              <a class="nav-link" id="segundoSemestreTransEmpresa-tab" data-toggle="tab" href="#segundoSemestreTransEmpresa" onclick="cargarGraficoTransferenciasPorEmpresaPrimerSemestre()" role="tab" aria-controls="segundo semestre" aria-selected="false">2° semestre</a>
+              </li>
+
+              <li class="nav-item">
+              <a class="nav-link active" id="anoTransEmpresa-tab" data-toggle="tab" href="#anoTransEmpresa" onclick="cargarGraficoTransferenciasPorEmpresaAno()" role="tab" aria-controls="anual" aria-selected="false">Año</a>
               </li>
           </ul>
           <div class="tab-content" id="myTabGraficTransferContent">
-              <!-- <div class="tab-pane fade" id="hoyTransEmpresa" role="tabpanel" aria-labelledby="hoyTransEmpresa-tab"><canvas id="pieChart"></canvas></div>
+              <div class="tab-pane fade" id="hoyTransEmpresa" role="tabpanel" aria-labelledby="hoyTransEmpresa-tab"><canvas id="pieChart"></canvas></div>
 
-              <div class="tab-pane fade" id="mesTransEmpresa" role="tabpanel" aria-labelledby="mesTransEmpresa-tab"><canvas id="pieChart"></canvas></div>
+              <!-- <div class="tab-pane fade" id="mesTransEmpresa" role="tabpanel" aria-labelledby="mesTransEmpresa-tab"><canvas id="pieChart"></canvas></div>
+
+              <div class="tab-pane fade" id="primerSemestreTransEmpresa" role="tabpanel" aria-labelledby="primerSemestreTransEmpresa-tab"><canvas id="pieChart"></canvas></div>
+
+              <div class="tab-pane fade" id="segundoSemestreTransEmpresa" role="tabpanel" aria-labelledby="segundoSemestreTransEmpresa-tab"><canvas id="pieChart"></canvas></div>
 
               <div class="tab-pane fade-" id="anoTransEmpresa" role="tabpanel" aria-labelledby="anoTransEmpresa-tab"><canvas id="pieChart"></canvas></div> -->
           </div>
@@ -172,7 +176,10 @@
 <script>
   $(document).ready(function() {
     cargarCantidadContratos();
-    cargarGraficoTransferenciasPorEmpresaMes();
     cargarNotificaciones();
+
+    $('#hoyTransEmpresa-tab').click();
+
+
   });
 </script>
