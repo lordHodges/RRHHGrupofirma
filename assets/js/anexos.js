@@ -217,3 +217,22 @@ function alertDobleClick(numeroItem){
   numeroItem = "#"+numeroItem;
   $(numeroItem).remove();
 }
+
+
+
+function agregarNuevaClausulaParaModificar(){
+  var url = base_url+'getItemsContrato';
+  var fila = '';
+
+  $.getJSON(url, function (result) {
+      fila += '<div class="col-md-4 mt-4"><label for="fechaComienzoIndefinido">NÚMERO DE LA CLÁUSULA</label><input type="text" class="form-control" id="fechaComienzoIndefinido"/></div>';
+      fila += '<div class="col-md-8 mt-4"><label for="getSelectClausula">CLÁUSULA A MODIFICAR</label><br><select class="custom-select" id="getSelectClausula">';
+      fila += '<option>Seleccionar una opción</option>';
+      $.each(result, function (i, o) {
+          fila += '<option value="'+o.atr_nombre+'">'+o.atr_nombre+'</option>';
+      });
+      fila += '</select></div>';
+      fila += '<div class="col-md-12 mt-2"> <label for="nuevaClausula">MODIFICACIÓN</label><br> <textarea class="form-control" id="nuevaClausula" rows="5"></textarea> </div>';
+      $("#contenedorNuevasClausulas").append(fila);
+  });
+}

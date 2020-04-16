@@ -30,7 +30,7 @@
             <br>
             <div id="informacionTrabajador">
               <div class="col-md-12">
-                <h4 style="color:#2a3f54"><b>I ) INFORMACIÓN DE TRABAJADOR</b></h4>
+                <h4 style="color:#2a3f54"><b>INFORMACIÓN DE TRABAJADOR</b></h4>
               </div>
             </div>
 
@@ -78,7 +78,7 @@
             <!-- EMPRESA -->
             <div id="detalleEmpresa" style="display:none">
               <div class="col-md-12">
-                <br><h4 style="color:#2a3f54"><b>II ) EMPRESA</b></h4>
+                <br><h4 style="color:#2a3f54"><b>EMPRESA</b></h4>
               </div>
               <div class="col-md-12 col-sm-12">
                 <br><label for="empresa">Empresa</label>
@@ -104,7 +104,7 @@
             <!-- VIGENCIA -->
             <div id="vigenciaFechaLimite" style="display:none">
               <div class="col-md-12">
-                <br><h4 style="color:#2a3f54"><b>III ) VIGENCIA</b></h4>
+                <br><h4 style="color:#2a3f54"><b>VIGENCIA</b></h4>
               </div>
               <div class="col-md-12 col-sm-12s">
                   <br>
@@ -115,7 +115,7 @@
 
             <div id="vigenciaSujetoLicitacion" style="display:none">
               <div class="col-md-12">
-                <br><h4 style="color:#2a3f54"><b>III ) VIGENCIA</b></h4>
+                <br><h4 style="color:#2a3f54"><b>VIGENCIA</b></h4>
               </div>
               <div class="col-md-12">
                   <br>
@@ -126,7 +126,7 @@
 
             <div id="vigenciaIndefinido" style="display:none">
               <div class="col-md-12">
-                <br><h4 style="color:#2a3f54"><b>III ) VIGENCIA</b></h4>
+                <br><h4 style="color:#2a3f54"><b>VIGENCIA</b></h4>
               </div>
               <div class="col-md-12">
                   <br>
@@ -135,6 +135,30 @@
               </div>
             </div>
             <!-- FIN VIGENCIA -->
+
+
+
+
+            <!-- CLÁUSULAS -->
+            <div id="clausulasContainer" style="display:none;">
+
+              <div class="col-md-12 col-sm-12">
+                <br><h4 style="color:#2a3f54"><b>CLÁUSULAS A MODIFICAR</b></h4>
+              </div>
+
+              <div class="col-md-12 col-sm-12">
+                <button type="button" class="btn modidev-btn btn-sm center" id="btnAgregarClausulaModificada" >
+                  <i class="glyphicon glyphicon-plus"></i>
+                </button>
+              </div>
+
+              <div id="contenedorNuevasClausulas" class="col-md-12" style="background-color:#f7f7f7;">
+
+              </div>
+
+            </div>
+            <!-- FIN CLÁUSULAS -->
+
 
 
 
@@ -410,6 +434,7 @@
             document.getElementById("vigenciaIndefinido").style = "";
             $("#vigenciaFechaLimite").css("display","none");
             $("#vigenciaSujetoLicitacion").css("display","none");
+            document.getElementById("clausulasContainer").style = "";
           }
 
           else if( $("#selectTipoProrroga").val() == "sujetoLicitacion"){
@@ -417,6 +442,12 @@
             $("#vigenciaIndefinido").css("display","none");
             $("#vigenciaFechaLimite").css("display","none");
           }
+      });
+
+
+      $("body").on("click", "#btnAgregarClausulaModificada", function(e) {
+          e.preventDefault();
+          agregarNuevaClausulaParaModificar();
       });
 
       $("body").on("click", "#btnGenerarAnexoProrroga", function(e) {
