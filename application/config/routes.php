@@ -57,14 +57,18 @@ $route['getContratosTrabajador'] = 'ContratosController/getContratosTrabajador';
 $route['cargar_archivo'] = 'ContratosController/cargar_archivo';
 $route['descargarContrato'] = 'ContratosController/descargarContrato';
 $route['getItemsContrato'] = 'ContratosController/getItemsContrato';
+$route['getInfoCargoTrabajador'] = 'ContratosController/getInfoCargoTrabajador';
 
 //ANEXOS
 $route['inicioGestorAnexos'] = 'ContratosController/indexGestorAnexos';
 $route['docAnexoConFechaTermino'] = 'PDFController/view_anexoConFechaTermino';
 $route['docAnexoPasarIndefinido'] = 'PDFController/view_anexoPasarIndefinido';
+$route['docAnexoSujetoLicitacion'] = 'PDFController/view_anexoSujetoLicitacion';
 $route['getManipularContrato'] = 'PDFController/getManipularContrato';
 
+
 $route['transformarFechaLetras'] = 'PDFController/transformarFechaAJAX';
+$route['getInfoTrabajadorEmpresa'] = 'ContratosController/getInfoTrabajadorEmpresa';
 
 //DOCUMENTOS
 $route['perfilOcupacionalVista'] = 'PDFController/cargarPerfilesOcupacionales';

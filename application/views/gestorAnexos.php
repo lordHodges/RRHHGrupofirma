@@ -119,8 +119,9 @@
               </div>
               <div class="col-md-12">
                   <br>
-                  <label for="sujetoLicitacion">Fecha de término</label>
-                  <textarea type="date" class="form-control" row="10" id="sujetoLicitacion" ></textarea>
+                  <label for="sujetoLicitacion">Fecha de suscripción del contrato anterior</label>
+                  <input type="date" class="form-control" id="sujetoLicitacion">
+                  <!-- <textarea type="date" class="form-control" row="10" id="sujetoLicitacion" ></textarea> -->
               </div>
             </div>
 
@@ -130,7 +131,7 @@
               </div>
               <div class="col-md-12">
                   <br>
-                  <label for="fechaComienzoIndefinido">Fecha de comienzo</label>
+                  <label for="fechaComienzoIndefinido">Fecha de comienzo del contrato indefinido</label>
                   <input type="date" class="form-control" id="fechaComienzoIndefinido">
               </div>
             </div>
@@ -368,6 +369,7 @@
     <!-- JS PROPIOS -->
     <script src="<?php echo base_url() ?>assets/js/modidev.js"></script>
     <script src="<?php echo base_url() ?>assets/js/anexos.js"></script>
+    <script src="<?php echo base_url() ?>assets/js/validaciones.js"></script>
     <!-- Toast -->
     <script src="<?php echo base_url() ?>assets/js/toastr.min.js" type="text/javascript"></script>
     <!-- SweetAlert -->
@@ -428,6 +430,7 @@
             document.getElementById("vigenciaFechaLimite").style = "";
             $("#vigenciaIndefinido").css("display","none");
             $("#vigenciaSujetoLicitacion").css("display","none");
+            $("#clausulasContainer").css("display","none");
           }
 
           else if( $("#selectTipoProrroga").val() == "indefinido"){
@@ -441,13 +444,22 @@
             document.getElementById("vigenciaSujetoLicitacion").style = "";
             $("#vigenciaIndefinido").css("display","none");
             $("#vigenciaFechaLimite").css("display","none");
+            document.getElementById("clausulasContainer").style = "";
           }
       });
 
 
       $("body").on("click", "#btnAgregarClausulaModificada", function(e) {
           e.preventDefault();
-          agregarNuevaClausulaParaModificarProrroga();
+          var tipoAnexoProrroga = $("#selectTipoProrroga").val();
+          if( tipoAnexoProrroga == "indefinido"){
+            agregarNuevaClausulaParaModificarProrroga();
+          }else{
+            if( tipoAnexoProrroga == "sujetoLicitacion" ){
+              agregarNuevaClausulaParaModificarProrrogaLicitación();
+            }
+          }
+
       });
 
       $("body").on("click", "#btnGenerarAnexoProrroga", function(e) {
@@ -478,6 +490,42 @@
                   var elementoItem = $("#idClausula_"+i).val();
                   var elementoModificacion = $("#idTextoArea_"+i).val();
 
+                  if(elementoRomano == "" || elementoItem == null || elementoModificacion == ""){
+                      toastr.success('Debe rellenar todos los campos');
+                  }
+                  $.ajax({
+                      url: 'getManipularContrato',
+                      type: 'POST',
+                      dataType: 'json',
+                      data: {"idTrabajador": idTrabajador,
+                              "numRomano" : elementoRomano,
+                              "item" : elementoItem,
+                              "modificacion" : elementoModificacion
+                            }
+                  }).then(function (response) {
+                    var url = 'http://localhost/RRHH-FIRMA/index.php/docAnexoPasarIndefinido?trabajador='+idTrabajador+'&&fechaComienzo='+fechaComienzoIndefinido+'&&ciudadFirma='+ciudadFirma;
+                    window.open(url, '_blank');
+                  });
+
+                }
+
+              }else{
+                // sino significa que selecciono anexo de prorroga para sujeto a término de licitación
+                var fechaComienzoSujetoLicitacion = $("#sujetoLicitacion").val();
+
+                var contador = cntClausulasModificadas();
+                var array = [];
+                var fecha;
+
+                for (var i = 0; i < contador; i++) {
+                  // Armo un array solo con los datos de 1 clausula
+                  var elementoRomano = $("#idNumeroRomano_"+i).val();
+                  var elementoItem = $("#idClausula_"+i).val();
+                  var elementoModificacion = $("#idTextoArea_"+i).val();
+
+                  if(elementoRomano == "" || elementoItem == null || elementoModificacion == ""){
+                      toastr.error('Debe rellenar todos los campos');
+                  }
                   $.ajax({
                       url: 'getManipularContrato',
                       type: 'POST',
@@ -492,11 +540,11 @@
                   });
 
                 }
+                var url = 'http://localhost/RRHH-FIRMA/index.php/docAnexoSujetoLicitacion?trabajador='+idTrabajador+'&&fechaComienzo='+fechaComienzoSujetoLicitacion+'&&ciudadFirma='+ciudadFirma;
+                window.open(url, '_blank');
+              } //fin de sujeto a licitación
 
-              }
 
-              var url = 'http://localhost/RRHH-FIRMA/index.php/docAnexoPasarIndefinido?trabajador='+idTrabajador+'&&fechaComienzo='+fechaComienzoIndefinido+'&&ciudadFirma='+ciudadFirma;
-              window.open(url, '_blank');
             }
 
           }

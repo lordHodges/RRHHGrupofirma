@@ -197,6 +197,20 @@ class ContratosController extends CI_Controller {
 		echo json_encode($items);
   }
 
+	public function getInfoCargoTrabajador(){
+		$idTrabajador = $this->input->post("idTrabajador");
+
+		$resultado = $this->ContratosModel->getInfoCargoTrabajador( $idTrabajador );
+		echo json_encode( $resultado );
+	}
+
+	public function getInfoTrabajadorEmpresa(){
+		$idTrabajador = $this->input->post("idTrabajador");
+
+		$resultado = $this->ContratosModel->getInfoTrabajadorEmpresa( $idTrabajador );
+		echo json_encode( $resultado );
+	}
+
 
 
 

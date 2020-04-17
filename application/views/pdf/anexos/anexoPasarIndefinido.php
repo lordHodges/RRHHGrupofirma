@@ -94,7 +94,6 @@
 
 
     <?php } ?>
-
     <p style="text-align:justify; line-height:25px;">
       El presente anexo reemplaza todos los demás anexos que sobre la materia las partes hubiesen celebrado con anterioridad y el contrato de trabajo
       celebrado entre las partes se mantiene vigente en todo lo no modificado por el presente anexo.

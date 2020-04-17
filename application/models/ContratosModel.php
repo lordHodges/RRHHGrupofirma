@@ -207,6 +207,7 @@ class ContratosModel extends CI_Model {
         $cargo = $t->idCargo;
       }
 
+
       $this->db->select("r.cp_remuneracion, r.atr_sueldoMensual, r.atr_cotizaciones, r.atr_colacion, r.atr_movilizacion, r.atr_asistencia");
       $this->db->from("fa_remuneracion r");
       $this->db->where("r.cf_cargo", $cargo);
@@ -233,10 +234,47 @@ class ContratosModel extends CI_Model {
 
 
     function getItemsContrato(){
-      $this->db->select(" ic.atr_nombre  ");
+      $this->db->select(" ic.atr_nombre");
       $this->db->from("fa_items_contrato ic");
       $resultado =  $this->db->get()->result();
       return $resultado;
+    }
+
+
+    function getInfoCargoTrabajador($idTrabajador){
+      $this->db->select("c.atr_lugarTrabajo, c.atr_jornadaTrabajo");
+      $this->db->from("fa_trabajador t");
+      $this->db->join("fa_cargo c", "c.cp_cargo = t.cf_cargo");
+      $this->db->where("t.cp_trabajador",$idTrabajador);
+      return $this->db->get()->result();
+    }
+
+    function getInfoTrabajadorEmpresa($id){
+      $this->db->select("
+      t.cp_trabajador, t.atr_rut, t.atr_nombres, t.atr_apellidos, t.atr_direccion, t.atr_fechaNacimiento,
+      ca.atr_jefeDirecto , ca.atr_nombre as cargo, ca.cp_cargo as idCargo, ca.atr_jornadaTrabajo, ca.atr_lugarTrabajo,
+      e.atr_nombre as estado,
+      ci.atr_nombre as ciudadEmpresa,
+      su.atr_nombre as sucursal,
+      n.atr_nombre as nacionalidad,
+      ec.atr_nombre as estadocivil,
+      a.atr_nombre as afp,
+      p.atr_nombre as prevision,
+      em.atr_nombre as empresa, em.atr_run as runEmpresa, em.atr_domicilio as direccionEmpresa, em.atr_representante as repre_legal, em.atr_cedula_representante as repre_rut
+      ");
+      $this->db->from("fa_trabajador t");
+      $this->db->join("fa_estado e", "t.cf_estado = e.cp_estado");
+      $this->db->join("fa_empresa em ", "t.cf_empresa = em.cp_empresa");
+      $this->db->join("fa_ciudad ci","em.cf_ciudad = ci.cp_ciudad");
+      $this->db->join("fa_cargo ca", "t.cf_cargo = ca.cp_cargo");
+      $this->db->join("fa_sucursal su","t.cf_sucursal = su.cp_sucursal");
+      $this->db->join("fa_nacionalidad n", "t.cf_nacionalidad = n.cp_nacionalidad");
+      $this->db->join("fa_estadoCivil ec", "t.cf_estadoCivil = ec.cp_estadoCivil");
+      $this->db->join("fa_afp a", "t.cf_afp = a.cp_afp");
+      $this->db->join("fa_prevision p", "t.cf_prevision = p.cp_prevision");
+      $this->db->where("t.cp_trabajador", $id);
+      $trabajador =  $this->db->get()->result();
+      return $trabajador;
     }
 
 

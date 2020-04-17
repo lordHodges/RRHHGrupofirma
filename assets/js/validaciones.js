@@ -94,7 +94,7 @@ function formatoMiles(input){
   input.value = num;
   }
 
-  else{ 
+  else{
   input.value = input.value.replace(/[^\d\.]*/g,'');
   }
 }
@@ -133,6 +133,21 @@ function caracteresRUT(string){//Solo numeros
 function soloLetras(string){//Solo numeros
     var out = '';
     var filtro = 'qwertyuioplkjhgfdsazxcvbnmñQWERTYUIOPÑLKJHGFDSAZXCVBNMáéíóúÁÉÍÓÚ ';//Caracteres validos
+
+    //Recorrer el texto y verificar si el caracter se encuentra en la lista de validos
+    for (var i=0; i<string.length; i++)
+       if (filtro.indexOf(string.charAt(i)) != -1)
+             //Se añaden a la salida los caracteres validos
+	     out += string.charAt(i);
+
+    //Retornar valor filtrado
+    return out;
+}
+
+// onkeyup="this.value=soloLetrasRomanas(this.value)"
+function soloLetrasRomanas(string){//Solo numeros
+    var out = '';
+    var filtro = 'IVXLCDMivxlcdm';//Caracteres validos
 
     //Recorrer el texto y verificar si el caracter se encuentra en la lista de validos
     for (var i=0; i<string.length; i++)

@@ -231,7 +231,7 @@ function agregarNuevaClausulaParaModificarProrroga(){
       clausulaID = 'idClausula_'+numID;
       textoAreaID = 'idTextoArea_'+numID;
 
-      fila += '<div class="col-md-4 mt-4"><label for="fechaComienzoIndefinido">NÚMERO DE LA CLÁUSULA</label><input type="text" class="form-control" id="'+numeroRomanoID+'"/></div>';
+      fila += '<div class="col-md-4 mt-4"><label for="fechaComienzoIndefinido">NÚMERO ORIGINAL DE LA CLÁUSULA</label><input type="text" onkeyup="this.value=soloLetrasRomanas(this.value)" oninput="mayus(this);" class="form-control" id="'+numeroRomanoID+'"/></div>';
       fila += '<div class="col-md-8 mt-4"><label for="getSelectClausula">CLÁUSULA A MODIFICAR</label><br><select onchange="rellenarItemsProrroga(this)" class="custom-select" id="'+clausulaID+'">';
       fila += '<option>Seleccionar una opción</option>';
       $.each(result, function (i, o) {
@@ -246,8 +246,40 @@ function agregarNuevaClausulaParaModificarProrroga(){
   });
 }
 
+
+
+function agregarNuevaClausulaParaModificarProrrogaLicitación(){
+  var url = base_url+'getItemsContrato';
+  var fila = '';
+
+  $.getJSON(url, function (result) {
+      numeroRomanoID = 'idNumeroRomano_'+numID;
+      clausulaID = 'idClausula_'+numID;
+      textoAreaID = 'idTextoArea_'+numID;
+
+      fila += '<div class="col-md-4 mt-4"><label for="fechaComienzoIndefinido">NÚMERO ORIGINAL DE LA CLÁUSULA</label><input type="text" onkeyup="this.value=soloLetrasRomanas(this.value)" oninput="mayus(this);" class="form-control" id="'+numeroRomanoID+'"/></div>';
+      fila += '<div class="col-md-8 mt-4"><label for="getSelectClausula">CLÁUSULA A MODIFICAR</label><br><select onchange="rellenarItemsProrrogaLicitacion(this)" class="custom-select" id="'+clausulaID+'">';
+      fila += '<option>Seleccionar una opción</option>';
+      $.each(result, function (i, o) {
+          fila += '<option value="'+o.atr_nombre+'">'+o.atr_nombre+'</option>';
+      });
+      fila += '</select></div>';
+      fila += '<div class="col-md-12 mt-2"> <label for="nuevaClausula">MODIFICACIÓN</label><br> <textarea class="form-control" id="'+textoAreaID+'" rows="5"></textarea> </div>';
+      $("#contenedorNuevasClausulas").append(fila);
+
+      numID = numID + 1;
+      contador = contador + 1;
+  });
+}
+
+
+
 function cntClausulasModificadas(){
   return contador;
+}
+
+function transformarFechaLetras(fecha){
+
 }
 
 function rellenarItemsProrroga(select){
@@ -256,70 +288,231 @@ function rellenarItemsProrroga(select){
   var idSelect =  $(select).attr('id') ;
   idSelect = idSelect.split("_");
   idSelect = idSelect[1];
-
+  var ciudadFirma = $('#getSelectCiudad option:selected').html();
   var texto = "";
 
-  // alert(tipo);
+  var fecha =  $("#fechaComienzoIndefinido").val();
+  fecha = fecha.split("-");
+  fecha = fecha[2]+"-"+fecha[1]+"-"+fecha[0];
+
+
+  // OBTENER DATOS DEL TRABAJADOR ( ArrayTrabajador - ArrayRemuneracion - ArrayRemuneracionExtra )
+
 
   switch (select.value) {
   case "Partes":
+    $.ajax({
+        url: 'getInfoTrabajadorEmpresa',
+        type: 'POST',
+        dataType: 'json',
+        data: {"idTrabajador": trabajador}
+    }).then(function (msg) {
+        var infoTrabajador = msg;
+        $.ajax({
+            url: 'transformarFechaLetras',
+            type: 'POST',
+            dataType: 'json',
+            data: {"fecha": fecha}
+        }).then(function (msg) {
+          fecha = msg;
+          $.each(infoTrabajador, function (i, o) {
+            texto = "En "+ciudadFirma+", a "+fecha+" entre "+o.empresa+", Rol único tributario N°"+o.runEmpresa+", representada legalmente por "+o.repre_legal+"";
+            texto += ", cédula de identidad N°"+o.repre_rut+", ambos con domicilio en "+o.direccionEmpresa+", comuna y ciudad de "+o.ciudadEmpresa+", en adelante ";
+            texto += "el empleador y doña "+o.atr_nombres+" "+o.atr_apellidos+", cédula de identidad N°"+o.atr_rut+", con domicilio en "+o.atr_direccion+"";
+            texto += ", ciudad de "+o.ciudadEmpresa+", en adelante la trabajadora, se ha convenido el siguiente anexo de contrato de trabajo:";
+            $("#idTextoArea_"+idSelect).val(texto);
+          });
+        });
+    });
 
     break;
-
   case "Naturaleza de los servicios":
-
+    texto = "";
+    $("#idTextoArea_"+idSelect).val(texto);
     break;
 
   case "Lugar de prestación de servicios":
-    texto = "Los servicios se prestarán en las dos sucursales de Hostal Plaza Maule Limitada ubicadas en 1 Sur 24 y media oriente N°3183 y 1 Sur 24 oriente N°3155 de la ciudad de Talca.', 'La jornada de trabajo será de 45 horas semanales, las que serán distribuidas de lunes a viernes, de la siguiente manera: jornada de la mañana de 09:00 horas a 14:00 horas, y en la jornada de la tarde de 15:00 horas a 19:00 horas.";
-    // $("#idTextoArea_"+idSelect).text() = texto;
-
-    $("#idTextoArea_"+idSelect).val(texto);
+    $.ajax({
+        url: 'getInfoTrabajadorEmpresa',
+        type: 'POST',
+        dataType: 'json',
+        data: {"idTrabajador": trabajador}
+    }).then(function (msg) {
+        $.each(msg, function (i, o) {
+          texto = o.atr_lugarTrabajo;
+          $("#idTextoArea_"+idSelect).val(texto);
+        });
+    });
     break;
 
   case "Jornada de trabajo":
-    texto = "La jornada de trabajo será de 45 horas semanales, las que serán distribuidas de lunes a viernes, de la siguiente manera: jornada de la mañana de 09:00 horas a 14:00 horas, y en la jornada de la tarde de 15:00 horas a 19:00 horas.";
-    $("#idTextoArea_"+idSelect).val(texto);
+    $.ajax({
+        url: 'getInfoTrabajadorEmpresa',
+        type: 'POST',
+        dataType: 'json',
+        data: {"idTrabajador": trabajador}
+    }).then(function (msg) {
+        $.each(msg, function (i, o) {
+          texto = o.atr_jornadaTrabajo;
+          $("#idTextoArea_"+idSelect).val(texto);
+        });
+    });
     break;
 
   case "Remuneraciones":
     texto = "El empleador se compromete a remunerar los servicios del trabajador con un sueldo mensual de $301.000(trescientos un mil pesos).";
+    // texto += " gratificación mensual equivalente al 25% del total de las remuneraciones mensuales, con tope legal de 4.75 ingresos mínimos mensuales. <br><br> La remuneración será liquidada y";
+    // texto += " pagada el día 05 de cada mes calendario. Se aplicarán las deducciones de impuestos que las graven, las cotizaciones de seguridad social y otras, de conformidad a lo establecido en el artículo 58 del código del trabajo.";
       $("#idTextoArea_"+idSelect).val(texto);
     break;
 
   case "Duración de la relación jurídica laboral":
+  $.ajax({
+      url: 'transformarFechaLetras',
+      type: 'POST',
+      dataType: 'json',
+      data: {"fecha": fecha}
+  }).then(function (msg) {
+    texto = "A partir de esta fecha "+msg+", de común acuerdo entre las partes, establecen que el presente contrato tendrá una duración INDEFINIDA";
+    $("#idTextoArea_"+idSelect).val(texto);
+  });
 
+    break;
+
+  case "Cláusula de vigencia":
+    texto = "A partir de esta fecha "+fecha+", de común acuerdo entre las partes, establecen que el presente contrato tendrá una duración INDEFINIDA";
+    $("#idTextoArea_"+idSelect).val(texto);
+
+  case "A tener en cuenta ":
+    texto = "";
+    $("#idTextoArea_"+idSelect).val(texto);
+    break;
+
+  case "Cláusula de confidencialidad ":
+    texto = "";
+    $("#idTextoArea_"+idSelect).val(texto);
+    break;
+
+  case "Propiedad intelectual":
+    texto = "El trabajador confiere los derechos de propiedad intelectual al empleador sobre todo el desarrollo, cediendo todos los derechos de explotación y propiedad de estos. En este sentido, el trabajador, garantiza al empleador que el desarrollo es absolutamente original ";
+    texto += "y confidencial, como también que CEDE la totalidad de los derechos de propiedad intelectual sobre el mismo, habiendo sido completamente realizado por éste, por lo que puede garantizar que todo el software y las herramientas utilizadas no vulneran ninguna normativa, contrato, derecho, interés o propiedad de terceros.";
+    $("#idTextoArea_"+idSelect).val(texto);
+    break;
+  }
+}
+
+
+
+
+
+
+
+function rellenarItemsProrrogaLicitacion(select){
+  var trabajador = $("#selectTrabajador1").val();
+
+  var idSelect =  $(select).attr('id') ;
+  idSelect = idSelect.split("_");
+  idSelect = idSelect[1];
+  var ciudadFirma = $('#getSelectCiudad option:selected').html();
+  var texto = "";
+
+  var fecha =  $("#sujetoLicitacion").val();
+  fecha = fecha.split("-");
+  fecha = fecha[2]+"-"+fecha[1]+"-"+fecha[0];
+  // OBTENER DATOS DEL TRABAJADOR ( ArrayTrabajador - ArrayRemuneracion - ArrayRemuneracionExtra )
+
+
+  switch (select.value) {
+  case "Partes":
+    $.ajax({
+        url: 'getInfoTrabajadorEmpresa',
+        type: 'POST',
+        dataType: 'json',
+        data: {"idTrabajador": trabajador}
+    }).then(function (msg) {
+        var infoTrabajador = msg;
+        $.ajax({
+            url: 'transformarFechaLetras',
+            type: 'POST',
+            dataType: 'json',
+            data: {"fecha": fecha}
+        }).then(function (msg) {
+          fecha = msg;
+          $.each(infoTrabajador, function (i, o) {
+            texto = "En "+ciudadFirma+", a "+fecha+" entre "+o.empresa+", Rol único tributario N°"+o.runEmpresa+", representada legalmente por "+o.repre_legal+"";
+            texto += ", cédula de identidad N°"+o.repre_rut+", ambos con domicilio en "+o.direccionEmpresa+", comuna y ciudad de "+o.ciudadEmpresa+", en adelante ";
+            texto += "el empleador y doña "+o.atr_nombres+" "+o.atr_apellidos+", cédula de identidad N°"+o.atr_rut+", con domicilio en "+o.atr_direccion+"";
+            texto += ", ciudad de "+o.ciudadEmpresa+", en adelante la trabajadora, se ha convenido el siguiente anexo de contrato de trabajo:";
+            $("#idTextoArea_"+idSelect).val(texto);
+          });
+        });
+    });
+
+    break;
+  case "Naturaleza de los servicios":
+    texto = "";
+    $("#idTextoArea_"+idSelect).val(texto);
+    break;
+
+  case "Lugar de prestación de servicios":
+    $.ajax({
+        url: 'getInfoTrabajadorEmpresa',
+        type: 'POST',
+        dataType: 'json',
+        data: {"idTrabajador": trabajador}
+    }).then(function (msg) {
+        $.each(msg, function (i, o) {
+          texto = o.atr_lugarTrabajo;
+          $("#idTextoArea_"+idSelect).val(texto);
+        });
+    });
+    break;
+
+  case "Jornada de trabajo":
+    $.ajax({
+        url: 'getInfoTrabajadorEmpresa',
+        type: 'POST',
+        dataType: 'json',
+        data: {"idTrabajador": trabajador}
+    }).then(function (msg) {
+        $.each(msg, function (i, o) {
+          texto = o.atr_jornadaTrabajo;
+          $("#idTextoArea_"+idSelect).val(texto);
+        });
+    });
+    break;
+
+  case "Remuneraciones":
+    texto = "El empleador se compromete a remunerar los servicios del trabajador con un sueldo mensual de $301.000(trescientos un mil pesos).";
+    // texto += " gratificación mensual equivalente al 25% del total de las remuneraciones mensuales, con tope legal de 4.75 ingresos mínimos mensuales. <br><br> La remuneración será liquidada y";
+    // texto += " pagada el día 05 de cada mes calendario. Se aplicarán las deducciones de impuestos que las graven, las cotizaciones de seguridad social y otras, de conformidad a lo establecido en el artículo 58 del código del trabajo.";
+      $("#idTextoArea_"+idSelect).val(texto);
+    break;
+
+  case "Duración de la relación jurídica laboral":
+    texto = "El presente contrato tendrá una duración hasta la fecha de vencimiento de la licitación denominada .... , identificada con numero de ";
+    texto += "ID: xxxx-x-xxxx , para la cual el trabajador ejerce sus funciones.";
     $("#idTextoArea_"+idSelect).val(texto);
     break;
 
   case "Cláusula de vigencia":
-    var fecha =  $("#fechaComienzoIndefinido").val();
-    fecha = fecha.split("-");
-    fecha = fecha[2]+"-"+fecha[1]+"-"+fecha[0];
-
-    $.ajax({
-        url: 'transformarFechaLetras',
-        type: 'POST',
-        dataType: 'json',
-        data: {"fecha": fecha}
-    }).then(function (msg) {
-      fecha = msg;
-      alert(fecha);
-      texto = "A partir de esta fecha "+fecha+", de común acuerdo entre las partes, establecen que el presente contrato tendrá una duración INDEFINIDA";
-        $("#idTextoArea_"+idSelect).val(texto);
-      break;
-    });
+    texto = "Se deja constancia que el trabajador comenzó el "+fecha+" a prestar servicios";
+    $("#idTextoArea_"+idSelect).val(texto);
 
   case "A tener en cuenta ":
-
+    texto = "";
+    $("#idTextoArea_"+idSelect).val(texto);
     break;
 
   case "Cláusula de confidencialidad ":
-
+    texto = "";
+    $("#idTextoArea_"+idSelect).val(texto);
     break;
 
   case "Propiedad intelectual":
-
+    texto = "El trabajador confiere los derechos de propiedad intelectual al empleador sobre todo el desarrollo, cediendo todos los derechos de explotación y propiedad de estos. En este sentido, el trabajador, garantiza al empleador que el desarrollo es absolutamente original ";
+    texto += "y confidencial, como también que CEDE la totalidad de los derechos de propiedad intelectual sobre el mismo, habiendo sido completamente realizado por éste, por lo que puede garantizar que todo el software y las herramientas utilizadas no vulneran ninguna normativa, contrato, derecho, interés o propiedad de terceros.";
+    $("#idTextoArea_"+idSelect).val(texto);
     break;
   }
 }
