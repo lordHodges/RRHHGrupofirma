@@ -310,3 +310,16 @@ create table fa_documento(
     constraint fk_documento_transferencia foreign key(cf_transferencia) references fa_transferencia(cp_transferencia),
     constraint fk_documento_cartaamonestacion foreign key(cf_cartaamonestacion) references fa_cartaamonestacion(cp_cartaAmonestacion)
 );
+
+
+
+create table fa_manipularAnexos(
+    cp_manipular int auto_increment,
+    atr_numRomano varchar(10),
+    atr_item varchar(100),
+    atr_descripcion varchar(500),
+    atr_fecha varchar(100),
+    cf_trabajador int,
+    constraint pk_manipularAnexos primary key(cp_manipular),
+    constraint fk_manipularAnexos_trabajador foreign key(cf_trabajador) references fa_trabajador(cp_trabajador)
+);

@@ -61,7 +61,10 @@ $route['getItemsContrato'] = 'ContratosController/getItemsContrato';
 //ANEXOS
 $route['inicioGestorAnexos'] = 'ContratosController/indexGestorAnexos';
 $route['docAnexoConFechaTermino'] = 'PDFController/view_anexoConFechaTermino';
-$route['docAnexoPasarIndefinido'] = 'PDFController/docAnexoPasarIndefinido';
+$route['docAnexoPasarIndefinido'] = 'PDFController/view_anexoPasarIndefinido';
+$route['getManipularContrato'] = 'PDFController/getManipularContrato';
+
+$route['transformarFechaLetras'] = 'PDFController/transformarFechaAJAX';
 
 //DOCUMENTOS
 $route['perfilOcupacionalVista'] = 'PDFController/cargarPerfilesOcupacionales';

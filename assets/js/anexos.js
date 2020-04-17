@@ -1,4 +1,6 @@
 var base_url = 'http://localhost/RRHH-FIRMA/index.php/';
+var numID = 0;
+var contador = 0;
 
 /*************************** CONTRATO ****************************/
 
@@ -220,19 +222,104 @@ function alertDobleClick(numeroItem){
 
 
 
-function agregarNuevaClausulaParaModificar(){
+function agregarNuevaClausulaParaModificarProrroga(){
   var url = base_url+'getItemsContrato';
   var fila = '';
 
   $.getJSON(url, function (result) {
-      fila += '<div class="col-md-4 mt-4"><label for="fechaComienzoIndefinido">NÚMERO DE LA CLÁUSULA</label><input type="text" class="form-control" id="fechaComienzoIndefinido"/></div>';
-      fila += '<div class="col-md-8 mt-4"><label for="getSelectClausula">CLÁUSULA A MODIFICAR</label><br><select class="custom-select" id="getSelectClausula">';
+      numeroRomanoID = 'idNumeroRomano_'+numID;
+      clausulaID = 'idClausula_'+numID;
+      textoAreaID = 'idTextoArea_'+numID;
+
+      fila += '<div class="col-md-4 mt-4"><label for="fechaComienzoIndefinido">NÚMERO DE LA CLÁUSULA</label><input type="text" class="form-control" id="'+numeroRomanoID+'"/></div>';
+      fila += '<div class="col-md-8 mt-4"><label for="getSelectClausula">CLÁUSULA A MODIFICAR</label><br><select onchange="rellenarItemsProrroga(this)" class="custom-select" id="'+clausulaID+'">';
       fila += '<option>Seleccionar una opción</option>';
       $.each(result, function (i, o) {
           fila += '<option value="'+o.atr_nombre+'">'+o.atr_nombre+'</option>';
       });
       fila += '</select></div>';
-      fila += '<div class="col-md-12 mt-2"> <label for="nuevaClausula">MODIFICACIÓN</label><br> <textarea class="form-control" id="nuevaClausula" rows="5"></textarea> </div>';
+      fila += '<div class="col-md-12 mt-2"> <label for="nuevaClausula">MODIFICACIÓN</label><br> <textarea class="form-control" id="'+textoAreaID+'" rows="5"></textarea> </div>';
       $("#contenedorNuevasClausulas").append(fila);
+
+      numID = numID + 1;
+      contador = contador + 1;
   });
+}
+
+function cntClausulasModificadas(){
+  return contador;
+}
+
+function rellenarItemsProrroga(select){
+  var trabajador = $("#selectTrabajador1").val();
+
+  var idSelect =  $(select).attr('id') ;
+  idSelect = idSelect.split("_");
+  idSelect = idSelect[1];
+
+  var texto = "";
+
+  // alert(tipo);
+
+  switch (select.value) {
+  case "Partes":
+
+    break;
+
+  case "Naturaleza de los servicios":
+
+    break;
+
+  case "Lugar de prestación de servicios":
+    texto = "Los servicios se prestarán en las dos sucursales de Hostal Plaza Maule Limitada ubicadas en 1 Sur 24 y media oriente N°3183 y 1 Sur 24 oriente N°3155 de la ciudad de Talca.', 'La jornada de trabajo será de 45 horas semanales, las que serán distribuidas de lunes a viernes, de la siguiente manera: jornada de la mañana de 09:00 horas a 14:00 horas, y en la jornada de la tarde de 15:00 horas a 19:00 horas.";
+    // $("#idTextoArea_"+idSelect).text() = texto;
+
+    $("#idTextoArea_"+idSelect).val(texto);
+    break;
+
+  case "Jornada de trabajo":
+    texto = "La jornada de trabajo será de 45 horas semanales, las que serán distribuidas de lunes a viernes, de la siguiente manera: jornada de la mañana de 09:00 horas a 14:00 horas, y en la jornada de la tarde de 15:00 horas a 19:00 horas.";
+    $("#idTextoArea_"+idSelect).val(texto);
+    break;
+
+  case "Remuneraciones":
+    texto = "El empleador se compromete a remunerar los servicios del trabajador con un sueldo mensual de $301.000(trescientos un mil pesos).";
+      $("#idTextoArea_"+idSelect).val(texto);
+    break;
+
+  case "Duración de la relación jurídica laboral":
+
+    $("#idTextoArea_"+idSelect).val(texto);
+    break;
+
+  case "Cláusula de vigencia":
+    var fecha =  $("#fechaComienzoIndefinido").val();
+    fecha = fecha.split("-");
+    fecha = fecha[2]+"-"+fecha[1]+"-"+fecha[0];
+
+    $.ajax({
+        url: 'transformarFechaLetras',
+        type: 'POST',
+        dataType: 'json',
+        data: {"fecha": fecha}
+    }).then(function (msg) {
+      fecha = msg;
+      alert(fecha);
+      texto = "A partir de esta fecha "+fecha+", de común acuerdo entre las partes, establecen que el presente contrato tendrá una duración INDEFINIDA";
+        $("#idTextoArea_"+idSelect).val(texto);
+      break;
+    });
+
+  case "A tener en cuenta ":
+
+    break;
+
+  case "Cláusula de confidencialidad ":
+
+    break;
+
+  case "Propiedad intelectual":
+
+    break;
+  }
 }

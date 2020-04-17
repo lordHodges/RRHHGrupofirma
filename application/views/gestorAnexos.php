@@ -447,7 +447,7 @@
 
       $("body").on("click", "#btnAgregarClausulaModificada", function(e) {
           e.preventDefault();
-          agregarNuevaClausulaParaModificar();
+          agregarNuevaClausulaParaModificarProrroga();
       });
 
       $("body").on("click", "#btnGenerarAnexoProrroga", function(e) {
@@ -457,11 +457,45 @@
           var tipoAnexoProrroga = $("#selectTipoProrroga").val();
 
           if(ciudadFirma == "" || tipoAnexoProrroga == null ){
-            toastr.error("Debe rellenar tdos los campos");
+            toastr.error("Debe rellenar todos los campos");
           }else{
             if( tipoAnexoProrroga == "fechaLimite"){
               var fechaTerminoExtencion = $("#fechaTerminoExtencion").val();
               var url = 'http://localhost/RRHH-FIRMA/index.php/docAnexoConFechaTermino?trabajador='+idTrabajador+'&&fechaTermino='+fechaTerminoExtencion+'&&ciudadFirma='+ciudadFirma;
+              window.open(url, '_blank');
+            }else{
+              if( tipoAnexoProrroga == "indefinido" ){
+
+                var fechaComienzoIndefinido = $("#fechaComienzoIndefinido").val();
+
+                var contador = cntClausulasModificadas();
+                var array = [];
+                var fecha;
+
+                for (var i = 0; i < contador; i++) {
+                  // Armo un array solo con los datos de 1 clausula
+                  var elementoRomano = $("#idNumeroRomano_"+i).val();
+                  var elementoItem = $("#idClausula_"+i).val();
+                  var elementoModificacion = $("#idTextoArea_"+i).val();
+
+                  $.ajax({
+                      url: 'getManipularContrato',
+                      type: 'POST',
+                      dataType: 'json',
+                      data: {"idTrabajador": idTrabajador,
+                              "numRomano" : elementoRomano,
+                              "item" : elementoItem,
+                              "modificacion" : elementoModificacion
+                            }
+                  }).then(function (response) {
+
+                  });
+
+                }
+
+              }
+
+              var url = 'http://localhost/RRHH-FIRMA/index.php/docAnexoPasarIndefinido?trabajador='+idTrabajador+'&&fechaComienzo='+fechaComienzoIndefinido+'&&ciudadFirma='+ciudadFirma;
               window.open(url, '_blank');
             }
 

@@ -61,9 +61,57 @@
     <h4 style="display:inline"><h4 style="text-decoration: underline;display:inline">Cláusula adicional:</h4></h4>
 
     <p  style="text-align:justify; line-height:25px;">
-      A partir de esta fecha <?php echo $fechaDeHoy ?>, de común acuerdo entre las partes, establecen que el presente contrato tendrá duración hasta el <?php echo $fechaTerminoProrroga ?>.
+      A partir de esta fecha <?php echo $fechaComienzo ?>, las partes de común acuerdo, vienen a efectuar la siguiente modificación al contrato de
+      trabajo.
+
 
     </p>
+
+
+  <?php $contador = 0;?>
+    <?php foreach ($clausulas as $key => $c){ ?>
+      <?php $contador = $contador + 1; ?>
+      <h4 style="display:inline; text-align:justify;"><?php echo $contador;?>.-  Establecen modificar la cláusula <?php echo $c->atr_numRomano ?>  (<?php echo $c->atr_item ?>) del contrato,
+      en el cual se reemplaza íntegramente por el texto que sigue:</h4>
+
+      <h4 style="font-style: italic;text-decoration: underline;">"<?php echo $c->atr_numRomano ?>. <?php echo $c->atr_item ?>":</h4>
+      <p style="text-align:justify; line-height:25px; font-style: italic; margin-top:-10px;">
+        <?php echo $c->atr_descripcion ?>
+      </p>
+
+      <?php if( $c->atr_item == "Remuneraciones"){ ?>
+        <p style="text-align:justify; line-height:25px;">
+          De igual forma, se hace presente entre las partes que, los bonos serán pagados únicamente en los casos en que el trabajador asista regularmente y
+          durante el mes completo a su lugar de trabajo, por lo cual cualquier inasistencia, le sea o no imputable, hará descontar de inmediato la totalidad del bono
+          de remuneración.
+        </p>
+
+        <p  style="text-align:justify; line-height:25px;">
+          El empleador pagará el trabajador una gratificación mensual equivalente al 25% del total de las remuneraciones mensuales, con tope legal de 4.75
+          ingresos mínimos mensuales.
+        </p>
+      <?php } ?>
+
+
+    <?php } ?>
+
+    <p style="text-align:justify; line-height:25px;">
+      El presente anexo reemplaza todos los demás anexos que sobre la materia las partes hubiesen celebrado con anterioridad y el contrato de trabajo
+      celebrado entre las partes se mantiene vigente en todo lo no modificado por el presente anexo.
+    </p>
+    <p>
+      Para constancia de lo anterior, firman las partes en dos ejemplares del mismo tenor, quedando uno para "el trabajador" y otro para "el empleador".
+    </p>
+
+
+
+    <br><br><br>
+
+
+
+
+
+
 
 
 

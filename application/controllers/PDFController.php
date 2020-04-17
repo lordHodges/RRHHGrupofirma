@@ -62,6 +62,7 @@ class  PDFController extends CI_Controller {
 		$this->load->model("OtrosModel");
 		$this->load->model("RemuneracionesModel");
 		$this->load->model("ContratosModel");
+		$this->load->model("PDFModel");
 	}
 
 	public function index()
@@ -403,6 +404,75 @@ class  PDFController extends CI_Controller {
 
 
 
+	function view_anexoPasarIndefinido(){
+		$trabajador = $this->input->get("trabajador");
+		$fechaComienzo = $this->input->get("fechaComienzo");
+		$ciudadFirma = $this->input->get("ciudadFirma");
+		$clausulas = $this->input->get("clausula");
+
+		$clausulas = explode( ',', $clausulas );
+
+		$cantClausulas = count($clausulas);
+
+		// var_dump($clausulas);
+		// exit();
+
+		$titulo = "ANEXO DE CONTRATO";
+
+		// Tranformación de fecha actual
+		$fechaDeHoy = date("d-m-Y");
+		$fechaDeHoy = $this->transformarFecha( $fechaDeHoy );
+
+		$fechaComienzo = explode( '-', $fechaComienzo );
+		$fechaComienzo = $fechaComienzo[2]."-".$fechaComienzo[1]."-".$fechaComienzo[0];
+		$fechaComienzo = $this->transformarFecha( $fechaComienzo );
+
+		$manipularContrato = $this->PDFModel->manipulaciones($trabajador, date("Y-m-d") );
+		// var_dump($manipularContrato);
+		// exit();
+
+		$informacion = $this->ContratosModel->getDetalleTrabajadorContrato($trabajador);
+
+		$contador = 0;
+		foreach ($informacion as $key => $i) {
+			if($contador == 0){
+				$arrayTrabajador = $i;
+			}
+			if($contador == 1){
+				$arrayRemuneracion = $i;
+			}
+			if($contador == 2){
+				$arrayRemuneracionExtra = $i;
+			}
+			$contador = $contador + 1;
+		}
+
+
+
+
+		$data = array(
+			'titulo'										=> $titulo,
+			'ciudadFirma'								=> $ciudadFirma,
+			'clausulas'									=> $manipularContrato,
+			'fechaDeHoy'								=> $fechaDeHoy,
+			'fechaComienzo'							=> $fechaComienzo,
+			'arrayTrabajador'						=> $arrayTrabajador,
+		);
+
+
+		$html = $this->load->view('pdf/anexos/anexoPasarIndefinido', $data, TRUE);
+		// Cargamos la librería
+		$this->load->library('Pdfgenerator');
+		// definamos un nombre para el archivo. No es necesario agregar la extension .pdf
+		$filename = 'contrato';
+		// generamos el PDF. Pasemos por encima de la configuración general y definamos otro tipo de papel
+		$this->pdfgenerator->generate($html, $filename, TRUE, 'Letter', 'portrait', 0);
+	}
+
+
+
+
+
 
 
 
@@ -464,6 +534,53 @@ class  PDFController extends CI_Controller {
 		return $fecha = $partesFecha[0]." de ".$nombreMes." de ".$partesFecha[2];
 	}
 
+
+	function transformarFechaAJAX( ){
+		// Convertir fecha guardada en bd al formato 14 enero 2001
+		$fecha = $this->input->post('fecha');
+		$partesFecha = explode("-", $fecha);
+
+		switch ( $partesFecha[1] ) {
+			case "01":
+					$nombreMes = "enero";
+					break;
+			case "02":
+					$nombreMes = "febrero";
+					break;
+			case "03":
+					$nombreMes = "marzo";
+					break;
+			case "04":
+					$nombreMes = "abril";
+					break;
+			case "05":
+					$nombreMes = "mayo";
+					break;
+			case "06":
+					$nombreMes = "junio";
+					break;
+			case "07":
+					$nombreMes = "julio";
+					break;
+			case "08":
+					$nombreMes = "agosto";
+					break;
+			case "09":
+					$nombreMes = "septiembre";
+					break;
+			case "10":
+					$nombreMes = "octubre";
+					break;
+			case "11":
+					$nombreMes = "noviembre";
+					break;
+			case "12":
+					$nombreMes = "diciembre";
+					break;
+		}
+		$fecha = $partesFecha[0]." de ".$nombreMes." de ".$partesFecha[2];
+		echo json_encode($fecha);
+	}
 
 
 
@@ -555,6 +672,18 @@ class  PDFController extends CI_Controller {
 			}
 
 			return $output;
+	}
+
+
+	function getManipularContrato(){
+		$idTrabajador 					= $this->input->post("idTrabajador");
+		$numRomano 							= $this->input->post("numRomano");
+		$item 									= $this->input->post("item");
+		$modificacion						= $this->input->post("modificacion");
+		$fecha 									= date("Y-m-d");
+
+		$resultado = $this->PDFModel->getManipularContrato( $numRomano, $item, $modificacion, $fecha, $idTrabajador );
+		echo json_encode($resultado);
 	}
 
 
