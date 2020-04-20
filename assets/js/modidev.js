@@ -554,6 +554,18 @@ function getSelectCiudad2(){
     });
 }
 
+// USADO PARA LA GESTION DE ANEXOS - HORAS EXTRAS
+function getSelectCiudad3(){
+    var url = base_url+'getCiudades';
+    $("#getSelectCiudad3").empty();
+    var fila = "<option disabled selected>Seleccione una opción</option>";
+    $.getJSON(url, function (result) {
+        $.each(result, function (i, o) {
+            fila += "<option value='" + o.cp_ciudad + "'>" + o.atr_nombre + "</option>";
+        });
+        $("#getSelectCiudad3").append(fila);
+    });
+}
 
 function getSelectCargos(){
 

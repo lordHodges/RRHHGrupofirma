@@ -196,6 +196,10 @@
           <div class="tab-pane fade" id="estandarPersonalizado" role="tabpanel" aria-labelledby="personalizado">
 
             <br>
+
+
+
+
             <div id="informacionTrabajador2">
               <div class="col-md-12">
                 <h4 style="color:#2a3f54"><b>I ) INFORMACIÓN DE TRABAJADOR</b></h4>
@@ -205,9 +209,10 @@
               <div class="col-md-6 col-sm-12">
                 <br><label for="selectTrabajador2">TRABAJADOR</label><br>
                 <select class="custom-select" id="selectTrabajador2">
-                  <!-- se cargan los trabajadores -->
+
                 </select>
               </div>
+
               <div class="col-md-6 col-sm-12">
                 <br><label for="getSelectCiudad">CIUDAD EN QUE SE FIRMA CONTRATO</label><br>
                 <select class="custom-select" id="getSelectCiudad2">
@@ -395,6 +400,10 @@
 
     	  });
 
+
+        $(".js-example-data-ajax").select2({
+
+        });
 
       });
 

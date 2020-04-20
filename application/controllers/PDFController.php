@@ -464,7 +464,7 @@ class  PDFController extends CI_Controller {
 		// Cargamos la librería
 		$this->load->library('Pdfgenerator');
 		// definamos un nombre para el archivo. No es necesario agregar la extension .pdf
-		$filename = 'contrato';
+		$filename = 'anexo';
 		// generamos el PDF. Pasemos por encima de la configuración general y definamos otro tipo de papel
 		$this->pdfgenerator->generate($html, $filename, TRUE, 'Letter', 'portrait', 0);
 	}
@@ -508,6 +508,67 @@ class  PDFController extends CI_Controller {
 			$contador = $contador + 1;
 		}
 
+		$data = array(
+			'titulo'										=> $titulo,
+			'ciudadFirma'								=> $ciudadFirma,
+			'clausulas'									=> $manipularContrato,
+			'fechaDeHoy'								=> $fechaDeHoy,
+			'fechaComienzo'							=> $fechaComienzo,
+			'arrayTrabajador'						=> $arrayTrabajador,
+		);
+
+
+		$html = $this->load->view('pdf/anexos/anexoSujetoLicitacion', $data, TRUE);
+		// Cargamos la librería
+		$this->load->library('Pdfgenerator');
+		// definamos un nombre para el archivo. No es necesario agregar la extension .pdf
+		$filename = 'anexo';
+		// generamos el PDF. Pasemos por encima de la configuración general y definamos otro tipo de papel
+		$this->pdfgenerator->generate($html, $filename, TRUE, 'Letter', 'portrait', 0);
+	}
+
+
+
+
+
+
+
+
+
+
+	function view_anexoModificacionClausula(){
+		$trabajador = $this->input->get("trabajador");
+		$fechaComienzo = $this->input->get("fechaComienzo");
+		$ciudadFirma = $this->input->get("ciudadFirma");
+
+		$titulo = "ANEXO DE CONTRATO";
+
+		// Tranformación de fecha actual
+		$fechaDeHoy = date("d-m-Y");
+		$fechaDeHoy = $this->transformarFecha( $fechaDeHoy );
+
+		$fechaComienzo = explode( '-', $fechaComienzo );
+		$fechaComienzo = $fechaComienzo[2]."-".$fechaComienzo[1]."-".$fechaComienzo[0];
+		$fechaComienzo = $this->transformarFecha( $fechaComienzo );
+
+		$manipularContrato = $this->PDFModel->manipulaciones($trabajador, date("Y-m-d") );
+
+		$informacion = $this->ContratosModel->getDetalleTrabajadorContrato($trabajador);
+
+		$contador = 0;
+		foreach ($informacion as $key => $i) {
+			if($contador == 0){
+				$arrayTrabajador = $i;
+			}
+			if($contador == 1){
+				$arrayRemuneracion = $i;
+			}
+			if($contador == 2){
+				$arrayRemuneracionExtra = $i;
+			}
+			$contador = $contador + 1;
+		}
+
 
 
 
@@ -521,11 +582,85 @@ class  PDFController extends CI_Controller {
 		);
 
 
-		$html = $this->load->view('pdf/anexos/anexoPasarIndefinido', $data, TRUE);
+		$html = $this->load->view('pdf/anexos/anexoModificacionClausula', $data, TRUE);
 		// Cargamos la librería
 		$this->load->library('Pdfgenerator');
 		// definamos un nombre para el archivo. No es necesario agregar la extension .pdf
-		$filename = 'contrato';
+		$filename = 'anexo';
+		// generamos el PDF. Pasemos por encima de la configuración general y definamos otro tipo de papel
+		$this->pdfgenerator->generate($html, $filename, TRUE, 'Letter', 'portrait', 0);
+	}
+
+
+
+
+
+
+
+
+
+
+
+	function view_anexoHorasExtras(){
+		$trabajador = $this->input->get("trabajador");
+		$motivo = $this->input->get("motivo");
+		$ciudadFirma = $this->input->get("ciudadFirma");
+		$horasextras = $this->input->get("horasextras");
+		$fechaTermino = $this->input->get("fechaLimite");
+
+		$fechaTermino = explode( '-', $fechaTermino );
+		$fechaTermino = $fechaTermino[2]."-".$fechaTermino[1]."-".$fechaTermino[0];
+		$fechaTermino = $this->transformarFecha( $fechaTermino );
+
+		$titulo = "PACTO TEMPORAL DE HORAS EXTRAS";
+
+		// Tranformación de fecha actual
+		$fechaDeHoy = date("d-m-Y");
+		$fechaDeHoy = $this->transformarFecha( $fechaDeHoy );
+
+		// $fechaComienzo = explode( '-', $fechaComienzo );
+		// $fechaComienzo = $fechaComienzo[2]."-".$fechaComienzo[1]."-".$fechaComienzo[0];
+		// $fechaComienzo = $this->transformarFecha( $fechaComienzo );
+
+		// $manipularContrato = $this->PDFModel->manipulaciones($trabajador, date("Y-m-d") );
+
+		$informacion = $this->ContratosModel->getDetalleTrabajadorContrato($trabajador);
+
+		$contador = 0;
+		foreach ($informacion as $key => $i) {
+			if($contador == 0){
+				$arrayTrabajador = $i;
+			}
+			if($contador == 1){
+				$arrayRemuneracion = $i;
+			}
+			if($contador == 2){
+				$arrayRemuneracionExtra = $i;
+			}
+			$contador = $contador + 1;
+		}
+
+
+
+
+		$data = array(
+			'titulo'										=> $titulo,
+			'ciudadFirma'								=> $ciudadFirma,
+			'motivo'										=> $motivo,
+			'horasextras'								=> $horasextras,
+			'fechaDeHoy'								=> $fechaDeHoy,
+			'arrayTrabajador'						=> $arrayTrabajador,
+			'fechaTermino'							=> $fechaTermino,
+			// 'clausulas'									=> $manipularContrato,
+			// 'fechaComienzo'							=> $fechaComienzo,
+		);
+
+
+		$html = $this->load->view('pdf/anexos/anexoHorasExtras', $data, TRUE);
+		// Cargamos la librería
+		$this->load->library('Pdfgenerator');
+		// definamos un nombre para el archivo. No es necesario agregar la extension .pdf
+		$filename = 'anexo';
 		// generamos el PDF. Pasemos por encima de la configuración general y definamos otro tipo de papel
 		$this->pdfgenerator->generate($html, $filename, TRUE, 'Letter', 'portrait', 0);
 	}
@@ -748,6 +883,14 @@ class  PDFController extends CI_Controller {
 		$resultado = $this->PDFModel->getManipularContrato( $numRomano, $item, $modificacion, $fecha, $idTrabajador );
 		echo json_encode($resultado);
 	}
+
+	function limpiarManipularContrato(){
+		$fecha 									= date("Y-m-d");
+
+		$resultado = $this->PDFModel->limpiarManipularContrato( $fecha );
+		echo json_encode($resultado);
+	}
+
 
 
 

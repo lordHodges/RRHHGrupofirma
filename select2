@@ -1,0 +1,11 @@
+<select class="js-example-basic-multiple form-control" name="states[]" multiple="multiple" id="selectTrabajador1">
+  <option value="AL">Alabama</option>
+    ...
+  <option value="WY">Wyoming</option>
+</select>
+
+
+<!-- SELECT2 -->
+<script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
+
+$('.js-example-basic-multiple').select2();

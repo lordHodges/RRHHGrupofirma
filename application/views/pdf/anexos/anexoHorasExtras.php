@@ -57,71 +57,45 @@
     <?php } ?>
 
 
-
-    <h4 style="display:inline"><h4 style="text-decoration: underline;display:inline">Cláusula adicional:</h4></h4>
-
-    <p  style="text-align:justify; line-height:25px;">
-      A partir de esta fecha <?php echo $fechaComienzo ?>, las partes de común acuerdo, vienen a efectuar la siguiente modificación al contrato de
-      trabajo.
-
-
+    <h4 style="display:inline;"><b>PRIMERO:</b></h4>
+    <p style="display:inline; text-align:justify; line-height:25px;">
+      Que, en virtud de <?php echo $motivo ?> y de la necesaria extensión diaria de los servicios prestados por el
+      trabajador y conforme lo autoriza el artículo 32 del código del trabajo, es que las partes de este anexo
+      de contrato de trabajo han convenido un pacto temporal de horas extras, conforme al tenor de las cláusulas
+      siguientes.
     </p>
 
+    <br><br>
 
-  <?php $contador = 0;?>
-    <?php foreach ($clausulas as $key => $c){ ?>
-      <?php $contador = $contador + 1; ?>
-      <h4 style="display:inline; text-align:justify;"><?php echo $contador;?>.-  Establecen modificar la cláusula <?php echo $c->atr_numRomano ?>  (<?php echo $c->atr_item ?>) del contrato,
-      en el cual se reemplaza íntegramente por el texto que sigue:</h4>
-
-      <h4 style="font-style: italic;text-decoration: underline;">"<?php echo $c->atr_numRomano ?>. <?php echo $c->atr_item ?>":</h4>
-      <p style="text-align:justify; line-height:25px; font-style: italic; margin-top:-10px;">
-        <?php echo $c->atr_descripcion ?>
-      </p>
-
-      <?php if( $c->atr_item == "Remuneraciones"){ ?>
-        <p style="text-align:justify; line-height:25px;">
-          De igual forma, se hace presente entre las partes que, los bonos serán pagados únicamente en los casos en que el trabajador asista regularmente y
-          durante el mes completo a su lugar de trabajo, por lo cual cualquier inasistencia, le sea o no imputable, hará descontar de inmediato la totalidad del bono
-          de remuneración.
-        </p>
-
-        <p  style="text-align:justify; line-height:25px;">
-          El empleador pagará el trabajador una gratificación mensual equivalente al 25% del total de las remuneraciones mensuales, con tope legal de 4.75
-          ingresos mínimos mensuales.
-        </p>
-      <?php } ?>
-
-
-    <?php } ?>
-
-
-    <p style="text-align:justify; line-height:25px; font-style:normal;">
-      El presente anexo reemplaza todos los demás anexos que sobre la materia las partes hubiesen celebrado con anterioridad y el contrato de trabajo
-      celebrado entre las partes se mantiene vigente en todo lo no modificado por el presente anexo.
-    </p>
-    <p style="text-align:justify; line-height:25px; font-style:normal;">
-      Para constancia de lo anterior, firman las partes en dos ejemplares del mismo tenor, quedando uno para "el trabajador" y otro para "el empleador".
+    <h4 style="display:inline;"><b>SEGUNDO:</b></h4>
+    <p style="display:inline; text-align:justify; line-height:25px;">
+      El trabajador se compromete y obliga a desarrollar una vez finalizada su jornada
+      ordinaria de trabajo semanal, un total de <?php echo $horasextras ?>, lo que no podrá ser superior a 12 horas
+      semanales en conformidad a la legislación vigente.
     </p>
 
+    <br><br>
 
+    <h4 style="display:inline;"><b>TERCERO:</b></h4>
+    <p style="display:inline; text-align:justify; line-height:25px;">
+      Las partes concuerdan que esta situación no es permanente en la actividad y se deriva de la importancia
+      de las labores desarrolladas por el trabajador en la empresa, las cuales no pueden interrumpirse.
+    </p>
 
-    <br><br><br>
+    <br><br>
 
+    <h4 style="display:inline;"><b>CUARTO:</b></h4>
+    <p style="display:inline; text-align:justify; line-height:25px;">
+      El presente pacto de horas extras tiene una duración hasta el día <?php echo $fechaTermino ?>, pudiendo el empleador
+      solicitar extensión de este al término de la fecha estipulada.
+    </p>
 
+    <br><br>
 
-
-
-
-
-
-
-
-
-
-
-
-
+    <h4 style="display:inline;"><b>QUINTO:</b></h4>
+    <p style="display:inline; text-align:justify; line-height:25px;">
+      El presente pacto se firma en dos ejemplares, quedando una en poder de cada parte.
+    </p>
 
 
     <br><br><br><br><br><br><br>

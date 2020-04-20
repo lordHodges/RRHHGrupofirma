@@ -58,6 +58,13 @@ class FuncionesController extends CI_Controller {
 		echo json_encode(array("msg" => $resultado));
 	}
 
+	public function getListadoTareasViewContrato(){
+		$cargo = $this->input->post("cargo");
+
+		$resultado = $this->FuncionesModel->getListadoTareasViewContrato($cargo);
+		echo json_encode( $resultado );
+	}
+
 
 
 

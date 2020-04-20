@@ -64,7 +64,11 @@ $route['inicioGestorAnexos'] = 'ContratosController/indexGestorAnexos';
 $route['docAnexoConFechaTermino'] = 'PDFController/view_anexoConFechaTermino';
 $route['docAnexoPasarIndefinido'] = 'PDFController/view_anexoPasarIndefinido';
 $route['docAnexoSujetoLicitacion'] = 'PDFController/view_anexoSujetoLicitacion';
+$route['docAnexoModificacionClausula'] = 'PDFController/view_anexoModificacionClausula';
+$route['docAnexoHorasExtras'] = 'PDFController/view_anexoHorasExtras';
 $route['getManipularContrato'] = 'PDFController/getManipularContrato';
+$route['getListadoTareasViewContrato'] = 'FuncionesController/getListadoTareasViewContrato';
+$route['limpiarManipularContrato'] = 'PDFController/limpiarManipularContrato';
 
 
 $route['transformarFechaLetras'] = 'PDFController/transformarFechaAJAX';

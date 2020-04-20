@@ -82,31 +82,33 @@
 
 
 
-    <!-- Firma Trabajador -->
-     <div class="caja1">
-        <p>__________________________________</p>
-        <?php foreach ($arrayTrabajador as $key => $t){ ?>
-          <div style="display:inline-block">
+    <div style="position:absolute">
+      <!-- Firma Trabajador -->
+       <div class="caja1">
+          <p>__________________________________</p>
+          <?php foreach ($arrayTrabajador as $key => $t){ ?>
+            <div style="display:inline-block">
 
-            <h5 style="margin-top:-12px;"><strong> <?php echo $t->atr_nombres." ".$t->atr_apellidos ?> </strong></h5>
-        		<h5 style="margin-top:-12px;">R.U.T N° <?php echo $t->atr_rut ?></h5>
-            <h5 style="margin-top:-12px;">TRABAJADOR.</h5>
-        	</div>
-        <?php } ?>
-     </div>
+              <h5 style="margin-top:-12px;"><strong> <?php echo $t->atr_nombres." ".$t->atr_apellidos ?> </strong></h5>
+          		<h5 style="margin-top:-12px;">R.U.T N° <?php echo $t->atr_rut ?></h5>
+              <h5 style="margin-top:-12px;">TRABAJADOR.</h5>
+          	</div>
+          <?php } ?>
+       </div>
 
-     <!-- Firma empleador -->
-     <div class="caja2">
-        <p>__________________________________</p>
-        <?php foreach ($arrayTrabajador as $key => $t){ ?>
-          <div style="display:inline-block">
+       <!-- Firma empleador -->
+       <div class="caja2">
+          <p>__________________________________</p>
+          <?php foreach ($arrayTrabajador as $key => $t){ ?>
+            <div style="display:inline-block">
 
-            <h5 style="margin-top:-12px;"><strong> <?php echo $t->empresa ?> </strong></h5>
-        		<h5 style="margin-top:-12px;">R.U.T N° <?php echo $t->runEmpresa?></h5>
-            <h5 style="margin-top:-12px;">EMPLEADOR.</h5>
-        	</div>
-        <?php } ?>
-     </div>
+              <h5 style="margin-top:-12px;"><strong> <?php echo $t->empresa ?> </strong></h5>
+          		<h5 style="margin-top:-12px;">R.U.T N° <?php echo $t->runEmpresa?></h5>
+              <h5 style="margin-top:-12px;">EMPLEADOR.</h5>
+          	</div>
+          <?php } ?>
+       </div>
+    </div>
 
 
 

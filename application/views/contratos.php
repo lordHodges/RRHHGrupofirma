@@ -184,7 +184,6 @@
 
         $("#getSelectTipoDocumento").change(function (e){
             e.preventDefault();
-            // alert("cambio");
             var tipo = $("#getSelectTipoDocumento").val();
             if(tipo == "contrato"){
               $(".siEsContrato").removeAttr("style");

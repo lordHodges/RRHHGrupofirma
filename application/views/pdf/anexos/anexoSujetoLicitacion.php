@@ -106,7 +106,6 @@
 
 
 
-    <br><br><br>
 
 
 
@@ -124,17 +123,13 @@
 
 
 
+
+    <!-- <br><br><br><br><br><br><br> -->
     <br><br><br><br><br><br><br>
-
-    <!-- Firma trabajador -->
-    <!-- <div class="linea"></div> -->
-
-
-
     <div style="position:absolute">
       <!-- Firma Trabajador -->
        <div class="caja1">
-          <p>__________________________________</p>
+          <p>________________________________</p>
           <?php foreach ($arrayTrabajador as $key => $t){ ?>
             <div style="display:inline-block">
 
@@ -147,7 +142,7 @@
 
        <!-- Firma empleador -->
        <div class="caja2">
-          <p>__________________________________</p>
+          <p>________________________________</p>
           <?php foreach ($arrayTrabajador as $key => $t){ ?>
             <div style="display:inline-block">
 

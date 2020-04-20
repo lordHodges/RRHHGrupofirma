@@ -17,10 +17,16 @@ class PDFModel extends CI_Model {
         return $this->db->get()->result();
     }
 
+    public function limpiarManipularContrato($fecha){
+      $resultado = $this->db->delete('fa_manipularanexos', array('atr_fecha' => $fecha));
+      if ($resultado) {
+        return $fecha;
+      }else{
+        return "error";
+      }
+    }
+
     public function getManipularContrato( $numRomano, $item, $modificacion, $fecha, $idTrabajador ){
-
-      $this->db->delete('fa_manipularanexos', array('atr_fecha' => $fecha));
-
       $data = array(
           "atr_numRomano" => $numRomano,
           "atr_item" => $item,

@@ -154,6 +154,14 @@ create table fa_responsabilidad(
     constraint fk_responsabilidad_cargo foreign key(cf_cargo) references fa_cargo(cp_cargo)
 );
 
+create table fa_proyecto(
+    cp_proyecto int auto_increment,
+    atr_descripcion varchar(200) not null,
+    atr_fechaInicio varchar(100) not null,
+    atr_fechaTermino varchar(100) not null,
+    constraint pk_proyecto primary key(cp_proyecto)
+);
+
 create table fa_trabajador(
     cp_trabajador int auto_increment,
     atr_rut varchar(20) not null unique,
@@ -161,6 +169,8 @@ create table fa_trabajador(
     atr_apellidos varchar(50) not null,
     atr_direccion varchar(100),
     atr_fechaNacimiento varchar(10),
+    atr_sueldo int,
+    cf_proyecto int,
     cf_estado int,
     cf_ciudad int,
     cf_cargo int,
@@ -179,7 +189,8 @@ create table fa_trabajador(
     constraint fk_trabajador_estadoCivil foreign key(cf_estadoCivil) references fa_estadoCivil(cp_estadoCivil),
     constraint fk_trabajador_afp foreign key(cf_afp) references fa_afp(cp_afp),
     constraint fk_trabajador_prevision foreign key(cf_prevision) references fa_prevision(cp_prevision),
-    constraint fk_trabajador_empresa foreign key(cf_empresa) references fa_empresa(cp_empresa)
+    constraint fk_trabajador_empresa foreign key(cf_empresa) references fa_empresa(cp_empresa),
+    constraint fk_trabajador_proyecto foreign key(cf_proyecto) references fa_proyecto(cp_proyecto)
 );
 
 
@@ -317,7 +328,7 @@ create table fa_manipularAnexos(
     cp_manipular int auto_increment,
     atr_numRomano varchar(10),
     atr_item varchar(100),
-    atr_descripcion varchar(500),
+    atr_descripcion varchar(2000),
     atr_fecha varchar(100),
     cf_trabajador int,
     constraint pk_manipularAnexos primary key(cp_manipular),

@@ -39,6 +39,9 @@
     <!-- Autocompletado -->
     <link href="<?php echo base_url() ?>assets/css/jquery-ui.css" rel="stylesheet">
 
+    <!-- SELECT2 -->
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" rel="stylesheet" />
+
     <!-- Custom Theme Style -->
     <link href="<?php echo base_url() ?>assets/build/css/custom.min.css" rel="stylesheet">
 

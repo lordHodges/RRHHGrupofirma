@@ -97,9 +97,18 @@ function seleccionTabs(nombre){
   elemento.style.color = "#fafafa";
   elemento.style.backgroundColor  = "#2a3f54";
   if(nombre == "estandar"){
-    document.getElementById('personalizado').style = "";
+    document.getElementById('modificacionCualquierClausula').style = "";
+    document.getElementById('horasExtras').style = "";
   }else{
-    document.getElementById('estandar').style = "";
+    if ( nombre == 'modificacionCualquierClausula') {
+      document.getElementById('estandar').style = "";
+      document.getElementById('horasExtras').style = "";
+    }else{
+      if ( nombre == 'horasExtras') {
+        document.getElementById('estandar').style = "";
+        document.getElementById('modificacionCualquierClausula').style = "";
+      }
+    }
   }
 }
 
@@ -107,6 +116,7 @@ function cargarElementosDeContrato(){
   var url = base_url+'getTrabajadores';
   $("#selectTrabajador1").empty();
   $("#selectTrabajador2").empty();
+  $("#selectTrabajador3").empty();
   var fila = "<option disabled selected>Seleccione una opción</option>";
   $.getJSON(url, function (result) {
       $.each(result, function (i, o) {
@@ -114,6 +124,7 @@ function cargarElementosDeContrato(){
       });
       $("#selectTrabajador1").append(fila);
       $("#selectTrabajador2").append(fila);
+      $("#selectTrabajador3").append(fila);
   });
 }
 
@@ -195,6 +206,33 @@ function cargarDatosEsenciales2(idTrabajador){
         });
         filaRemuneracion += '</ul>';
         $("#getDetalleRemuneracion2").append(filaRemuneracion);
+      });
+  });
+}
+
+
+function cargarDatosEsenciales3(idTrabajador){
+  $.ajax({
+      url: 'getDetalleTrabajadorContrato',
+      type: 'POST',
+      dataType: 'json',
+      data: {"id": idTrabajador}
+  }).then(function (msg) {
+      // información del trabajador
+      $.each(msg.arrayTrabajador, function (i, o) {
+        $("#rut3").val(o.atr_rut);
+        $("#direccion3").val(o.atr_direccion);
+        $("#cargo3").val(o.cargo);
+        $("#empresa3").val(o.empresa);
+        $("#jefeDirecto3").val(o.atr_jefeDirecto);
+        $("#afp3").val(o.afp);
+        $("#prevision3").val(o.prevision);
+        $("#nacionalidad3").val(o.nacionalidad);
+        $("#fechaNacimiento3").val(o.atr_fechaNacimiento);
+        $("#ciudad3").val(o.ciudadEmpresa);
+        $("#estadoCivil3").val(o.estadocivil);
+        $("#repre_legal3").val(o.repre_legal);
+        $("#repre_rut3").val(o.repre_rut);
       });
   });
 }
@@ -327,8 +365,42 @@ function rellenarItemsProrroga(select){
 
     break;
   case "Naturaleza de los servicios":
-    texto = "";
-    $("#idTextoArea_"+idSelect).val(texto);
+    $.ajax({
+        url: 'getInfoTrabajadorEmpresa',
+        type: 'POST',
+        dataType: 'json',
+        data: {"idTrabajador": trabajador}
+    }).then(function (msg) {
+        var infoTrabajador = msg;
+        $.ajax({
+            url: 'transformarFechaLetras',
+            type: 'POST',
+            dataType: 'json',
+            data: {"fecha": fecha}
+        }).then(function (msg) {
+          fecha = msg;
+          $.each(infoTrabajador, function (i, o) {
+            var cargo = o.cargo;
+            var idCargo = o.idCargo;
+            cargo = cargo.toUpperCase();
+            texto = 'El trabajador se compromete y obliga a ejecutar el trabajo de '+cargo+', debiendo realizar las actividades que se le sean encontradas, entre ellas:\n\n';
+            $.ajax({
+                url: 'getListadoTareasViewContrato',
+                type: 'POST',
+                dataType: 'json',
+                data: {"cargo": idCargo}
+            }).then(function (funciones) {
+              texto += '<ul style="text-align:justify; font-style: italic; margin-top:-10px">\n\n';
+              $.each(funciones, function (i, o) {
+                texto += '<li >'+o.atr_descripcion+'</li>\n';
+              });
+              texto += '\n</ul>\n\n';
+              $("#idTextoArea_"+idSelect).val(texto);
+            });
+
+          });
+        });
+    });
     break;
 
   case "Lugar de prestación de servicios":
@@ -450,8 +522,43 @@ function rellenarItemsProrrogaLicitacion(select){
 
     break;
   case "Naturaleza de los servicios":
-    texto = "";
-    $("#idTextoArea_"+idSelect).val(texto);
+    $.ajax({
+        url: 'getInfoTrabajadorEmpresa',
+        type: 'POST',
+        dataType: 'json',
+        data: {"idTrabajador": trabajador}
+    }).then(function (msg) {
+        var infoTrabajador = msg;
+        $.ajax({
+            url: 'transformarFechaLetras',
+            type: 'POST',
+            dataType: 'json',
+            data: {"fecha": fecha}
+        }).then(function (msg) {
+          fecha = msg;
+          $.each(infoTrabajador, function (i, o) {
+            var cargo = o.cargo;
+            var idCargo = o.idCargo;
+            cargo = cargo.toUpperCase();
+            texto = 'El trabajador se compromete y obliga a ejecutar el trabajo de '+cargo+', debiendo realizar las actividades que se le sean encontradas, entre ellas:\n\n';
+            $.ajax({
+                url: 'getListadoTareasViewContrato',
+                type: 'POST',
+                dataType: 'json',
+                data: {"cargo": idCargo}
+            }).then(function (funciones) {
+              texto += '<ul style="text-align:justify; font-style: italic; margin-top:-10px">\n\n';
+              $.each(funciones, function (i, o) {
+                texto += '<li>'+o.atr_descripcion+'</li>\n';
+              });
+              texto += '</ul>\n\n';
+              $("#idTextoArea_"+idSelect).val(texto);
+            });
+
+          });
+        });
+    });
+
     break;
 
   case "Lugar de prestación de servicios":
@@ -491,12 +598,222 @@ function rellenarItemsProrrogaLicitacion(select){
 
   case "Duración de la relación jurídica laboral":
     texto = "El presente contrato tendrá una duración hasta la fecha de vencimiento de la licitación denominada .... , identificada con numero de ";
-    texto += "ID: xxxx-x-xxxx , para la cual el trabajador ejerce sus funciones.";
+    texto += "ID: xxxx-x-xxxx , para la cual el trabajador ejerce sus funciones.\n\nSEX";
     $("#idTextoArea_"+idSelect).val(texto);
     break;
 
   case "Cláusula de vigencia":
     texto = "Se deja constancia que el trabajador comenzó el "+fecha+" a prestar servicios";
+    $("#idTextoArea_"+idSelect).val(texto);
+
+  case "A tener en cuenta ":
+    texto = "";
+    $("#idTextoArea_"+idSelect).val(texto);
+    break;
+
+  case "Cláusula de confidencialidad ":
+    texto = "";
+    $("#idTextoArea_"+idSelect).val(texto);
+    break;
+
+  case "Propiedad intelectual":
+    texto = "El trabajador confiere los derechos de propiedad intelectual al empleador sobre todo el desarrollo, cediendo todos los derechos de explotación y propiedad de estos. En este sentido, el trabajador, garantiza al empleador que el desarrollo es absolutamente original ";
+    texto += "y confidencial, como también que CEDE la totalidad de los derechos de propiedad intelectual sobre el mismo, habiendo sido completamente realizado por éste, por lo que puede garantizar que todo el software y las herramientas utilizadas no vulneran ninguna normativa, contrato, derecho, interés o propiedad de terceros.";
+    $("#idTextoArea_"+idSelect).val(texto);
+    break;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function agregarNuevaClausulaParaModificarGeneral(){
+  var url = base_url+'getItemsContrato';
+  var fila = '';
+
+  $.getJSON(url, function (result) {
+      numeroRomanoID = 'idNumeroRomano_'+numID;
+      clausulaID = 'idClausula_'+numID;
+      textoAreaID = 'idTextoArea_'+numID;
+
+      fila += '<div class="col-md-4 mt-4"><label for="fechaComienzoIndefinido">NÚMERO ORIGINAL DE LA CLÁUSULA</label><input type="text" onkeyup="this.value=soloLetrasRomanas(this.value)" oninput="mayus(this);" class="form-control" id="'+numeroRomanoID+'"/></div>';
+      fila += '<div class="col-md-8 mt-4"><label for="getSelectClausula">CLÁUSULA A MODIFICAR</label><br><select onchange="rellenarItemsProrrogaGeneral(this)" class="custom-select" id="'+clausulaID+'">';
+      fila += '<option>Seleccionar una opción</option>';
+      $.each(result, function (i, o) {
+          fila += '<option value="'+o.atr_nombre+'">'+o.atr_nombre+'</option>';
+      });
+      fila += '</select></div>';
+      fila += '<div class="col-md-12 mt-2"> <label for="nuevaClausula">MODIFICACIÓN</label><br> <textarea class="form-control" id="'+textoAreaID+'" rows="5"></textarea> </div>';
+      $("#contenedorNuevasClausulas2").append(fila);
+
+      numID = numID + 1;
+      contador = contador + 1;
+  });
+}
+
+function rellenarItemsProrrogaGeneral(select){
+  var trabajador = $("#selectTrabajador2").val();
+
+
+  var idSelect =  $(select).attr('id') ;
+  idSelect = idSelect.split("_");
+  idSelect = idSelect[1];
+  var ciudadFirma = $('#getSelectCiudad2 option:selected').html();
+  var texto = "";
+
+  var fecha =  $("#fechaTerminoExtencion2").val();
+
+  fecha = fecha.split("-");
+  fecha = fecha[2]+"-"+fecha[1]+"-"+fecha[0];
+
+
+
+  switch (select.value) {
+  case "Partes":
+    $.ajax({
+        url: 'getInfoTrabajadorEmpresa',
+        type: 'POST',
+        dataType: 'json',
+        data: {"idTrabajador": trabajador}
+    }).then(function (msg) {
+        var infoTrabajador = msg;
+        $.ajax({
+            url: 'transformarFechaLetras',
+            type: 'POST',
+            dataType: 'json',
+            data: {"fecha": fecha}
+        }).then(function (msg) {
+          fecha = msg;
+          $.each(infoTrabajador, function (i, o) {
+            texto = "En "+ciudadFirma+", a "+fecha+" entre "+o.empresa+", Rol único tributario N°"+o.runEmpresa+", representada legalmente por "+o.repre_legal+"";
+            texto += ", cédula de identidad N°"+o.repre_rut+", ambos con domicilio en "+o.direccionEmpresa+", comuna y ciudad de "+o.ciudadEmpresa+", en adelante ";
+            texto += "el empleador y doña "+o.atr_nombres+" "+o.atr_apellidos+", cédula de identidad N°"+o.atr_rut+", con domicilio en "+o.atr_direccion+"";
+            texto += ", ciudad de "+o.ciudadEmpresa+", en adelante la trabajadora, se ha convenido el siguiente anexo de contrato de trabajo:";
+            $("#idTextoArea_"+idSelect).val(texto);
+          });
+        });
+    });
+
+    break;
+  case "Naturaleza de los servicios":
+    $.ajax({
+        url: 'getInfoTrabajadorEmpresa',
+        type: 'POST',
+        dataType: 'json',
+        data: {"idTrabajador": trabajador}
+    }).then(function (msg) {
+        var infoTrabajador = msg;
+        $.ajax({
+            url: 'transformarFechaLetras',
+            type: 'POST',
+            dataType: 'json',
+            data: {"fecha": fecha}
+        }).then(function (msg) {
+          fecha = msg;
+          $.each(infoTrabajador, function (i, o) {
+            var cargo = o.cargo;
+            var idCargo = o.idCargo;
+            cargo = cargo.toUpperCase();
+            texto = 'El trabajador se compromete y obliga a ejecutar el trabajo de '+cargo+', debiendo realizar las actividades que se le sean encontradas, entre ellas:\n\n';
+            $.ajax({
+                url: 'getListadoTareasViewContrato',
+                type: 'POST',
+                dataType: 'json',
+                data: {"cargo": idCargo}
+            }).then(function (funciones) {
+              texto += '<ul style="text-align:justify; font-style: italic; margin-top:-10px">\n\n';
+              $.each(funciones, function (i, o) {
+                texto += '<li >'+o.atr_descripcion+'</li>\n';
+              });
+              texto += '\n</ul>\n\n';
+              $("#idTextoArea_"+idSelect).val(texto);
+            });
+
+          });
+        });
+    });
+    break;
+
+  case "Lugar de prestación de servicios":
+    $.ajax({
+        url: 'getInfoTrabajadorEmpresa',
+        type: 'POST',
+        dataType: 'json',
+        data: {"idTrabajador": trabajador}
+    }).then(function (msg) {
+        $.each(msg, function (i, o) {
+          texto = o.atr_lugarTrabajo;
+          $("#idTextoArea_"+idSelect).val(texto);
+        });
+    });
+    break;
+
+  case "Jornada de trabajo":
+    $.ajax({
+        url: 'getInfoTrabajadorEmpresa',
+        type: 'POST',
+        dataType: 'json',
+        data: {"idTrabajador": trabajador}
+    }).then(function (msg) {
+        $.each(msg, function (i, o) {
+          texto = o.atr_jornadaTrabajo;
+          $("#idTextoArea_"+idSelect).val(texto);
+        });
+    });
+    break;
+
+  case "Remuneraciones":
+    texto = "El empleador se compromete a remunerar los servicios del trabajador con un sueldo mensual de $301.000(trescientos un mil pesos).";
+    // texto += " gratificación mensual equivalente al 25% del total de las remuneraciones mensuales, con tope legal de 4.75 ingresos mínimos mensuales. <br><br> La remuneración será liquidada y";
+    // texto += " pagada el día 05 de cada mes calendario. Se aplicarán las deducciones de impuestos que las graven, las cotizaciones de seguridad social y otras, de conformidad a lo establecido en el artículo 58 del código del trabajo.";
+      $("#idTextoArea_"+idSelect).val(texto);
+    break;
+
+  case "Duración de la relación jurídica laboral":
+  $.ajax({
+      url: 'transformarFechaLetras',
+      type: 'POST',
+      dataType: 'json',
+      data: {"fecha": fecha}
+  }).then(function (msg) {
+    texto = "A partir de esta fecha "+msg+", de común acuerdo entre las partes, establecen que el presente contrato tendrá una duración INDEFINIDA";
+    $("#idTextoArea_"+idSelect).val(texto);
+  });
+
+    break;
+
+  case "Cláusula de vigencia":
+    texto = "A partir de esta fecha "+fecha+", de común acuerdo entre las partes, establecen que el presente contrato tendrá una duración INDEFINIDA";
     $("#idTextoArea_"+idSelect).val(texto);
 
   case "A tener en cuenta ":

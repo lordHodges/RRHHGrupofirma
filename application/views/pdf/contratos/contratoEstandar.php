@@ -235,10 +235,6 @@
 
     <br><br><br><br><br><br><br>
 
-    <!-- Firma trabajador -->
-    <!-- <div class="linea"></div> -->
-
-
 
     <!-- Firma Trabajador -->
      <div class="caja1">

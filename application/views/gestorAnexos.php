@@ -9,10 +9,10 @@
             <a class="" id="estandar" onclick="seleccionTabs('estandar')" data-toggle="tab" href="#estandarContent" role="tab" aria-controls="home" aria-selected="true">Prórroga</a>
           </li>
           <li class="nav-item">
-            <a class="" id="modificacionClausula" data-toggle="tab" href="#estandarPersonalizado" role="tab" onclick="seleccionTabs('personalizado')" aria-controls="profile" aria-selected="false">Modificación de cláusula</a>
+            <a class="" id="modificacionCualquierClausula" data-toggle="tab" href="#modificacionCualquierClausulaContent" role="tab" onclick="seleccionTabs('modificacionCualquierClausula')" aria-controls="profile" aria-selected="false">Modificación de cláusula</a>
           </li>
           <li class="nav-item">
-            <a class="" id="horas" data-toggle="tab" href="#estandarPersonalizado" role="tab" onclick="seleccionTabs('personalizado')" aria-controls="profile" aria-selected="false">Horas extras</a>
+            <a class="" id="horasExtras" data-toggle="tab" href="#horasExtrasContent" role="tab" onclick="seleccionTabs('horasExtras')" aria-controls="profile" aria-selected="false">Horas extras</a>
           </li>
         </ul>
         <div class="tab-content" id="myTabContent">
@@ -158,7 +158,7 @@
               </div>
 
             </div>
-            <!-- FIN CLÁUSULAS -->
+            <!-- FIN PRÓRROGA -->
 
 
 
@@ -199,13 +199,13 @@
 
 
 
-          <!-- TAB : FORMATO PERSONALIZADO -->
-          <div class="tab-pane fade" id="estandarPersonalizado" role="tabpanel" aria-labelledby="personalizado">
+          <!-- TAB : MODIFICACIÓN DE CLÁUSULA -->
+          <div class="tab-pane fade" id="modificacionCualquierClausulaContent" role="tabpanel" aria-labelledby="cualquierClausula">
 
             <br>
             <div id="informacionTrabajador2">
               <div class="col-md-12">
-                <h4 style="color:#2a3f54"><b>I ) INFORMACIÓN DE TRABAJADOR</b></h4>
+                <h4 style="color:#2a3f54"><b>INFORMACIÓN DE TRABAJADOR</b></h4>
               </div>
             </div>
 
@@ -215,6 +215,7 @@
                   <!-- se cargan los trabajadores -->
                 </select>
               </div>
+
               <div class="col-md-6 col-sm-12">
                 <br><label for="getSelectCiudad">CIUDAD EN QUE SE FIRMA CONTRATO</label><br>
                 <select class="custom-select" id="getSelectCiudad2">
@@ -222,38 +223,19 @@
                 </select>
               </div>
 
+
               <div id="datosTrabajador2" style="display:none">
                 <div class="col-md-6 col-sm-12">
                   <br><label for="rut">RUT</label>
                   <input type="text" class="form-control" id="rut2" disabled>
                 </div>
                 <div class="col-md-6 col-sm-12">
-                  <br><label for="direccion">Direccion</label>
-                  <input type="text" class="form-control" id="direccion2" disabled>
-                </div>
-                <div class="col-md-6 col-sm-12">
-                  <br><label for="afp">AFP</label>
-                  <input type="text" class="form-control" id="afp2" disabled>
-                </div>
-                <div class="col-md-6 col-sm-12">
                   <br><label for="ciudad">Ciudad</label>
                   <input type="text" class="form-control" id="ciudad2" disabled>
                 </div>
-                <div class="col-md-6 col-sm-12">
-                  <br><label for="prevision">Previsión</label>
-                  <input type="text" class="form-control" id="prevision2" disabled>
-                </div>
-                <div class="col-md-6 col-sm-12">
-                  <br><label for="nacionalidad">Nacionalidad</label>
-                  <input type="text" class="form-control" id="nacionalidad2" disabled>
-                </div>
-                <div class="col-md-6 col-sm-12">
-                  <br><label for="fechaNacimiento">Fecha de nacimiento</label>
-                  <input type="text" class="form-control" id="fechaNacimiento2" disabled>
-                </div>
-                <div class="col-md-6 col-sm-12">
-                  <br><label for="estadoCivil">Estado civil</label>
-                  <input type="text" class="form-control" id="estadoCivil2" disabled>
+                <div class="col-md-12 col-sm-12">
+                  <br><label for="direccion">Direccion</label>
+                  <input type="text" class="form-control" id="direccion2" disabled>
                 </div>
               </div>
             <!-- FIN INFORMACION DE TRABAJADOR -->
@@ -262,19 +244,11 @@
             <!-- EMPRESA -->
             <div id="detalleEmpresa2" style="display:none">
               <div class="col-md-12">
-                <br><h4 style="color:#2a3f54"><b>II ) EMPRESA</b></h4>
+                <br><h4 style="color:#2a3f54"><b>EMPRESA</b></h4>
               </div>
               <div class="col-md-12 col-sm-12">
                 <br><label for="empresa">Empresa</label>
                 <input type="text" class="form-control" id="empresa2" disabled>
-              </div>
-              <div class="col-md-6 col-sm-12">
-                <br><label for="cargo">Cargo</label>
-                <input type="text" class="form-control" id="cargo2" disabled>
-              </div>
-              <div class="col-md-6 col-sm-12">
-                <br><label for="jefeDirecto">Jefe(s) directo(s)</label>
-                <input type="text" class="form-control" id="jefeDirecto2" disabled>
               </div>
               <div class="col-md-6 col-sm-12">
                 <br><label for="repre_legal">Representante legal</label>
@@ -284,52 +258,201 @@
                 <br><label for="repre_rut">RUT de representante legal</label>
                 <input type="text" class="form-control" id="repre_rut2" disabled>
               </div>
+              <div class="col-md-12 col-sm-12">
+                <br><label for="jefeDirecto">Jefe(s) directo(s)</label>
+                <input type="text" class="form-control" id="jefeDirecto2" disabled>
+              </div>
+
             </div>
             <!-- FIN EMPRESA -->
 
-            <!-- REMUNERACION -->
-            <div id="remuneración2" style="display:none">
-              <div class="col-md-12">
-                <br><h4 style="color:#2a3f54"><b>III ) REMUNERACIÓN</b></h4>
-              </div>
-              <div id="getDetalleRemuneracion2">
-
-              </div>
-            </div>
-
-
-            <!-- FIN REMUNERACION -->
 
             <!-- VIGENCIA -->
-            <div id="vigencia2" style="display:none">
+            <div id="vigenciaFechaLimite2" style="display:none">
               <div class="col-md-12">
-                <br><h4 style="color:#2a3f54"><b>IV ) VIGENCIA</b></h4>
+                <br><h4 style="color:#2a3f54"><b>VIGENCIA</b></h4>
               </div>
-              <div class="col-md-6">
+              <div class="col-md-12 col-sm-12s">
                   <br>
-                  <label for="fechaInicio">Inicio de contrato</label>
-                  <input type="date" class="form-control" id="fechaInicio2" required>
-              </div>
-              <div class="col-md-6">
-                  <br>
-                  <label for="terminoContrato">Termino de contrato</label>
-                  <input type="date" class="form-control" id="terminoContrato2" required>
+                  <label for="fechaTerminoExtencion">Fecha de término</label>
+                  <input type="date" class="form-control" id="fechaTerminoExtencion2">
               </div>
             </div>
             <!-- FIN VIGENCIA -->
 
-            <!-- CONTRATO -->
-            <div id="itemsContrato2" style="display:none">
-              <div class="col-md-12">
-                <br><h4 style="color:#2a3f54"><b>V ) ITEMS DEL CONTRATO</b></h4>
+
+
+
+            <!-- CLÁUSULAS -->
+            <div id="clausulasContainer2" style="display:none;">
+
+              <div class="col-md-12 col-sm-12">
+                <br><h4 style="color:#2a3f54"><b>CLÁUSULAS A MODIFICAR</b></h4>
               </div>
-              <div class="row">
-                <div id="itemsValidos" class="col-md-12" style="margin-top:10px;">
-                  <ul id="ordenable" style="list-style-type:none">
+
+              <div class="col-md-12 col-sm-12">
+                <button type="button" class="btn modidev-btn btn-sm center" id="btnAgregarClausulaModificada2" >
+                  <i class="glyphicon glyphicon-plus"></i>
+                </button>
+              </div>
+
+              <div id="contenedorNuevasClausulas2" class="col-md-12" style="background-color:#f7f7f7;">
+
+              </div>
+
+            </div>
+            <!-- FIN PRÓRROGA -->
 
 
-                  </ul>
+
+
+            <br>
+            <button type="submit" id="btnGenerarAnexoGeneral" class="btn btn-success botonLargo" style="display:none">GENERAR ANEXO</button>
+
+
+          </div>
+
+          <!-- FIN TAB: MODIFICACIÓN DE CLÁUSULA -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+          <!-- TAB : HORAS EXTRAS -->
+          <div class="tab-pane fade" id="horasExtrasContent" role="tabpanel" aria-labelledby="horasExtras">
+
+            <br>
+            <div id="informacionTrabajador3">
+              <div class="col-md-12">
+                <h4 style="color:#2a3f54"><b>INFORMACIÓN DE TRABAJADOR</b></h4>
+              </div>
+            </div>
+
+              <div class="col-md-6 col-sm-12">
+                <br><label for="selectTrabajador3">TRABAJADOR</label><br>
+                <select class="custom-select" id="selectTrabajador3">
+                  <!-- se cargan los trabajadores -->
+                </select>
+              </div>
+              <div class="col-md-6 col-sm-12">
+                <br><label for="getSelectCiudad3">CIUDAD EN QUE SE FIRMA CONTRATO</label><br>
+                <select class="custom-select" id="getSelectCiudad3">
+                  <!-- se cargan las ciudades -->
+                </select>
+              </div>
+
+              <div id="datosTrabajador3" style="display:none">
+                <div class="col-md-6 col-sm-12">
+                  <br><label for="rut">RUT</label>
+                  <input type="text" class="form-control" id="rut3" disabled>
                 </div>
+                <div class="col-md-6 col-sm-12">
+                  <br><label for="direccion">Direccion</label>
+                  <input type="text" class="form-control" id="direccion3" disabled>
+                </div>
+                <div class="col-md-6 col-sm-12">
+                  <br><label for="afp">AFP</label>
+                  <input type="text" class="form-control" id="afp3" disabled>
+                </div>
+                <div class="col-md-6 col-sm-12">
+                  <br><label for="ciudad">Ciudad</label>
+                  <input type="text" class="form-control" id="ciudad3" disabled>
+                </div>
+                <div class="col-md-6 col-sm-12">
+                  <br><label for="prevision">Previsión</label>
+                  <input type="text" class="form-control" id="prevision3" disabled>
+                </div>
+                <div class="col-md-6 col-sm-12">
+                  <br><label for="nacionalidad">Nacionalidad</label>
+                  <input type="text" class="form-control" id="nacionalidad3" disabled>
+                </div>
+                <div class="col-md-6 col-sm-12">
+                  <br><label for="fechaNacimiento">Fecha de nacimiento</label>
+                  <input type="text" class="form-control" id="fechaNacimiento3" disabled>
+                </div>
+                <div class="col-md-6 col-sm-12">
+                  <br><label for="estadoCivil">Estado civil</label>
+                  <input type="text" class="form-control" id="estadoCivil3" disabled>
+                </div>
+              </div>
+            <!-- FIN INFORMACION DE TRABAJADOR -->
+
+
+            <!-- EMPRESA -->
+            <div id="detalleEmpresa3" style="display:none">
+              <div class="col-md-12">
+                <br><h4 style="color:#2a3f54"><b>EMPRESA</b></h4>
+              </div>
+              <div class="col-md-12 col-sm-12">
+                <br><label for="empresa">Empresa</label>
+                <input type="text" class="form-control" id="empresa3" disabled>
+              </div>
+              <div class="col-md-6 col-sm-12">
+                <br><label for="cargo">Cargo</label>
+                <input type="text" class="form-control" id="cargo3" disabled>
+              </div>
+              <div class="col-md-6 col-sm-12">
+                <br><label for="jefeDirecto">Jefe(s) directo(s)</label>
+                <input type="text" class="form-control" id="jefeDirecto3" disabled>
+              </div>
+              <div class="col-md-6 col-sm-12">
+                <br><label for="repre_legal">Representante legal</label>
+                <input type="text" class="form-control" id="repre_legal3" disabled>
+              </div>
+              <div class="col-md-6 col-sm-12">
+                <br><label for="repre_rut">RUT de representante legal</label>
+                <input type="text" class="form-control" id="repre_rut3" disabled>
+              </div>
+            </div>
+            <!-- FIN EMPRESA -->
+
+            <!-- VIGENCIA -->
+            <div id="vigenciaFechaLimite3" style="display:none">
+              <div class="col-md-12">
+                <br><h4 style="color:#2a3f54"><b>VIGENCIA</b></h4>
+              </div>
+              <div class="col-md-12 col-sm-12s">
+                  <br>
+                  <label for="fechaTermino3">Fecha de término</label>
+                  <input type="date" class="form-control" id="fechaTermino3">
+              </div>
+            </div>
+            <!-- FIN VIGENCIA -->
+
+
+
+            <!-- CONTRATO -->
+            <div id="otros3" style="display:none">
+              <div class="col-md-12">
+                <br><h4 style="color:#2a3f54"><b>INFORMACIÓN EXTRA</b></h4>
+              </div>
+              <div class="col-md-12 col-sm-12">
+                <br><label for="motivo3">Motivo de la extensión</label>
+                <textarea type="text" class="form-control" id="motivo3" placeholder="Ej: la contingencia nacional" rows="3"></textarea>
+              </div>
+              <div class="col-md-12 col-sm-12">
+                <br><label for="horasextrasdiarias">Horas extras diarias</label>
+                <input type="text" class="form-control" placeholder="Ej: 1 hora extra" id="horasextrasdiarias3">
               </div>
 
             </div>
@@ -337,10 +460,19 @@
 
 
             <br>
-            <button type="submit" id="btnGenerarContrato2" class="btn btn-success botonLargo" style="display:none">GENERAR CONTRATO</button>
+            <button type="submit" id="btnGenerarAnexoHorasExtras" class="btn btn-success botonLargo"  style="display:none">GENERAR ANEXO</button>
 
 
           </div>
+
+          <!-- FIN TAB : HORAS EXTRAS -->
+
+
+
+
+
+
+
 
         </div>
       </div>
@@ -375,6 +507,8 @@
     <!-- SweetAlert -->
     <script src="<?php echo base_url() ?>assets/js/sweetalert2@9.js" type="text/javascript"></script>
 
+
+
     <script src="<?php echo base_url() ?>assets/js/dashboard.js"></script>
 
 
@@ -384,27 +518,17 @@
       $(document).ready(function() {
         cargarElementosDeContrato();
         getSelectCiudad();
-        getSelectCiudad2();
         getItemsContrato();
+
         var elemento = document.getElementById('estandar');
         elemento.style.color = "#fafafa";
         elemento.style.backgroundColor  = "#2a3f54";
 
-        // Cambia cursor a manito cuando pasa por el div #itemsValidos
-        document.getElementById("itemsValidos").style.cursor = "pointer";
-
-
-        // permitir que todos los elementos dentro del div #ordenable se cambien de posición
-        $("#ordenable").sortable();
-
-
-        // Permite obtener el valor de cada uno de los items de contrato existentes
-        $("#boton").click(function(){
-
-    	  });
-
-
+        getSelectCiudad2();
+        getSelectCiudad3();
       });
+
+
 
 
 
@@ -417,7 +541,6 @@
           document.getElementById("datosTrabajador").style = "";
           document.getElementById("detalleEmpresa").style = "";
           // document.getElementById("btnGenerarContrato").style = "";
-
           var idTrabajador = $("#selectTrabajador1").val();
           cargarDatosEsenciales(idTrabajador);
       });
@@ -477,6 +600,15 @@
               window.open(url, '_blank');
             }else{
               if( tipoAnexoProrroga == "indefinido" ){
+                // eliminar desde la base de datos todos los elementos ingresados el día de hoy
+                $.ajax({
+                    url: 'limpiarManipularContrato',
+                    type: 'GET',
+                    dataType: 'json',
+                    data: {}
+                }).then(function (response) {
+
+                });
 
                 var fechaComienzoIndefinido = $("#fechaComienzoIndefinido").val();
 
@@ -493,6 +625,8 @@
                   if(elementoRomano == "" || elementoItem == null || elementoModificacion == ""){
                       toastr.success('Debe rellenar todos los campos');
                   }
+
+
                   $.ajax({
                       url: 'getManipularContrato',
                       type: 'POST',
@@ -503,9 +637,10 @@
                               "modificacion" : elementoModificacion
                             }
                   }).then(function (response) {
-                    var url = 'http://localhost/RRHH-FIRMA/index.php/docAnexoPasarIndefinido?trabajador='+idTrabajador+'&&fechaComienzo='+fechaComienzoIndefinido+'&&ciudadFirma='+ciudadFirma;
-                    window.open(url, '_blank');
+
                   });
+                  var url = 'http://localhost/RRHH-FIRMA/index.php/docAnexoPasarIndefinido?trabajador='+idTrabajador+'&&fechaComienzo='+fechaComienzoIndefinido+'&&ciudadFirma='+ciudadFirma;
+                  window.open(url, '_blank');
 
                 }
 
@@ -526,6 +661,17 @@
                   if(elementoRomano == "" || elementoItem == null || elementoModificacion == ""){
                       toastr.error('Debe rellenar todos los campos');
                   }
+
+                  // eliminar desde la base de datos todos los elementos ingresados el día de hoy
+                  $.ajax({
+                      url: 'limpiarManipularContrato',
+                      type: 'GET',
+                      dataType: 'json',
+                      data: {}
+                  }).then(function (response) {
+
+                  });
+
                   $.ajax({
                       url: 'getManipularContrato',
                       type: 'POST',
@@ -564,47 +710,105 @@
       // SECCION DE TAB 2
       $("#selectTrabajador2").change(function (e){
           e.preventDefault();
+          var idTrabajador = $("#selectTrabajador2").val();
+          cargarDatosEsenciales2(idTrabajador);
+          // document.getElementById("informaciónTrabajador2").style = "";
           document.getElementById("datosTrabajador2").style = "";
           document.getElementById("detalleEmpresa2").style = "";
-          document.getElementById("remuneración2").style = "";
-          document.getElementById("vigencia2").style = "";
-          document.getElementById("itemsContrato2").style = "";
-          document.getElementById("btnGenerarContrato2").style = "";
-
-          document.getElementById("estandarPersonalizado").style = "";
-
-          var idTrabajador = $("#selectTrabajador2").val();
-          cargarDatosEsenciales2(idTrabajador);
+          document.getElementById("clausulasContainer2").style = "";
+          document.getElementById("btnGenerarAnexoGeneral").style = "";
+          document.getElementById("vigenciaFechaLimite2").style = "";
       });
 
-      $("#selectTrabajador2").change(function (e){
+
+      $("body").on("click", "#btnAgregarClausulaModificada2", function(e) {
           e.preventDefault();
-          var idTrabajador = $("#selectTrabajador2").val();
-          cargarDatosEsenciales2(idTrabajador);
+          agregarNuevaClausulaParaModificarGeneral();
       });
 
-      $("body").on("click", "#btnGenerarContrato2", function(e) {
-          e.preventDefault();
+
+      $("body").on("click", "#btnGenerarAnexoGeneral", function(e) {
           var idTrabajador = $("#selectTrabajador2").val();
-          var fechaInicio = $("#fechaInicio2").val();
-          var fechaTermino = $("#terminoContrato2").val();
-          var ciudadFirma = $("#ciudad2").val();
-          if(fechaInicio == "" || fechaInicio == null || fechaTermino == "" || fechaTermino == null){
-            toastr.error("Debe llenar los campos de fecha");
-          }else{
-            var arrayItems = [];
-            $("#ordenable").each(function(){
-      	       $(".itemContrato").each(function(){
-                 arrayItems.push($(this).text());
-            	 });
+          var ciudadFirma = $('#getSelectCiudad2 option:selected').html();
+          var fecha = $("#fechaTerminoExtencion2").val();
+
+          // eliminar desde la base de datos todos los elementos ingresados el día de hoy
+          $.ajax({
+              url: 'limpiarManipularContrato',
+              type: 'GET',
+              dataType: 'json',
+              data: {}
+          }).then(function (response) {
+
+          });
+
+
+          var contador = cntClausulasModificadas();
+          alert("cantidad de clausulas modificadas: "+contador);
+          var array = [];
+          var fecha;
+
+          for (var i = 0; i < contador; i++) {
+            // Armo un array solo con los datos de 1 clausula
+            var elementoRomano = $("#idNumeroRomano_"+i).val();
+            var elementoItem = $("#idClausula_"+i).val();
+            var elementoModificacion = $("#idTextoArea_"+i).val();
+
+            if(elementoRomano == "" || elementoItem == null || elementoModificacion == ""){
+                toastr.success('Debe rellenar todos los campos');
+            }
+
+
+            $.ajax({
+                url: 'getManipularContrato',
+                type: 'POST',
+                dataType: 'json',
+                data: {"idTrabajador": idTrabajador,
+                        "numRomano" : elementoRomano,
+                        "item" : elementoItem,
+                        "modificacion" : elementoModificacion
+                      }
+            }).then(function (response) {
+
             });
-            var url = 'http://localhost/RRHH-FIRMA/index.php/docContratoPersonalizado?trabajador='+idTrabajador+'&&fechaInicio='+fechaInicio+'&&fechaTermino='+fechaTermino+'&&ciudadFirma='+ciudadFirma+'&&arrayItems='+arrayItems;
+            var url = 'http://localhost/RRHH-FIRMA/index.php/docAnexoModificacionClausula?trabajador='+idTrabajador+'&&fechaComienzo='+fecha+'&&ciudadFirma='+ciudadFirma;
             window.open(url, '_blank');
-        }
-
+          }
       });
       // FIN SECCION TAB 2
 
+
+
+
+
+
+
+
+
+      // SECCION DE TAB 3
+      $("#selectTrabajador3").change(function (e){
+          e.preventDefault();
+          var idTrabajador = $("#selectTrabajador3").val();
+          cargarDatosEsenciales3(idTrabajador);
+          document.getElementById("datosTrabajador3").style = "";
+          document.getElementById("detalleEmpresa3").style = "";
+          document.getElementById("vigenciaFechaLimite3").style = "";
+          document.getElementById("otros3").style = "";
+          document.getElementById("btnGenerarAnexoHorasExtras").style = "";
+      });
+
+
+      $("body").on("click", "#btnGenerarAnexoHorasExtras", function(e) {
+          var idTrabajador = $("#selectTrabajador3").val();
+          var ciudadFirma = $('#getSelectCiudad3 option:selected').html();
+          var motivo = $("#motivo3").val();
+          var horasextras = $("#horasextrasdiarias3").val();
+          var fechaLimite = $("#fechaTermino3").val();
+
+          var url = 'http://localhost/RRHH-FIRMA/index.php/docAnexoHorasExtras?trabajador='+idTrabajador+'&&motivo='+motivo+'&&ciudadFirma='+ciudadFirma+'&&horas='+horasextras+'&&fechaLimite='+fechaLimite;
+          window.open(url, '_blank');
+      });
+      // FIN SECCION TAB 3
 
 
 
