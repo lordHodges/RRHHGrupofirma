@@ -598,7 +598,7 @@ function rellenarItemsProrrogaLicitacion(select){
 
   case "Duración de la relación jurídica laboral":
     texto = "El presente contrato tendrá una duración hasta la fecha de vencimiento de la licitación denominada .... , identificada con numero de ";
-    texto += "ID: xxxx-x-xxxx , para la cual el trabajador ejerce sus funciones.\n\nSEX";
+    texto += "ID: xxxx-x-xxxx , para la cual el trabajador ejerce sus funciones.";
     $("#idTextoArea_"+idSelect).val(texto);
     break;
 
