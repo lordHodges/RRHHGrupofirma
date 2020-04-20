@@ -605,7 +605,7 @@ class  PDFController extends CI_Controller {
 		$trabajador = $this->input->get("trabajador");
 		$motivo = $this->input->get("motivo");
 		$ciudadFirma = $this->input->get("ciudadFirma");
-		$horasextras = $this->input->get("horasextras");
+		$horasextras = $this->input->get("horas");
 		$fechaTermino = $this->input->get("fechaLimite");
 
 		$fechaTermino = explode( '-', $fechaTermino );
