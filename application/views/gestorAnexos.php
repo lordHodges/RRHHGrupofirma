@@ -744,7 +744,7 @@
 
 
           var contador = cntClausulasModificadas();
-          alert("cantidad de clausulas modificadas: "+contador);
+          // alert("cantidad de clausulas modificadas: "+contador);
           var array = [];
           var fecha;
 
