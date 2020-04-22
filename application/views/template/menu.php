@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 	  <!-- <link rel="icon" href="images/#" type="image/ico" /> -->
 
-    <title>FIRMA DE ABOGADOS - RRHH</title>
+    <title>FIRMA DE ABOGADOS</title>
 
     <!-- <style media="screen">
         #sortable { list-style-type: none; margin: 0; padding: 0; width: 60%; }

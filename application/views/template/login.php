@@ -14,7 +14,7 @@
 		<link rel="shortcut icon" type="image/x-icon" href="<?php echo base_url() ?>assets/login/images/brand/favicon.ico" />
 
 		<!-- Title -->
-		<title>Medz - Medical Directory HTML Template</title>
+		<title>FIRMA DE ABOGADOS</title>
 
 		<!-- Bootstrap Css -->
 		<link href="<?php echo base_url() ?>assets/login/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
@@ -53,29 +53,29 @@
 						<div class="col-xl-4 col-md-12 col-md-12 d-block mx-auto">
 							<div class="card mb-0">
 								<div class="card-header">
-									<h3 class="card-title">Login to your Account</h3>
+									<h3 class="card-title">Iniciar sesión</h3>
 								</div>
 								<div class="card-body">
 									<div class="form-group">
-										<label class="form-label text-dark">Email address</label>
-										<input type="email" class="form-control" placeholder="Enter email">
+										<label class="form-label text-dark">Correo electrónico</label>
+										<input type="email" class="form-control" id="correoGrupoFirma" placeholder="ejemplo@grupofirma.cl">
 									</div>
 									<div class="form-group">
-										<label class="form-label text-dark">Password</label>
-										<input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+										<label class="form-label text-dark">Clave</label>
+										<input type="password" class="form-control"  id="claveCuenta">
 									</div>
-									<div class="form-group">
+									<!-- <div class="form-group">
 										<label class="custom-control custom-checkbox">
 											<a href="forgot-password.html" class="float-right small text-dark mt-1">I forgot password</a>
 											<input type="checkbox" class="custom-control-input">
 											<span class="custom-control-label text-dark">Remember me</span>
 										</label>
-									</div>
+									</div> -->
 									<div class="form-footer mt-2">
-										<a href="documentation.html" class="btn btn-primary btn-block">SignIn</a>
+										<button id="btnIniciarSesion" class="btn btn-primary btn-block">Ingresar</button>
 									</div>
 									<div class="text-center  mt-3 text-dark">
-										Don't have account yet? <a href="register.html">SignUp</a>
+										Si no tienes una cuenta el administrador debe crearla.
 									</div>
 								</div>
 							</div>
@@ -114,6 +114,25 @@
 
 		<!-- Custom Js-->
 		<script src="<?php echo base_url() ?>assets/login/js/admin-custom.js"></script>
+
+
+		<script type="text/javascript">
+				$("body").on("click", "#btnIniciarSesion", function(e) {
+					var correo = $("#correoGrupoFirma").val();
+					var clave = $("#claveCuenta").val();
+
+					$.ajax({
+							url: 'iniciarSesion',
+							type: 'POST',
+							dataType: 'json',
+							data: { "correo":correo, "clave":clave }
+					}).then(function (msg) {
+
+					});
+				});
+		</script>
+
+
 
 	</body>
 </html>

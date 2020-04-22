@@ -1,0 +1,49 @@
+Módulos:
+  - Mantenedor de cargos
+  - Mantenedor de ciudades
+  - Mantenedor de empresas
+  - Mantenedor de estado civil
+  - Mantenedor de estados de contrato
+  - Mantenedor de nacionalidades
+  - Mantenedor de previsión de salud
+  - Mantenedor de previsión
+  - Mantenedor de sucursales
+  - Gestor de trabajadores
+  - Requisitos minimos de perfil ocupacional
+  - Funciones de un perfil ocupacional
+  - Competencias y características de perfil ocupacional
+  - Concimientos basicos de perfil ocupacional
+  - Otros antecedentes de perfil ocupacional
+  - Documentos contratos
+  - Documentos transferencias
+  - Documentos cartas de amonestación
+  - Documentos perfiles ocupacionales
+  - Generar anexo
+  - Generar contrato
+  - Historial de trabajadores
+  - Dashboard
+
+Permisos:
+  - Dashboard: Cantidad tipo contrato / Transferencias por empresa / Contratos por vencer
+  - Mantenedor de cargos: Ver / Editar / Remuneracion / Crear / Exportar
+  - Mantenedor de ciudades: Ver / Crear / Exportar
+  - Mantenedor de empresas: Ver / Editar / Crear / Exportar
+  - Mantenedor de estado civil: Ver / Crear / Exportar
+  - Mantenedor de estados de contrato: Ver / Editar / Crear / Exportar
+  - Mantenedor de nacionalidades: Ver / Editar / Crear / Exportar
+  - Mantenedor de previsión de salud: Ver / Editar / Crear / Exportar
+  - Mantenedor de previsión: Ver / Editar / Crear / Exportar
+  - Mantenedor de sucursales: Ver / Crear / Exportar
+  - Gestor de trabajadores: Ver / Editar / Crear / Exportar
+  - Requisitos minimos de perfil ocupacional: Ver / Crear / Eliminar
+  - Funciones de un perfil ocupacional: Ver / Crear / Eliminar
+  - Competencias y características de perfil ocupacional : Ver / Crear / Eliminar
+  - Concimientos basicos de perfil ocupacional : Ver / Crear / Eliminar
+  - Otros antecedentes de perfil ocupacional : Ver / Crear / Eliminar
+  - Documentos contratos: Ver / Subir / Descargar
+  - Documentos transferencias: Ver / Subir / Descargar
+  - Documentos cartas de amonestación: Ver / Subir / Descargar
+  - Documentos perfiles ocupacionales: Ver / Generar PDF
+  - Generar anexo: PDF Prórroga / PDF Modificacion clausula / PDF Horas extras
+  - Generar contrato: PDF Formato estandar / PDF Formato personalizado
+  - Historial de trabajadores: Cronologico / Contratos / Anexos / Transferencias / Cartas de amonestacion

@@ -119,3 +119,49 @@ INSERT INTO `fa_requisitominimo` (`cp_requisitominimo`, `atr_descripcion`) VALUE
 
 INSERT INTO `fa_items_contrato` (`cp_itemContrato`, `atr_nombre`) VALUES (NULL, 'Partes'), (NULL, 'Naturaleza de los servicios'), (NULL, 'Lugar de prestación de servicios'), (NULL, 'Jornada de trabajo'), (NULL, 'Remuneraciones'), (NULL, 'Duración de la relación jurídica laboral'), (NULL, 'Cláusula de vigencia'), (NULL, 'A tener en cuenta ');
 INSERT INTO `fa_items_contrato` (`cp_itemContrato`, `atr_nombre`) VALUES (NULL, 'Cláusula de confidencialidad'), (NULL, 'Propiedad intelectual');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+INSERT INTO `fa_perfil` (`cp_perfil`, `atr_nombre`) VALUES (NULL, 'Administrador'), (NULL, 'Finanzas'), (NULL, 'Recursos Humanos');
+
+
+INSERT INTO `fa_modulo` (`cp_modulo`, `atr_nombre`) VALUES (NULL, 'Mantenedor de cargos'), (NULL, 'Mantenedor de ciudades'), (NULL, 'Mantenedor de empresas'), (NULL, 'Mantenedor de estados civiles'), (NULL, 'Mantenedor de estados de contrato');
+INSERT INTO `fa_modulo` (`cp_modulo`, `atr_nombre`) VALUES (NULL, 'Mantenedor de sucursales'), (NULL, 'Gestor de trabajadores'), (NULL, 'Mantenedor de nacionalidades'), (NULL, 'Mantenedor de previsiones de salud'), (NULL, 'Mantenedor de previsiones');
+INSERT INTO `fa_modulo` (`cp_modulo`, `atr_nombre`) VALUES (NULL, 'Requisitos mínimos de perfil ocupacional'), (NULL, 'Funciones de perfil ocupacional'), (NULL, 'Competencias y características de perfil ocupacional'), (NULL, 'Conocimientos básicos de perfil ocupacional'), (NULL, 'Otros antecedentes de perfil ocupacional');
+INSERT INTO `fa_modulo` (`cp_modulo`, `atr_nombre`) VALUES (NULL, 'Documentos de contratos'), (NULL, 'Documentos de transferencias'), (NULL, 'Documentos de cartas de amonestación'), (NULL, 'Documentos de perfiles ocupacionales');
+INSERT INTO `fa_modulo` (`cp_modulo`, `atr_nombre`) VALUES (NULL, 'Generar anexo'), (NULL, 'Generar contrato'), (NULL, 'Historial de trabajadores'), (NULL, 'Dashboard');
+
+INSERT INTO `fa_permiso` (`cp_permiso`, `atr_nombre`, `atr_descripcion`) VALUES (NULL, 'Ver', 'Ver listado'), (NULL, 'Editar', 'Editar información'), (NULL, 'Editar remuneración', 'Editar datos de remuneración'), (NULL, 'Crear', 'Crear'), (NULL, 'Exportar', 'Exportar listado');
+INSERT INTO `fa_permiso` (`cp_permiso`, `atr_nombre`, `atr_descripcion`) VALUES (NULL, 'Eliminar', 'Eliminar información');
+INSERT INTO `fa_permiso` (`cp_permiso`, `atr_nombre`, `atr_descripcion`) VALUES (NULL, 'Subir', 'Subir documento'), (NULL, 'Descargar', 'Descargar documento'), (NULL, 'Generar PDF', 'Generar anexo por prórroga'), (NULL, 'Generar PDF', 'Generar anexo por modificación de cláusula'), (NULL, 'Generar PDF', 'Generar anexo por horas extras');
+INSERT INTO `fa_permiso` (`cp_permiso`, `atr_nombre`, `atr_descripcion`) VALUES (NULL, 'Generar PDF', 'Generar contrato estándar'), (NULL, 'Generar PDF', 'Generar contrato personalizado'), (NULL, 'Ver', 'Historial cronológico'), (NULL, 'Ver', 'Historial de contratos'), (NULL, 'Ver', 'Historial de anexos');
+INSERT INTO `fa_permiso` (`cp_permiso`, `atr_nombre`, `atr_descripcion`) VALUES (NULL, 'Ver', 'Historial de transferencias'), (NULL, 'Ver', 'Historial de cartas de amonestación');
+
+INSERT INTO `fa_usuario` (`cp_usuario`, `atr_nombre`, `atr_correo`, `atr_clave`, `cf_perfil`) VALUES (NULL, 'Administrador', 'administrador@grupofirma.cl', '1588', '1');

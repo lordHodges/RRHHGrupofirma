@@ -334,3 +334,79 @@ create table fa_manipularAnexos(
     constraint pk_manipularAnexos primary key(cp_manipular),
     constraint fk_manipularAnexos_trabajador foreign key(cf_trabajador) references fa_trabajador(cp_trabajador)
 );
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+create table fa_perfil(
+  cp_perfil int auto_increment,
+  atr_nombre varchar(100),
+  constraint pk_perfil primary key(cp_perfil)
+);
+
+create table fa_modulo(
+  cp_modulo int auto_increment,
+  atr_nombre varchar(100),
+  constraint pk_modulo primary key(cp_modulo)
+);
+
+create table fa_permiso(
+  cp_permiso int auto_increment,
+  atr_nombre varchar(100),
+  atr_descripcion varchar(100),
+  constraint pk_permiso primary key(cp_permiso)
+);
+
+create table fa_usuario(
+  cp_usuario int auto_increment,
+  atr_nombre varchar(100),
+  atr_correo varchar(100) unique,
+  atr_clave varchar(100),
+  cf_perfil int,
+  constraint pk_usuario primary key(cp_usuario),
+  constraint fk_usuario_perfil foreign key(cf_perfil) references fa_perfil(cp_perfil)
+);
+
+create table fa_existencia_permiso(
+  cp_existencia_permiso int auto_increment,
+  cf_modulo int,
+  cf_permiso int,
+  constraint pk_existencia_permiso primary key(cp_existencia_permiso),
+  constraint fk_existencia_permiso_modulo foreign key(cf_modulo) references fa_modulo(cp_modulo),
+  constraint fk_existencia_permiso_permiso foreign key(cf_permiso) references fa_permiso(cp_permiso)
+);
+
+create table fa_permiso_usuario(
+  cp_permiso_usuario int auto_increment,
+  cf_existencia_permiso int,
+  cf_usuario int,
+  constraint pk_permiso_usuario primary key(cp_permiso_usuario),
+  constraint fk_permiso_usuario_existencia_permiso foreign key(cf_existencia_permiso) references fa_existencia_permiso(cp_existencia_permiso),
+  constraint fk_permiso_usuario_usuario foreign key(cf_usuario) references fa_usuario(cp_usuario)
+);
+
+create table fa_permiso_perfil(
+  cp_permiso_perfil int auto_increment,
+  cf_existencia_permiso int,
+  cf_perfil int,
+  constraint pk_permiso_perfil primary key(cp_permiso_perfil),
+  constraint fk_permiso_perfil_existencia_permiso foreign key(cf_existencia_permiso) references fa_existencia_permiso(cp_existencia_permiso),
+  constraint fk_permiso_perfil_perfil foreign key(cf_perfil) references fa_perfil(cp_perfil)
+);
