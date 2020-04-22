@@ -163,5 +163,30 @@ INSERT INTO `fa_permiso` (`cp_permiso`, `atr_nombre`, `atr_descripcion`) VALUES 
 INSERT INTO `fa_permiso` (`cp_permiso`, `atr_nombre`, `atr_descripcion`) VALUES (NULL, 'Subir', 'Subir documento'), (NULL, 'Descargar', 'Descargar documento'), (NULL, 'Generar PDF', 'Generar anexo por prórroga'), (NULL, 'Generar PDF', 'Generar anexo por modificación de cláusula'), (NULL, 'Generar PDF', 'Generar anexo por horas extras');
 INSERT INTO `fa_permiso` (`cp_permiso`, `atr_nombre`, `atr_descripcion`) VALUES (NULL, 'Generar PDF', 'Generar contrato estándar'), (NULL, 'Generar PDF', 'Generar contrato personalizado'), (NULL, 'Ver', 'Historial cronológico'), (NULL, 'Ver', 'Historial de contratos'), (NULL, 'Ver', 'Historial de anexos');
 INSERT INTO `fa_permiso` (`cp_permiso`, `atr_nombre`, `atr_descripcion`) VALUES (NULL, 'Ver', 'Historial de transferencias'), (NULL, 'Ver', 'Historial de cartas de amonestación');
+INSERT INTO `fa_permiso` (`cp_permiso`, `atr_nombre`, `atr_descripcion`) VALUES (NULL, 'Dashboard', 'Cantidad de contratos por tipo'), (NULL, 'Dashboard', 'Cantidad de transferencias por empresa'), (NULL, 'Dashboard', 'Listado de contratos por vencer');
 
 INSERT INTO `fa_usuario` (`cp_usuario`, `atr_nombre`, `atr_correo`, `atr_clave`, `cf_perfil`) VALUES (NULL, 'Administrador', 'administrador@grupofirma.cl', '1588', '1');
+
+INSERT INTO `fa_existencia_permiso` (`cp_existencia_permiso`, `cf_modulo`, `cf_permiso`) VALUES (NULL, '1', '1'), (NULL, '1', '2'), (NULL, '1', '3'), (NULL, '1', '4'), (NULL, '1', '5');
+INSERT INTO `fa_existencia_permiso` (`cp_existencia_permiso`, `cf_modulo`, `cf_permiso`) VALUES (NULL, '2', '1'), (NULL, '2', '4'), (NULL, '2', '5');
+INSERT INTO `fa_existencia_permiso` (`cp_existencia_permiso`, `cf_modulo`, `cf_permiso`) VALUES (NULL, '3', '14'), (NULL, '3', '2'), (NULL, '3', '4'), (NULL, '3', '5');
+INSERT INTO `fa_existencia_permiso` (`cp_existencia_permiso`, `cf_modulo`, `cf_permiso`) VALUES (NULL, '4', '1'), (NULL, '4', '4'), (NULL, '4', '5');
+INSERT INTO `fa_existencia_permiso` (`cp_existencia_permiso`, `cf_modulo`, `cf_permiso`) VALUES (NULL, '5', '1'), (NULL, '5', '2'), (NULL, '5', '4'), (NULL, '5', '5');
+INSERT INTO `fa_existencia_permiso` (`cp_existencia_permiso`, `cf_modulo`, `cf_permiso`) VALUES (NULL, '6', '1'), (NULL, '6', '2'), (NULL, '6', '4'), (NULL, '6', '5');
+INSERT INTO `fa_existencia_permiso` (`cp_existencia_permiso`, `cf_modulo`, `cf_permiso`) VALUES (NULL, '7', '1'), (NULL, '7', '2'), (NULL, '7', '4'), (NULL, '7', '5');
+INSERT INTO `fa_existencia_permiso` (`cp_existencia_permiso`, `cf_modulo`, `cf_permiso`) VALUES (NULL, '8', '1'), (NULL, '8', '2'), (NULL, '8', '4'), (NULL, '8', '5');
+INSERT INTO `fa_existencia_permiso` (`cp_existencia_permiso`, `cf_modulo`, `cf_permiso`) VALUES (NULL, '9', '1'), (NULL, '9', '4'), (NULL, '9', '5');
+INSERT INTO `fa_existencia_permiso` (`cp_existencia_permiso`, `cf_modulo`, `cf_permiso`) VALUES (NULL, '10', '1'), (NULL, '10', '2'), (NULL, '10', '4'), (NULL, '10', '5');
+INSERT INTO `fa_existencia_permiso` (`cp_existencia_permiso`, `cf_modulo`, `cf_permiso`) VALUES (NULL, '11', '1'), (NULL, '11', '4'), (NULL, '11', '6');
+INSERT INTO `fa_existencia_permiso` (`cp_existencia_permiso`, `cf_modulo`, `cf_permiso`) VALUES (NULL, '12', '1'), (NULL, '12', '4'), (NULL, '12', '6');
+INSERT INTO `fa_existencia_permiso` (`cp_existencia_permiso`, `cf_modulo`, `cf_permiso`) VALUES (NULL, '13', '1'), (NULL, '13', '4'), (NULL, '13', '6');
+INSERT INTO `fa_existencia_permiso` (`cp_existencia_permiso`, `cf_modulo`, `cf_permiso`) VALUES (NULL, '14', '1'), (NULL, '14', '4'), (NULL, '14', '6');
+INSERT INTO `fa_existencia_permiso` (`cp_existencia_permiso`, `cf_modulo`, `cf_permiso`) VALUES (NULL, '15', '1'), (NULL, '15', '4'), (NULL, '15', '6');
+INSERT INTO `fa_existencia_permiso` (`cp_existencia_permiso`, `cf_modulo`, `cf_permiso`) VALUES (NULL, '16', '1'), (NULL, '16', '7'), (NULL, '16', '8');
+INSERT INTO `fa_existencia_permiso` (`cp_existencia_permiso`, `cf_modulo`, `cf_permiso`) VALUES (NULL, '17', '1'), (NULL, '17', '7'), (NULL, '17', '8');
+INSERT INTO `fa_existencia_permiso` (`cp_existencia_permiso`, `cf_modulo`, `cf_permiso`) VALUES (NULL, '18', '1'), (NULL, '18', '7'), (NULL, '18', '8');
+INSERT INTO `fa_existencia_permiso` (`cp_existencia_permiso`, `cf_modulo`, `cf_permiso`) VALUES (NULL, '19', '1'), (NULL, '19', '19');
+INSERT INTO `fa_existencia_permiso` (`cp_existencia_permiso`, `cf_modulo`, `cf_permiso`) VALUES (NULL, '20', '9'), (NULL, '20', '10'), (NULL, '20', '11');
+INSERT INTO `fa_existencia_permiso` (`cp_existencia_permiso`, `cf_modulo`, `cf_permiso`) VALUES (NULL, '21', '12'), (NULL, '21', '13');
+INSERT INTO `fa_existencia_permiso` (`cp_existencia_permiso`, `cf_modulo`, `cf_permiso`) VALUES (NULL, '22', '14'), (NULL, '22', '15'), (NULL, '22', '16'), (NULL, '22', '17'), (NULL, '22', '18');
+INSERT INTO `fa_existencia_permiso` (`cp_existencia_permiso`, `cf_modulo`, `cf_permiso`) VALUES (NULL, '23', '20'), (NULL, '23', '21'), (NULL, '23', '22');

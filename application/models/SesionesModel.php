@@ -16,6 +16,14 @@ class SesionesModel extends CI_Model {
       return $this->db->get()->result();
     }
 
+    public function listadoPermisos($usuario) {
+      $this->db->select("pu.cf_existencia_permiso");
+      $this->db->from('fa_permiso_usuario pu');
+      $this->db->where('pu.cf_usuario',$usuario);
+      return $this->db->get()->result();
+    }
+
+
 
 
 

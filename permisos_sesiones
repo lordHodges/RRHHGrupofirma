@@ -24,7 +24,6 @@ Módulos:
   - Dashboard
 
 Permisos:
-  - Dashboard: Cantidad tipo contrato / Transferencias por empresa / Contratos por vencer
   - Mantenedor de cargos: Ver / Editar / Remuneracion / Crear / Exportar
   - Mantenedor de ciudades: Ver / Crear / Exportar
   - Mantenedor de empresas: Ver / Editar / Crear / Exportar
@@ -47,3 +46,4 @@ Permisos:
   - Generar anexo: PDF Prórroga / PDF Modificacion clausula / PDF Horas extras
   - Generar contrato: PDF Formato estandar / PDF Formato personalizado
   - Historial de trabajadores: Cronologico / Contratos / Anexos / Transferencias / Cartas de amonestacion
+  - Dashboard: Cantidad tipo contrato / Transferencias por empresa / Contratos por vencer
