@@ -130,6 +130,7 @@ $permisos =  $data['permisos'];
                         <li><a href="<?php echo base_url() ?>index.php/inicioSalud">Previsión de salud</a></li>
                         <li><a href="<?php echo base_url() ?>index.php/inicioPrevision">Previsión</a></li>
                         <li><a href="<?php echo base_url() ?>index.php/inicioSucursales">Sucursales</a></li>
+                        <li><a href="<?php echo base_url() ?>index.php/inicioUsuarios">Usuarios</a></li>
                       </ul>
                     </li>
 

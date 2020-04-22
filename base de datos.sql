@@ -379,6 +379,7 @@ create table fa_usuario(
   atr_nombre varchar(100),
   atr_correo varchar(100) unique,
   atr_clave varchar(100),
+  atr_activo char(1),
   cf_perfil int,
   constraint pk_usuario primary key(cp_usuario),
   constraint fk_usuario_perfil foreign key(cf_perfil) references fa_perfil(cp_perfil)

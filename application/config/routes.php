@@ -4,7 +4,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $route['default_controller'] = 'Welcome/index';
 $route['login'] = 'Welcome/index';
 $route['iniciarSesion'] = 'SesionesController/iniciarSesion';
-// $route['permisosUsuario'] = 'SesionesController/permisosUsuario';
 $route['cerrarSesion'] = 'SesionesController/cerrarSesion';
 
 // DASHBOARD
@@ -134,8 +133,13 @@ $route['docContratoPersonalizado'] = 'PDFController/view_contratoPersonalizado';
     $route['inicioEstadoContrato'] = 'EstadoContratoController/index';
     $route['inicioSalud'] = 'PrevisionesController/index';
     $route['inicioEmpresa'] = 'EmpresaController/index';
+    $route['inicioUsuarios'] = 'SesionesController/inicioUsuarios';
 
-
+    //usuarios
+    $route['getListadoUsuarios'] = 'SesionesController/getListadoUsuarios';
+    $route['getPerfiles'] = 'SesionesController/getSelectPerfiles';
+    $route['addUsuario'] = 'SesionesController/agregarUsuario';
+    $route['cambiarEstado'] = 'SesionesController/cambiarEstado';
 
     //ciudades
     $route['getListadoCiudades'] = 'CiudadController/getListadoCiudades';
