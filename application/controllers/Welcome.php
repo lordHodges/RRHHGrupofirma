@@ -18,8 +18,7 @@ class Welcome extends CI_Controller {
 
 	public function index()
 	{
-		// $this->load->view('template/menu');
-		// $this->load->view('dashboard');
+		$this->session->sess_destroy();
 		$this->load->view('template/login');
 	}
 

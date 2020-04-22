@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<?php $usuario = $this->session->userdata("usuario"); ?>
 <html lang="en">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -66,7 +67,7 @@
                 </div>
                 <div class="profile_info">
                   <span>Bienvenido</span>
-                  <h2>PATRICIO ORELLANA</h2>
+                  <h2><?php echo $usuario[0]->atr_nombre ?></h2>
                 </div>
               </div>
               <!-- /menu profile quick info -->
@@ -161,12 +162,11 @@
               <ul class=" navbar-right">
                 <li class="nav-item dropdown open" style="padding-left: 15px;">
                   <a href="javascript:;" class="user-profile dropdown-toggle" aria-haspopup="true" id="navbarDropdown" data-toggle="dropdown" aria-expanded="false">
-                    <img src="<?php echo base_url() ?>assets/production/images/img.jpg" alt="">ORELLANA MENESES SpA
+                    <img src="<?php echo base_url() ?>assets/production/images/img.jpg" alt=""><?php echo $usuario[0]->atr_nombre ?>
                   </a>
                   <div class="dropdown-menu dropdown-usermenu pull-right" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item"  href="javascript:;"> <i class="fa fa-user pull-right"></i>Mi perfil</a>
-
-                    <a class="dropdown-item"  href="login.html"><i class="fa fa-sign-out pull-right"></i> Cerrar Sesión</a>
+                    <!-- <a class="dropdown-item"  href="javascript:;"> <i class="fa fa-user pull-right"></i>Mi perfil</a> -->
+                    <a class="dropdown-item"  href="<?php echo base_url() ?>index.php/login"><i class="fa fa-sign-out pull-right"></i> Cerrar Sesión</a>
                   </div>
                 </li>
 

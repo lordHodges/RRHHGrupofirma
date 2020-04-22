@@ -2,7 +2,9 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 $route['default_controller'] = 'Welcome/index';
+$route['login'] = 'Welcome/index';
 $route['iniciarSesion'] = 'SesionesController/iniciarSesion';
+$route['cerrarSesion'] = 'SesionesController/cerrarSesion';
 
 // DASHBOARD
 $route['dashboard'] = 'DashboardController/index';

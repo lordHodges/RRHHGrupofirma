@@ -112,6 +112,9 @@
 		<script src="<?php echo base_url() ?>assets/login/plugins/counters/counterup.min.js"></script>
 		<script src="<?php echo base_url() ?>assets/login/plugins/counters/waypoints.min.js"></script>
 
+		<!-- Toast -->
+    <script src="<?php echo base_url() ?>assets/js/toastr.min.js" type="text/javascript"></script>
+
 		<!-- Custom Js-->
 		<script src="<?php echo base_url() ?>assets/login/js/admin-custom.js"></script>
 
@@ -127,7 +130,11 @@
 							dataType: 'json',
 							data: { "correo":correo, "clave":clave }
 					}).then(function (msg) {
-
+						if (msg == 'ok') {
+							window.location="http://localhost/RRHH-FIRMA/index.php/dashboard";
+						}else {
+							toastr.error("Datos incorrectos");
+						}
 					});
 				});
 		</script>
