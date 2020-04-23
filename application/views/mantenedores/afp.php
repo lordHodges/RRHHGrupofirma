@@ -1,3 +1,20 @@
+<?php
+$data = $this->session->userdata("datos");
+$usuario =  $data['usuario'];
+$permisos =  $data['permisos'];
+?>
+
+<?php
+$view_verPrevision = 0; $view_crearPrevision = 0; $view_exportarPrevision = 0; $view_editarPrevision =  0;
+foreach ($permisos as $key => $value) {
+  if ($value->cf_existencia_permiso == "24") { $view_verPrevision = "1"; } else
+  if ($value->cf_existencia_permiso == "26") { $view_crearPrevision = "1"; } else
+  if ($value->cf_existencia_permiso == "25") { $view_editarPrevision = "1"; } else
+  if ($value->cf_existencia_permiso == "27") { $view_exportarPrevision = "1"; }
+}
+
+if($usuario[0]->atr_activo == "1" ) { ?>
+
 <div class="right_col" role="main">
     <!-- Contenedor principal -->
     <div class="x_content">
@@ -7,8 +24,12 @@
     <div class="row">
         <div class="x_panel">
             <div class="x_content">
+              <h3 class="text-center">PREVISIONES DE SALUD</h3><br>
+              <?php if ( $view_crearPrevision == 1 ) {  ?>
                 <button type="button" class="btn modidev-btn" data-toggle="modal" data-target="#modalCrearAFP" style="margin-bottom:20px;">INGRESAR PREVISIÓN</button>
+              <?php } ?>
 
+              <?php if ($view_verPrevision == "1") {  ?>
                 <table id="tabla_AFP" class="table table-striped table-bordered table-hover dataTables-AFP" style="margin-top:20px;">
                     <thead >
                         <tr style="width:100%;">
@@ -21,6 +42,7 @@
 
                     </tbody>
                 </table>
+               <?php } ?>
 
             </div>
         </div>
@@ -84,6 +106,9 @@
     </div>
     <!-- /Modal de editar -->
 
+    <label id="permisoExportar" style="display:none">no</label>
+    <label id="permisoEditar" style="display:none">no</label>
+
 
 
 
@@ -106,75 +131,18 @@
     <script>
       $(document).ready(function() {
 
-          $('.dataTables-AFP').DataTable({
-              "autoWidth": false,
-                language: {
-                    "sProcessing": "Procesando...",
-                    "sLengthMenu": "Registros _MENU_ ",
-                    "sZeroRecords": "No se encontraron resultados",
-                    "sEmptyTable": "Ningún dato disponible en esta tabla",
-                    "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-                    "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
-                    "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
-                    "sInfoPostFix": "",
-                    "sSearch": "Buscar:",
-                    "sUrl": "",
-                    "sInfoThousands": ",",
-                    "sLoadingRecords": "Cargando...",
-                    "oPaginate": {
-                        "sFirst": "Primero",
-                        "sLast": "Último",
-                        "sNext": "Siguiente",
-                        "sPrevious": "Anterior"
-                    },
-                    "oAria": {
-                        "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
-                        "sSortDescending": ": Activar para ordenar la columna de manera descendente"
-                    },
-                    "buttons": {
-                        "copy": "Copiar",
-                        "colvis": "Visibilidad"
-                    }
-                },
-                "ajax": {
-                    url: "http://localhost/RRHH-FIRMA/index.php/getListadoAFP",
-                    type: 'GET'
-                },
-                "columnDefs": [{
-                  "targets": 2,
-                  "data": null,
-                  "defaultContent": '<button type="button" id="btnVerAFP" class="btn btn-info" data-toggle="modal" data-target="#modaleditarAFP"><i class="glyphicon glyphicon-pencil"></i></button>'
-                }
-              ],dom: '<"html5buttons"B>lTfgitp',
-                  buttons: [{
-                          extend: 'copy'
-                      },
-                      {
-                          extend: 'csv'
-                      },
-                      {
-                          extend: 'excel',
-                          title: 'Listado de AFP',
-
-                      },
-                      {
-                          extend: 'pdf',
-                          title: 'Listado de AFP'
-
-                      },
-                      {
-                          extend: 'print',
-                          title: 'Firma de abogados',
-                          customize: function(win) {
-                              $(win.document.body).addClass('white-bg');
-                              $(win.document.body).css('font-size', '10px');
-                              $(win.document.body).find('table')
-                                  .addClass('compact')
-                                  .css('font-size', 'inherit');
-                          }
-                      }
-                  ]
-            });
+        // COMPROBAR PERMISOS
+        var permisoEditar = 'no';
+        var permisoExportar = "no";
+        <?php if( $view_editarPrevision == 1 ){  ?>
+          permisoEditar = "si";
+          $("#permisoEditar").text("si");
+        <?php } ?>
+        <?php if( $view_exportarPrevision == 1 ){  ?>
+            permisoExportar = "si";
+            $("#permisoExportar").text("si");
+        <?php } ?>
+        cargarTablaAFP(permisoEditar, permisoExportar);
       });
 
       $("#btnAgregarAFP").click(function (e){
@@ -207,5 +175,7 @@
 
   </script>
 
-  </body>
+<?php } else{ header("Location: http://localhost/RRHH-FIRMA/"); } ?>
+
+</body>
 </html>

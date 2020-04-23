@@ -1,6 +1,6 @@
 var base_url = 'http://localhost/RRHH-FIRMA/index.php/';
 
-function cargarTablaPrevision(){
+function cargarTablaPrevision(permisoEditar,permisoExportar){
   var table = $('#tabla_prevision').DataTable();
   table.destroy();
 
@@ -773,6 +773,134 @@ function cargarTablaEmpresa(permisoEditar, exportar){
 }
 
 
+
+
+function cargarTablaAFP(permisoEditar, permisoExportar){
+  var table = $('#tabla_AFP').DataTable();
+  table.destroy();
+  var btnAcciones = ""
+
+  if (permisoEditar == "si") {
+     btnAcciones = '<button type="button" id="btnVerAFP" class="btn btn-info" data-toggle="modal" data-target="#modaleditarAFP"><i class="glyphicon glyphicon-pencil"></i></button>';
+  }
+
+  if (permisoExportar == "si") {
+    $('.dataTables-AFP').DataTable({
+        "autoWidth": false,
+            language: {
+              "sProcessing": "Procesando...",
+              "sLengthMenu": "Registros&nbsp;&nbsp; _MENU_ ",
+              "sZeroRecords": "No se encontraron resultados",
+              "sEmptyTable": "Ningún dato disponible en esta tabla",
+              "sInfo": "",
+              "sInfoEmpty": "",
+              "sInfoFiltered": "",
+              "sInfoPostFix": "",
+              "sSearch": "Buscar:&nbsp;&nbsp;",
+              "sUrl": "",
+              "sInfoThousands": ",",
+              "sLoadingRecords": "Cargando...",
+              "oPaginate": {
+                  "sFirst": "Primero",
+                  "sLast": "Último",
+                  "sNext": "Siguiente",
+                  "sPrevious": "Anterior"
+              },
+              "oAria": {
+                  "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
+                  "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+              },
+              "buttons": {
+                  "copy": "Copiar",
+                  "colvis": "Visibilidad"
+              }
+          },
+          "ajax": {
+              url: "http://localhost/RRHH-FIRMA/index.php/getListadoAFP",
+              type: 'GET'
+          },
+          "columnDefs": [{
+            "targets": 2,
+            "data": null,
+            "defaultContent": btnAcciones
+          }
+        ],dom: '<"html5buttons"B>lTfgitp',
+            buttons: [{
+                    extend: 'copy'
+                },
+                {
+                    extend: 'csv'
+                },
+                {
+                    extend: 'excel',
+                    title: 'Listado de AFP',
+
+                },
+                {
+                    extend: 'pdf',
+                    title: 'Listado de AFP'
+
+                },
+                {
+                    extend: 'print',
+                    title: 'Firma de abogados',
+                    customize: function(win) {
+                        $(win.document.body).addClass('white-bg');
+                        $(win.document.body).css('font-size', '10px');
+                        $(win.document.body).find('table')
+                            .addClass('compact')
+                            .css('font-size', 'inherit');
+                    }
+                }
+            ]
+      });
+  }else{
+    $('.dataTables-AFP').DataTable({
+        "autoWidth": false,
+          language: {
+            "sProcessing": "Procesando...",
+            "sLengthMenu": "Registros&nbsp;&nbsp; _MENU_ ",
+            "sZeroRecords": "No se encontraron resultados",
+            "sEmptyTable": "Ningún dato disponible en esta tabla",
+            "sInfo": "",
+            "sInfoEmpty": "",
+            "sInfoFiltered": "",
+            "sInfoPostFix": "",
+            "sSearch": "Buscar:&nbsp;&nbsp;",
+            "sUrl": "",
+            "sInfoThousands": ",",
+            "sLoadingRecords": "Cargando...",
+            "oPaginate": {
+                "sFirst": "Primero",
+                "sLast": "Último",
+                "sNext": "Siguiente",
+                "sPrevious": "Anterior"
+            },
+              "oAria": {
+                  "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
+                  "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+              },
+              "buttons": {
+                  "copy": "Copiar",
+                  "colvis": "Visibilidad"
+              }
+          },
+          "ajax": {
+              url: "http://localhost/RRHH-FIRMA/index.php/getListadoAFP",
+              type: 'GET'
+          },
+          "columnDefs": [{
+            "targets": 2,
+            "data": null,
+            "defaultContent": btnAcciones
+          }
+        ],dom: '<"html5buttons"B>lTfgitp',
+            buttons: []
+      });
+  }
+}
+
+
 /*************************** RELLENO DE SELECTS ****************************/
 
 
@@ -916,6 +1044,9 @@ function updatePrevision(){
         }else{
           toastr.error('No se ha actualizado la información');
           $('#modalEditarPrevision').modal('hide');
+          var permisoExportar = $("#permisoExportar").text();
+          var permisoEditar = $("#permisoEditar").text();
+          cargarTablaPrevision(permisoEditar,permisoExportar);
         }
     });
 }
@@ -1033,6 +1164,9 @@ function updateNacionalidad(){
         if(msg.msg == "ok"){
           toastr.success('Información actualizada');
           $('#modalEditarNacionalidad').modal('hide');
+          var permisoExportar = $("#permisoExportar").text();
+          var permisoEditar = $("#permisoEditar").text();
+          cargarTablaNacionalidades(permisoEditar,permisoExportar);
         }else{
           toastr.error('No se ha actualizado la información');
           $('#modalEditarNacionalidad').modal('hide');
@@ -1133,6 +1267,10 @@ function agregarAFP() {
                toastr.success('AFP ingresada')
                document.getElementById("nombre").value = "";
                $('#modalCrearAFP').modal('hide');
+               var permisoExportar = $("#permisoExportar").text();
+               var permisoEditar = $("#permisoEditar").text();
+               cargarTablaAFP(permisoEditar,permisoExportar);
+
             } else {
                 toastr.error("Error en el ingreso.");
             }
@@ -1178,6 +1316,9 @@ function editarAFP(id) {
                $('#modaleditarAFP').modal('hide');
                document.getElementById("nombreNuevo").value = "";
                document.getElementById("nombreAntiguo").value = "";
+               var permisoExportar = $("#permisoExportar").text();
+               var permisoEditar = $("#permisoEditar").text();
+               cargarTablaAFP(permisoEditar,permisoExportar);
             } else {
                 toastr.error("Error en el ingreso.");
                 $('#modaleditarAFP').modal('hide');
@@ -1255,6 +1396,9 @@ function agregarPrevision() {
                toastr.success('Previsión ingresada')
                document.getElementById("nombre").value = "";
                $('#myModal').modal('hide');
+               var permisoExportar = $("#permisoExportar").text();
+               var permisoEditar = $("#permisoEditar").text();
+               cargarTablaPrevision(permisoEditar,permisoExportar);
             } else {
                 toastr.error("Error en el ingreso.");
             }
@@ -1373,6 +1517,9 @@ function editarEmpresa() {
         if(msg.msg == "ok"){
           toastr.success('Información actualizada')
           $('#modalEditarEmpresa').modal('hide');
+          var permisoExportar = $("#permisoExportar").text();
+          var permisoEditar = $("#permisoEditar").text();
+          cargarTablaEmpresa(permisoEditar,permisoExportar);
         }else{
           toastr.error('Ups, ha ocurrido un problema');
           $('#modalEditarEmpresa').modal('hide');

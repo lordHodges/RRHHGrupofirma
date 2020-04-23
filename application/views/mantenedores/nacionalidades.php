@@ -140,7 +140,6 @@ if($usuario[0]->atr_activo == "1" ) { ?>
           table.ajax.reload(function(json) {
             $('#btnAgregarNacionalidad').val(json.lastInput);
           });
-          cargarTablaNacionalidades();
       });
 
       $("body").on("click", "#getDetalleNacionalidad", function(e) {
@@ -156,7 +155,6 @@ if($usuario[0]->atr_activo == "1" ) { ?>
           table.ajax.reload(function(json) {
             $('#btnEditarNacionalidad').val(json.lastInput);
           });
-          cargarTablaNacionalidades();
       });
   </script>
 

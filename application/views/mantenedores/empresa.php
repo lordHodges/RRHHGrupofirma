@@ -215,8 +215,6 @@ if($usuario[0]->atr_activo == "1" ) { ?>
           e.preventDefault();
           var id = $(this).parent().parent().children()[0];
           editarEmpresa();
-
-          cargarTablaEmpresa();
       });
 
       $("#getSelectTipo").change(function (e){
