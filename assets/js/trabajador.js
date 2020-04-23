@@ -1,103 +1,160 @@
 /*************************** TRABAJADOR ****************************/
 var base_url = 'http://localhost/RRHH-FIRMA/index.php/';
 
-function cargarTablaTrabajador(){
+function cargarTablaTrabajador(permisoEditar, permisoExportar){
   var table = $('#tabla_trabajador').DataTable();
   table.destroy();
 
-  $('.dataTables-trabajadores').DataTable({
-    "autoWidth": false,
-    "sInfoEmpty": false,
-        language: {
-            "sProcessing": "Procesando...",
-            "sLengthMenu": "Registros _MENU_ ",
-            "sZeroRecords": "No se encontraron resultados",
-            "sEmptyTable": "Ningún dato disponible en esta tabla",
-            "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-            "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
-            "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
-            "sInfoPostFix": "",
-            "sSearch": "Buscar:",
-            "sUrl": "",
-            "sInfoThousands": ",",
-            "sLoadingRecords": "Cargando...",
-            "oPaginate": {
-                "sFirst": "Primero",
-                "sLast": "Último",
-                "sNext": "Siguiente",
-                "sPrevious": "Anterior"
-            },
-            "oAria": {
-                "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
-                "sSortDescending": ": Activar para ordenar la columna de manera descendente"
-            },
-            "buttons": {
-                "copy": "Copiar",
-                "colvis": "Visibilidad"
-            }
-        },
-        "ajax": {
-            url: "http://localhost/RRHH-FIRMA/index.php/getListadoTrabajadores",
-            type: 'GET'
-        },
-        "columnDefs": [{
-                "targets": 8,
-                "data": null,
-                "defaultContent": '<button style="display:inline" type="button" id="btnVerTrabajador" class="btn btn-info" data-toggle="modal" data-target="#modalVerTrabajador"><i class="glyphicon glyphicon-eye-open"></i></button> <button style="display:inline" type="button" id="getDetalleTrabajadorViewEdit" class="btn btn-info" data-toggle="modal" data-target="#modalEditarTrabajador"><i class="glyphicon glyphicon-pencil"></i></button>'
-            }
+  var btnAcciones = "";
 
-        ],dom: '<"html5buttons"B>lTfgitp',
-          buttons: [{
-                  extend: 'copy',
-                  exportOptions: {
-                      columns: [ 1,2,3,4,5,6,7 ]
-                  },
+  if (permisoEditar == "si") {
+    btnAcciones = '<button style="display:inline" type="button" id="btnVerTrabajador" class="btn btn-info" data-toggle="modal" data-target="#modalVerTrabajador"><i class="glyphicon glyphicon-eye-open"></i></button> <button style="display:inline" type="button" id="getDetalleTrabajadorViewEdit" class="btn btn-info" data-toggle="modal" data-target="#modalEditarTrabajador"><i class="glyphicon glyphicon-pencil"></i></button>';
+  }
+
+  if (permisoExportar == "si") {
+    $('.dataTables-trabajadores').DataTable({
+      "autoWidth": false,
+      "sInfoEmpty": false,
+          language: {
+              "sProcessing": "Procesando...",
+              "sLengthMenu": "Registros&nbsp;&nbsp; _MENU_ ",
+              "sZeroRecords": "No se encontraron resultados",
+              "sEmptyTable": "Ningún dato disponible en esta tabla",
+              "sInfo": "",
+              "sInfoEmpty": "",
+              "sInfoFiltered": "",
+              "sInfoPostFix": "",
+              "sSearch": "Buscar:&nbsp;&nbsp;",
+              "sUrl": "",
+              "sInfoThousands": ",",
+              "sLoadingRecords": "Cargando...",
+              "oPaginate": {
+                  "sFirst": "Primero",
+                  "sLast": "Último",
+                  "sNext": "Siguiente",
+                  "sPrevious": "Anterior"
               },
-              {
-                  extend: 'csv',
-                  exportOptions: {
-                      columns: [ 1,2,3,4,5,6,7 ]
-                  },
+              "oAria": {
+                  "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
+                  "sSortDescending": ": Activar para ordenar la columna de manera descendente"
               },
-              {
-                  extend: 'excel',
-                  title: 'Lista de Trabajadores',
-                  exportOptions: {
-                      columns: [ 1,2,3,4,5,6,7 ]
-                  },
-              },
-              {
-                  extend: 'pdf',
-                  title: 'Lista de Trabajadores',
-                  exportOptions: {
-                      columns: [ 1,2,3,4,5,6,7 ]
-                  },
-                  customize:function(doc) {
-                      doc.styles.title = {
-                          fontSize: '25',
-                          alignment: 'center'
-                      }
-                      doc.styles['td:nth-child(2)'] = {
-                          'padding': '100px'
-                      }
-                  }
-              },
-              {
-                  extend: 'print',
-                  title: 'Firma de abogados',
-                  exportOptions: {
-                      columns: [ 1,2,3,4,5,6,7 ]
-                  },
-                  customize: function(win) {
-                      $(win.document.body).addClass('white-bg');
-                      $(win.document.body).css('font-size', '10px');
-                      $(win.document.body).find('table')
-                          .addClass('compact')
-                          .css('font-size', 'inherit');
-                  }
+              "buttons": {
+                  "copy": "Copiar",
+                  "colvis": "Visibilidad"
               }
-          ]
-    });
+          },
+          "ajax": {
+              url: "http://localhost/RRHH-FIRMA/index.php/getListadoTrabajadores",
+              type: 'GET'
+          },
+          "columnDefs": [{
+                  "targets": 8,
+                  "data": null,
+                  "defaultContent": btnAcciones
+              }
+
+          ],dom: '<"html5buttons"B>lTfgitp',
+            buttons: [{
+                    extend: 'copy',
+                    exportOptions: {
+                        columns: [ 1,2,3,4,5,6,7 ]
+                    },
+                },
+                {
+                    extend: 'csv',
+                    exportOptions: {
+                        columns: [ 1,2,3,4,5,6,7 ]
+                    },
+                },
+                {
+                    extend: 'excel',
+                    title: 'Lista de Trabajadores',
+                    exportOptions: {
+                        columns: [ 1,2,3,4,5,6,7 ]
+                    },
+                },
+                {
+                    extend: 'pdf',
+                    title: 'Lista de Trabajadores',
+                    exportOptions: {
+                        columns: [ 1,2,3,4,5,6,7 ]
+                    },
+                    customize:function(doc) {
+                        doc.styles.title = {
+                            fontSize: '25',
+                            alignment: 'center'
+                        }
+                        doc.styles['td:nth-child(2)'] = {
+                            'padding': '100px'
+                        }
+                    }
+                },
+                {
+                    extend: 'print',
+                    title: 'Firma de abogados',
+                    exportOptions: {
+                        columns: [ 1,2,3,4,5,6,7 ]
+                    },
+                    customize: function(win) {
+                        $(win.document.body).addClass('white-bg');
+                        $(win.document.body).css('font-size', '10px');
+                        $(win.document.body).find('table')
+                            .addClass('compact')
+                            .css('font-size', 'inherit');
+                    }
+                }
+            ]
+      });
+  }else{
+    $('.dataTables-trabajadores').DataTable({
+      "autoWidth": false,
+      "sInfoEmpty": false,
+          language: {
+              "sProcessing": "Procesando...",
+              "sLengthMenu": "Registros&nbsp;&nbsp; _MENU_ ",
+              "sZeroRecords": "No se encontraron resultados",
+              "sEmptyTable": "Ningún dato disponible en esta tabla",
+              "sInfo": "",
+              "sInfoEmpty": "",
+              "sInfoFiltered": "",
+              "sInfoPostFix": "",
+              "sSearch": "Buscar:&nbsp;&nbsp;",
+              "sUrl": "",
+              "sInfoThousands": ",",
+              "sLoadingRecords": "Cargando...",
+              "oPaginate": {
+                  "sFirst": "Primero",
+                  "sLast": "Último",
+                  "sNext": "Siguiente",
+                  "sPrevious": "Anterior"
+              },
+              "oAria": {
+                  "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
+                  "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+              },
+              "buttons": {
+                  "copy": "Copiar",
+                  "colvis": "Visibilidad"
+              }
+          },
+          "ajax": {
+              url: "http://localhost/RRHH-FIRMA/index.php/getListadoTrabajadores",
+              type: 'GET'
+          },
+          "columnDefs": [{
+                  "targets": 8,
+                  "data": null,
+                  "defaultContent":btnAcciones
+              }
+
+          ],dom: '<"html5buttons"B>lTfgitp',
+            buttons: []
+      });
+  }
+
+
+
+
 }
 
 function agregarTrabajador() {

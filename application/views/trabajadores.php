@@ -1,3 +1,19 @@
+<?php
+$data = $this->session->userdata("datos");
+$usuario =  $data['usuario'];
+$permisos =  $data['permisos'];
+?>
+
+<?php
+$view_verTrabajador = 0; $view_crearTrabajador= 0; $view_exportarTrabajador = 0; $view_editarTrabajador = 0;
+foreach ($permisos as $key => $value) {
+  if ($value->cf_existencia_permiso == "35") { $view_verTrabajador = "1"; } else
+  if ($value->cf_existencia_permiso == "37") { $view_crearTrabajador = "1"; } else
+  if ($value->cf_existencia_permiso == "36") { $view_editarTrabajador = "1"; } else
+  if ($value->cf_existencia_permiso == "38") { $view_exportarTrabajador = "1"; }
+}
+
+if($usuario[0]->atr_activo == "1" ) { ?>
 <div class="right_col" role="main">
     <!-- Contenedor principal -->
     <div class="x_content">
@@ -5,7 +21,12 @@
       <div class="row">
           <div class="x_panel">
               <div class="x_content">
+                <h3 class="text-center">TRABAJADORES</h3><br>
+                <?php if ( $view_crearTrabajador == 1 ) {  ?>
                   <button type="button" id="abrirModalCrear" class="btn modidev-btn" data-toggle="modal" data-target=".bd-example-modal-lg" style="margin-bottom:20px;">INGRESAR TRABAJADOR</button>
+                <?php } ?>
+
+                <?php if ($view_verTrabajador == "1") {  ?>
                   <table id="tabla_trabajador" class="table table-striped table-bordered table-hover dataTables-trabajadores" style="margin-top:20px;">
                       <thead>
                           <tr>
@@ -24,6 +45,7 @@
 
                       </tbody>
                     </table>
+                  <?php } ?>
 
               </div>
           </div>
@@ -203,6 +225,10 @@
     </div>
     <!-- /Modal de editar -->
 
+    <label id="permisoExportar" style="display:none">no</label>
+    <label id="permisoEditar" style="display:none">no</label>
+
+
 
 
     <!-- jQuery -->
@@ -236,99 +262,18 @@
             getEstadosCiviles();
             getNacionalidades();
 
+            var permisoEditar = 'no';
+            var permisoExportar = "no";
+            <?php if( $view_editarTrabajador == 1 ){  ?>
+              permisoEditar = "si";
+              $("#permisoEditar").text("si");
+            <?php } ?>
+            <?php if( $view_exportarTrabajador == 1 ){  ?>
+                permisoExportar = "si";
+                $("#permisoExportar").text("si");
+            <?php } ?>
 
-            $('.dataTables-trabajadores').DataTable({
-              "autoWidth": false,
-                  language: {
-                      "sProcessing": "Procesando...",
-                      "sLengthMenu": "Registros _MENU_ ",
-                      "sZeroRecords": "No se encontraron resultados",
-                      "sEmptyTable": "Ningún dato disponible en esta tabla",
-                      "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-                      "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
-                      "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
-                      "sInfoPostFix": "",
-                      "sSearch": "Buscar:",
-                      "sUrl": "",
-                      "sInfoThousands": ",",
-                      "sLoadingRecords": "Cargando...",
-                      "oPaginate": {
-                          "sFirst": "Primero",
-                          "sLast": "Último",
-                          "sNext": "Siguiente",
-                          "sPrevious": "Anterior"
-                      },
-                      "oAria": {
-                          "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
-                          "sSortDescending": ": Activar para ordenar la columna de manera descendente"
-                      },
-                      "buttons": {
-                          "copy": "Copiar",
-                          "colvis": "Visibilidad"
-                      }
-                  },
-                  "ajax": {
-                      url: "http://localhost/RRHH-FIRMA/index.php/getListadoTrabajadores",
-                      type: 'GET'
-                  },
-                  "columnDefs": [{
-                          "targets": 8,
-                          "data": null,
-                          "defaultContent": '<button style="display:inline" type="button" id="btnVerTrabajador" class="btn btn-info" data-toggle="modal" data-target="#modalVerTrabajador"><i class="glyphicon glyphicon-eye-open"></i></button> <button style="display:inline" type="button" id="getDetalleTrabajadorViewEdit" class="btn btn-info" data-toggle="modal" data-target="#modalEditarTrabajador"><i class="glyphicon glyphicon-pencil"></i></button>'
-                      }
-
-                  ],dom: '<"html5buttons"B>lTfgitp',
-                    buttons: [{
-                            extend: 'copy',
-                            exportOptions: {
-                                columns: [ 1,2,3,4,5,6,7 ]
-                            },
-                        },
-                        {
-                            extend: 'csv',
-                            exportOptions: {
-                                columns: [ 1,2,3,4,5,6,7 ]
-                            },
-                        },
-                        {
-                            extend: 'excel',
-                            title: 'Lista de Trabajadores',
-                            exportOptions: {
-                                columns: [ 1,2,3,4,5,6,7 ]
-                            },
-                        },
-                        {
-                            extend: 'pdf',
-                            title: 'Lista de Trabajadores',
-                            exportOptions: {
-                                columns: [ 1,2,3,4,5,6,7 ]
-                            },
-                            customize:function(doc) {
-                                doc.styles.title = {
-                                    fontSize: '25',
-                                    alignment: 'center'
-                                }
-                                doc.styles['td:nth-child(2)'] = {
-                                    'padding': '100px'
-                                }
-                            }
-                        },
-                        {
-                            extend: 'print',
-                            title: 'Firma de abogados',
-                            exportOptions: {
-                                columns: [ 1,2,3,4,5,6,7 ]
-                            },
-                            customize: function(win) {
-                                $(win.document.body).addClass('white-bg');
-                                $(win.document.body).css('font-size', '10px');
-                                $(win.document.body).find('table')
-                                    .addClass('compact')
-                                    .css('font-size', 'inherit');
-                            }
-                        }
-                    ]
-              });
+            cargarTablaTrabajador(permisoEditar, permisoExportar);
         });
 
 
@@ -378,6 +323,7 @@
 
 
 
+  <?php } else{ header("Location: http://localhost/RRHH-FIRMA/"); } ?>
 
-  </body>
+</body>
 </html>
