@@ -1,3 +1,20 @@
+<?php
+$data = $this->session->userdata("datos");
+$usuario =  $data['usuario'];
+$permisos =  $data['permisos'];
+?>
+
+<?php
+$view_verNacionalidades = 0; $view_crearNacionalidad = 0; $view_exportarNacionalidad = 0; $view_editarNacionalidad = 0;
+foreach ($permisos as $key => $value) {
+  if ($value->cf_existencia_permiso == "20") { $view_verNacionalidades = "1"; } else
+  if ($value->cf_existencia_permiso == "22") { $view_crearNacionalidad = "1"; } else
+  if ($value->cf_existencia_permiso == "21") { $view_editarNacionalidad = "1"; } else
+  if ($value->cf_existencia_permiso == "23") { $view_exportarNacionalidad = "1"; }
+}
+
+if($usuario[0]->atr_activo == "1" ) { ?>
+
 <div class="right_col" role="main">
     <!-- Contenedor principal -->
     <div class="x_content">
@@ -7,20 +24,25 @@
     <div class="row">
         <div class="x_panel">
             <div class="x_content">
+              <h3 class="text-center">NACIONALIDADES</h3><br>
+              <?php if ( $view_crearNacionalidad == 1 ) {  ?>
                 <button type="button" class="btn modidev-btn" data-toggle="modal" data-target=".bd-example-modal-lg" style="margin-bottom:20px;">INGRESAR NACIONALIDAD</button>
+              <?php } ?>
 
-                <table id="tabla_nacionalidad" class="table table-striped table-bordered table-hover dataTables-sucursales" style="margin-top:20px;">
-                    <thead >
-                        <tr style="width:100%;">
-                            <th class="text-center" style="width:10%;">ID</th>
-                            <th class="text-center">NACIONALIDAD</th>
-                            <th class="text-center" style="width:10%;">ACCIONES</th>
-                        </tr>
-                    </thead>
-                    <tbody id="tbodyDetalle">
+                <?php if ( $view_verNacionalidades == 1 ) {  ?>
+                  <table id="tabla_nacionalidad" class="table table-striped table-bordered table-hover dataTables-sucursales" style="margin-top:20px;">
+                      <thead >
+                          <tr style="width:100%;">
+                              <th class="text-center" style="width:10%;">ID</th>
+                              <th class="text-center">NACIONALIDAD</th>
+                              <th class="text-center" style="width:10%;">ACCIONES</th>
+                          </tr>
+                      </thead>
+                      <tbody id="tbodyDetalle">
 
-                    </tbody>
-                </table>
+                      </tbody>
+                  </table>
+                <?php } ?>
 
             </div>
         </div>
@@ -73,6 +95,8 @@
     </div>
     <!-- /Modal de editar -->
 
+    <label id="permisoExportar" style="display:none">no</label>
+    <label id="permisoEditar" style="display:none">no</label>
 
 
     <!-- jQuery -->
@@ -93,10 +117,20 @@
 
     <script>
       $(document).ready(function() {
+          var permisoEditar = 'no';
+          var permisoExportar = "no";
+          <?php if( $view_editarNacionalidad == 1 ){  ?>
+            permisoEditar = "si";
+            $("#permisoEditar").text("si");
+          <?php } ?>
+          <?php if( $view_exportarNacionalidad == 1 ){  ?>
+              permisoExportar = "si";
+              $("#permisoExportar").text("si");
+          <?php } ?>
           getSelectCiudad();
           getSelectCargos();
           getSucursales();
-          cargarTablaNacionalidades();
+          cargarTablaNacionalidades(permisoEditar,permisoExportar);
       });
 
       $("#btnAgregarNacionalidad").click(function (e){
@@ -126,5 +160,7 @@
       });
   </script>
 
-  </body>
+  <?php } else{ header("Location: http://localhost/RRHH-FIRMA/"); } ?>
+
+</body>
 </html>

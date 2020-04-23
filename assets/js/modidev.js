@@ -91,113 +91,172 @@ function cargarTablaPrevision(){
     });
 }
 
-function cargarTablaNacionalidades(){
+function cargarTablaNacionalidades(permisoEditar,permisoExportar){
   var table = $('#tabla_nacionalidad').DataTable();
   table.destroy();
 
-  $('.dataTables-sucursales').DataTable({
-      "autoWidth": false,
-      "sInfo": false,
-        language: {
-            "sProcessing": "Procesando...",
-            "sLengthMenu": "Registros _MENU_ ",
-            "sZeroRecords": "No se encontraron resultados",
-            "sEmptyTable": "Ningún dato disponible en esta tabla",
-            "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-            "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
-            "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
-            "sInfoPostFix": "",
-            "sSearch": "Buscar:",
-            "sUrl": "",
-            "sInfoThousands": ",",
-            "sLoadingRecords": "Cargando...",
-            "oPaginate": {
-                "sFirst": "Primero",
-                "sLast": "Último",
-                "sNext": "Siguiente",
-                "sPrevious": "Anterior"
-            },
-            "oAria": {
-                "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
-                "sSortDescending": ": Activar para ordenar la columna de manera descendente"
-            },
-            "buttons": {
-                "copy": "Copiar",
-                "colvis": "Visibilidad"
-            }
-        },
-        "ajax": {
-            url: "http://localhost/RRHH-FIRMA/index.php/getListadoNacionalidades",
-            type: 'GET'
-        },
-        "columnDefs": [{
-          "targets": 2,
-          "data": null,
-          "defaultContent": '<button type="button" id="getDetalleNacionalidad" class="btn btn-info" data-toggle="modal" data-target="#modalEditarNacionalidad"><i class="glyphicon glyphicon-pencil"></i></button>'
-        }
-        ],dom: '<"html5buttons"B>lTfgitp',
-          buttons: [{
-                  extend: 'copy',
-                  exportOptions: {
-                      columns: [ 1 ]
-                  }
-              },
-              {
-                  extend: 'csv',
-                  exportOptions: {
-                      columns: [ 1 ]
-                  }
-              },
-              {
-                  extend: 'excel',
-                  title: 'Listado de nacionalidades',
-                  exportOptions: {
-                      columns: [ 1 ]
-                  }
-              },
-              {
-                  extend: 'pdf',
-                  title: 'Listado de nacionalidades',
-                  exportOptions: {
-                      columns: [ 1 ]
-                  }
+  var btnAcciones = ""
 
+  if (permisoEditar == "si") {
+     btnAcciones = '<button type="button" id="getDetalleNacionalidad" class="btn btn-info" data-toggle="modal" data-target="#modalEditarNacionalidad"><i class="glyphicon glyphicon-pencil"></i></button>';
+  }
+
+  if (permisoExportar == "si") {
+    $('.dataTables-sucursales').DataTable({
+        "autoWidth": false,
+        "sInfo": false,
+          language: {
+              "sProcessing": "Procesando...",
+              "sLengthMenu": "Registros&nbsp;&nbsp; _MENU_ ",
+              "sZeroRecords": "No se encontraron resultados",
+              "sEmptyTable": "Ningún dato disponible en esta tabla",
+              "sInfo": "",
+              "sInfoEmpty": "",
+              "sInfoFiltered": "",
+              "sInfoPostFix": "",
+              "sSearch": "Buscar:&nbsp;&nbsp;",
+              "sUrl": "",
+              "sInfoThousands": ",",
+              "sLoadingRecords": "Cargando...",
+              "oPaginate": {
+                  "sFirst": "Primero",
+                  "sLast": "Último",
+                  "sNext": "Siguiente",
+                  "sPrevious": "Anterior"
               },
-              {
-                  extend: 'print',
-                  title: 'Firma de abogados',
-                  exportOptions: {
-                      columns: [ 1 ]
-                  },
-                  customize: function(win) {
-                      $(win.document.body).addClass('white-bg');
-                      $(win.document.body).css('font-size', '10px');
-                      $(win.document.body).find('table')
-                          .addClass('compact')
-                          .css('font-size', 'inherit');
-                  }
+              "oAria": {
+                  "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
+                  "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+              },
+              "buttons": {
+                  "copy": "Copiar",
+                  "colvis": "Visibilidad"
               }
-          ]
-    });
+          },
+          "ajax": {
+              url: "http://localhost/RRHH-FIRMA/index.php/getListadoNacionalidades",
+              type: 'GET'
+          },
+          "columnDefs": [{
+            "targets": 2,
+            "data": null,
+            "defaultContent": btnAcciones
+          }
+          ],dom: '<"html5buttons"B>lTfgitp',
+            buttons: [{
+                    extend: 'copy',
+                    exportOptions: {
+                        columns: [ 1 ]
+                    }
+                },
+                {
+                    extend: 'csv',
+                    exportOptions: {
+                        columns: [ 1 ]
+                    }
+                },
+                {
+                    extend: 'excel',
+                    title: 'Listado de nacionalidades',
+                    exportOptions: {
+                        columns: [ 1 ]
+                    }
+                },
+                {
+                    extend: 'pdf',
+                    title: 'Listado de nacionalidades',
+                    exportOptions: {
+                        columns: [ 1 ]
+                    }
+
+                },
+                {
+                    extend: 'print',
+                    title: 'Firma de abogados',
+                    exportOptions: {
+                        columns: [ 1 ]
+                    },
+                    customize: function(win) {
+                        $(win.document.body).addClass('white-bg');
+                        $(win.document.body).css('font-size', '10px');
+                        $(win.document.body).find('table')
+                            .addClass('compact')
+                            .css('font-size', 'inherit');
+                    }
+                }
+            ]
+      });
+  }else{
+    $('.dataTables-sucursales').DataTable({
+        "autoWidth": false,
+        "sInfo": false,
+          language: {
+              "sProcessing": "Procesando...",
+              "sLengthMenu": "Registros&nbsp;&nbsp; _MENU_ ",
+              "sZeroRecords": "No se encontraron resultados",
+              "sEmptyTable": "Ningún dato disponible en esta tabla",
+              "sInfo": "",
+              "sInfoEmpty": "",
+              "sInfoFiltered": "",
+              "sInfoPostFix": "",
+              "sSearch": "Buscar:&nbsp;&nbsp;",
+              "sUrl": "",
+              "sInfoThousands": ",",
+              "sLoadingRecords": "Cargando...",
+              "oPaginate": {
+                  "sFirst": "Primero",
+                  "sLast": "Último",
+                  "sNext": "Siguiente",
+                  "sPrevious": "Anterior"
+              },
+              "oAria": {
+                  "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
+                  "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+              },
+              "buttons": {
+                  "copy": "Copiar",
+                  "colvis": "Visibilidad"
+              }
+          },
+          "ajax": {
+              url: "http://localhost/RRHH-FIRMA/index.php/getListadoNacionalidades",
+              type: 'GET'
+          },
+          "columnDefs": [{
+            "targets": 2,
+            "data": null,
+            "defaultContent": btnAcciones
+          }
+          ],dom: '<"html5buttons"B>lTfgitp',
+            buttons: []
+      });
+  }
 }
 
-function cargarTablaEstadosContrato(){
+function cargarTablaEstadosContrato(permisoEditar,permisoExportar){
   var table = $('#tabla_estadoContrato').DataTable();
   table.destroy();
 
-  $('.dataTables-estadoContrato').DataTable({
-      "autoWidth": false,
-      "sInfo": false,
-        language: {
+  var btnAcciones = ""
+
+  if (permisoEditar == "si") {
+     btnAcciones = '<button type="button" id="getDetalleEstadosContrato" class="btn btn-info" data-toggle="modal" data-target="#modalEditarEstadosContrato"><i class="glyphicon glyphicon-pencil"></i></button>';
+  }
+
+  if (permisoExportar == "si") {
+    $('.dataTables-estadoContrato').DataTable({
+        "autoWidth": false,
+        "sInfo": false,
+          language: {
             "sProcessing": "Procesando...",
-            "sLengthMenu": "Registros _MENU_ ",
+            "sLengthMenu": "Registros&nbsp;&nbsp; _MENU_ ",
             "sZeroRecords": "No se encontraron resultados",
             "sEmptyTable": "Ningún dato disponible en esta tabla",
-            "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-            "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
-            "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+            "sInfo": "",
+            "sInfoEmpty": "",
+            "sInfoFiltered": "",
             "sInfoPostFix": "",
-            "sSearch": "Buscar:",
+            "sSearch": "Buscar:&nbsp;&nbsp;",
             "sUrl": "",
             "sInfoThousands": ",",
             "sLoadingRecords": "Cargando...",
@@ -207,69 +266,114 @@ function cargarTablaEstadosContrato(){
                 "sNext": "Siguiente",
                 "sPrevious": "Anterior"
             },
-            "oAria": {
-                "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
-                "sSortDescending": ": Activar para ordenar la columna de manera descendente"
-            },
-            "buttons": {
-                "copy": "Copiar",
-                "colvis": "Visibilidad"
-            }
-        },
-        "ajax": {
-            url: "http://localhost/RRHH-FIRMA/index.php/getEstadoContrato",
-            type: 'GET'
-        },
-        "columnDefs": [{
-          "targets": 2,
-          "data": null,
-          "defaultContent": '<button type="button" id="getDetalleEstadosContrato" class="btn btn-info" data-toggle="modal" data-target="#modalEditarEstadosContrato"><i class="glyphicon glyphicon-pencil"></i></button>'
-        }
-        ],dom: '<"html5buttons"B>lTfgitp',
-          buttons: [{
-                  extend: 'copy',
-                  exportOptions: {
-                      columns: [ 1 ]
-                  }
+              "oAria": {
+                  "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
+                  "sSortDescending": ": Activar para ordenar la columna de manera descendente"
               },
-              {
-                  extend: 'csv',
-                  exportOptions: {
-                      columns: [ 1 ]
-                  }
-              },
-              {
-                  extend: 'excel',
-                  title: 'Listado de estados de contrato',
-                  exportOptions: {
-                      columns: [ 1 ]
-                  }
-
-              },
-              {
-                  extend: 'pdf',
-                  title: 'Listado de estados de contrato',
-                  exportOptions: {
-                      columns: [ 1 ]
-                  }
-
-              },
-              {
-                  extend: 'print',
-                  title: 'Firma de abogados',
-                  exportOptions: {
-                      columns: [ 1 ]
-                  },
-                  customize: function(win) {
-                      $(win.document.body).addClass('white-bg');
-                      $(win.document.body).css('font-size', '10px');
-                      $(win.document.body).find('table')
-                          .addClass('compact')
-                          .css('font-size', 'inherit');
-                  }
+              "buttons": {
+                  "copy": "Copiar",
+                  "colvis": "Visibilidad"
               }
-          ]
-    });
+          },
+          "ajax": {
+              url: "http://localhost/RRHH-FIRMA/index.php/getEstadoContrato",
+              type: 'GET'
+          },
+          "columnDefs": [{
+            "targets": 2,
+            "data": null,
+            "defaultContent": btnAcciones
+          }
+          ],dom: '<"html5buttons"B>lTfgitp',
+            buttons: [{
+                    extend: 'copy',
+                    exportOptions: {
+                        columns: [ 1 ]
+                    }
+                },
+                {
+                    extend: 'csv',
+                    exportOptions: {
+                        columns: [ 1 ]
+                    }
+                },
+                {
+                    extend: 'excel',
+                    title: 'Listado de estados de contrato',
+                    exportOptions: {
+                        columns: [ 1 ]
+                    }
+
+                },
+                {
+                    extend: 'pdf',
+                    title: 'Listado de estados de contrato',
+                    exportOptions: {
+                        columns: [ 1 ]
+                    }
+
+                },
+                {
+                    extend: 'print',
+                    title: 'Firma de abogados',
+                    exportOptions: {
+                        columns: [ 1 ]
+                    },
+                    customize: function(win) {
+                        $(win.document.body).addClass('white-bg');
+                        $(win.document.body).css('font-size', '10px');
+                        $(win.document.body).find('table')
+                            .addClass('compact')
+                            .css('font-size', 'inherit');
+                    }
+                }
+            ]
+      });
+  }else{
+    $('.dataTables-estadoContrato').DataTable({
+        "autoWidth": false,
+        "sInfo": false,
+          language: {
+            "sProcessing": "Procesando...",
+            "sLengthMenu": "Registros&nbsp;&nbsp; _MENU_ ",
+            "sZeroRecords": "No se encontraron resultados",
+            "sEmptyTable": "Ningún dato disponible en esta tabla",
+            "sInfo": "",
+            "sInfoEmpty": "",
+            "sInfoFiltered": "",
+            "sInfoPostFix": "",
+            "sSearch": "Buscar:&nbsp;&nbsp;",
+            "sUrl": "",
+            "sInfoThousands": ",",
+            "sLoadingRecords": "Cargando...",
+            "oPaginate": {
+                "sFirst": "Primero",
+                "sLast": "Último",
+                "sNext": "Siguiente",
+                "sPrevious": "Anterior"
+            },
+              "oAria": {
+                  "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
+                  "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+              },
+              "buttons": {
+                  "copy": "Copiar",
+                  "colvis": "Visibilidad"
+              }
+          },
+          "ajax": {
+              url: "http://localhost/RRHH-FIRMA/index.php/getEstadoContrato",
+              type: 'GET'
+          },
+          "columnDefs": [{
+            "targets": 2,
+            "data": null,
+            "defaultContent": btnAcciones
+          }
+          ],dom: '<"html5buttons"B>lTfgitp',
+            buttons: []
+      });
+  }
 }
 
 function cargarTablaEstadosCiviles(permisoExportar){
@@ -278,10 +382,10 @@ function cargarTablaEstadosCiviles(permisoExportar){
 
   if (permisoExportar == "si") {
     $('.dataTables-estadoCivil').DataTable({
-        // "autoWidth": false,
-        // "sInfo": false,
+        "autoWidth": false,
+        "sInfo": false,
           language: {
-            sProcessing": "Procesando...",
+            "sProcessing": "Procesando...",
             "sLengthMenu": "Registros&nbsp;&nbsp; _MENU_ ",
             "sZeroRecords": "No se encontraron resultados",
             "sEmptyTable": "Ningún dato disponible en esta tabla",
@@ -362,10 +466,10 @@ function cargarTablaEstadosCiviles(permisoExportar){
       });
   }else{
     $('.dataTables-estadoCivil').DataTable({
-        // "autoWidth": false,
-        // "sInfo": false,
+        "autoWidth": false,
+        "sInfo": false,
           language: {
-            sProcessing": "Procesando...",
+            "sProcessing": "Procesando...",
             "sLengthMenu": "Registros&nbsp;&nbsp; _MENU_ ",
             "sZeroRecords": "No se encontraron resultados",
             "sEmptyTable": "Ningún dato disponible en esta tabla",
@@ -1100,6 +1204,9 @@ function agregarNacionalidad() {
                toastr.success('Nacionalidad ingresada')
                document.getElementById("nombre").value = "";
                $('#myModal').modal('hide');
+               var permisoExportar = $("#permisoExportar").text();
+               var permisoEditar = $("#permisoEditar").text();
+               cargarTablaNacionalidades(permisoEditar,permisoExportar);
             } else {
                 toastr.error("Error en el ingreso.");
             }
@@ -1122,6 +1229,8 @@ function agregarEstadoContrato() {
                toastr.success('Estado ingresado')
                document.getElementById("nombre").value = "";
                $('#myModal').modal('hide');
+               var permisoEditar = $("#permisoEditar").text();
+               var permisoExportar = $("#permisoExportar").text();
             } else {
                 toastr.error("Error en el ingreso.");
             }
@@ -1191,8 +1300,8 @@ function agregarEmpresa() {
                document.getElementById("cedulaRepre").value = "";
                document.getElementById("getSelectCiudad").value = "";
                $('#myModal').modal('hide');
-               var permisoExportar = $("#permisoExportar").val();
-               var permisoEditar = $("#permisoEditar").val();
+               var permisoExportar = $("#permisoExportar").text();
+               var permisoEditar = $("#permisoEditar").text();
                cargarTablaEmpresa(permisoEditar,permisoExportar);
 
             } else {

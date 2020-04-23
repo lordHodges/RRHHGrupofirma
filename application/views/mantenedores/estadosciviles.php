@@ -7,9 +7,9 @@ $permisos =  $data['permisos'];
 <?php
 $view_verEstadoCivil = 0; $view_crearEstadoCIvil = 0; $view_exportarEstadoCivil = 0;
 foreach ($permisos as $key => $value) {
-  if ($value->cf_existencia_permiso == "9") { $view_verEstadoCivil = "1"; } else
-  if ($value->cf_existencia_permiso == "11") { $view_crearEstadoCIvil = "1"; } else
-  if ($value->cf_existencia_permiso == "12") { $view_exportarEstadoCivil = "1"; }
+  if ($value->cf_existencia_permiso == "13") { $view_verEstadoCivil = "1"; } else
+  if ($value->cf_existencia_permiso == "14") { $view_crearEstadoCIvil = "1"; } else
+  if ($value->cf_existencia_permiso == "15") { $view_exportarEstadoCivil = "1"; }
 }
 
 if($usuario[0]->atr_activo == "1" ) { ?>
@@ -23,6 +23,7 @@ if($usuario[0]->atr_activo == "1" ) { ?>
     <div class="row">
         <div class="x_panel">
             <div class="x_content">
+              <h3 class="text-center">ESTADOS CIVILES</h3><br>
               <?php if ( $view_crearEstadoCIvil == 1 ) {  ?>
                 <button type="button" class="btn modidev-btn" data-toggle="modal" data-target=".bd-example-modal-lg" style="margin-bottom:20px;">INGRESAR ESTADO CIVIL</button>
               <?php } ?>

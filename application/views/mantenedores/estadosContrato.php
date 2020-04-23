@@ -1,3 +1,19 @@
+<?php
+$data = $this->session->userdata("datos");
+$usuario =  $data['usuario'];
+$permisos =  $data['permisos'];
+?>
+
+<?php
+$view_verEstadoContrato = 0; $view_crearEstadoContrato = 0; $view_exportarEstadoContrato = 0; $view_editarEstadoContrato = 0;
+foreach ($permisos as $key => $value) {
+  if ($value->cf_existencia_permiso == "16") { $view_verEstadoContrato = "1"; } else
+  if ($value->cf_existencia_permiso == "18") { $view_crearEstadoContrato = "1"; } else
+  if ($value->cf_existencia_permiso == "19") { $view_exportarEstadoContrato = "1"; } else
+  if ($value->cf_existencia_permiso == "17") { $view_editarEstadoContrato = "1"; }
+}
+
+if($usuario[0]->atr_activo == "1" ) { ?>
 <div class="right_col" role="main">
     <!-- Contenedor principal -->
     <div class="x_content">
@@ -7,8 +23,12 @@
     <div class="row">
         <div class="x_panel">
             <div class="x_content">
+              <h3 class="text-center">ESTADOS DE CONTRATO</h3><br>
+              <?php if ( $view_crearEstadoContrato == 1 ) {  ?>
                 <button type="button" class="btn modidev-btn" data-toggle="modal" data-target=".bd-example-modal-lg" style="margin-bottom:20px;">INGRESAR ESTADO</button>
+              <?php } ?>
 
+              <?php if ($view_verEstadoContrato == "1") {  ?>
                 <table id="tabla_estadoContrato" class="table table-striped table-bordered table-hover dataTables-estadoContrato " style="margin-top:20px;">
                     <thead >
                         <tr style="width:100%;">
@@ -21,6 +41,7 @@
 
                     </tbody>
                 </table>
+              <?php } ?>
 
             </div>
         </div>
@@ -72,6 +93,8 @@
     </div>
     <!-- /Modal de editar -->
 
+    <label id="permisoExportar" style="display:none">no</label>
+    <label id="permisoEditar" style="display:none">no</label>
 
     <!-- jQuery -->
     <script src="<?php echo base_url() ?>assets/vendors/jquery/dist/jquery.min.js"></script>
@@ -91,7 +114,17 @@
 
     <script>
       $(document).ready(function() {
-          cargarTablaEstadosContrato();
+          var permisoEditar = 'no';
+          var permisoExportar = "no";
+          <?php if( $view_editarEstadoContrato == 1 ){  ?>
+            permisoEditar = "si";
+            $("#permisoEditar").text("si");
+          <?php } ?>
+          <?php if( $view_exportarEstadoContrato == 1 ){  ?>
+              permisoExportar = "si";
+              $("#permisoExportar").text("si");
+          <?php } ?>
+          cargarTablaEstadosContrato(permisoEditar,permisoExportar);
       });
 
       $("#btnAgregarEstado").click(function (e){
@@ -122,5 +155,7 @@
 
   </script>
 
-  </body>
+    <?php } else{ header("Location: http://localhost/RRHH-FIRMA/"); } ?>
+
+    </body>
 </html>
