@@ -1,3 +1,20 @@
+<?php
+$data = $this->session->userdata("datos");
+$usuario =  $data['usuario'];
+$permisos =  $data['permisos'];
+var_dump($permisos);
+?>
+
+<?php
+$autorizado = 0;
+foreach ($permisos as $key => $value) {
+  if ($value->cf_existencia_permiso == "10") {
+    $autorizado = 1;
+  }
+}
+var_dump("autorizado es: ".$autorizado);
+if($usuario[0]->atr_activo == "1" and $autorizado == "1" ) { ?>
+  
 <div class="right_col" role="main">
     <!-- Contenedor principal -->
     <div class="x_content">
@@ -158,6 +175,8 @@
        });
 
   </script>
+
+<?php } else{ header("Location: http://localhost/RRHH-FIRMA/"); } ?>
 
   </body>
 </html>

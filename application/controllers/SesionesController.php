@@ -22,10 +22,6 @@ class SesionesController extends CI_Controller {
 		$perfil = $this->input->post("perfil");
 		$correo = $this->input->post("correo");
 		$clave = "grupofirma";
-		// $clave = "grupofirma";
-		// $clave  = $this->encryption->encode('grupofirma');
-		// $pass = "grupofirma";
-		// $clave = password_hash($pass, PASSWORD_DEFAULT);
 
 		$resultado = $this->SesionesModel->agregarUsuario($nombre, $correo, $clave, $perfil);
 		echo json_encode($resultado);
@@ -83,11 +79,12 @@ class SesionesController extends CI_Controller {
 				foreach ($usuario as $u) {
 	 				$idUsuario = $u->cp_usuario;
 	 				$claveBD = $u->atr_clave;
+					$idPerfil = $u->cf_perfil;
 	 			}
 
 
 	 			if ($claveBD == $clave ) {
-	 				$permisos = $this->SesionesModel->listadoPermisos($idUsuario);
+	 				$permisos = $this->SesionesModel->listadoPermisos($idUsuario, $idPerfil);
 
 	 				$data = array(
 	 					"permisos"			=> $permisos,
