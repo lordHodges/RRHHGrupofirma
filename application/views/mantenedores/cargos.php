@@ -1,3 +1,22 @@
+<?php
+$data = $this->session->userdata("datos");
+$usuario =  $data['usuario'];
+$permisos =  $data['permisos'];
+
+?>
+
+<?php
+$view_verCargo = 0; $view_editarCargo = 0; $view_editarRemuneracion = 0; $view_crearCargo = 0; $view_exportarCargo = 0;
+foreach ($permisos as $key => $value) {
+  if ($value->cf_existencia_permiso == "1") { $view_verCargo = "1"; } else
+  if ($value->cf_existencia_permiso == "2") { $view_editarCargo = "1"; } else
+  if ($value->cf_existencia_permiso == "3") { $view_editarRemuneracion = "1"; } else
+  if ($value->cf_existencia_permiso == "4") { $view_crearCargo = "1"; } else
+  if ($value->cf_existencia_permiso == "5") { $view_exportarCargo = "1"; }
+}
+
+if($usuario[0]->atr_activo == "1" ) { ?>
+
 <div class="right_col" role="main">
     <!-- Contenedor principal -->
     <div class="x_content">
@@ -7,23 +26,28 @@
     <div class="row">
         <div class="x_panel">
             <div class="x_content">
-                <button type="button" class="btn modidev-btn" data-toggle="modal" data-target=".bd-example-modal-lg" style="margin-bottom:20px;">INGRESAR CARGO</button>
+              <h3 class="text-center">CARGOS</h3><br>
+                <?php if ( $view_crearCargo == 1 ) {  ?>
+                  <button type="button" class="btn modidev-btn" data-toggle="modal" data-target=".bd-example-modal-lg" style="margin-bottom:20px;">INGRESAR CARGO</button>
+                <?php } ?>
 
-                <table id="tabla_cargo" class="table table-striped table-bordered table-hover dataTables-cargos" style="margin-top:20px;">
-                    <thead >
-                        <tr style="width:100%;">
-                            <th class="text-center">ID</th>
-                            <th class="text-center">CARGO</th>
-                            <th class="text-center">JEFE(S) DIRECTO(S)</th>
-                            <th class="text-center">LUGAR DE TRABAJO</th>
-                            <th class="text-center">JORNADA DE TRABAJO</th>
-                            <th class="text-center">ACCIONES</th>
-                        </tr>
-                    </thead>
-                    <tbody id="tbodyDetalle">
+                <?php if ($view_verCargo == "1") {  ?>
+                  <table id="tabla_cargo" class="table table-striped table-bordered table-hover dataTables-cargos" style="margin-top:20px;">
+                      <thead >
+                          <tr style="width:100%;">
+                              <th class="text-center">ID</th>
+                              <th class="text-center">CARGO</th>
+                              <th class="text-center">JEFE(S) DIRECTO(S)</th>
+                              <th class="text-center">LUGAR DE TRABAJO</th>
+                              <th class="text-center">JORNADA DE TRABAJO</th>
+                              <th class="text-center">ACCIONES</th>
+                          </tr>
+                      </thead>
+                      <tbody id="tbodyDetalle">
 
-                    </tbody>
-                </table>
+                      </tbody>
+                  </table>
+                <?php } ?>
 
             </div>
         </div>
@@ -162,8 +186,16 @@
 
 
     <script>
-      // cargarNotificaciones();
+
       $(document).ready(function() {
+        var btnAcciones = '';
+
+        <?php if( $view_editarCargo == 1 ){  ?>
+          btnAcciones += '<button type="button" id="btnVerCargo" class="btn btn-info btnVerCargo" data-toggle="modal" data-target="#modaleditarCargo"><i class="glyphicon glyphicon-pencil"></i></button>';
+        <?php } ?>
+        <?php if( $view_editarRemuneracion == 1 ){  ?>
+          btnAcciones += '<button type="button" id="btnEditarRemuneracion" class="btn btn-info" data-toggle="modal" data-target="#modalEditarRemuneración"><i class="glyphicon glyphicon-usd"></i></button>';
+        <?php } ?>
 
         document.getElementById("jornadaTrabajo").value = "La jornada de trabajo será de 45 horas semanales, las que serán distribuidas de lunes a viernes, de la siguiente manera: jornada de la mañana de 09:00 horas a 14:00 horas, y en la jornada de la tarde de 15:00 horas a 19:00 horas.";
         document.getElementById("diasTrabajo").value = "De lunes a viernes de 09:00 hasta las 19:00 horas. Sábados de 09:00 a 14:00 horas";
@@ -172,14 +204,14 @@
               "autoWidth": false,
                 language: {
                     "sProcessing": "Procesando...",
-                    "sLengthMenu": "Registros _MENU_ ",
+                    "sLengthMenu": "Registros&nbsp;&nbsp; _MENU_ ",
                     "sZeroRecords": "No se encontraron resultados",
                     "sEmptyTable": "Ningún dato disponible en esta tabla",
-                    "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-                    "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
-                    "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+                    "sInfo": "",
+                    "sInfoEmpty": "",
+                    "sInfoFiltered": "",
                     "sInfoPostFix": "",
-                    "sSearch": "Buscar:",
+                    "sSearch": "Buscar:&nbsp;&nbsp;",
                     "sUrl": "",
                     "sInfoThousands": ",",
                     "sLoadingRecords": "Cargando...",
@@ -205,51 +237,55 @@
                 "columnDefs": [{
                     "targets": 5,
                     "data": null,
-                    "defaultContent": '<button type="button" id="btnVerCargo" class="btn btn-info" data-toggle="modal" data-target="#modaleditarCargo"><i class="glyphicon glyphicon-pencil"></i></button>    <button type="button" id="btnEditarRemuneracion" class="btn btn-info" data-toggle="modal" data-target="#modalEditarRemuneración"><i class="glyphicon glyphicon-usd"></i></button>'
+                    "defaultContent": btnAcciones
                 }
-                ],dom: '<"html5buttons"B>lTfgitp',
-                  buttons: [{
-                          extend: 'copy',
-                          exportOptions: {
-                              columns: [ 1,2,3,4,5 ]
-                          }
-                      },
-                      {
-                          extend: 'csv',
-                          exportOptions: {
-                              columns: [ 1,2,3,4,5 ]
-                          }
-                      },
-                      {
-                          extend: 'excel',
-                          title: 'Lista de cargos',
-                          exportOptions: {
-                              columns: [ 1,2,3,4,5 ]
-                          }
-                      },
-                      {
-                          extend: 'pdf',
-                          title: 'Lista de cargos',
-                          exportOptions: {
-                              columns: [ 1,2,3,4,5 ]
-                          }
+                ]
+                <?php if( $view_exportarCargo == 1 ){  ?>
+                  ,dom: '<"html5buttons"B>lTfgitp',
+                  buttons:  [
+                    {
+                            extend: 'copy',
+                            exportOptions: {
+                                columns: [ 1,2,3,4,5 ]
+                            }
+                        },
+                        {
+                            extend: 'csv',
+                            exportOptions: {
+                                columns: [ 1,2,3,4,5 ]
+                            }
+                        },
+                        {
+                            extend: 'excel',
+                            title: 'Lista de cargos',
+                            exportOptions: {
+                                columns: [ 1,2,3,4,5 ]
+                            }
+                        },
+                        {
+                            extend: 'pdf',
+                            title: 'Lista de cargos',
+                            exportOptions: {
+                                columns: [ 1,2,3,4,5 ]
+                            }
 
-                      },
-                      {
-                          extend: 'print',
-                          title: 'Firma de abogados',
-                          customize: function(win) {
-                              $(win.document.body).addClass('white-bg');
-                              $(win.document.body).css('font-size', '10px');
-                              $(win.document.body).find('table')
-                                  .addClass('compact')
-                                  .css('font-size', 'inherit');
-                          },
-                          exportOptions: {
-                              columns: [ 1,2,3,4,5 ]
-                          }
-                      }
+                        },
+                        {
+                            extend: 'print',
+                            title: 'Firma de abogados',
+                            customize: function(win) {
+                                $(win.document.body).addClass('white-bg');
+                                $(win.document.body).css('font-size', '10px');
+                                $(win.document.body).find('table')
+                                    .addClass('compact')
+                                    .css('font-size', 'inherit');
+                            },
+                            exportOptions: {
+                                columns: [ 1,2,3,4,5 ]
+                            }
+                        }
                   ]
+                  <?php } ?>
             });
       });
 
@@ -307,6 +343,7 @@
 
 
   </script>
+    <?php } else{ header("Location: http://localhost/RRHH-FIRMA/"); } ?>
 
   </body>
 </html>

@@ -361,78 +361,129 @@ function cargarTablaEstadosCiviles(){
     });
 }
 
-function cargarTablaCiudades(){
+function cargarTablaCiudades(exportar){
   var table = $('#tabla_ciudad').DataTable();
   table.destroy();
 
-  $('.dataTables-ciudades').DataTable({
-      "autoWidth": false,
-      "info":false,
-      "sInfo": false,
-      "sInfoEmpty":false,
-      "sInfoFiltered":false,
-        language: {
+  if (exportar == "si") {
+    $('.dataTables-ciudades').DataTable({
+        "autoWidth": false,
+        "info":false,
+        "sInfo": false,
+        "sInfoEmpty":false,
+        "sInfoFiltered":false,
+          language: {
             "sProcessing": "Procesando...",
-            "sLengthMenu": "Registros _MENU_ ",
-            "sZeroRecords": "No se encontraron resultados",
-            "sEmptyTable": "Ningún dato disponible en esta tabla",
-            "sInfoPostFix": "",
-            "sSearch": "Buscar:",
-            "sUrl": "",
-            "sInfoThousands": ",",
-            "sLoadingRecords": "Cargando...",
-            "oPaginate": {
-                "sFirst": "Primero",
-                "sLast": "Último",
-                "sNext": "Siguiente",
-                "sPrevious": "Anterior"
-            },
-            "oAria": {
-                "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
-                "sSortDescending": ": Activar para ordenar la columna de manera descendente"
-            },
-            "buttons": {
-                "copy": "Copiar",
-                "colvis": "Visibilidad"
-            }
-        },
-        "ajax": {
-            url: "http://localhost/RRHH-FIRMA/index.php/getListadoCiudades",
-            type: 'GET'
-        },
-        "columnDefs": [{
-
-        }
-        ],dom: '<"html5buttons"B>lTfgitp',
-          buttons: [{
-                  extend: 'copy'
+              "sLengthMenu": "Registros&nbsp;&nbsp; _MENU_ ",
+              "sZeroRecords": "No se encontraron resultados",
+              "sEmptyTable": "Ningún dato disponible en esta tabla",
+              "sInfo": "",
+              "sInfoEmpty": "",
+              "sInfoFiltered": "",
+              "sInfoPostFix": "",
+              "sSearch": "Buscar:&nbsp;&nbsp;",
+              "sUrl": "",
+              "sInfoThousands": ",",
+              "sLoadingRecords": "Cargando...",
+              "oPaginate": {
+                  "sFirst": "Primero",
+                  "sLast": "Último",
+                  "sNext": "Siguiente",
+                  "sPrevious": "Anterior"
               },
-              {
-                  extend: 'csv'
+              "oAria": {
+                  "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
+                  "sSortDescending": ": Activar para ordenar la columna de manera descendente"
               },
-              {
-                  extend: 'excel',
-                  title: 'Listado de ciudades',
-
-              },
-              {
-                  extend: 'pdf',
-                  title: 'Listado de ciudades'
-
-              },
-              {
-                  extend: 'print',
-                  title: 'Firma de abogados',
-                  customize: function(win) {
-                      $(win.document.body).addClass('white-bg');
-                      $(win.document.body).css('font-size', '10px');
-                      $(win.document.body).find('table')
-                          .addClass('compact')
-                          .css('font-size', 'inherit');
-                  }
+              "buttons": {
+                  "copy": "Copiar",
+                  "colvis": "Visibilidad"
               }
-          ]
-    });
+          },
+          "ajax": {
+              url: "http://localhost/RRHH-FIRMA/index.php/getListadoCiudades",
+              type: 'GET'
+          },
+          "columnDefs": [{
+
+          }
+          ] ,dom: '<"html5buttons"B>lTfgitp',
+            buttons: [{
+                    extend: 'copy'
+                },
+                {
+                    extend: 'csv'
+                },
+                {
+                    extend: 'excel',
+                    title: 'Listado de ciudades',
+
+                },
+                {
+                    extend: 'pdf',
+                    title: 'Listado de ciudades'
+
+                },
+                {
+                    extend: 'print',
+                    title: 'Firma de abogados',
+                    customize: function(win) {
+                        $(win.document.body).addClass('white-bg');
+                        $(win.document.body).css('font-size', '10px');
+                        $(win.document.body).find('table')
+                            .addClass('compact')
+                            .css('font-size', 'inherit');
+                    }
+                }
+            ]
+      });
+    }else{
+      $('.dataTables-ciudades').DataTable({
+          "autoWidth": false,
+          "info":false,
+          "sInfo": false,
+          "sInfoEmpty":false,
+          "sInfoFiltered":false,
+            language: {
+              "sProcessing": "Procesando...",
+                "sLengthMenu": "Registros&nbsp;&nbsp; _MENU_ ",
+                "sZeroRecords": "No se encontraron resultados",
+                "sEmptyTable": "Ningún dato disponible en esta tabla",
+                "sInfo": "",
+                "sInfoEmpty": "",
+                "sInfoFiltered": "",
+                "sInfoPostFix": "",
+                "sSearch": "Buscar:&nbsp;&nbsp;",
+                "sUrl": "",
+                "sInfoThousands": ",",
+                "sLoadingRecords": "Cargando...",
+                "oPaginate": {
+                    "sFirst": "Primero",
+                    "sLast": "Último",
+                    "sNext": "Siguiente",
+                    "sPrevious": "Anterior"
+                },
+                "oAria": {
+                    "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
+                    "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+                },
+                "buttons": {
+                    "copy": "Copiar",
+                    "colvis": "Visibilidad"
+                }
+            },
+            "ajax": {
+                url: "http://localhost/RRHH-FIRMA/index.php/getListadoCiudades",
+                type: 'GET'
+            },
+            "columnDefs": [{
+
+            }
+            ] ,dom: '<"html5buttons"B>lTfgitp',
+              buttons: [
+              ]
+        });
+    }
 }
 
 function cargarTablaEmpresa(){
@@ -815,6 +866,8 @@ function agregarCiudad() {
                toastr.success('Ciudad ingresada')
                document.getElementById("nombre").value = "";
                $('#myModal').modal('hide');
+               var permisoExportar = $("#permisoExportar").text();
+               cargarTablaCiudades(permisoExportar);
             } else {
                 toastr.error("Error en el ingreso.");
             }

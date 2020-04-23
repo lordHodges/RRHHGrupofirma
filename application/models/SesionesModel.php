@@ -58,14 +58,19 @@ class SesionesModel extends CI_Model {
     }
 
     public function listadoPermisos($usuario, $perfil) {
-      $this->db->select("pu.cf_existencia_permiso");
+      $this->db->select("pu.cf_existencia_permiso, ep.cf_modulo");
       $this->db->from('fa_permiso_usuario pu');
+      $this->db->join('fa_existencia_permiso ep', 'ep.cp_existencia_permiso = pu.cf_existencia_permiso');
+      $this->db->join('fa_modulo m', 'm.cp_modulo = ep.cf_modulo');
       $this->db->where('pu.cf_usuario',$usuario);
       $resultado =  $this->db->get()->result();
+
 
       if (count($resultado) == 0) {
         $this->db->select("pp.cf_existencia_permiso");
         $this->db->from('fa_permiso_perfil pp');
+        $this->db->join('fa_existencia_permiso ep', 'ep.cp_existencia_permiso = pp.cf_existencia_permiso');
+        $this->db->join('fa_modulo m', 'm.cp_modulo = ep.cf_modulo');
         $this->db->where('pp.cf_perfil',$perfil);
         $resultado =  $this->db->get()->result();
       }

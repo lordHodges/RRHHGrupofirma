@@ -1,62 +1,82 @@
+<?php
+$data = $this->session->userdata("datos");
+$usuario =  $data['usuario'];
+$permisos =  $data['permisos'];
+?>
+
+<?php
+$view_cantidadContrato = 0; $view_transferenciasEmpresa = 0; $view_contratosPorVencer = 0;
+foreach ($permisos as $key => $value) {
+  if ($value->cf_existencia_permiso == "75") { $view_cantidadContrato = "1"; } else
+  if ($value->cf_existencia_permiso == "76") { $view_transferenciasEmpresa = "1"; } else
+  if ($value->cf_existencia_permiso == "77") { $view_contratosPorVencer = "1"; }
+}
+if($usuario[0]->atr_activo == "1") { ?>
+
 <div class="right_col" role="main">
 
-  <div class="col-md-4 col-sm-12">
-    <div class="x_panel" style="background-color:#f7f7f7; border:none">
-      <div class="row card-group">
-        <div class="card text-white" style="background-color:#1abb9c">
-          <div class="card-header" style="padding:7px;">
-            <h4 class="text-center">Contrato a plazo</h4>
-          </div>
-          <div class="card-body" style="padding:10px; background-color:#fff; color:#000">
-            <div id="contratosPlazo">
+  <?php if ( $view_cantidadContrato == "1") { ?>
 
+    <div class="col-md-4 col-sm-12">
+      <div class="x_panel" style="background-color:#f7f7f7; border:none">
+        <div class="row card-group">
+          <div class="card text-white" style="background-color:#1abb9c">
+            <div class="card-header" style="padding:7px;">
+              <h4 class="text-center">Contrato a plazo</h4>
+            </div>
+            <div class="card-body" style="padding:10px; background-color:#fff; color:#000">
+              <div id="contratosPlazo">
+
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
 
 
 
-  <div class="col-md-4 col-sm-6">
-    <div class="x_panel" style="background-color:#f7f7f7; border:none">
-      <div class="row card-group">
-        <div class="card text-white" style="background-color:#1abb9c">
-          <div class="card-header"  style="padding:7px;">
-            <h4 class="text-center">Contrato indefinido</h4>
-          </div>
-          <div class="card-body"  style="padding:10px; background-color:#fff; color:#000">
-            <div id="contratosIndefinido">
+    <div class="col-md-4 col-sm-6">
+      <div class="x_panel" style="background-color:#f7f7f7; border:none">
+        <div class="row card-group">
+          <div class="card text-white" style="background-color:#1abb9c">
+            <div class="card-header"  style="padding:7px;">
+              <h4 class="text-center">Contrato indefinido</h4>
+            </div>
+            <div class="card-body"  style="padding:10px; background-color:#fff; color:#000">
+              <div id="contratosIndefinido">
 
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <div class="col-md-4 col-sm-6">
-    <div class="x_panel" style="background-color:#f7f7f7; border:none">
-      <div class="row card-group">
-        <div class="card text-white" style="background-color:#1abb9c">
-          <div class="card-header"  style="padding:7px;">
-            <h4 class="text-center">Contrato por proyecto</h4>
-          </div>
-          <div class="card-body"  style="padding:10px; background-color:#fff; color:#000">
-            <div id="contratosProyecto">
+    <div class="col-md-4 col-sm-6">
+      <div class="x_panel" style="background-color:#f7f7f7; border:none">
+        <div class="row card-group">
+          <div class="card text-white" style="background-color:#1abb9c">
+            <div class="card-header"  style="padding:7px;">
+              <h4 class="text-center">Contrato por proyecto</h4>
+            </div>
+            <div class="card-body"  style="padding:10px; background-color:#fff; color:#000">
+              <div id="contratosProyecto">
 
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
+
+  <?php } ?>
 
 
 
 
 
+  <?php if ( $view_transferenciasEmpresa == "1") { ?>
   <!-- TRANSFERENCIAS DE DINERO POR BANCO -->
   <div class="col-md-12 col-sm-12 ">
     <div class="x_panel">
@@ -108,14 +128,14 @@
       </div>
     </div>
   </div>
+  <?php } ?>
 
 
 
 
 
 
-
-
+<?php if ( $view_contratosPorVencer == "1") { ?>
 <!-- CONTRATO POR VENCER -->
   <div class="col-md-6" id="contenedorDeContratosPorCaducar">
     <div class="x_panel">
@@ -135,6 +155,7 @@
       </div>
     </div>
   </div>
+<?php } ?>
 
 
 
@@ -183,3 +204,8 @@
 
   });
 </script>
+
+  <?php } else{ header("Location: http://localhost/RRHH-FIRMA/"); } ?>
+
+</body>
+</html>

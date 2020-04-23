@@ -2,18 +2,19 @@
 $data = $this->session->userdata("datos");
 $usuario =  $data['usuario'];
 $permisos =  $data['permisos'];
-// var_dump($permisos);
 ?>
 
 <?php
-$autorizado = 0;
+$view_verCargo = 0; $view_editarCargo = 0; $view_editarRemuneracion = 0; $view_crearCargo = 0; $view_exportarCargo = 0;
 foreach ($permisos as $key => $value) {
-  if ($value->cf_existencia_permiso == "10") {
-    $autorizado = 1;
-  }
+  if ($value->cf_existencia_permiso == "") { $view_verCargo = "1"; } else
+  if ($value->cf_existencia_permiso == "") { $view_editarCargo = "1"; } else
+  if ($value->cf_existencia_permiso == "") { $view_editarRemuneracion = "1"; } else
+  if ($value->cf_existencia_permiso == "") { $view_crearCargo = "1"; } else
+  if ($value->cf_existencia_permiso == "") { $view_exportarCargo = "1"; }
 }
-// var_dump("autorizado es: ".$autorizado);
-if($usuario[0]->atr_activo == "1" and $autorizado == "1" ) { ?>
+
+if($usuario[0]->atr_activo == "1" ) { ?>
 
 <div class="right_col" role="main">
     <!-- Contenedor principal -->
