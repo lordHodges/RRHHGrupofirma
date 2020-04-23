@@ -1,3 +1,18 @@
+<?php
+$data = $this->session->userdata("datos");
+$usuario =  $data['usuario'];
+$permisos =  $data['permisos'];
+?>
+
+<?php
+$view_verRM = 0; $view_crearRM = 0;  $view_eliminarRM = 0;
+foreach ($permisos as $key => $value) {
+  if ($value->cf_existencia_permiso == "39") { $view_verRM = "1"; } else
+  if ($value->cf_existencia_permiso == "40") { $view_crearRM = "1"; } else
+  if ($value->cf_existencia_permiso == "41") { $view_eliminarRM = "1"; }
+}
+
+if($usuario[0]->atr_activo == "1" ) { ?>
 <div class="right_col" role="main">
     <!-- Contenedor principal -->
     <div class="x_content">
@@ -24,11 +39,14 @@
           </div>
         </div>
 
-        <div class="col-md-12" visible="false" style="margin-bottom:10px;">
-          <div class="col-md-3" >
-              <button type="button" class="btn modidev-btn btn-sm" id="btnAgregarListaDeRequisitosMinimos">GUARDAR</button>
+        <?php if ( $view_crearRM == 1 ) {  ?>
+          <div class="col-md-12" visible="false" style="margin-bottom:10px;">
+            <div class="col-md-3" >
+                <button type="button" class="btn modidev-btn btn-sm" id="btnAgregarListaDeRequisitosMinimos">GUARDAR</button>
+            </div>
           </div>
-        </div>
+        <?php } ?>
+
       </div>
 
 
@@ -42,20 +60,25 @@
       <div class="container-fluid">
         <div class="row">
           <div class="col-md-12" id="ocultarTabla">
-            <table id="tabla_requerimientosMinimos"
-                   class="table table-striped table-bordered table-hover dataTables-requerimientosMinimos"
-                   style="margin-top:20px; width:100%">
-                <thead >
-                    <tr style="width:100%;">
-                        <th class="text-center" style="width:10%;">ID</th>
-                        <th class="text-center">DESCRIPCIÓN</th>
-                        <th class="text-center" style="width:5%;">ACCIONES</th>
-                    </tr>
-                </thead>
-                <tbody id="tbodyDetalle">
 
-                </tbody>
-            </table>
+            <?php if ($view_verRM == "1") {  ?>
+              <table id="tabla_requerimientosMinimos"
+                     class="table table-striped table-bordered table-hover dataTables-requerimientosMinimos"
+                     style="margin-top:20px; width:100%">
+                  <thead >
+                      <tr style="width:100%;">
+                          <th class="text-center" style="width:10%;">ID</th>
+                          <th class="text-center">DESCRIPCIÓN</th>
+                          <th class="text-center" style="width:5%;">ACCIONES</th>
+                      </tr>
+                  </thead>
+                  <tbody id="tbodyDetalle">
+
+                  </tbody>
+              </table>
+            <?php } ?>
+
+
           </div>
         </div>
       </div>
@@ -75,6 +98,7 @@
     <!-- /footer content -->
 
 
+    <label id="permisoEliminar" style="display:none">no</label>
 
     <!-- jQuery -->
     <script src="<?php echo base_url() ?>assets/vendors/jquery/dist/jquery.min.js"></script>
@@ -106,6 +130,13 @@
           document.getElementById('btnAgregarListaDeRequisitosMinimos').style.display = 'none';
           document.getElementById('ocultarTabla').style.display = 'none';
           document.getElementById('btnAgregarRequisitoMinimo').removeAttribute("style");  //ESTE SIRVE PARA MOSTRAR EL BOTON
+
+          var permisoExportar = "no";
+          <?php if( $view_eliminarRM== 1 ){  ?>
+              permisoExportar = "si";
+              $("#permisoEliminar").text("si");
+          <?php } ?>
+
         });
 
         $("#getSelectCargo").change(function (e){
@@ -117,7 +148,8 @@
             document.getElementById('ocultarTabla').removeAttribute("style");
 
             var cargo = $("#getSelectCargo").val();
-            cargarTabla(cargo);
+            var permisoEliminar = $("#permisoEliminar").text("si");
+            cargarTabla(cargo, permisoEliminar);
         });
 
         $("#btnAgregarListaDeRequisitosMinimos").click(function (e){
@@ -158,6 +190,7 @@
 
 
 
+<?php } else{ header("Location: http://localhost/RRHH-FIRMA/"); } ?>
 
-  </body>
+</body>
 </html>

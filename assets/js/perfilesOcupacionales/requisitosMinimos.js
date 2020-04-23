@@ -1,23 +1,29 @@
 var base_url = 'http://localhost/RRHH-FIRMA/index.php/';
 var constante = 0;
 
-function cargarTabla(cargo){
+function cargarTabla(cargo, permisoEliminar){
   //destuir datatable actual
   var table = $('#tabla_requerimientosMinimos').DataTable();
   table.destroy();
 
+  var btnAcciones = "";
+
+  if (permisoEliminar == "si") {
+    '<button type="button" id="btnEliminarRequisitoMínimo" class="btn btn-danger" data-toggle="modal" data-target="#modalEliminarRequisitoMinimo"><i class="glyphicon glyphicon-trash"></i></button>';
+  }
+
   $('.dataTables-requerimientosMinimos').DataTable({
         "info":false,
         language: {
-            "sProcessing": "Procesando...",
-            "sLengthMenu": "Registros _MENU_ ",
+          "sProcessing": "Procesando...",
+            "sLengthMenu": "Registros&nbsp;&nbsp; _MENU_ ",
             "sZeroRecords": "No se encontraron resultados",
             "sEmptyTable": "Ningún dato disponible en esta tabla",
-            // "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-            "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
-            "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+            "sInfo": "",
+            "sInfoEmpty": "",
+            "sInfoFiltered": "",
             "sInfoPostFix": "",
-            "sSearch": "Buscar:",
+            "sSearch": "Buscar:&nbsp;&nbsp;",
             "sUrl": "",
             "sInfoThousands": ",",
             "sLoadingRecords": "Cargando...",
@@ -38,7 +44,7 @@ function cargarTabla(cargo){
         },
         "columnDefs": [{
           "targets": 2,
-          "defaultContent": '<button type="button" id="btnEliminarRequisitoMínimo" class="btn btn-danger" data-toggle="modal" data-target="#modalEliminarRequisitoMinimo"><i class="glyphicon glyphicon-trash"></i></button>'
+          "defaultContent": btnAcciones
         }]
         ,dom: '<"html5buttons"B>lTfgitp',
         buttons: [
