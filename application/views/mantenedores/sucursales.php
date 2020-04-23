@@ -1,3 +1,18 @@
+<?php
+$data = $this->session->userdata("datos");
+$usuario =  $data['usuario'];
+$permisos =  $data['permisos'];
+?>
+
+<?php
+$view_verSucursal = 0; $view_crearSucursal = 0; $view_exportarSucursal = 0;
+foreach ($permisos as $key => $value) {
+  if ($value->cf_existencia_permiso == "32") { $view_verSucursal = "1"; } else
+  if ($value->cf_existencia_permiso == "33") { $view_crearSucursal = "1"; } else
+  if ($value->cf_existencia_permiso == "34") { $view_exportarSucursal = "1"; }
+}
+
+if($usuario[0]->atr_activo == "1" ) { ?>
 <div class="right_col" role="main">
     <!-- Contenedor principal -->
     <div class="x_content">
@@ -7,8 +22,12 @@
     <div class="row">
         <div class="x_panel">
             <div class="x_content">
+              <h3 class="text-center">SUCURSAL</h3><br>
+              <?php if ( $view_crearSucursal == 1 ) {  ?>
                 <button type="button" class="btn modidev-btn" data-toggle="modal" data-target=".bd-example-modal-lg" style="margin-bottom:20px;">INGRESAR SUCURSAL</button>
+              <?php } ?>
 
+              <?php if ($view_verSucursal == "1") {  ?>
                 <table id="tabla_sucursal" class="table table-striped table-bordered table-hover dataTables-sucursales" style="margin-top:20px;">
                     <thead >
                         <tr style="width:100%;">
@@ -20,6 +39,7 @@
 
                     </tbody>
                 </table>
+              <?php } ?>
 
             </div>
         </div>
@@ -57,6 +77,8 @@
     </div>
     <!-- /Modal de crear -->
 
+    <label id="permisoExportar" style="display:none">no</label>
+
 
 
 
@@ -82,99 +104,25 @@
           getSelectCargos();
           getSucursales();
 
-          $('.dataTables-sucursales').DataTable({
-              "autoWidth": false,
-                language: {
-                    "sProcessing": "Procesando...",
-                    "sLengthMenu": "Registros _MENU_ ",
-                    "sZeroRecords": "No se encontraron resultados",
-                    "sEmptyTable": "Ningún dato disponible en esta tabla",
-                    "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-                    "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
-                    "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
-                    "sInfoPostFix": "",
-                    "sSearch": "Buscar:",
-                    "sUrl": "",
-                    "sInfoThousands": ",",
-                    "sLoadingRecords": "Cargando...",
-                    "oPaginate": {
-                        "sFirst": "Primero",
-                        "sLast": "Último",
-                        "sNext": "Siguiente",
-                        "sPrevious": "Anterior"
-                    },
-                    "oAria": {
-                        "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
-                        "sSortDescending": ": Activar para ordenar la columna de manera descendente"
-                    },
-                    "buttons": {
-                        "copy": "Copiar",
-                        "colvis": "Visibilidad"
-                    }
-                },
-                "ajax": {
-                    url: "http://localhost/RRHH-FIRMA/index.php/getListadoSucursales",
-                    type: 'GET'
-                },
-                "columnDefs": [{
-
-                }
-                ],dom: '<"html5buttons"B>lTfgitp',
-                  buttons: [{
-                          extend: 'copy',
-                          exportOptions: {
-                              columns: [ 1 ]
-                          }
-                      },
-                      {
-                          extend: 'csv',
-                          exportOptions: {
-                              columns: [ 1 ]
-                          }
-                      },
-                      {
-                          extend: 'excel',
-                          title: 'Lista de Sucursales',
-                          exportOptions: {
-                              columns: [ 1 ]
-                          }
-
-                      },
-                      {
-                          extend: 'pdf',
-                          title: 'Lista de Sucursales',
-                          exportOptions: {
-                              columns: [ 1 ]
-                          }
-
-                      },
-                      {
-                          extend: 'print',
-                          title: 'Firma de abogados',
-                          exportOptions: {
-                              columns: [ 1 ]
-                          },
-                          customize: function(win) {
-                              $(win.document.body).addClass('white-bg');
-                              $(win.document.body).css('font-size', '10px');
-                              $(win.document.body).find('table')
-                                  .addClass('compact')
-                                  .css('font-size', 'inherit');
-                          }
-                      }
-                  ]
-            });
+          var permisoExportar = "no";
+          <?php if( $view_exportarSucursal == 1 ){  ?>
+              permisoExportar = "si";
+              $("#permisoExportar").text("si");
+          <?php } ?>
+          cargarTablaSucursales(permisoExportar);
       });
 
       $("#btnAgregarSucursal").click(function (e){
           e.preventDefault();
           agregarSucursal();
-          var table = $('#tabla_sucursal').DataTable();
-          table.ajax.reload(function(json) {
-            $('#btnAgregarSucursal').val(json.lastInput);
-          });
+          // var table = $('#tabla_sucursal').DataTable();
+          // table.ajax.reload(function(json) {
+          //   $('#btnAgregarSucursal').val(json.lastInput);
+          // });
       });
   </script>
 
-  </body>
+  <?php } else{ header("Location: http://localhost/RRHH-FIRMA/"); } ?>
+
+</body>
 </html>

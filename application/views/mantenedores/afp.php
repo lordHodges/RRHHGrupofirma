@@ -7,10 +7,10 @@ $permisos =  $data['permisos'];
 <?php
 $view_verPrevision = 0; $view_crearPrevision = 0; $view_exportarPrevision = 0; $view_editarPrevision =  0;
 foreach ($permisos as $key => $value) {
-  if ($value->cf_existencia_permiso == "24") { $view_verPrevision = "1"; } else
-  if ($value->cf_existencia_permiso == "26") { $view_crearPrevision = "1"; } else
-  if ($value->cf_existencia_permiso == "25") { $view_editarPrevision = "1"; } else
-  if ($value->cf_existencia_permiso == "27") { $view_exportarPrevision = "1"; }
+  if ($value->cf_existencia_permiso == "28") { $view_verPrevision = "1"; } else
+  if ($value->cf_existencia_permiso == "30") { $view_crearPrevision = "1"; } else
+  if ($value->cf_existencia_permiso == "29") { $view_editarPrevision = "1"; } else
+  if ($value->cf_existencia_permiso == "31") { $view_exportarPrevision = "1"; }
 }
 
 if($usuario[0]->atr_activo == "1" ) { ?>
