@@ -87,7 +87,7 @@ if($usuario[0]->atr_activo == "1" ) { ?>
     </div>
     <!-- /Modal de crear -->
 
-    <label id="permisoExportar">no</label>
+    <label id="permisoExportar" style="display:none">no</label>
 
 
 

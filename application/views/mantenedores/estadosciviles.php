@@ -1,3 +1,19 @@
+<?php
+$data = $this->session->userdata("datos");
+$usuario =  $data['usuario'];
+$permisos =  $data['permisos'];
+?>
+
+<?php
+$view_verEstadoCivil = 0; $view_crearEstadoCIvil = 0; $view_exportarEstadoCivil = 0;
+foreach ($permisos as $key => $value) {
+  if ($value->cf_existencia_permiso == "9") { $view_verEstadoCivil = "1"; } else
+  if ($value->cf_existencia_permiso == "11") { $view_crearEstadoCIvil = "1"; } else
+  if ($value->cf_existencia_permiso == "12") { $view_exportarEstadoCivil = "1"; }
+}
+
+if($usuario[0]->atr_activo == "1" ) { ?>
+
 <div class="right_col" role="main">
     <!-- Contenedor principal -->
     <div class="x_content">
@@ -7,8 +23,11 @@
     <div class="row">
         <div class="x_panel">
             <div class="x_content">
+              <?php if ( $view_crearEstadoCIvil == 1 ) {  ?>
                 <button type="button" class="btn modidev-btn" data-toggle="modal" data-target=".bd-example-modal-lg" style="margin-bottom:20px;">INGRESAR ESTADO CIVIL</button>
+              <?php } ?>
 
+              <?php if ($view_verEstadoCivil == "1") {  ?>
                 <table id="tabla_estadoCivil" class="table table-striped table-bordered table-hover dataTables-estadoCivil" style="margin-top:20px;">
                     <thead >
                         <tr style="width:100%;">
@@ -20,6 +39,7 @@
 
                     </tbody>
                 </table>
+              <?php } ?>
 
             </div>
         </div>
@@ -57,6 +77,8 @@
     </div>
     <!-- /Modal de crear -->
 
+    <label id="permisoExportar" style="display:none">no</label>
+
 
 
 
@@ -78,7 +100,12 @@
 
     <script>
       $(document).ready(function() {
-          cargarTablaEstadosCiviles();
+        var permisoExportar = "no";
+        <?php if( $view_exportarEstadoCivil == 1){  ?>
+            permisoExportar = "si";
+            $("#permisoExportar").text("si");
+        <?php } ?>
+        cargarTablaEstadosCiviles(permisoExportar);
       });
 
       $("#btnAgregarEstadoCivil").click(function (e){
@@ -88,9 +115,10 @@
           table.ajax.reload(function(json) {
             $('#btnAgregarEstadoCivil').val(json.lastInput);
           });
-          cargarTablaEstadosCiviles();
+          cargarTablaEstadosCiviles(permisoExportar);
       });
   </script>
+    <?php } else{ header("Location: http://localhost/RRHH-FIRMA/"); } ?>
 
   </body>
 </html>
