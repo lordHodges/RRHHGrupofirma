@@ -129,9 +129,9 @@ function cambiarEstado(idUsuario, estado) {
     }).then(function (msg) {
         if (msg == "ok") {
            if (estado == "Activo") {
-             toastr.error("Usuario desactivado.");
+             toastr.success("Usuario desactivado.");
            }else{
-             toastr.error("Usuario activado.");
+             toastr.success("Usuario activado.");
            }
            cargarTabla();
         } else {
