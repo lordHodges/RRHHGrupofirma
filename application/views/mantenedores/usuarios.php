@@ -2,7 +2,7 @@
 $data = $this->session->userdata("datos");
 $usuario =  $data['usuario'];
 $permisos =  $data['permisos'];
-var_dump($permisos);
+// var_dump($permisos);
 ?>
 
 <?php
@@ -12,9 +12,9 @@ foreach ($permisos as $key => $value) {
     $autorizado = 1;
   }
 }
-var_dump("autorizado es: ".$autorizado);
+// var_dump("autorizado es: ".$autorizado);
 if($usuario[0]->atr_activo == "1" and $autorizado == "1" ) { ?>
-  
+
 <div class="right_col" role="main">
     <!-- Contenedor principal -->
     <div class="x_content">
