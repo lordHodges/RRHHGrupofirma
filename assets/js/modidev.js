@@ -1231,6 +1231,9 @@ function updateEstadoContrato(){
         if(msg.msg == "ok"){
           toastr.success('Información actualizada');
           $('#modalEditarEstadosContrato').modal('hide');
+          var permisoEditar = $("#permisoEditar").text();
+          var permisoExportar = $("#permisoExportar").text();
+          cargarTablaEstadosContrato(permisoEditar,permisoExportar);
         }else{
           toastr.error('No se ha actualizado la información');
           $('#modalEditarEstadosContrato').modal('hide');
@@ -1510,6 +1513,7 @@ function agregarEstadoContrato() {
                $('#myModal').modal('hide');
                var permisoEditar = $("#permisoEditar").text();
                var permisoExportar = $("#permisoExportar").text();
+               cargarTablaEstadosContrato(permisoEditar,permisoExportar);
             } else {
                 toastr.error("Error en el ingreso.");
             }

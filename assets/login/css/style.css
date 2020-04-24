@@ -46,15 +46,15 @@
 	* Responsive
 	* Expanels
 	* Thumbnail
-	* General Elements 
+	* General Elements
 	* Avatar
 	* Icons Styles
 	* Form Controls
 	* Chart-Circles
 	* Chat
 	* Tags
-	* Highlight 
-	* Custom Form Elements 
+	* Highlight
+	* Custom Form Elements
 	* Timeline
 	* Jvectormap
 	* Gallery
@@ -15287,7 +15287,7 @@ svg {
 	}
 	.header-main .top-bar-right .custom {
 		display: -webkit-inline-box!important;
-		
+
 	}
 	.icon-card li {
 		font-size: 10px;
@@ -18530,7 +18530,7 @@ footer .border-top {
 	border-radius: 2px;
 }
 .construction-image {
-	background: url(../images/media/photos/construction.jpg);
+	background: url(../assets/login/images/media/photos/construction.jpg);
 	background-position: center;
 	background-size: cover;
 	background-attachment: fixed;
@@ -20631,8 +20631,8 @@ body .modal-open {
   opacity:.3
 }
 @keyframes beat{
-	to { 
-		transform: scale(1.2); 
+	to {
+		transform: scale(1.2);
 		opacity:.2
 	}
 }
@@ -20678,25 +20678,25 @@ body .modal-open {
 }
 .line:nth-child(1){
 	margin-left: -25%
-} 
+}
 .line:nth-child(1):after{
 	animation-delay: 2s
 }
 .line:nth-child(3){
 	margin-left: 25%
-} 
+}
 .line:nth-child(3):after{
 	animation-delay: 2.5s
 }
 .line:nth-child(4){
 	margin-left: -50%
-} 
+}
 .line:nth-child(4):after{
 	animation-delay: 3s
 }
 .line:nth-child(5){
 	margin-left: 50%
-} 
+}
 .line:nth-child(5):after{
 	animation-delay: 3.5s
 }
@@ -20746,7 +20746,7 @@ body .modal-open {
 .bannner-owl-carousel1 .owl-nav button{
 	border: 1px solid transparent !important;
     background: rgba(0,0,0,0.1)!important;
-	border-radius:3px !important; 
+	border-radius:3px !important;
 }
 .slider-images .slider-img1:before {
     content: '';
@@ -20806,7 +20806,7 @@ body .modal-open {
 		border-bottom:none!important;
 		border-radius: 0 !important;
 	}
-	.map-content-width .search-background.bg-transparent .select2-lg .select2-container .select2-selection--single, 
+	.map-content-width .search-background.bg-transparent .select2-lg .select2-container .select2-selection--single,
 	.map-content-width .search-background.bg-transparent .form-control.input-lg{
 		border-right:0 !important;
 		border-top:1px solid #e4e6f1 !important;
@@ -20982,7 +20982,7 @@ body .modal-open {
 	.header-style1  .sticky-wrapper.is-sticky .horizontalMenu>.horizontalMenu-list>li>a.active{
 		background:rgba(0,0,0,0.1);
 		color:#fff;
-		border-radius:2px;	
+		border-radius:2px;
 	}
 	.header-style1 .horizontalMenu>.horizontalMenu-list>li>a{
 		color:rgba(255,255,255,0.8);

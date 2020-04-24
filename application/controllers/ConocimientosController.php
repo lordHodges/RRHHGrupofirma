@@ -9,6 +9,12 @@ class ConocimientosController extends CI_Controller {
 		$this->load->model("ConocimientosModel");
 	}
 
+	public function index()
+	{
+		$this->load->view('template/menu');
+		$this->load->view('perfilOcupacional/conocimientos');
+	}
+
 	public function deleteConocimiento(){
 		$id_conocimiento = $this->input->post("id_conocimiento");
 		echo json_encode($this->ConocimientosModel->deleteConocimiento($id_conocimiento));
@@ -26,7 +32,7 @@ class ConocimientosController extends CI_Controller {
 		foreach ($books->result() as $r) {
 				$data[] = array(
 					$r->cp_conocimiento_cargo,
-					$r->atr_descripcion,
+					$r->atr_descripcion
 				);
 		}
 		$output = array(
@@ -37,14 +43,6 @@ class ConocimientosController extends CI_Controller {
 		);
 		echo json_encode($output);
 		exit();
-	}
-
-
-
-	public function index()
-	{
-		$this->load->view('template/menu');
-		$this->load->view('perfilOcupacional/conocimientos');
 	}
 
 	public function getListadoConocimientos(){

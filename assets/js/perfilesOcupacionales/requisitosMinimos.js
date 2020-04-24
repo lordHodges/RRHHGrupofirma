@@ -9,7 +9,7 @@ function cargarTabla(cargo, permisoEliminar){
   var btnAcciones = "";
 
   if (permisoEliminar == "si") {
-    '<button type="button" id="btnEliminarRequisitoMínimo" class="btn btn-danger" data-toggle="modal" data-target="#modalEliminarRequisitoMinimo"><i class="glyphicon glyphicon-trash"></i></button>';
+    btnAcciones = '<button type="button" id="btnEliminarRequisitoMínimo" class="btn btn-danger" data-toggle="modal" data-target="#modalEliminarRequisitoMinimo"><i class="glyphicon glyphicon-trash"></i></button>';
   }
 
   $('.dataTables-requerimientosMinimos').DataTable({
@@ -64,8 +64,9 @@ function eliminarRequisitoMinimo(idRequisitoMinimo){
   }).then(function (msg) {
       toastr.success("Requisitos mínimo eliminado");
 
+      var permisoEliminar = $("#permisoEliminar").text();
       //recargar el datatable
-      cargarTabla(cargo);
+      cargarTabla(cargo,permisoEliminar);
   });
 }
 
@@ -97,7 +98,9 @@ function agregarListaDeRequisitosMinimos(){
         }).then(function (msg) {
           if(msg.msg == "ok"){
             toastr.success("Requisito mínimo agregado");
-            cargarTabla(cargo);
+            var permisoEliminar = $("#permisoEliminar").text();
+            //recargar el datatable
+            cargarTabla(cargo,permisoEliminar);
           }else{
             toastr.warning("Requisito mínimo ya existe");
           }

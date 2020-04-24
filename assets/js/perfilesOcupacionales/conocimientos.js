@@ -1,24 +1,28 @@
 var base_url = 'http://localhost/RRHH-FIRMA/index.php/';
 var constante = 0;
 
-
-function cargarTabla(cargo){
+function cargarTabla(cargo, permisoEliminar){
   var table = $('#tabla_conocimientos').DataTable();
   table.destroy();
+
+  var btnAcciones = "";
+
+  if (permisoEliminar == "si") {
+    btnAcciones = '<button type="button" id="btnEliminarConocimiento" class="btn btn-danger"><i class="glyphicon glyphicon-trash"></i></button>';
+  }
 
   $('.dataTables-conocimientos').DataTable({
         "info":false,
         language: {
-            "autoWidth": false,
-            "info":false,
-            "sInfoEmpty":false,
-            "sInfoFiltered":false,
             "sProcessing": "Procesando...",
-            "sLengthMenu": "Registros _MENU_ ",
+            "sLengthMenu": "Registros&nbsp;&nbsp; _MENU_ ",
             "sZeroRecords": "No se encontraron resultados",
             "sEmptyTable": "Ningún dato disponible en esta tabla",
+            "sInfo": "",
+            "sInfoEmpty": "",
+            "sInfoFiltered": "",
             "sInfoPostFix": "",
-            "sSearch": "Buscar:",
+            "sSearch": "Buscar:&nbsp;&nbsp;",
             "sUrl": "",
             "sInfoThousands": ",",
             "sLoadingRecords": "Cargando...",
@@ -39,7 +43,7 @@ function cargarTabla(cargo){
         },
         "columnDefs": [{
           "targets": 2,
-          "defaultContent": '<button type="button" id="btnEliminarConocimiento" class="btn btn-danger"><i class="glyphicon glyphicon-trash"></i></button>'
+          "defaultContent": btnAcciones
         }]
         ,dom: '<"html5buttons"B>lTfgitp',
         buttons: [
@@ -57,7 +61,9 @@ function eliminarConocimiento(id_conocimiento){
       data: {"id_conocimiento":id_conocimiento}
   }).then(function (msg) {
       toastr.success("Conocimiento eliminado");
-      cargarTabla(cargo);
+      var permisoEliminar = $("#permisoEliminar").text();
+      //recargar el datatable
+      cargarTabla(cargo,permisoEliminar);
   });
 }
 
@@ -90,7 +96,9 @@ function agregarListaDeConocimientos(){
         }).then(function (msg) {
             if( msg.msg == "ok"){
               toastr.success("Conocimientos actualizados");
-              cargarTabla(cargo);
+              var permisoEliminar = $("#permisoEliminar").text();
+              //recargar el datatable
+              cargarTabla(cargo,permisoEliminar);
             }else{
               toastr.warning("Conocimiento ya existe");
             }

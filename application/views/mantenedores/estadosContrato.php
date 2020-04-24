@@ -134,18 +134,6 @@ if($usuario[0]->atr_activo == "1" ) { ?>
           table.ajax.reload(function(json) {
             $('#btnAgregarEstado').val(json.lastInput);
           });
-          // COMPROBAR PERMISOS
-          var permisoEditar = 'no';
-          var permisoExportar = "no";
-          <?php if( $view_editarEmpresa == 1 ){  ?>
-            permisoEditar = "si";
-            $("#permisoEditar").text("si");
-          <?php } ?>
-          <?php if( $view_exportarEmpresa == 1 ){  ?>
-              permisoExportar = "si";
-              $("#permisoExportar").text("si");
-          <?php } ?>
-          cargarTablaEstadosContrato(permisoEditar,permisoExportar);
       });
 
       $("body").on("click", "#getDetalleEstadosContrato", function(e) {
@@ -161,18 +149,6 @@ if($usuario[0]->atr_activo == "1" ) { ?>
           table.ajax.reload(function(json) {
             $('#btnEditarEstadoContrato').val(json.lastInput);
           });
-          // COMPROBAR PERMISOS
-          var permisoEditar = 'no';
-          var permisoExportar = "no";
-          <?php if( $view_editarEmpresa == 1 ){  ?>
-            permisoEditar = "si";
-            $("#permisoEditar").text("si");
-          <?php } ?>
-          <?php if( $view_exportarEmpresa == 1 ){  ?>
-              permisoExportar = "si";
-              $("#permisoExportar").text("si");
-          <?php } ?>
-          cargarTablaEstadosContrato(permisoEditar,permisoExportar);
       });
 
   </script>

@@ -1,3 +1,19 @@
+<?php
+$data = $this->session->userdata("datos");
+$usuario =  $data['usuario'];
+$permisos =  $data['permisos'];
+?>
+
+<?php
+$view_verFuncion = 0; $view_crearFuncion = 0; $view_eliminarFuncion = 0;
+foreach ($permisos as $key => $value) {
+  if ($value->cf_existencia_permiso == "42") { $view_verFuncion = "1"; } else
+  if ($value->cf_existencia_permiso == "43") { $view_crearFuncion = "1"; } else
+  if ($value->cf_existencia_permiso == "44") { $view_eliminarFuncion = "1"; }
+}
+
+if($usuario[0]->atr_activo == "1" ) { ?>
+
 <div class="right_col" role="main">
     <!-- Contenedor principal -->
     <div class="x_content">
@@ -16,6 +32,7 @@
 
       <!-- boton de agregar nuev input -->
       <div class="container">
+        <?php if ( $view_crearFuncion == 1 ) {  ?>
         <div class="col-md-12" visible="false" >
           <div class="col-md-1">
             <button type="button" class="btn modidev-btn btn-sm center" style="display:none" id="btnAgregarTarea" >
@@ -23,6 +40,7 @@
             </button>
           </div>
         </div>
+       <?php } ?>
 
         <div class="col-md-12" visible="false" >
           <div class="col-md-3" >
@@ -42,6 +60,8 @@
       <div class="container-fluid">
         <div class="row">
           <div class="col-md-12" id="ocultarTabla">
+
+            <?php if ($view_verFuncion == "1") {  ?>
             <table id="tabla_funciones"
                    class="table table-striped table-bordered table-hover dataTables-funciones" style="margin-top:20px; width:100%">
                 <thead >
@@ -55,6 +75,9 @@
 
                 </tbody>
             </table>
+          <?php } ?>
+
+
           </div>
         </div>
       </div>
@@ -71,6 +94,8 @@
         <div class="clearfix"></div>
     </footer>
     <!-- /footer content -->
+
+    <label id="permisoEliminar" style="display:none">no</label>
 
 
 
@@ -103,6 +128,11 @@
           document.getElementById('btnAgregarTarea').removeAttribute("style");  //ESTE SIRVE PARA MOSTRAR EL BOTON
           document.getElementById('ocultarTabla').style.display = 'none';
 
+          var permisoEliminar = "no";
+          <?php if( $view_eliminarFuncion == 1){  ?>
+              permisoEliminar = "si";
+              $("#permisoEliminar").text("si");
+          <?php } ?>
 
       $("#btnAgregarTarea").click(function (e){
           e.preventDefault();
@@ -118,9 +148,11 @@
           document.getElementById('ocultarTabla').removeAttribute("style");
 
           var cargo = $("#getSelectCargo").val();
-          var table = $('#tabla_funciones').DataTable();
-          table.destroy();
-          cargarTabla(cargo);
+          // var table = $('#tabla_funciones').DataTable();
+          // table.destroy();
+          var permisoEliminar = $("#permisoEliminar").text();
+          ("resultado es:"+permisoEliminar);
+          cargarTabla(cargo,permisoEliminar );
           });
       });
 
@@ -157,5 +189,7 @@
 
 
 
-  </body>
+<?php } else{ header("Location: http://localhost/RRHH-FIRMA/"); } ?>
+
+</body>
 </html>

@@ -30,24 +30,26 @@ if($usuario[0]->atr_activo == "1" ) { ?>
       </div>
 
       <!-- boton de agregar nuev input -->
-      <div class="container">
-        <div class="col-md-12" visible="false" >
-          <div class="col-md-2" style="margin-bottom:10px;">
-            <button type="button" class="btn modidev-btn btn-sm center" style="display:none" id="btnAgregarRequisitoMinimo" >
-              <i class="glyphicon glyphicon-plus"></i>
-            </button>
-          </div>
-        </div>
-
-        <?php if ( $view_crearRM == 1 ) {  ?>
-          <div class="col-md-12" visible="false" style="margin-bottom:10px;">
-            <div class="col-md-3" >
-                <button type="button" class="btn modidev-btn btn-sm" id="btnAgregarListaDeRequisitosMinimos">GUARDAR</button>
+      <?php if ( $view_crearRM == 1 ) {  ?>
+        <div class="container">
+          <div class="col-md-12" visible="false" >
+            <div class="col-md-2" style="margin-bottom:10px;">
+              <button type="button" class="btn modidev-btn btn-sm center" style="display:none" id="btnAgregarRequisitoMinimo" >
+                <i class="glyphicon glyphicon-plus"></i>
+              </button>
             </div>
           </div>
-        <?php } ?>
 
-      </div>
+
+            <div class="col-md-12" visible="false" style="margin-bottom:10px;">
+              <div class="col-md-3" >
+                  <button type="button" class="btn modidev-btn btn-sm" id="btnAgregarListaDeRequisitosMinimos">GUARDAR</button>
+              </div>
+            </div>
+
+        </div>
+      <?php } ?>
+
 
 
       <!-- Listado de tareas para llenar -->

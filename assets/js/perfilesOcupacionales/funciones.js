@@ -1,23 +1,28 @@
 var base_url = 'http://localhost/RRHH-FIRMA/index.php/';
 var constante = 0;
 
-function cargarTabla(cargo){
+function cargarTabla(cargo,permisoEliminar ){
   var table = $('#tabla_funciones').DataTable();
   table.destroy();
+
+  var btnAcciones = "";
+
+  if (permisoEliminar == "si") {
+    btnAcciones = '<button type="button" id="btnEliminarTarea" class="btn btn-danger"><i class="glyphicon glyphicon-trash"></i></button>';
+  }
 
   $('.dataTables-funciones').DataTable({
         "info":false,
         language: {
-            "autoWidth": false,
-            "info":false,
-            "sInfoEmpty":false,
-            "sInfoFiltered":false,
-            "sProcessing": "Procesando...",
-            "sLengthMenu": "Registros _MENU_ ",
+          "sProcessing": "Procesando...",
+            "sLengthMenu": "Registros&nbsp;&nbsp; _MENU_ ",
             "sZeroRecords": "No se encontraron resultados",
             "sEmptyTable": "Ningún dato disponible en esta tabla",
+            "sInfo": "",
+            "sInfoEmpty": "",
+            "sInfoFiltered": "",
             "sInfoPostFix": "",
-            "sSearch": "Buscar:",
+            "sSearch": "Buscar:&nbsp;&nbsp;",
             "sUrl": "",
             "sInfoThousands": ",",
             "sLoadingRecords": "Cargando...",
@@ -38,7 +43,7 @@ function cargarTabla(cargo){
         },
         "columnDefs": [{
           "targets": 2,
-          "defaultContent": '<button type="button" id="btnEliminarTarea" class="btn btn-danger"><i class="glyphicon glyphicon-trash"></i></button>'
+          "defaultContent": btnAcciones
         }]
         ,dom: '<"html5buttons"B>lTfgitp',
         buttons: [
@@ -56,8 +61,9 @@ function eliminarTarea(idTarea){
       data: {"idTarea":idTarea}
   }).then(function (msg) {
       toastr.success("Función eliminada");
+      var permisoEliminar = $("#permisoEliminar").text();
       //recargar el datatable
-      cargarTabla(cargo);
+      cargarTabla(cargo,permisoEliminar);
   });
 }
 
@@ -90,7 +96,9 @@ function agregarListaDeTareas(){
         }).then(function (msg) {
           if(msg.msg == "ok"){
             toastr.success("Requisitos mínimos agregados");
-            cargarTabla(cargo);
+            var permisoEliminar = $("#permisoEliminar").text();
+            //recargar el datatable
+            cargarTabla(cargo,permisoEliminar);
           }else{
             toastr.warning("Función ya existe");
           }
@@ -102,7 +110,9 @@ function agregarListaDeTareas(){
   constante = 0;
 
   $("#tareas").empty();
-  cargarTabla(cargo);
+  var permisoEliminar = $("#permisoEliminar").text();
+  //recargar el datatable
+  cargarTabla(cargo,permisoEliminar);
   document.getElementById('btnAgregarListaDeTareas').style.display = 'none';
 
 }

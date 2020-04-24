@@ -2,21 +2,28 @@ var base_url = 'http://localhost/RRHH-FIRMA/index.php/';
 var constante = 0;
 
 
-function cargarTabla(cargo){
+function cargarTabla(cargo,permisoEliminar){
   var table = $('#tabla_competencias').DataTable();
   table.destroy();
+
+  var btnAcciones = "";
+
+  if (permisoEliminar == "si") {
+    btnAcciones = '<button type="button" id="btnEliminarCompetencias" class="btn btn-danger" data-toggle="modal" data-target="#modalEliminarRequisitoMinimo"><i class="glyphicon glyphicon-trash"></i></button>';
+  }
+
   $('.dataTables-competencias').DataTable({
       "info":false,
       language: {
           "sProcessing": "Procesando...",
-          "sLengthMenu": "Registros _MENU_ ",
+          "sLengthMenu": "Registros&nbsp;&nbsp; _MENU_ ",
           "sZeroRecords": "No se encontraron resultados",
           "sEmptyTable": "Ningún dato disponible en esta tabla",
-          // "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-          "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
-          "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+          "sInfo": "",
+          "sInfoEmpty": "",
+          "sInfoFiltered": "",
           "sInfoPostFix": "",
-          "sSearch": "Buscar:",
+          "sSearch": "Buscar:&nbsp;&nbsp;",
           "sUrl": "",
           "sInfoThousands": ",",
           "sLoadingRecords": "Cargando...",
@@ -30,18 +37,18 @@ function cargarTabla(cargo){
               "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
               "sSortDescending": ": Activar para ordenar la columna de manera descendente"
           },
-      },
-      "ajax": {
-          url: 'http://localhost/RRHH-FIRMA/index.php/getListadoCompetenciasDataTable?id='+cargo,
-          type: 'GET',
-      },
-      "columnDefs": [{
-        "targets": 2,
-        "defaultContent": '<button type="button" id="btnEliminarCompetencias" class="btn btn-danger" data-toggle="modal" data-target="#modalEliminarRequisitoMinimo"><i class="glyphicon glyphicon-trash"></i></button>'
-      }]
-      ,dom: '<"html5buttons"B>lTfgitp',
-      buttons: [
-      ]
+        },
+        "ajax": {
+            url: 'http://localhost/RRHH-FIRMA/index.php/getListadoCompetenciasDataTable?id='+cargo,
+            type: 'GET',
+        },
+        "columnDefs": [{
+          "targets": 2,
+          "defaultContent": btnAcciones
+        }]
+        ,dom: '<"html5buttons"B>lTfgitp',
+        buttons: [
+        ]
 
   });
 }
@@ -55,8 +62,9 @@ function eliminarCompetencia(idCompetencia){
       data: {"idCompetencia":idCompetencia}
   }).then(function (msg) {
       toastr.success("Eliminado con éxito");
+      var permisoEliminar = $("#permisoEliminar").text();
       //recargar el datatable
-      cargarTabla(cargo);
+      cargarTabla(cargo,permisoEliminar);
   });
 }
 
@@ -89,7 +97,9 @@ function agregarListaDeCompetencias(){
         }).then(function (msg) {
             if(msg.msg == "ok"){
               toastr.success("Competencias y características actualizadas");
-              cargarTabla(cargo);
+              var permisoEliminar = $("#permisoEliminar").text();
+              //recargar el datatable
+              cargarTabla(cargo,permisoEliminar);
             }else{
               toastr.warning("Competencia o Característica ya existe");
             }
@@ -100,7 +110,9 @@ function agregarListaDeCompetencias(){
       constante = 0;
 
       $("#competencias").empty();
-      cargarTabla(cargo);
+      var permisoEliminar = $("#permisoEliminar").text();
+      //recargar el datatable
+      cargarTabla(cargo,permisoEliminar);
       document.getElementById('btnAgregarCompetencia').removeAttribute("style");
   }
 

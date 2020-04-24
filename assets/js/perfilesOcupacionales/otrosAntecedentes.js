@@ -1,7 +1,7 @@
 var base_url = 'http://localhost/RRHH-FIRMA/index.php/';
 var constante = 0;
 
-function cargarTabla(){
+function cargarTabla(permisoEliminar){
   //obteneción de valores
   var cargo =  $("#getSelectCargo").val();
   var antecedente =  $("#getSelectTitulos").val();
@@ -10,18 +10,24 @@ function cargarTabla(){
   var table = $('#tabla_otrosAntecedentes').DataTable();
   table.destroy();
 
+  var btnAcciones = "";
+
+  if (permisoEliminar == "si") {
+    btnAcciones = '<button type="button" id="btnEliminarOtroAntecedente" class="btn btn-danger"><i class="glyphicon glyphicon-trash"></i></button>';
+  }
+
   $('.dataTables-otrosAntecedentes').DataTable({
         "info":false,
         language: {
             "sProcessing": "Procesando...",
-            "sLengthMenu": "Registros _MENU_ ",
+            "sLengthMenu": "Registros&nbsp;&nbsp; _MENU_ ",
             "sZeroRecords": "No se encontraron resultados",
             "sEmptyTable": "Ningún dato disponible en esta tabla",
-            // "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+            "sInfo": "",
             "sInfoEmpty": "",
-            "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+            "sInfoFiltered": "",
             "sInfoPostFix": "",
-            "sSearch": "Buscar:",
+            "sSearch": "Buscar:&nbsp;&nbsp;",
             "sUrl": "",
             "sInfoThousands": ",",
             "sLoadingRecords": "Cargando...",
@@ -42,7 +48,7 @@ function cargarTabla(){
         },
         "columnDefs": [{
           "targets": 2,
-          "defaultContent": '<button type="button" id="btnEliminarOtroAntecedente" class="btn btn-danger"><i class="glyphicon glyphicon-trash"></i></button>'
+          "defaultContent": btnAcciones
         }]
         ,dom: '<"html5buttons"B>lTfgitp',
         buttons: [
@@ -59,7 +65,8 @@ function eliminarOtroAntecedente(idOtroAntecedente){
       data: {"idOtroAntecedente":idOtroAntecedente}
   }).then(function (msg) {
       toastr.success("Otro antecedente eliminado");
-      cargarTabla();
+      var permisoEliminar = $("#permisoEliminar").text();
+      cargarTabla(permisoEliminar);
   });
 }
 
@@ -129,7 +136,8 @@ function agregarListaDeOtrosAntecedentes(){
         }).then(function (msg) {
             if( msg.msg == "ok"){
               toastr.success("Listado actualizado");
-              cargarTabla();
+              var permisoEliminar = $("#permisoEliminar").text();
+              cargarTabla(permisoEliminar);
             }else{
               toastr.warning("El antecedente ya existe");
             }

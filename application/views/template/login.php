@@ -35,9 +35,22 @@
 		<!--Color-Skin Css -->
 		<link href="<?php echo base_url() ?>assets/login/color-skins/color10.css" id="theme" media="all" rel="stylesheet">
 
+		<!-- Toastr -->
+		<link href="<?php echo base_url() ?>assets/css/toastr.min.css" rel="stylesheet" type="text/css" />
+
+		<style media="screen">
+			body{
+				background-image: url(../assets/login/images/media/photos/construction.jpg);
+				background-position: center;
+				background-size: cover;
+				background-attachment: fixed;
+			}
+		</style>
 	</head>
 
-	<body class="construction-image">
+
+
+	<body>
 
 		<!--Loader-->
 		<div id="global-loader">
@@ -72,7 +85,7 @@
 										</label>
 									</div> -->
 									<div class="form-footer mt-2">
-										<button id="btnIniciarSesion" class="btn btn-primary btn-block">Ingresar</button>
+										<button id="btnIniciarSesion" class="btn btn-primary btn-block" style="background:#1ab596; border:none">Ingresar</button>
 									</div>
 									<div class="text-center  mt-3 text-dark">
 										Si no tienes una cuenta el administrador debe crearla.
@@ -131,7 +144,10 @@
 							data: { "correo":correo, "clave":clave }
 					}).then(function (msg) {
 						if (msg == 'ok') {
-							window.location="http://localhost/RRHH-FIRMA/index.php/dashboard";
+							toastr.success("Datos correctos");
+							setTimeout(function(){
+									window.location="http://localhost/RRHH-FIRMA/index.php/dashboard";
+							},1500);
 						}else {
 							toastr.error("Datos incorrectos");
 						}
