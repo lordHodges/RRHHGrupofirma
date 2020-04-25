@@ -110,13 +110,13 @@ function getTransferenciasTrabajador(idTrabajador){
         fila +='<td>'+fecha+'</td>';
         fila +='<td>'+o.atr_tipo+'</td>';
         fila +='<td>$'+o.atr_monto+'</td>';
+
         if(o.atr_ruta == "vacio"){
           if (permisoDescargar == "si") {
             fila += '<td> <a class="btn btn-default" href="#"><i class="glyphicon glyphicon-download-alt"></i></a> </td>';
           }else{
             fila += '<td> <a class="btn btn-default" href="#"><i class="glyphicon glyphicon-download-alt"></i></a> </td>';
           }
-
         }else{
           download = "http://localhost/RRHH-FIRMA/index.php/TransferenciasController/descargarComprobante/"+o.cp_transferencia;
           if (permisoDescargar == "si") {
@@ -125,6 +125,7 @@ function getTransferenciasTrabajador(idTrabajador){
             fila += '<td><a class="btn btn-default href="#"><i class="glyphicon glyphicon-download-alt"></i></a> </td>';
           }
         }
+
         fila +='</tr>';
       });
       fila +='</body> </table>';

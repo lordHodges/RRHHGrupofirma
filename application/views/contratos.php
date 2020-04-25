@@ -1,3 +1,18 @@
+<?php
+$data = $this->session->userdata("datos");
+$usuario =  $data['usuario'];
+$permisos =  $data['permisos'];
+?>
+
+<?php
+$view_verContrato = 0; $view_subirContrato = 0; $view_descargarContrato = 0;
+foreach ($permisos as $key => $value) {
+  if ($value->cf_existencia_permiso == "54") { $view_verContrato = "1"; } else
+  if ($value->cf_existencia_permiso == "55") { $view_subirContrato  = "1"; } else
+  if ($value->cf_existencia_permiso == "56") { $view_descargarContrato  = "1" ; }
+}
+
+if($usuario[0]->atr_activo == "1") { ?>
 <div class="right_col" role="main">
     <!-- Contenedor principal -->
     <!-- <div class="x_content">
@@ -9,6 +24,8 @@
 
             <div class="x_content">
               <h3 class="text-center">CONTRATOS</h3><br>
+
+                <?php if ( $view_verContrato == 1 ) {  ?>
                   <table id="tabla_trabajador" class="table table-striped table-bordered table-hover dataTables-trabajadores" style="margin-top:20px;">
                     <thead>
                         <tr>
@@ -24,6 +41,7 @@
 
                     </tbody>
                   </table>
+                <?php } ?>
 
             </div>
         </div>
@@ -153,6 +171,8 @@
     </footer>
     <!-- /footer content -->
 
+    <label id="permisoSubir" style="display:none">no</label>
+    <label id="permisoDescargar" style="display:none">no</label>
 
 
 
@@ -180,6 +200,16 @@
             getSelectCargos();
             cargarTabla();
             getEstadosContrato();
+
+            <?php if( $view_subirContrato == 1){  ?>
+                $("#permisoSubir").text("si");
+            <?php } ?>
+
+            <?php if( $view_descargarContrato == 1){  ?>
+                $("#permisoDescargar").text("si");
+            <?php } ?>
+            var permisoSubir = $("#permisoSubir").text();
+            cargarTabla(permisoSubir);
         })
 
         $("#getSelectTipoDocumento").change(function (e){
@@ -242,6 +272,7 @@
 
     </script>
 
+      <?php } else{ header("Location: http://localhost/RRHH-FIRMA/"); } ?>
 
   </body>
 </html>
