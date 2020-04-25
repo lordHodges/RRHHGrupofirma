@@ -2,23 +2,38 @@ var base_url = 'http://localhost/RRHH-FIRMA/index.php/';
 
 /*************************** TRANSFERENCIAS ****************************/
 
-function cargarTabla(){
+function cargarTabla(permisoSubir){
   var table = $('#tabla_trabajador').DataTable();
   table.destroy();
 
+  var btnAcciones = "";
+
+  // DESCARGAR TRANSFERENCIAS
+  btnAcciones += '<button style="display:inline" type="button" id="btnVerListaTransferencias" class="btn btn-info" data-toggle="modal" data-target="#modalVerListaTransferencias"><i class="glyphicon glyphicon-folder-open"></i></button>';
+
+
+  // VER TRANSFERENCIAS
+  if (permisoSubir == "si") {
+      btnAcciones += '<button style="display:inline" type="button" id="btnModalCargarArchivo" class="btn btn-info" data-toggle="modal" data-target="#modalCargarArchivo"><i class="glyphicon glyphicon-open"></i></button>';
+  }else{
+    btnAcciones += '';
+  }
+
+
   $('.dataTables-trabajadores').DataTable({
     "autoWidth": false,
+    "sInfo": false,
     "sInfoEmpty": false,
         language: {
             "sProcessing": "Procesando...",
-            "sLengthMenu": "Registros _MENU_ ",
+            "sLengthMenu": "Registros&nbsp;&nbsp; _MENU_ ",
             "sZeroRecords": "No se encontraron resultados",
             "sEmptyTable": "Ningún dato disponible en esta tabla",
             "sInfo": "",
-            "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
-            "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+            "sInfoEmpty": "",
+            "sInfoFiltered": "",
             "sInfoPostFix": "",
-            "sSearch": "Buscar:",
+            "sSearch": "Buscar:&nbsp;&nbsp;",
             "sUrl": "",
             "sInfoThousands": ",",
             "sLoadingRecords": "Cargando...",
@@ -44,7 +59,7 @@ function cargarTabla(){
         "columnDefs": [{
                 "targets": 5,
                 "data": null,
-                "defaultContent": '<button style="display:inline" type="button" id="btnVerListaTransferencias" class="btn btn-info" data-toggle="modal" data-target="#modalVerListaTransferencias"><i class="glyphicon glyphicon-folder-open"></i></button>   <button style="display:inline" type="button" id="btnModalCargarArchivo" class="btn btn-info" data-toggle="modal" data-target="#modalCargarArchivo"><i class="glyphicon glyphicon-open"></i></button>'
+                "defaultContent": btnAcciones
             }
 
         ],dom: '<"html5buttons"B>lTfgitp',
@@ -71,6 +86,7 @@ function cargarBancos(){
 }
 
 function getTransferenciasTrabajador(idTrabajador){
+  var permisoDescargar = $("#permisoDescargar").text();
   $.ajax({
       url: 'getTransferenciasTrabajador',
       type: 'POST',
@@ -95,10 +111,19 @@ function getTransferenciasTrabajador(idTrabajador){
         fila +='<td>'+o.atr_tipo+'</td>';
         fila +='<td>$'+o.atr_monto+'</td>';
         if(o.atr_ruta == "vacio"){
-          fila +='<td> <a class="btn btn-ded" class="isDisabled" href="#"><i class="glyphicon glyphicon-download-alt"></i></a> </td>';
+          if (permisoDescargar == "si") {
+            fila += '<td> <a class="btn btn-default" href="#"><i class="glyphicon glyphicon-download-alt"></i></a> </td>';
+          }else{
+            fila += '<td> <a class="btn btn-default" href="#"><i class="glyphicon glyphicon-download-alt"></i></a> </td>';
+          }
+
         }else{
           download = "http://localhost/RRHH-FIRMA/index.php/TransferenciasController/descargarComprobante/"+o.cp_transferencia;
-          fila +='<td> <a class="btn btn-info" href="'+download+'" download><i class="glyphicon glyphicon-download-alt"></i></a> </td>';
+          if (permisoDescargar == "si") {
+            fila +='<td> <a class="btn btn-info" href="'+download+'" download><i class="glyphicon glyphicon-download-alt"></i></a> </td>';
+          }else{
+            fila += '<td><a class="btn btn-default href="#"><i class="glyphicon glyphicon-download-alt"></i></a> </td>';
+          }
         }
         fila +='</tr>';
       });

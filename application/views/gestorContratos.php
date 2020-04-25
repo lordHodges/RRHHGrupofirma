@@ -1,3 +1,20 @@
+<?php
+$data = $this->session->userdata("datos");
+$usuario =  $data['usuario'];
+$permisos =  $data['permisos'];
+?>
+
+<?php
+$view_estandar = 0; $view_personalizado = 0;
+foreach ($permisos as $key => $value) {
+  if ($value->cf_existencia_permiso == "68") { $view_estandar = "1"; } else
+  if ($value->cf_existencia_permiso == "69") { $view_personalizado = "1" ; }
+}
+
+if($usuario[0]->atr_activo == "1") {?>
+
+
+
 <div class="right_col" role="main">
     <!-- Contenedor principal -->
     <div class="x_content">
@@ -5,12 +22,20 @@
 
       <div class="col-md-12">
         <ul class="nav nav-tabs" id="myTab" role="tablist">
-          <li class="nav-item">
-            <a class="" id="estandar" onclick="seleccionTabs('estandar')" data-toggle="tab" href="#estandarContent" role="tab" aria-controls="home" aria-selected="true">Formato estándar</a>
-          </li>
-          <li class="nav-item">
-            <a class="" id="personalizado" data-toggle="tab" href="#estandarPersonalizado" role="tab" onclick="seleccionTabs('personalizado')" aria-controls="profile" aria-selected="false">Formato personalizado</a>
-          </li>
+
+          <?php if ( $view_estandar == 1 ) {  ?>
+            <li class="nav-item">
+              <a class="" id="estandar" onclick="seleccionTabs('estandar')" data-toggle="tab" href="#estandarContent" role="tab" aria-controls="home" aria-selected="true">Formato estándar</a>
+            </li>
+          <?php } ?>
+
+
+          <?php if ( $view_personalizado == 1 ) {  ?>
+              <li class="nav-item">
+                <a class="active" id="personalizado" data-toggle="tab" href="#estandarPersonalizado" role="tab" onclick="seleccionTabs('personalizado')" aria-controls="profile" aria-selected="false">Formato personalizado</a>
+              </li>
+          <?php } ?>
+
         </ul>
         <div class="tab-content" id="myTabContent">
 
@@ -23,6 +48,7 @@
 
 
           <!-- TAB : FORMATO ESTÁNDAR -->
+
           <div class="tab-pane fade show active" id="estandarContent" role="tabpanel" aria-labelledby="estandar">
             <br>
             <div id="informacionTrabajador">
@@ -193,8 +219,13 @@
 
 
           <!-- TAB : FORMATO PERSONALIZADO -->
-          <div class="tab-pane fade" id="estandarPersonalizado" role="tabpanel" aria-labelledby="personalizado">
+          <?php if ( $view_estandar == 1 ) {  ?>
+            <div class="tab-pane fade" id="estandarPersonalizado" role="tabpanel" aria-labelledby="personalizado">
+          <?php } ?>
 
+          <?php if ( $view_estandar == 0 ) {  ?>
+            <div class="tab-pane fade active" id="estandarPersonalizado" role="tabpanel" aria-labelledby="personalizado">
+          <?php } ?>
             <br>
 
 
@@ -508,6 +539,7 @@
 
     </script>
 
+  <?php } else{ header("Location: http://localhost/RRHH-FIRMA/"); } ?>
 
   </body>
 </html>

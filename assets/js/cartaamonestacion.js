@@ -2,9 +2,22 @@ var base_url = 'http://localhost/RRHH-FIRMA/index.php/';
 
 /*************************** TRANSFERENCIAS ****************************/
 
-function cargarTabla(){
+function cargarTabla(permisoSubir){
   var table = $('#tabla_trabajador').DataTable();
   table.destroy();
+
+  var btnAcciones = "";
+
+  // VER CARTAS DE AMONESTACIÓN
+  if (permisoSubir == "si") {
+    btnAcciones += '<button style="display:inline" type="button" id="btnSubirArchivo" class="btn btn-info" data-toggle="modal" data-target="#modalCargarArchivo"><i class="glyphicon glyphicon-open"></i></button>';
+  }else{
+    btnAcciones += '';
+  }
+
+  // DESCARGAR CARTAS DE AMONESTACIÓN
+  btnAcciones += '<button style="display:inline" type="button" id="btnVerListaCartasAmonestacion" class="btn btn-info" data-toggle="modal" data-target="#modalVerListaCartasAmonestacion"><i class="glyphicon glyphicon-folder-open"></i></button> ';
+
 
   $('.dataTables-trabajadores').DataTable({
     "autoWidth": false,
@@ -12,14 +25,14 @@ function cargarTabla(){
     "sInfoEmpty": false,
         language: {
             "sProcessing": "Procesando...",
-            "sLengthMenu": "Registros _MENU_ ",
+            "sLengthMenu": "Registros&nbsp;&nbsp; _MENU_ ",
             "sZeroRecords": "No se encontraron resultados",
             "sEmptyTable": "Ningún dato disponible en esta tabla",
             "sInfo": "",
-            "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
-            "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+            "sInfoEmpty": "",
+            "sInfoFiltered": "",
             "sInfoPostFix": "",
-            "sSearch": "Buscar:",
+            "sSearch": "Buscar:&nbsp;&nbsp;",
             "sUrl": "",
             "sInfoThousands": ",",
             "sLoadingRecords": "Cargando...",
@@ -45,7 +58,7 @@ function cargarTabla(){
         "columnDefs": [{
                 "targets": 5,
                 "data": null,
-                "defaultContent": '<button style="display:inline" type="button" id="btnVerListaCartasAmonestacion" class="btn btn-info" data-toggle="modal" data-target="#modalVerListaCartasAmonestacion"><i class="glyphicon glyphicon-folder-open"></i></button>   <button style="display:inline" type="button" id="btnSubirArchivo" class="btn btn-info" data-toggle="modal" data-target="#modalCargarArchivo"><i class="glyphicon glyphicon-open"></i></button>'
+                "defaultContent": btnAcciones
             }
         ],dom: '<"html5buttons"B>lTfgitp',
         buttons: [
@@ -56,6 +69,7 @@ function cargarTabla(){
 
 
 function getCartasAmonestacionTrabajador(idTrabajador){
+  var permisoDescargar = $("#permisoDescargar").text();
   $.ajax({
       url: 'getCartasAmonestacionTrabajador',
       type: 'POST',
@@ -80,10 +94,18 @@ function getCartasAmonestacionTrabajador(idTrabajador){
         fila +='<td>'+o.atr_motivo+'</td>';
         fila +='<td>'+o.atr_grado+'</td>';
         if(o.atr_ruta == "vacio"){
-          fila +='<td> <a class="btn btn-ded" class="isDisabled" href="#"><i class="glyphicon glyphicon-download-alt"></i></a> </td>';
+          if (permisoDescargar == "si") {
+            fila +='<td> <a class="btn btn-ded" class="isDisabled" href="#"><i class="glyphicon glyphicon-download-alt"></i></a> </td>';
+          }else{
+            fila += '<td><a class="btn btn-default href="#"><i class="glyphicon glyphicon-download-alt"></i></a> </td>';
+          }
         }else{
           download = "http://localhost/RRHH-FIRMA/index.php/CartaAmonestacionController/descargarCartaAmonestacion/"+o.cp_cartaAmonestacion;
-          fila +='<td> <a class="btn btn-info" href="'+download+'" download><i class="glyphicon glyphicon-download-alt"></i></a> </td>';
+          if (permisoDescargar == "si") {
+            fila +='<td> <a class="btn btn-info" href="'+download+'" download><i class="glyphicon glyphicon-download-alt"></i></a> </td>';
+          }else{
+            fila += '<td><a class="btn btn-default href="#"><i class="glyphicon glyphicon-download-alt"></i></a> </td>';
+          }
         }
         fila +='</tr>';
       });

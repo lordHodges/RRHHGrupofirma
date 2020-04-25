@@ -1,3 +1,18 @@
+<?php
+$data = $this->session->userdata("datos");
+$usuario =  $data['usuario'];
+$permisos =  $data['permisos'];
+?>
+
+<?php
+$view_verPerfilOcupacional = 0; $view_generarPDF = 0;
+foreach ($permisos as $key => $value) {
+  if ($value->cf_existencia_permiso == "63") { $view_verPerfilOcupacional = "1"; } else
+  if ($value->cf_existencia_permiso == "64") { $view_generarPDF = "1" ; }
+}
+
+if($usuario[0]->atr_activo == "1") { ?>
+
 <div class="right_col" role="main">
     <!-- Contenedor principal -->
     <div class="x_content">
@@ -9,6 +24,8 @@
             <div class="x_content">
                 <!-- <button type="button" class="btn modidev-btn" data-toggle="modal" data-target=".bd-example-modal-lg" style="margin-bottom:20px;">INGRESAR CARGO</button> -->
                 <h3 class="text-center">PERFILES OCUPACIONALES</h3><br>
+
+                <?php if ( $view_verPerfilOcupacional == 1 ) {  ?>
                 <table id="tabla_cargo" class="table table-striped table-bordered table-hover dataTables-cargos" style="margin-top:20px;">
                     <thead >
                         <tr style="width:100%;">
@@ -24,6 +41,7 @@
 
                     </tbody>
                 </table>
+              <?php }  ?>
 
             </div>
         </div>
@@ -38,49 +56,7 @@
     </footer>
     <!-- /footer content -->
 
-    <!-- Modal crear -->
-    <div id="myModal" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="crearTrabajador"  aria-hidden="true" >
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content" style="padding:20px; background: #2a3f54" >
-                <div class="form-row">
-                    <h5 class="modal-title mx-auto">INGRESAR CARGO</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                    <div class="col-md-12">
-                        <br>
-                        <label for="nombre">NOMBRE</label>
-                        <input type="text" class="form-control custom-input-sm" id="nombre">
-                    </div>
-                    <div class="col-md-12">
-                        <br>
-                        <label for="jefeDirecto">JEFE DIRECTO</label>
-                        <input type="text" class="form-control custom-input-sm" id="jefeDirecto">
-                    </div>
-                    <div class="col-md-12">
-                        <br>
-                        <label for="lugarTrabajo">LUGAR DE TRABAJO</label>
-                        <input type="text" class="form-control custom-input-sm" id="lugarTrabajo">
-                    </div>
-                    <div class="col-md-12">
-                        <br>
-                        <label for="jornadaTrabajo">JORNADA DE TRABAJO</label>
-                        <input type="text" class="form-control custom-input-sm" id="jornadaTrabajo">
-                    </div>
-                    <div class="col-md-12">
-                        <br>
-                        <label for="sueldo">SUELDO</label>
-                        <input type="text" class="form-control custom-input-sm" id="sueldo">
-                    </div>
-                </div>
-                <br>
-                <button type="submit" class="btn btn-success" id="btnAgregarCargo">Guardar</button>
-            </div>
-        </div>
-    </div>
-    <!-- /Modal de crear -->
-
-
+    <label id="permisoGenerarPDF" style="display:none">no</label>
 
 
     <!-- jQuery -->
@@ -102,8 +78,16 @@
 
     <script>
       $(document).ready(function() {
+        <?php if( $view_generarPDF == 1){  ?>
+            $("#permisoGenerarPDF").text("si");
+        <?php } ?>
 
-          cargarNotificaciones();
+        var btnAcciones = "";
+        var permisoGenerarPDF = $("#permisoGenerarPDF").text();
+
+        if (permisoGenerarPDF == "si") {
+          btnAcciones = '<button type="button" id="btnVerDocumentoPerfilOcupacional" class="btn btn-info"><i class="glyphicon glyphicon-file"></i></button>';
+        }
 
           $('.dataTables-cargos').DataTable({
               "autoWidth": false,
@@ -142,7 +126,7 @@
                 "columnDefs": [{
                   "targets": 5,
                   "data": null,
-                  "defaultContent": '<button type="button" id="btnVerDocumentoPerfilOcupacional" class="btn btn-info"><i class="glyphicon glyphicon-file"></i></button>'
+                  "defaultContent": btnAcciones
                 }
                 ],dom: '<"html5buttons"B>lTfgitp',
                   buttons: [
@@ -169,5 +153,7 @@
 
   </script>
 
-  </body>
+<?php } else{ header("Location: http://localhost/RRHH-FIRMA/"); } ?>
+
+</body>
 </html>

@@ -1,3 +1,18 @@
+<?php
+$data = $this->session->userdata("datos");
+$usuario =  $data['usuario'];
+$permisos =  $data['permisos'];
+?>
+
+<?php
+$view_verTransferencia = 0; $view_subirTransferencia = 0; $view_descargarTransferencia = 0;
+foreach ($permisos as $key => $value) {
+  if ($value->cf_existencia_permiso == "57") { $view_verTransferencia = "1"; } else
+  if ($value->cf_existencia_permiso == "58") { $view_subirTransferencia = "1"; } else
+  if ($value->cf_existencia_permiso == "59") { $view_descargarTransferencia = "1" ; }
+}
+
+if($usuario[0]->atr_activo == "1") { ?>
 <div class="right_col" role="main">
     <!-- Contenedor principal -->
     <!-- <div class="x_content">
@@ -9,6 +24,8 @@
 
             <div class="x_content">
               <h3 class="text-center">TRANSFERENCIAS</h3><br>
+
+              <?php if ( $view_verTransferencia == 1 ) {  ?>
                   <table id="tabla_trabajador" class="table table-striped table-bordered table-hover dataTables-trabajadores" style="margin-top:20px;">
                     <thead>
                         <tr>
@@ -24,6 +41,8 @@
 
                     </tbody>
                   </table>
+                <?php } ?>
+
             </div>
         </div>
     </div>
@@ -121,6 +140,8 @@
     </footer>
     <!-- /footer content -->
 
+    <label id="permisoSubir" style="display:none">no</label>
+    <label id="permisoDescargar" style="display:none">no</label>
 
 
 
@@ -145,8 +166,17 @@
 
     <script>
         $(document).ready(function() {
-            cargarTabla();
             cargarBancos();
+
+            <?php if( $view_subirTransferencia == 1){  ?>
+                $("#permisoSubir").text("si");
+            <?php } ?>
+
+            <?php if( $view_descargarTransferencia == 1){  ?>
+                $("#permisoDescargar").text("si");
+            <?php } ?>
+            var permisoSubir = $("#permisoSubir").text();
+            cargarTabla(permisoSubir);
         })
 
         $("#getSelectBanco").change(function (e){
@@ -218,6 +248,7 @@
 
     </script>
 
+  <?php } else{ header("Location: http://localhost/RRHH-FIRMA/"); } ?>
 
   </body>
 </html>

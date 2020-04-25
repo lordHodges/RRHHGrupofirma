@@ -1,3 +1,17 @@
+<?php
+$data = $this->session->userdata("datos");
+$usuario =  $data['usuario'];
+$permisos =  $data['permisos'];
+?>
+
+<?php
+$view_anexoHorasExtras = 0;
+foreach ($permisos as $key => $value) {
+  if ($value->cf_existencia_permiso == "67") { $view_anexoHorasExtras = "1"; }
+}
+
+if($usuario[0]->atr_activo == "1" &&  $view_anexoHorasExtras == "1") { ?>
+
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
@@ -137,6 +151,8 @@
 
 
 
+
+<?php } else{ header("Location: http://localhost/RRHH-FIRMA/"); } ?>
 
 </body>
 </html>

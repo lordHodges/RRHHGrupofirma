@@ -1,3 +1,21 @@
+<?php
+$data = $this->session->userdata("datos");
+$usuario =  $data['usuario'];
+$permisos =  $data['permisos'];
+?>
+
+<?php
+$view_cronologico = 0; $view_contratos = 0; $view_anexos = 0; $view_transferencias = 0; $view_cartas = 0;
+foreach ($permisos as $key => $value) {
+  if ($value->cf_existencia_permiso == "70") { $view_cronologico = "1"; } else
+  if ($value->cf_existencia_permiso == "71") { $view_contratos = "1"; } else
+  if ($value->cf_existencia_permiso == "72") { $view_anexos = "1"; } else
+  if ($value->cf_existencia_permiso == "73") { $view_transferencias = "1"; } else
+  if ($value->cf_existencia_permiso == "74") { $view_cartas = "1" ; }
+}
+
+if($usuario[0]->atr_activo == "1") { ?>
+
 <div class="right_col" role="main">
   <div class="col-md-12 col-sm-12  ">
       <div class="x_panel">
@@ -55,25 +73,36 @@
 
 
           <ul class="nav nav-tabs bar_tabs" id="myTab" role="tablist">
-              <li class="nav-item">
-              <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Cronológico</a>
-              </li>
 
-              <li class="nav-item">
-              <a class="nav-link" id="contrato-tab" data-toggle="tab" href="#contratos" role="tab" aria-controls="profile" aria-selected="false">Contratos</a>
-              </li>
+              <?php if ( $view_cronologico == 1 ) {  ?>
+                <li class="nav-item">
+                <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Cronológico</a>
+                </li>
+              <?php } ?>
 
-              <li class="nav-item">
-              <a class="nav-link" id="anexo-tab" data-toggle="tab" href="#anexos" role="tab" aria-controls="anexos" aria-selected="false">Anexos</a>
-              </li>
+              <?php if ( $view_contratos == 1 ) {  ?>
+                <li class="nav-item">
+                <a class="nav-link" id="contrato-tab" data-toggle="tab" href="#contratos" role="tab" aria-controls="profile" aria-selected="false">Contratos</a>
+                </li>
+              <?php } ?>
 
-              <li class="nav-item">
-              <a class="nav-link" id="transferencias-tab" data-toggle="tab" href="#transferencias" role="tab" aria-controls="transferencias" aria-selected="false">Transferencias</a>
-              </li>
+              <?php if ( $view_anexos == 1 ) {  ?>
+                <li class="nav-item">
+                <a class="nav-link" id="anexo-tab" data-toggle="tab" href="#anexos" role="tab" aria-controls="anexos" aria-selected="false">Anexos</a>
+                </li>
+              <?php } ?>
 
-              <li class="nav-item">
-              <a class="nav-link" id="cartas-tab" data-toggle="tab" href="#cartasAmonestacion" role="tab" aria-controls="contact" aria-selected="false">Cartas de amonestación</a>
-              </li>
+              <?php if ( $view_transferencias == 1 ) {  ?>
+                <li class="nav-item">
+                <a class="nav-link" id="transferencias-tab" data-toggle="tab" href="#transferencias" role="tab" aria-controls="transferencias" aria-selected="false">Transferencias</a>
+                </li>
+              <?php } ?>
+
+              <?php if ( $view_cartas == 1 ) {  ?>
+                <li class="nav-item">
+                <a class="nav-link" id="cartas-tab" data-toggle="tab" href="#cartasAmonestacion" role="tab" aria-controls="contact" aria-selected="false">Cartas de amonestación</a>
+                </li>
+              <?php } ?>
 
           </ul>
           <div class="tab-content" id="myTabContent">
@@ -185,3 +214,8 @@
         cargarDetalleAnexosPorFecha(mes, ano, idTrabajador);
     });
 </script>
+
+<?php } else{ header("Location: http://localhost/RRHH-FIRMA/"); } ?>
+
+</body>
+</html>

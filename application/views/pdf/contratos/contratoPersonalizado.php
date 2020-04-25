@@ -1,3 +1,17 @@
+<?php
+$data = $this->session->userdata("datos");
+$usuario =  $data['usuario'];
+$permisos =  $data['permisos'];
+?>
+
+<?php
+$view_contratoPersonalizado = 0;
+foreach ($permisos as $key => $value) {
+  if ($value->cf_existencia_permiso == "69") { $view_contratoPersonalizado = "1"; }
+}
+
+if($usuario[0]->atr_activo == "1" && $view_contratoPersonalizado == "1") { ?>
+
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
@@ -56,7 +70,7 @@
                      <b><?php echo $t->atr_direccion ?> </b>,de nacionalidad <?php echo $t->nacionalidad ?>  nacido el <?php echo $t->atr_fechaNacimiento ?>, afiliado a AFP <?php echo $t->afp ?>  y Sistema de Salud <?php echo $t->prevision ?>, en adelante <b>"el trabajador",</b>
                      se ha convenido el siguiente contrato de trabajo:</p>
                 <?php } ?>
-                
+
                 <?php } ?>
             <?php break; ?>
 
@@ -323,7 +337,7 @@
 
 
 
-
+<?php } else{ header("Location: http://localhost/RRHH-FIRMA/"); } ?>
 
 
 </body>

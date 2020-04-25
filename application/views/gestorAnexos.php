@@ -1,3 +1,18 @@
+<?php
+$data = $this->session->userdata("datos");
+$usuario =  $data['usuario'];
+$permisos =  $data['permisos'];
+?>
+
+<?php
+$view_anexoProrroga = 0; $view_modificacion = 0; $view_horaExtra = 0;
+foreach ($permisos as $key => $value) {
+  if ($value->cf_existencia_permiso == "57") { $view_anexoProrroga = "1"; } else
+  if ($value->cf_existencia_permiso == "58") { $view_modificacion = "1"; } else
+  if ($value->cf_existencia_permiso == "59") { $view_horaExtra = "1" ; }
+}
+
+if($usuario[0]->atr_activo == "1") { ?>
 <div class="right_col" role="main">
     <!-- Contenedor principal -->
     <div class="x_content">
@@ -5,15 +20,25 @@
 
       <div class="col-md-12">
         <ul class="nav nav-tabs" id="myTab" role="tablist">
-          <li class="nav-item">
-            <a class="" id="estandar" onclick="seleccionTabs('estandar')" data-toggle="tab" href="#estandarContent" role="tab" aria-controls="home" aria-selected="true">Prórroga</a>
-          </li>
-          <li class="nav-item">
-            <a class="" id="modificacionCualquierClausula" data-toggle="tab" href="#modificacionCualquierClausulaContent" role="tab" onclick="seleccionTabs('modificacionCualquierClausula')" aria-controls="profile" aria-selected="false">Modificación de cláusula</a>
-          </li>
-          <li class="nav-item">
-            <a class="" id="horasExtras" data-toggle="tab" href="#horasExtrasContent" role="tab" onclick="seleccionTabs('horasExtras')" aria-controls="profile" aria-selected="false">Horas extras</a>
-          </li>
+
+          <?php if ( $view_anexoProrroga == 1 ) {  ?>
+            <li class="nav-item">
+              <a class="" id="estandar" onclick="seleccionTabs('estandar')" data-toggle="tab" href="#estandarContent" role="tab" aria-controls="home" aria-selected="true">Prórroga</a>
+            </li>
+          <?php } ?>
+
+          <?php if ( $view_modificacion == 1 ) {  ?>
+            <li class="nav-item">
+              <a class="" id="modificacionCualquierClausula" data-toggle="tab" href="#modificacionCualquierClausulaContent" role="tab" onclick="seleccionTabs('modificacionCualquierClausula')" aria-controls="profile" aria-selected="false">Modificación de cláusula</a>
+            </li>
+          <?php } ?>
+
+          <?php if ( $view_horaExtra == 1 ) {  ?>
+            <li class="nav-item">
+              <a class="" id="horasExtras" data-toggle="tab" href="#horasExtrasContent" role="tab" onclick="seleccionTabs('horasExtras')" aria-controls="profile" aria-selected="false">Horas extras</a>
+            </li>
+          <?php } ?>
+
         </ul>
         <div class="tab-content" id="myTabContent">
 
@@ -816,6 +841,7 @@
 
     </script>
 
+  <?php } else{ header("Location: http://localhost/RRHH-FIRMA/"); } ?>
 
   </body>
 </html>

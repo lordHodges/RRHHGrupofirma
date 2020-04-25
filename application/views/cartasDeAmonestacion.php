@@ -1,3 +1,19 @@
+<?php
+$data = $this->session->userdata("datos");
+$usuario =  $data['usuario'];
+$permisos =  $data['permisos'];
+?>
+
+<?php
+$view_verCarta = 0; $view_subirCarta = 0; $view_descargarCarta = 0;
+foreach ($permisos as $key => $value) {
+  if ($value->cf_existencia_permiso == "60") { $view_verCarta = "1"; } else
+  if ($value->cf_existencia_permiso == "61") { $view_subirCarta = "1"; } else
+  if ($value->cf_existencia_permiso == "62") { $view_descargarCarta = "1" ; }
+}
+
+if($usuario[0]->atr_activo == "1") { ?>
+
 <div class="right_col" role="main">
     <!-- Contenedor principal -->
     <!-- <div class="x_content">
@@ -10,6 +26,8 @@
 
             <div class="x_content">
               <h3 class="text-center">CARTAS DE AMONESTACIÓN</h3><br>
+
+                  <?php if ( $view_verCarta == 1 ) {  ?>
                   <table id="tabla_trabajador" class="table table-striped table-bordered table-hover dataTables-trabajadores" style="margin-top:20px;">
                     <thead>
                         <tr>
@@ -25,6 +43,7 @@
 
                     </tbody>
                   </table>
+                <?php } ?>
 
             </div>
         </div>
@@ -158,6 +177,9 @@
     </footer>
     <!-- /footer content -->
 
+    <label id="permisoSubir" style="display:none">no</label>
+    <label id="permisoDescargar" style="display:none">no</label>
+
 
 
 
@@ -186,7 +208,17 @@
 
     <script>
         $(document).ready(function() {
-            cargarTabla();
+
+            <?php if( $view_subirCarta == 1){  ?>
+                $("#permisoSubir").text("si");
+            <?php } ?>
+
+            <?php if( $view_descargarCarta == 1){  ?>
+                $("#permisoDescargar").text("si");
+            <?php } ?>
+            var permisoSubir = $("#permisoSubir").text();
+            var permisoDescargar = $("#permisoDescargar").text();
+            cargarTabla(permisoSubir);
         })
 
        $("body").on("click", "#btnVerListaCartasAmonestacion", function(e) {
@@ -249,6 +281,7 @@
 
     </script>
 
+  <?php } else{ header("Location: http://localhost/RRHH-FIRMA/"); } ?>
 
   </body>
-</html>
+  </html>
