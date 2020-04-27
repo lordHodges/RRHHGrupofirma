@@ -4,8 +4,6 @@ $data = $this->session->userdata("datos");
 $usuario =  $data['usuario'];
 $permisos =  $data['permisos'];
 $menu =  $data['menu'];
-var_dump($menu);
-// var_dump($permisos);
 ?>
 <html lang="en">
   <head>
