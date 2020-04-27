@@ -3,6 +3,8 @@
 $data = $this->session->userdata("datos");
 $usuario =  $data['usuario'];
 $permisos =  $data['permisos'];
+$menu =  $data['menu'];
+$cntInicio = 0; $cntTrabajadores = 0; $cntHistorial = 0; $cntGenerarContrato = 0; $cntGenerarAnexo = 0;
 ?>
 <html lang="en">
   <head>
@@ -81,62 +83,179 @@ $permisos =  $data['permisos'];
                 <div class="menu_section">
                   <!-- <h3>General</h3> -->
                   <ul class="nav side-menu">
-                    <li>
-                      <a href="<?php echo base_url() ?>index.php/dashboard">
-                        <i class="fa fa-home"></i> Inicio
-                      </a>
-                    </li>
-                    <li>
-                      <a href="<?php echo base_url() ?>index.php/inicioTrabajadores">
-                        <i class="fa fa-users"></i> Trabajadores
-                      </a>
-                    </li>
-                    <li>
-                      <a href="<?php echo base_url() ?>index.php/inicioHistorial">
-                        <i class="fa fa-archive"></i> Historial de trabajadores
-                      </a>
-                    </li>
-                    <li>
-                      <a href="<?php echo base_url() ?>index.php/inicioGestorContratos">
-                        <i class="fa fa-file"></i> Generar contrato
-                      </a>
-                    </li>
-                    <li>
-                      <a href="<?php echo base_url() ?>index.php/inicioGestorAnexos">
-                        <i class="fa fa-file"></i> Generar anexo
-                      </a>
-                    </li>
-                    <li><a><i class="fa fa-folder-open"></i> Documentos <span class="fa fa-chevron-down"></span></a>
-                      <ul class="nav child_menu">
-                        <li><a href="<?php echo base_url() ?>index.php/inicioContratos">Contratos</a></li>
-                        <li><a href="<?php echo base_url() ?>index.php/inicioTransferencias">Transferencias</a></li>
-                        <li><a href="<?php echo base_url() ?>index.php/inicioCartasAmonestacion">Cartas de amonestación</a></li>
-                        <li><a href="<?php echo base_url() ?>index.php/perfilOcupacionalVista">Perfiles Ocupacionales</a></li>
-                      </ul>
-                    </li>
-                    <li><a><i class="fa fa-user"></i> Perfiles Ocupacionales <span class="fa fa-chevron-down"></span></a>
-                      <ul class="nav child_menu">
-                        <li><a href="<?php echo base_url() ?>index.php/inicioRequisitosMinimos">Requisitos Mínimos</a></li>
-                        <li><a href="<?php echo base_url() ?>index.php/inicioFunciones">Funciones</a></li>
-                        <li><a href="<?php echo base_url() ?>index.php/inicioCompetencias">Competencias y Características</a></li>
-                        <li><a href="<?php echo base_url() ?>index.php/inicioConocimientos">Conocimientos Básicos</a></li>
-                        <li><a href="<?php echo base_url() ?>index.php/inicioOtros">Otros Antecedentes</a></li>
-                      </ul>
-                    </li>
-                    <li><a><i class="fa fa-building"></i> Mantenedores <span class="fa fa-chevron-down"></span></a>
-                      <ul class="nav child_menu">
-                      <li><a href="<?php echo base_url() ?>index.php/inicioCargos">Cargos</a></li>
-                        <li><a href="<?php echo base_url() ?>index.php/inicioCiudades">Ciudades</a></li>
-                        <li><a href="<?php echo base_url() ?>index.php/inicioEmpresa">Empresas</a></li>
-                        <li><a href="<?php echo base_url() ?>index.php/inicioEstadosCiviles">Estado Civil</a></li>
-                        <li><a href="<?php echo base_url() ?>index.php/inicioEstadoContrato">Estados de contrato</a></li>
-                        <li><a href="<?php echo base_url() ?>index.php/inicioNacionalidades">Nacionalidades</a></li>
-                        <li><a href="<?php echo base_url() ?>index.php/inicioSalud">Previsión de salud</a></li>
-                        <li><a href="<?php echo base_url() ?>index.php/inicioPrevision">Previsión</a></li>
-                        <li><a href="<?php echo base_url() ?>index.php/inicioSucursales">Sucursales</a></li>
-                        <li><a href="<?php echo base_url() ?>index.php/inicioUsuarios">Usuarios</a></li>
-                      </ul>
-                    </li>
+
+                      <!-- Comienzo de menu individual -->
+                      <?php foreach ($menu as $key => $valueModulo) {  ?>
+
+                          <?php  if ( $valueModulo->cf_menu == "1" ) {  ?>
+                            <li>
+                              <a href="<?php echo base_url() ?>index.php/dashboard">
+                                <i class="fa fa-home"></i> Inicio
+                              </a>
+                            </li>
+                          <?php } ?>
+
+                            <?php  if ( $valueModulo->cf_menu == "2" ) {  ?>
+                            <li>
+                              <a href="<?php echo base_url() ?>index.php/inicioTrabajadores">
+                                <i class="fa fa-users"></i> Trabajadores
+                              </a>
+                            </li>
+                          <?php } ?>
+
+                            <?php  if ( $valueModulo->cf_menu == "3" ) {  ?>
+                            <li>
+                              <a href="<?php echo base_url() ?>index.php/inicioHistorial">
+                                <i class="fa fa-archive"></i> Historial de trabajadores
+                              </a>
+                            </li>
+                          <?php } ?>
+
+                            <?php  if ( $valueModulo->cf_menu == "4" ) {  ?>
+                            <li>
+                              <a href="<?php echo base_url() ?>index.php/inicioGestorContratos">
+                                <i class="fa fa-file"></i> Generar contrato
+                              </a>
+                            </li>
+                          <?php } ?>
+
+
+                          <?php  if ( $valueModulo->cf_menu == "5" ) {  ?>
+                            <li>
+                              <a href="<?php echo base_url() ?>index.php/inicioGestorAnexos">
+                                <i class="fa fa-file"></i> Generar anexo
+                              </a>
+                            </li>
+                          <?php } ?>
+
+                          <?php  if ( $valueModulo->cf_menu == "6" ) {  ?>
+                            <li>
+                              <a href="<?php echo base_url() ?>index.php/inicioPermisos">
+                                <i class="fa fa-shield"></i> Permisos
+                              </a>
+                            </li>
+                          <?php } ?>
+
+
+
+
+                        <?php  if ( $valueModulo->cf_menu == "7") {  ?>
+                          <li><a><i class="fa fa-folder-open"></i> Documentos <span class="fa fa-chevron-down"></span></a>
+                            <ul class="nav child_menu">
+                              <?php foreach ($permisos as $key => $valuePermiso) {  ?>
+
+                                <?php  if ( $valuePermiso->cf_existencia_permiso == "55") {  ?>
+                                  <li><a href="<?php echo base_url() ?>index.php/inicioContratos">Contratos</a></li>
+                                <?php } ?>
+
+                                <?php  if ( $valuePermiso->cf_existencia_permiso == "58") {  ?>
+                                  <li><a href="<?php echo base_url() ?>index.php/inicioTransferencias">Transferencias</a></li>
+                                <?php } ?>
+
+                                <?php  if ( $valuePermiso->cf_existencia_permiso == "61") {  ?>
+                                  <li><a href="<?php echo base_url() ?>index.php/inicioCartasAmonestacion">Cartas de amonestación</a></li>
+                                <?php } ?>
+
+                                <?php  if ( $valuePermiso->cf_existencia_permiso == "64") {  ?>
+                                  <li><a href="<?php echo base_url() ?>index.php/perfilOcupacionalVista">Perfiles Ocupacionales</a></li>
+                                <?php } ?>
+
+                              <?php } ?>
+                            </ul>
+                          </li>
+                        <?php } ?>
+
+
+                        <?php  if ( $valueModulo->cf_menu == "8") {  ?>
+                          <li><a><i class="fa fa-user"></i> Perfiles Ocupacionales <span class="fa fa-chevron-down"></span></a>
+                            <ul class="nav child_menu">
+
+                              <?php foreach ($permisos as $key => $valuePermiso) {  ?>
+
+                                <?php  if ( $valuePermiso->cf_existencia_permiso == "39") {  ?>
+                                  <li><a href="<?php echo base_url() ?>index.php/inicioRequisitosMinimos">Requisitos Mínimos</a></li>
+                                <?php } ?>
+
+                                <?php  if ( $valuePermiso->cf_existencia_permiso == "42") {  ?>
+                                  <li><a href="<?php echo base_url() ?>index.php/inicioFunciones">Funciones</a></li>
+                                <?php } ?>
+
+                                <?php  if ( $valuePermiso->cf_existencia_permiso == "45") {  ?>
+                                  <li><a href="<?php echo base_url() ?>index.php/inicioCompetencias">Competencias y Características</a></li>
+                                <?php } ?>
+
+                                <?php  if ( $valuePermiso->cf_existencia_permiso == "48") {  ?>
+                                  <li><a href="<?php echo base_url() ?>index.php/inicioConocimientos">Conocimientos Básicos</a></li>
+                                <?php } ?>
+
+                                <?php  if ( $valuePermiso->cf_existencia_permiso == "51") {  ?>
+                                  <li><a href="<?php echo base_url() ?>index.php/inicioOtros">Otros Antecedentes</a></li>
+                                <?php } ?>
+
+                              <?php } ?>
+
+                            </ul>
+                          </li>
+                        <?php } ?>
+
+
+                        <?php  if ( $valueModulo->cf_menu == "9") {  ?>
+                          <li><a><i class="fa fa-building"></i> Mantenedores <span class="fa fa-chevron-down"></span></a>
+                            <ul class="nav child_menu">
+
+                              <?php foreach ($permisos as $key => $valuePermiso) {  ?>
+
+                                <?php  if ( $valuePermiso->cf_existencia_permiso == "1") {  ?>
+                                  <li><a href="<?php echo base_url() ?>index.php/inicioCargos">Cargos</a></li>
+                                <?php } ?>
+
+                                <?php  if ( $valuePermiso->cf_existencia_permiso == "6") {  ?>
+                                  <li><a href="<?php echo base_url() ?>index.php/inicioCiudades">Ciudades</a></li>
+                                <?php } ?>
+
+                                <?php  if ( $valuePermiso->cf_existencia_permiso == "9") {  ?>
+                                  <li><a href="<?php echo base_url() ?>index.php/inicioEmpresa">Empresas</a></li>
+                                <?php } ?>
+
+                                <?php  if ( $valuePermiso->cf_existencia_permiso == "13") {  ?>
+                                  <li><a href="<?php echo base_url() ?>index.php/inicioEstadosCiviles">Estado Civil</a></li>
+                                <?php } ?>
+
+                                <?php  if ( $valuePermiso->cf_existencia_permiso == "16") {  ?>
+                                  <li><a href="<?php echo base_url() ?>index.php/inicioEstadoContrato">Estados de contrato</a></li>
+                                <?php } ?>
+
+                                <?php  if ( $valuePermiso->cf_existencia_permiso == "20") {  ?>
+                                  <li><a href="<?php echo base_url() ?>index.php/inicioNacionalidades">Nacionalidades</a></li>
+                                <?php } ?>
+
+                                <?php  if ( $valuePermiso->cf_existencia_permiso == "24") {  ?>
+                                  <li><a href="<?php echo base_url() ?>index.php/inicioSalud">Previsión de salud</a></li>
+                                <?php } ?>
+
+                                <?php  if ( $valuePermiso->cf_existencia_permiso == "28") {  ?>
+                                  <li><a href="<?php echo base_url() ?>index.php/inicioPrevision">Previsión</a></li>
+                                <?php } ?>
+
+                                <?php  if ( $valuePermiso->cf_existencia_permiso == "32") {  ?>
+                                  <li><a href="<?php echo base_url() ?>index.php/inicioSucursales">Sucursales</a></li>
+                                <?php } ?>
+
+                                <?php  if ( $valuePermiso->cf_existencia_permiso == "79") {  ?>
+                                  <li><a href="<?php echo base_url() ?>index.php/inicioUsuarios">Usuarios</a></li>
+                                <?php } ?>
+
+                              <?php } ?>
+
+
+                            </ul>
+                          </li>
+                        <?php } ?>
+
+
+                      <?php } ?>
+
+
 
                   </ul>
                 </div>

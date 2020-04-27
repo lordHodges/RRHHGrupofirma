@@ -6,6 +6,9 @@ $route['login'] = 'Welcome/index';
 $route['iniciarSesion'] = 'SesionesController/iniciarSesion';
 $route['cerrarSesion'] = 'SesionesController/cerrarSesion';
 
+// PERMISOS
+$route['permisos'] = 'SesionesController/index';
+
 // DASHBOARD
 $route['dashboard'] = 'DashboardController/index';
 $route['buscarContratosPorVencer'] = 'DashboardController/buscarContratosPorVencer';

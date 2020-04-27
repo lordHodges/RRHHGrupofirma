@@ -77,6 +77,22 @@ class SesionesModel extends CI_Model {
       return $resultado;
     }
 
+    public function listadoModulos($usuario, $perfil) {
+      $this->db->select("mu.cf_menu");
+      $this->db->from('fa_menu_usuario mu');
+      $this->db->where('mu.cf_usuario',$usuario);
+      $resultado =  $this->db->get()->result();
+
+
+      if (count($resultado) == 0) {
+        $this->db->select("mp.cf_menu");
+        $this->db->from('fa_menu_perfil mp');
+        $this->db->where('mp.cf_perfil',$usuario);
+        $resultado =  $this->db->get()->result();
+      }
+      return $resultado;
+    }
+
 
 
 

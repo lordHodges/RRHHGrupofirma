@@ -411,3 +411,27 @@ create table fa_permiso_perfil(
   constraint fk_permiso_perfil_existencia_permiso foreign key(cf_existencia_permiso) references fa_existencia_permiso(cp_existencia_permiso),
   constraint fk_permiso_perfil_perfil foreign key(cf_perfil) references fa_perfil(cp_perfil)
 );
+
+create table fa_menu(
+  cp_menu int auto_increment,
+  atr_nombre varchar(100),
+  constraint pk_menu primary key(cp_menu)
+);
+
+create table fa_menu_perfil(
+  cp_menu_perfil int auto_increment,
+  cf_perfil int,
+  cf_menu int,
+  constraint pk_perfil_menu primary key(cp_menu_perfil),
+  constraint fk_perfil_perfil foreign key(cf_perfil) references fa_perfil(cp_perfil),
+  constraint fk_perfil_menu foreign key(cf_menu) references fa_menu(cp_menu)
+);
+
+create table fa_menu_usuario(
+  cp_menu_usuario int auto_increment,
+  cf_menu int,
+  cf_usuario int,
+  constraint pk_mu_menu primary key(cp_menu_usuario),
+  constraint fk_mu_menu foreign key(cf_menu) references fa_menu(cp_menu),
+  constraint fk_mu_usuario foreign key(cf_usuario) references fa_usuario(cp_usuario)
+);

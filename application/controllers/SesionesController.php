@@ -92,17 +92,19 @@ class SesionesController extends CI_Controller {
 
 	 			if ($claveBD == $clave ) {
 	 				$permisos = $this->SesionesModel->listadoPermisos($idUsuario, $idPerfil);
+					$menu = $this->SesionesModel->listadoModulos($idUsuario, $idPerfil);
 
 	 				$data = array(
 	 					"permisos"			=> $permisos,
-	 					"usuario" 			=> $usuario
+	 					"usuario" 			=> $usuario,
+						"menu"				  => $menu
 	 				);
 
 	 				$this->session->set_userdata("datos", $data);
 	 				echo json_encode('ok');
 
 	 			}else{
-	 				echo json_encode("error");
+	 				echo json_encode("error cuek");
 	 			}
 		 }else{
 			 echo json_encode("error");
