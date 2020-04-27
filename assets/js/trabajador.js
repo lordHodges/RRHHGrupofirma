@@ -8,7 +8,7 @@ function cargarTablaTrabajador(permisoEditar, permisoExportar){
   var btnAcciones = "";
 
   if (permisoEditar == "si") {
-    btnAcciones = '<button style="display:inline" type="button" id="btnVerTrabajador" class="btn btn-info" data-toggle="modal" data-target="#modalVerTrabajador"><i class="glyphicon glyphicon-eye-open"></i></button> <button style="display:inline" type="button" id="getDetalleTrabajadorViewEdit" class="btn btn-info" data-toggle="modal" data-target="#modalEditarTrabajador"><i class="glyphicon glyphicon-pencil"></i></button>';
+    btnAcciones = '<button style="display:inline" type="button" id="btnVerTrabajador" class="btn btn-info btn-sm" data-toggle="modal" data-target="#modalVerTrabajador"><i class="glyphicon glyphicon-eye-open"></i></button> <button style="display:inline" type="button" id="getDetalleTrabajadorViewEdit" class="btn btn-info btn-sm" data-toggle="modal" data-target="#modalEditarTrabajador"><i class="glyphicon glyphicon-pencil"></i></button>';
   }
 
   if (permisoExportar == "si") {

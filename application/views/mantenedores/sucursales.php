@@ -24,7 +24,7 @@ if($usuario[0]->atr_activo == "1" ) { ?>
             <div class="x_content">
               <h3 class="text-center">SUCURSAL</h3><br>
               <?php if ( $view_crearSucursal == 1 ) {  ?>
-                <button type="button" class="btn modidev-btn" data-toggle="modal" data-target=".bd-example-modal-lg" style="margin-bottom:20px;">INGRESAR SUCURSAL</button>
+                <button type="button" class="btn modidev-btn btn-sm" data-toggle="modal" data-target=".bd-example-modal-lg" style="margin-bottom:20px;">INGRESAR SUCURSAL</button>
               <?php } ?>
 
               <?php if ($view_verSucursal == "1") {  ?>
@@ -71,7 +71,7 @@ if($usuario[0]->atr_activo == "1" ) { ?>
 
                 </div>
                 <br>
-                <button type="submit" class="btn btn-success" id="btnAgregarSucursal">Guardar</button>
+                <button type="submit" class="btn btn-success btn-sm" id="btnAgregarSucursal">Guardar</button>
             </div>
         </div>
     </div>
@@ -115,10 +115,6 @@ if($usuario[0]->atr_activo == "1" ) { ?>
       $("#btnAgregarSucursal").click(function (e){
           e.preventDefault();
           agregarSucursal();
-          // var table = $('#tabla_sucursal').DataTable();
-          // table.ajax.reload(function(json) {
-          //   $('#btnAgregarSucursal').val(json.lastInput);
-          // });
       });
   </script>
 

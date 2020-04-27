@@ -8,7 +8,7 @@ function cargarTabla(cargo,permisoEliminar ){
   var btnAcciones = "";
 
   if (permisoEliminar == "si") {
-    btnAcciones = '<button type="button" id="btnEliminarTarea" class="btn btn-danger"><i class="glyphicon glyphicon-trash"></i></button>';
+    btnAcciones = '<button type="button" id="btnEliminarTarea" class="btn btn-danger btn-sm"><i class="glyphicon glyphicon-trash"></i></button>';
   }
 
   $('.dataTables-funciones').DataTable({

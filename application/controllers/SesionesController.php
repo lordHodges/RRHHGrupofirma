@@ -27,6 +27,13 @@ class SesionesController extends CI_Controller {
 		echo json_encode($resultado);
 	}
 
+	public function getDetalleUsuario(){
+		$idUsuario = $this->input->post("id");
+
+		$resultado = $this->SesionesModel->getDetalleUsuario($idUsuario);
+		echo json_encode($resultado);
+	}
+
 	public function cambiarEstado(){
 		$valorEstado = $this->input->post("valorEstado");
 		$usuario = $this->input->post("usuario");

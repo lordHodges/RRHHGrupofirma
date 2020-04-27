@@ -7,8 +7,8 @@ $permisos =  $data['permisos'];
 <?php
 $view_verPerfilOcupacional = 0; $view_generarPDF = 0;
 foreach ($permisos as $key => $value) {
-  if ($value->cf_existencia_permiso == "63") { $view_verPerfilOcupacional = "1"; } else
-  if ($value->cf_existencia_permiso == "64") { $view_generarPDF = "1" ; }
+  if ($value->cf_existencia_permiso == "64") { $view_verPerfilOcupacional = "1"; } else
+  if ($value->cf_existencia_permiso == "65") { $view_generarPDF = "1" ; }
 }
 
 if($usuario[0]->atr_activo == "1") { ?>
@@ -16,6 +16,7 @@ if($usuario[0]->atr_activo == "1") { ?>
 <div class="right_col" role="main">
     <!-- Contenedor principal -->
     <div class="x_content">
+
 
     </div>
 
@@ -86,7 +87,7 @@ if($usuario[0]->atr_activo == "1") { ?>
         var permisoGenerarPDF = $("#permisoGenerarPDF").text();
 
         if (permisoGenerarPDF == "si") {
-          btnAcciones = '<button type="button" id="btnVerDocumentoPerfilOcupacional" class="btn btn-info"><i class="glyphicon glyphicon-file"></i></button>';
+          btnAcciones = '<button type="button" id="btnVerDocumentoPerfilOcupacional" class="btn btn-info btn-sm"><i class="glyphicon glyphicon-file"></i></button>';
         }
 
           $('.dataTables-cargos').DataTable({

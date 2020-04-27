@@ -7,9 +7,9 @@ $permisos =  $data['permisos'];
 <?php
 $view_verCarta = 0; $view_subirCarta = 0; $view_descargarCarta = 0;
 foreach ($permisos as $key => $value) {
-  if ($value->cf_existencia_permiso == "60") { $view_verCarta = "1"; } else
-  if ($value->cf_existencia_permiso == "61") { $view_subirCarta = "1"; } else
-  if ($value->cf_existencia_permiso == "62") { $view_descargarCarta = "1" ; }
+  if ($value->cf_existencia_permiso == "61") { $view_verCarta = "1"; } else
+  if ($value->cf_existencia_permiso == "62") { $view_subirCarta = "1"; } else
+  if ($value->cf_existencia_permiso == "63") { $view_descargarCarta = "1" ; }
 }
 
 if($usuario[0]->atr_activo == "1") { ?>

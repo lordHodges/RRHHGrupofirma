@@ -8,8 +8,8 @@ $permisos =  $data['permisos'];
 $view_verEmpresa = 0; $view_crearEmpresa = 0; $view_exportarEmpresa = 0; $view_editarEmpresa = 0;
 foreach ($permisos as $key => $value) {
   if ($value->cf_existencia_permiso == "9") { $view_verEmpresa = "1"; } else
-  if ($value->cf_existencia_permiso == "11") { $view_crearEmpresa = "1"; } else
-  if ($value->cf_existencia_permiso == "10") { $view_editarEmpresa = "1"; } else
+  if ($value->cf_existencia_permiso == "10") { $view_crearEmpresa = "1"; } else
+  if ($value->cf_existencia_permiso == "11") { $view_editarEmpresa = "1"; } else
   if ($value->cf_existencia_permiso == "12") { $view_exportarEmpresa = "1"; }
 }
 
@@ -25,7 +25,7 @@ if($usuario[0]->atr_activo == "1" ) { ?>
             <div class="x_content">
               <h3 class="text-center">EMPRESAS</h3><br>
               <?php if ( $view_crearEmpresa == 1 ) {  ?>
-                <button type="button" id="btnAbrirModalCrear" class="btn modidev-btn" data-toggle="modal" data-target=".bd-example-modal-lg" style="margin-bottom:20px;">INGRESAR EMPRESA</button>
+                <button type="button" id="btnAbrirModalCrear" class="btn modidev-btn btn-sm" data-toggle="modal" data-target=".bd-example-modal-lg" style="margin-bottom:20px;">INGRESAR EMPRESA</button>
               <?php } ?>
 
                 <?php if ($view_verEmpresa == "1") {  ?>
@@ -130,7 +130,7 @@ if($usuario[0]->atr_activo == "1" ) { ?>
 
                 </div>
                 <br>
-                <button type="submit" class="btn btn-success" id="btnAgregarEmpresa">Guardar</button>
+                <button type="submit" class="btn btn-success btn-sm" id="btnAgregarEmpresa">Guardar</button>
             </div>
         </div>
     </div>
@@ -148,7 +148,7 @@ if($usuario[0]->atr_activo == "1" ) { ?>
 
                 </div>
                 <br>
-                <button type="submit" class="btn btn-success" id="btnEditarEmpresa">Guardar</button>
+                <button type="submit" class="btn btn-success btn-sm" id="btnEditarEmpresa">Guardar</button>
             </div>
         </div>
     </div>

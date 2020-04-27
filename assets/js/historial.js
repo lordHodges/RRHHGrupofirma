@@ -44,7 +44,7 @@ function cargarTablaTrabajadorHistorial(){
         "columnDefs": [{
                 "targets": 8,
                 "data": null,
-                "defaultContent": '<button style="display:inline" type="button" id="btnVerTrabajador" class="btn btn-info" data-toggle="modal" data-target="#modalVerTrabajador"><i class="fa fa-archive"></i></button>'
+                "defaultContent": '<button style="display:inline" type="button" id="btnVerTrabajador" class="btn btn-info btn-sm" data-toggle="modal" data-target="#modalVerTrabajador"><i class="fa fa-archive"></i></button>'
             }
 
         ],dom: '<"html5buttons"B>lTfgitp',

@@ -7,9 +7,9 @@ $permisos =  $data['permisos'];
 <?php
 $view_anexoProrroga = 0; $view_modificacion = 0; $view_horaExtra = 0;
 foreach ($permisos as $key => $value) {
-  if ($value->cf_existencia_permiso == "57") { $view_anexoProrroga = "1"; } else
-  if ($value->cf_existencia_permiso == "58") { $view_modificacion = "1"; } else
-  if ($value->cf_existencia_permiso == "59") { $view_horaExtra = "1" ; }
+  if ($value->cf_existencia_permiso == "66") { $view_anexoProrroga = "1"; } else
+  if ($value->cf_existencia_permiso == "67") { $view_modificacion = "1"; } else
+  if ($value->cf_existencia_permiso == "68") { $view_horaExtra = "1" ; }
 }
 
 if($usuario[0]->atr_activo == "1") { ?>
@@ -189,7 +189,7 @@ if($usuario[0]->atr_activo == "1") { ?>
 
 
             <br>
-            <button type="submit" id="btnGenerarAnexoProrroga" class="btn btn-success botonLargo" style="display:none">GENERAR ANEXO</button>
+            <button type="submit" id="btnGenerarAnexoProrroga" class="btn btn-success btn-sm botonLargo" style="display:none">GENERAR ANEXO</button>
 
           </div>
 
@@ -332,7 +332,7 @@ if($usuario[0]->atr_activo == "1") { ?>
 
 
             <br>
-            <button type="submit" id="btnGenerarAnexoGeneral" class="btn btn-success botonLargo" style="display:none">GENERAR ANEXO</button>
+            <button type="submit" id="btnGenerarAnexoGeneral" class="btn btn-success btn-sm botonLargo" style="display:none">GENERAR ANEXO</button>
 
 
           </div>
@@ -485,7 +485,7 @@ if($usuario[0]->atr_activo == "1") { ?>
 
 
             <br>
-            <button type="submit" id="btnGenerarAnexoHorasExtras" class="btn btn-success botonLargo"  style="display:none">GENERAR ANEXO</button>
+            <button type="submit" id="btnGenerarAnexoHorasExtras" class="btn btn-success btn-sm botonLargo"  style="display:none">GENERAR ANEXO</button>
 
 
           </div>

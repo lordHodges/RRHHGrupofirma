@@ -26,7 +26,7 @@ if($usuario[0]->atr_activo == "1" ) { ?>
               <h3 class="text-center">CIUDADES</h3><br>
                 <div class="container-fluid">
                   <?php if ( $view_crearCiudad == 1 ) {  ?>
-                  <button type="button" class="btn modidev-btn" data-toggle="modal" data-target=".bd-example-modal-lg" style="margin-bottom:20px;">INGRESAR CIUDAD</button>
+                  <button type="button" class="btn modidev-btn btn-sm" data-toggle="modal" data-target=".bd-example-modal-lg" style="margin-bottom:20px;">INGRESAR CIUDAD</button>
                   <?php } ?>
 
 
@@ -81,7 +81,7 @@ if($usuario[0]->atr_activo == "1" ) { ?>
 
                 </div>
                 <br>
-                <button type="submit" class="btn btn-success" id="btnAgregarCiudad">Guardar</button>
+                <button type="submit" class="btn btn-success btn-sm" id="btnAgregarCiudad">Guardar</button>
             </div>
         </div>
     </div>

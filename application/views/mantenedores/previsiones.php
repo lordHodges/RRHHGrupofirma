@@ -19,6 +19,7 @@ if($usuario[0]->atr_activo == "1" ) { ?>
     <!-- Contenedor principal -->
     <div class="x_content">
 
+
     </div>
 
     <div class="row">
@@ -26,7 +27,7 @@ if($usuario[0]->atr_activo == "1" ) { ?>
             <div class="x_content">
               <h3 class="text-center">PREVISIONES DE SALUD</h3><br>
               <?php if ( $view_crearPrevisionSalud == 1 ) {  ?>
-                <button type="button" class="btn modidev-btn" data-toggle="modal" data-target=".bd-example-modal-lg" style="margin-bottom:20px;">INGRESAR NUEVO</button>
+                <button type="button" class="btn modidev-btn btn-sm" data-toggle="modal" data-target=".bd-example-modal-lg" style="margin-bottom:20px;">INGRESAR NUEVO</button>
               <?php } ?>
 
               <?php if ($view_verPrevisionSalud == "1") {  ?>
@@ -74,7 +75,7 @@ if($usuario[0]->atr_activo == "1" ) { ?>
 
                 </div>
                 <br>
-                <button type="submit" class="btn btn-success" id="btnAgregarPrevisión">Guardar</button>
+                <button type="submit" class="btn btn-success btn-sm" id="btnAgregarPrevisión">Guardar</button>
             </div>
         </div>
     </div>
@@ -90,7 +91,7 @@ if($usuario[0]->atr_activo == "1" ) { ?>
 
                 </div>
                 <br>
-                <button type="submit" class="btn btn-success" id="btnEditarPrevision">Guardar</button>
+                <button type="submit" class="btn btn-success btn-sm" id="btnEditarPrevision">Guardar</button>
             </div>
         </div>
     </div>

@@ -47,7 +47,7 @@ function cargarTabla(){
         "columnDefs": [{
                 "targets": 5,
                 "data": null,
-                "defaultContent": '<button style="display:inline" type="button" id="btnVerListaContratos" class="btn btn-info" data-toggle="modal" data-target="#modalVerListaContratos"><i class="glyphicon glyphicon-folder-open"></i></button>   <button style="display:inline" type="button" id="btnModalCargarArchivo" class="btn btn-info" data-toggle="modal" data-target="#modalCargarArchivo"><i class="glyphicon glyphicon-open"></i></button>'
+                "defaultContent": '<button style="display:inline" type="button" id="btnVerListaContratos" class="btn btn-info btn-sm" data-toggle="modal" data-target="#modalVerListaContratos"><i class="glyphicon glyphicon-folder-open"></i></button>   <button style="display:inline" type="button" id="btnModalCargarArchivo" class="btn btn-info btn-sm" data-toggle="modal" data-target="#modalCargarArchivo"><i class="glyphicon glyphicon-open"></i></button>'
             }
 
         ],dom: '<"html5buttons"B>lTfgitp',
@@ -78,10 +78,10 @@ function getContratosTrabajador(idTrabajador){
         fila +='<td>'+o.atr_fechaTermino+'</td>';
         fila +='<td>'+o.atr_nombre+'</td>';
         if(o.atr_ruta == "vacio"){
-          fila +='<td> <a class="btn btn-ded" class="isDisabled" href="#"><i class="glyphicon glyphicon-download-alt"></i></a> </td>';
+          fila +='<td> <a class="btn btn-ded btn-sm" class="isDisabled" href="#"><i class="glyphicon glyphicon-download-alt"></i></a> </td>';
         }else{
           download = "http://localhost/RRHH-FIRMA/index.php/ContratosController/descargarContrato/"+o.cp_contrato;
-          fila +='<td> <a class="btn btn-info" href="'+download+'" download><i class="glyphicon glyphicon-download-alt"></i></a> </td>';
+          fila +='<td> <a class="btn btn-info btn-sm" href="'+download+'" download><i class="glyphicon glyphicon-download-alt"></i></a> </td>';
         }
         fila +='</tr>';
       });

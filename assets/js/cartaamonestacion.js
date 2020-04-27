@@ -10,13 +10,13 @@ function cargarTabla(permisoSubir){
 
   // VER CARTAS DE AMONESTACIÓN
   if (permisoSubir == "si") {
-    btnAcciones += '<button style="display:inline" type="button" id="btnSubirArchivo" class="btn btn-info" data-toggle="modal" data-target="#modalCargarArchivo"><i class="glyphicon glyphicon-open"></i></button>';
+    btnAcciones += '<button style="display:inline" type="button" id="btnSubirArchivo" class="btn btn-info btn-sm" data-toggle="modal" data-target="#modalCargarArchivo"><i class="glyphicon glyphicon-open"></i></button>';
   }else{
     btnAcciones += '';
   }
 
   // DESCARGAR CARTAS DE AMONESTACIÓN
-  btnAcciones += '<button style="display:inline" type="button" id="btnVerListaCartasAmonestacion" class="btn btn-info" data-toggle="modal" data-target="#modalVerListaCartasAmonestacion"><i class="glyphicon glyphicon-folder-open"></i></button> ';
+  btnAcciones += '<button style="display:inline" type="button" id="btnVerListaCartasAmonestacion" class="btn btn-info btn-sm" data-toggle="modal" data-target="#modalVerListaCartasAmonestacion"><i class="glyphicon glyphicon-folder-open"></i></button> ';
 
 
   $('.dataTables-trabajadores').DataTable({
@@ -95,16 +95,16 @@ function getCartasAmonestacionTrabajador(idTrabajador){
         fila +='<td>'+o.atr_grado+'</td>';
         if(o.atr_ruta == "vacio"){
           if (permisoDescargar == "si") {
-            fila +='<td> <a class="btn btn-ded" class="isDisabled" href="#"><i class="glyphicon glyphicon-download-alt"></i></a> </td>';
+            fila +='<td> <a class="btn btn-ded btn-sm" class="isDisabled" href="#"><i class="glyphicon glyphicon-download-alt"></i></a> </td>';
           }else{
-            fila += '<td><a class="btn btn-default href="#"><i class="glyphicon glyphicon-download-alt"></i></a> </td>';
+            fila += '<td><a class="btn btn-default btn-sm" href="#"><i class="glyphicon glyphicon-download-alt"></i></a> </td>';
           }
         }else{
           download = "http://localhost/RRHH-FIRMA/index.php/CartaAmonestacionController/descargarCartaAmonestacion/"+o.cp_cartaAmonestacion;
           if (permisoDescargar == "si") {
-            fila +='<td> <a class="btn btn-info" href="'+download+'" download><i class="glyphicon glyphicon-download-alt"></i></a> </td>';
+            fila +='<td> <a class="btn btn-info btn-sm" href="'+download+'" download><i class="glyphicon glyphicon-download-alt"></i></a> </td>';
           }else{
-            fila += '<td><a class="btn btn-default href="#"><i class="glyphicon glyphicon-download-alt"></i></a> </td>';
+            fila += '<td><a class="btn btn-default btn-sm" href="#"><i class="glyphicon glyphicon-download-alt"></i></a> </td>';
           }
         }
         fila +='</tr>';

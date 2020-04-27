@@ -9,7 +9,7 @@ $view_verOtro = 0; $view_crearOtro = 0; $view_eliminarOtro = 0; $view_crearOtroT
 foreach ($permisos as $key => $value) {
   if ($value->cf_existencia_permiso == "51") { $view_verOtro = "1"; } else
   if ($value->cf_existencia_permiso == "52") { $view_crearOtro = "1"; } else
-  if ($value->cf_existencia_permiso == "83") { $view_crearOtroTitulo = "1"; } else
+  if ($value->cf_existencia_permiso == "54") { $view_crearOtroTitulo = "1"; } else
   if ($value->cf_existencia_permiso == "53") { $view_eliminarOtro = "1"; }
 }
 
@@ -138,7 +138,7 @@ if($usuario[0]->atr_activo == "1" ) { ?>
                 </div>
             </div>
             <br>
-            <button type="submit" class="btn btn-success" id="btnAgregarTitulo">Guardar</button>
+            <button type="submit" class="btn btn-success btn-sm" id="btnAgregarTitulo">Guardar</button>
         </div>
     </div>
 </div>

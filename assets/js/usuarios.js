@@ -1,78 +1,137 @@
 var base_url = 'http://localhost/RRHH-FIRMA/index.php/';
 
-function cargarTabla(){
+function cargarTabla(permisoEditar,permisoExportar, permisoCambiar){
   var table = $('#tabla_usuario').DataTable();
   table.destroy();
 
-  $('.dataTables-usuarios').DataTable({
-      "autoWidth": false,
-        language: {
-            "sProcessing": "Procesando...",
-            "sLengthMenu": "Registros _MENU_ ",
-            "sZeroRecords": "No se encontraron resultados",
-            "sEmptyTable": "Ningún dato disponible en esta tabla",
-            "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-            "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
-            "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
-            "sInfoPostFix": "",
-            "sSearch": "Buscar:",
-            "sUrl": "",
-            "sInfoThousands": ",",
-            "sLoadingRecords": "Cargando...",
-            "oPaginate": {
-                "sFirst": "Primero",
-                "sLast": "Último",
-                "sNext": "Siguiente",
-                "sPrevious": "Anterior"
-            },
-            "oAria": {
-                "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
-                "sSortDescending": ": Activar para ordenar la columna de manera descendente"
-            },
-            "buttons": {
-                "copy": "Copiar",
-                "colvis": "Visibilidad"
-            }
-        },
-        "ajax": {
-            url: "http://localhost/RRHH-FIRMA/index.php/getListadoUsuarios",
-            type: 'GET'
-        },
-        "columnDefs": [{
-          "targets": 5,
-          "data": null,
-          "defaultContent": '<button type="button" id="btnCambiarEstado" class="btn btn-info btn-sm">Cambiar estado&nbsp;&nbsp;<i class="glyphicon glyphicon-refresh"></i></button>'
-        }
-      ],dom: '<"html5buttons"B>lTfgitp',
-          buttons: [{
-                  extend: 'copy'
-              },
-              {
-                  extend: 'csv'
-              },
-              {
-                  extend: 'excel',
-                  title: 'Listado de usuarios',
+  var btnAcciones = "";
 
-              },
-              {
-                  extend: 'pdf',
-                  title: 'Listado de usuarios'
+  if (permisoCambiar == "si") {
+    btnAcciones += '<button type="button" id="btnCambiarEstado" class="btn btn-info btn-sm"><i class="glyphicon glyphicon-refresh"></i></button>';
+  }
 
+  if (permisoEditar == "si") {
+    btnAcciones += '<button type="button" id="btnEditarUsuario" class="btn btn-info btn-sm" data-toggle="modal" data-target="#modaleditarUsuario"><i class="glyphicon glyphicon-pencil"></i></button>';
+  }
+
+  if (permisoExportar == "si") {
+    $('.dataTables-usuarios').DataTable({
+        "autoWidth": false,
+          language: {
+              "sProcessing": "Procesando...",
+              "sLengthMenu": "Registros&nbsp;&nbsp; _MENU_ ",
+              "sZeroRecords": "No se encontraron resultados",
+              "sEmptyTable": "Ningún dato disponible en esta tabla",
+              "sInfo": "",
+              "sInfoEmpty": "",
+              "sInfoFiltered": "",
+              "sInfoPostFix": "",
+              "sSearch": "Buscar:&nbsp;&nbsp;",
+              "sUrl": "",
+              "sInfoThousands": ",",
+              "sLoadingRecords": "Cargando...",
+              "oPaginate": {
+                  "sFirst": "Primero",
+                  "sLast": "Último",
+                  "sNext": "Siguiente",
+                  "sPrevious": "Anterior"
               },
-              {
-                  extend: 'print',
-                  title: 'Firma de abogados',
-                  customize: function(win) {
-                      $(win.document.body).addClass('white-bg');
-                      $(win.document.body).css('font-size', '10px');
-                      $(win.document.body).find('table')
-                          .addClass('compact')
-                          .css('font-size', 'inherit');
-                  }
+              "oAria": {
+                  "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
+                  "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+              },
+              "buttons": {
+                  "copy": "Copiar",
+                  "colvis": "Visibilidad"
               }
-          ]
-    });
+          },
+          "ajax": {
+              url: "http://localhost/RRHH-FIRMA/index.php/getListadoUsuarios",
+              type: 'GET'
+          },
+          "columnDefs": [{
+            "targets": 5,
+            "data": null,
+            "defaultContent": btnAcciones
+          }
+        ],dom: '<"html5buttons"B>lTfgitp',
+            buttons: [{
+                    extend: 'copy'
+                },
+                {
+                    extend: 'csv'
+                },
+                {
+                    extend: 'excel',
+                    title: 'Listado de usuarios',
+
+                },
+                {
+                    extend: 'pdf',
+                    title: 'Listado de usuarios'
+
+                },
+                {
+                    extend: 'print',
+                    title: 'Firma de abogados',
+                    customize: function(win) {
+                        $(win.document.body).addClass('white-bg');
+                        $(win.document.body).css('font-size', '10px');
+                        $(win.document.body).find('table')
+                            .addClass('compact')
+                            .css('font-size', 'inherit');
+                    }
+                }
+            ]
+      });
+  }else{
+    $('.dataTables-usuarios').DataTable({
+        "autoWidth": false,
+          language: {
+              "sProcessing": "Procesando...",
+              "sLengthMenu": "Registros&nbsp;&nbsp; _MENU_ ",
+              "sZeroRecords": "No se encontraron resultados",
+              "sEmptyTable": "Ningún dato disponible en esta tabla",
+              "sInfo": "",
+              "sInfoEmpty": "",
+              "sInfoFiltered": "",
+              "sInfoPostFix": "",
+              "sSearch": "Buscar:&nbsp;&nbsp;",
+              "sUrl": "",
+              "sInfoThousands": ",",
+              "sLoadingRecords": "Cargando...",
+              "oPaginate": {
+                  "sFirst": "Primero",
+                  "sLast": "Último",
+                  "sNext": "Siguiente",
+                  "sPrevious": "Anterior"
+              },
+              "oAria": {
+                  "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
+                  "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+              },
+              "buttons": {
+                  "copy": "Copiar",
+                  "colvis": "Visibilidad"
+              }
+          },
+          "ajax": {
+              url: "http://localhost/RRHH-FIRMA/index.php/getListadoUsuarios",
+              type: 'GET'
+          },
+          "columnDefs": [{
+            "targets": 5,
+            "data": null,
+            "defaultContent": btnAcciones
+          }
+        ],dom: '<"html5buttons"B>lTfgitp',
+            buttons: []
+      });
+  }
+
+
+
+
 }
 
 function getSelectPerfiles(){
@@ -106,7 +165,11 @@ function agregarUsuario() {
                document.getElementById("nombre").value = "";
                document.getElementById("correo").value = "";
                $('#modalCrearUsuario').modal('hide');
-               cargarTabla();
+
+               var permisoEditar = $("#permisoEditar").text();
+               var permisoExportar = $("#permisoExportar").text();
+               var permisoCambiar = $("#permisoCambiar").text();
+               cargarTabla(permisoEditar,permisoExportar, permisoCambiar);
             } else {
                 toastr.error("Error en el ingreso.");
             }
@@ -133,9 +196,33 @@ function cambiarEstado(idUsuario, estado) {
            }else{
              toastr.success("Usuario activado.");
            }
-           cargarTabla();
+           var permisoEditar = $("#permisoEditar").text();
+           var permisoExportar = $("#permisoExportar").text();
+           var permisoCambiar = $("#permisoCambiar").text();
+           cargarTabla(permisoEditar,permisoExportar, permisoCambiar);
         } else {
             toastr.error("Error al cambiar el estado.");
         }
+    });
+}
+
+
+function getDetalleUsuario(idUsuario){
+    var id = idUsuario;
+    $.ajax({
+        url: 'getDetalleUsuario',
+        type: 'POST',
+        dataType: 'json',
+        data: {"idPrevision": id}
+    }).then(function (msg) {
+        $("#contenedorDetallePrevision").empty();
+
+        var fila = "";
+        $.each(msg.msg, function (i, o) {
+          fila +='<h5 class="modal-title mx-auto">PREVISIÓN</h5><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>';
+          fila +='<div class="col-md-12"><br><label for="nombre">NOMBRE:&nbsp; </label><label id="idPrevision" style="color:#2A3F54;">'+o.cp_prevision+'</label><input type="text" style="color:#848484" class="form-control custom-input-sm" id="nombreNuevo" value="'+o.atr_nombre+'"></div>';
+          $("#contenedorDetallePrevision").append(fila);
+        });
+
     });
 }

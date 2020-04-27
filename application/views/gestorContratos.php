@@ -7,8 +7,8 @@ $permisos =  $data['permisos'];
 <?php
 $view_estandar = 0; $view_personalizado = 0;
 foreach ($permisos as $key => $value) {
-  if ($value->cf_existencia_permiso == "68") { $view_estandar = "1"; } else
-  if ($value->cf_existencia_permiso == "69") { $view_personalizado = "1" ; }
+  if ($value->cf_existencia_permiso == "69") { $view_estandar = "1"; } else
+  if ($value->cf_existencia_permiso == "70") { $view_personalizado = "1" ; }
 }
 
 if($usuario[0]->atr_activo == "1") {?>
@@ -183,7 +183,7 @@ if($usuario[0]->atr_activo == "1") {?>
             <!-- FIN CONTRATO -->
 
             <br>
-            <button type="submit" id="btnGenerarContrato" class="btn btn-success botonLargo" style="display:none" id="btnAgregarTrabajador">GENERAR CONTRATO</button>
+            <button type="submit" id="btnGenerarContrato" class="btn btn-success btn-sm botonLargo" style="display:none" id="btnAgregarTrabajador">GENERAR CONTRATO</button>
 
           </div>
 
@@ -366,7 +366,7 @@ if($usuario[0]->atr_activo == "1") {?>
 
 
             <br>
-            <button type="submit" id="btnGenerarContrato2" class="btn btn-success botonLargo" style="display:none">GENERAR CONTRATO</button>
+            <button type="submit" id="btnGenerarContrato2" class="btn btn-success btn-sm botonLargo" style="display:none">GENERAR CONTRATO</button>
 
 
           </div>

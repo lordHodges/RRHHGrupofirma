@@ -5,13 +5,13 @@ $permisos =  $data['permisos'];
 ?>
 
 <?php
-$view_verCargo = 0; $view_editarCargo = 0; $view_editarRemuneracion = 0; $view_crearCargo = 0; $view_exportarCargo = 0;
+$view_verUsuario = 0; $view_crearUsuario = 0; $view_cambiarEstadoUsuario = 0; $view_editarUsuario = 0; $view_exportarUsuario = 0;
 foreach ($permisos as $key => $value) {
-  if ($value->cf_existencia_permiso == "") { $view_verCargo = "1"; } else
-  if ($value->cf_existencia_permiso == "") { $view_editarCargo = "1"; } else
-  if ($value->cf_existencia_permiso == "") { $view_editarRemuneracion = "1"; } else
-  if ($value->cf_existencia_permiso == "") { $view_crearCargo = "1"; } else
-  if ($value->cf_existencia_permiso == "") { $view_exportarCargo = "1"; }
+  if ($value->cf_existencia_permiso == "79") { $view_verUsuario = "1"; } else
+  if ($value->cf_existencia_permiso == "80") { $view_crearUsuario = "1"; } else
+  if ($value->cf_existencia_permiso == "81") { $view_cambiarEstadoUsuario = "1"; } else
+  if ($value->cf_existencia_permiso == "82") { $view_editarUsuario = "1"; } else
+  if ($value->cf_existencia_permiso == "83") { $view_exportarUsuario = "1"; }
 }
 
 if($usuario[0]->atr_activo == "1" ) { ?>
@@ -25,8 +25,9 @@ if($usuario[0]->atr_activo == "1" ) { ?>
     <div class="row">
         <div class="x_panel">
             <div class="x_content">
-                <button type="button" class="btn modidev-btn" data-toggle="modal" data-target="#modalCrearUsuario" style="margin-bottom:20px;">INGRESAR USUARIO</button>
+                <button type="button" class="btn modidev-btn btn-sm" data-toggle="modal" data-target="#modalCrearUsuario" style="margin-bottom:20px;">INGRESAR USUARIO</button>
 
+                <?php if ( $view_verUsuario == 1 ) {  ?>
                 <table id="tabla_usuario" class="table table-striped table-bordered table-hover dataTables-usuarios" style="margin-top:20px;">
                     <thead >
                         <tr style="width:100%;">
@@ -42,6 +43,7 @@ if($usuario[0]->atr_activo == "1" ) { ?>
 
                     </tbody>
                 </table>
+              <?php } ?>
 
             </div>
         </div>
@@ -84,19 +86,21 @@ if($usuario[0]->atr_activo == "1" ) { ?>
                     </div>
                 </div>
                 <br>
-                <button type="submit" class="btn btn-success" id="btnAgregarUsuario">Guardar</button>
+                <button type="submit" class="btn btn-success btn-sm" id="btnAgregarUsuario">Guardar</button>
             </div>
         </div>
     </div>
     <!-- /Modal de crear -->
 
+
+
     <!-- Modal editar -->
-    <div id="modaleditarAFP" class="modal fade" tabindex="-1" role="dialog"  aria-hidden="true" >
+    <div id="modaleditarUsuario" class="modal fade" tabindex="-1" role="dialog"  aria-hidden="true" >
         <div class="modal-dialog modal-lg">
             <div class="modal-content" style="padding:20px; background: #2a3f54" >
                 <div class="row">
                     <div class="col-md-12">
-                      <h5 class="modal-title text-center">AFP</h5>
+                      <h5 class="modal-title text-center">USUARIO</h5>
                       <button type="button" class="close" style="margin-top:-27px;"  data-dismiss="modal" aria-label="Close">
                           <span aria-hidden="true">&times;</span>
                       </button>
@@ -107,7 +111,7 @@ if($usuario[0]->atr_activo == "1" ) { ?>
                       </div>
                       <div class="col-md-12">
                         <br>
-                        <button type="submit" class="btn btn-success" style="width:100%"  id="btnUpdateAFP">Guardar cambios</button>
+                        <button type="submit" class="btn btn-success btn-sm" style="width:100%"  id="btnUpdateUsuario">Guardar cambios</button>
                       </div>
                     </div>
                 </div>
@@ -116,6 +120,11 @@ if($usuario[0]->atr_activo == "1" ) { ?>
         </div>
     </div>
     <!-- /Modal de editar -->
+
+
+    <label id="permisoExportar" style="display:none">no</label>
+    <label id="permisoEditar" style="display:none">no</label>
+    <label id="permisoCambiar" style="display:none">no</label>
 
 
 
@@ -138,8 +147,25 @@ if($usuario[0]->atr_activo == "1" ) { ?>
 
     <script>
       $(document).ready(function() {
-        cargarTabla();
         getSelectPerfiles();
+
+        var permisoEditar = 'no';
+        var permisoExportar = "no";
+        var permisoCambiar = "no";
+        <?php if( $view_editarUsuario == 1 ){  ?>
+          permisoEditar = "si";
+          $("#permisoEditar").text("si");
+        <?php } ?>
+        <?php if( $view_exportarUsuario == 1 ){  ?>
+            permisoExportar = "si";
+            $("#permisoExportar").text("si");
+        <?php } ?>
+        <?php if( $view_cambiarEstadoUsuario == 1 ){  ?>
+            permisoCambiar = "si";
+            $("#permisoCambiar").text("si");
+        <?php } ?>
+        cargarTabla(permisoEditar,permisoExportar, permisoCambiar);
+
       });
 
       $("#btnAgregarUsuario").click(function (e){
@@ -153,6 +179,16 @@ if($usuario[0]->atr_activo == "1" ) { ?>
           var estado = $(this).parent().parent().children()[4];;
           cambiarEstado( $(usuario).text() , $(estado).text() );
       });
+
+
+
+
+
+
+
+
+
+
 
 
 

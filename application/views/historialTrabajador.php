@@ -7,11 +7,11 @@ $permisos =  $data['permisos'];
 <?php
 $view_cronologico = 0; $view_contratos = 0; $view_anexos = 0; $view_transferencias = 0; $view_cartas = 0;
 foreach ($permisos as $key => $value) {
-  if ($value->cf_existencia_permiso == "70") { $view_cronologico = "1"; } else
-  if ($value->cf_existencia_permiso == "71") { $view_contratos = "1"; } else
-  if ($value->cf_existencia_permiso == "72") { $view_anexos = "1"; } else
-  if ($value->cf_existencia_permiso == "73") { $view_transferencias = "1"; } else
-  if ($value->cf_existencia_permiso == "74") { $view_cartas = "1" ; }
+  if ($value->cf_existencia_permiso == "71") { $view_cronologico = "1"; } else
+  if ($value->cf_existencia_permiso == "72") { $view_contratos = "1"; } else
+  if ($value->cf_existencia_permiso == "73") { $view_anexos = "1"; } else
+  if ($value->cf_existencia_permiso == "74") { $view_transferencias = "1"; } else
+  if ($value->cf_existencia_permiso == "75") { $view_cartas = "1" ; }
 }
 
 if($usuario[0]->atr_activo == "1") { ?>

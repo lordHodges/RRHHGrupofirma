@@ -9,7 +9,7 @@ function cargarTabla(cargo, permisoEliminar){
   var btnAcciones = "";
 
   if (permisoEliminar == "si") {
-    btnAcciones = '<button type="button" id="btnEliminarRequisitoMínimo" class="btn btn-danger" data-toggle="modal" data-target="#modalEliminarRequisitoMinimo"><i class="glyphicon glyphicon-trash"></i></button>';
+    btnAcciones = '<button type="button" id="btnEliminarRequisitoMínimo" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modalEliminarRequisitoMinimo"><i class="glyphicon glyphicon-trash"></i></button>';
   }
 
   $('.dataTables-requerimientosMinimos').DataTable({

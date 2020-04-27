@@ -28,7 +28,7 @@ if($usuario[0]->atr_activo == "1" ) { ?>
             <div class="x_content">
               <h3 class="text-center">CARGOS</h3><br>
                 <?php if ( $view_crearCargo == 1 ) {  ?>
-                  <button type="button" class="btn modidev-btn" data-toggle="modal" data-target=".bd-example-modal-lg" style="margin-bottom:20px;">INGRESAR CARGO</button>
+                  <button type="button" class="btn modidev-btn btn-sm" data-toggle="modal" data-target=".bd-example-modal-lg" style="margin-bottom:20px;">INGRESAR CARGO</button>
                 <?php } ?>
 
                 <?php if ($view_verCargo == "1") {  ?>
@@ -112,7 +112,7 @@ if($usuario[0]->atr_activo == "1" ) { ?>
                     </div>
                 </div>
                 <br>
-                <button type="submit" class="btn btn-success" id="btnAgregarCargo">Guardar</button>
+                <button type="submit" class="btn btn-success btn-sm" id="btnAgregarCargo">Guardar</button>
             </div>
         </div>
     </div>
@@ -135,7 +135,7 @@ if($usuario[0]->atr_activo == "1" ) { ?>
                       </div>
                       <div class="col-md-12">
                         <br>
-                        <button type="submit" class="btn btn-success" style="width:100%"  id="btnUpdateCargo">Guardar cambios</button>
+                        <button type="submit" class="btn btn-success btn-sm" style="width:100%"  id="btnUpdateCargo">Guardar cambios</button>
                       </div>
                     </div>
                 </div>
@@ -154,7 +154,7 @@ if($usuario[0]->atr_activo == "1" ) { ?>
 
 
                 </div>
-                <br><button type="submit" class="btn btn-success" id="btnGuardarRemuneracion">Guardar</button>
+                <br><button type="submit" class="btn btn-success btn-sm" id="btnGuardarRemuneracion">Guardar</button>
             </div>
         </div>
     </div>
@@ -191,10 +191,10 @@ if($usuario[0]->atr_activo == "1" ) { ?>
         var btnAcciones = '';
 
         <?php if( $view_editarCargo == 1 ){  ?>
-          btnAcciones += '<button type="button" id="btnVerCargo" class="btn btn-info btnVerCargo" data-toggle="modal" data-target="#modaleditarCargo"><i class="glyphicon glyphicon-pencil"></i></button>';
+          btnAcciones += '<button type="button" id="btnVerCargo" class="btn btn-info btnVerCargo btn-sm" data-toggle="modal" data-target="#modaleditarCargo"><i class="glyphicon glyphicon-pencil"></i></button>';
         <?php } ?>
         <?php if( $view_editarRemuneracion == 1 ){  ?>
-          btnAcciones += '<button type="button" id="btnEditarRemuneracion" class="btn btn-info" data-toggle="modal" data-target="#modalEditarRemuneración"><i class="glyphicon glyphicon-usd"></i></button>';
+          btnAcciones += '<button type="button" id="btnEditarRemuneracion" class="btn btn-info btn-sm" data-toggle="modal" data-target="#modalEditarRemuneración"><i class="glyphicon glyphicon-usd"></i></button>';
         <?php } ?>
 
         document.getElementById("jornadaTrabajo").value = "La jornada de trabajo será de 45 horas semanales, las que serán distribuidas de lunes a viernes, de la siguiente manera: jornada de la mañana de 09:00 horas a 14:00 horas, y en la jornada de la tarde de 15:00 horas a 19:00 horas.";

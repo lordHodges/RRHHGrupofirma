@@ -25,7 +25,7 @@ if($usuario[0]->atr_activo == "1" ) { ?>
             <div class="x_content">
               <h3 class="text-center">ESTADOS DE CONTRATO</h3><br>
               <?php if ( $view_crearEstadoContrato == 1 ) {  ?>
-                <button type="button" class="btn modidev-btn" data-toggle="modal" data-target=".bd-example-modal-lg" style="margin-bottom:20px;">INGRESAR ESTADO</button>
+                <button type="button" class="btn modidev-btn btn-sm" data-toggle="modal" data-target=".bd-example-modal-lg" style="margin-bottom:20px;">INGRESAR ESTADO</button>
               <?php } ?>
 
               <?php if ($view_verEstadoContrato == "1") {  ?>
@@ -72,7 +72,7 @@ if($usuario[0]->atr_activo == "1" ) { ?>
                     </div>
                 </div>
                 <br>
-                <button type="submit" class="btn btn-success" id="btnAgregarEstado">Guardar</button>
+                <button type="submit" class="btn btn-success btn-sm" id="btnAgregarEstado">Guardar</button>
             </div>
         </div>
     </div>
@@ -87,7 +87,7 @@ if($usuario[0]->atr_activo == "1" ) { ?>
 
                 </div>
                 <br>
-                <button type="submit" class="btn btn-success" id="btnEditarEstadoContrato">Guardar</button>
+                <button type="submit" class="btn btn-success btn-sm" id="btnEditarEstadoContrato">Guardar</button>
             </div>
         </div>
     </div>

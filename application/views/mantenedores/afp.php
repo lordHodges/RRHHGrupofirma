@@ -26,7 +26,7 @@ if($usuario[0]->atr_activo == "1" ) { ?>
             <div class="x_content">
               <h3 class="text-center">PREVISIONES DE SALUD</h3><br>
               <?php if ( $view_crearPrevision == 1 ) {  ?>
-                <button type="button" class="btn modidev-btn" data-toggle="modal" data-target="#modalCrearAFP" style="margin-bottom:20px;">INGRESAR PREVISIÓN</button>
+                <button type="button" class="btn modidev-btn btn-sm" data-toggle="modal" data-target="#modalCrearAFP" style="margin-bottom:20px;">INGRESAR PREVISIÓN</button>
               <?php } ?>
 
               <?php if ($view_verPrevision == "1") {  ?>
@@ -73,7 +73,7 @@ if($usuario[0]->atr_activo == "1" ) { ?>
                     </div>
                 </div>
                 <br>
-                <button type="submit" class="btn btn-success" id="btnAgregarAFP">Guardar</button>
+                <button type="submit" class="btn btn-success btn-sm" id="btnAgregarAFP">Guardar</button>
             </div>
         </div>
     </div>
@@ -96,7 +96,7 @@ if($usuario[0]->atr_activo == "1" ) { ?>
                       </div>
                       <div class="col-md-12">
                         <br>
-                        <button type="submit" class="btn btn-success" style="width:100%"  id="btnUpdateAFP">Guardar cambios</button>
+                        <button type="submit" class="btn btn-success btn-sm" style="width:100%"  id="btnUpdateAFP">Guardar cambios</button>
                       </div>
                     </div>
                 </div>

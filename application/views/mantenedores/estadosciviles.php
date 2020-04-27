@@ -25,7 +25,7 @@ if($usuario[0]->atr_activo == "1" ) { ?>
             <div class="x_content">
               <h3 class="text-center">ESTADOS CIVILES</h3><br>
               <?php if ( $view_crearEstadoCIvil == 1 ) {  ?>
-                <button type="button" class="btn modidev-btn" data-toggle="modal" data-target=".bd-example-modal-lg" style="margin-bottom:20px;">INGRESAR ESTADO CIVIL</button>
+                <button type="button" class="btn modidev-btn btn-sm" data-toggle="modal" data-target=".bd-example-modal-lg" style="margin-bottom:20px;">INGRESAR ESTADO CIVIL</button>
               <?php } ?>
 
               <?php if ($view_verEstadoCivil == "1") {  ?>
@@ -72,7 +72,7 @@ if($usuario[0]->atr_activo == "1" ) { ?>
 
                 </div>
                 <br>
-                <button type="submit" class="btn btn-success" id="btnAgregarEstadoCivil">Guardar</button>
+                <button type="submit" class="btn btn-success btn-sm" id="btnAgregarEstadoCivil">Guardar</button>
             </div>
         </div>
     </div>

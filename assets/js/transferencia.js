@@ -9,12 +9,12 @@ function cargarTabla(permisoSubir){
   var btnAcciones = "";
 
   // DESCARGAR TRANSFERENCIAS
-  btnAcciones += '<button style="display:inline" type="button" id="btnVerListaTransferencias" class="btn btn-info" data-toggle="modal" data-target="#modalVerListaTransferencias"><i class="glyphicon glyphicon-folder-open"></i></button>';
+  btnAcciones += '<button style="display:inline" type="button" id="btnVerListaTransferencias" class="btn btn-info btn-sm" data-toggle="modal" data-target="#modalVerListaTransferencias"><i class="glyphicon glyphicon-folder-open"></i></button>';
 
 
   // VER TRANSFERENCIAS
   if (permisoSubir == "si") {
-      btnAcciones += '<button style="display:inline" type="button" id="btnModalCargarArchivo" class="btn btn-info" data-toggle="modal" data-target="#modalCargarArchivo"><i class="glyphicon glyphicon-open"></i></button>';
+      btnAcciones += '<button style="display:inline" type="button" id="btnModalCargarArchivo" class="btn btn-info btn-sm" data-toggle="modal" data-target="#modalCargarArchivo"><i class="glyphicon glyphicon-open"></i></button>';
   }else{
     btnAcciones += '';
   }
@@ -113,16 +113,16 @@ function getTransferenciasTrabajador(idTrabajador){
 
         if(o.atr_ruta == "vacio"){
           if (permisoDescargar == "si") {
-            fila += '<td> <a class="btn btn-default" href="#"><i class="glyphicon glyphicon-download-alt"></i></a> </td>';
+            fila += '<td> <a class="btn btn-default btn-sm" href="#"><i class="glyphicon glyphicon-download-alt"></i></a> </td>';
           }else{
-            fila += '<td> <a class="btn btn-default" href="#"><i class="glyphicon glyphicon-download-alt"></i></a> </td>';
+            fila += '<td> <a class="btn btn-default btn-sm" href="#"><i class="glyphicon glyphicon-download-alt"></i></a> </td>';
           }
         }else{
           download = "http://localhost/RRHH-FIRMA/index.php/TransferenciasController/descargarComprobante/"+o.cp_transferencia;
           if (permisoDescargar == "si") {
-            fila +='<td> <a class="btn btn-info" href="'+download+'" download><i class="glyphicon glyphicon-download-alt"></i></a> </td>';
+            fila +='<td> <a class="btn btn-info btn-sm" href="'+download+'" download><i class="glyphicon glyphicon-download-alt"></i></a> </td>';
           }else{
-            fila += '<td><a class="btn btn-default href="#"><i class="glyphicon glyphicon-download-alt"></i></a> </td>';
+            fila += '<td><a class="btn btn-default btn-sm" href="#"><i class="glyphicon glyphicon-download-alt"></i></a> </td>';
           }
         }
 

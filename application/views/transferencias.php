@@ -7,9 +7,9 @@ $permisos =  $data['permisos'];
 <?php
 $view_verTransferencia = 0; $view_subirTransferencia = 0; $view_descargarTransferencia = 0;
 foreach ($permisos as $key => $value) {
-  if ($value->cf_existencia_permiso == "57") { $view_verTransferencia = "1"; } else
-  if ($value->cf_existencia_permiso == "58") { $view_subirTransferencia = "1"; } else
-  if ($value->cf_existencia_permiso == "59") { $view_descargarTransferencia = "1" ; }
+  if ($value->cf_existencia_permiso == "58") { $view_verTransferencia = "1"; } else
+  if ($value->cf_existencia_permiso == "59") { $view_subirTransferencia = "1"; } else
+  if ($value->cf_existencia_permiso == "60") { $view_descargarTransferencia = "1" ; }
 }
 
 if($usuario[0]->atr_activo == "1") { ?>

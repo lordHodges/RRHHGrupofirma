@@ -23,7 +23,7 @@ if($usuario[0]->atr_activo == "1" ) { ?>
               <div class="x_content">
                 <h3 class="text-center">TRABAJADORES</h3><br>
                 <?php if ( $view_crearTrabajador == 1 ) {  ?>
-                  <button type="button" id="abrirModalCrear" class="btn modidev-btn" data-toggle="modal" data-target=".bd-example-modal-lg" style="margin-bottom:20px;">INGRESAR TRABAJADOR</button>
+                  <button type="button" id="abrirModalCrear" class="btn modidev-btn btn-sm" data-toggle="modal" data-target=".bd-example-modal-lg" style="margin-bottom:20px;">INGRESAR TRABAJADOR</button>
                 <?php } ?>
 
                 <?php if ($view_verTrabajador == "1") {  ?>
@@ -180,7 +180,7 @@ if($usuario[0]->atr_activo == "1" ) { ?>
 
                 </div>
                 <br>
-                <button type="submit" class="btn btn-success" id="btnAgregarTrabajador">Guardar</button>
+                <button type="submit" class="btn btn-success btn-sm" id="btnAgregarTrabajador">Guardar</button>
             </div>
         </div>
     </div>
@@ -219,7 +219,7 @@ if($usuario[0]->atr_activo == "1" ) { ?>
 
 
                 </div>
-                <br><button type="submit" class="btn btn-success" id="btnEditarTrabajador">Guardar</button>
+                <br><button type="submit" class="btn btn-success btn-sm" id="btnEditarTrabajador">Guardar</button>
             </div>
         </div>
     </div>

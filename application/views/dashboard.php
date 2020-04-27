@@ -7,9 +7,9 @@ $permisos =  $data['permisos'];
 <?php
 $view_cantidadContrato = 0; $view_transferenciasEmpresa = 0; $view_contratosPorVencer = 0;
 foreach ($permisos as $key => $value) {
-  if ($value->cf_existencia_permiso == "75") { $view_cantidadContrato = "1"; } else
-  if ($value->cf_existencia_permiso == "76") { $view_transferenciasEmpresa = "1"; } else
-  if ($value->cf_existencia_permiso == "77") { $view_contratosPorVencer = "1"; }
+  if ($value->cf_existencia_permiso == "76") { $view_cantidadContrato = "1"; } else
+  if ($value->cf_existencia_permiso == "77") { $view_transferenciasEmpresa = "1"; } else
+  if ($value->cf_existencia_permiso == "78") { $view_contratosPorVencer = "1"; }
 }
 if($usuario[0]->atr_activo == "1") { ?>
 

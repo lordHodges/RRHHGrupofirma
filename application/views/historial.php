@@ -160,7 +160,7 @@
 
                 </div>
                 <br>
-                <button type="submit" class="btn btn-success" id="btnAgregarTrabajador">Guardar</button>
+                <button type="submit" class="btn btn-success btn-sm" id="btnAgregarTrabajador">Guardar</button>
             </div>
         </div>
     </div>
@@ -199,7 +199,7 @@
 
 
                 </div>
-                <br><button type="submit" class="btn btn-success" id="btnEditarTrabajador">Guardar</button>
+                <br><button type="submit" class="btn btn-success btn-sm" id="btnEditarTrabajador">Guardar</button>
             </div>
         </div>
     </div>

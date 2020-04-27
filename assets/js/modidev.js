@@ -176,7 +176,7 @@ function cargarTablaPrevision(permisoEditar,permisoExportar){
         "columnDefs": [{
           "targets": 2,
           "data": null,
-          "defaultContent": '<button type="button" id="getDetallePrevision" class="btn btn-info" data-toggle="modal" data-target="#modalEditarPrevision"><i class="glyphicon glyphicon-pencil"></i></button>'
+          "defaultContent": '<button type="button" id="getDetallePrevision" class="btn btn-info btn-sm" data-toggle="modal" data-target="#modalEditarPrevision"><i class="glyphicon glyphicon-pencil"></i></button>'
         }
         ],dom: '<"html5buttons"B>lTfgitp',
           buttons: [{
@@ -232,7 +232,7 @@ function cargarTablaNacionalidades(permisoEditar,permisoExportar){
   var btnAcciones = ""
 
   if (permisoEditar == "si") {
-     btnAcciones = '<button type="button" id="getDetalleNacionalidad" class="btn btn-info" data-toggle="modal" data-target="#modalEditarNacionalidad"><i class="glyphicon glyphicon-pencil"></i></button>';
+     btnAcciones = '<button type="button" id="getDetalleNacionalidad" class="btn btn-info btn-sm" data-toggle="modal" data-target="#modalEditarNacionalidad"><i class="glyphicon glyphicon-pencil"></i></button>';
   }
 
   if (permisoExportar == "si") {
@@ -374,7 +374,7 @@ function cargarTablaEstadosContrato(permisoEditar,permisoExportar){
   var btnAcciones = ""
 
   if (permisoEditar == "si") {
-     btnAcciones = '<button type="button" id="getDetalleEstadosContrato" class="btn btn-info" data-toggle="modal" data-target="#modalEditarEstadosContrato"><i class="glyphicon glyphicon-pencil"></i></button>';
+     btnAcciones = '<button type="button" id="getDetalleEstadosContrato" class="btn btn-info btn-sm" data-toggle="modal" data-target="#modalEditarEstadosContrato"><i class="glyphicon glyphicon-pencil"></i></button>';
   }
 
   if (permisoExportar == "si") {
@@ -775,7 +775,7 @@ function cargarTablaEmpresa(permisoEditar, exportar){
   var btnAcciones = ""
 
   if (permisoEditar == "si") {
-     btnAcciones = '<button type="button" id="getDetalleEmpresa" class="btn btn-info" data-toggle="modal" data-target="#modalEditarEmpresa"><i class="glyphicon glyphicon-pencil"></i></button>';
+     btnAcciones = '<button type="button" id="getDetalleEmpresa" class="btn btn-info btn-sm" data-toggle="modal" data-target="#modalEditarEmpresa"><i class="glyphicon glyphicon-pencil"></i></button>';
   }
 
   if (exportar == "si") {
@@ -915,7 +915,7 @@ function cargarTablaAFP(permisoEditar, permisoExportar){
   var btnAcciones = ""
 
   if (permisoEditar == "si") {
-     btnAcciones = '<button type="button" id="btnVerAFP" class="btn btn-info" data-toggle="modal" data-target="#modaleditarAFP"><i class="glyphicon glyphicon-pencil"></i></button>';
+     btnAcciones = '<button type="button" id="btnVerAFP" class="btn btn-info btn-sm" data-toggle="modal" data-target="#modaleditarAFP"><i class="glyphicon glyphicon-pencil"></i></button>';
   }
 
   if (permisoExportar == "si") {

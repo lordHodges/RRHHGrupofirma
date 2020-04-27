@@ -205,9 +205,12 @@ $route['docContratoPersonalizado'] = 'PDFController/view_contratoPersonalizado';
     $route['updateEmpresa'] = 'EmpresaController/updateEmpresa';
     $route['getDetalleEmpresa'] = 'EmpresaController/getDetalleEmpresa';
 
-    //getTitulos
+    //titulo
     $route['getTitulos'] = 'TitulosController/getTitulos';
     $route['addTitulo'] = 'TitulosController/addTitulo';
+
+    // usuario
+    $route['getDetalleUsuario'] = 'SesionesController/getDetalleUsuario';
 
 // TRANSFERENCIAS
 $route['inicioTransferencias'] = 'TransferenciasController/index';
