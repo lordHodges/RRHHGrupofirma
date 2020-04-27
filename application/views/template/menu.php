@@ -4,7 +4,8 @@ $data = $this->session->userdata("datos");
 $usuario =  $data['usuario'];
 $permisos =  $data['permisos'];
 $menu =  $data['menu'];
-$cntInicio = 0; $cntTrabajadores = 0; $cntHistorial = 0; $cntGenerarContrato = 0; $cntGenerarAnexo = 0;
+var_dump($menu);
+// var_dump($permisos);
 ?>
 <html lang="en">
   <head>
@@ -33,6 +34,9 @@ $cntInicio = 0; $cntTrabajadores = 0; $cntHistorial = 0; $cntGenerarContrato = 0
     <link href="<?php echo base_url() ?>assets/vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
 
     <link href="<?php echo base_url() ?>assets/css/toastr.min.css" rel="stylesheet" type="text/css" />
+
+    <!-- Switchery -->
+    <link href="<?php echo base_url() ?>assets/vendors/switchery/dist/switchery.min.css" rel="stylesheet">
 
     <!-- MODIDEV -->
     <link href="<?php echo base_url() ?>assets/css/modidev.css" rel="stylesheet">
@@ -130,7 +134,7 @@ $cntInicio = 0; $cntTrabajadores = 0; $cntHistorial = 0; $cntGenerarContrato = 0
 
                           <?php  if ( $valueModulo->cf_menu == "6" ) {  ?>
                             <li>
-                              <a href="<?php echo base_url() ?>index.php/inicioPermisos">
+                              <a href="<?php echo base_url() ?>index.php/permisos">
                                 <i class="fa fa-shield"></i> Permisos
                               </a>
                             </li>

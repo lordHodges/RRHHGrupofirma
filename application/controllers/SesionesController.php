@@ -10,11 +10,53 @@ class SesionesController extends CI_Controller {
 		$this->load->library('encryption');
 	}
 
+	public function inicioPermisos()
+	{
+		$this->load->view("template/menu");
+		$this->load->view("permisos");
+	}
+
 	// CARGAR MANTENEDOR DE USUARIOS
 	public function inicioUsuarios()
 	{
 		$this->load->view("template/menu");
 		$this->load->view("mantenedores/usuarios");
+	}
+
+
+
+
+
+
+
+
+	// METDO PARA RELLENAR TABLA DE PERFILES
+	public function getPerfilesTabla(){
+		$draw = intval($this->input->get("draw"));
+		$start = intval($this->input->get("start"));
+		$length = intval($this->input->get("length"));
+		$books = $this->SesionesModel->getPerfiles();
+		$data = array();
+		foreach ($books->result() as $r) {
+				$data[] = array(
+					$r->cp_perfil,
+					$r->atr_nombre
+				);
+		}
+		$output = array(
+				"draw" => $draw,
+				"recordsTotal" => $books->num_rows(),
+				"recordsFiltered" => $books->num_rows(),
+				"data" => $data
+		);
+		echo json_encode($output);
+		exit();
+	}
+
+	// METODO QUE OBTIENE EL LISTADO DE PERMISOS EXISTENTES POR PERFIL
+	public function permisosPorPerfil(){
+		$resultado = $this->SesionesModel->getSelectPerfiles();
+		echo json_encode($resultado);
 	}
 
 	public function agregarUsuario(){

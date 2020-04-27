@@ -50,6 +50,12 @@ class SesionesModel extends CI_Model {
       return $this->db->get()->result();
     }
 
+    public function getPerfiles(){
+      $this->db->select('p.cp_perfil, p.atr_nombre');
+      $this->db->from('fa_perfil p');
+      return $this->db->get();
+    }
+
     public function buscarUsuario($correo) {
       $this->db->select("u.cp_usuario, u.atr_nombre, u.cf_perfil, u.atr_clave, u.atr_activo");
       $this->db->from("fa_usuario u");
@@ -87,7 +93,7 @@ class SesionesModel extends CI_Model {
       if (count($resultado) == 0) {
         $this->db->select("mp.cf_menu");
         $this->db->from('fa_menu_perfil mp');
-        $this->db->where('mp.cf_perfil',$usuario);
+        $this->db->where('mp.cf_perfil',$perfil);
         $resultado =  $this->db->get()->result();
       }
       return $resultado;

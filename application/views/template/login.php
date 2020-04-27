@@ -145,9 +145,9 @@
 					}).then(function (msg) {
 						if (msg == 'ok') {
 							toastr.success("Datos correctos");
-							setTimeout(function(){
+							// setTimeout(function(){
 									window.location="http://localhost/RRHH-FIRMA/index.php/dashboard";
-							},1500);
+							// },1500);
 						}else {
 							toastr.error("Datos incorrectos");
 						}

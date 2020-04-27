@@ -7,7 +7,10 @@ $route['iniciarSesion'] = 'SesionesController/iniciarSesion';
 $route['cerrarSesion'] = 'SesionesController/cerrarSesion';
 
 // PERMISOS
-$route['permisos'] = 'SesionesController/index';
+$route['permisos'] = 'SesionesController/inicioPermisos';
+$route['getPerfilesTabla'] = 'SesionesController/getPerfilesTabla';
+// $route['getListadoUsuariosPermisos'] = 'SesionesController/getListadoUsuariosPermisos';
+
 
 // DASHBOARD
 $route['dashboard'] = 'DashboardController/index';
