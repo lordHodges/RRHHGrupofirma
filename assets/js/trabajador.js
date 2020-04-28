@@ -5,10 +5,15 @@ function cargarTablaTrabajador(permisoEditar, permisoExportar){
   var table = $('#tabla_trabajador').DataTable();
   table.destroy();
 
+  permisoEditar = $("#permisoEditar").text();
+
   var btnAcciones = "";
 
+  btnAcciones = '<button style="display:inline" type="button" id="btnVerTrabajador" class="btn btn-info btn-sm" data-toggle="modal" data-target="#modalVerTrabajador"><i class="glyphicon glyphicon-eye-open"></i></button>';
+
+
   if (permisoEditar == "si") {
-    btnAcciones = '<button style="display:inline" type="button" id="btnVerTrabajador" class="btn btn-info btn-sm" data-toggle="modal" data-target="#modalVerTrabajador"><i class="glyphicon glyphicon-eye-open"></i></button> <button style="display:inline" type="button" id="getDetalleTrabajadorViewEdit" class="btn btn-info btn-sm" data-toggle="modal" data-target="#modalEditarTrabajador"><i class="glyphicon glyphicon-pencil"></i></button>';
+    btnAcciones += '<button style="display:inline" type="button" id="getDetalleTrabajadorViewEdit" class="btn btn-info btn-sm" data-toggle="modal" data-target="#modalEditarTrabajador"><i class="glyphicon glyphicon-pencil"></i></button>';
   }
 
   if (permisoExportar == "si") {
@@ -54,7 +59,8 @@ function cargarTablaTrabajador(permisoEditar, permisoExportar){
               }
 
           ],dom: '<"html5buttons"B>lTfgitp',
-            buttons: [{
+            buttons: [
+                {
                     extend: 'copy',
                     exportOptions: {
                         columns: [ 1,2,3,4,5,6,7 ]
@@ -144,16 +150,13 @@ function cargarTablaTrabajador(permisoEditar, permisoExportar){
           "columnDefs": [{
                   "targets": 8,
                   "data": null,
-                  "defaultContent":btnAcciones
+                  "defaultContent": btnAcciones
               }
 
           ],dom: '<"html5buttons"B>lTfgitp',
             buttons: []
       });
   }
-
-
-
 
 }
 
@@ -246,6 +249,7 @@ function getDetalleTrabajador(id){
           fila +='<div class="col-md-6 col-sm-12"><br><label for="nombres">NOMBRES</label><input type="text" style="color:#848484" class="form-control" id="nombres" value="'+o.atr_nombres+'"  disabled></div>';
           fila +='<div class="col-md-6 col-sm-12"><br><label for="apellidos">APELLIDOS</label><input type="text" style="color:#848484" class="form-control" id="apellidos" value="'+o.atr_apellidos+'"disabled></div>';
           fila +='<div class="col-md-12 col-sm-12"><br><label for="direccion">DIRECCIÓN</label><input type="text" style="color:#848484" class="form-control" id="direccion" value="'+o.atr_direccion+'"disabled></div><br><br>';
+          fila +='<div class="col-md-12 col-sm-12"><br><label for="direccion">SUELDO</label><input type="text" style="color:#848484" class="form-control" id="sueldo" value="'+o.atr_sueldo+'"disabled></div><br><br>';
           fila +='<div class="col-md-6"><br><label for="ciudad">CIUDAD / COMUNA</label><input type="text" style="color:#848484" class="form-control" id="ciudad" value="'+o.ciudad+'"disabled></div>';
           fila +='<div class="col-md-6"><br><label for="sucursal">SUCURSAL</label><input type="text" style="color:#848484" class="form-control" id="sucursal" value="'+o.sucursal+'"disabled></div>'
           fila +='<div class="col-md-6"><br><label for="cargo">CARGO</label> <input type="text" style="color:#848484" class="form-control" id="cargo" value="'+o.cargo+'"disabled></div>'
@@ -286,6 +290,7 @@ function getDetalleTrabajadorViewEdit(id){
 
           fila +='<div class="col-md-12 col-sm-12"><br><label for="direccion">DIRECCIÓN:&nbsp;</label><label id="direccionActual">'+o.atr_direccion+'</label><input type="text" style="color:#848484" class="form-control" id="direccionNuevo" oninput="mayus(this);"></div><br><br>';
 
+          fila +='<div class="col-md-12 col-sm-12"><br><label for="direccion">SUELDO:&nbsp;</label><label id="sueldoActual">'+o.atr_sueldo+'</label><input type="text" style="color:#848484" class="form-control" id="sueldoNuevo" oninput="mayus(this);"></div><br><br>';
 
           //SELECTOR DE CIUDAD
           fila +='<div class="col-md-12"><br><label for="ciudad">CIUDAD / COMUNA:&nbsp;</label><label id="ciudadActual">'+o.ciudad+'</label><select class="custom-select" id="getSelectCiudad2"> '; //<input type="text" style="color:#848484" class="form-control" id="ciudadNuevo"></div>
@@ -410,6 +415,7 @@ function getDetalleTrabajadorViewEdit(id){
 function updateTrabajador() {
   var idTrabajador = $("#idTrabajador").text();
   var rut = $("#rutNuevo").val();
+  var sueldo = $("#sueldoNuevo").val();
   var nombres = $("#nombresNuevo").val();
   var apellidos = $("#apellidosNuevo").val();
   var direccion = $("#direccionNuevo").val();
@@ -424,12 +430,15 @@ function updateTrabajador() {
   var nacionalidad = $("#getSelectNacionalidad2").val();
   var fechaNacimiento =  $("#fechaNacimiento2").val();
 
-  if( rut == "" && nombres == "" && apellidos == "" && direccion == "" &&  ciudad == null && sucursal == null && cargo == null && empresa == null && afp == null && prevision == null && estadoContrato == null && estadoCivil == null && nacionalidad == null && fechaNacimiento == ""){
+  if( rut == "" && nombres == "" && apellidos == "" && direccion == "" && sueldo == "" &&  ciudad == null && sucursal == null && cargo == null && empresa == null && afp == null && prevision == null && estadoContrato == null && estadoCivil == null && nacionalidad == null && fechaNacimiento == ""){
     toastr.error("No se ha modificado información.");
     $('#modalEditarTrabajador').modal('hide');
   }else{
     if( rut == ""){
       rut = $("#rutActual").text();
+    }
+    if( sueldo == ""){
+      sueldo = $("#sueldoActual").text();
     }
     if( nombres == ""){
       nombres = $("#nombresActual").text();
@@ -480,15 +489,16 @@ function updateTrabajador() {
       url: 'updateTrabajador',
       type: 'POST',
       dataType: 'json',
-      data: { "idTrabajador": idTrabajador,  "rut":rut, "nombres":nombres, "apellidos":apellidos, "direccion":direccion, "ciudad":ciudad, "sucursal":sucursal, "cargo":cargo, "empresa":empresa, "afp":afp, "prevision":prevision, "estadoContrato":estadoContrato, "estadoCivil":estadoCivil, "nacionalidad":nacionalidad, "fechaNacimiento":fechaNacimiento }
+      data: { "idTrabajador": idTrabajador, "sueldo":sueldo,  "rut":rut, "nombres":nombres, "apellidos":apellidos, "direccion":direccion, "ciudad":ciudad, "sucursal":sucursal, "cargo":cargo, "empresa":empresa, "afp":afp, "prevision":prevision, "estadoContrato":estadoContrato, "estadoCivil":estadoCivil, "nacionalidad":nacionalidad, "fechaNacimiento":fechaNacimiento }
   }).then(function (msg) {
-      // if (msg == "ok") {
-      //     toastr.success("Información actualizada.");
-      //     $('#modalEditarTrabajador').modal('hide');
-      // } else {
-      //     toastr.error("No se ha podido actualizar el trabajador.");
-      // }
-      toastr.success("Información actualizada.");
-      $('#modalEditarTrabajador').modal('hide');
+      if (msg == "ok") {
+        toastr.success("Información actualizada.");
+        $('#modalEditarTrabajador').modal('hide');
+
+      }
+
   });
+  var permisoEditar = $("#permisoEditar").text();
+  var permisoExportar = $("#permisoExportar").text();
+  cargarTablaTrabajador(permisoEditar, permisoExportar);
 }

@@ -112,6 +112,9 @@ if($usuario[0]->atr_activo == "1") { ?>
     <!-- /footer content -->
 
 
+    
+
+
 
 
 

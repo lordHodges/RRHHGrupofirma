@@ -15,7 +15,7 @@ if($usuario[0]->atr_activo == "1" && $view_contratoEstadar == "1") { ?>
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title></title>
+    <title>Contrato</title>
     <style media="screen">
       body{ margin-left: 40px; margin-right: 40px}
       h2{ text-align: center; text-decoration:underline;}
@@ -133,7 +133,7 @@ if($usuario[0]->atr_activo == "1" && $view_contratoEstadar == "1") { ?>
 
     <?php foreach ($arrayRemuneracion as $key => $r){ ?>
       <p style="text-align:justify; line-height:25px;"> El empleador se compromete a remunerar los servicios del trabajador
-      con un sueldo mensual de <b>$<?php echo $r->atr_sueldoMensual ?>(<?php echo $letrasSueldo ?>pesos).</b></p>
+      con un sueldo mensual de <b>$<?php echo $sueldo ?>(<?php echo $letrasSueldo ?>pesos).</b></p>
     <?php } ?>
 
       <p style="text-align:justify; line-height:25px;">El empleador pagará al trabajador una gratificación mensual equivalente al 25% del total de las remuneraciones

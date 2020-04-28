@@ -129,9 +129,13 @@ class SesionesController extends CI_Controller {
 	 				$idUsuario = $u->cp_usuario;
 	 				$claveBD = $u->atr_clave;
 					$idPerfil = $u->cf_perfil;
+					$activo = $u->atr_activo;
 	 			}
 
-
+				if ($activo == 0) {
+					echo json_encode("inactivo");
+					exit();
+				}
 	 			if ($claveBD == $clave ) {
 	 				$permisos = $this->SesionesModel->listadoPermisos($idUsuario, $idPerfil);
 					$menu = $this->SesionesModel->listadoModulos($idUsuario, $idPerfil);
@@ -146,7 +150,7 @@ class SesionesController extends CI_Controller {
 	 				echo json_encode('ok');
 
 	 			}else{
-	 				echo json_encode("error cuek");
+	 				echo json_encode("error");
 	 			}
 		 }else{
 			 echo json_encode("error");

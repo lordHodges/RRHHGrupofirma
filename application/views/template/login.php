@@ -149,7 +149,11 @@
 									window.location="http://localhost/RRHH-FIRMA/index.php/dashboard";
 							// },1500);
 						}else {
-							toastr.error("Datos incorrectos");
+							if (msg == 'inactivo') {
+								toastr.error("Usuario bloqueado");
+							}else{
+									toastr.error("Datos incorrectos");
+							}
 						}
 					});
 				});

@@ -16,7 +16,7 @@ if($usuario[0]->atr_activo == "1" && $view_anexoIndefinido == "1" ) { ?>
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title></title>
+    <title>Anexo</title>
     <style media="screen">
       body{ margin-left: 40px; margin-right: 40px}
       h2{ text-align: center; text-decoration:underline;}

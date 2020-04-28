@@ -161,12 +161,13 @@ class  PDFController extends CI_Controller {
 			$t->atr_fechaNacimiento = $fecha;
 			$t->prevision = strtoupper( $t->prevision );
 			$t->cargo = strtoupper( $t->cargo );
+			$sueldo = $t->atr_sueldo;
 		}
 		$funciones = $this->FuncionesModel->getListadoTareasViewContrato($idCargo);
 
 
 		foreach ($arrayRemuneracion as $key => $r) {
-			$sueldo = $r->atr_sueldoMensual;
+
 			$colacion = $r->atr_colacion;
 			$movilizacion = $r->atr_movilizacion;
 			$asistencia = $r->atr_asistencia;
@@ -201,7 +202,8 @@ class  PDFController extends CI_Controller {
 			'letrasSueldo'							=> $letras,
 			'letrasColacion'						=> $letrasColacion,
 			'letrasMovilizacion'				=> $letrasMovilizacion,
-			'letrasAsistencia'					=> $letrasAsistencia
+			'letrasAsistencia'					=> $letrasAsistencia,
+			'sueldo'										=> $sueldo
 		);
 
 

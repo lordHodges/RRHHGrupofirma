@@ -43,6 +43,8 @@ class TrabajadorController extends CI_Controller {
 		$nacionalidad = $this->input->post("nacionalidad");
 
 
+
+
 		$time = strtotime($fecha);
 		$fechaNacimiento = date('d-m-Y', $time); //formateo de fecha
 
@@ -186,6 +188,8 @@ class TrabajadorController extends CI_Controller {
 		var_dump($idTrabajador);
 		$rut = $this->input->post("rut");
 		// var_dump($rut);
+		$sueldo = $this->input->post("sueldo");
+		// var_dump($sueldo);
 		$nombres = $this->input->post("nombres");
 		// var_dump($nombres);
 		$apellidos = $this->input->post("apellidos");
@@ -213,10 +217,8 @@ class TrabajadorController extends CI_Controller {
 		$fechaNacimiento = $this->input->post("fechaNacimiento");
 		// var_dump($fechaNacimiento);
 
-
-
-		$resultado = $this->TrabajadorModel->updateTrabajador( $idTrabajador,$rut, $nombres,$apellidos,$direccion,$ciudad,$sucursal,$cargo,$empresa,$afp,$prevision,$estadoContrato,$estadoCivil,$nacionalidad,$fechaNacimiento);
-		echo json_encode(array($resultado));
+		$resultado = $this->TrabajadorModel->updateTrabajador( $idTrabajador,$rut, $sueldo, $nombres,$apellidos,$direccion,$ciudad,$sucursal,$cargo,$empresa,$afp,$prevision,$estadoContrato,$estadoCivil,$nacionalidad,$fechaNacimiento);
+		echo json_encode($resultado);
 	}
 
 

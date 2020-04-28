@@ -192,7 +192,7 @@ function cambiarEstado(idUsuario, estado) {
     }).then(function (msg) {
         if (msg == "ok") {
            if (estado == "Activo") {
-             toastr.success("Usuario desactivado.");
+             toastr.success("Usuario bloqueado.");
            }else{
              toastr.success("Usuario activado.");
            }

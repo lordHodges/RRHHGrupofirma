@@ -150,6 +150,7 @@ INSERT INTO `fa_items_contrato` (`cp_itemContrato`, `atr_nombre`) VALUES (NULL, 
 
 
 INSERT INTO `fa_perfil` (`cp_perfil`, `atr_nombre`) VALUES (NULL, 'Administrador'), (NULL, 'Finanzas'), (NULL, 'Recursos Humanos');
+INSERT INTO `fa_perfil` (`cp_perfil`, `atr_nombre`) VALUES (NULL, 'Encargado de finanzas');
 
 
 INSERT INTO `fa_modulo` (`cp_modulo`, `atr_nombre`) VALUES (NULL, 'Mantenedor de cargos'), (NULL, 'Mantenedor de ciudades'), (NULL, 'Mantenedor de empresas'), (NULL, 'Mantenedor de estados civiles'), (NULL, 'Mantenedor de estados de contrato');

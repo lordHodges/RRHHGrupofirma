@@ -17,21 +17,33 @@ class TrabajadorModel extends CI_Model {
 
 
     function addTrabajador($rut,$nombres,$apellidos,$direccion,$fechaNacimiento,$ciudad,$sucursal,$cargo,$empresa,$afp, $prevision, $estadoContrato, $estadoCivil, $nacionalidad){
+
+        $this->db->select("r.atr_sueldoMensual");
+        $this->db->from("fa_remuneracion r");
+        $this->db->where('r.cf_cargo', $cargo);
+        $remuneracion =  $this->db->get()->result();
+        var_dump($remuneracion);
+
+        foreach ($remuneracion as $key => $value) {
+          $sueldo = $value->atr_sueldoMensual;
+        }
+
         $data = array(
-            "atr_rut" => $rut,
-            "atr_nombres" => $nombres,
-            "atr_apellidos" => $apellidos,
-            "atr_direccion" => $direccion,
-            "atr_fechaNacimiento"=> $fechaNacimiento,
-            "cf_ciudad" => $ciudad,
-            "cf_sucursal" => $sucursal,
-            "cf_cargo" => $cargo,
-            "cf_empresa" => $empresa,
-            "cf_prevision" => $prevision,
-            "cf_afp" => $afp,
-            "cf_estado" => $estadoContrato,
-            "cf_estadoCivil" => $estadoCivil,
-            "cf_nacionalidad" => $nacionalidad,
+            "atr_rut"                   => $rut,
+            "atr_nombres"               => $nombres,
+            "atr_apellidos"             => $apellidos,
+            "atr_direccion"             => $direccion,
+            "atr_fechaNacimiento"       => $fechaNacimiento,
+            "atr_sueldo"                => $sueldo,
+            "cf_ciudad"                 => $ciudad,
+            "cf_sucursal"               => $sucursal,
+            "cf_cargo"                  => $cargo,
+            "cf_empresa"                => $empresa,
+            "cf_prevision"              => $prevision,
+            "cf_afp"                    => $afp,
+            "cf_estado"                 => $estadoContrato,
+            "cf_estadoCivil"            => $estadoCivil,
+            "cf_nacionalidad"           => $nacionalidad,
         );
         $this->db->insert("fa_trabajador", $data);
         return "ok";
@@ -111,7 +123,7 @@ class TrabajadorModel extends CI_Model {
     }
 
     function getDetalleTrabajador($id){
-      $this->db->select("t.cp_trabajador, t.atr_rut, t.atr_nombres, t.atr_apellidos, t.atr_direccion, t.atr_fechaNacimiento, e.atr_nombre as estado, ci.atr_nombre as ciudad, ca.atr_nombre as cargo, su.atr_nombre as sucursal, n.atr_nombre as nacionalidad, ec.atr_nombre as estadocivil, a.atr_nombre as afp, p.atr_nombre as prevision, em.atr_nombre as empresa");
+      $this->db->select("t.cp_trabajador, t.atr_rut, t.atr_nombres, t.atr_apellidos, t.atr_direccion, t.atr_fechaNacimiento, t.atr_sueldo, e.atr_nombre as estado, ci.atr_nombre as ciudad, ca.atr_nombre as cargo, su.atr_nombre as sucursal, n.atr_nombre as nacionalidad, ec.atr_nombre as estadocivil, a.atr_nombre as afp, p.atr_nombre as prevision, em.atr_nombre as empresa");
       $this->db->from("fa_trabajador t");
       $this->db->join("fa_estado e", "t.cf_estado = e.cp_estado");
       $this->db->join("fa_ciudad ci","t.cf_ciudad = ci.cp_ciudad");
@@ -126,7 +138,7 @@ class TrabajadorModel extends CI_Model {
       return $this->db->get()->result();
     }
 
-    function updateTrabajador( $idTrabajador,$rut, $nombres,$apellidos,$direccion,$ciudad,$sucursal,$cargo,$empresa,$afp,$prevision,$estadoContrato,$estadoCivil,$nacionalidad,$fechaNacimiento ){
+    function updateTrabajador( $idTrabajador,$rut, $sueldo, $nombres,$apellidos,$direccion,$ciudad,$sucursal,$cargo,$empresa,$afp,$prevision,$estadoContrato,$estadoCivil,$nacionalidad,$fechaNacimiento ){
 
       if( !is_numeric($ciudad) ){
         //Buscar la ID de la ciudad ingresada
@@ -241,6 +253,7 @@ class TrabajadorModel extends CI_Model {
         "atr_apellidos"             => $apellidos,
         "atr_direccion"             => $direccion,
         "atr_fechaNacimiento"       => $fechaNacimiento,
+        "atr_sueldo"                => $sueldo,
         "cf_prevision"              => $prevision,
         "cf_empresa"                => $empresa,
         "cf_estado"                 => $estadoContrato,
@@ -253,9 +266,6 @@ class TrabajadorModel extends CI_Model {
 
       $this->db->where('t.cp_trabajador', $idTrabajador);
       $resultado =  $this->db->update("fa_trabajador t", $dataTrabajador);
-
-      // var_dump("ID: ",$idTrabajador);
-      // var_dump("DATA TRABAJADOR: ",$dataTrabajador);
 
       if($resultado){
         return "ok";
