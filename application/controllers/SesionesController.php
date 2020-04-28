@@ -23,12 +23,27 @@ class SesionesController extends CI_Controller {
 		$this->load->view("mantenedores/usuarios");
 	}
 
+	public function inicioPermisosPerfil(){
+		$this->load->view("template/menu");
+		$this->load->view("permisosPerfil");
+	}
+
+	public function inicioPermisosUsuario(){
+		$this->load->view("template/menu");
+		$this->load->view("permisosUsuario");
+	}
 
 
 
+	public function detallePermisosUsuario(){
+		$resultado = $this->SesionesModel->detallePermisosUsuario();
+		echo json_encode($resultado);
+	}
 
-
-
+	public function cargarUsuariosConPerfil(){
+		$resultado = $this->SesionesModel->cargarUsuariosConPerfil();
+		echo json_encode($resultado);
+	}
 
 	// METDO PARA RELLENAR TABLA DE PERFILES
 	public function getPerfilesTabla(){

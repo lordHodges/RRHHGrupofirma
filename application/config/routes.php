@@ -6,10 +6,16 @@ $route['login'] = 'Welcome/index';
 $route['iniciarSesion'] = 'SesionesController/iniciarSesion';
 $route['cerrarSesion'] = 'SesionesController/cerrarSesion';
 
+
+
 // PERMISOS
 $route['permisos'] = 'SesionesController/inicioPermisos';
 $route['getPerfilesTabla'] = 'SesionesController/getPerfilesTabla';
-// $route['getListadoUsuariosPermisos'] = 'SesionesController/getListadoUsuariosPermisos';
+$route['inicioPermisosPerfil'] = 'SesionesController/inicioPermisosPerfil';
+$route['inicioPermisosUsuario'] = 'SesionesController/inicioPermisosUsuario';
+
+$route['cargarUsuariosConPerfil'] = 'SesionesController/cargarUsuariosConPerfil';
+$route['detallePermisosUsuario'] = 'SesionesController/detallePermisosUsuario';
 
 
 // DASHBOARD

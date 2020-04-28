@@ -21,6 +21,29 @@ class SesionesModel extends CI_Model {
       }
     }
 
+    // ¡ ¡ ¡ ESTO ESTA EN EDICIÓN ! ! !
+    public function detallePermisosUsuario(){
+      $this->db->select('m.cp_modulo, m.atr_nombre');
+      $this->db->from('fa_modulo m');
+      $modulos =  $this->db->get()->result();
+
+      foreach ($modulos as $key => $m) {
+        $this->db->select('p.atr_descripcion');
+        $this->db->from('fa_existencia_permiso ep');
+        $this->db->join('fa_permiso p','p.cp_permiso = ep.cf_permiso');
+        $this->db->where('ep.cf_modulo',$m);
+        return  $this->db->get()->result();
+      }
+    }
+
+    public function cargarUsuariosConPerfil(){
+      $this->db->select('u.atr_nombre, pu.cf_existencia_permiso, u.cp_usuario');
+      $this->db->from('fa_permiso_usuario pu');
+      $this->db->join('fa_usuario u','u.cp_usuario = pu.cf_usuario');
+      $this->db->group_by("pu.cf_usuario");
+      return $this->db->get()->result();
+    }
+
     public function getListadoUsuarios(){
       $this->db->select('u.cp_usuario, u.atr_nombre, u.atr_correo, u.atr_activo, p.atr_nombre as perfil');
       $this->db->from('fa_usuario u');

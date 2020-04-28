@@ -1,4 +1,4 @@
-var base_url = 'http://10.10.11.240/RRHH-FIRMA/index.php/';
+var base_url = 'http://localhost/RRHH-FIRMA/index.php/';
 
 function getSelectPerfiles(){
   var url = base_url+'getPerfiles';
@@ -12,11 +12,38 @@ function getSelectPerfiles(){
   });
 }
 
+function getSelectUsuariosPorPerfil(){
+  var url = base_url+'cargarUsuariosConPerfil';
+  $("#getSelectUsuariosPorPerfil").empty();
+  var fila = "<option disabled selected>Seleccione una opción</option>";
+  $.getJSON(url, function (result) {
+      $.each(result, function (i, o) {
+          fila += "<option value='" + o.cp_usuario + "'>" + o.atr_nombre+ "</option>";
+      });
+      $("#getSelectUsuariosPorPerfil").append(fila);
+  });
+}
+
+
+function getDetallePermisosUsuario(){
+  var usuario = $("#getSelectUsuariosPorPerfil").val();
+  $.ajax({
+      url: 'getTransferenciasTrabajador',
+      type: 'POST',
+      dataType: 'json',
+      data: {"idTrabajador": idTrabajador}
+  }).then(function (response) {
+      
+
+  });
+}
+
+
 function cargarTablaPerfiles(){
   var table = $('#tabla_perfiles').DataTable();
   table.destroy();
 
-  btnAcciones = '<button style="display:inline" type="button" id="btnVerPermisos" class="btn btn-info btn-sm" data-toggle="modal" data-target="#modalVerPermisos"><i class="fa fa-shield"></i></button>';
+  btnAcciones = '<a style="display:inline" href="http://localhost/RRHH-FIRMA/index.php/inicioPermisosPerfil" type="button" id="btnVerPermisos" class="btn btn-info btn-sm"><i class="fa fa-shield"></i></a>';
 
   $('.dataTables-perfiles').DataTable({
     "autoWidth": false,
@@ -50,7 +77,7 @@ function cargarTablaPerfiles(){
             }
         },
         "ajax": {
-            url: "http://10.10.11.240/RRHH-FIRMA/index.php/getPerfilesTabla",
+            url: "http://localhost/RRHH-FIRMA/index.php/getPerfilesTabla",
             type: 'GET'
         },
         "columnDefs": [{
@@ -71,7 +98,7 @@ function cargarTablaUsuarios(){
   var table = $('#tabla_usuario').DataTable();
   table.destroy();
 
-  var btnAcciones = '<button style="display:inline" type="button" id="btnVerPermisos" class="btn btn-info btn-sm" data-toggle="modal" data-target="#modalVerPermisos"><i class="fa fa-shield"></i></button>';
+  var btnAcciones = '<a style="display:inline" href="http://localhost/RRHH-FIRMA/index.php/inicioPermisosUsuario" type="button" id="btnVerPermisos" class="btn btn-info btn-sm"><i class="fa fa-shield"></i></a>';
 
     $('.dataTables-usuarios').DataTable({
         "autoWidth": false,
@@ -104,7 +131,7 @@ function cargarTablaUsuarios(){
               }
           },
           "ajax": {
-              url: "http://10.10.11.240/RRHH-FIRMA/index.php/getListadoUsuarios",
+              url: "http://localhost/RRHH-FIRMA/index.php/getListadoUsuarios",
               type: 'GET'
           },
           "columnDefs": [{

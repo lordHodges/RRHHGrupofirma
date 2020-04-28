@@ -112,7 +112,31 @@ if($usuario[0]->atr_activo == "1") { ?>
     <!-- /footer content -->
 
 
-    
+    <!-- Modal permisos -->
+    <div id="modalVerPermisos" class="modal fade bd-example-modal-xl" tabindex="-1" style="width:100%" role="dialog" aria-labelledby="verPermisos"  aria-hidden="true" >
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content" style="padding:20px; background: #2a3f54" >
+                <div class="form-row">
+                    <h5 class="modal-title mx-auto">INGRESAR CIUDAD</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <div class="col-md-12">
+                        <br>
+                        <label for="nombre">NOMBRE</label>
+                        <input type="text" class="form-control custom-input-sm" id="nombre">
+                    </div>
+
+                </div>
+                <br>
+                <button type="submit" class="btn btn-success btn-sm" id="btnAgregarCiudad">Guardar</button>
+            </div>
+        </div>
+    </div>
+    <!-- /Modal de crear -->
+
+
+
 
 
 
@@ -150,7 +174,7 @@ if($usuario[0]->atr_activo == "1") { ?>
         });
     </script>
 
-  <?php } else{ header("Location: http://10.10.11.240/RRHH-FIRMA/"); } ?>
+  <?php } else{ header("Location: http://localhost/RRHH-FIRMA/"); } ?>
 
     </body>
   </html>
