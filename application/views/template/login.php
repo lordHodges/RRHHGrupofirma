@@ -138,7 +138,7 @@
 					var clave = $("#claveCuenta").val();
 
 					$.ajax({
-							url: 'iniciarSesion',
+							url: 'http://10.10.11.240/RRHH-FIRMA/index.php/iniciarSesion',
 							type: 'POST',
 							dataType: 'json',
 							data: { "correo":correo, "clave":clave }
@@ -152,7 +152,7 @@
 							if (msg == 'inactivo') {
 								toastr.error("Usuario bloqueado");
 							}else{
-									toastr.error("Datos incorrectos");
+								toastr.error("Datos incorrectos");
 							}
 						}
 					});
