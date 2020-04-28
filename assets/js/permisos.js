@@ -1,4 +1,4 @@
-var base_url = 'http://localhost/RRHH-FIRMA/index.php/';
+var base_url = 'http://10.10.11.240/RRHH-FIRMA/index.php/';
 
 function getSelectPerfiles(){
   var url = base_url+'getPerfiles';
@@ -50,7 +50,7 @@ function cargarTablaPerfiles(){
             }
         },
         "ajax": {
-            url: "http://localhost/RRHH-FIRMA/index.php/getPerfilesTabla",
+            url: "http://10.10.11.240/RRHH-FIRMA/index.php/getPerfilesTabla",
             type: 'GET'
         },
         "columnDefs": [{
@@ -104,7 +104,7 @@ function cargarTablaUsuarios(){
               }
           },
           "ajax": {
-              url: "http://localhost/RRHH-FIRMA/index.php/getListadoUsuarios",
+              url: "http://10.10.11.240/RRHH-FIRMA/index.php/getListadoUsuarios",
               type: 'GET'
           },
           "columnDefs": [{

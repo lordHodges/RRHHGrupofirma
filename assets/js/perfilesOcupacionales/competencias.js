@@ -1,4 +1,4 @@
-var base_url = 'http://localhost/RRHH-FIRMA/index.php/';
+var base_url = 'http://10.10.11.240/RRHH-FIRMA/index.php/';
 var constante = 0;
 
 
@@ -39,7 +39,7 @@ function cargarTabla(cargo,permisoEliminar){
           },
         },
         "ajax": {
-            url: 'http://localhost/RRHH-FIRMA/index.php/getListadoCompetenciasDataTable?id='+cargo,
+            url: 'http://10.10.11.240/RRHH-FIRMA/index.php/getListadoCompetenciasDataTable?id='+cargo,
             type: 'GET',
         },
         "columnDefs": [{
