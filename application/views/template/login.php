@@ -146,7 +146,7 @@
 						if (msg == 'ok') {
 							toastr.success("Datos correctos");
 							// setTimeout(function(){
-									window.location="http://10.10.11.240/RRHH-FIRMA/index.php/dashboard";
+									window.location="http://localhost/RRHH-FIRMA/index.php/dashboard";
 							// },1500);
 						}else {
 							if (msg == 'inactivo') {

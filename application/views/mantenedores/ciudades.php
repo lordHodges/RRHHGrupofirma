@@ -132,7 +132,7 @@ if($usuario[0]->atr_activo == "1" ) { ?>
           cargarTablaCiudades(exportar);
       });
   </script>
-  <?php } else{ header("Location: http://10.10.11.240/RRHH-FIRMA/"); } ?>
+  <?php } else{ header("Location: http://localhost/RRHH-FIRMA/"); } ?>
 
 </body>
 </html>
