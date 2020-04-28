@@ -286,7 +286,9 @@ $menu =  $data['menu'];
               <ul class=" navbar-right">
                 <li class="nav-item dropdown open" style="padding-left: 15px;">
                   <a href="javascript:;" class="user-profile dropdown-toggle" aria-haspopup="true" id="navbarDropdown" data-toggle="dropdown" aria-expanded="false">
-                    <img src="<?php echo base_url() ?>assets/production/images/img.jpg" alt=""><?php echo $usuario[0]->atr_nombre ?>
+                    <!-- <img src="<?php echo base_url() ?>assets/production/images/img.jpg" alt=""> -->
+                    Bienvenido
+                    <?php echo $usuario[0]->atr_nombre ?>
                   </a>
                   <div class="dropdown-menu dropdown-usermenu pull-right" aria-labelledby="navbarDropdown">
                     <!-- <a class="dropdown-item"  href="javascript:;"> <i class="fa fa-user pull-right"></i>Mi perfil</a> -->
