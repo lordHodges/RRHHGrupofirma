@@ -2,19 +2,10 @@
 $data = $this->session->userdata("datos");
 $usuario =  $data['usuario'];
 $permisos =  $data['permisos'];
+$perfil =  $data['perfil'];
 ?>
 
-<?php
-$view_verUsuario = 0; $view_crearUsuario = 0; $view_cambiarEstadoUsuario = 0; $view_editarUsuario = 0; $view_exportarUsuario = 0;
-foreach ($permisos as $key => $value) {
-  if ($value->cf_existencia_permiso == "79") { $view_verUsuario = "1"; } else
-  if ($value->cf_existencia_permiso == "80") { $view_crearUsuario = "1"; } else
-  if ($value->cf_existencia_permiso == "81") { $view_cambiarEstadoUsuario = "1"; } else
-  if ($value->cf_existencia_permiso == "82") { $view_editarUsuario = "1"; } else
-  if ($value->cf_existencia_permiso == "83") { $view_exportarUsuario = "1"; }
-}
-
-if($usuario[0]->atr_activo == "1") { ?>
+<?php if($usuario[0]->atr_activo == "1" && $perfil[0]->atr_nombre == "Administrador") { ?>
 <div class="right_col" role="main">
     <!-- Contenedor principal -->
     <div class="x_content">
@@ -34,6 +25,36 @@ if($usuario[0]->atr_activo == "1") { ?>
 
                 <div class="contenedorPermisos">
 
+                </div>
+
+
+
+
+
+                <div class="form-group row">
+                  <label class="control-label col-md-3 col-sm-3 ">Switch</label>
+                  <div class="col-md-9 col-sm-9 ">
+                    <div class="">
+                      <label>
+                        <input type="checkbox" class="js-switch" checked /> Checked
+                      </label>
+                    </div>
+                    <div class="">
+                      <label>
+                        <input type="checkbox" class="js-switch" /> Unchecked
+                      </label>
+                    </div>
+                    <div class="">
+                      <label>
+                        <input type="checkbox" class="js-switch" disabled="disabled" /> Disabled
+                      </label>
+                    </div>
+                    <div class="">
+                      <label>
+                        <input type="checkbox" class="js-switch" disabled="disabled" checked="checked" /> Disabled Checked
+                      </label>
+                    </div>
+                  </div>
                 </div>
 
 
@@ -95,11 +116,12 @@ if($usuario[0]->atr_activo == "1") { ?>
             getSelectUsuariosPorPerfil();
         });
 
-
         $("#getSelectUsuariosPorPerfil").change(function (e){
             e.preventDefault();
-            getDetallePermisosUsuario();
+            var id = $(this).parent().parent().children()[0];
+            getDetallePermisosUsuario($(id).text());
         });
+
     </script>
 
   <?php } else{ header("Location: http://localhost/RRHH-FIRMA/"); } ?>

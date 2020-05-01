@@ -131,11 +131,11 @@ $menu =  $data['menu'];
                           <?php } ?>
 
                           <?php  if ( $valueModulo->cf_menu == "6" ) {  ?>
-                            <li>
-                              <a href="<?php echo base_url() ?>index.php/permisos">
-                                <i class="fa fa-shield"></i> Permisos
-                              </a>
-                            </li>
+                            <li><a><i class="fa fa-shield"></i> Permisos <span class="fa fa-chevron-down"></span></a>
+                            <ul class="nav child_menu">
+                              <li><a href="<?php echo base_url() ?>index.php/inicioPermisosPerfil">Perfiles</a></li>
+                              <li><a href="<?php echo base_url() ?>index.php/inicioPermisosUsuario">Usuarios</a></li>
+                            </ul>
                           <?php } ?>
 
 
@@ -291,6 +291,7 @@ $menu =  $data['menu'];
                     <?php echo $usuario[0]->atr_nombre ?>
                   </a>
                   <div class="dropdown-menu dropdown-usermenu pull-right" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item"  href="<?php echo base_url() ?>index.php/miPerfil"><i class="fa fa-user pull-right"></i> Mi perfil</a>
                     <!-- <a class="dropdown-item"  href="javascript:;"> <i class="fa fa-user pull-right"></i>Mi perfil</a> -->
                     <a class="dropdown-item"  href="<?php echo base_url() ?>index.php/login"><i class="fa fa-sign-out pull-right"></i> Cerrar Sesión</a>
                   </div>

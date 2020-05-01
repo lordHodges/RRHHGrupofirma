@@ -27,15 +27,26 @@ function getSelectUsuariosPorPerfil(){
 
 function getDetallePermisosUsuario(){
   var usuario = $("#getSelectUsuariosPorPerfil").val();
-  $.ajax({
-      url: 'getTransferenciasTrabajador',
-      type: 'POST',
-      dataType: 'json',
-      data: {"idTrabajador": idTrabajador}
-  }).then(function (response) {
-      
+
+  var url  = base_url+'getListadoPermisosExistentes';
+  var url2 = base_url+'getModulos';
+
+  $.getJSON(url2, function (result) {
+      $.each(result, function (i, o) {
+        
+      });
+
+      $.getJSON(url, function (result) {
+          $.each(result, function (i, p) {
+
+          });
+
+          $("#getSelectUsuariosPorPerfil").append(fila);
+
+      });
 
   });
+
 }
 
 

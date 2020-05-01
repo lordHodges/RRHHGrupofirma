@@ -208,21 +208,99 @@ function cambiarEstado(idUsuario, estado) {
 
 
 function getDetalleUsuario(idUsuario){
-    var id = idUsuario;
     $.ajax({
         url: 'getDetalleUsuario',
         type: 'POST',
         dataType: 'json',
-        data: {"idPrevision": id}
+        data: {"id": idUsuario}
     }).then(function (msg) {
-        $("#contenedorDetallePrevision").empty();
-
+        console.log(msg);
+        $("#divDetalleUsuario").empty();
         var fila = "";
-        $.each(msg.msg, function (i, o) {
-          fila +='<h5 class="modal-title mx-auto">PREVISIÓN</h5><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>';
-          fila +='<div class="col-md-12"><br><label for="nombre">NOMBRE:&nbsp; </label><label id="idPrevision" style="color:#2A3F54;">'+o.cp_prevision+'</label><input type="text" style="color:#848484" class="form-control custom-input-sm" id="nombreNuevo" value="'+o.atr_nombre+'"></div>';
-          $("#contenedorDetallePrevision").append(fila);
+        $.each(msg, function (i, o) {
+
+          fila +='<div class="col-md-12"><label for="nombre">NOMBRE DE USUARIO</label><input type="text" class="form-control custom-input-sm" id="name" value="'+o.atr_nombre+'"></div>';
+          fila +='<div class="col-md-12"><br><label for="nombre">CORREO ELECTRÓNICO</label><input type="text" class="form-control custom-input-sm" id="email" value="'+o.atr_correo+'"></div>';
+          fila +='<div class="col-md-6 col-sm-12"><br><label for="nombre">CONTRASEÑA</label><input type="password" class="form-control custom-input-sm" id="pass1"></div>';
+          fila +='<div class="col-md-6 col-sm-12"><br><label for="nombre">CONFIRMAR CONTRASEÑA</label><input type="password" class="form-control custom-input-sm" id="pass2"></div>';
+          fila +='<div class="col-md-12"><br><label for="getSelectPerfilesEditar">PERFIL</label><select class="custom-select" id="getSelectPerfilesEditar">';
+
+
+          url = base_url+'getPerfiles';
+          $.getJSON(url, function (result) {
+            fila += '<option value="vacio">Seleccionar una opción</option>';
+            $.each(result, function (i, o) {
+                fila += '<option value="'+ o.cp_perfil + '">' + o.atr_nombre + '</option>';
+            });
+
+
+            fila +='</select></div>';
+            fila +='<label id="idUser" style="display:none">'+idUsuario+'</label>';
+            $("#divDetalleUsuario").append(fila);
+          });
+
         });
 
     });
+}
+
+
+
+function editarUsuario(){
+    // capturar DATOS
+    var idUser = $("#idUser").text();
+    var nombre = $("#name").val();
+    var correo = $("#email").val();
+    var perfil = $("#getSelectPerfilesEditar").val();
+    var pass1  = $("#pass1").val();
+    var pass2  = $("#pass2").val();
+
+
+
+    if (nombre == "" || correo == "" ) {
+      toastr.error("Debe rellenar nombre y correo");
+    }else{
+      if (pass1 != "" || pass2 != "") {
+        if (pass1 == pass2) {
+          //entonces las claves ingresadas son iguales
+          $.ajax({
+              url: 'cambiarPass',
+              type: 'POST',
+              dataType: 'json',
+              data: {"id": idUser, "clave":pass1}
+          }).then(function (msg) {
+            if (msg == "ok") {
+
+            }else{
+              toastr.error("Ha ocurrido un error");
+              exit();
+            }
+          });
+        }else{
+          toastr.error("Las contraseñas no coinciden");
+          exit();
+        }
+      }
+      // invocar método
+      $.ajax({
+          url: 'editarUsuario',
+          type: 'POST',
+          dataType: 'json',
+          data: {"nombre": nombre, "correo":correo, "perfil":perfil, "idUser":idUser}
+      }).then(function (msg) {
+          if (msg == "ok") {
+
+          }else{
+            toastr.error("Ha ocurrido un error");
+            exit();
+          }
+      });
+    }
+
+    $('#modaleditarUsuario').modal('hide');
+    var permisoEditar = $("#permisoEditar").text();
+    var permisoExportar = $("#permisoExportar").text();
+    var permisoCambiar = $("#permisoCambiar").text();
+    cargarTabla(permisoEditar,permisoExportar, permisoCambiar);
+    toastr.success("Modificación exitosa");
 }

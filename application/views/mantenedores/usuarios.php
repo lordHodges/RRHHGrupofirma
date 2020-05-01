@@ -106,7 +106,7 @@ if($usuario[0]->atr_activo == "1" ) { ?>
                       </button>
                     </div>
                     <div class="modal-body">
-                      <div id="modalDetalleAFP">
+                      <div id="divDetalleUsuario">
 
                       </div>
                       <div class="col-md-12">
@@ -180,36 +180,18 @@ if($usuario[0]->atr_activo == "1" ) { ?>
           cambiarEstado( $(usuario).text() , $(estado).text() );
       });
 
-
-
-
-
-
-
-
-
-
-
-
-
-      $("body").on("click", "#btnVerAFP", function(e) {
+      $("body").on("click", "#btnEditarUsuario", function(e) {
            e.preventDefault();
            var id = $(this).parent().parent().children()[0];
-           getDetalleAFP($(id).text());
+           getDetalleUsuario( $(id).text() );
        });
 
-       $("#btnUpdateAFP").click(function (e){
-           e.preventDefault();
-           editarAFP();
-           var table = $('#tabla_AFP').DataTable();
-           table.ajax.reload(function(json) {
-             $('#btnAgregarAFP').val(json.lastInput);
-           });
-       });
+       $("body").on("click", "#btnUpdateUsuario", function(e) {
+            e.preventDefault();
+            editarUsuario();
+        });
 
-       $("#modalCrearAFP").click(function (e){
-           $('#modalCrearAFP').modal('show');
-       });
+
 
   </script>
 

@@ -3,16 +3,23 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 $route['default_controller'] = 'Welcome/index';
 $route['login'] = 'Welcome/index';
+$route['miPerfil'] = 'SesionesController/miPerfil';
 $route['iniciarSesion'] = 'SesionesController/iniciarSesion';
 $route['cerrarSesion'] = 'SesionesController/cerrarSesion';
 
 
+
+$route['getPermisosUsuario'] = 'SesionesController/getPermisosUsuario';
+$route['getListadoPermisosExistentes'] = 'SesionesController/getListadoPermisosExistentes';
 
 // PERMISOS
 $route['permisos'] = 'SesionesController/inicioPermisos';
 $route['getPerfilesTabla'] = 'SesionesController/getPerfilesTabla';
 $route['inicioPermisosPerfil'] = 'SesionesController/inicioPermisosPerfil';
 $route['inicioPermisosUsuario'] = 'SesionesController/inicioPermisosUsuario';
+$route['cambiarPass'] = 'SesionesController/cambiarPass';
+$route['editarUsuario'] = 'SesionesController/editarUsuario';
+
 
 $route['cargarUsuariosConPerfil'] = 'SesionesController/cargarUsuariosConPerfil';
 $route['detallePermisosUsuario'] = 'SesionesController/detallePermisosUsuario';

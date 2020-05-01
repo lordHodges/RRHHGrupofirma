@@ -33,7 +33,21 @@ class SesionesController extends CI_Controller {
 		$this->load->view("permisosUsuario");
 	}
 
+	public function miPerfil(){
+		$this->load->view("template/menu");
+		$this->load->view("template/miPerfil");
+	}
 
+
+	public function getPermisosUsuario(){
+		$resultado = $this->SesionesModel->getPermisosUsuario();
+		echo json_encode($resultado);
+	}
+
+	public function getListadoPermisosExistentes(){
+		$resultado = $this->SesionesModel->getListadoPermisosExistentes();
+		echo json_encode($resultado);
+	}
 
 	public function detallePermisosUsuario(){
 		$resultado = $this->SesionesModel->detallePermisosUsuario();
@@ -87,7 +101,7 @@ class SesionesController extends CI_Controller {
 	public function getDetalleUsuario(){
 		$idUsuario = $this->input->post("id");
 
-		$resultado = $this->SesionesModel->getDetalleUsuario($idUsuario);
+		$resultado = $this->SesionesModel->buscarUsuarioPorID($idUsuario);
 		echo json_encode($resultado);
 	}
 
@@ -96,6 +110,25 @@ class SesionesController extends CI_Controller {
 		$usuario = $this->input->post("usuario");
 
 		$resultado = $this->SesionesModel->cambiarEstado($valorEstado, $usuario);
+		echo json_encode($resultado);
+	}
+
+	public function editarUsuario(){
+		$nombre = $this->input->post("nombre");
+		$correo = $this->input->post("correo");
+		$perfil = $this->input->post("perfil");
+		$idUsuario = $this->input->post("idUser");
+
+
+		$resultado = $this->SesionesModel->editarUsuario($nombre, $correo, $perfil, $idUsuario);
+		echo json_encode($resultado);
+	}
+
+	public function cambiarPass(){
+		$id = $this->input->post("id");
+		$pass = $this->input->post("clave");
+
+		$resultado = $this->SesionesModel->cambiarPass($id, $pass);
 		echo json_encode($resultado);
 	}
 
@@ -154,11 +187,13 @@ class SesionesController extends CI_Controller {
 	 			if ($claveBD == $clave ) {
 	 				$permisos = $this->SesionesModel->listadoPermisos($idUsuario, $idPerfil);
 					$menu = $this->SesionesModel->listadoModulos($idUsuario, $idPerfil);
+					$perfil = $this->SesionesModel->buscarPerfil($idPerfil);
 
 	 				$data = array(
 	 					"permisos"			=> $permisos,
 	 					"usuario" 			=> $usuario,
-						"menu"				  => $menu
+						"menu"				  => $menu,
+						"perfil"				=> $perfil
 	 				);
 
 	 				$this->session->set_userdata("datos", $data);
