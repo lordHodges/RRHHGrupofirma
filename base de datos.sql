@@ -301,6 +301,36 @@ create table fa_anexo (
   constraint fk_anexo_trabajador foreign key(cf_trabajador) references fa_trabajador(cp_trabajador)
 );
 
+
+create table fa_liquidacion (
+  cp_liquidacion varchar(200) unique,
+  atr_fecha varchar(200),
+  atr_totalHaberes int,
+  atr_totalDescuentos int,
+  atr_alcanceLiquido int,
+  cf_trabajador int,
+  constraint pk_liquidacion PRIMARY KEY (cp_liquidacion),
+  constraint fk_liquidacion_trabajador foreign key(cf_trabajador) references fa_trabajador(cp_trabajador)
+);
+
+create table fa_cartaAviso (
+  cp_cartaAviso varchar(200) unique,
+  atr_fecha varchar(200),
+  atr_motivo int,
+  cf_trabajador int,
+  constraint pk_cartaAviso PRIMARY KEY (cp_cartaAviso),
+  constraint fk_cartaAviso_trabajador foreign key(cf_trabajador) references fa_trabajador(cp_trabajador)
+);
+
+create table fa_finiquito (
+  cp_finiquito varchar(200) unique,
+  atr_fecha varchar(200),
+  atr_total int,
+  cf_trabajador int,
+  constraint pk_finiquito PRIMARY KEY (cp_finiquito),
+  constraint fk_finiquito_trabajador foreign key(cf_trabajador) references fa_trabajador(cp_trabajador)
+);
+
 create table fa_documento(
     cp_documento int auto_increment,
     atr_nombreDoc varchar(200),
@@ -313,13 +343,19 @@ create table fa_documento(
     cf_anexo varchar(200),
     cf_transferencia varchar(200),
     cf_cartaamonestacion varchar(200),
+    cf_liquidacion varchar(200),
+    cf_finiquito varchar(200),
+    cf_cartaAviso varchar(200),
     cf_trabajador int,
     constraint cp_documento primary key(cp_documento),
     constraint fk_documento_contrato foreign key(cf_contrato) references fa_contrato(cp_contrato),
     constraint fk_documento_anexo foreign key(cf_anexo) references fa_anexo(cp_anexo),
     constraint fk_documento_trabajador foreign key(cf_trabajador) references fa_trabajador(cp_trabajador),
     constraint fk_documento_transferencia foreign key(cf_transferencia) references fa_transferencia(cp_transferencia),
-    constraint fk_documento_cartaamonestacion foreign key(cf_cartaamonestacion) references fa_cartaamonestacion(cp_cartaAmonestacion)
+    constraint fk_documento_cartaamonestacion foreign key(cf_cartaamonestacion) references fa_cartaamonestacion(cp_cartaAmonestacion),
+    constraint fk_documento_finiquito foreign key(cf_finiquito) references fa_finiquito(cp_finiquito),
+    constraint fk_documento_liquidacion foreign key(cf_liquidacion) references fa_liquidacion(cp_liquidacion),
+    constraint fk_documento_cartaAviso foreign key(cf_cartaAviso) references fa_cartaAviso(cp_cartaAviso)
 );
 
 
