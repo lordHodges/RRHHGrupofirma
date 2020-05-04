@@ -150,6 +150,10 @@ $menu =  $data['menu'];
                                   <li><a href="<?php echo base_url() ?>index.php/inicioLiquidaciones">Liquidaciones</a></li>
                                 <?php } ?>
 
+                                <?php  if ( $valuePermiso->cf_existencia_permiso == "87") {  ?>
+                                  <li><a href="<?php echo base_url() ?>index.php/inicioFiniquitos">Finiquitos</a></li>
+                                <?php } ?>
+
                                 <?php  if ( $valuePermiso->cf_existencia_permiso == "55") {  ?>
                                   <li><a href="<?php echo base_url() ?>index.php/inicioContratos">Contratos</a></li>
                                 <?php } ?>

@@ -17,8 +17,18 @@ $route['getListadoPermisosExistentes'] = 'SesionesController/getListadoPermisosE
 $route['cargarUsuariosConPerfil'] = 'SesionesController/cargarUsuariosConPerfil';
 $route['detallePermisosUsuario'] = 'SesionesController/detallePermisosUsuario';
 
+// FINIQUITOS
+$route['inicioFiniquitos'] = 'FiniquitosController/inicioFiniquitos';
+$route['getFiniquitosTrabajador'] = 'FiniquitosController/getFiniquitosTrabajador';
+$route['descargarFiniquito'] = 'FiniquitosController/descargarFiniquito';
+$route['cargar_finiquito'] = 'FiniquitosController/cargar_finiquito';
+
+
 // LIQUIDACIONES
 $route['inicioLiquidaciones'] = 'LiquidacionesController/inicioLiquidaciones';
+$route['getLiquidacionesTrabajador'] = 'LiquidacionesController/getLiquidacionesTrabajador';
+$route['descargarLiquidacion'] = 'LiquidacionesController/descargarLiquidacion';
+$route['cargar_liquidacion'] = 'LiquidacionesController/cargar_liquidacion';
 
 // PERMISOS
 $route['permisos'] = 'SesionesController/inicioPermisos';

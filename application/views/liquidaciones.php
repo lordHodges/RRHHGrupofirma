@@ -74,35 +74,47 @@ if($usuario[0]->atr_activo == "1") { ?>
             <div class="modal-content" style="padding:20px; background: #2a3f54" >
                 <div class="form-row">
                   <div class="col-md-12">
-                    <h5 class="modal-title mx-auto">CARGAR CONTRATO</h5><br>
+                    <h5 class="modal-title mx-auto">CARGAR LIQUIDACIÓN</h5><br>
                   </div>
                   <div class="col-md-12" id="detalleCargaArchivo">
-                      <form id="uploader" method="post" enctype="multipart/form-data" action="cargar_archivo">
+                      <form id="uploader" method="post" enctype="multipart/form-data" action="cargar_liquidacion">
 
-                        <div class="col-md-6">
+                        <div class="col-md-12">
                           <br>
                           <label for="fecha">FECHA</label>
-                          <input type="date" class="form-control" name="fecha" >
+                          <input type="date" class="form-control custom-input-sm" name="fecha" >
                         </div>
 
                         <div class="col-md-6">
                           <br>
-                          <label for="fechaInicio"></label>
-                          <input type="text" class="form-control" name="fechaInicio" >
+                          <label for="haberes">Haberes</label>
+                          <input type="text" class="form-control" onkeyup="soloNumeros(this.value);formatoMiles(this)" name="haberes" >
                         </div>
 
 
+                        <div class="col-md-6">
+                          <br>
+                          <label for="Descuentos">Descuentos</label>
+                          <input type="text" class="form-control" onkeyup="soloNumeros(this.value);formatoMiles(this)" name="Descuentos" >
+                        </div>
 
+                        <div class="col-md-6">
+                          <br>
+                          <label for="alcanceLiquido">Alcance líquido</label>
+                          <input type="text" class="form-control" onkeyup="soloNumeros(this.value);formatoMiles(this)" name="alcanceLiquido" >
+                        </div>
+                        <br>
 
 
                         <input type="text" name="labelTrabajador" id="labelTrabajador" style="color:#2a3f54;border:none;border-color:#2a3f54">
 
-                        <div class="col-md-12" >
+                        <div class="col-md-12" style="margin-top:30px">
                           <input lang="es" type="file" name="file" id="file">
                         </div>
-                        <br>
+
+
                         <div class="col-md-12" style="margin-top:20px; margin-bottom:-20px;">
-                          <button type="submit" class="btn btn-success btn-sm" id="btnCargar" style="width:100%;" >GUARDAR</button>
+                          <button type="submit" class="btn btn-success btn-sm" id="btnCargar" style="width:100%" >GUARDAR</button>
                         </div>
 
 
@@ -140,7 +152,7 @@ if($usuario[0]->atr_activo == "1") { ?>
     <script src="<?php echo base_url() ?>assets/build/js/custom.js"></script>
     <!-- MODIDEV -->
     <script src="<?php echo base_url() ?>assets/js/modidev.js"></script>
-    <script src="<?php echo base_url() ?>assets/js/contratos.js"></script>
+    <script src="<?php echo base_url() ?>assets/js/liquidaciones.js"></script>
     <script src="<?php echo base_url() ?>assets/js/validaciones.js"></script>
     <!-- Toast -->
     <script src="<?php echo base_url() ?>assets/js/toastr.min.js" type="text/javascript"></script>
@@ -150,8 +162,6 @@ if($usuario[0]->atr_activo == "1") { ?>
 
     <script>
         $(document).ready(function() {
-            getSelectCargos();
-            cargarTabla();
             getEstadosContrato();
 
             <?php if( $view_subirLiquidacion == 1){  ?>
@@ -165,28 +175,17 @@ if($usuario[0]->atr_activo == "1") { ?>
             cargarTabla(permisoSubir);
         })
 
-        $("#getSelectTipoDocumento").change(function (e){
-            e.preventDefault();
-            var tipo = $("#getSelectTipoDocumento").val();
-            if(tipo == "contrato"){
-              $(".siEsContrato").removeAttr("style");
-              $(".siEsAnexo").css("display","none");
-            }else{
-              $(".siEsAnexo").removeAttr("style");
-              $(".siEsContrato").css("display","none");
-            }
-        });
 
-        $("body").on("click", "#btnVerListaContratos", function(e) {
+        $("body").on("click", "#btnVerListaLiquidaciones", function(e) {
              e.preventDefault();
              var id = $(this).parent().parent().children()[0];
              var idTrabajador = $(id).text();
-             getContratosTrabajador(idTrabajador);
+             getLiquidacionesTrabajador(idTrabajador);
          });
 
 
 
-       $("body").on("click", "#btnModalCargarArchivo", function(e) {
+         $("body").on("click", "#btnModalCargarArchivo", function(e) {
             e.preventDefault();
             var id = $(this).parent().parent().children()[0];
             var idTrabajador = $(id).text();
@@ -194,7 +193,8 @@ if($usuario[0]->atr_activo == "1") { ?>
             document.getElementById("labelTrabajador").value = idTrabajador;
         });
 
-       $('#uploader').submit(function(e){
+
+        $('#uploader').submit(function(e){
         e.preventDefault();
            $.ajax({
                url:$('#uploader').attr('action'),
@@ -216,16 +216,11 @@ if($usuario[0]->atr_activo == "1") { ?>
        });
 
 
-       $("body").on("click", "#btnDescargarContrato", function(e) {
-            e.preventDefault();
-            var id = $(this).parent().parent().children()[0];
-            var idContrato = $(id).text();
-            descargarContrato(idContrato);
-        });
+
 
     </script>
 
-      <?php } else{ header("Location: http://10.10.11.240/RRHH-FIRMA/"); } ?>
+      <?php } else{ header("Location: http://localhost/RRHH-FIRMA/"); } ?>
 
   </body>
 </html>
