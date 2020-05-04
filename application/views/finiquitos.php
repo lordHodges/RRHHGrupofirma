@@ -79,16 +79,16 @@ if($usuario[0]->atr_activo == "1") { ?>
                   <div class="col-md-12" id="detalleCargaArchivo">
                       <form id="uploader" method="post" enctype="multipart/form-data" action="cargar_finiquito">
 
-                        <div class="col-md-6">
+                        <div class="col-md-12">
                           <br>
                           <label for="fecha">FECHA</label>
                           <input type="date" class="form-control" name="fecha" >
                         </div>
 
-                        <div class="col-md-6">
+                        <div class="col-md-12">
                           <br>
                           <label for="total">TOTAL</label>
-                          <input type="text" class="form-control" name="total" >
+                          <input type="text" class="form-control" onkeyup="soloNumeros(this.value);formatoMiles(this)" name="total" >
                         </div>
 
                         <input type="text" name="labelTrabajador" id="labelTrabajador" style="color:#2a3f54;border:none;border-color:#2a3f54">
