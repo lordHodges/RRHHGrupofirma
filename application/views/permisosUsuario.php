@@ -25,37 +25,24 @@ $perfil =  $data['perfil'];
 
                 <div class="contenedorPermisos">
 
-                </div>
 
-
-
-
-
-                <div class="form-group row">
-                  <label class="control-label col-md-3 col-sm-3 ">Switch</label>
-                  <div class="col-md-9 col-sm-9 ">
-                    <div class="">
-                      <label>
-                        <input type="checkbox" class="js-switch" checked /> Checked
-                      </label>
-                    </div>
-                    <div class="">
-                      <label>
-                        <input type="checkbox" class="js-switch" /> Unchecked
-                      </label>
-                    </div>
-                    <div class="">
-                      <label>
-                        <input type="checkbox" class="js-switch" disabled="disabled" /> Disabled
-                      </label>
-                    </div>
-                    <div class="">
-                      <label>
-                        <input type="checkbox" class="js-switch" disabled="disabled" checked="checked" /> Disabled Checked
-                      </label>
-                    </div>
+                  <div class="col-md-4 col-sm-6 ">
+                    <label class="control-label col-md-12 col-sm-12" style="margin-bottom:20px;">Nombre del módulo</label>
+                    <label>
+                      <input type="checkbox" class="js-switch" checked /> Ver Listado
+                    </label>
                   </div>
+
                 </div>
+
+
+
+
+
+
+
+
+
 
 
 
@@ -124,7 +111,7 @@ $perfil =  $data['perfil'];
 
     </script>
 
-  <?php } else{ header("Location: http://localhost/RRHH-FIRMA/"); } ?>
+  <?php } else{ header("Location: http://10.10.11.240/RRHH-FIRMA/"); } ?>
 
     </body>
   </html>

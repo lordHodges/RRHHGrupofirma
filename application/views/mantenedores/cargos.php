@@ -231,7 +231,7 @@ if($usuario[0]->atr_activo == "1" ) { ?>
                     }
                 },
                 "ajax": {
-                    url: "http://localhost/RRHH-FIRMA/index.php/getlistadecargos",
+                    url: "http://10.10.11.240/RRHH-FIRMA/index.php/getlistadecargos",
                     type: 'GET'
                 },
                 "columnDefs": [{
@@ -343,7 +343,7 @@ if($usuario[0]->atr_activo == "1" ) { ?>
 
 
   </script>
-    <?php } else{ header("Location: http://localhost/RRHH-FIRMA/"); } ?>
+    <?php } else{ header("Location: http://10.10.11.240/RRHH-FIRMA/"); } ?>
 
   </body>
 </html>

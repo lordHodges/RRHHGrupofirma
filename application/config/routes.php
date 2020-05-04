@@ -12,6 +12,9 @@ $route['cerrarSesion'] = 'SesionesController/cerrarSesion';
 $route['getPermisosUsuario'] = 'SesionesController/getPermisosUsuario';
 $route['getListadoPermisosExistentes'] = 'SesionesController/getListadoPermisosExistentes';
 
+// Liquidaciones
+$route['inicioLiquidaciones'] = 'LiquidacionesController/inicioLiquidaciones';
+
 // PERMISOS
 $route['permisos'] = 'SesionesController/inicioPermisos';
 $route['getPerfilesTabla'] = 'SesionesController/getPerfilesTabla';

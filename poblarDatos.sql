@@ -159,7 +159,7 @@ INSERT INTO `fa_modulo` (`cp_modulo`, `atr_nombre`) VALUES (NULL, 'Requisitos m�
 INSERT INTO `fa_modulo` (`cp_modulo`, `atr_nombre`) VALUES (NULL, 'Documentos de contratos'), (NULL, 'Documentos de transferencias'), (NULL, 'Documentos de cartas de amonestación'), (NULL, 'Documentos de perfiles ocupacionales');
 INSERT INTO `fa_modulo` (`cp_modulo`, `atr_nombre`) VALUES (NULL, 'Generar anexo'), (NULL, 'Generar contrato'), (NULL, 'Historial de trabajadores'), (NULL, 'Dashboard');
 INSERT INTO `fa_modulo` (`cp_modulo`, `atr_nombre`) VALUES (NULL, 'Mantenedor de usuarios');
-INSERT INTO `fa_modulo` (`cp_modulo`, `atr_nombre`) VALUES (NULL, 'Permisos');
+INSERT INTO `fa_modulo` (`cp_modulo`, `atr_nombre`) VALUES (NULL, 'Permisos'), (NULL, 'Documentos liquidaciones');
 
 
 INSERT INTO `fa_permiso` (`cp_permiso`, `atr_nombre`, `atr_descripcion`) VALUES (NULL, 'Ver', 'Ver listado'), (NULL, 'Editar', 'Editar información'), (NULL, 'Editar remuneración', 'Editar datos de remuneración'), (NULL, 'Crear', 'Crear'), (NULL, 'Exportar', 'Exportar listado');
@@ -199,7 +199,7 @@ INSERT INTO `fa_existencia_permiso` (`cp_existencia_permiso`, `cf_modulo`, `cf_p
 INSERT INTO `fa_existencia_permiso` (`cp_existencia_permiso`, `cf_modulo`, `cf_permiso`) VALUES (NULL, '22', '14'), (NULL, '22', '15'), (NULL, '22', '16'), (NULL, '22', '17'), (NULL, '22', '18');
 INSERT INTO `fa_existencia_permiso` (`cp_existencia_permiso`, `cf_modulo`, `cf_permiso`) VALUES (NULL, '23', '19'), (NULL, '23', '20'), (NULL, '23', '21');
 INSERT INTO `fa_existencia_permiso` (`cp_existencia_permiso`, `cf_modulo`, `cf_permiso`) VALUES (NULL, '24', '1'), (NULL, '24', '4'), (NULL, '24', '24'), (NULL, '24', '2'), (NULL, '24', '5');
-
+INSERT INTO `fa_existencia_permiso` (`cp_existencia_permiso`, `cf_modulo`, `cf_permiso`) VALUES (NULL, '26', '1'), (NULL, '26', '7'), (NULL, '26', '8');
 
 INSERT INTO `fa_menu` (`cp_menu`, `atr_nombre`) VALUES (NULL, 'Dashboard'), (NULL, 'Trabajadores'), (NULL, 'Historial de trabajadores'), (NULL, 'Generar contrato'), (NULL, 'Generar anexo');
 INSERT INTO `fa_menu` (`cp_menu`, `atr_nombre`) VALUES (NULL, 'Permisos'), (NULL, 'Documentos'), (NULL, 'Perfiles ocupacionales'), (NULL, 'Mantenedores');
@@ -226,6 +226,7 @@ INSERT INTO `fa_permiso_perfil` (`cp_permiso_perfil`, `cf_existencia_permiso`, `
 INSERT INTO `fa_permiso_perfil` (`cp_permiso_perfil`, `cf_existencia_permiso`, `cf_perfil`) VALUES (NULL, '71', '1'), (NULL, '72', '1'), (NULL, '73', '1'), (NULL, '74', '1'), (NULL, '75', '1');
 INSERT INTO `fa_permiso_perfil` (`cp_permiso_perfil`, `cf_existencia_permiso`, `cf_perfil`) VALUES (NULL, '76', '1'), (NULL, '77', '1'), (NULL, '78', '1'), (NULL, '79', '1'), (NULL, '80', '1');
 INSERT INTO `fa_permiso_perfil` (`cp_permiso_perfil`, `cf_existencia_permiso`, `cf_perfil`) VALUES (NULL, '81', '1'), (NULL, '82', '1'), (NULL, '83', '1');
+INSERT INTO `fa_permiso_perfil` (`cp_permiso_perfil`, `cf_existencia_permiso`, `cf_perfil`) VALUES (NULL, '84', '1'), (NULL, '85', '1'), (NULL, '86', '1');
 
 
 INSERT INTO `fa_permiso_perfil` (`cp_permiso_perfil`, `cf_existencia_permiso`, `cf_perfil`) VALUES (NULL, '76', '3'), (NULL, '77', '3'), (NULL, '78', '3');
