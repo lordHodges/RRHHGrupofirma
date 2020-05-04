@@ -124,6 +124,18 @@ class SesionesController extends CI_Controller {
 		echo json_encode($resultado);
 	}
 
+	public function editarMiPerfil(){
+		$nombre = $this->input->post("nombre");
+		$correo = $this->input->post("correo");
+		$clave = $this->input->post("clave");
+
+		$idUsuario = $this->input->post("idUser");
+
+
+		$resultado = $this->SesionesModel->editarMiPerfil($nombre, $correo, $clave, $idUsuario);
+		echo json_encode($resultado);
+	}
+
 	public function cambiarPass(){
 		$id = $this->input->post("id");
 		$pass = $this->input->post("clave");

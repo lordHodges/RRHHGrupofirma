@@ -67,6 +67,34 @@ class SesionesModel extends CI_Model {
 
 
 
+    public function editarMiPerfil($nombre, $correo, $clave, $idUsuario){
+
+      if ($clave == "vacio") {
+        $data = array(
+            "atr_nombre" => $nombre,
+            "atr_correo" => $correo
+        );
+      }else{
+        $data = array(
+            "atr_nombre" => $nombre,
+            "atr_correo" => $correo,
+            "atr_clave"  => $clave
+        );
+      }
+
+      // siempre se actualiza, pero no se sabe si el perfil esta o no siendo actualizado.
+      $this->db->where('cp_usuario', $idUsuario);
+      $resultado =  $this->db->update("fa_usuario", $data);
+
+      if($resultado){
+        return "ok";
+      }else{
+        return "error";
+      }
+    }
+
+
+
 
 
 

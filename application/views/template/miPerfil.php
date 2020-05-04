@@ -51,6 +51,7 @@ $perfil =  $data['perfil'];
                       </div>
 
                       <br>
+                      <label style="display:none" id="labelUsuario"><?php echo $usuario[0]->cp_usuario ?></label>
 
 
                       <div class="col-md-12" style="margin-top:30px;">
@@ -67,12 +68,9 @@ $perfil =  $data['perfil'];
         </div>
         <!-- /page content -->
 
-        <!-- footer content -->
+         <!-- footer content -->
         <footer>
-          <div class="pull-right">
-            Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>
-          </div>
-          <div class="clearfix"></div>
+            <div class="clearfix"></div>
         </footer>
         <!-- /footer content -->
 
@@ -89,18 +87,38 @@ $perfil =  $data['perfil'];
         <!-- morris.js -->
         <script src="<?php echo base_url() ?>assets/vendors/raphael/raphael.min.js"></script>
         <script src="<?php echo base_url() ?>assets/vendors/morris.js/morris.min.js"></script>
+
+        <!-- MODIDEV -->
+        <script src="<?php echo base_url() ?>assets/js/miPerfil.js"></script>
+
         <!-- bootstrap-progressbar -->
         <script src="<?php echo base_url() ?>assets/vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
         <!-- bootstrap-daterangepicker -->
         <script src="<?php echo base_url() ?>assets/vendors/moment/min/moment.min.js"></script>
         <script src="<?php echo base_url() ?>assets/vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
+        <!-- Toast -->
+       <script src="<?php echo base_url() ?>assets/js/toastr.min.js" type="text/javascript"></script>
 
         <!-- Custom Theme Scripts -->
         <script src="<?php echo base_url() ?>assets/build/js/custom.min.js"></script>
 
 
+        <script>
 
-    <?php } else{ header("Location: http://10.10.11.240/RRHH-FIRMA/"); } ?>
+          $(document).ready(function() {
+
+          })
+
+          $("body").on("click", "#btnEditarPerfil", function(e) {
+            e.preventDefault();
+            editarPerfil();
+          });
+
+        </script>
+
+
+
+    <?php } else{ header("Location: http://localhost/RRHH-FIRMA/"); } ?>
 
 
   </body>

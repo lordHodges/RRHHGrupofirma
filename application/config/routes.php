@@ -8,11 +8,16 @@ $route['iniciarSesion'] = 'SesionesController/iniciarSesion';
 $route['cerrarSesion'] = 'SesionesController/cerrarSesion';
 
 
+$route['editarMiPerfil'] = 'SesionesController/editarMiPerfil';
+
+
 
 $route['getPermisosUsuario'] = 'SesionesController/getPermisosUsuario';
 $route['getListadoPermisosExistentes'] = 'SesionesController/getListadoPermisosExistentes';
+$route['cargarUsuariosConPerfil'] = 'SesionesController/cargarUsuariosConPerfil';
+$route['detallePermisosUsuario'] = 'SesionesController/detallePermisosUsuario';
 
-// Liquidaciones
+// LIQUIDACIONES
 $route['inicioLiquidaciones'] = 'LiquidacionesController/inicioLiquidaciones';
 
 // PERMISOS
@@ -22,10 +27,6 @@ $route['inicioPermisosPerfil'] = 'SesionesController/inicioPermisosPerfil';
 $route['inicioPermisosUsuario'] = 'SesionesController/inicioPermisosUsuario';
 $route['cambiarPass'] = 'SesionesController/cambiarPass';
 $route['editarUsuario'] = 'SesionesController/editarUsuario';
-
-
-$route['cargarUsuariosConPerfil'] = 'SesionesController/cargarUsuariosConPerfil';
-$route['detallePermisosUsuario'] = 'SesionesController/detallePermisosUsuario';
 
 
 // DASHBOARD
