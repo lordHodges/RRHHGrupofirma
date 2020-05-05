@@ -48,7 +48,7 @@ function cargarTablaModelos(permisoEditar,permisoExportar){
               type: 'GET'
           },
           "columnDefs": [{
-            "targets": 2,
+            "targets": 3,
             "data": null,
             "defaultContent": btnAcciones
           }
@@ -133,7 +133,7 @@ function cargarTablaModelos(permisoEditar,permisoExportar){
               type: 'GET'
           },
           "columnDefs": [{
-            "targets": 2,
+            "targets": 3,
             "data": null,
             "defaultContent": btnAcciones
           }
@@ -155,7 +155,7 @@ function agregarModelo() {
             url: 'addModelo',
             type: 'POST',
             dataType: 'json',
-            data: { "nombre":nombre }
+            data: { "nombre":nombre, "marca":marca }
         }).then(function (msg) {
             if (msg.msg == "ok") {
                toastr.success('Modelo ingresado')
@@ -184,9 +184,54 @@ function agregarModelo() {
           var fila = "";
           $.each(msg.msg, function (i, o) {
             fila +='<h5 class="modal-title mx-auto">MODELO</h5><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>';
-            fila +='<div class="col-md-12"><br><label for="nombre">NOMBRE&nbsp; </label><label id="idMarca" style="color:#2A3F54;">'+o.cp_modelo+'</label><input type="text" style="color:#848484" class="form-control custom-input-sm" oninput="mayus(this)" id="nombre" value="'+o.atr_descripcion+'"></div>';
-            $("#contenedorDetalleModelo").append(fila);
+            fila +='<div class="col-md-12"><br><label for="nombre">NOMBRE&nbsp; </label><label id="idMarca" style="color:#2A3F54;">'+o.cp_modelo+'</label><input type="text" style="color:#848484" class="form-control custom-input-sm" oninput="mayus(this)" id="nombreEditar" value="'+o.atr_descripcion+'"></div>';
+
+            var url = base_url+'getMarcas';
+
+            fila +='<select class="custom-select"  id="getSelectMarca2">';
+            fila += '<option disabled selected >Seleccione una opción</option>';
+            $.getJSON(url, function (result) {
+                $.each(result, function (i, o) {
+                    fila += "<option value='" + o.cp_marca + "'>" + o.atr_descripcion + "</option>";
+                });
+                var fila ='</select>';
+                fila +='<label style="display:none">'+o.cf_marca+'</label>';
+                $("#contenedorDetalleModelo").append(fila);
+            });
+
           });
 
       });
   }
+
+
+  function editarModelo() {
+      var nombre = $("#nombreEditar").val();
+      var marca = $("#getSelectMarca").val();
+      var idModelo = $("#labelModelo").text();
+
+      if ( marca == null || marca == "" ) {
+          marca = $("#labelMarca").text();
+      }
+      if (nombre == "" ) {
+          toastr.error("Rellene todos los campos");
+      } else {
+          $.ajax({
+              url: 'editarModelo',
+              type: 'POST',
+              dataType: 'json',
+              data: { "idModelo":idModelo, "nombre":nombre, "marca":marca}
+          }).then(function (msg) {
+              if (msg.msg == "ok") {
+                 toastr.success('Modelo modificado')
+                 document.getElementById("nombre").value = "";
+                 $('#modalEditarModelo').modal('hide');
+                 var permisoExportar = $("#permisoExportar").text();
+                 var permisoEditar = $("#permisoEditar").text();
+                 cargarTablaModelos(permisoEditar,permisoExportar);
+              } else {
+                  toastr.error("Error en el ingreso.");
+              }
+          });
+      }
+    }

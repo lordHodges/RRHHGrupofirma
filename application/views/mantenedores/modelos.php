@@ -121,6 +121,7 @@ if($usuario[0]->atr_activo == "1" ) { ?>
     <!-- MODIDEV -->
     <script src="<?php echo base_url() ?>assets/js/modelos.js"></script>
     <script src="<?php echo base_url() ?>assets/js/marcas.js"></script>
+    <script src="<?php echo base_url() ?>assets/js/validaciones.js"></script>
     <!-- Toast -->
     <script src="<?php echo base_url() ?>assets/js/toastr.min.js" type="text/javascript"></script>
 
@@ -146,6 +147,18 @@ if($usuario[0]->atr_activo == "1" ) { ?>
       $("body").on("click", "#btnAgregarModelo", function(e) {
           e.preventDefault();
           agregarModelo();
+      });
+
+      $("body").on("click", "#getDetalleModelo", function(e) {
+          e.preventDefault();
+          var id = $(this).parent().parent().children()[0];
+          getDetalleModelo($(id).text());
+      });
+
+      $("body").on("click", "#btnEditarModelo", function(e) {
+          e.preventDefault();
+          var id = $(this).parent().parent().children()[0];
+          editarModelo( $(id).text() );
       });
 
 

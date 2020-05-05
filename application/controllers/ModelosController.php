@@ -39,8 +39,9 @@ class ModelosController extends CI_Controller {
 
 	public function addModelo(){
 		$nombre = $this->input->post("nombre");
+		$marca = $this->input->post("marca");
 
-		$resultado = $this->ModelosModel->addModelo($nombre);
+		$resultado = $this->ModelosModel->addModelo($nombre,$marca);
 		echo json_encode(array("msg" => $resultado));
 	}
 
@@ -48,6 +49,15 @@ class ModelosController extends CI_Controller {
 		$idModelo = $this->input->post("idModelo");
 
 		$resultado = $this->ModelosModel->getDetalleModelo($idModelo);
+		echo json_encode(array("msg" => $resultado));
+	}
+
+	public function editarModelo(){
+		$idModelo = $this->input->post("idModelo");
+		$nombre = $this->input->post("nombre");
+		$marca = $this->input->post("marca");
+
+		$resultado = $this->ModelosModel->editarModelo($idModelo, $nombre, $marca);
 		echo json_encode(array("msg" => $resultado));
 	}
 
