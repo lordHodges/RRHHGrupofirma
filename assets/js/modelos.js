@@ -188,14 +188,16 @@ function agregarModelo() {
 
             var url = base_url+'getMarcas';
 
-            fila +='<select class="custom-select"  id="getSelectMarca2">';
+            fila +='<div class="col-md-12">';
+            fila +='<br><label for="nombre">MARCA&nbsp; </label>'
+            fila +='<select class="custom-select"  id="getSelectM;arca2">';
             fila += '<option disabled selected >Seleccione una opción</option>';
             $.getJSON(url, function (result) {
                 $.each(result, function (i, o) {
                     fila += "<option value='" + o.cp_marca + "'>" + o.atr_descripcion + "</option>";
                 });
-                var fila ='</select>';
-                fila +='<label style="display:none">'+o.cf_marca+'</label>';
+                fila +='</select></div>';
+                fila +='<label style="display:none" id="labelMarca">'+o.cf_marca+'</label><label style="display:none" id="labelModelo2">'+idModelo+'</label>';
                 $("#contenedorDetalleModelo").append(fila);
             });
 
@@ -207,8 +209,8 @@ function agregarModelo() {
 
   function editarModelo() {
       var nombre = $("#nombreEditar").val();
-      var marca = $("#getSelectMarca").val();
-      var idModelo = $("#labelModelo").text();
+      var marca = $("#getSelectMarca2").val();
+      var idModelo = $("#labelModelo2").text();
 
       if ( marca == null || marca == "" ) {
           marca = $("#labelMarca").text();

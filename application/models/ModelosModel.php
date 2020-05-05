@@ -43,7 +43,12 @@ class ModelosModel extends CI_Model {
 
         $this->db->where('m.cp_modelo', $idModelo);
         $resultado =  $this->db->update("fa_modelo m", $data);
-        return "ok";
+        if ($resultado) {
+          return "ok";
+        }else{
+          return "error";
+        }
+
     }
 
 
