@@ -17,6 +17,9 @@ $route['getListadoPermisosExistentes'] = 'SesionesController/getListadoPermisosE
 $route['cargarUsuariosConPerfil'] = 'SesionesController/cargarUsuariosConPerfil';
 $route['detallePermisosUsuario'] = 'SesionesController/detallePermisosUsuario';
 
+
+
+
 // FINIQUITOS
 $route['inicioFiniquitos'] = 'FiniquitosController/inicioFiniquitos';
 $route['getFiniquitosTrabajador'] = 'FiniquitosController/getFiniquitosTrabajador';
@@ -167,12 +170,11 @@ $route['docContratoPersonalizado'] = 'PDFController/view_contratoPersonalizado';
     $route['inicioSalud'] = 'PrevisionesController/index';
     $route['inicioEmpresa'] = 'EmpresaController/index';
     $route['inicioUsuarios'] = 'SesionesController/inicioUsuarios';
+    $route['inicioVehiculos'] = 'VehiculosController/inicioVehiculos';
+    $route['inicioMarcas'] = 'MarcasController/inicioMarcas';
+    $route['inicioModelos'] = 'ModelosController/inicioModelos';
 
-    //usuarios
-    $route['getListadoUsuarios'] = 'SesionesController/getListadoUsuarios';
-    $route['getPerfiles'] = 'SesionesController/getSelectPerfiles';
-    $route['addUsuario'] = 'SesionesController/agregarUsuario';
-    $route['cambiarEstado'] = 'SesionesController/cambiarEstado';
+
 
     //ciudades
     $route['getListadoCiudades'] = 'CiudadController/getListadoCiudades';
@@ -244,6 +246,30 @@ $route['docContratoPersonalizado'] = 'PDFController/view_contratoPersonalizado';
 
     // usuario
     $route['getDetalleUsuario'] = 'SesionesController/getDetalleUsuario';
+    $route['getListadoUsuarios'] = 'SesionesController/getListadoUsuarios';
+    $route['getPerfiles'] = 'SesionesController/getSelectPerfiles';
+    $route['addUsuario'] = 'SesionesController/agregarUsuario';
+    $route['cambiarEstado'] = 'SesionesController/cambiarEstado';
+
+
+    //Vehículos
+
+    //Modelos de Vehículos
+    $route['getListadoModelos'] = 'ModelosController/getListadoModelos';
+    $route['addModelo'] = 'ModelosController/addModelo';
+    $route['editarModelo'] = 'ModelosController/editarModelo';
+    $route['getDetalleModelo'] = 'ModelosController/getDetalleModelo';
+
+    //Marcas de Vehículos
+    $route['getListadoMarcas'] = 'MarcasController/getListadoMarcas';
+    $route['addMarca'] = 'MarcasController/addMarca';
+    $route['editarMarca'] = 'MarcasController/editarMarca';
+    $route['getDetalleMarca'] = 'MarcasController/getDetalleMarca';
+    $route['getMarcas'] = 'MarcasController/getMarcas';
+
+
+
+
 
 // TRANSFERENCIAS
 $route['inicioTransferencias'] = 'TransferenciasController/index';

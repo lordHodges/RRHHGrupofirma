@@ -2,7 +2,39 @@ drop database fa_rrhh;
 create database fa_rrhh;
 use fa_rrhh;
 
+create table fa_tipovehiculo(
+  cp_tipovehiculo int auto_increment,
+  atr_descripcion varchar (200),
+  constraint pk_tipovehiculo primary key(cp_tipovehiculo)
+);
 
+create table fa_marca(
+  cp_marca int auto_increment,
+  atr_descripcion varchar (200),
+  constraint pk_marca primary key(cp_marca)
+);
+
+create table fa_modelo(
+  cp_modelo int auto_increment,
+  atr_descripcion varchar(100),
+  cf_marca int,
+  constraint pk_modelo primary key(cp_modelo),
+  constraint fk_modelo_marca foreign key(cf_marca) references fa_marca(cp_marca)
+);
+
+create table fa_vehiculos(
+  cp_vehiculo int auto_increment,
+  atr_patente varchar(100) unique,
+  atr_ano int,
+  atr_color varchar(100),
+  cf_tipo int,
+  cf_marca int,
+  cf_modelo int,
+  constraint pk_vehiculo primary key(cp_vehiculo),
+  constraint fk_vehiculo_tipo foreign key(cf_tipo) references fa_tipovehiculo(cp_tipovehiculo),
+  constraint fk_vehiculo_marca foreign key(cf_marca) references fa_marca(cp_marca),
+  constraint fk_vehiculo_modelo foreign key(cf_modelo) references fa_modelo(cp_modelo)
+);
 
 create table fa_banco(
     cp_banco int auto_increment,

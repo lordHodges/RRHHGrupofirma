@@ -215,6 +215,18 @@ $menu =  $data['menu'];
 
                               <?php foreach ($permisos as $key => $valuePermiso) {  ?>
 
+                                <?php  if ( $valuePermiso->cf_existencia_permiso == "90") {  ?>
+                                  <li><a href="<?php echo base_url() ?>index.php/inicioVehiculos">Vehículos</a></li>
+                                <?php } ?>
+
+                                <?php  if ( $valuePermiso->cf_existencia_permiso == "94") {  ?>
+                                  <li><a href="<?php echo base_url() ?>index.php/inicioMarcas">Marcas</a></li>
+                                <?php } ?>
+
+                                <?php  if ( $valuePermiso->cf_existencia_permiso == "98") {  ?>
+                                  <li><a href="<?php echo base_url() ?>index.php/inicioModelos">Modelos</a></li>
+                                <?php } ?>
+
                                 <?php  if ( $valuePermiso->cf_existencia_permiso == "1") {  ?>
                                   <li><a href="<?php echo base_url() ?>index.php/inicioCargos">Cargos</a></li>
                                 <?php } ?>
