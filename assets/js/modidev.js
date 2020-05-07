@@ -1551,6 +1551,7 @@ function agregarPrevision() {
 
 
 function agregarEmpresa() {
+    alert("aqui");
     var nombre = $("#nombre").val();
     var rut = $("#RUT").val();
     var domicilio = $("#ubicacion").val();
@@ -1577,7 +1578,8 @@ function agregarEmpresa() {
             dataType: 'json',
             data: { "nombre":nombre, "rut":rut, "domicilio":domicilio, "representante":representante, "cedula_representante":cedula_representante, "ciudad":ciudad },
         }).then(function (msg) {
-            if (msg.msg == "ok") {
+            alert("aqui 2");
+            // if (msg.msg == "ok") {
                toastr.success('Empresa ingresada');
                document.getElementById("nombre").value = "";
                document.getElementById("RUT").value = "";
@@ -1589,9 +1591,9 @@ function agregarEmpresa() {
                var permisoExportar = $("#permisoExportar").text();
                var permisoEditar = $("#permisoEditar").text();
                cargarTablaEmpresa(permisoEditar,permisoExportar);
-            } else {
-                toastr.error("Error en el ingreso.");
-            }
+            // } else {
+                // toastr.error("Error en el ingreso.");
+            // }
         });
     }
 }
