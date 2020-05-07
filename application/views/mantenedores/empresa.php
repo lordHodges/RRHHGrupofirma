@@ -197,10 +197,10 @@ if($usuario[0]->atr_activo == "1" ) { ?>
       $("body").on("click", "#btnAgregarEmpresa", function(e) {
           e.preventDefault();
           agregarEmpresa();
-          var table = $('#tabla_empresa').DataTable();
-          table.ajax.reload(function(json) {
-            $('#btnAgregarEmpresa').val(json.lastInput);
-          });
+          // var table = $('#tabla_empresa').DataTable();
+          // table.ajax.reload(function(json) {
+          //   $('#btnAgregarEmpresa').val(json.lastInput);
+          // });
       });
 
 

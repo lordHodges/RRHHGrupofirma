@@ -1589,7 +1589,6 @@ function agregarEmpresa() {
                var permisoExportar = $("#permisoExportar").text();
                var permisoEditar = $("#permisoEditar").text();
                cargarTablaEmpresa(permisoEditar,permisoExportar);
-
             } else {
                 toastr.error("Error en el ingreso.");
             }
