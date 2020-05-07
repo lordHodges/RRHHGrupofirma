@@ -98,7 +98,7 @@ if($usuario[0]->atr_activo == "1" ) { ?>
                       <div class="col-md-12">
                           <br>
                           <label for="nombre">ROL UNICO TRIBUTARIO</label>
-                          <input type="text" class="form-control custom-input-sm" id="RUT" onkeyup="this.value=caracteresRUT(this.value)" oninput="checkRutOficial(this)">
+                          <input type="text" class="form-control custom-input-sm" id="RUT" onkeyup="this.value=caracteresRUT(this.value)">
                       </div>
                     </div>
 
