@@ -1572,30 +1572,31 @@ function agregarEmpresa() {
           toastr.error("Rellene todos los campos");
       }
     }else {
-        $.ajax({
-            url: 'addEmpresa',
-            type: 'POST',
-            dataType: 'json',
-            data: { "nombre":nombre, "rut":rut, "domicilio":domicilio, "representante":representante, "cedula_representante":cedula_representante, "ciudad":ciudad },
-        }).then(function (msg) {
-            alert("aqui 2");
-            // if (msg.msg == "ok") {
-               toastr.success('Empresa ingresada');
-               document.getElementById("nombre").value = "";
-               document.getElementById("RUT").value = "";
-               document.getElementById("ubicacion").value = "";
-               document.getElementById("nombreRepre").value = "";
-               document.getElementById("cedulaRepre").value = "";
-               document.getElementById("getSelectCiudad").value = "";
-               $('#myModal').modal('hide');
-               var permisoExportar = $("#permisoExportar").text();
-               var permisoEditar = $("#permisoEditar").text();
-               cargarTablaEmpresa(permisoEditar,permisoExportar);
-            // } else {
-                // toastr.error("Error en el ingreso.");
-            // }
-        });
+        
     }
+
+    $.ajax({
+        url: 'addEmpresa',
+        type: 'POST',
+        dataType: 'json',
+        data: { "nombre":nombre, "rut":rut, "domicilio":domicilio, "representante":representante, "cedula_representante":cedula_representante, "ciudad":ciudad },
+    }).then(function (msg) {
+        if (msg.msg == "ok") {
+           toastr.success('Empresa ingresada');
+           document.getElementById("nombre").value = "";
+           document.getElementById("RUT").value = "";
+           document.getElementById("ubicacion").value = "";
+           document.getElementById("nombreRepre").value = "";
+           document.getElementById("cedulaRepre").value = "";
+           document.getElementById("getSelectCiudad").value = "";
+           $('#myModal').modal('hide');
+           var permisoExportar = $("#permisoExportar").text();
+           var permisoEditar = $("#permisoEditar").text();
+           cargarTablaEmpresa(permisoEditar,permisoExportar);
+        } else {
+            toastr.error("Error en el ingreso.");
+        }
+    });
 }
 
 function getDetalleEmpresa(idEmpresa){
