@@ -67,6 +67,10 @@ class RemuneracionesModel extends CI_Model {
 
 
     function updateRemuneracion($idCargo,$sueldoMensual,$colacion,$movilizacion,$imposiciones, $asistencia){
+      $sueldoMensual = str_replace ( "." , "" , $sueldoMensual  );
+      $colacion = str_replace ( "." , "" , $colacion  );
+      $movilizacion = str_replace ( "." , "" , $movilizacion  );
+      $asistencia = str_replace ( "." , "" , $asistencia  );
       $data = array(
           "atr_sueldoMensual" => $sueldoMensual,
           "atr_colacion" => $colacion,

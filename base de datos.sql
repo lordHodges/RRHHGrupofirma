@@ -2,6 +2,7 @@ drop database fa_rrhh;
 create database fa_rrhh;
 use fa_rrhh;
 
+
 create table fa_tipovehiculo(
   cp_tipovehiculo int auto_increment,
   atr_descripcion varchar (200),
@@ -402,6 +403,44 @@ create table fa_manipularAnexos(
     constraint pk_manipularAnexos primary key(cp_manipular),
     constraint fk_manipularAnexos_trabajador foreign key(cf_trabajador) references fa_trabajador(cp_trabajador)
 );
+
+
+
+create table fa_prestamo(
+  cp_prestamo int auto_increment,
+  atr_montoTotal int,
+  atr_fechaPrestamo varchar(100),
+  atr_cantidadCuotas int,
+  cf_trabajador int,
+  constraint pk_prestamo primary key(cp_prestamo),
+  constraint fk_prestamo_trabajador foreign key(cf_trabajador) references fa_trabajador(cp_trabajador)
+);
+
+create table fa_detalle_prestamo(
+  cp_detale_prestamo int auto_increment,
+  atr_numCuota int,
+  atr_montoDescontar int,
+  atr_fechaDescuento varchar(100),
+  atr_estado int,
+  cf_prestamo int,
+  constraint pk_detalle_prestamo primary key(cp_detale_prestamo),
+  constraint fk_detalleprestamo_prestamo foreign key(cf_prestamo) references fa_prestamo(cp_prestamo)
+);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

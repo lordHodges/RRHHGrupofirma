@@ -110,7 +110,7 @@ INSERT INTO `fa_sucursal` (`cp_sucursal`, `atr_nombre`, `cf_ciudad`) VALUES (NUL
 
 
 
-INSERT INTO `fa_estado` (`cp_estado`, `atr_nombre`) VALUES (NULL, 'Contrato a plazo fijo'), (NULL, 'Contrato indefinido'), (NULL, 'Contrato por proyecto'), (NULL, 'Honorarios'), (NULL, 'Freelance');
+INSERT INTO `fa_estado` (`cp_estado`, `atr_nombre`) VALUES (NULL, 'Contrato a plazo fijo'), (NULL, 'Contrato indefinido'), (NULL, 'Contrato por proyecto'), (NULL, 'Honorarios'), (NULL, 'Freelance'), (NULL, 'Finiquitado');
 
 
 
@@ -164,8 +164,8 @@ INSERT INTO `fa_modulo` (`cp_modulo`, `atr_nombre`) VALUES (NULL, 'Documentos de
 INSERT INTO `fa_modulo` (`cp_modulo`, `atr_nombre`) VALUES (NULL, 'Generar anexo'), (NULL, 'Generar contrato'), (NULL, 'Historial de trabajadores'), (NULL, 'Dashboard');
 INSERT INTO `fa_modulo` (`cp_modulo`, `atr_nombre`) VALUES (NULL, 'Mantenedor de usuarios');
 INSERT INTO `fa_modulo` (`cp_modulo`, `atr_nombre`) VALUES (NULL, 'Permisos'), (NULL, 'Documentos liquidaciones'), (NULL, 'Documentos finiquitos');
-INSERT INTO `fa_modulo` (`cp_modulo`, `atr_nombre`) VALUES (NULL, 'Permisos'), (NULL, 'Mantenedor de vehículos'), (NULL, 'Mantenedor de marcas de vehícuos');
-INSERT INTO `fa_modulo` (`cp_modulo`, `atr_nombre`) VALUES (NULL, 'Permisos'), (NULL, 'Mantenedor de modelos de vehículos');
+INSERT INTO `fa_modulo` (`cp_modulo`, `atr_nombre`) VALUES (NULL, 'Mantenedor de vehículos'), (NULL, 'Mantenedor de marcas de vehícuos');
+INSERT INTO `fa_modulo` (`cp_modulo`, `atr_nombre`) VALUES (NULL, 'Mantenedor de modelos de vehículos'), (NULL, 'Préstamos');
 
 
 
@@ -298,3 +298,23 @@ INSERT INTO `fa_menu_perfil` (`cp_menu_perfil`, `cf_perfil`, `cf_menu`) VALUES (
 INSERT INTO `fa_menu_perfil` (`cp_menu_perfil`, `cf_perfil`, `cf_menu`) VALUES (NULL, '3', '7'), (NULL, '3', '8'), (NULL, '3', '9');
 
 INSERT INTO `fa_menu_perfil` (`cp_menu_perfil`, `cf_perfil`, `cf_menu`) VALUES (NULL, '5', '1'), (NULL, '5', '2'), (NULL, '5', '8'), (NULL, '5', '9');
+
+
+
+
+
+
+
+
+
+
+
+
+
+INSERT INTO `fa_prestamo` (`cp_prestamo`, `atr_montoTotal`, `atr_fechaPrestamo`, `atr_cantidadCuotas`, `cf_trabajador`) VALUES (NULL, '600000', '2020-05-06', '6', '1');
+
+
+
+INSERT INTO `fa_detalle_prestamo` (`cp_detale_prestamo`, `atr_numCuota`, `atr_montoDescontar`, `atr_fechaDescuento`, `atr_estado`, `cf_prestamo`) VALUES (NULL, '1', '100000', '2020-06-05', '1', '1'), (NULL, '2', '100000', '2020-07-05', '0', '1');
+INSERT INTO `fa_detalle_prestamo` (`cp_detale_prestamo`, `atr_numCuota`, `atr_montoDescontar`, `atr_fechaDescuento`, `atr_estado`, `cf_prestamo`) VALUES (NULL, '3', '100000', '2020-08-05', '0', '1'), (NULL, '4', '100000', '2020-09-05', '0', '1');
+INSERT INTO `fa_detalle_prestamo` (`cp_detale_prestamo`, `atr_numCuota`, `atr_montoDescontar`, `atr_fechaDescuento`, `atr_estado`, `cf_prestamo`) VALUES (NULL, '5', '100000', '2020-10-05', '0', '1'), (NULL, '6', '100000', '2020-11-05', '0', '1');

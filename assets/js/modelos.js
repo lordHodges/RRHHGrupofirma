@@ -184,7 +184,7 @@ function agregarModelo() {
           var fila = "";
           $.each(msg.msg, function (i, o) {
             fila +='<h5 class="modal-title mx-auto">MODELO</h5><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>';
-            fila +='<div class="col-md-12"><br><label for="nombre">NOMBRE&nbsp; </label><label id="idMarca" style="color:#2A3F54;">'+o.cp_modelo+'</label><input type="text" style="color:#848484" class="form-control custom-input-sm" oninput="mayus(this)" id="nombreEditar" value="'+o.atr_descripcion+'"></div>';
+
 
             var url = base_url+'getMarcas';
 
@@ -197,6 +197,7 @@ function agregarModelo() {
                     fila += "<option value='" + o.cp_marca + "'>" + o.atr_descripcion + "</option>";
                 });
                 fila +='</select></div>';
+                fila +='<div class="col-md-12"><br><label for="nombre">NOMBRE&nbsp; </label><label id="idMarca" style="color:#2A3F54;">'+o.cp_modelo+'</label><input type="text" style="color:#848484" class="form-control custom-input-sm" oninput="mayus(this)" id="nombreEditar" value="'+o.atr_descripcion+'"></div>';
                 fila +='<label style="display:none" id="labelMarca">'+o.cf_marca+'</label><label style="display:none" id="labelModelo2">'+idModelo+'</label>';
                 $("#contenedorDetalleModelo").append(fila);
             });
