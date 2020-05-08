@@ -437,7 +437,7 @@ class Helpers
             $protocol = ""; // "file://"; ? why doesn't this work... It's because of
             // network filenames like //COMPU/SHARENAME
 
-            $host = ""; // 10.10.11.240, really
+            $host = ""; // localhost, really
             $file = basename($url);
 
             $path = dirname($url);

@@ -22,6 +22,7 @@ class SesionesModel extends CI_Model {
     }
 
     public function cambiarPass($usuario,$pass){
+      $pass = md5($pass);
       $data = array(
           "atr_clave" => $pass
       );

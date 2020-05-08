@@ -92,7 +92,7 @@ class SesionesController extends CI_Controller {
 		$nombre = $this->input->post("nombre");
 		$perfil = $this->input->post("perfil");
 		$correo = $this->input->post("correo");
-		$clave = "grupofirma";
+		$clave = md5("grupofirma");
 
 		$resultado = $this->SesionesModel->agregarUsuario($nombre, $correo, $clave, $perfil);
 		echo json_encode($resultado);
@@ -127,7 +127,7 @@ class SesionesController extends CI_Controller {
 	public function editarMiPerfil(){
 		$nombre = $this->input->post("nombre");
 		$correo = $this->input->post("correo");
-		$clave = $this->input->post("clave");
+		$clave = md5( $this->input->post("clave") );
 
 		$idUsuario = $this->input->post("idUser");
 
@@ -138,7 +138,7 @@ class SesionesController extends CI_Controller {
 
 	public function cambiarPass(){
 		$id = $this->input->post("id");
-		$pass = $this->input->post("clave");
+		$pass = md5( $this->input->post("clave") );
 
 		$resultado = $this->SesionesModel->cambiarPass($id, $pass);
 		echo json_encode($resultado);
@@ -179,7 +179,7 @@ class SesionesController extends CI_Controller {
 	// FUNCIONALIDAD EN CADA UNO.
 	public function iniciarSesion() {
 		$correo = $this->input->post("correo");
-		$clave = $this->input->post("clave");
+		$clave = md5( $this->input->post("clave") );
 
 		$idUsuario = 0;
 
