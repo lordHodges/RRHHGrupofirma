@@ -165,7 +165,8 @@ INSERT INTO `fa_modulo` (`cp_modulo`, `atr_nombre`) VALUES (NULL, 'Requisitos m�
 INSERT INTO `fa_modulo` (`cp_modulo`, `atr_nombre`) VALUES (NULL, 'Documentos de contratos'), (NULL, 'Documentos de transferencias'), (NULL, 'Documentos de cartas de amonestación'), (NULL, 'Documentos de perfiles ocupacionales');
 INSERT INTO `fa_modulo` (`cp_modulo`, `atr_nombre`) VALUES (NULL, 'Generar anexo'), (NULL, 'Generar contrato'), (NULL, 'Historial de trabajadores'), (NULL, 'Dashboard');
 INSERT INTO `fa_modulo` (`cp_modulo`, `atr_nombre`) VALUES (NULL, 'Mantenedor de usuarios');
-INSERT INTO `fa_modulo` (`cp_modulo`, `atr_nombre`) VALUES (NULL, 'Permisos'), (NULL, 'Documentos liquidaciones'), (NULL, 'Documentos finiquitos');
+INSERT INTO `fa_modulo` (`cp_modulo`, `atr_nombre`) VALUES (NULL, 'Permisos');
+INSERT INTO `fa_modulo` (`cp_modulo`, `atr_nombre`) VALUES (NULL, 'Documentos liquidaciones'), (NULL, 'Documentos finiquitos');
 INSERT INTO `fa_modulo` (`cp_modulo`, `atr_nombre`) VALUES (NULL, 'Mantenedor de vehículos'), (NULL, 'Mantenedor de marcas de vehícuos');
 INSERT INTO `fa_modulo` (`cp_modulo`, `atr_nombre`) VALUES (NULL, 'Mantenedor de modelos de vehículos'), (NULL, 'Préstamos');
 INSERT INTO `fa_modulo` (`cp_modulo`, `atr_nombre`) VALUES (NULL, 'Adelantos');
@@ -209,11 +210,15 @@ INSERT INTO `fa_existencia_permiso` (`cp_existencia_permiso`, `cf_modulo`, `cf_p
 INSERT INTO `fa_existencia_permiso` (`cp_existencia_permiso`, `cf_modulo`, `cf_permiso`) VALUES (NULL, '22', '14'), (NULL, '22', '15'), (NULL, '22', '16'), (NULL, '22', '17'), (NULL, '22', '18');
 INSERT INTO `fa_existencia_permiso` (`cp_existencia_permiso`, `cf_modulo`, `cf_permiso`) VALUES (NULL, '23', '19'), (NULL, '23', '20'), (NULL, '23', '21');
 INSERT INTO `fa_existencia_permiso` (`cp_existencia_permiso`, `cf_modulo`, `cf_permiso`) VALUES (NULL, '24', '1'), (NULL, '24', '4'), (NULL, '24', '24'), (NULL, '24', '2'), (NULL, '24', '5');
+
+
 INSERT INTO `fa_existencia_permiso` (`cp_existencia_permiso`, `cf_modulo`, `cf_permiso`) VALUES (NULL, '26', '1'), (NULL, '26', '7'), (NULL, '26', '8');
 INSERT INTO `fa_existencia_permiso` (`cp_existencia_permiso`, `cf_modulo`, `cf_permiso`) VALUES (NULL, '27', '1'), (NULL, '27', '7'), (NULL, '27', '8');
 INSERT INTO `fa_existencia_permiso` (`cp_existencia_permiso`, `cf_modulo`, `cf_permiso`) VALUES (NULL, '28', '1'), (NULL, '28', '2'), (NULL, '28', '4'), (NULL, '28', '5');
 INSERT INTO `fa_existencia_permiso` (`cp_existencia_permiso`, `cf_modulo`, `cf_permiso`) VALUES (NULL, '29', '1'), (NULL, '29', '2'), (NULL, '29', '4'), (NULL, '29', '5');
 INSERT INTO `fa_existencia_permiso` (`cp_existencia_permiso`, `cf_modulo`, `cf_permiso`) VALUES (NULL, '30', '1'), (NULL, '30', '2'), (NULL, '30', '4'), (NULL, '30', '5');
+
+
 INSERT INTO `fa_existencia_permiso` (`cp_existencia_permiso`, `cf_modulo`, `cf_permiso`) VALUES (NULL, '32', '1'), (NULL, '32', '2'), (NULL, '32', '5'), (NULL, '32', '7');
 
 
