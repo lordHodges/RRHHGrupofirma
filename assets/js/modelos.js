@@ -1,4 +1,4 @@
-var base_url = 'http://localhost/RRHH-FIRMA/index.php/';
+var base_url = 'http://10.10.11.240/RRHH-FIRMA/index.php/';
 
 
 function cargarTablaModelos(permisoEditar,permisoExportar){
@@ -44,7 +44,7 @@ function cargarTablaModelos(permisoEditar,permisoExportar){
               }
           },
           "ajax": {
-              url: "http://localhost/RRHH-FIRMA/index.php/getListadoModelos",
+              url: "http://10.10.11.240/RRHH-FIRMA/index.php/getListadoModelos",
               type: 'GET'
           },
           "columnDefs": [{
@@ -129,7 +129,7 @@ function cargarTablaModelos(permisoEditar,permisoExportar){
               }
           },
           "ajax": {
-              url: "http://localhost/RRHH-FIRMA/index.php/getListadoModelos",
+              url: "http://10.10.11.240/RRHH-FIRMA/index.php/getListadoModelos",
               type: 'GET'
           },
           "columnDefs": [{

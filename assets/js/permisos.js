@@ -1,4 +1,4 @@
-var base_url = 'http://localhost/RRHH-FIRMA/index.php/';
+var base_url = 'http://10.10.11.240/RRHH-FIRMA/index.php/';
 
 function getSelectPerfiles(){
   var url = base_url+'getPerfiles';
@@ -54,7 +54,7 @@ function cargarTablaPerfiles(){
   var table = $('#tabla_perfiles').DataTable();
   table.destroy();
 
-  btnAcciones = '<a style="display:inline" href="http://localhost/RRHH-FIRMA/index.php/inicioPermisosPerfil" type="button" id="btnVerPermisos" class="btn btn-info btn-sm"><i class="fa fa-shield"></i></a>';
+  btnAcciones = '<a style="display:inline" href="http://10.10.11.240/RRHH-FIRMA/index.php/inicioPermisosPerfil" type="button" id="btnVerPermisos" class="btn btn-info btn-sm"><i class="fa fa-shield"></i></a>';
 
   $('.dataTables-perfiles').DataTable({
     "autoWidth": false,
@@ -88,7 +88,7 @@ function cargarTablaPerfiles(){
             }
         },
         "ajax": {
-            url: "http://localhost/RRHH-FIRMA/index.php/getPerfilesTabla",
+            url: "http://10.10.11.240/RRHH-FIRMA/index.php/getPerfilesTabla",
             type: 'GET'
         },
         "columnDefs": [{
@@ -109,7 +109,7 @@ function cargarTablaUsuarios(){
   var table = $('#tabla_usuario').DataTable();
   table.destroy();
 
-  var btnAcciones = '<a style="display:inline" href="http://localhost/RRHH-FIRMA/index.php/inicioPermisosUsuario" type="button" id="btnVerPermisos" class="btn btn-info btn-sm"><i class="fa fa-shield"></i></a>';
+  var btnAcciones = '<a style="display:inline" href="http://10.10.11.240/RRHH-FIRMA/index.php/inicioPermisosUsuario" type="button" id="btnVerPermisos" class="btn btn-info btn-sm"><i class="fa fa-shield"></i></a>';
 
     $('.dataTables-usuarios').DataTable({
         "autoWidth": false,
@@ -142,7 +142,7 @@ function cargarTablaUsuarios(){
               }
           },
           "ajax": {
-              url: "http://localhost/RRHH-FIRMA/index.php/getListadoUsuarios",
+              url: "http://10.10.11.240/RRHH-FIRMA/index.php/getListadoUsuarios",
               type: 'GET'
           },
           "columnDefs": [{
