@@ -27,6 +27,44 @@ class AdelantosModel extends CI_Model {
     }
 
 
+    function updateAdelanto( $idAdelanto, $banco, $tipoCuenta, $numeroCuenta, $monto ){
+
+        if (!is_numeric($banco)) {
+          $this->db->select(" b.cp_banco ");
+          $this->db->from("fa_banco b");
+          $this->db->where("b.atr_nombre",$banco);
+          $arrayBanco = $this->db->get()->result();
+
+          foreach ($arrayBanco as $key => $value) {
+            $banco = $value->cp_banco;
+          }
+        }
+
+        $data = array(
+            "atr_tipoCuenta"       => $tipoCuenta,
+            "atr_numCuenta"        => $numeroCuenta,
+            "atr_monto"            => $monto,
+            "cf_banco"             => $banco
+        );
+
+        $this->db->where('cp_adelanto', $idAdelanto);
+        $resultado =  $this->db->update("fa_adelanto", $data);
+
+        if ($resultado) {
+          return "ok";
+        }else{
+          return "error";
+        }
+    }
+
+    function buscarBanco($nombre){
+        $this->db->select(" b.cp_banco");
+        $this->db->from("fa_banco b");
+        $this->db->where("b.atr_nombre",$nombre);
+        return $this->db->get()->result();
+    }
+
+
 
 
 

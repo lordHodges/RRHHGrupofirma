@@ -183,7 +183,7 @@ INSERT INTO `fa_permiso` (`cp_permiso`, `atr_nombre`, `atr_descripcion`) VALUES 
 INSERT INTO `fa_permiso` (`cp_permiso`, `atr_nombre`, `atr_descripcion`) VALUES (NULL, 'Crear', 'Agregar título de antecedente');
 INSERT INTO `fa_permiso` (`cp_permiso`, `atr_nombre`, `atr_descripcion`) VALUES (NULL, 'Cambiar estado', 'Cambiar estado de usuario');
 
-INSERT INTO `fa_usuario` (`cp_usuario`, `atr_nombre`, `atr_correo`, `atr_clave`,`atr_activo`, `cf_perfil`) VALUES (NULL, 'Administrador', 'administrador@grupofirma.cl', '1588', '1', '1');
+INSERT INTO `fa_usuario` (`cp_usuario`, `atr_nombre`, `atr_correo`, `atr_clave`,`atr_activo`, `cf_perfil`) VALUES (NULL, 'Administrador', 'administrador@grupofirma.cl', '894b77f805bd94d292574c38c5d628d5', '1', '1');
 
 
 INSERT INTO `fa_existencia_permiso` (`cp_existencia_permiso`, `cf_modulo`, `cf_permiso`) VALUES (NULL, '1', '1'), (NULL, '1', '2'), (NULL, '1', '3'), (NULL, '1', '4'), (NULL, '1', '5');
@@ -210,16 +210,16 @@ INSERT INTO `fa_existencia_permiso` (`cp_existencia_permiso`, `cf_modulo`, `cf_p
 INSERT INTO `fa_existencia_permiso` (`cp_existencia_permiso`, `cf_modulo`, `cf_permiso`) VALUES (NULL, '22', '14'), (NULL, '22', '15'), (NULL, '22', '16'), (NULL, '22', '17'), (NULL, '22', '18');
 INSERT INTO `fa_existencia_permiso` (`cp_existencia_permiso`, `cf_modulo`, `cf_permiso`) VALUES (NULL, '23', '19'), (NULL, '23', '20'), (NULL, '23', '21');
 INSERT INTO `fa_existencia_permiso` (`cp_existencia_permiso`, `cf_modulo`, `cf_permiso`) VALUES (NULL, '24', '1'), (NULL, '24', '4'), (NULL, '24', '24'), (NULL, '24', '2'), (NULL, '24', '5');
-
-
 INSERT INTO `fa_existencia_permiso` (`cp_existencia_permiso`, `cf_modulo`, `cf_permiso`) VALUES (NULL, '26', '1'), (NULL, '26', '7'), (NULL, '26', '8');
 INSERT INTO `fa_existencia_permiso` (`cp_existencia_permiso`, `cf_modulo`, `cf_permiso`) VALUES (NULL, '27', '1'), (NULL, '27', '7'), (NULL, '27', '8');
 INSERT INTO `fa_existencia_permiso` (`cp_existencia_permiso`, `cf_modulo`, `cf_permiso`) VALUES (NULL, '28', '1'), (NULL, '28', '2'), (NULL, '28', '4'), (NULL, '28', '5');
 INSERT INTO `fa_existencia_permiso` (`cp_existencia_permiso`, `cf_modulo`, `cf_permiso`) VALUES (NULL, '29', '1'), (NULL, '29', '2'), (NULL, '29', '4'), (NULL, '29', '5');
 INSERT INTO `fa_existencia_permiso` (`cp_existencia_permiso`, `cf_modulo`, `cf_permiso`) VALUES (NULL, '30', '1'), (NULL, '30', '2'), (NULL, '30', '4'), (NULL, '30', '5');
-
-
 INSERT INTO `fa_existencia_permiso` (`cp_existencia_permiso`, `cf_modulo`, `cf_permiso`) VALUES (NULL, '32', '1'), (NULL, '32', '2'), (NULL, '32', '5'), (NULL, '32', '7');
+
+
+
+INSERT INTO `fa_existencia_permiso` (`cp_existencia_permiso`, `cf_modulo`, `cf_permiso`) VALUES (NULL, '31', '1'), (NULL, '31', '4'), (NULL, '31', '5'), (NULL, '31', '2');
 
 
 INSERT INTO `fa_menu` (`cp_menu`, `atr_nombre`) VALUES (NULL, 'Dashboard'), (NULL, 'Trabajadores'), (NULL, 'Historial de trabajadores'), (NULL, 'Generar contrato'), (NULL, 'Generar anexo');
@@ -254,6 +254,7 @@ INSERT INTO `fa_permiso_perfil` (`cp_permiso_perfil`, `cf_existencia_permiso`, `
 INSERT INTO `fa_permiso_perfil` (`cp_permiso_perfil`, `cf_existencia_permiso`, `cf_perfil`) VALUES (NULL, '94', '1'), (NULL, '95', '1'), (NULL, '96', '1'), (NULL, '97', '1');
 INSERT INTO `fa_permiso_perfil` (`cp_permiso_perfil`, `cf_existencia_permiso`, `cf_perfil`) VALUES (NULL, '98', '1'), (NULL, '99', '1'), (NULL, '100', '1'), (NULL, '101', '1');
 INSERT INTO `fa_permiso_perfil` (`cp_permiso_perfil`, `cf_existencia_permiso`, `cf_perfil`) VALUES (NULL, '102', '1'), (NULL, '103', '1'), (NULL, '104', '1'), (NULL, '105', '1');
+INSERT INTO `fa_permiso_perfil` (`cp_permiso_perfil`, `cf_existencia_permiso`, `cf_perfil`) VALUES (NULL, '106', '1'), (NULL, '107', '1'), (NULL, '108', '1'), (NULL, '109', '1');
 
 
 INSERT INTO `fa_permiso_perfil` (`cp_permiso_perfil`, `cf_existencia_permiso`, `cf_perfil`) VALUES (NULL, '76', '3'), (NULL, '77', '3'), (NULL, '78', '3');
@@ -276,6 +277,7 @@ INSERT INTO `fa_permiso_perfil` (`cp_permiso_perfil`, `cf_existencia_permiso`, `
 
 
 INSERT INTO `fa_permiso_perfil` (`cp_permiso_perfil`, `cf_existencia_permiso`, `cf_perfil`) VALUES (NULL, '74', '2'), (NULL, '58', '2'), (NULL, '59', '2'), (NULL, '60', '2'), (NULL, '77', '2');
+INSERT INTO `fa_permiso_perfil` (`cp_permiso_perfil`, `cf_existencia_permiso`, `cf_perfil`) VALUES (NULL, '106', '2'), (NULL, '107', '2'), (NULL, '108', '2'), (NULL, '109', '2');
 
 
 

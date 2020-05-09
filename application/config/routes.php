@@ -17,11 +17,18 @@ $route['getListadoPermisosExistentes'] = 'SesionesController/getListadoPermisosE
 $route['cargarUsuariosConPerfil'] = 'SesionesController/cargarUsuariosConPerfil';
 $route['detallePermisosUsuario'] = 'SesionesController/detallePermisosUsuario';
 
+// PRÉSTAMOS
+$route['inicioPrestamos'] = 'PrestamosController/inicioPrestamos';
+$route['getListadoPrestamosTrabajador'] = 'PrestamosController/getListadoPrestamosTrabajador';
+
+
 
 // ADELANTOS
 $route['inicioAdelantos'] = 'AdelantosController/inicioAdelantos';
 $route['getListadoAdelantos'] = 'AdelantosController/getListadoAdelantos';
 $route['getDetalleAdelanto'] = 'AdelantosController/getDetalleAdelanto';
+$route['updateAdelanto'] = 'AdelantosController/updateAdelanto';
+$route['buscarBanco'] = 'AdelantosController/buscarBanco';
 
 
 // FINIQUITOS

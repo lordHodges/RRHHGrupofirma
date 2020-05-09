@@ -5,13 +5,12 @@ $permisos =  $data['permisos'];
 ?>
 
 <?php
-$view_verUsuario = 0; $view_crearUsuario = 0; $view_cambiarEstadoUsuario = 0; $view_editarUsuario = 0; $view_exportarUsuario = 0;
+$view_verPrestamos = 0; $view_crearPrestamo = 0; $view_editarPrestamo = 0; $view_exportarPrestamo = 0;
 foreach ($permisos as $key => $value) {
-  if ($value->cf_existencia_permiso == "79") { $view_verUsuario = "1"; } else
-  if ($value->cf_existencia_permiso == "80") { $view_crearUsuario = "1"; } else
-  if ($value->cf_existencia_permiso == "81") { $view_cambiarEstadoUsuario = "1"; } else
-  if ($value->cf_existencia_permiso == "82") { $view_editarUsuario = "1"; } else
-  if ($value->cf_existencia_permiso == "83") { $view_exportarUsuario = "1"; }
+  if ($value->cf_existencia_permiso == "106") { $view_verPrestamos = "1"; } else
+  if ($value->cf_existencia_permiso == "107") { $view_crearPrestamo = "1"; } else
+  if ($value->cf_existencia_permiso == "109") { $view_editarPrestamo = "1"; } else
+  if ($value->cf_existencia_permiso == "108") { $view_exportarPrestamo = "1"; }
 }
 
 if($usuario[0]->atr_activo == "1") { ?>
@@ -28,29 +27,33 @@ if($usuario[0]->atr_activo == "1") { ?>
                   <ul class="nav nav-tabs bar_tabs" id="myTab" role="tablist">
 
                       <li class="nav-item">
-                        <a class="nav-link" id="perfiles-tab" data-toggle="tab" href="#perfiles" role="tab" aria-controls="perfiles" aria-selected="false">Perfiles</a>
+                        <a class="nav-link active" id="trabajadores-tab" data-toggle="tab" href="#trabajadores" role="tab" aria-controls="trabajadores" aria-selected="false">Trabajadores</a>
                       </li>
 
                       <li class="nav-item">
-                        <a class="nav-link" id="usuarios-tab" data-toggle="tab" href="#usuarios" role="tab" aria-controls="usuarios" aria-selected="false">Usuarios</a>
+                        <a class="nav-link" id="empresas-tab" data-toggle="tab" href="#empresas" role="tab" aria-controls="empresas" aria-selected="false">Entre empresas</a>
                       </li>
 
                   </ul>
 
 
 
-                  <div class="tab-content" id="myTabContent">
+                  <div class="tab-content" id="trabajadores">
 
 
                       <!-- INICIO TAB PERFILES -->
                       <div class="tab-pane fade show active" id="perfiles" role="tabpanel" aria-labelledby="perfiles-tab">
 
-                        <table id="tabla_perfiles" class="table table-striped table-bordered table-hover dataTables-perfiles" style="margin-top:20px;">
+                        <table id="tabla_prestamoTrabajadores" class="table table-striped table-bordered table-hover dataTables-prestamoTrabajadores" style="margin-top:20px;">
                           <thead>
                               <tr>
                                 <th class="text-center">ID</th>
-                                  <th class="text-center">PERFIL</th>
-                                  <th class="text-center">ACCIONES</th>
+                                <th class="text-center">RUT</th>
+                                <th class="text-center">NOMBRE</th>
+                                <th class="text-center">FECHA DE PRÉSTAMO</th>
+                                <th class="text-center">CUOTAS</th>
+                                <th class="text-center">MONTO TOTAL</th>
+                                <th class="text-center">ACCIONES</th>
                               </tr>
                           </thead>
                           <tbody id="tbodyDetalle">
@@ -67,7 +70,7 @@ if($usuario[0]->atr_activo == "1") { ?>
 
 
                       <!-- INICIO TAB USUARIOS -->
-                      <div class="tab-pane fade" id="usuarios" role="tabpanel" aria-labelledby="usuarios-tab">
+                      <div class="tab-pane fade" id="empresas" role="tabpanel" aria-labelledby="usuarios-tab">
 
                         <table id="tabla_usuario" class="table table-striped table-bordered table-hover dataTables-usuarios" style="margin-top:20px;">
                             <thead >
@@ -135,6 +138,9 @@ if($usuario[0]->atr_activo == "1") { ?>
     </div>
     <!-- /Modal de crear -->
 
+    <label id="permisoExportarTrabajadores" style="display:none">no</label>
+    <label id="permisoEditarTrabajadores" style="display:none">no</label>
+
 
 
 
@@ -152,10 +158,8 @@ if($usuario[0]->atr_activo == "1") { ?>
     <!-- Custom Theme Scripts -->
     <script src="<?php echo base_url() ?>assets/build/js/custom.min.js"></script>
     <!-- MODIDEV -->
-    <script src="<?php echo base_url() ?>assets/js/modidev.js"></script>
-    <script src="<?php echo base_url() ?>assets/js/trabajador.js"></script>
+    <script src="<?php echo base_url() ?>assets/js/prestamos.js"></script>
     <script src="<?php echo base_url() ?>assets/js/validaciones.js"></script>
-    <script src="<?php echo base_url() ?>assets/js/permisos.js"></script>
     <!-- iCheck -->
     <script src="<?php echo base_url() ?>assets/vendors/iCheck/icheck.min.js"></script>
     <!-- Switchery -->
@@ -168,13 +172,20 @@ if($usuario[0]->atr_activo == "1") { ?>
 
     <script>
         $(document).ready(function() {
-            getSelectPerfiles();
-            cargarTablaPerfiles();
-            cargarTablaUsuarios();
+          var exportarTrabajador = "no", editarTrabajador = "no";
+          <?php if( $view_exportarPrestamo == 1 ){  ?>
+              exportar = "si";
+              $("#permisoExportarTrabajadores").text("si");
+          <?php } ?>
+          <?php if( $view_editarPrestamo == 1 ){  ?>
+              editar = "si";
+              $("#permisoEditarTrabajadores").text("si");
+          <?php } ?>
+          cargarTablaPrestamoTrabajadores(editarTrabajador,exportarTrabajador);
         });
     </script>
 
-  <?php } else{ header("Location: http://localhost/RRHH-FIRMA/"); } ?>
+  <?php } else{ header("Location: http://10.10.11.240/RRHH-FIRMA/"); } ?>
 
     </body>
   </html>

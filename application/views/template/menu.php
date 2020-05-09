@@ -141,12 +141,16 @@ $menu =  $data['menu'];
                           <?php } ?>
 
                           <?php  if ( $valueModulo->cf_menu == "10" ) {  ?>
-                            <li><a><i class="fa fa-shield"></i> Pagos <span class="fa fa-chevron-down"></span></a>
+                            <li><a><i class="fa fa-usd"></i> Pagos <span class="fa fa-chevron-down"></span></a>
                             <ul class="nav child_menu">
                               <?php foreach ($permisos as $key => $valuePermiso) {  ?>
 
                                 <?php  if ( $valuePermiso->cf_existencia_permiso == "102") {  ?>
                                   <li><a href="<?php echo base_url() ?>index.php/inicioAdelantos">Adelantos</a></li>
+                                <?php } ?>
+
+                                <?php  if ( $valuePermiso->cf_existencia_permiso == "106") {  ?>
+                                  <li><a href="<?php echo base_url() ?>index.php/inicioPrestamos">Préstamos</a></li>
                                 <?php } ?>
 
                               <?php } ?>

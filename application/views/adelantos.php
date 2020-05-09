@@ -138,7 +138,6 @@ if($usuario[0]->atr_activo == "1" ) { ?>
               editar = "si";
               $("#permisoEditar").text("si");
           <?php } ?>
-
           cargarTablaAdelantos(editar,exportar);
       });
 
@@ -151,21 +150,12 @@ if($usuario[0]->atr_activo == "1" ) { ?>
       });
 
 
-
-
-
-
-      $("#btnAgregarCiudad").click(function (e){
+      $("#btnEditarAdelanto").click(function (e){
           e.preventDefault();
-          agregarCiudad();
-          var table = $('#tabla_ciudad').DataTable();
-          table.ajax.reload(function(json) {
-            $('#btnAgregarCiudad').val(json.lastInput);
-          });
-          cargarTablaCiudades(exportar);
+          updateAdelanto();
       });
   </script>
-  <?php } else{ header("Location: http://localhost/RRHH-FIRMA/"); } ?>
+  <?php } else{ header("Location: http://10.10.11.240/RRHH-FIRMA/"); } ?>
 
 </body>
 </html>

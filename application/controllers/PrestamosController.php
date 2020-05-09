@@ -16,33 +16,20 @@ class PrestamosController extends CI_Controller {
 	}
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	public function getListadoSucursales(){
+	public function getListadoPrestamosTrabajador(){
 		$draw = intval($this->input->get("draw"));
 		$start = intval($this->input->get("start"));
 		$length = intval($this->input->get("length"));
-		$books = $this->MantenedoresModel->getListadoSucursales();
+		$books = $this->PrestamosModel->getListadoPrestamosTrabajador();
 		$data = array();
 		foreach ($books->result() as $r) {
 				$data[] = array(
-					$r->cp_sucursal,
-					$r->atr_nombre,
+					$r->cp_prestamo,
+					$r->atr_rut,
+					$r->atr_nombres." ".$r->atr_apellidos,
+					$r->atr_fechaPrestamo,
+					$r->atr_cantidadCuotas,
+					$r->atr_montoTotal
 				);
 		}
 		$output = array(
@@ -55,13 +42,59 @@ class PrestamosController extends CI_Controller {
 		exit();
 	}
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	public function addSucursal(){
 	$nombre = $this->input->post("nombre");
 
 	$resultado = $this->MantenedoresModel->addSucursal($nombre);
 	echo json_encode(array("msg" => $resultado));
 
-}
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -1,4 +1,4 @@
-var base_url = 'http://localhost/RRHH-FIRMA/index.php/';
+var base_url = 'http://10.10.11.240/RRHH-FIRMA/index.php/';
 
 function cargarTablaAdelantos(permisoEditar,permisoExportar){
   var table = $('#tabla_adelantos').DataTable();
@@ -43,7 +43,7 @@ function cargarTablaAdelantos(permisoEditar,permisoExportar){
               }
           },
           "ajax": {
-              url: "http://localhost/RRHH-FIRMA/index.php/getListadoAdelantos",
+              url: "http://10.10.11.240/RRHH-FIRMA/index.php/getListadoAdelantos",
               type: 'GET'
           },
           "columnDefs": [{
@@ -129,7 +129,7 @@ function cargarTablaAdelantos(permisoEditar,permisoExportar){
               }
           },
           "ajax": {
-              url: "http://localhost/RRHH-FIRMA/index.php/getListadoAdelantos",
+              url: "http://10.10.11.240/RRHH-FIRMA/index.php/getListadoAdelantos",
               type: 'GET'
           },
           "columnDefs": [{
@@ -177,6 +177,7 @@ function getDetalleAdelanto(idAdelanto){
               fila +='<div class="col-md-6"><br><label for="nombre">TIPO DE CUENTA&nbsp; </label><input type="text" style="color:#848484" class="form-control custom-input-sm" id="tipoCuenta" value="'+o.atr_tipoCuenta+'"></div>';
               fila +='<div class="col-md-6"><br><label for="nombre">NÚMERO DE CUENTA&nbsp; </label><input type="text" style="color:#848484" class="form-control custom-input-sm" id="numCuenta" value="'+o.atr_numCuenta+'"></div>';
               fila +='<div class="col-md-6"><br><label for="nombre">MONTO&nbsp; </label><input type="text" style="color:#848484" class="form-control custom-input-sm" id="monto" value="'+o.atr_monto+'"></div>';
+              fila +='<label style="display:none" id="idAdelanto">'+idAdelanto+'</label>';
 
               $("#contenedorDetalleAdelanto").append(fila);
           });
@@ -184,5 +185,40 @@ function getDetalleAdelanto(idAdelanto){
 
         });
 
+    });
+}
+
+
+
+function updateAdelanto(){
+    var id = $("#idAdelanto").text();
+    var banco = $("#getSelectBanco2").val();
+    var tipoCuenta = $("#tipoCuenta").val();
+    var numeroCuenta = $("#numCuenta").val();
+    var monto = $("#monto").val();
+
+    if (banco == null) {
+      banco =  $("#bancoActual").text();
+    }
+
+    $.ajax({
+        url: 'updateAdelanto',
+        type: 'POST',
+        dataType: 'json',
+        data: {"idAdelanto": id, "banco":banco, "tipoCuenta":tipoCuenta, "numeroCuenta":numeroCuenta, "monto":monto}
+    }).then(function (msg) {
+        if(msg.msg == "ok"){
+          toastr.success('Información actualizada');
+          $('#modalEditarAdelanto').modal('hide');
+          var permisoExportar = $("#permisoExportar").text();
+          var permisoEditar = $("#permisoEditar").text();
+          cargarTablaAdelantos(permisoEditar,permisoExportar);
+        }else{
+          toastr.error('No se ha actualizado la información');
+          $('#modalEditarAdelanto').modal('hide');
+          var permisoExportar = $("#permisoExportar").text();
+          var permisoEditar = $("#permisoEditar").text();
+          cargarTablaAdelantos(permisoEditar,permisoExportar);
+        }
     });
 }

@@ -9,6 +9,15 @@ class PrestamosModel extends CI_Model {
     }
 
 
+    function getListadoPrestamosTrabajador(){
+        $this->db->select(" p.cp_prestamo, p.atr_fechaPrestamo, p.atr_montoTotal, p.atr_cantidadCuotas, t.atr_rut, t.atr_nombres, t.atr_apellidos ");
+        $this->db->from("fa_prestamo p");
+        $this->db->join("fa_trabajador t","t.cp_trabajador = p.cf_trabajador ");
+        $this->db->order_by('p.atr_fechaPrestamo', 'DESC');
+        $resultado =  $this->db->get();
+        return $resultado;
+    }
+
 
 
 
