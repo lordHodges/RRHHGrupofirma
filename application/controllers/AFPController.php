@@ -6,6 +6,7 @@ class AFPController extends CI_Controller {
 	public function __construct()
 	{
 		parent::__construct();
+		// $this->load->library('Security');
 		$this->load->model("MantenedoresModel");
 	}
 
@@ -39,7 +40,12 @@ class AFPController extends CI_Controller {
 	}
 
 	public function addAFP(){
-		$nombre = $this->input->post("nombre");
+		$nombre = $this->input->post("nombre",TRUE);
+
+		if ( substr( $nombre, 0, 9 ) === "[removed]") {
+			echo json_encode(array("msg" => "No se pueden ingresar determinados caracteres"));
+			exit();
+		}
 
 		$resultado = $this->MantenedoresModel->addAFP($nombre);
 		echo json_encode(array("msg" => $resultado));
@@ -53,8 +59,14 @@ class AFPController extends CI_Controller {
 	}
 
 	public function updateAFP(){
-		$id = $this->input->post("idAFP");
-		$afpNuevo = $this->input->post("nombreNuevo");
+		$id = $this->input->post("idAFP",TRUE);
+		$afpNuevo = $this->input->post("nombreNuevo",TRUE);
+
+		if ( substr( $nombre, 0, 9 ) === "[removed]" || substr( $afpNuevo, 0, 9 ) === "[removed]") {
+			echo json_encode(array("msg" => "No se pueden ingresar determinados caracteres"));
+			exit();
+		}
+
 		$resultado = $this->MantenedoresModel->updateAFP($afpNuevo, $id);
 		echo json_encode(array("msg" => $resultado));
 	}

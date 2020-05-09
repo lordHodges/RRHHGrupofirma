@@ -1551,7 +1551,6 @@ function agregarPrevision() {
 
 
 function agregarEmpresa() {
-    alert("aqui");
     var nombre = $("#nombre").val();
     var rut = $("#RUT").val();
     var domicilio = $("#ubicacion").val();

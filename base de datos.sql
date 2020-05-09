@@ -427,6 +427,18 @@ create table fa_detalle_prestamo(
   constraint fk_detalleprestamo_prestamo foreign key(cf_prestamo) references fa_prestamo(cp_prestamo)
 );
 
+create table fa_adelanto(
+  cp_adelanto int auto_increment,
+  atr_tipoCuenta varchar(200),
+  atr_numCuenta int,
+  atr_monto int,
+  cf_banco int,
+  cf_trabajador int unique,
+  constraint pk_adelanto primary key(cp_adelanto),
+  constraint fk_adelanto_banco foreign key(cf_banco) references fa_banco(cp_banco),
+  constraint fk_adelanto_trabajador foreign key(cf_trabajador) references fa_trabajador(cp_trabajador)
+);
+
 
 
 

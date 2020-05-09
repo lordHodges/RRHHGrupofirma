@@ -22,11 +22,12 @@ class TrabajadorModel extends CI_Model {
         $this->db->from("fa_remuneracion r");
         $this->db->where('r.cf_cargo', $cargo);
         $remuneracion =  $this->db->get()->result();
-        var_dump($remuneracion);
 
         foreach ($remuneracion as $key => $value) {
           $sueldo = $value->atr_sueldoMensual;
         }
+
+
 
         $data = array(
             "atr_rut"                   => $rut,
@@ -45,7 +46,31 @@ class TrabajadorModel extends CI_Model {
             "cf_estadoCivil"            => $estadoCivil,
             "cf_nacionalidad"           => $nacionalidad,
         );
-        $this->db->insert("fa_trabajador", $data);
+        $insertTrabajador = $this->db->insert("fa_trabajador", $data);
+
+
+        if ($insertTrabajador) {
+          $this->db->select('count(*)');
+          $this->db->from("fa_trabajador t");
+          $cantidad_trabajadores = $this->db->count_all_results();
+
+
+          $numCuenta = explode("-", $rut);
+          $numCuenta = str_replace(".", "", $numCuenta);
+
+          $dataAdelanto = array(
+              "atr_numCuenta"             => $numCuenta[0],
+              "atr_monto"                 => "0",
+              "atr_tipoCuenta"            => "CUENTA RUT",
+              "cf_banco"                  => 7,
+              "cf_trabajador"             => $cantidad_trabajadores
+          );
+
+          $this->db->insert("fa_adelanto", $dataAdelanto);
+        }
+
+
+
         return "ok";
     }
 

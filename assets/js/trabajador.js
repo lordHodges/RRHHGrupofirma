@@ -202,7 +202,7 @@ function agregarTrabajador() {
 
                    }
         }).then(function (msg) {
-            if (msg.msg == "ok") {
+            if (msg == "ok") {
                toastr.success('Trabajador ingresado')
                document.getElementById("rut").value = "";
                document.getElementById("nombres").value = "";

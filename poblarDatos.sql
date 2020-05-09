@@ -64,7 +64,7 @@ INSERT INTO `fa_afp` (`cp_afp`, `atr_nombre`) VALUES (NULL, 'Capital'), (NULL, '
 INSERT INTO `fa_cargo` (`cp_cargo`, `atr_nombre`, `atr_jefeDirecto`, `atr_lugarTrabajo`, `atr_jornadaTrabajo`, `atr_diasTrabajo`) VALUES (NULL, 'Ejecutivo de licitaciones publicas y privadas', 'Solanch Tejos Carrasco', 'Los servicios se prestarán en las dos sucursales de Hostal Plaza Maule Limitada ubicadas en 1 Sir 24 y media oriente N°3183 y 1 Sur 24 oriente N°3155 de la ciudad de Talca.', 'La jornada de trabajo será de 45 horas semanales, las que serán distribuidas de lunes a viernes, de la siguiente manera: jornada de la mañana de 09:00 horas a 14:00 horas, y en la jornada de la tarde de 15:00 horas a 19:00 horas.', 'De lunes a viernes de 09:00 hasta las 19:00 horas. Sábados de 09:00 a 14:00 horas'), (NULL, 'Recepcionista administrativa Rent A Car Maule', 'Diego Vargas, Miguel Vargas, Solanch Tejos', 'Los servicios se prestarán en las dos sucursales de Hostal Plaza Maule Limitada ubicadas en 1 Sir 24 y media oriente N°3183 y 1 Sur 24 oriente N°3155 de la ciudad de Talca.\', \'La jornada de trabajo será de 45 horas semanales, las que serán distribuidas de lunes a viernes, de la siguiente manera: jornada de la mañana de 09:00 horas a 14:00 horas, y en la jornada de la tarde de 15:00 horas a 19:00 horas.', 'La jornada de trabajo será de 45 horas semanales, las que serán distribuidas de lunes a viernes, de la siguiente manera: jornada de la mañana de 09:00 horas a 14:00 horas, y en la jornada de la tarde de 15:00 horas a 19:00 horas.', 'De lunes a viernes de 09:00 hasta las 19:00 horas. Sábados de 09:00 a 14:00 horas');
 
 
-INSERT INTO `fa_remuneracion` (`cp_remuneracion`, `atr_sueldoMensual`, `atr_cotizaciones`, `atr_colacion`, `atr_movilizacion`, `atr_asistencia`, `cf_cargo`) VALUES (NULL, '301.000', '1', '25.000', '0', '15.000', '1'), (NULL, '600.000', '1', '23.000', '0', '67.000', '2');
+INSERT INTO `fa_remuneracion` (`cp_remuneracion`, `atr_sueldoMensual`, `atr_cotizaciones`, `atr_colacion`, `atr_movilizacion`, `atr_asistencia`, `cf_cargo`) VALUES (NULL, '301000', '1', '25.000', '0', '15.000', '1'), (NULL, '600000', '1', '23.000', '0', '67.000', '2');
 
 
 
@@ -117,6 +117,8 @@ INSERT INTO `fa_estado` (`cp_estado`, `atr_nombre`) VALUES (NULL, 'Contrato a pl
 
 INSERT INTO `fa_trabajador` (`cp_trabajador`, `atr_rut`, `atr_nombres`, `atr_apellidos`, `atr_direccion`, `atr_fechaNacimiento`, `cf_estado`, `cf_ciudad`, `cf_cargo`, `cf_sucursal`, `cf_nacionalidad`, `cf_estadoCivil`, `cf_afp`, `cf_prevision`, `cf_empresa`) VALUES (NULL, '18.656.816-8', 'ESTEFANY NICOL', 'VALLEJOS FONSECA', 'Villa los portones calle las obras N° 594', '12-01-1994', '1', '177', '1', '2', '1', '1', '1', '2', '1'), (NULL, '19.105.559-4', 'IGNACIO ANDRÉS', 'CIFUENTES DÍAZ', 'Camino a Colín, los Maitenes casa N°6', '14-07-1995', '1', '177', '2', '2', '1', '1', '1', '2', '2');
 
+
+
 INSERT INTO `fa_requisitominimo` (`cp_requisitominimo`, `atr_descripcion`) VALUES (NULL, 'Manejo de GPS; aplicación de internet.'), (NULL, 'Manejo en direcciones según comuna.'), (NULL, 'Estar domiciliado al menos por mas de 1 año en la localidad del puesto de trabajo a postular.'), (NULL, 'Nociones básicas de operaciones(suma, resta, multiplicación y división).'), (NULL, 'Manejo de aplicación whatsapp, tal como enviar dirección, fotografías, compartir información solicitada.'), (NULL, 'Poseer un teléfono celular con internet y aplicación whatsapp.');
 
 
@@ -166,6 +168,7 @@ INSERT INTO `fa_modulo` (`cp_modulo`, `atr_nombre`) VALUES (NULL, 'Mantenedor de
 INSERT INTO `fa_modulo` (`cp_modulo`, `atr_nombre`) VALUES (NULL, 'Permisos'), (NULL, 'Documentos liquidaciones'), (NULL, 'Documentos finiquitos');
 INSERT INTO `fa_modulo` (`cp_modulo`, `atr_nombre`) VALUES (NULL, 'Mantenedor de vehículos'), (NULL, 'Mantenedor de marcas de vehícuos');
 INSERT INTO `fa_modulo` (`cp_modulo`, `atr_nombre`) VALUES (NULL, 'Mantenedor de modelos de vehículos'), (NULL, 'Préstamos');
+INSERT INTO `fa_modulo` (`cp_modulo`, `atr_nombre`) VALUES (NULL, 'Adelantos');
 
 
 
@@ -211,11 +214,12 @@ INSERT INTO `fa_existencia_permiso` (`cp_existencia_permiso`, `cf_modulo`, `cf_p
 INSERT INTO `fa_existencia_permiso` (`cp_existencia_permiso`, `cf_modulo`, `cf_permiso`) VALUES (NULL, '28', '1'), (NULL, '28', '2'), (NULL, '28', '4'), (NULL, '28', '5');
 INSERT INTO `fa_existencia_permiso` (`cp_existencia_permiso`, `cf_modulo`, `cf_permiso`) VALUES (NULL, '29', '1'), (NULL, '29', '2'), (NULL, '29', '4'), (NULL, '29', '5');
 INSERT INTO `fa_existencia_permiso` (`cp_existencia_permiso`, `cf_modulo`, `cf_permiso`) VALUES (NULL, '30', '1'), (NULL, '30', '2'), (NULL, '30', '4'), (NULL, '30', '5');
-
+INSERT INTO `fa_existencia_permiso` (`cp_existencia_permiso`, `cf_modulo`, `cf_permiso`) VALUES (NULL, '32', '1'), (NULL, '32', '2'), (NULL, '32', '5'), (NULL, '32', '7');
 
 
 INSERT INTO `fa_menu` (`cp_menu`, `atr_nombre`) VALUES (NULL, 'Dashboard'), (NULL, 'Trabajadores'), (NULL, 'Historial de trabajadores'), (NULL, 'Generar contrato'), (NULL, 'Generar anexo');
 INSERT INTO `fa_menu` (`cp_menu`, `atr_nombre`) VALUES (NULL, 'Permisos'), (NULL, 'Documentos'), (NULL, 'Perfiles ocupacionales'), (NULL, 'Mantenedores');
+INSERT INTO `fa_menu` (`cp_menu`, `atr_nombre`) VALUES (NULL, 'Pagos');
 
 
 
@@ -244,7 +248,7 @@ INSERT INTO `fa_permiso_perfil` (`cp_permiso_perfil`, `cf_existencia_permiso`, `
 INSERT INTO `fa_permiso_perfil` (`cp_permiso_perfil`, `cf_existencia_permiso`, `cf_perfil`) VALUES (NULL, '90', '1'), (NULL, '91', '1'), (NULL, '92', '1'), (NULL, '93', '1');
 INSERT INTO `fa_permiso_perfil` (`cp_permiso_perfil`, `cf_existencia_permiso`, `cf_perfil`) VALUES (NULL, '94', '1'), (NULL, '95', '1'), (NULL, '96', '1'), (NULL, '97', '1');
 INSERT INTO `fa_permiso_perfil` (`cp_permiso_perfil`, `cf_existencia_permiso`, `cf_perfil`) VALUES (NULL, '98', '1'), (NULL, '99', '1'), (NULL, '100', '1'), (NULL, '101', '1');
-
+INSERT INTO `fa_permiso_perfil` (`cp_permiso_perfil`, `cf_existencia_permiso`, `cf_perfil`) VALUES (NULL, '102', '1'), (NULL, '103', '1'), (NULL, '104', '1'), (NULL, '105', '1');
 
 
 INSERT INTO `fa_permiso_perfil` (`cp_permiso_perfil`, `cf_existencia_permiso`, `cf_perfil`) VALUES (NULL, '76', '3'), (NULL, '77', '3'), (NULL, '78', '3');
@@ -299,6 +303,8 @@ INSERT INTO `fa_menu_perfil` (`cp_menu_perfil`, `cf_perfil`, `cf_menu`) VALUES (
 
 INSERT INTO `fa_menu_perfil` (`cp_menu_perfil`, `cf_perfil`, `cf_menu`) VALUES (NULL, '5', '1'), (NULL, '5', '2'), (NULL, '5', '8'), (NULL, '5', '9');
 
+INSERT INTO `fa_menu_perfil` (`cp_menu_perfil`, `cf_perfil`, `cf_menu`) VALUES (NULL, '1', '10'), (NULL, '4', '10');
+
 
 
 
@@ -318,3 +324,9 @@ INSERT INTO `fa_prestamo` (`cp_prestamo`, `atr_montoTotal`, `atr_fechaPrestamo`,
 INSERT INTO `fa_detalle_prestamo` (`cp_detale_prestamo`, `atr_numCuota`, `atr_montoDescontar`, `atr_fechaDescuento`, `atr_estado`, `cf_prestamo`) VALUES (NULL, '1', '100000', '2020-06-05', '1', '1'), (NULL, '2', '100000', '2020-07-05', '0', '1');
 INSERT INTO `fa_detalle_prestamo` (`cp_detale_prestamo`, `atr_numCuota`, `atr_montoDescontar`, `atr_fechaDescuento`, `atr_estado`, `cf_prestamo`) VALUES (NULL, '3', '100000', '2020-08-05', '0', '1'), (NULL, '4', '100000', '2020-09-05', '0', '1');
 INSERT INTO `fa_detalle_prestamo` (`cp_detale_prestamo`, `atr_numCuota`, `atr_montoDescontar`, `atr_fechaDescuento`, `atr_estado`, `cf_prestamo`) VALUES (NULL, '5', '100000', '2020-10-05', '0', '1'), (NULL, '6', '100000', '2020-11-05', '0', '1');
+
+
+
+
+INSERT INTO `fa_adelanto` (`cp_adelanto`, `atr_tipoCuenta`, `atr_numCuenta`, `atr_monto`, `cf_banco`, `cf_trabajador`) VALUES (NULL, 'CUENTA RUT', '18656816', '0', '7', '1');
+INSERT INTO `fa_adelanto` (`cp_adelanto`, `atr_tipoCuenta`, `atr_numCuenta`, `atr_monto`, `cf_banco`, `cf_trabajador`) VALUES (NULL, 'CUENTA RUT', '19105559', '30000', '7', '2');

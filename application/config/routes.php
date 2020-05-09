@@ -18,6 +18,10 @@ $route['cargarUsuariosConPerfil'] = 'SesionesController/cargarUsuariosConPerfil'
 $route['detallePermisosUsuario'] = 'SesionesController/detallePermisosUsuario';
 
 
+// ADELANTOS
+$route['inicioAdelantos'] = 'AdelantosController/inicioAdelantos';
+$route['getListadoAdelantos'] = 'AdelantosController/getListadoAdelantos';
+$route['getDetalleAdelanto'] = 'AdelantosController/getDetalleAdelanto';
 
 
 // FINIQUITOS
