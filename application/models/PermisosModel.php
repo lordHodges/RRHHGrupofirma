@@ -2,11 +2,52 @@
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class PrestamosModel extends CI_Model {
+class PermisosModel extends CI_Model {
 
     public function __construct() {
         parent::__construct();
     }
+
+    function getExistenciasPorModulo($modulo){
+        $this->db->select(" ep.cp_existencia_permiso, ep.cf_modulo, ep.cf_permiso, p.atr_descripcion ");
+        $this->db->from("fa_existencia_permiso ep");
+        $this->db->join("fa_permiso p"," p.cp_permiso = ep.cf_permiso");
+        $this->db->where("ep.cf_modulo",$modulo);
+        $resultado =  $this->db->get()->result();
+        return $resultado;
+    }
+
+    function getModulos(){
+        $this->db->select(" m.atr_nombre, m.cp_modulo ");
+        $this->db->from("fa_modulo m");
+        $resultado =  $this->db->get()->result();
+        return $resultado;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     function getListadoPrestamosTrabajador(){
@@ -17,95 +58,6 @@ class PrestamosModel extends CI_Model {
         $resultado =  $this->db->get();
         return $resultado;
     }
-
-
-    function obtenerRutTrabajador($idTrabajador){
-        $this->db->select(" t.atr_rut ");
-        $this->db->from("fa_trabajador t");
-        $this->db->where('t.cp_trabajador', $idTrabajador);
-        $resultado =  $this->db->get()->result();
-        return $resultado;
-    }
-
-
-    function addPrestamo($montoTotal,$totalCuotas,$idTrabajador){
-        $fechaActual = date("Y-m-d");
-
-        $dia = date("d");
-        $mes = date("m");
-        $ano = date("Y");
-
-        $fechaActual = $ano."-".$mes."-".$dia;
-
-        $data = array(
-            "atr_montoTotal"      => $montoTotal,
-            "atr_fechaPrestamo"   => $fechaActual,
-            "atr_cantidadCuotas"  => $totalCuotas,
-            "cf_trabajador"       => $idTrabajador
-        );
-        $this->db->insert("fa_prestamo", $data);
-
-        $ultimoId = $this->db->insert_id();
-        return $ultimoId;
-    }
-
-    function addDetallePrestamo($idTrabajador,$numCuota,$montoDetalle,$fechaDetalle, $cfPrestamo){
-
-        $data = array(
-            "atr_numCuota"      => $numCuota,
-            "atr_montoDescontar"   => $montoDetalle,
-            "atr_fechaDescuento"  => $fechaDetalle,
-            "atr_estado"       => '0',
-            "cf_prestamo"       => $cfPrestamo
-        );
-        $resultado = $this->db->insert("fa_detalle_prestamo", $data);
-        return $resultado;
-    }
-
-
-    function getDetallePrestamo($idPrestamo){
-        $this->db->select(" dp.atr_numCuota, dp.atr_montoDescontar, dp.atr_fechaDescuento, dp.atr_estado ");
-        $this->db->from("fa_detalle_prestamo dp");
-        $this->db->where('dp.cf_prestamo', $idPrestamo);
-        $resultado =  $this->db->get()->result();
-        return $resultado;
-    }
-
-
-    function editarDetalleDePrestamo($idPrestamo,$numCuota,$montoCuota,$fechaPago){
-        $data = array(
-            "atr_montoDescontar"    => $montoCuota,
-            "atr_fechaDescuento"    => $fechaPago
-        );
-        $this->db->where('cf_prestamo', $idPrestamo);
-        $this->db->where('atr_numCuota', $numCuota);
-        $resultado =  $this->db->update("fa_detalle_prestamo", $data);
-        if($resultado){
-          return "ok";
-        }else{
-          return "error";
-        }
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

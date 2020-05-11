@@ -24,6 +24,7 @@ if($usuario[0]->atr_activo == "1") { ?>
                 <h3 class="text-center">PRÉSTAMOS</h3><br>
 
 
+
                   <ul class="nav nav-tabs bar_tabs" id="myTab" role="tablist">
 
                       <li class="nav-item">
@@ -43,6 +44,10 @@ if($usuario[0]->atr_activo == "1") { ?>
 
                       <!-- INICIO TAB PERFILES -->
                       <div class="tab-pane fade show active" id="perfiles" role="tabpanel" aria-labelledby="perfiles-tab">
+
+                        <?php if ( $view_crearPrestamo == 1 ) {  ?>
+                          <button type="button" class="btn modidev-btn btn-sm" data-toggle="modal" data-target="#modalCrearPrestamo" style="margin-bottom:20px; margin-top:20px;">INGRESAR PRÉSTAMO</button>
+                        <?php } ?>
 
                         <table id="tabla_prestamoTrabajadores" class="table table-striped table-bordered table-hover dataTables-prestamoTrabajadores" style="margin-top:20px;">
                           <thead>
@@ -115,28 +120,115 @@ if($usuario[0]->atr_activo == "1") { ?>
     <!-- /footer content -->
 
 
-    <!-- Modal permisos -->
-    <div id="modalVerPermisos" class="modal fade bd-example-modal-xl" tabindex="-1" style="width:100%" role="dialog" aria-labelledby="verPermisos"  aria-hidden="true" >
+    <!-- Modal crear préstamo -->
+    <div id="modalCrearPrestamo" class="modal fade bd-example-modal-xl" tabindex="-1" style="width:100%" role="dialog" aria-labelledby=""  aria-hidden="true" >
         <div class="modal-dialog modal-lg">
             <div class="modal-content" style="padding:20px; background: #2a3f54" >
                 <div class="form-row">
-                    <h5 class="modal-title mx-auto">INGRESAR CIUDAD</h5>
+                    <h5 class="modal-title mx-auto">INGRESAR PRÉSTAMO</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
+
+                    <div class="col-md-12 ">
+                        <br>
+                        <label for="getSelectTrabajador">TRABAJADORES</label><br>
+                        <select class="custom-select" id="getSelectTrabajador">
+
+                        </select>
+                    </div>
+
                     <div class="col-md-12">
                         <br>
-                        <label for="nombre">NOMBRE</label>
-                        <input type="text" class="form-control custom-input-sm" id="nombre">
+                        <label for="rutTrabajador">RUT</label>
+                        <input type="text" class="form-control custom-input-sm" id="rutTrabajador">
                     </div>
+
+                    <div class="col-md-6">
+                        <br>
+                        <label for="cuotas">MONTO</label>
+                        <input type="number" class="form-control custom-input-sm"  this.value="generarCuotas(this.value);mayus(this.value)" id="monto">
+                    </div>
+
+                    <div class="col-md-6">
+                        <br>
+                        <label for="cuotas">CUOTAS</label>
+                        <input type="number" class="form-control custom-input-sm" onkeyup="this.value=generarCuotas(this.value)" id="cuotas">
+                    </div>
+
+                    <br>
+                    <div id="contenedorCuotasPrestamo">
+
+                    </div>
+
+
 
                 </div>
                 <br>
-                <button type="submit" class="btn btn-success btn-sm" id="btnAgregarCiudad">Guardar</button>
+                <button type="submit" class="btn btn-success btn-sm" id="btnAgregarPrestamo">Guardar</button>
             </div>
         </div>
     </div>
-    <!-- /Modal de crear -->
+    <!-- Modal de crear préstamo -->
+
+
+
+
+
+
+
+
+
+
+    <!-- Modal editar préstamo -->
+    <div id="modalEditarPrestamoTrabajador" class="modal fade bd-example-modal-xl" tabindex="-1" style="width:100%" role="dialog" aria-labelledby=""  aria-hidden="true" >
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content" style="padding:20px; background: #2a3f54" >
+                <div class="form-row">
+                    <h5 class="modal-title mx-auto">PRÉSTAMO</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+
+                    <div class="col-md-12 ">
+                        <br>
+                        <label for="idTrabajador2">TRABAJADOR</label><br>
+                        <input type="text" class="form-control custom-input-sm" id="idTrabajador2" disabled style="color:#000">
+                    </div>
+
+                    <div class="col-md-12">
+                        <br>
+                        <label for="rutTrabajador2">RUT</label>
+                        <input type="text" class="form-control custom-input-sm" id="rutTrabajador2" disabled style="color:#000">
+                    </div>
+
+                    <div class="col-md-6">
+                        <br>
+                        <label for="monto2">MONTO</label>
+                        <input type="number" class="form-control custom-input-sm"  this.value="generarCuotas(this.value);mayus(this.value)" id="monto2" disabled style="color:#000">
+                    </div>
+
+                    <div class="col-md-6">
+                        <br>
+                        <label for="cuotas2">CUOTAS</label>
+                        <input type="number" class="form-control custom-input-sm" onkeyup="this.value=generarCuotas(this.value)" id="cuotas2" disabled style="color:#000">
+                    </div>
+                    <label id="labelPrestamo" style="display:none"></label>
+
+                    <br>
+                    <div id="contenedorCuotasPrestamoEditar">
+
+                    </div>
+
+
+
+                </div>
+                <br>
+                <button type="submit" class="btn btn-success btn-sm" id="btnEditarPrestamo">Guardar</button>
+            </div>
+        </div>
+    </div>
+    <!-- Modal de editar préstamo -->
 
     <label id="permisoExportarTrabajadores" style="display:none">no</label>
     <label id="permisoEditarTrabajadores" style="display:none">no</label>
@@ -172,20 +264,49 @@ if($usuario[0]->atr_activo == "1") { ?>
 
     <script>
         $(document).ready(function() {
+          getSelectTrabajador();
           var exportarTrabajador = "no", editarTrabajador = "no";
           <?php if( $view_exportarPrestamo == 1 ){  ?>
-              exportar = "si";
+              exportarTrabajador = "si";
               $("#permisoExportarTrabajadores").text("si");
           <?php } ?>
           <?php if( $view_editarPrestamo == 1 ){  ?>
-              editar = "si";
+              editarTrabajador = "si";
               $("#permisoEditarTrabajadores").text("si");
           <?php } ?>
           cargarTablaPrestamoTrabajadores(editarTrabajador,exportarTrabajador);
         });
+
+        $("#getSelectTrabajador").change(function (e){
+          completarRUT();
+        });
+
+        $("body").on("click", "#btnAgregarPrestamo", function(e) {
+             e.preventDefault();
+             agregarPrestamo();
+         });
+
+         $("body").on("click", "#btnGetModalDetallePrestamoTrabajador", function(e) {
+              e.preventDefault();
+              var id = $(this).parent().parent().children()[0];
+              var rut = $(this).parent().parent().children()[1];
+              var nombre = $(this).parent().parent().children()[2];
+              var cuotas = $(this).parent().parent().children()[4];
+              var montoTotal = $(this).parent().parent().children()[5];
+              getDetallePrestamo(  $(id).text() , $(rut).text(), $(nombre).text(), $(cuotas).text(), $(montoTotal).text()  );
+          });
+
+
+
+          $("body").on("click", "#btnEditarPrestamo", function(e) {
+               e.preventDefault();
+               editarDetallePrestamo();
+           });
+
+
     </script>
 
-  <?php } else{ header("Location: http://10.10.11.240/RRHH-FIRMA/"); } ?>
+  <?php } else{ header("Location: http://localhost/RRHH-FIRMA/"); } ?>
 
     </body>
   </html>

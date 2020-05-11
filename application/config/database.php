@@ -1,13 +1,18 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
+
+
+
 $active_group = 'default';
 $query_builder = TRUE;
+
+
 
 // DEVELOPER
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => '10.10.11.240',
+	'hostname' => 'localhost',
 	'username' => 'root',
 	'password' => 'almendra',
 	'database' => 'fa_rrhh',

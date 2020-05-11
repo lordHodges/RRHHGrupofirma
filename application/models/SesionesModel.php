@@ -231,6 +231,8 @@ class SesionesModel extends CI_Model {
     }
 
     public function buscarUsuario($correo) {
+      $this->load->database('firmaAbogados');
+
       $this->db->select("u.cp_usuario, u.atr_nombre, u.cf_perfil, u.atr_clave, u.atr_activo, u.atr_correo");
       $this->db->from("fa_usuario u");
       $this->db->where("u.atr_correo", $correo);

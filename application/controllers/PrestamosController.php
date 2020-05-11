@@ -43,6 +43,61 @@ class PrestamosController extends CI_Controller {
 	}
 
 
+	public function obtenerRutTrabajador(){
+
+		$idTrabajador = $this->input->post("idTrabajador");
+
+		$resultado = $this->PrestamosModel->obtenerRutTrabajador($idTrabajador);
+		echo json_encode( $resultado) ;
+	}
+
+
+	public function addPrestamo(){
+		$montoTotal = $this->input->post("montoTotal");
+		$totalCuotas = $this->input->post("totalCuotas");
+		$idTrabajador = $this->input->post("idTrabajador");
+
+		$resultado = $this->PrestamosModel->addPrestamo($montoTotal,$totalCuotas,$idTrabajador);
+		echo json_encode( $resultado) ;
+	}
+
+	public function addDetallePrestamo(){
+		$idTrabajador = $this->input->post("idTrabajador");
+		$numCuota = $this->input->post("numCuota");
+		$montoDetalle = $this->input->post("montoDetalle");
+		$fechaDetalle = $this->input->post("fechaDetalle");
+		$cfPrestamo = $this->input->post("cfPrestamo");
+
+
+
+		$resultado = $this->PrestamosModel->addDetallePrestamo($idTrabajador,$numCuota,$montoDetalle,$fechaDetalle,$cfPrestamo);
+		echo json_encode( $resultado) ;
+	}
+
+
+	public function getDetallePrestamo(){
+		$idPrestamo = $this->input->post("idPrestamo");
+
+		$resultado = $this->PrestamosModel->getDetallePrestamo($idPrestamo);
+		echo json_encode( $resultado) ;
+	}
+
+
+	public function editarDetalleDePrestamo(){
+		$idPrestamo = $this->input->post("idPrestamo");
+		$numCuota = $this->input->post("numCuota");
+		$montoCuota = $this->input->post("montoCuota");
+		$fechaPago = $this->input->post("fechaPago");
+
+		$resultado = $this->PrestamosModel->editarDetalleDePrestamo($idPrestamo,$numCuota,$montoCuota,$fechaPago);
+		echo json_encode( $resultado) ;
+	}
+
+
+
+
+
+
 
 
 

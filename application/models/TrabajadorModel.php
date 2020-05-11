@@ -1,5 +1,7 @@
 <?php
 
+
+
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class TrabajadorModel extends CI_Model {
@@ -7,6 +9,12 @@ class TrabajadorModel extends CI_Model {
     public function __construct() {
         parent::__construct();
     }
+
+
+
+
+
+
 
     function getTrabajadores(){
         $this->db->select("t.cp_trabajador, t.atr_nombres, t.atr_apellidos, t.cf_cargo");

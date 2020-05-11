@@ -10,16 +10,26 @@ $route['cerrarSesion'] = 'SesionesController/cerrarSesion';
 
 $route['editarMiPerfil'] = 'SesionesController/editarMiPerfil';
 
-
-
 $route['getPermisosUsuario'] = 'SesionesController/getPermisosUsuario';
 $route['getListadoPermisosExistentes'] = 'SesionesController/getListadoPermisosExistentes';
 $route['cargarUsuariosConPerfil'] = 'SesionesController/cargarUsuariosConPerfil';
 $route['detallePermisosUsuario'] = 'SesionesController/detallePermisosUsuario';
 
+// PERMISOS
+$route['getExistenciasPorModulo'] = 'PermisosController/getExistenciasPorModulo';
+$route['getModulos'] = 'PermisosController/getModulos';
+
+
+
 // PRÉSTAMOS
 $route['inicioPrestamos'] = 'PrestamosController/inicioPrestamos';
 $route['getListadoPrestamosTrabajador'] = 'PrestamosController/getListadoPrestamosTrabajador';
+$route['obtenerRutTrabajador'] = 'PrestamosController/obtenerRutTrabajador';
+$route['addPrestamo'] = 'PrestamosController/addPrestamo';
+$route['addDetallePrestamo'] = 'PrestamosController/addDetallePrestamo';
+$route['getDetallePrestamo'] = 'PrestamosController/getDetallePrestamo';
+$route['editarDetalleDePrestamo'] = 'PrestamosController/editarDetalleDePrestamo';
+
 
 
 

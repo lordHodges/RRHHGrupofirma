@@ -1,4 +1,66 @@
-var base_url = 'http://10.10.11.240/RRHH-FIRMA/index.php/';
+var base_url = 'http://localhost/RRHH-FIRMA/index.php/';
+
+
+
+function getExistenciasPorModulo(){
+  var url = base_url+'getModulos';
+  var fila = '';
+  var contadorDeCantidadPermisos = 0;
+  $("#contenerdorParaPermisos").empty();
+
+  $.getJSON(url, function (result) {
+    fila += '<div class="row">';
+
+      $.each(result, function (i, m) {
+        fila += '<div class="x_panel col-md-6" style="background-color:#f7f7f7; border:none">';
+        fila += '<h6>'+m.atr_nombre+'</h6>';
+
+        $.ajax({
+            url: 'getExistenciasPorModulo',
+            type: 'POST',
+            dataType: 'json',
+            data: { "modulo":m.cp_modulo}
+        }).then(function (permisos) {
+          fila += '<div class="x_content">';
+          fila += '<ul>';
+          $.each(permisos.msg, function (j, o) {
+            contadorDeCantidadPermisos = contadorDeCantidadPermisos + 1;
+            fila += '<li>HELLO</li>';
+          });
+          fila += '</ul>';
+        });
+        fila += '</div>';
+      });
+      fila += '</div>';
+
+      $("#contenerdorParaPermisos").append(fila);
+
+  });
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 function getSelectPerfiles(){
   var url = base_url+'getPerfiles';
@@ -33,7 +95,7 @@ function getDetallePermisosUsuario(){
 
   $.getJSON(url2, function (result) {
       $.each(result, function (i, o) {
-        
+
       });
 
       $.getJSON(url, function (result) {
@@ -54,7 +116,7 @@ function cargarTablaPerfiles(){
   var table = $('#tabla_perfiles').DataTable();
   table.destroy();
 
-  btnAcciones = '<a style="display:inline" href="http://10.10.11.240/RRHH-FIRMA/index.php/inicioPermisosPerfil" type="button" id="btnVerPermisos" class="btn btn-info btn-sm"><i class="fa fa-shield"></i></a>';
+  btnAcciones = '<a style="display:inline" href="http://localhost/RRHH-FIRMA/index.php/inicioPermisosPerfil" type="button" id="btnVerPermisos" class="btn btn-info btn-sm"><i class="fa fa-shield"></i></a>';
 
   $('.dataTables-perfiles').DataTable({
     "autoWidth": false,
@@ -88,7 +150,7 @@ function cargarTablaPerfiles(){
             }
         },
         "ajax": {
-            url: "http://10.10.11.240/RRHH-FIRMA/index.php/getPerfilesTabla",
+            url: "http://localhost/RRHH-FIRMA/index.php/getPerfilesTabla",
             type: 'GET'
         },
         "columnDefs": [{
@@ -109,7 +171,7 @@ function cargarTablaUsuarios(){
   var table = $('#tabla_usuario').DataTable();
   table.destroy();
 
-  var btnAcciones = '<a style="display:inline" href="http://10.10.11.240/RRHH-FIRMA/index.php/inicioPermisosUsuario" type="button" id="btnVerPermisos" class="btn btn-info btn-sm"><i class="fa fa-shield"></i></a>';
+  var btnAcciones = '<a style="display:inline" href="http://localhost/RRHH-FIRMA/index.php/inicioPermisosUsuario" type="button" id="btnVerPermisos" class="btn btn-info btn-sm"><i class="fa fa-shield"></i></a>';
 
     $('.dataTables-usuarios').DataTable({
         "autoWidth": false,
@@ -142,7 +204,7 @@ function cargarTablaUsuarios(){
               }
           },
           "ajax": {
-              url: "http://10.10.11.240/RRHH-FIRMA/index.php/getListadoUsuarios",
+              url: "http://localhost/RRHH-FIRMA/index.php/getListadoUsuarios",
               type: 'GET'
           },
           "columnDefs": [{
