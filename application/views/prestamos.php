@@ -205,7 +205,7 @@ if($usuario[0]->atr_activo == "1") { ?>
                     <div class="col-md-6">
                         <br>
                         <label for="monto2">MONTO</label>
-                        <input type="number" class="form-control custom-input-sm"  this.value="generarCuotas(this.value);mayus(this.value)" id="monto2" disabled style="color:#000">
+                        <input type="text" class="form-control custom-input-sm"  this.value="generarCuotas(this.value);mayus(this.value)" id="monto2" disabled style="color:#000">
                     </div>
 
                     <div class="col-md-6">
@@ -297,6 +297,7 @@ if($usuario[0]->atr_activo == "1") { ?>
               var nombre = $(this).parent().parent().children()[2];
               var cuotas = $(this).parent().parent().children()[4];
               var montoTotal = $(this).parent().parent().children()[5];
+              
               getDetallePrestamo(  $(id).text() , $(rut).text(), $(nombre).text(), $(cuotas).text(), $(montoTotal).text()  );
           });
 

@@ -265,26 +265,53 @@ function agregarPrestamo(){
   }).then(function (msg) {
     var cfPrestamo = msg;
 
-    for (var i = 1; i <= cuotas; i++) {
-      var variableNumCuota = '#numCuotaDetalle_'+i;
-      var idNumCuotaDetalle = $(variableNumCuota).val();
-
-      var variableMonto = '#montoCuotaDetalle_'+i;
-      var idMontoDetalle = $(variableMonto).val();
-
-      var variableFecha = '#fechaPagoDetalle_'+i;
-      var idFechaDetalle = $(variableFecha).val();
-      $.ajax({
-          url: 'addDetallePrestamo',
-          type: 'POST',
-          dataType: 'json',
-          data: {"idTrabajador": idTrabajador, "numCuota":idNumCuotaDetalle, "montoDetalle":idMontoDetalle, "fechaDetalle":idFechaDetalle, "cfPrestamo":cfPrestamo}
-      }).then(function (msg2) {
-          if (msg2 == false) {
-            exit();
-          }
-      });
+    var fechasCompletas = 1;
+    for (var j = 1; j <= cuotas; j++) {
+      if (true) {
+        var fecha = '#fechaPagoDetalle_'+j;
+        var idFechaDetalle2 = $(fecha).val();
+        if (idFechaDetalle2 == null || idFechaDetalle2 == "") {
+          fechasCompletas = 0;
+        }
+      }
     }
+
+    if (fechasCompletas == 1) {
+      for (var i = 1; i <= cuotas; i++) {
+        var variableNumCuota = '#numCuotaDetalle_'+i;
+        var idNumCuotaDetalle = $(variableNumCuota).val();
+
+        var variableMonto = '#montoCuotaDetalle_'+i;
+        var idMontoDetalle = $(variableMonto).val();
+
+        var variableFecha = '#fechaPagoDetalle_'+i;
+        var idFechaDetalle = $(variableFecha).val();
+        $.ajax({
+            url: 'addDetallePrestamo',
+            type: 'POST',
+            dataType: 'json',
+            data: {"idTrabajador": idTrabajador, "numCuota":idNumCuotaDetalle, "montoDetalle":idMontoDetalle, "fechaDetalle":idFechaDetalle, "cfPrestamo":cfPrestamo}
+        }).then(function (msg2) {
+            if (msg2 == false) {
+              exit();
+            }
+        });
+      }
+      toastr.success("Ingreso exitoso");
+      $('#modalCrearPrestamo').modal('hide');
+      var permisoEditar = $("#permisoEditarTrabajadores").text();
+      var permisoExportar = $("#permisoExportarTrabajadores").text();
+      cargarTablaPrestamoTrabajadores(permisoEditar,permisoExportar);
+
+
+    }
+    else{
+      toastr.error("Alguna de las fechas no se ha completado");
+    }
+
+
+
+
 
 
 
