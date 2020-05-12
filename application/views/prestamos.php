@@ -31,9 +31,9 @@ if($usuario[0]->atr_activo == "1") { ?>
                         <a class="nav-link active" id="trabajadores-tab" onclick="seleccionTabs('trabajadores-tab')" data-toggle="tab" href="#TrabajadoresContent" role="tab" aria-controls="trabajadores" aria-selected="false">Trabajadores</a>
                       </li>
 
-                      <li class="nav-item">
+                      <!-- <li class="nav-item">
                         <a class="nav-link" id="empresas-tab" onclick="seleccionTabs('empresas-tab')" data-toggle="tab" href="#empresasContent" role="tab" aria-controls="empresas" aria-selected="false">Entre empresas</a>
-                      </li>
+                      </li> -->
 
                   </ul>
 
