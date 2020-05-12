@@ -23,13 +23,14 @@ class PrestamosController extends CI_Controller {
 		$books = $this->PrestamosModel->getListadoPrestamosTrabajador();
 		$data = array();
 		foreach ($books->result() as $r) {
+			$montoTotal = "$".$r->atr_montoTotal;
 				$data[] = array(
 					$r->cp_prestamo,
 					$r->atr_rut,
 					$r->atr_nombres." ".$r->atr_apellidos,
 					$r->atr_fechaPrestamo,
 					$r->atr_cantidadCuotas,
-					$r->atr_montoTotal
+					$montoTotal
 				);
 		}
 		$output = array(
@@ -102,37 +103,6 @@ class PrestamosController extends CI_Controller {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	public function addSucursal(){
-	$nombre = $this->input->post("nombre");
-
-	$resultado = $this->MantenedoresModel->addSucursal($nombre);
-	echo json_encode(array("msg" => $resultado));
-
-	}
 
 
 

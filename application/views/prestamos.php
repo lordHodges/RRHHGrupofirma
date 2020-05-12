@@ -28,11 +28,11 @@ if($usuario[0]->atr_activo == "1") { ?>
                   <ul class="nav nav-tabs bar_tabs" id="myTab" role="tablist">
 
                       <li class="nav-item">
-                        <a class="nav-link active" id="trabajadores-tab" data-toggle="tab" href="#trabajadores" role="tab" aria-controls="trabajadores" aria-selected="false">Trabajadores</a>
+                        <a class="nav-link active" id="trabajadores-tab" onclick="seleccionTabs('trabajadores-tab')" data-toggle="tab" href="#TrabajadoresContent" role="tab" aria-controls="trabajadores" aria-selected="false">Trabajadores</a>
                       </li>
 
                       <li class="nav-item">
-                        <a class="nav-link" id="empresas-tab" data-toggle="tab" href="#empresas" role="tab" aria-controls="empresas" aria-selected="false">Entre empresas</a>
+                        <a class="nav-link" id="empresas-tab" onclick="seleccionTabs('empresas-tab')" data-toggle="tab" href="#empresasContent" role="tab" aria-controls="empresas" aria-selected="false">Entre empresas</a>
                       </li>
 
                   </ul>
@@ -43,7 +43,7 @@ if($usuario[0]->atr_activo == "1") { ?>
 
 
                       <!-- INICIO TAB PERFILES -->
-                      <div class="tab-pane fade show active" id="perfiles" role="tabpanel" aria-labelledby="perfiles-tab">
+                      <div class="tab-panel fade show active" id="TrabajadoresContent" role="tabpanel" aria-labelledby="trabajadores-tab">
 
                         <?php if ( $view_crearPrestamo == 1 ) {  ?>
                           <button type="button" class="btn modidev-btn btn-sm" data-toggle="modal" data-target="#modalCrearPrestamo" style="margin-bottom:20px; margin-top:20px;">INGRESAR PRÉSTAMO</button>
@@ -75,7 +75,7 @@ if($usuario[0]->atr_activo == "1") { ?>
 
 
                       <!-- INICIO TAB USUARIOS -->
-                      <div class="tab-pane fade" id="empresas" role="tabpanel" aria-labelledby="usuarios-tab">
+                      <div class="tab-panel fade" id="empresasContent" role="tabpanel" aria-labelledby="empresas-tab">
 
                         <table id="tabla_usuario" class="table table-striped table-bordered table-hover dataTables-usuarios" style="margin-top:20px;">
                             <thead >
@@ -264,6 +264,10 @@ if($usuario[0]->atr_activo == "1") { ?>
 
     <script>
         $(document).ready(function() {
+          var elemento = document.getElementById('trabajadores-tab');
+          elemento.style.color = "#fafafa";
+          elemento.style.backgroundColor  = "#2a3f54";
+
           getSelectTrabajador();
           var exportarTrabajador = "no", editarTrabajador = "no";
           <?php if( $view_exportarPrestamo == 1 ){  ?>

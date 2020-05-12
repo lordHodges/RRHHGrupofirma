@@ -412,3 +412,24 @@ function editarDetallePrestamo(){
   toastr.success("Modificación exitosa");
   $('#modalEditarPrestamoTrabajador').modal('hide');
 }
+
+
+
+
+
+
+
+
+
+
+
+function seleccionTabs(nombre){
+  var elemento = document.getElementById(nombre);
+  elemento.style.color = "#fafafa";
+  elemento.style.backgroundColor  = "#2a3f54";
+  if(nombre == "trabajadores-tab"){
+    document.getElementById('empresas-tab').style = "";
+  }else{
+    document.getElementById('trabajadores-tab').style = "";
+  }
+}

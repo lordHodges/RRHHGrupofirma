@@ -11,19 +11,37 @@ function getExistenciasPorModulo(){
   $.getJSON(url, function (result) {
     fila += '<div class="row">';
 
-      $.each(result, function (i, m) {
-        fila += '<div class="x_panel col-md-6" style="background-color:#f7f7f7; border:none">';
-        fila += '<h6>'+m.atr_nombre+'</h6>';
+
 
         $.ajax({
             url: 'getExistenciasPorModulo',
             type: 'POST',
             dataType: 'json',
             data: { "modulo":m.cp_modulo}
-        }).then(function (permisos) {
+        }).then(function (result) {
+
+          $.each(result.arrayModulos, function (i, m) {
+            fila += '<div class="x_panel col-md-6" style="background-color:#f7f7f7; border:none">';
+            fila += '<h6>'+m.atr_nombre+'</h6>';
+          });
+
+
+
+        });
+
+
+
+
+
+
+
+
+
+
+
           fila += '<div class="x_content">';
           fila += '<ul>';
-          $.each(permisos.msg, function (j, o) {
+          $.each(permisos.msg, function (i, o) {
             contadorDeCantidadPermisos = contadorDeCantidadPermisos + 1;
             fila += '<li>HELLO</li>';
           });
