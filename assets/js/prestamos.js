@@ -1,4 +1,4 @@
-var base_url = 'http://localhost/RRHH-FIRMA/index.php/';
+var base_url = 'http://localhost/GRUPOFIRMA/index.php/';
 
 
 function cargarTablaPrestamoTrabajadores(permisoEditar,permisoExportar){
@@ -44,7 +44,7 @@ function cargarTablaPrestamoTrabajadores(permisoEditar,permisoExportar){
               }
           },
           "ajax": {
-              url: "http://localhost/RRHH-FIRMA/index.php/getListadoPrestamosTrabajador",
+              url: "http://localhost/GRUPOFIRMA/index.php/getListadoPrestamosTrabajador",
               type: 'GET'
           },
           "columnDefs": [{
@@ -130,7 +130,7 @@ function cargarTablaPrestamoTrabajadores(permisoEditar,permisoExportar){
               }
           },
           "ajax": {
-              url: "http://localhost/RRHH-FIRMA/index.php/getListadoPrestamosTrabajador",
+              url: "http://localhost/GRUPOFIRMA/index.php/getListadoPrestamosTrabajador",
               type: 'GET'
           },
           "columnDefs": [{

@@ -1,4 +1,4 @@
-var base_url = 'http://localhost/RRHH-FIRMA/index.php/';
+var base_url = 'http://localhost/GRUPOFIRMA/index.php/';
 
 function cargarTablaSucursales(permisoExportar){
   var table = $('#tabla_sucursal').DataTable();
@@ -36,7 +36,7 @@ function cargarTablaSucursales(permisoExportar){
               }
           },
           "ajax": {
-              url: "http://localhost/RRHH-FIRMA/index.php/getListadoSucursales",
+              url: "http://localhost/GRUPOFIRMA/index.php/getListadoSucursales",
               type: 'GET'
           },
           "columnDefs": [{
@@ -119,7 +119,7 @@ function cargarTablaSucursales(permisoExportar){
               }
           },
           "ajax": {
-              url: "http://localhost/RRHH-FIRMA/index.php/getListadoSucursales",
+              url: "http://localhost/GRUPOFIRMA/index.php/getListadoSucursales",
               type: 'GET'
           },
           "columnDefs": [{
@@ -170,7 +170,7 @@ function cargarTablaPrevision(permisoEditar,permisoExportar){
             }
         },
         "ajax": {
-            url: "http://localhost/RRHH-FIRMA/index.php/getListadoPrevisiones",
+            url: "http://localhost/GRUPOFIRMA/index.php/getListadoPrevisiones",
             type: 'GET'
         },
         "columnDefs": [{
@@ -268,7 +268,7 @@ function cargarTablaNacionalidades(permisoEditar,permisoExportar){
               }
           },
           "ajax": {
-              url: "http://localhost/RRHH-FIRMA/index.php/getListadoNacionalidades",
+              url: "http://localhost/GRUPOFIRMA/index.php/getListadoNacionalidades",
               type: 'GET'
           },
           "columnDefs": [{
@@ -353,7 +353,7 @@ function cargarTablaNacionalidades(permisoEditar,permisoExportar){
               }
           },
           "ajax": {
-              url: "http://localhost/RRHH-FIRMA/index.php/getListadoNacionalidades",
+              url: "http://localhost/GRUPOFIRMA/index.php/getListadoNacionalidades",
               type: 'GET'
           },
           "columnDefs": [{
@@ -410,7 +410,7 @@ function cargarTablaEstadosContrato(permisoEditar,permisoExportar){
               }
           },
           "ajax": {
-              url: "http://localhost/RRHH-FIRMA/index.php/getEstadoContrato",
+              url: "http://localhost/GRUPOFIRMA/index.php/getEstadoContrato",
               type: 'GET'
           },
           "columnDefs": [{
@@ -496,7 +496,7 @@ function cargarTablaEstadosContrato(permisoEditar,permisoExportar){
               }
           },
           "ajax": {
-              url: "http://localhost/RRHH-FIRMA/index.php/getEstadoContrato",
+              url: "http://localhost/GRUPOFIRMA/index.php/getEstadoContrato",
               type: 'GET'
           },
           "columnDefs": [{
@@ -547,7 +547,7 @@ function cargarTablaEstadosCiviles(permisoExportar){
               }
           },
           "ajax": {
-              url: "http://localhost/RRHH-FIRMA/index.php/getListadoEstadosCiviles",
+              url: "http://localhost/GRUPOFIRMA/index.php/getListadoEstadosCiviles",
               type: 'GET'
           },
           "columnDefs": [{
@@ -631,7 +631,7 @@ function cargarTablaEstadosCiviles(permisoExportar){
               }
           },
           "ajax": {
-              url: "http://localhost/RRHH-FIRMA/index.php/getListadoEstadosCiviles",
+              url: "http://localhost/GRUPOFIRMA/index.php/getListadoEstadosCiviles",
               type: 'GET'
           },
           "columnDefs": [{
@@ -684,7 +684,7 @@ function cargarTablaCiudades(exportar){
               }
           },
           "ajax": {
-              url: "http://localhost/RRHH-FIRMA/index.php/getListadoCiudades",
+              url: "http://localhost/GRUPOFIRMA/index.php/getListadoCiudades",
               type: 'GET'
           },
           "columnDefs": [{
@@ -756,7 +756,7 @@ function cargarTablaCiudades(exportar){
                 }
             },
             "ajax": {
-                url: "http://localhost/RRHH-FIRMA/index.php/getListadoCiudades",
+                url: "http://localhost/GRUPOFIRMA/index.php/getListadoCiudades",
                 type: 'GET'
             },
             "columnDefs": [{
@@ -809,7 +809,7 @@ function cargarTablaEmpresa(permisoEditar, exportar){
               }
           },
           "ajax": {
-              url: "http://localhost/RRHH-FIRMA/index.php/getListadoEmpresa",
+              url: "http://localhost/GRUPOFIRMA/index.php/getListadoEmpresa",
               type: 'GET'
           },
           "columnDefs": [{
@@ -893,7 +893,7 @@ function cargarTablaEmpresa(permisoEditar, exportar){
               }
           },
           "ajax": {
-              url: "http://localhost/RRHH-FIRMA/index.php/getListadoEmpresa",
+              url: "http://localhost/GRUPOFIRMA/index.php/getListadoEmpresa",
               type: 'GET'
           },
           "columnDefs": [{
@@ -950,7 +950,7 @@ function cargarTablaAFP(permisoEditar, permisoExportar){
               }
           },
           "ajax": {
-              url: "http://localhost/RRHH-FIRMA/index.php/getListadoAFP",
+              url: "http://localhost/GRUPOFIRMA/index.php/getListadoAFP",
               type: 'GET'
           },
           "columnDefs": [{
@@ -1020,7 +1020,7 @@ function cargarTablaAFP(permisoEditar, permisoExportar){
               }
           },
           "ajax": {
-              url: "http://localhost/RRHH-FIRMA/index.php/getListadoAFP",
+              url: "http://localhost/GRUPOFIRMA/index.php/getListadoAFP",
               type: 'GET'
           },
           "columnDefs": [{

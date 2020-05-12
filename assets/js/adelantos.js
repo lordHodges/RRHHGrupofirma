@@ -1,4 +1,4 @@
-var base_url = 'http://localhost/RRHH-FIRMA/index.php/';
+var base_url = 'http://localhost/GRUPOFIRMA/index.php/';
 
 function cargarTablaAdelantos(permisoEditar,permisoExportar){
   var table = $('#tabla_adelantos').DataTable();
@@ -43,7 +43,7 @@ function cargarTablaAdelantos(permisoEditar,permisoExportar){
               }
           },
           "ajax": {
-              url: "http://localhost/RRHH-FIRMA/index.php/getListadoAdelantos",
+              url: "http://localhost/GRUPOFIRMA/index.php/getListadoAdelantos",
               type: 'GET'
           },
           "columnDefs": [{
@@ -129,7 +129,7 @@ function cargarTablaAdelantos(permisoEditar,permisoExportar){
               }
           },
           "ajax": {
-              url: "http://localhost/RRHH-FIRMA/index.php/getListadoAdelantos",
+              url: "http://localhost/GRUPOFIRMA/index.php/getListadoAdelantos",
               type: 'GET'
           },
           "columnDefs": [{

@@ -121,7 +121,7 @@ if($usuario[0]->atr_activo == "1") { ?>
                     }
                 },
                 "ajax": {
-                    url: "http://localhost/RRHH-FIRMA/index.php/getlistadecargos",
+                    url: "http://localhost/GRUPOFIRMA/index.php/getlistadecargos",
                     type: 'GET'
                 },
                 "columnDefs": [{
@@ -148,13 +148,13 @@ if($usuario[0]->atr_activo == "1") { ?>
            e.preventDefault();
            var cargo = $(this).parent().parent().children()[0];
            var idCargo = $(cargo).text()
-           var url = 'http://localhost/RRHH-FIRMA/index.php/docPerfilesOcupacionales?cargo='+idCargo;
+           var url = 'http://localhost/GRUPOFIRMA/index.php/docPerfilesOcupacionales?cargo='+idCargo;
            window.open(url, '_blank');
        });
 
   </script>
 
-<?php } else{ header("Location: http://localhost/RRHH-FIRMA/"); } ?>
+<?php } else{ header("Location: http://localhost/GRUPOFIRMA/"); } ?>
 
 </body>
 </html>

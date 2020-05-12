@@ -58,8 +58,8 @@ class LiquidacionesController extends CI_Controller {
 			//LA VARIABLE $OUT TRAE LOS SIGUIENTES DATOS
 				// file_name   => contrato_wom9.pdf
 				// file_type   => application/pdf
-				// file_path   => C:/xampp/htdocs/RRHH-FIRMA/uploads/
-				// full_path  => C:/xampp/htdocs/RRHH-FIRMA/uploads/contrato_wom9.pdf
+				// file_path   => C:/xampp/htdocs/GRUPOFIRMA/uploads/
+				// full_path  => C:/xampp/htdocs/GRUPOFIRMA/uploads/contrato_wom9.pdf
 				// raw_name   => contrato_wom9
 				// orig_name   => contrato_wom.pdf
 				// client_name   => contrato wom.pdf

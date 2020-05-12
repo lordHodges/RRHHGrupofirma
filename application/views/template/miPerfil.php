@@ -118,7 +118,7 @@ $perfil =  $data['perfil'];
 
 
 
-    <?php } else{ header("Location: http://localhost/RRHH-FIRMA/"); } ?>
+    <?php } else{ header("Location: http://localhost/GRUPOFIRMA/"); } ?>
 
 
   </body>

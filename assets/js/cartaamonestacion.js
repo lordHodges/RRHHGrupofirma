@@ -1,4 +1,4 @@
-var base_url = 'http://localhost/RRHH-FIRMA/index.php/';
+var base_url = 'http://localhost/GRUPOFIRMA/index.php/';
 
 /*************************** TRANSFERENCIAS ****************************/
 
@@ -52,7 +52,7 @@ function cargarTabla(permisoSubir){
             }
         },
         "ajax": {
-            url: "http://localhost/RRHH-FIRMA/index.php/getListadoTrabajadoresContrato",
+            url: "http://localhost/GRUPOFIRMA/index.php/getListadoTrabajadoresContrato",
             type: 'GET'
         },
         "columnDefs": [{
@@ -84,7 +84,7 @@ function getCartasAmonestacionTrabajador(idTrabajador){
 
       fila +='<h5 class="modal-title mx-auto">LISTADO DE CARTAS DE AMONESTACIÓN</h5><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>';
       fila +='<table class="table table-bordered tableInModal" style="margin-top:20px;"> <thead> <tr> <td class="text-center">Carta de amonestación</td> <td class="text-center">Fecha</td> <td class="text-center">Motivo</td> <td class="text-center">Grado</td> <td class="text-center">Descargar</td> </tr> </thead> <tbody>';
-      importarScript("http://localhost/RRHH-FIRMA/assets/js/validaciones.js");
+      importarScript("http://localhost/GRUPOFIRMA/assets/js/validaciones.js");
       $.each(response.msg, function (i, o) {
         arrayFecha =  o.atr_fecha.split("-");
         fecha = arrayFecha[2]+"-"+arrayFecha[1]+"-"+arrayFecha[0];
@@ -100,7 +100,7 @@ function getCartasAmonestacionTrabajador(idTrabajador){
             fila += '<td><a class="btn btn-default btn-sm" href="#"><i class="glyphicon glyphicon-download-alt"></i></a> </td>';
           }
         }else{
-          download = "http://localhost/RRHH-FIRMA/index.php/CartaAmonestacionController/descargarCartaAmonestacion/"+o.cp_cartaAmonestacion;
+          download = "http://localhost/GRUPOFIRMA/index.php/CartaAmonestacionController/descargarCartaAmonestacion/"+o.cp_cartaAmonestacion;
           if (permisoDescargar == "si") {
             fila +='<td> <a class="btn btn-info btn-sm" href="'+download+'" download><i class="glyphicon glyphicon-download-alt"></i></a> </td>';
           }else{
