@@ -4,7 +4,6 @@ $data = $this->session->userdata("datos");
 $usuario =  $data['usuario'];
 $permisos =  $data['permisos'];
 $menu =  $data['menu'];
-
 ?>
 <html lang="en">
   <head>
@@ -46,8 +45,19 @@ $menu =  $data['menu'];
     <!-- SELECT2 -->
     <link href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" rel="stylesheet" />
 
+    <!-- FullCalendar -->
+    <link href="<?php echo base_url() ?>assets/vendors/fullcalendar/packages/core/main.css" rel="stylesheet">
+    <link href="<?php echo base_url() ?>assets/vendors/fullcalendar/packages/daygrid/main.css" rel="stylesheet">
+    <link href="<?php echo base_url() ?>assets/vendors/fullcalendar/packages/list/main.css" rel="stylesheet">
+
+
+
+
+
     <!-- Custom Theme Style -->
     <link href="<?php echo base_url() ?>assets/build/css/custom.min.css" rel="stylesheet">
+
+
 
 
   </head>
@@ -127,6 +137,14 @@ $menu =  $data['menu'];
                             <li>
                               <a href="<?php echo base_url() ?>index.php/inicioGestorAnexos">
                                 <i class="fa fa-file"></i> Generar anexo
+                              </a>
+                            </li>
+                          <?php } ?>
+
+                          <?php  if ( $valueModulo->cf_menu == "11" ) {  ?>
+                            <li>
+                              <a href="<?php echo base_url() ?>index.php/inicioGestorAsistencia">
+                                <i class="fa fa-calendar"></i> Gestor de asistencia
                               </a>
                             </li>
                           <?php } ?>

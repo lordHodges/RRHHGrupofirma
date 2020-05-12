@@ -208,15 +208,15 @@ function agregarTrabajador() {
                document.getElementById("nombres").value = "";
                document.getElementById("apellidos").value = "";
                document.getElementById("direccion").value = "";
-               document.getElementById("getSelectCiudad").value = "";
-               document.getElementById("getSelectCargo").value = "";
-               document.getElementById("getSelectEmpresa").value = "";
-               document.getElementById("getSelectAFP").value = "";
-               document.getElementById("getSelectPrevision").value = "";
-               document.getElementById("getSelectEstadoContrato").value = "";
-               document.getElementById("getSelectCivil").value = "";
-               document.getElementById("getSelectNacionalidad").value = "";
-               document.getElementById("fechaNacimiento").value = "";
+               // document.getElementById("getSelectCiudad").value = "";
+               // document.getElementById("getSelectCargo").value = "";
+               // document.getElementById("getSelectEmpresa").value = "";
+               // document.getElementById("getSelectAFP").value = "";
+               // document.getElementById("getSelectPrevision").value = "";
+               // document.getElementById("getSelectEstadoContrato").value = "";
+               // document.getElementById("getSelectCivil").value = "";
+               // document.getElementById("getSelectNacionalidad").value = "";
+               // document.getElementById("fechaNacimiento").value = "";
 
                $('#myModal').modal('hide');
             } else {

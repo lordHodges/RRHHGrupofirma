@@ -1,0 +1,127 @@
+<?php
+
+defined('BASEPATH') OR exit('No direct script access allowed');
+
+class AsistenciaModel extends CI_Model {
+
+    public function __construct() {
+        parent::__construct();
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    function getListadoPrestamosTrabajador(){
+        $this->db->select(" p.cp_prestamo, p.atr_fechaPrestamo, p.atr_montoTotal, p.atr_cantidadCuotas, t.atr_rut, t.atr_nombres, t.atr_apellidos ");
+        $this->db->from("fa_prestamo p");
+        $this->db->join("fa_trabajador t","t.cp_trabajador = p.cf_trabajador ");
+        $this->db->order_by('p.atr_fechaPrestamo', 'DESC');
+        $resultado =  $this->db->get();
+        return $resultado;
+    }
+
+
+    function obtenerRutTrabajador($idTrabajador){
+        $this->db->select(" t.atr_rut ");
+        $this->db->from("fa_trabajador t");
+        $this->db->where('t.cp_trabajador', $idTrabajador);
+        $resultado =  $this->db->get()->result();
+        return $resultado;
+    }
+
+
+    function addPrestamo($montoTotal,$totalCuotas,$idTrabajador){
+        $fechaActual = date("Y-m-d");
+
+        $dia = date("d");
+        $mes = date("m");
+        $ano = date("Y");
+
+        $fechaActual = $ano."-".$mes."-".$dia;
+
+        $data = array(
+            "atr_montoTotal"      => $montoTotal,
+            "atr_fechaPrestamo"   => $fechaActual,
+            "atr_cantidadCuotas"  => $totalCuotas,
+            "cf_trabajador"       => $idTrabajador
+        );
+        $this->db->insert("fa_prestamo", $data);
+
+        $ultimoId = $this->db->insert_id();
+        return $ultimoId;
+    }
+
+    function addDetallePrestamo($idTrabajador,$numCuota,$montoDetalle,$fechaDetalle, $cfPrestamo){
+
+        $data = array(
+            "atr_numCuota"      => $numCuota,
+            "atr_montoDescontar"   => $montoDetalle,
+            "atr_fechaDescuento"  => $fechaDetalle,
+            "atr_estado"       => '0',
+            "cf_prestamo"       => $cfPrestamo
+        );
+        $resultado = $this->db->insert("fa_detalle_prestamo", $data);
+        return $resultado;
+    }
+
+
+    function getDetallePrestamo($idPrestamo){
+        $this->db->select(" dp.atr_numCuota, dp.atr_montoDescontar, dp.atr_fechaDescuento, dp.atr_estado ");
+        $this->db->from("fa_detalle_prestamo dp");
+        $this->db->where('dp.cf_prestamo', $idPrestamo);
+        $resultado =  $this->db->get()->result();
+        return $resultado;
+    }
+
+
+    function editarDetalleDePrestamo($idPrestamo,$numCuota,$montoCuota,$fechaPago){
+        $data = array(
+            "atr_montoDescontar"    => $montoCuota,
+            "atr_fechaDescuento"    => $fechaPago
+        );
+        $this->db->where('cf_prestamo', $idPrestamo);
+        $this->db->where('atr_numCuota', $numCuota);
+        $resultado =  $this->db->update("fa_detalle_prestamo", $data);
+        if($resultado){
+          return "ok";
+        }else{
+          return "error";
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}

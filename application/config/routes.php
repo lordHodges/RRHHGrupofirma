@@ -21,6 +21,9 @@ $route['getModulos'] = 'PermisosController/getModulos';
 
 
 
+// ASISTENCIA
+$route['inicioGestorAsistencia'] = 'AsistenciaController/inicioAsistencia';
+
 // PRÉSTAMOS
 $route['inicioPrestamos'] = 'PrestamosController/inicioPrestamos';
 $route['getListadoPrestamosTrabajador'] = 'PrestamosController/getListadoPrestamosTrabajador';

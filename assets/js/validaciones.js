@@ -74,11 +74,11 @@ function checkRutOficial(rut) {
     rut.setCustomValidity('');
 
     //bloqueo input, esto se quita en el footer de la vista
-    document.getElementById('rut').disabled = true;
-    document.getElementById('rut').style.color = '#000';
-
-    document.getElementById('rutNuevo').disabled = true;
-    document.getElementById('rutNuevo').style.color = '#000';
+    // document.getElementById('rut').disabled = true;
+    // document.getElementById('rut').style.color = '#000';
+    //
+    // document.getElementById('rutNuevo').disabled = true;
+    // document.getElementById('rutNuevo').style.color = '#000';
 }
 
 // onkeyup="this.value=mayus(this.value)"

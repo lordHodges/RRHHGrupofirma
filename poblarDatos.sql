@@ -170,6 +170,7 @@ INSERT INTO `fa_modulo` (`cp_modulo`, `atr_nombre`) VALUES (NULL, 'Documentos li
 INSERT INTO `fa_modulo` (`cp_modulo`, `atr_nombre`) VALUES (NULL, 'Mantenedor de vehículos'), (NULL, 'Mantenedor de marcas de vehícuos');
 INSERT INTO `fa_modulo` (`cp_modulo`, `atr_nombre`) VALUES (NULL, 'Mantenedor de modelos de vehículos'), (NULL, 'Préstamos');
 INSERT INTO `fa_modulo` (`cp_modulo`, `atr_nombre`) VALUES (NULL, 'Adelantos');
+INSERT INTO `fa_modulo` (`cp_modulo`, `atr_nombre`) VALUES (NULL, 'Gestor de asistencia');
 
 
 
@@ -182,6 +183,7 @@ INSERT INTO `fa_permiso` (`cp_permiso`, `atr_nombre`, `atr_descripcion`) VALUES 
 INSERT INTO `fa_permiso` (`cp_permiso`, `atr_nombre`, `atr_descripcion`) VALUES (NULL, 'Generar PDF', 'Generar documento de perfil ocupacional');
 INSERT INTO `fa_permiso` (`cp_permiso`, `atr_nombre`, `atr_descripcion`) VALUES (NULL, 'Crear', 'Agregar título de antecedente');
 INSERT INTO `fa_permiso` (`cp_permiso`, `atr_nombre`, `atr_descripcion`) VALUES (NULL, 'Cambiar estado', 'Cambiar estado de usuario');
+INSERT INTO `fa_permiso` (`cp_permiso`, `atr_nombre`, `atr_descripcion`) VALUES (NULL, 'Ver calendario', 'Ver calendario');
 
 INSERT INTO `fa_usuario` (`cp_usuario`, `atr_nombre`, `atr_correo`, `atr_clave`,`atr_activo`, `cf_perfil`) VALUES (NULL, 'Administrador', 'administrador@grupofirma.cl', '894b77f805bd94d292574c38c5d628d5', '1', '1');
 
@@ -216,15 +218,16 @@ INSERT INTO `fa_existencia_permiso` (`cp_existencia_permiso`, `cf_modulo`, `cf_p
 INSERT INTO `fa_existencia_permiso` (`cp_existencia_permiso`, `cf_modulo`, `cf_permiso`) VALUES (NULL, '29', '1'), (NULL, '29', '2'), (NULL, '29', '4'), (NULL, '29', '5');
 INSERT INTO `fa_existencia_permiso` (`cp_existencia_permiso`, `cf_modulo`, `cf_permiso`) VALUES (NULL, '30', '1'), (NULL, '30', '2'), (NULL, '30', '4'), (NULL, '30', '5');
 INSERT INTO `fa_existencia_permiso` (`cp_existencia_permiso`, `cf_modulo`, `cf_permiso`) VALUES (NULL, '32', '1'), (NULL, '32', '2'), (NULL, '32', '5'), (NULL, '32', '7');
-
-
-
 INSERT INTO `fa_existencia_permiso` (`cp_existencia_permiso`, `cf_modulo`, `cf_permiso`) VALUES (NULL, '31', '1'), (NULL, '31', '4'), (NULL, '31', '5'), (NULL, '31', '2');
+
+
+INSERT INTO `fa_existencia_permiso` (`cp_existencia_permiso`, `cf_modulo`, `cf_permiso`) VALUES (NULL, '33', '25');
 
 
 INSERT INTO `fa_menu` (`cp_menu`, `atr_nombre`) VALUES (NULL, 'Dashboard'), (NULL, 'Trabajadores'), (NULL, 'Historial de trabajadores'), (NULL, 'Generar contrato'), (NULL, 'Generar anexo');
 INSERT INTO `fa_menu` (`cp_menu`, `atr_nombre`) VALUES (NULL, 'Permisos'), (NULL, 'Documentos'), (NULL, 'Perfiles ocupacionales'), (NULL, 'Mantenedores');
 INSERT INTO `fa_menu` (`cp_menu`, `atr_nombre`) VALUES (NULL, 'Pagos');
+INSERT INTO `fa_menu` (`cp_menu`, `atr_nombre`) VALUES (NULL, 'Gestor de asistencia');
 
 
 
@@ -255,6 +258,9 @@ INSERT INTO `fa_permiso_perfil` (`cp_permiso_perfil`, `cf_existencia_permiso`, `
 INSERT INTO `fa_permiso_perfil` (`cp_permiso_perfil`, `cf_existencia_permiso`, `cf_perfil`) VALUES (NULL, '98', '1'), (NULL, '99', '1'), (NULL, '100', '1'), (NULL, '101', '1');
 INSERT INTO `fa_permiso_perfil` (`cp_permiso_perfil`, `cf_existencia_permiso`, `cf_perfil`) VALUES (NULL, '102', '1'), (NULL, '103', '1'), (NULL, '104', '1'), (NULL, '105', '1');
 INSERT INTO `fa_permiso_perfil` (`cp_permiso_perfil`, `cf_existencia_permiso`, `cf_perfil`) VALUES (NULL, '106', '1'), (NULL, '107', '1'), (NULL, '108', '1'), (NULL, '109', '1');
+
+
+INSERT INTO `fa_permiso_perfil` (`cp_permiso_perfil`, `cf_existencia_permiso`, `cf_perfil`) VALUES (NULL, '110', '1');
 
 
 INSERT INTO `fa_permiso_perfil` (`cp_permiso_perfil`, `cf_existencia_permiso`, `cf_perfil`) VALUES (NULL, '76', '3'), (NULL, '77', '3'), (NULL, '78', '3');
@@ -311,7 +317,7 @@ INSERT INTO `fa_menu_perfil` (`cp_menu_perfil`, `cf_perfil`, `cf_menu`) VALUES (
 INSERT INTO `fa_menu_perfil` (`cp_menu_perfil`, `cf_perfil`, `cf_menu`) VALUES (NULL, '5', '1'), (NULL, '5', '2'), (NULL, '5', '8'), (NULL, '5', '9');
 
 INSERT INTO `fa_menu_perfil` (`cp_menu_perfil`, `cf_perfil`, `cf_menu`) VALUES (NULL, '1', '10'), (NULL, '4', '10');
-
+INSERT INTO `fa_menu_perfil` (`cp_menu_perfil`, `cf_perfil`, `cf_menu`) VALUES (NULL, '1', '11');
 
 
 

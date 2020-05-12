@@ -49,7 +49,7 @@ class TrabajadorController extends CI_Controller {
 		$fechaNacimiento = date('d-m-Y', $time); //formateo de fecha
 
 		$resultado = $this->TrabajadorModel->addTrabajador($rut,$nombres,$apellidos,$direccion,$fechaNacimiento,$ciudad,$sucursal,$cargo,$empresa,$afp, $prevision, $estadoContrato, $estadoCivil, $nacionalidad);
-		echo json_encode(array("msg" => $resultado));
+		echo json_encode($resultado);
 
 	}
 
