@@ -439,6 +439,15 @@ create table fa_adelanto(
   constraint fk_adelanto_trabajador foreign key(cf_trabajador) references fa_trabajador(cp_trabajador)
 );
 
+create table fa_inasistencia(
+  cp_inasistencia int auto_increment,
+  atr_motivo varchar(100),
+  atr_title varchar(100),
+  atr_start varchar(100),
+  cf_trabajador int,
+  constraint pk_inasistencia primary key(cp_inasistencia),
+  constraint fk_inasistencia_trabajador foreign key(cf_trabajador) references fa_trabajador(cp_trabajador)
+);
 
 
 

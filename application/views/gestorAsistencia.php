@@ -91,6 +91,47 @@ if($usuario[0]->atr_activo == "1") { ?>
     <!-- /footer content -->
 
 
+    <!-- Modal crear -->
+    <div id="addInasistencia" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true" >
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content" style="padding:20px; background: #2a3f54" >
+                <div class="form-row">
+                    <h5 class="modal-title mx-auto">INRESAR INASISTENCIA</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <div class="col-md-12">
+                        <br>
+                        <label for="fechaInasistencia">FECHA</label>
+                        <input type="text" class="form-control custom-input-sm" id="fechaInasistencia">
+                    </div>
+
+                    <div class="col-md-12 col-sm-12">
+                      <br><label for="selectTrabajador1">TRABAJADOR</label><br>
+                      <select class="custom-select" id="selectTrabajador1">
+                        <!-- se cargan los trabajadores -->
+                      </select>
+                    </div>
+
+                    <div class="col-md-12">
+                        <br>
+                        <label for="motivo">MOTIVO</label>
+                        <textarea type="text" rows="4" class="form-control custom-input-sm" id="motivo"></textarea>
+                    </div>
+
+                </div>
+                <br>
+                <button type="submit" class="btn btn-success btn-sm" id="btnAgregarInasistencia">Guardar</button>
+            </div>
+        </div>
+    </div>
+    <!-- /Modal de crear -->
+
+
+
+
+
+
     <label id="permisoExportarTrabajadores" style="display:none">no</label>
     <label id="permisoEditarTrabajadores" style="display:none">no</label>
 
@@ -136,123 +177,16 @@ if($usuario[0]->atr_activo == "1") { ?>
 
     <script>
         $(document).ready(function() {
+          inicializarCalendario();
+          cargarTrabajadores();
+        });
 
-
-
+        $("body").on("click", "#btnAgregarInasistencia", function(e) {
+            e.preventDefault();
+            agregarInasistencia();
         });
     </script>
 
-    <script>
-      document.addEventListener('DOMContentLoaded', function() {
-        var initialLocaleCode = 'es';
-        var calendarEl = document.getElementById('calendar');
-
-        var calendar = new FullCalendar.Calendar(calendarEl, {
-
-          plugins: [ 'interaction', 'dayGrid','timeGrid' ],
-
-
-          header: {
-            left: 'prev,next today',
-            center: 'title',
-            right: 'dayGridMonth,listMonth'
-          },
-          defaultDate: '2020-02-12',
-          locale: initialLocaleCode,
-          buttonIcons: true, // show the prev/next text
-          weekNumbers: false,
-          navLinks: false, // can click day/week names to navigate views
-          selectable: true,
-          selectMirror: true,
-          select: function(arg) {
-            alert(arg.start);
-            alert(arg.end);
-            alert(arg.allDay);
-            var title = prompt('Event Title:');
-            if (title) {
-              calendar.addEvent({
-                title: title,
-                start: arg.start,
-                end: arg.end,
-                allDay: arg.allDay
-              })
-            }
-            calendar.unselect()
-          },
-          editable: true,
-          eventLimit: true, // allow "more" link when too many events
-          events: [
-            {
-              title: 'All Day Event',
-              start: '2020-02-01'
-            },
-            {
-              title: 'TE AMO RICARDO',
-              start: '2020-05-12',
-              end: '2020-05-12'
-            },
-            {
-              title: 'Long Event',
-              start: '2020-02-03',
-              end: '2020-02-10'
-            },
-            {
-              groupId: 999,
-              title: 'Repeating Event',
-              start: '2020-02-09T16:00:00'
-            },
-            {
-              groupId: 999,
-              title: 'Repeating Event',
-              start: '2020-02-16T16:00:00'
-            },
-            {
-              title: 'Conference',
-              start: '2020-02-11',
-              end: '2020-02-13'
-            },
-            {
-              title: 'Meeting',
-              start: '2020-02-12T10:30:00',
-              end: '2020-02-12T12:30:00'
-            },
-            {
-              title: 'Lunch',
-              start: '2020-02-12T12:00:00'
-            },
-            {
-              title: 'Meeting',
-              start: '2020-02-12T14:30:00'
-            },
-            {
-              title: 'Happy Hour',
-              start: '2020-02-12T17:30:00'
-            },
-            {
-              title: 'Dinner',
-              start: '2020-02-12T20:00:00'
-            },
-            {
-              title: 'Birthday Party',
-              start: '2020-02-13T07:00:00'
-            },
-            {
-              title: 'Click for Google',
-              url: 'http://google.com/',
-              start: '2020-02-28'
-            }
-          ],
-          // events: 'myfeed.php?start=2013-12-01T00:00:00-05:00&end=2014-01-12T00:00:00-05:00',
-          eventTextColor: '#fff',  //color del texto
-          eventBackgroundColor: '#1ABB9C', //color de fondo del evento
-          eventBorderColor: '#1ABB9C', // color de borde del evento
-
-
-        });
-        calendar.render();
-
-      });
-    </script>
 
   <?php } else{ header("Location: http://10.10.11.240/GRUPOFIRMA/"); } ?>
 

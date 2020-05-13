@@ -29,16 +29,6 @@ function getExistenciasPorModulo(){
 
         });
 
-
-
-
-
-
-
-
-
-
-
           fila += '<div class="x_content">';
           fila += '<ul>';
           $.each(permisos.msg, function (i, o) {

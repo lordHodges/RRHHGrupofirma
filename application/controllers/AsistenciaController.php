@@ -15,6 +15,24 @@ class AsistenciaController extends CI_Controller {
 		$this->load->view('gestorAsistencia');
 	}
 
+	public function addInasistencia(){
+		$fecha = $this->input->post("fecha");
+		$motivo = $this->input->post("motivo");
+		$idTrabajador = $this->input->post("idTrabajador");
+
+		$fecha = explode('-',$fecha);
+		$fecha = $fecha[2].'-'.$fecha[1].'-'.$fecha[0];
+
+		$resultado = $this->AsistenciaModel->addInasistencia($fecha, $motivo, $idTrabajador);
+		echo json_encode( $resultado) ;
+	}
+
+	public function getInasistencias(){
+		$resultado = $this->AsistenciaModel->getInasistencias();
+		echo json_encode( $resultado) ;
+	}
+
+
 
 
 

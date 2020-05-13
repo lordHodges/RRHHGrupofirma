@@ -23,6 +23,10 @@ $route['getModulos'] = 'PermisosController/getModulos';
 
 // ASISTENCIA
 $route['inicioGestorAsistencia'] = 'AsistenciaController/inicioAsistencia';
+$route['addInasistencia'] = 'AsistenciaController/addInasistencia';
+$route['getInasistencias'] = 'AsistenciaController/getInasistencias';
+
+
 
 // PRÉSTAMOS
 $route['inicioPrestamos'] = 'PrestamosController/inicioPrestamos';
