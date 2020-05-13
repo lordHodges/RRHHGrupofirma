@@ -494,7 +494,6 @@ function updateTrabajador() {
       if (msg == "ok") {
         toastr.success("Información actualizada.");
         $('#modalEditarTrabajador').modal('hide');
-
       }
 
   });

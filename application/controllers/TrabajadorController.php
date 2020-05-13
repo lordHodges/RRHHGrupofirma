@@ -148,11 +148,11 @@ class TrabajadorController extends CI_Controller {
             $r->atr_rut,
 						// $r->atr_nombres.concat( $r->atr_apellidos ),
             $r->atr_nombres,
-            $r->atr_apellidos,
-						$r->empresa,
-						$r->sucursal,
-						$r->direccion,
-  					$r->cargo,
+			$r->atr_apellidos,
+			$r->direccion,
+			$r->empresa,
+			$r->sucursal,
+			$r->cargo,
 
         );
     }

@@ -146,7 +146,7 @@ class TrabajadorModel extends CI_Model {
 
 
     function getListadoTrabajadores(){
-      $this->db->select("t.cp_trabajador, t.atr_rut, t.atr_nombres, t.atr_apellidos, e.atr_nombre as empresa, e.atr_domicilio as direccion, ca.atr_nombre as cargo,
+      $this->db->select("t.cp_trabajador, t.atr_rut, t.atr_nombres, t.atr_apellidos, e.atr_nombre as empresa, t.atr_direccion as direccion, ca.atr_nombre as cargo,
                         su.atr_nombre as sucursal");
       $this->db->from("fa_trabajador t");
       $this->db->join("fa_cargo ca", "t.cf_cargo = ca.cp_cargo");

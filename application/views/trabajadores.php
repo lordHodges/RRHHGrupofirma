@@ -34,9 +34,9 @@ if($usuario[0]->atr_activo == "1" ) { ?>
                               <th class="text-center">RUT</th>
                               <th class="text-center">NOMBRES</th>
                               <th class="text-center">APELLIDOS</th>
+                              <th class="text-center">DIRECCIÓN</th>
                               <th class="text-center">EMPRESA</th>
                               <th class="text-center">SUCURSAL</th>
-                              <th class="text-center">DIRECCION</th>
                               <th class="text-center">CARGO</th>
                               <th class="text-center">ACCIONES</th>
                           </tr>
