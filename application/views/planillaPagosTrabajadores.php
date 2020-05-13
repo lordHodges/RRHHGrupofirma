@@ -5,12 +5,9 @@ $permisos =  $data['permisos'];
 ?>
 
 <?php
-$view_verModelos = 0; $view_crearModelo = 0; $view_exportarModelos = 0; $view_editarModelo = 0;
+$view_verPlanillaPagos = 0;
 foreach ($permisos as $key => $value) {
-  if ($value->cf_existencia_permiso == "98") { $view_verModelos = "1"; } else
-  if ($value->cf_existencia_permiso == "100") { $view_crearModelo = "1"; } else
-  if ($value->cf_existencia_permiso == "101") { $view_exportarModelos = "1"; } else
-  if ($value->cf_existencia_permiso == "99") { $view_editarModelo = "1"; }
+  if ($value->cf_existencia_permiso == "111") { $view_verPlanillaPagos = "1"; }
 }
 
 if($usuario[0]->atr_activo == "1" ) { ?>
@@ -23,18 +20,55 @@ if($usuario[0]->atr_activo == "1" ) { ?>
     <div class="row">
         <div class="x_panel">
             <div class="x_content">
-              <h3 class="text-center">MODELOS</h3><br>
-              <?php if ( $view_crearModelo == 1 ) {  ?>
-                <button type="button" class="btn modidev-btn btn-sm" data-toggle="modal" data-target=".bd-example-modal-lg" style="margin-bottom:20px;">INGRESAR MODELO</button>
-              <?php } ?>
+              <h3 class="text-center">PLANILLA DE PAGOS</h3><br>
 
-              <?php if ($view_verModelos == "1") {  ?>
+              <?php if ($view_verPlanillaPagos == "1") {  ?>
+                <div class="row">
+
+                  <div class="col-md-3">
+                      <br>
+                      <label for="getSelectMes">MES</label><br>
+                      <select class="custom-select" id="getSelectMes">
+                        <option value="">Seleccionar opción</option>
+                        <option value="01">Enero</option>
+                        <option value="02">Febrero</option>
+                        <option value="03">Marzo</option>
+                        <option value="04">Abril</option>
+                        <option value="05">Mayo</option>
+                        <option value="06">Junio</option>
+                        <option value="07">Julio</option>
+                        <option value="08">Agosto</option>
+                        <option value="09">Septiembre</option>
+                        <option value="10">Octubre</option>
+                        <option value="11">Noviembre</option>
+                        <option value="12">Diciembre</option>
+                      </select>
+                  </div>
+
+                  <div class="col-md-3">
+                    <br>
+                    <label for="getSelectAno">Año</label>
+                    <select class="custom-select" id="getSelectAno">
+                      <?php
+                        $ahora = date("Y");
+                        for ( $i=$ahora; $i >= 2020  ; $i--) { ?>
+                          <option value="<?php echo $i ?>"><?php echo $i ?></option>
+                      <?php } ?>
+                    </select>
+                  </div>
+
+
+                </div>
+
                 <table id="tabla_modelo" class="table table-striped table-bordered table-hover dataTables-modelos" style="margin-top:20px;">
                     <thead >
                         <tr style="width:100%;">
-                            <th class="text-center" style="width:10%;">ID</th>
-                            <th class="text-center">MODELO</th>
-                            <th class="text-center">MARCA</th>
+                            <th class="text-center">RUT</th>
+                            <th class="text-center">TRABAJADOR</th>
+                            <th class="text-center">SUELDO</th>
+                            <th class="text-center">BONOS</th>
+                            <th class="text-center">PRÉSTAMOS</th>
+                            <th class="text-center">TOTAL A PAGAR</th>
                             <th class="text-center"style="width:10%;">ACCIONES</th>
                         </tr>
                     </thead>
@@ -130,19 +164,23 @@ if($usuario[0]->atr_activo == "1" ) { ?>
 
     <script>
       $(document).ready(function() {
-          var permisoEditar = 'no';
-          var permisoExportar = "no";
-          <?php if( $view_editarModelo == 1 ){  ?>
-            permisoEditar = "si";
-            $("#permisoEditar").text("si");
-          <?php } ?>
-          <?php if( $view_exportarModelos == 1 ){  ?>
-              permisoExportar = "si";
-              $("#permisoExportar").text("si");
-          <?php } ?>
-          cargarTablaModelos(permisoEditar,permisoExportar);
-          getSelectMarcas();
+        cargarTablaPagosFinDeMes();
       });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
       $("body").on("click", "#btnAgregarModelo", function(e) {
           e.preventDefault();

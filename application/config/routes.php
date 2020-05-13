@@ -20,6 +20,12 @@ $route['getExistenciasPorModulo'] = 'PermisosController/getExistenciasPorModulo'
 $route['getModulos'] = 'PermisosController/getModulos';
 
 
+//  PLANILLA DE PAGOS
+$route['inicioPlanillaPagos'] = 'PagosController/inicioPlanillaPagos';
+$route['getListadoPagosFinDeMes'] = 'PagosController/getListadoPagosFinDeMes';
+
+
+
 
 // ASISTENCIA
 $route['inicioGestorAsistencia'] = 'AsistenciaController/inicioAsistencia';

@@ -19,7 +19,7 @@ if($usuario[0]->atr_activo == "1") { ?>
 <div class="right_col" role="main">
   <div class="col-md-12 col-sm-12  ">
       <div class="x_panel">
-      <h2 class="text-center">HISTORIAL</h2>
+      <h3 class="text-center">HISTORIAL</h3>
           <div class="x_title">
 
 
@@ -215,7 +215,7 @@ if($usuario[0]->atr_activo == "1") { ?>
     });
 </script>
 
-<?php } else{ header("Location: http://10.10.11.240/GRUPOFIRMA/"); } ?>
+<?php } else{ header("Location: http://localhost/GRUPOFIRMA/"); } ?>
 
 </body>
 </html>
