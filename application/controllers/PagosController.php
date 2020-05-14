@@ -16,32 +16,42 @@ class PagosController extends CI_Controller {
 	}
 
 	public function getListadoPagosFinDeMes(){
+
+		$ano = $this->input->get("year");
+		$mes = $this->input->get("mes");
+		$diaTermino = $this->input->get("diaTermino");
+
+		// var_dump('$año'.$ano);
+		// var_dump('$mes'.$mes);
+		// var_dump('$diaTermino'.$diaTermino);
+		// exit();
+
 		$draw = intval($this->input->get("draw"));
 		$start = intval($this->input->get("start"));
 		$length = intval($this->input->get("length"));
-		$books = $this->PagosModel->getListadoPagosFinDeMes();
+
+		$books = $this->PagosModel->getListadoPagosFinDeMes($ano, $mes, $diaTermino);
+		// var_dump($books);
+		// exit();
 		$data = array();
 		foreach ($books as $r) {
 				$data[] = array(
-					// '19.105.191-2',
-					// 'Caterin Morales Diaz',
-					// '500.000',
-					// '74.000',
-					// '35.000',
-					// '539.000'
 					$r->rut,
 					$r->trabajador,
 					$r->sueldo,
 					$r->bonos,
+					$r->adelanto,
 					$r->prestamos,
+					$r->inasistencia,
 					$r->total
 				);
 		}
+
 		$output = array(
-				"draw" => $draw,
-				"recordsTotal" => $books->num_rows(),
-				"recordsFiltered" => $books->num_rows(),
-				"data" => $data
+			"draw" => $draw,
+			"recordsTotal" => sizeof($data),
+			"recordsFiltered" => sizeof($data),
+			"data" => $data
 		);
 		echo json_encode($output);
 		exit();

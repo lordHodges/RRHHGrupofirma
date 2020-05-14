@@ -25,11 +25,11 @@ if($usuario[0]->atr_activo == "1" ) { ?>
               <?php if ($view_verPlanillaPagos == "1") {  ?>
                 <div class="row">
 
-                  <div class="col-md-3">
+                  <div class="col-md-3" style="margin-bottom:20px;">
                       <br>
                       <label for="getSelectMes">MES</label><br>
                       <select class="custom-select" id="getSelectMes">
-                        <option value="">Seleccionar opción</option>
+                        <option value="00">Seleccionar opción</option>
                         <option value="01">Enero</option>
                         <option value="02">Febrero</option>
                         <option value="03">Marzo</option>
@@ -45,7 +45,7 @@ if($usuario[0]->atr_activo == "1" ) { ?>
                       </select>
                   </div>
 
-                  <div class="col-md-3">
+                  <div class="col-md-3" style="margin-bottom:20px;">
                     <br>
                     <label for="getSelectAno">Año</label>
                     <select class="custom-select" id="getSelectAno">
@@ -60,14 +60,16 @@ if($usuario[0]->atr_activo == "1" ) { ?>
 
                 </div>
 
-                <table id="tabla_modelo" class="table table-striped table-bordered table-hover dataTables-modelos" style="margin-top:20px;">
+                <table id="tabla_pagos5" class="table table-striped table-bordered table-hover dataTables-tabla_pagos5" style="margin-top:20px;">
                     <thead >
                         <tr style="width:100%;">
                             <th class="text-center">RUT</th>
                             <th class="text-center">TRABAJADOR</th>
                             <th class="text-center">SUELDO</th>
                             <th class="text-center">BONOS</th>
+                            <th class="text-center">ADELANTO</th>
                             <th class="text-center">PRÉSTAMOS</th>
+                            <th class="text-center">INASISTENCIA</th>
                             <th class="text-center">TOTAL A PAGAR</th>
                             <th class="text-center"style="width:10%;">ACCIONES</th>
                         </tr>
@@ -154,7 +156,7 @@ if($usuario[0]->atr_activo == "1" ) { ?>
     <script src="<?php echo base_url() ?>assets/build/js/custom.min.js"></script>
     <!-- MODIDEV -->
     <script src="<?php echo base_url() ?>assets/js/modelos.js"></script>
-    <script src="<?php echo base_url() ?>assets/js/marcas.js"></script>
+    <script src="<?php echo base_url() ?>assets/js/planillaPagos.js"></script>
     <script src="<?php echo base_url() ?>assets/js/validaciones.js"></script>
     <!-- Toast -->
     <script src="<?php echo base_url() ?>assets/js/toastr.min.js" type="text/javascript"></script>
@@ -164,8 +166,22 @@ if($usuario[0]->atr_activo == "1" ) { ?>
 
     <script>
       $(document).ready(function() {
-        cargarTablaPagosFinDeMes();
+        
       });
+
+
+      $("#getSelectMes").change(function (e){
+         cargarTablaPagosFinDeMes();
+      });
+
+      $("#getSelectAno").change(function (e){
+        if (  $('#getSelectMes') == '00'  ) {
+
+        }else{
+          cargarTablaPagosFinDeMes();
+        }
+      });
+
 
 
 
