@@ -71,7 +71,7 @@ class MantenedoresModel extends CI_Model {
       return $this->db->get()->result();
     }
 
-    function addCargo($nombre, $jefeDirecto,$lugarTrabajo,$jornadaTrabajo,$diasTrabajo){
+    function addCargo($nombre, $sucursal, $jefeDirecto,$lugarTrabajo,$jornadaTrabajo,$diasTrabajo){
 
 
         $data = array(
@@ -79,7 +79,8 @@ class MantenedoresModel extends CI_Model {
             "atr_jefeDirecto" => $jefeDirecto,
             "atr_lugarTrabajo" => $lugarTrabajo,
             "atr_jornadaTrabajo" => $jornadaTrabajo,
-            "atr_diasTrabajo" => $diasTrabajo
+            "atr_diasTrabajo" => $diasTrabajo,
+            "cf_sucursal"  => $sucursal
         );
         $this->db->insert("fa_cargo", $data);
         $ultimoCargo = $this->db->insert_id();
@@ -92,9 +93,12 @@ class MantenedoresModel extends CI_Model {
             "atr_asistencia" => "0",
             "cf_cargo" => $ultimoCargo
         );
-        $this->db->insert("fa_remuneracion", $dataRemuneracion);
-
-        return "ok";
+        $result = $this->db->insert("fa_remuneracion", $dataRemuneracion);
+        if ($result) {
+          return 'ok';
+        }else{
+          return 'error';
+        }
     }
 
     function addResponsabilidades($cargo, $responsabilidad){

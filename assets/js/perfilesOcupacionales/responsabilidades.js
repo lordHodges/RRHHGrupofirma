@@ -7,6 +7,7 @@ var constanteResponsabilidades = 0;
 //Aquí realizamos el comienzo del proceso para guardar todas las tareas que fueron ingresadas con un determinado cargo.
 function agregarCargo(){
   var nombre = $("#nombre").val();
+  var sucursal = $("#getSelectSucursal").val();
   var jefeDirecto = $("#jefeDirecto").val();
   var lugarTrabajo = $("#lugarTrabajo").val();
   var jornadaTrabajo = $("#jornadaTrabajo").val();
@@ -24,7 +25,8 @@ function agregarCargo(){
                 "jefeDirecto" : jefeDirecto,
                 "lugarTrabajo" : lugarTrabajo,
                 "jornadaTrabajo" : jornadaTrabajo,
-                "diasTrabajo" : diasTrabajo}
+                "diasTrabajo" : diasTrabajo,
+                "sucursal":sucursal}
     }).then(function (msg) {
         if (msg.msg == "ok") {
           var cargo = $("#nombre").val();

@@ -78,6 +78,14 @@ if($usuario[0]->atr_activo == "1" ) { ?>
                     </div>
 
                     <div class="col-md-12">
+                        <br>
+                        <label for="getSelectSucursal">SUCURSAL</label>
+                        <select class="custom-select" id="getSelectSucursal">
+
+                        </select>
+                    </div>
+
+                    <div class="col-md-12">
                       <br>
                       <label >RESPONSABILIDADES PRINCIPALES</label>
                       <button type="button" class="btn btn-success btn-sm center"  id="btnAgregarInputResponsabilidad" >
@@ -110,6 +118,8 @@ if($usuario[0]->atr_activo == "1" ) { ?>
                         <!-- <input type="text" class="form-control custom-input-sm" id="diasTrabajo"> -->
                         <textarea class="form-control" id="diasTrabajo" style="color:#848484" rows="5"></textarea>
                     </div>
+
+
                 </div>
                 <br>
                 <button type="submit" class="btn btn-success btn-sm" id="btnAgregarCargo">Guardar</button>
@@ -175,6 +185,7 @@ if($usuario[0]->atr_activo == "1" ) { ?>
     <script src="<?php echo base_url() ?>assets/js/modidev.js"></script>
     <script src="<?php echo base_url() ?>assets/js/perfilesOcupacionales/responsabilidades.js"></script>
     <script src="<?php echo base_url() ?>assets/js/remuneracion.js"></script>
+    <script src="<?php echo base_url() ?>assets/js/trabajador.js"></script>
     <script src="<?php echo base_url() ?>assets/js/validaciones.js"></script>
     <!-- Toast -->
     <script src="<?php echo base_url() ?>assets/js/toastr.min.js" type="text/javascript"></script>}
@@ -188,6 +199,7 @@ if($usuario[0]->atr_activo == "1" ) { ?>
     <script>
 
       $(document).ready(function() {
+        getSucursales();
         var btnAcciones = '';
 
         <?php if( $view_editarCargo == 1 ){  ?>

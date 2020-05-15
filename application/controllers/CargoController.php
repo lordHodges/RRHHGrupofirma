@@ -70,12 +70,13 @@ class CargoController extends CI_Controller {
 
 	public function addCargo(){
 		$nombre = $this->input->post("nombre");
+		$sucursal = $this->input->post("sucursal");
 		$jefeDirecto = $this->input->post("jefeDirecto");
 		$lugarTrabajo = $this->input->post("lugarTrabajo");
 		$jornadaTrabajo = $this->input->post("jornadaTrabajo");
 		$diasTrabajo = $this->input->post("diasTrabajo");
 
-		$resultado = $this->MantenedoresModel->addCargo($nombre, $jefeDirecto,$lugarTrabajo,$jornadaTrabajo,$diasTrabajo);
+		$resultado = $this->MantenedoresModel->addCargo($nombre, $sucursal, $jefeDirecto,$lugarTrabajo,$jornadaTrabajo,$diasTrabajo);
 		echo json_encode(array("msg" => $resultado));
 
 	}
