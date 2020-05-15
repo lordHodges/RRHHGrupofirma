@@ -179,6 +179,7 @@ function updateCargo(){
     }).then(function (msg) {
       if(msg.msg == "ok"){
         toastr.success('Cargo actualizado');
+        $('#modaleditarCargo').modal('hide');
       }else{
         toastr.error('Por favor revise la actualización en el listado');
       }
