@@ -1,4 +1,4 @@
-var base_url = 'http://localhost/GRUPOFIRMA/index.php/';
+var base_url = 'http://10.10.11.240/GRUPOFIRMA/index.php/';
 
 var constante = 0;
 var constanteRemuneraciones = 0;
@@ -132,11 +132,14 @@ function updateRemuneracion(){
                 "asistencia":asistencia,}
       }).then(function (msg) {
         if(msg == "ok"){
-          toastr.success('Remuneración actualizada');
+
+
         }else{
-          toastr.error('Ha ocurrido un error, favor contáctese con el soporte.');
+          // toastr.error('Ha ocurrido un error, favor contáctese con el soporte.');
         }
       });
+      toastr.success('Remuneración actualizada');
+      $('#modalEditarRemuneración').modal('hide');
   }
 
   // ACTUALIZACION DE OTRAS REMUNERACIONES EXISTENTES
