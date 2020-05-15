@@ -59,8 +59,9 @@ class MantenedoresModel extends CI_Model {
     }
 
     function getListadoCargos(){
-      $this->db->select("c.cp_cargo, c.atr_nombre, c.atr_jefeDirecto, c.atr_lugarTrabajo, c.atr_jornadaTrabajo");
+      $this->db->select("c.cp_cargo, c.atr_nombre, c.atr_jefeDirecto, c.atr_lugarTrabajo, c.atr_jornadaTrabajo, s.atr_nombre as sucursal");
       $this->db->from("fa_cargo c");
+      $this->db->join("fa_sucursal s","s.cp_sucursal = c.cf_sucursal");
       return $this->db->get();
     }
 
@@ -135,10 +136,17 @@ class MantenedoresModel extends CI_Model {
       return $this->db->get()->result();
     }
 
+    function buscarSucursal($sucursal){
+      $this->db->select("s.cp_sucursal");
+      $this->db->from("fa_sucursal s");
+      $this->db->where("s.atr_nombre",$sucursal);
+      return $this->db->get()->result();
+    }
+
     function getDetalleCargo($cargo){
-        $this->db->select("c.cp_cargo, c.atr_nombre, c.atr_jefeDirecto, c.atr_lugarTrabajo, c.atr_jornadaTrabajo, c.atr_diasTrabajo");
+        $this->db->select("c.cp_cargo, c.atr_nombre, c.atr_jefeDirecto, c.atr_lugarTrabajo, c.atr_jornadaTrabajo, c.atr_diasTrabajo, s.atr_nombre as sucursal");
         $this->db->from("fa_cargo c");
-        // $this->db->join("fa_responsabilidad r", "r.cf_cargo == c.cp_cargo")
+        $this->db->join("fa_sucursal s", "s.cp_sucursal = c.cf_sucursal");
         $this->db->where("c.cp_cargo",$cargo);
         $arrayCargo = $this->db->get()->result();
 
@@ -157,13 +165,14 @@ class MantenedoresModel extends CI_Model {
         return $data;
     }
 
-    function updateCargo($id, $nombre, $jefeDirecto, $lugarTrabajo, $jornadaTrabajo, $diasTrabajo){
+    function updateCargo($id, $nombre, $sucursal, $jefeDirecto, $lugarTrabajo, $jornadaTrabajo, $diasTrabajo){
         $data = array(
             "atr_nombre" => $nombre,
             "atr_jefeDirecto" => $jefeDirecto,
             "atr_lugarTrabajo" => $lugarTrabajo,
             "atr_jornadaTrabajo" => $jornadaTrabajo,
-            "atr_diasTrabajo" => $diasTrabajo
+            "atr_diasTrabajo" => $diasTrabajo,
+            "cf_sucursal" => $sucursal
         );
         $this->db->where('cp_cargo', $id);
         $resultado =  $this->db->update("fa_cargo", $data);

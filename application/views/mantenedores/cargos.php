@@ -37,6 +37,7 @@ if($usuario[0]->atr_activo == "1" ) { ?>
                           <tr style="width:100%;">
                               <th class="text-center">ID</th>
                               <th class="text-center">CARGO</th>
+                              <th class="text-center">SUCURSALES</th>
                               <th class="text-center">JEFE(S) DIRECTO(S)</th>
                               <th class="text-center">LUGAR DE TRABAJO</th>
                               <th class="text-center">JORNADA DE TRABAJO</th>
@@ -243,11 +244,11 @@ if($usuario[0]->atr_activo == "1" ) { ?>
                     }
                 },
                 "ajax": {
-                    url: "http://localhost/GRUPOFIRMA/index.php/getlistadecargos",
+                    url: "http://10.10.11.240/GRUPOFIRMA/index.php/getlistadecargos",
                     type: 'GET'
                 },
                 "columnDefs": [{
-                    "targets": 5,
+                    "targets": 6,
                     "data": null,
                     "defaultContent": btnAcciones
                 }
@@ -355,7 +356,7 @@ if($usuario[0]->atr_activo == "1" ) { ?>
 
 
   </script>
-    <?php } else{ header("Location: http://localhost/GRUPOFIRMA/"); } ?>
+    <?php } else{ header("Location: http://10.10.11.240/GRUPOFIRMA/"); } ?>
 
   </body>
 </html>

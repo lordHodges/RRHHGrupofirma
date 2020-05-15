@@ -1,4 +1,4 @@
-var base_url = 'http://localhost/GRUPOFIRMA/index.php/';
+var base_url = 'http://10.10.11.240/GRUPOFIRMA/index.php/';
 
 var constante = 0;
 var constanteResponsabilidades = 0;
@@ -90,32 +90,44 @@ function getDetalleCargo(id){
       var contadorResponsabilidades = 1;
       $.each(response.msg.array_cargo, function (i, o) {
           fila +='<div class="col-md-12"><br>  <label for="nombreNuevo">NOMBRE:  &nbsp;</label> <label id="idCargo" style="color:#2a3f54">'+o.cp_cargo+'</label> <input type="text" style="color:#848484" class="form-control  custom-input-sm" id="nombreNuevo"></div>';
-          fila +='<div class="col-md-10"><br><label >RESPONSABILIDADES PRINCIPALES &nbsp</label><button type="button" class="btn btn-success btn-sm center"  id="btnAgregarInputResponsabilidadEditar" ><i class="glyphicon glyphicon-plus"></i></button></div>';
-          fila +='<div id="contenedorDeResponsabilidades"></div>';
 
-          fila += '<div id="responsabilidadesActuales"></div>'
-          $.each(response.msg.array_responsabilidades, function (i, r) {
 
-            fila += '<div class="col-md-12"><br><button type="button" class="btn btn-danger btn-sm center"  value="'+r.atr_descripcion+'" onclick="deleteResponsabilidad(this)"><i class="glyphicon glyphicon-minus"></i></button>&nbsp;<label id="responsabilidadActual_'+contadorResponsabilidades+'">'+r.atr_descripcion+'</label><input type="text" id="responsabilidadNuevo_'+contadorResponsabilidades+'"  class="form-control custom-input-sm" id="responsabilidadNuevo_'+r.cp_responsabilidad+'"></div>';
-            contadorResponsabilidades = contadorResponsabilidades+1;
-            constanteResponsabilidades = constanteResponsabilidades +1;
-            // var idResposabilidadParaEach = "responsabilidadNuevo_"+r.cp_responsabilidad;
+          var url = base_url+'getSucursales';
+          fila +='<div class="col-md-12"><br><label for="sucursal">SUCURSAL:&nbsp;</label><label id="sucursalActual">'+o.sucursal+'</label><select class="custom-select" id="getSelectSucursal2"> ';
+          fila +='<option  selected value="">Seleccione una opción</option>';
+          $.getJSON(url, function (result) {
+            $.each(result, function (i, o) {
+                fila += '<option value="'+ o.cp_sucursal + '">' + o.atr_nombre + '</option>';
+            });
+            fila +='</select></div>'; //cerrando el select
 
-            // $("#"+idResposabilidadParaEach).val() = "hola";
+            fila +='<div class="col-md-10"><br><label >RESPONSABILIDADES PRINCIPALES &nbsp</label><button type="button" class="btn btn-success btn-sm center"  id="btnAgregarInputResponsabilidadEditar" ><i class="glyphicon glyphicon-plus"></i></button></div>';
+            fila +='<div id="contenedorDeResponsabilidades"></div>';
+
+            fila += '<div id="responsabilidadesActuales"></div>'
+            $.each(response.msg.array_responsabilidades, function (i, r) {
+
+              fila += '<div class="col-md-12"><br><button type="button" class="btn btn-danger btn-sm center"  value="'+r.atr_descripcion+'" onclick="deleteResponsabilidad(this)"><i class="glyphicon glyphicon-minus"></i></button>&nbsp;<label id="responsabilidadActual_'+contadorResponsabilidades+'">'+r.atr_descripcion+'</label><input type="text" id="responsabilidadNuevo_'+contadorResponsabilidades+'"  class="form-control custom-input-sm" id="responsabilidadNuevo_'+r.cp_responsabilidad+'"></div>';
+              contadorResponsabilidades = contadorResponsabilidades+1;
+              constanteResponsabilidades = constanteResponsabilidades +1;
+              // var idResposabilidadParaEach = "responsabilidadNuevo_"+r.cp_responsabilidad;
+
+              // $("#"+idResposabilidadParaEach).val() = "hola";
+            });
+
+            fila +='<div class="col-md-12"><br><label for="jefeDirectoNuevo">JEFE DIRECTO:  &nbsp;</label>  <input type="text" style="color:#848484" class="form-control custom-input-sm" id="jefeDirectoNuevo"></div>';
+            fila +='<div class="col-md-12"><br><label for="lugarTrabajoNuevo">LUGAR DE PRESTACIÓN DE SERVICIOS:  &nbsp;</label>  <textarea type="text"  style="color:#848484" class="form-control" rows="5" id="lugarTrabajoNuevo"></textarea></div>';
+            fila +='<div class="col-md-12"><br><label for="jornadaTrabajoNuevo">JORNADA DE TRABAJO:  &nbsp;</label>  <textarea type="text" style="color:#848484" class="form-control" rows="5" id="jornadaTrabajoNuevo"></textarea></div>';
+            fila +='<div class="col-md-12"><br><label for="diasTrabajoNuevo">DÍAS DE TRABAJO:  &nbsp;</label>  <input type="text" style="color:#848484" class="form-control custom-input-sm" id="diasTrabajoNuevo"></div>';
+
+            $("#modalDetalleCargo").append(fila);
+
+            document.getElementById("nombreNuevo").value = o.atr_nombre;
+            document.getElementById("jefeDirectoNuevo").value = o.atr_jefeDirecto;
+            document.getElementById("lugarTrabajoNuevo").value = o.atr_lugarTrabajo;
+            document.getElementById("jornadaTrabajoNuevo").value = o.atr_jornadaTrabajo;
+            document.getElementById("diasTrabajoNuevo").value = o.atr_diasTrabajo;
           });
-
-          fila +='<div class="col-md-12"><br><label for="jefeDirectoNuevo">JEFE DIRECTO:  &nbsp;</label>  <input type="text" style="color:#848484" class="form-control custom-input-sm" id="jefeDirectoNuevo"></div>';
-          fila +='<div class="col-md-12"><br><label for="lugarTrabajoNuevo">LUGAR DE PRESTACIÓN DE SERVICIOS:  &nbsp;</label>  <textarea type="text"  style="color:#848484" class="form-control" rows="5" id="lugarTrabajoNuevo"></textarea></div>';
-          fila +='<div class="col-md-12"><br><label for="jornadaTrabajoNuevo">JORNADA DE TRABAJO:  &nbsp;</label>  <textarea type="text" style="color:#848484" class="form-control" rows="5" id="jornadaTrabajoNuevo"></textarea></div>';
-          fila +='<div class="col-md-12"><br><label for="diasTrabajoNuevo">DÍAS DE TRABAJO:  &nbsp;</label>  <input type="text" style="color:#848484" class="form-control custom-input-sm" id="diasTrabajoNuevo"></div>';
-
-          $("#modalDetalleCargo").append(fila);
-
-          document.getElementById("nombreNuevo").value = o.atr_nombre;
-          document.getElementById("jefeDirectoNuevo").value = o.atr_jefeDirecto;
-          document.getElementById("lugarTrabajoNuevo").value = o.atr_lugarTrabajo;
-          document.getElementById("jornadaTrabajoNuevo").value = o.atr_jornadaTrabajo;
-          document.getElementById("diasTrabajoNuevo").value = o.atr_diasTrabajo;
       });
     });
 }
@@ -141,11 +153,16 @@ function deleteResponsabilidad(boton){
 
 function updateCargo(){
   var id = $("#idCargo").text();
+  var sucursal = $("#getSelectSucursal2").val();
   var nombre = $("#nombreNuevo").val();
   var jefeDirecto = $("#jefeDirectoNuevo").val();
   var lugarTrabajo = $("#lugarTrabajoNuevo").val();
   var jornadaTrabajo = $("#jornadaTrabajoNuevo").val();
   var diasTrabajo = $("#diasTrabajoNuevo").val();
+
+  if (sucursal == null || sucursal == "") {
+    sucursal = $("#sucursalActual").text();
+  }
 
   // ACTUALIZACION DE CARGOS
   $.ajax({
@@ -153,6 +170,7 @@ function updateCargo(){
       type: 'POST',
       dataType: 'json',
       data: { "id": id,
+              "sucursal":sucursal,
               "nombre": nombre,
               "jefeDirecto": jefeDirecto,
               "lugarTrabajo":lugarTrabajo,

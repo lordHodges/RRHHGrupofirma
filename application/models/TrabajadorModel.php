@@ -10,12 +10,6 @@ class TrabajadorModel extends CI_Model {
         parent::__construct();
     }
 
-
-
-
-
-
-
     function getTrabajadores(){
         $this->db->select("t.cp_trabajador, t.atr_nombres, t.atr_apellidos, t.cf_cargo");
         $this->db->from("fa_trabajador t");
@@ -25,7 +19,6 @@ class TrabajadorModel extends CI_Model {
 
 
     function addTrabajador($rut,$nombres,$apellidos,$direccion,$fechaNacimiento,$ciudad,$sucursal,$cargo,$empresa,$afp, $prevision, $estadoContrato, $estadoCivil, $nacionalidad){
-
         $this->db->select("r.atr_sueldoMensual");
         $this->db->from("fa_remuneracion r");
         $this->db->where('r.cf_cargo', $cargo);
@@ -34,8 +27,6 @@ class TrabajadorModel extends CI_Model {
         foreach ($remuneracion as $key => $value) {
           $sueldo = $value->atr_sueldoMensual;
         }
-
-
 
         $data = array(
             "atr_rut"                   => $rut,

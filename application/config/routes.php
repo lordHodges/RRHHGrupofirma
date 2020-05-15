@@ -217,6 +217,7 @@ $route['docContratoPersonalizado'] = 'PDFController/view_contratoPersonalizado';
     //sucursales
     $route['getListadoSucursales'] = 'SucursalController/getListadoSucursales';
     $route['addSucursal'] = 'SucursalController/addSucursal';
+    $route['buscarSucursal'] = 'CargoController/buscarSucursal';
 
     //cargos
     $route['getlistadecargos'] = 'CargoController/getListadoCargos';

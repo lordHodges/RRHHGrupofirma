@@ -52,6 +52,7 @@ class CargoController extends CI_Controller {
 			$data[] = array(
 				$r->cp_cargo,
 				$r->atr_nombre,
+				$r->sucursal,
 				$r->atr_jefeDirecto,
 				$lugarTrabajo,
 				$jornadaTrabajo
@@ -93,13 +94,21 @@ class CargoController extends CI_Controller {
 
 	public function updateCargo(){
 		$id = $this->input->post("id");
+		$sucursal = $this->input->post("sucursal");
 		$nombre = $this->input->post("nombre");
 		$jefeDirecto = $this->input->post("jefeDirecto");
 		$lugarTrabajo = $this->input->post("lugarTrabajo");
 		$jornadaTrabajo = $this->input->post("jornadaTrabajo");
 		$diasTrabajo = $this->input->post("diasTrabajo");
 
-		$resultado = $this->MantenedoresModel->updateCargo($id, $nombre, $jefeDirecto, $lugarTrabajo, $jornadaTrabajo, $diasTrabajo);
+		if (!is_numeric($sucursal)) {
+			$sucursalElemento = $this->MantenedoresModel->buscarSucursal($sucursal);
+			foreach ($sucursalElemento as $key => $value) {
+				$sucursal = $value->cp_sucursal;
+			}
+		}
+
+		$resultado = $this->MantenedoresModel->updateCargo($id, $nombre, $sucursal, $jefeDirecto, $lugarTrabajo, $jornadaTrabajo, $diasTrabajo);
 		echo json_encode(array("msg" => $resultado));
 	}
 

@@ -108,7 +108,9 @@ create table fa_cargo(
     atr_lugarTrabajo varchar(5000) not null,
     atr_jornadaTrabajo varchar(5000) not null,
     atr_diasTrabajo varchar(2000),
-    constraint pk_cargo primary key(cp_cargo)
+    cf_sucursal int,
+    constraint pk_cargo primary key(cp_cargo),
+    constraint fk_cargo_sucursal foreign key(cf_sucursal) references fa_sucursal(cp_sucursal)
 );
 
 create table fa_remuneracion(

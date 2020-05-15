@@ -14,9 +14,29 @@ class PagosModel extends CI_Model {
         $fechaInicio = $ano.'-'.$mes.'-01';
         $fechaTermino = $ano.'-'.$mes.'-'.$diaTermino;
 
+        $anoPrestamo = $ano;
 
-        // $fechaInicio = '2020-05-01';
-        // $fechaTermino = '2020-05-31';
+        if ($mes == '12') {
+          $mesPrestamo = '01';
+          $anoPrestamo = $ano+1;
+        }else{
+          $arrayMes = substr($mes, 0);
+          $mesPrestamo = $arrayMes+1;
+          $mesPrestamo = '0'.$mesPrestamo;
+        }
+
+        if ($mesPrestamo == '04' || $mesPrestamo == '06' || $mesPrestamo == '09' || $mesPrestamo == '11') {
+          $diaTerminoPrestamo = 30;
+        }else{
+          if ($mesPrestamo == '01' || $mesPrestamo == '03' || $mesPrestamo == '05' || $mesPrestamo == '07' || $mesPrestamo == '08' || $mesPrestamo == '10' || $mesPrestamo == '12' ) {
+            $diaTerminoPrestamo = 31;
+          }
+        }
+
+
+        $fechaInicioPrestamo = $anoPrestamo.'-'.$mesPrestamo.'-01';
+        $fechaTerminoPrestamo = $anoPrestamo.'-'.$mesPrestamo.'-'.$diaTerminoPrestamo;
+
 
         $this->db->select(" t.cp_trabajador, t.atr_nombres, t.atr_apellidos, t.atr_rut, t.atr_sueldo, t.cf_cargo");
         $this->db->from("fa_trabajador t");
@@ -91,16 +111,14 @@ class PagosModel extends CI_Model {
           }
 
 
-
-
           // CONSULTA DE LOS ADELANTOS EN EL MES CONSULTADO
           $this->db->select("");
           $this->db->from("fa_prestamo p");
           $this->db->join("fa_detalle_prestamo dp","dp.cf_prestamo = p.cp_prestamo");
           $this->db->where("p.cf_trabajador", $t->cp_trabajador);
           $this->db->where("dp.atr_estado", '0');
-          $this->db->where('dp.atr_fechaDescuento >= ',$fechaInicio);
-          $this->db->where('dp.atr_fechaDescuento <= ',$fechaTermino);
+          $this->db->where('dp.atr_fechaDescuento >= ',$fechaInicioPrestamo);
+          $this->db->where('dp.atr_fechaDescuento <= ',$fechaTerminoPrestamo);
           $prestamos = $this->db->get()->result();
 
           $montoPrestamo = 0;
