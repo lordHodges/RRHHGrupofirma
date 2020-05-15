@@ -98,10 +98,6 @@ if($usuario[0]->atr_activo == "1" && $view_contratoPersonalizado == "1") { ?>
                 <?php foreach ($arrayTrabajador as $key => $t){ ?>
                   <p style="text-align:justify; line-height:25px;">  <?php echo $t->atr_lugarTrabajo ?></p>
                 <?php } ?>
-<!-- 
-                <p style="text-align:justify; line-height:25px;">Sin perjuicio de la facultad del empleador de alterar, por causa
-                justificada, la naturaleza de los servicios o el sitio o recinto en que ellos han de prestarse, con la sola limitación
-                de que se trate de labores similares y que el nuevo sitio o recinto que dentro de la misma localidad o ciudad. </p> -->
 
             <?php break; ?>
 

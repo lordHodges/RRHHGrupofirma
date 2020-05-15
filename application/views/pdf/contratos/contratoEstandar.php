@@ -156,42 +156,32 @@ if($usuario[0]->atr_activo == "1" && $view_contratoEstadar == "1") { ?>
         </ul>
 
 
-        <?php if($r->atr_colacion > 0 && $r->atr_movilizacion > 0 && $r->atr_asistencia == 0){ ?>
+        <?php if($r->atr_colacion > 0 && $r->atr_movilizacion > 0){ ?>
           <p style="text-align:justify; line-height:25px;">De igual forma se hace presente que, el bono de colación y el bono de movilización se descontará
           proporcionalmente al trabajador por los días en que se ausente de prestar servicios, sea o no por una causa
           atribuible a este.</p>
         <?php } ?>
 
-        <?php if($r->atr_colacion > 0 && $r->atr_movilizacion == 0 && $r->atr_asistencia == 0){ ?>
+        <?php if($r->atr_colacion > 0 && $r->atr_movilizacion == 0 ){ ?>
           <p style="text-align:justify; line-height:25px;">De igual forma se hace presente que, el bono de colación se descontará
           proporcionalmente al trabajador por los días en que se ausente de prestar servicios, sea o no por una causa
           atribuible a este.</p>
         <?php } ?>
 
-        <?php if($r->atr_colacion == 0 && $r->atr_movilizacion > 0 && $r->atr_asistencia == 0){ ?>
+        <?php if($r->atr_colacion == 0 && $r->atr_movilizacion > 0 ){ ?>
           <p style="text-align:justify; line-height:25px;">De igual forma se hace presente que, el bono de movilización se descontará
           proporcionalmente al trabajador por los días en que se ausente de prestar servicios, sea o no por una causa
           atribuible a este.</p>
         <?php } ?>
 
-
-        <?php if($r->atr_colacion > 0 && $r->atr_movilizacion > 0 && $r->atr_asistencia > 0){ ?>
-          <p style="text-align:justify; line-height:25px;">De igual forma se hace presente que, el bono de colación, el bono de movilización y el bono de asistencia se descontará
-          proporcionalmente al trabajador por los días en que se ausente de prestar servicios, sea o no por una causa
-          atribuible a este.</p>
+        <?php if($r->atr_asistencia > 0  ){ ?>
+          <p style="text-align:justify; line-height:25px;"></p>
         <?php } ?>
 
-        <?php if($r->atr_colacion > 0 && $r->atr_movilizacion == 0 && $r->atr_asistencia > 0){ ?>
-          <p style="text-align:justify; line-height:25px;">De igual forma se hace presente que, el bono de colación y el bono de asistencia se descontará
-          proporcionalmente al trabajador por los días en que se ausente de prestar servicios, sea o no por una causa
-          atribuible a este.</p>
-        <?php } ?>
 
-        <?php if($r->atr_colacion == 0 && $r->atr_movilizacion > 0 && $r->atr_asistencia  > 0){ ?>
-          <p style="text-align:justify; line-height:25px;">De igual forma se hace presente que, el bono de movilización y el bono de asistencia se descontará
-          proporcionalmente al trabajador por los días en que se ausente de prestar servicios, sea o no por una causa
-          atribuible a este.</p>
-        <?php } ?>
+
+
+        
 
       <?php } ?>
 
