@@ -20,10 +20,16 @@ class PagosModel extends CI_Model {
           $mesPrestamo = '01';
           $anoPrestamo = $ano+1;
         }else{
-          $arrayMes = substr($mes, 0);
-          $mesPrestamo = $arrayMes+1;
-          $mesPrestamo = '0'.$mesPrestamo;
+          if ($mes == '01') {
+            $mesPrestamo = '12';
+            $anoPrestamo = $ano-1;
+          }else{
+            $arrayMes = substr($mes, 0);
+            $mesPrestamo = $arrayMes+1;
+            $mesPrestamo = '0'.$mesPrestamo;
+          }
         }
+
 
         if ($mesPrestamo == '04' || $mesPrestamo == '06' || $mesPrestamo == '09' || $mesPrestamo == '11') {
           $diaTerminoPrestamo = 30;
@@ -208,10 +214,14 @@ class PagosModel extends CI_Model {
       $mesPrestamo = '01';
       $anoPrestamo = $ano+1;
     }else{
-      $arrayMes = substr($mes, 0);
-      // var_dump($mes);
-      $mesPrestamo = $arrayMes+1;
-      $mesPrestamo = '0'.$mesPrestamo;
+      if ($mes == '01') {
+        $mesPrestamo = '12';
+        $anoPrestamo = $ano-1;
+      }else{
+        $arrayMes = substr($mes, 0);
+        $mesPrestamo = $arrayMes+1;
+        $mesPrestamo = '0'.$mesPrestamo;
+      }
     }
 
     if ($mesPrestamo == '04' || $mesPrestamo == '06' || $mesPrestamo == '09' || $mesPrestamo == '11') {
