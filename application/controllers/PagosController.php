@@ -36,6 +36,7 @@ class PagosController extends CI_Controller {
 		$data = array();
 		foreach ($books as $r) {
 				$data[] = array(
+					$r->id,
 					$r->rut,
 					$r->trabajador,
 					$r->sueldo,
@@ -56,6 +57,20 @@ class PagosController extends CI_Controller {
 		echo json_encode($output);
 		exit();
 	}
+
+
+
+	public function getDetallePagoTrabajador(){
+		$idTrabajador = $this->input->post("idTrabajador");
+		$ano = $this->input->post("year");
+		$mes = $this->input->post("mes");
+		$diaTermino = $this->input->post("diaTermino");
+
+
+		$resultado = $this->PagosModel->getDetallePagoTrabajador($idTrabajador,$ano,$mes,$diaTermino);
+		echo json_encode( array( "msg" => $resultado)) ;
+	}
+
 
 
 

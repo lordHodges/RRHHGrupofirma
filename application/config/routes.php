@@ -23,6 +23,7 @@ $route['getModulos'] = 'PermisosController/getModulos';
 //  PLANILLA DE PAGOS
 $route['inicioPlanillaPagos'] = 'PagosController/inicioPlanillaPagos';
 $route['getListadoPagosFinDeMes'] = 'PagosController/getListadoPagosFinDeMes';
+$route['getDetallePagoTrabajador'] = 'PagosController/getDetallePagoTrabajador';
 
 
 

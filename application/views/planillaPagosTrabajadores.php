@@ -63,6 +63,7 @@ if($usuario[0]->atr_activo == "1" ) { ?>
                 <table id="tabla_pagos5" class="table table-striped table-bordered table-hover dataTables-tabla_pagos5" style="margin-top:20px;">
                     <thead >
                         <tr style="width:100%;">
+                            <th class="text-center">ID</th>
                             <th class="text-center">RUT</th>
                             <th class="text-center">TRABAJADOR</th>
                             <th class="text-center">SUELDO</th>
@@ -93,55 +94,27 @@ if($usuario[0]->atr_activo == "1" ) { ?>
     </footer>
     <!-- /footer content -->
 
-    <!-- Modal crear -->
-    <div id="myModal" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="crearTrabajador"  aria-hidden="true" >
-        <div class="modal-dialog modal-lg">
 
-          <div class="modal-content" style="padding:20px; background: #2a3f54" >
-              <div class="form-row">
-                  <h5 class="modal-title mx-auto">INGRESAR MODELO</h5>
+    <!-- Modal ver detalle de pago -->
+    <div id="modalDetallePago" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog"  aria-hidden="true" >
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content" style="padding:20px; background: #2a3f54" >
+                <div class="form-row">
+                  <h5 class="modal-title mx-auto">DETALLE DEL PAGO</h5>
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
                   </button>
-                  <div class="col-md-12">
-                      <br>
-                      <label for="nombre">MARCA</label>
-                      <select class="custom-select"  id="getSelectMarca">
 
-                      </select>
+                  <div class="col-md-12 " id="contenedorDetallePago">
+
                   </div>
-                  <div class="col-md-12">
-                      <br>
-                      <label for="nombre">NOMBRE</label>
-                      <input type="text" class="form-control custom-input-sm" id="nombre" oninput="mayus(this)" required>
-                  </div>
-              </div>
-              <br>
-              <button type="submit" class="btn btn-success btn-sm" id="btnAgregarModelo">Guardar</button>
-          </div>
-
-
-
-
-
-        </div>
-    </div>
-    <!-- /Modal de crear -->
-
-    <!-- Modal editar -->
-    <div id="modalEditarModelo" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog"  aria-hidden="true" >
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content" style="padding:20px; background: #2a3f54" >
-                <div class="form-row" id="contenedorDetalleModelo">
-
 
                 </div>
                 <br>
-                <button type="submit" class="btn btn-success btn-sm" id="btnEditarModelo">Guardar</button>
             </div>
         </div>
     </div>
-    <!-- /Modal de editar -->
+    <!-- Fin Modal ver detalle de pago -->
 
     <label id="permisoExportar" style="display:none">no</label>
     <label id="permisoEditar" style="display:none">no</label>
@@ -166,7 +139,7 @@ if($usuario[0]->atr_activo == "1" ) { ?>
 
     <script>
       $(document).ready(function() {
-        
+
       });
 
 
@@ -181,6 +154,15 @@ if($usuario[0]->atr_activo == "1" ) { ?>
           cargarTablaPagosFinDeMes();
         }
       });
+
+
+
+      $("body").on("click", "#btnVerDetallePago", function(e) {
+          e.preventDefault();
+          var id = $(this).parent().parent().children()[0];
+          getDetallePagoTrabajador($(id).text());
+      });
+
 
 
 

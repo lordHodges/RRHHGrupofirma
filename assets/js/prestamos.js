@@ -346,6 +346,8 @@ function getDetallePrestamo(idPrestamo, rut, nombre, cuotas, montoTotal){
     fila += '<label>N°</label>';
     fila += '</div>';
 
+
+
     fila += '<div class="col-md-3" style="margin-bottom:-20px"><br>';
     fila += '<label>Monto</label>';
     fila += '</div>';
@@ -399,9 +401,10 @@ function getDetallePrestamo(idPrestamo, rut, nombre, cuotas, montoTotal){
     });
 
 
-    $("#contenedorCuotasPrestamoEditar").append(fila);
+
 
   });
+  $("#contenedorCuotasPrestamoEditar").append(fila);
 
 }
 
