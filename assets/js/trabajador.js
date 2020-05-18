@@ -162,6 +162,7 @@ function cargarTablaTrabajador(permisoEditar, permisoExportar){
 
 function agregarTrabajador() {
 
+
     var rut = $("#rut").val();
     var nombres = $("#nombres").val();
     var apellidos = $("#apellidos").val();
@@ -177,7 +178,11 @@ function agregarTrabajador() {
     var estadoCivil = $("#getSelectCivil").val();
     var nacionalidad = $("#getSelectNacionalidad").val();
 
-    if (rut == "" || nombres == "" || apellidos == "" || direccion == "" || ciudad == null || cargo == null || fechaNacimiento == null ||sucursal == null || empresa == null || afp == null || prevision == null || estadoContrato == null || estadoCivil == null || nacionalidad == null) {
+    if (estadoCivil == null || estadoCivil == "") {
+      estadoCivil = 8;
+    }
+
+    if (rut == "" || nombres == "" || apellidos == "" || direccion == "" || ciudad == null || cargo == null || fechaNacimiento == null ||sucursal == null || empresa == null || afp == null || prevision == null || estadoContrato == null || nacionalidad == null) {
         toastr.error("Rellene todos los campos");
     } else {
         $.ajax({
@@ -217,7 +222,6 @@ function agregarTrabajador() {
                // document.getElementById("getSelectCivil").value = "";
                // document.getElementById("getSelectNacionalidad").value = "";
                // document.getElementById("fechaNacimiento").value = "";
-
                $('#myModal').modal('hide');
             } else {
                 toastr.error("Error en el ingreso.");

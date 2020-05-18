@@ -98,7 +98,6 @@ if($usuario[0]->atr_activo == "1") { ?>
                               <option value="">Seleccionar opción</option>
                               <option value="Adelanto">Adelanto</option>
                               <option value="Pago mensual">Pago mensual</option>
-                              <option value="Préstamo">Préstamo</option>
                               <option value="Otro">Otro</option>
                             </select>
                         </div>
@@ -213,7 +212,6 @@ if($usuario[0]->atr_activo == "1") { ?>
             e.preventDefault();
             var id = $(this).parent().parent().children()[0];
             var idTrabajador = $(id).text();
-
             document.getElementById("labelTrabajador").value = idTrabajador;
         });
 

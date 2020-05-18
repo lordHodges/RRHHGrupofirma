@@ -110,11 +110,40 @@ if($usuario[0]->atr_activo == "1" ) { ?>
             <div class="modal-content" style="padding:20px; background: #2a3f54" >
                 <div class="form-row">
                   <div class="col-md-12">
-                    <h5 class="modal-title mx-auto" style="margin-left:50px;">CARGAR COMPROBANTE</h5><br>
+                    <!-- <h5 class="modal-title mx-auto text-center" style="margin-left:50px;">CARGAR COMPROBANTE</h5><br> -->
                   </div>
+                  <h5 class="text-center mx-auto" style="color:#fff">INFORMACIÓN PARA TRANSFERIR</h5>
+                  <div class="col-md-12">
+                    <div class="col-md-6">
+                      <br>
+                      <label for="bancoTrabajador">BANCO</label>
+                      <input type="text" class="form-control" id="bancoTrabajador" disabled required style="border-radius:5px; color:#000;">
+                    </div>
+
+                    <div class="col-md-6">
+                      <br>
+                      <label for="tipoCuentaTrabajador">TIPO DE CUENTA</label>
+                      <input type="text" class="form-control" id="tipoCuentaTrabajador" disabled required style="border-radius:5px; color:#000;">
+                    </div>
+
+                    <div class="col-md-6">
+                      <br>
+                      <label for="numCuentaTrabajador">NÚMERO DE CUENTA</label>
+                      <input type="text" class="form-control" id="numCuentaTrabajador" disabled required style="border-radius:5px; color:#000;">
+                    </div>
+
+                    <div class="col-md-6">
+                      <br>
+                      <label for="montoTransferenciaTrabajador">MONTO SOLICITADO</label>
+                      <input type="text" class="form-control" id="montoTransferenciaTrabajador" disabled required style="border-radius:5px; color:#000;">
+                    </div>
+                  </div>
+
+
+                  <h5 class="text-center mx-auto" style="color:#fff; margin-top:40px">INFORMACIÓN DE COMPROBANTE</h5>
                   <div class="col-md-12" id="detalleCargaArchivo">
                       <form id="uploader" method="post" enctype="multipart/form-data" action="cargar_comprobante">
-                        <div class="col-md-6">
+                        <div class="col-md-12">
                             <br>
                             <label for="getSelectBanco">BANCO</label><br>
                             <select class="custom-select" id="getSelectBanco" name="getSelectBanco">
@@ -130,24 +159,16 @@ if($usuario[0]->atr_activo == "1" ) { ?>
                         <div class="col-md-6">
                             <br>
                             <label for="getSelectMotivo">MOTIVO</label><br>
-                            <select class="custom-select" id="getSelectMotivo" name="getSelectMotivo">
-                              <option value="">Seleccionar opción</option>
+                            <select class="custom-select" id="getSelectMotivo"  style="color:#000;" name="getSelectMotivo">
                               <option value="Adelanto">Adelanto</option>
-                              <option value="Pago mensual">Pago mensual</option>
-                              <option value="Préstamo">Préstamo</option>
-                              <option value="Otro">Otro</option>
                             </select>
                         </div>
-                        <div class="col-md-6" id="contenedorOtroMotivo" style="display:none">
-                          <br>
-                          <label for="otroMotivo">OTRO MOTIVO</label>
-                          <input type="text" class="form-control"  name="otroMotivo" style="border-radius:5px; padding:8px;">
-                        </div>
+
 
                         <div class="col-md-12">
                           <br>
-                          <label for="monto">MONTO</label>
-                          <input type="text" class="form-control" onkeyup="soloNumeros(this.value);formatoMiles(this)" name="monto"  style="border-radius:5px; padding:7px;" required>
+                          <label for="monto">MONTO DE LA TRANSFERENCIA</label>
+                          <input type="text" class="form-control" id="monto" name="monto" style="border-radius:5px; padding:7px; " required>
                         </div>
                         <input type="text" name="labelTrabajador" id="labelTrabajador" style="color:#2a3f54;border:none;border-color:#2a3f54">
                         <div class="col-md-12" >
@@ -234,14 +255,44 @@ if($usuario[0]->atr_activo == "1" ) { ?>
               cache:false,
               async:false,
               success: function(data){
-                if (data == 'ok') {
-                  $('#modalCargarArchivo').modal('hide');
-                  toastr.success('Comprobante guardado');
-                }else{
+                if (data == "" || data == null) {
                   toastr.error("Error al guardar");
+                }else{
+                  $('#modalCargarArchivo').modal('hide');
+                  toastr.success('Comprobante guardado')
                 }
               }
           });
+      });
+
+
+
+
+      $("body").on("click", "#btnCargarComprobante", function(e) {
+          e.preventDefault();
+          var id = $(this).parent().parent().children()[0];
+          var idTrabajador = $(id).text();
+          $("#labelTrabajador").val(idTrabajador);
+
+          var id = $(this).parent().parent().children()[0];
+          var idAdelanto = $(id).text();
+
+          var banco = $(this).parent().parent().children()[3];
+          var bancoTrabajador = $(banco).text();
+          $("#bancoTrabajador").val(bancoTrabajador);
+
+          var tipo = $(this).parent().parent().children()[4];
+          var tipoCuentaTrabajador = $(tipo).text();
+          $("#tipoCuentaTrabajador").val(tipoCuentaTrabajador);
+
+          var num = $(this).parent().parent().children()[5];
+          var numCuentaTrabajador = $(num).text();
+          $("#numCuentaTrabajador").val(numCuentaTrabajador);
+
+          var monto = $(this).parent().parent().children()[6];
+          var montoTrabajador = $(monto).text();
+          $("#montoTransferenciaTrabajador").val(montoTrabajador);
+
       });
 
 

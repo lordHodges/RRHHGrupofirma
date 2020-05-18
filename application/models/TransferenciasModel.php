@@ -42,15 +42,8 @@ class TransferenciasModel extends CI_Model {
       );
       $insert = $this->db->insert("fa_transferencia", $data);
 
-      // var_dump($insert);
-      // exit();
 
       if($insert){
-        // 4: Crear doumento con clave primeria = atr_documento descrito en contrato
-        $this->db->select('count(*)');
-        $this->db->from("fa_transferencia t");
-        $cantidad_transferencias = $this->db->count_all_results();
-
         $data = array(
             "atr_nombreReal" => $nombreReal,
             "atr_nombreDoc" => $nombreFinal,
@@ -62,13 +55,14 @@ class TransferenciasModel extends CI_Model {
             "cf_trabajador" => $idTrabajador,
         );
         $insert = $this->db->insert("fa_documento", $data);
+
         if($insert){
           return "ok";
         }else{
           return "error";
         }
       }else{
-        return "error fuck";
+        return "error";
       }
     }
 

@@ -141,7 +141,7 @@ if($usuario[0]->atr_activo == "1" ) { ?>
 
                     <div class="col-md-6">
                         <br>
-                        <label for="getSelectPrevision">PREVISIÓN</label><br>
+                        <label for="getSelectPrevision">PREVISIÓN DE SALUD</label><br>
                         <select class="custom-select" id="getSelectPrevision">
 
                         </select>

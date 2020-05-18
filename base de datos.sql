@@ -452,6 +452,40 @@ create table fa_inasistencia(
 );
 
 
+create table fa_historial_adelantos(
+  cp_historial_adelantos int auto_increment,
+  atr_mes varchar(50),
+  atr_ano int,
+  atr_monto int,
+  cf_transferencia varchar(200),
+  cf_documento int,
+  cf_trabajador int,
+  constraint pk_historial_adelantos primary key(cp_historial_adelantos),
+  constraint fk_historialAdelantos_transferencia foreign key(cf_transferencia) references fa_transferencia(cp_transferencia),
+  constraint fk_historialAdelantos_documento foreign key(cf_documento) references fa_documento(cp_documento),
+  constraint fk_historialAdelantos_trabajador foreign key(cf_trabajador) references fa_trabajador(cp_trabajador)
+);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

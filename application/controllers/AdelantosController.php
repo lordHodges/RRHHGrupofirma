@@ -28,7 +28,7 @@ class AdelantosController extends CI_Controller {
 					$r->banco,
 					$r->atr_tipoCuenta,
 					$r->atr_numCuenta,
-					"$".$r->atr_monto,
+					$r->atr_monto,
 				);
 		}
 		$output = array(
