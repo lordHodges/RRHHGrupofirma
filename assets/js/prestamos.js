@@ -400,11 +400,9 @@ function getDetallePrestamo(idPrestamo, rut, nombre, cuotas, montoTotal){
 
     });
 
-
-
-
+    $("#contenedorCuotasPrestamoEditar").append(fila);
   });
-  $("#contenedorCuotasPrestamoEditar").append(fila);
+
 
 }
 

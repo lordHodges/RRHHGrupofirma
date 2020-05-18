@@ -107,7 +107,7 @@ function getDetallePagoTrabajador(idTrabajador){
       diaTermino = 31;
     }
   }
-  
+
   $.ajax({
       url: 'getDetallePagoTrabajador',
       type: 'POST',
@@ -124,42 +124,42 @@ function getDetallePagoTrabajador(idTrabajador){
       var bonoAsistenciaAPagar = new Intl.NumberFormat("es-ES").format(Math.round(o.bonoAsistenciaAPagar));
 
 
-      fila += '<div class="col-md-6 col-sm-6"><br>';
+      fila += '<div class="col-lg-6 col-md-6 col-sm-6"><br>';
       fila += '<label class="text-center" for="sueldoBase">SUELDO BASE</label>';
       fila += '<input type="text" class="form-control custom-input-sm" id="sueldoBase" disabled style="color:#000;" value="$'+o.sueldoBase+'">';
       fila += '</div>';
 
-      fila += '<div class="col-md-6 col-sm-6"><br>';
+      fila += '<div class="col-lg-6 col-md-6 col-sm-6"><br>';
       fila += '<label class="text-center" for="sueldoAPago">SUELDO A PAGO</label>';
       fila += '<input type="text" class="form-control custom-input-sm" id="sueldoAPago" disabled style="color:#000;" value="$'+o.sueldoAPago+'">';
       fila += '</div>';
 
 
 
-      fila += '<div class="col-md-6 col-sm-6"><br>';
+      fila += '<div class="col-lg-6 col-md-6 col-sm-6"><br>';
       fila += '<label class="text-center" for="inasistencias">INASISTENCIAS</label>';
       fila += '<input type="text" class="form-control custom-input-sm" id="inasistencias" disabled style="color:#000;" value="'+o.inasistencias+'">';
       fila += '</div>';
 
-      fila += '<div class="col-md-6 col-sm-6"><br>';
+      fila += '<div class="col-lg-6 col-md-6 col-sm-6"><br>';
       fila += '<label class="text-center" for="diasAPagar">DÍAS A PAGAR</label>';
       fila += '<input type="text" class="form-control custom-input-sm" id="diasAPagar" disabled style="color:#000;" value="'+o.diasAPagar+'">';
       fila += '</div>';
 
-      fila += '<h5 class="col-md-12 text-center" style="color:#fff; margin-top:20px">BONOS</h5>';
+      fila += '<h5 class="col-lg-12 col-md-12 text-center" style="color:#fff; margin-top:20px">BONOS</h5>';
 
 
-      fila += '<div class="col-md-4"><br>';
+      fila += '<div class="col-lg-5 col-md-5"><br>';
       fila += '<label class="text-center" for="bonoColacion">BONO DE COLACIÓN</label>';
       fila += '<input type="text" class="form-control custom-input-sm" id="bonoColacion" disabled style="color:#000;" value="$'+o.bonoColacionBase+'">';
       fila += '</div>';
 
-      fila += '<div class="col-md-4 col-sm-6"><br>';
+      fila += '<div class="col-lg-3 col-md-3 col-sm-6"><br>';
       fila += '<label class="text-center" for="bonoColacionPorDia">BONO POR DÍA</label>';
       fila += '<input type="text" class="form-control custom-input-sm" id="bonoColacionPorDia" disabled style="color:#000;" value="$'+o.bonoColacionDiario+'">';
       fila += '</div>';
 
-      fila += '<div class="col-md-4 col-sm-6"><br>';
+      fila += '<div class="col-lg-4 col-md-4 col-sm-6"><br>';
       fila += '<label class="text-center" for="bonoColacionAPagar">BONO A PAGAR</label>';
       fila += '<input type="text" class="form-control custom-input-sm" id="bonoColacionAPagar" disabled style="color:#000;" value="$'+bonoColacionAPagar+'">';
       fila += '</div>';
@@ -167,17 +167,17 @@ function getDetallePagoTrabajador(idTrabajador){
 
 
 
-      fila += '<div class="col-md-4"><br>';
+      fila += '<div class="col-lg-5 col-md-5"><br>';
       fila += '<label class="text-center" for="bonoMovilizacion">BONO DE MOVILIZACIÓN</label>';
       fila += '<input type="text" class="form-control custom-input-sm" id="bonoMovilizacion" disabled style="color:#000;" value="$'+o.bonoBaseMovilizacion+'">';
       fila += '</div>';
 
-      fila += '<div class="col-md-4 col-sm-6"><br>';
+      fila += '<div class="col-lg-3 col-md-3 col-sm-6"><br>';
       fila += '<label class="text-center" for="bonoMovilizacionPorDia">BONO POR DÍA</label>';
       fila += '<input type="text" class="form-control custom-input-sm" id="bonoMovilizacionPorDia" disabled style="color:#000;" value="$'+o.bonoMovilizacionDiaria+'">';
       fila += '</div>';
 
-      fila += '<div class="col-md-4 col-sm-6"><br>';
+      fila += '<div class="col-lg-4 col-md-4 col-sm-6"><br>';
       fila += '<label class="text-center" for="bonoMovilizacionAPagar">BONO A PAGAR</label>';
       fila += '<input type="text" class="form-control custom-input-sm" id="bonoMovilizacionAPagar" disabled style="color:#000;" value="$'+bonoMovilizacionAPagar+'">';
       fila += '</div>';
@@ -186,12 +186,12 @@ function getDetallePagoTrabajador(idTrabajador){
 
 
 
-      fila += '<div class="col-md-6 col-sm-12"><br>';
+      fila += '<div class="col-md-8 col-sm-12"><br>';
       fila += '<label class="text-center" for="bonoAsistencia">BONO DE ASISTENCIA Y PUNTUALIDAD</label>';
       fila += '<input type="text" class="form-control custom-input-sm" id="bonoAsistencia" disabled style="color:#000;" value="$'+o.bonoBaseAsistencia+'">';
       fila += '</div>';
 
-      fila += '<div class="col-md-6 col-sm-12"><br>';
+      fila += '<div class="col-md-4 col-sm-12"><br>';
       fila += '<label class="text-center" for="bonoAsistencia">BONO A PAGAR</label>';
       fila += '<input type="text" class="form-control custom-input-sm" id="bonoAsistencia" disabled style="color:#000;" value="$'+bonoAsistenciaAPagar+'">';
       fila += '</div>';
