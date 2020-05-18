@@ -14,24 +14,35 @@ class AdelantosController extends CI_Controller {
 	}
 
 	public function getListadoAdelantos(){
+		$estado = 'Pendiente';
+		$historial = $this->AdelantosModel->getHistorialAdelantos();
+
 		$draw = intval($this->input->get("draw"));
 		$start = intval($this->input->get("start"));
 		$length = intval($this->input->get("length"));
 		$books = $this->AdelantosModel->getListadoAdelantos();
+
 		$data = array();
 		foreach ($books->result() as $r) {
 				$nombreFinal = $r->nombres."".$r->apellidos;
+				foreach ($historial->result() as $key => $h) {
+					if ($h->cf_trabajador == $r->cp_trabajador) {
+						$estado = 'Lista';
+					}
+				}
+				$monto = number_format($r->atr_monto, 0, ",", ".");
 				$data[] = array(
-					$r->cp_adelanto,
 					$r->cp_trabajador,
 					$r->rutTrabajador,
 					$r->nombres." ".$r->apellidos,
 					$r->banco,
 					$r->atr_tipoCuenta,
 					$r->atr_numCuenta,
-					$r->atr_monto,
+					'$'.$monto,
+					$estado,
 				);
-		}
+				$estado = 'Pendiente';
+		};
 		$output = array(
 				"draw" => $draw,
 				"recordsTotal" => $books->num_rows(),
@@ -52,12 +63,22 @@ class AdelantosController extends CI_Controller {
 		echo json_encode($resultado);
 	}
 
+
+	public function addHistorialAdelanto(){
+		$monto = $this->input->post("monto");
+		$idTrabajador = $this->input->post("idTrabajador");
+		$resultado = $this->AdelantosModel->addHistorialAdelanto($monto,$idTrabajador);
+		echo json_encode($resultado);
+	}
+
 	public function updateAdelanto(){
 		$idAdelanto = $this->input->post("idAdelanto");
 		$banco = $this->input->post("banco");
 		$tipoCuenta = $this->input->post("tipoCuenta");
 		$numeroCuenta = $this->input->post("numeroCuenta");
 		$monto = $this->input->post("monto");
+
+		str_replace ( "." , "" , $monto);
 
 		$resultado = $this->AdelantosModel->updateAdelanto($idAdelanto, $banco, $tipoCuenta, $numeroCuenta, $monto);
 		echo json_encode(array("msg" => $resultado));

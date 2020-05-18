@@ -53,6 +53,9 @@ $route['getListadoAdelantos'] = 'AdelantosController/getListadoAdelantos';
 $route['getDetalleAdelanto'] = 'AdelantosController/getDetalleAdelanto';
 $route['updateAdelanto'] = 'AdelantosController/updateAdelanto';
 $route['buscarBanco'] = 'AdelantosController/buscarBanco';
+$route['addHistorialAdelanto'] = 'AdelantosController/addHistorialAdelanto';
+
+
 
 
 // FINIQUITOS

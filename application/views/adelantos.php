@@ -32,14 +32,14 @@ if($usuario[0]->atr_activo == "1" ) { ?>
                         <table id="tabla_adelantos" class="table table-striped table-bordered table-hover dataTables-adelantos" style="margin-top:20px;">
                             <thead >
                                 <tr style="width:100%;">
-                                    <th class="text-center">AD</th>
-                                    <th class="text-center">TR</th>
+                                    <th class="text-center">ID</th>
                                     <th class="text-center">RUT</th>
                                     <th class="text-center">TRABAJADOR</th>
                                     <th class="text-center">BANCO</th>
                                     <th class="text-center">TIPO</th>
                                     <th class="text-center">N° CUENTA</th>
                                     <th class="text-center">MONTO</th>
+                                    <th class="text-center">TRANSFERENCIA</th>
                                     <th class="text-center">ACCIONES</th>
                                 </tr>
                             </thead>
@@ -264,6 +264,18 @@ if($usuario[0]->atr_activo == "1" ) { ?>
                 }
               }
           });
+
+
+          var monto = $("#monto").val();
+          var idTrabajador = $("#labelTrabajador").val();
+          $.ajax({
+              url: 'addHistorialAdelanto',
+              type: 'POST',
+              dataType: 'json',
+              data: {"monto": monto, "idTrabajador":idTrabajador}
+          }).then(function (msg) {
+              
+          });
       });
 
 
@@ -271,7 +283,7 @@ if($usuario[0]->atr_activo == "1" ) { ?>
 
       $("body").on("click", "#btnCargarComprobante", function(e) {
           e.preventDefault();
-          var id = $(this).parent().parent().children()[1];
+          var id = $(this).parent().parent().children()[0];
           var idTrabajador = $(id).text();
           $("#labelTrabajador").val(idTrabajador);
 
@@ -310,7 +322,7 @@ if($usuario[0]->atr_activo == "1" ) { ?>
           updateAdelanto();
       });
   </script>
-  <?php } else{ header("Location: http://localhost/GRUPOFIRMA/"); } ?>
+  <?php } else{ header("Location: http://10.10.11.240/GRUPOFIRMA/"); } ?>
 
 </body>
 </html>

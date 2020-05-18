@@ -17,12 +17,61 @@ class AdelantosModel extends CI_Model {
         return $this->db->get();
     }
 
+    function getHistorialAdelantos(){
+        $fechaActual = date("Y-m-d");
+
+        $mes = date("m");
+        $ano = date("Y");
+
+        $this->db->select("ha.cf_trabajador");
+        $this->db->from("fa_historial_adelantos ha");
+        $this->db->where("ha.atr_mes",$mes);
+        $this->db->where("ha.atr_ano",$ano);
+        return $this->db->get();
+    }
+
+    function addHistorialAdelanto($monto, $idTrabajador){
+        $fechaActual = date("Y-m-d");
+
+        $mes = date("m");
+        $ano = date("Y");
+
+        $this->db->select(" t.cp_transferencia ");
+        $this->db->from("fa_transferencia t");
+        $transferencias = $this->db->get()->result();
+
+        foreach ($transferencias as $key => $t) {
+          $idTransferencia = $t->cp_transferencia;
+        }
+
+        $this->db->select("doc.cp_documento ");
+        $this->db->from("fa_documento doc");
+        $this->db->where("doc.cf_transferencia",$idTransferencia);
+        $documento = $this->db->get()->result();
+
+        foreach ($documento as $key => $doc) {
+          $idDocumento = $doc->cp_documento;
+        }
+
+        $data = array(
+            "atr_mes"             => $mes,
+            "atr_ano"            => $ano,
+            "atr_monto"           => $monto,
+            "cf_transferencia"    => $idTransferencia,
+            "cf_documento"        => $idDocumento,
+            "cf_trabajador"       => $idTrabajador
+        );
+
+        $resultado =  $this->db->insert("fa_historial_adelantos", $data);
+        return $resultado;
+    }
+
     function getDetalleAdelanto($idAdelanto){
         $this->db->select(" a.cp_adelanto, a.atr_tipoCuenta, a.atr_numCuenta, a.atr_monto, b.atr_nombre as banco, t.atr_nombres as nombres, t.atr_apellidos as apellidos, t.atr_rut rutTrabajador ");
         $this->db->from("fa_adelanto a");
         $this->db->join("fa_banco b", "b.cp_banco = a.cf_banco");
         $this->db->join("fa_trabajador t", "t.cp_trabajador = a.cf_trabajador");
-        $this->db->where("a.cp_adelanto",$idAdelanto);
+        $this->db->where("a.cf_trabajador",$idAdelanto);
         return $this->db->get()->result();
     }
 
