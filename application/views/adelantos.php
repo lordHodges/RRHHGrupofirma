@@ -32,7 +32,8 @@ if($usuario[0]->atr_activo == "1" ) { ?>
                         <table id="tabla_adelantos" class="table table-striped table-bordered table-hover dataTables-adelantos" style="margin-top:20px;">
                             <thead >
                                 <tr style="width:100%;">
-                                    <th class="text-center">ID</th>
+                                    <th class="text-center">AD</th>
+                                    <th class="text-center">TR</th>
                                     <th class="text-center">RUT</th>
                                     <th class="text-center">TRABAJADOR</th>
                                     <th class="text-center">BANCO</th>
@@ -159,7 +160,7 @@ if($usuario[0]->atr_activo == "1" ) { ?>
                         <div class="col-md-6">
                             <br>
                             <label for="getSelectMotivo">MOTIVO</label><br>
-                            <select class="custom-select" id="getSelectMotivo"  style="color:#000;" name="getSelectMotivo">
+                            <select class="custom-select" id="getSelectMotivo"  name="getSelectMotivo">
                               <option value="Adelanto">Adelanto</option>
                             </select>
                         </div>
@@ -270,7 +271,7 @@ if($usuario[0]->atr_activo == "1" ) { ?>
 
       $("body").on("click", "#btnCargarComprobante", function(e) {
           e.preventDefault();
-          var id = $(this).parent().parent().children()[0];
+          var id = $(this).parent().parent().children()[1];
           var idTrabajador = $(id).text();
           $("#labelTrabajador").val(idTrabajador);
 
@@ -309,7 +310,7 @@ if($usuario[0]->atr_activo == "1" ) { ?>
           updateAdelanto();
       });
   </script>
-  <?php } else{ header("Location: http://10.10.11.240/GRUPOFIRMA/"); } ?>
+  <?php } else{ header("Location: http://localhost/GRUPOFIRMA/"); } ?>
 
 </body>
 </html>

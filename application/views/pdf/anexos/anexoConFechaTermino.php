@@ -128,7 +128,7 @@ if($usuario[0]->atr_activo == "1" && $view_anexoFechaEstandar == "1") { ?>
 
 
 
-  <?php } else{ header("Location: http://10.10.11.240/GRUPOFIRMA/"); } ?>
+  <?php } else{ header("Location: http://localhost/GRUPOFIRMA/"); } ?>
 
   </body>
   </html>

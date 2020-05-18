@@ -23,6 +23,7 @@ class AdelantosController extends CI_Controller {
 				$nombreFinal = $r->nombres."".$r->apellidos;
 				$data[] = array(
 					$r->cp_adelanto,
+					$r->cp_trabajador,
 					$r->rutTrabajador,
 					$r->nombres." ".$r->apellidos,
 					$r->banco,

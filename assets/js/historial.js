@@ -1,5 +1,5 @@
 /*************************** TRABAJADOR ****************************/
-var base_url = 'http://10.10.11.240/GRUPOFIRMA/index.php/';
+var base_url = 'http://localhost/GRUPOFIRMA/index.php/';
 
 function cargarTablaTrabajadorHistorial(){
   var table = $('#tabla_trabajador').DataTable();
@@ -38,7 +38,7 @@ function cargarTablaTrabajadorHistorial(){
             }
         },
         "ajax": {
-            url: "http://10.10.11.240/GRUPOFIRMA/index.php/getListadoTrabajadores",
+            url: "http://localhost/GRUPOFIRMA/index.php/getListadoTrabajadores",
             type: 'GET'
         },
         "columnDefs": [{
