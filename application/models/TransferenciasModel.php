@@ -24,11 +24,13 @@ class TransferenciasModel extends CI_Model {
       $this->db->from("fa_transferencia t");
       $cantidad_transferencias = $this->db->count_all_results();
 
+
       // 3: Generar clave de atr_documento
       $arraykey = array("NR70RG0", "LSL74T0", "42IIQW0", "VH6MPA0","Z_0RTN0","VF88JP00","WT96QF0", "E077ES0","IF72LE0","DG62XK0","VP59FY0","TJ12BX0","TD13MX0");
       $arrayN=rand(0,12);
       $key=rand(1,999999);
       $atr_documento = $arraykey[$arrayN]."".$key."".$cantidad_transferencias;
+
 
       // 3: Crear transferencia con atr_documento = codigo generado
       $data = array(
@@ -39,6 +41,9 @@ class TransferenciasModel extends CI_Model {
           "cf_banco" => $banco,
       );
       $insert = $this->db->insert("fa_transferencia", $data);
+
+      // var_dump($insert);
+      // exit();
 
       if($insert){
         // 4: Crear doumento con clave primeria = atr_documento descrito en contrato
@@ -63,7 +68,7 @@ class TransferenciasModel extends CI_Model {
           return "error";
         }
       }else{
-        return "error";
+        return "error fuck";
       }
     }
 

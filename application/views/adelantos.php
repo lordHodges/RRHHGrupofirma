@@ -185,6 +185,7 @@ if($usuario[0]->atr_activo == "1" ) { ?>
     <!-- MODIDEV -->
     <script src="<?php echo base_url() ?>assets/js/modidev.js"></script>
     <script src="<?php echo base_url() ?>assets/js/adelantos.js"></script>
+    <script src="<?php echo base_url() ?>assets/js/validaciones.js"></script>
     <!-- Toast -->
     <script src="<?php echo base_url() ?>assets/js/toastr.min.js" type="text/javascript"></script>
 
@@ -257,7 +258,7 @@ if($usuario[0]->atr_activo == "1" ) { ?>
           updateAdelanto();
       });
   </script>
-  <?php } else{ header("Location: http://localhost/GRUPOFIRMA/"); } ?>
+  <?php } else{ header("Location: http://10.10.11.240/GRUPOFIRMA/"); } ?>
 
 </body>
 </html>

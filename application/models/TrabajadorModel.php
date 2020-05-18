@@ -49,9 +49,13 @@ class TrabajadorModel extends CI_Model {
 
 
         if ($insertTrabajador) {
-          $this->db->select('count(*)');
+          $this->db->select('cp_trabajador');
           $this->db->from("fa_trabajador t");
-          $cantidad_trabajadores = $this->db->count_all_results();
+          $trabajadores = $this->db->get()->result();
+
+          foreach ($trabajadores as $key => $value) {
+            $id = $value->cp_trabajador;
+          }
 
 
           $numCuenta = explode("-", $rut);
@@ -62,7 +66,7 @@ class TrabajadorModel extends CI_Model {
               "atr_monto"                 => "0",
               "atr_tipoCuenta"            => "CUENTA RUT",
               "cf_banco"                  => 7,
-              "cf_trabajador"             => $cantidad_trabajadores
+              "cf_trabajador"             => $id
           );
 
           $this->db->insert("fa_adelanto", $dataAdelanto);

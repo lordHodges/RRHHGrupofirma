@@ -80,9 +80,8 @@ class TransferenciasController extends CI_Controller {
 				 $resultado = $this->TransferenciasModel->cargar_comprobante( $motivo, $banco, $nombreReal, $nombreFinal, $ruta, $fechaTransferencia, $monto, $fechaActual, $idTrabajador );
 
 				 //REGRESO RESULTADO POSITIVO PARA DESPLEGAR MENSAJE DE EXITO
-				 echo json_encode("ok");
-				 exit();
-
+				 echo json_encode($resultado);
+				 // exit();
 		 }
 	}
 
