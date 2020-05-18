@@ -76,27 +76,35 @@ class PagosModel extends CI_Model {
             $colacion = str_replace ( "." , "" , $r->atr_colacion  );
             $movilizacion = str_replace ( "." , "" , $r->atr_movilizacion  );
 
+
+
+            $bonoBaseColacion = $r->atr_colacion;
+            $bonoBaseMovilizacion = $r->atr_movilizacion;
+            $bonoBaseAsistencia = $r->atr_asistencia;
+
             $bonoAsistencia = $r->atr_asistencia;
 
+            $cont = 0;
 
+            foreach ($diasInsistencia as $key => $dias) {
+              $cont = $cont+1;
+            }
 
-            if ( $diasInsistencia > 0) {
-              $colacionDiaria = round($colacion / 30);
-              $movilizacionDiaria = round($movilizacion / 30);
+            $colacionDiaria = $colacion / 30;
+            $movilizacionDiaria = $movilizacion / 30;
+            $diasPago = 30 - $cont;
 
-              $cont = 0;
-              foreach ($diasInsistencia as $key => $dias) {
-                $cont = $cont +1;
-              }
-              $diasPago = 30 - $cont;
+            if ( $cont > 0) {
+              $bonoAsistencia = 0;
 
               $colacion = $colacionDiaria * $diasPago;
               $movilizacion = $movilizacionDiaria * $diasPago;
 
-
               $bonos = $colacion + $movilizacion;
             }else{
+
               $bonos = $colacion + $movilizacion + $bonoAsistencia;
+
             }
           }
 
@@ -131,8 +139,6 @@ class PagosModel extends CI_Model {
           foreach ($prestamos as $key => $p) {
             $montoPrestamo = $montoPrestamo + $p->atr_montoDescontar ;
           }
-
-
 
 
           // Calcular sueldo si el trabajador falto
@@ -180,6 +186,27 @@ class PagosModel extends CI_Model {
         } //fin de for para trabajadores contratados activos.
         return $dataFinal;
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -332,11 +359,9 @@ class PagosModel extends CI_Model {
       if ($cont > 0) {
         $sueldo = $sueldo / 30;
         $sueldo = $sueldo * $diasPago;
-
       }
 
       //CALCULAR EL MONTO TOTAL A PAGAR
-
       $montoTotalPagar = ($sueldo + $bonos) - ($montoAdelanto + $montoPrestamo);
 
 
@@ -369,7 +394,7 @@ class PagosModel extends CI_Model {
 
       $data = array(
           "sueldoBase"              => $sueldoBaseParaMandar,
-          "sueldoAPago"             => $sueldo,
+          "sueldoAPago"             => $montoTotalPagar,
           "inasistencias"           => $cont,
           "diasAPagar"              => $diasPago,
           "bonoColacionBase"        => $bonoBaseColacion,

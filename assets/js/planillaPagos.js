@@ -33,7 +33,7 @@ function cargarTablaPagosFinDeMes (){
     btnAcciones += '<button style="display:inline" type="button" id="btnVerDetallePago" class="btn btn-info btn-sm" data-toggle="modal" data-target="#modalDetallePago"><i class="glyphicon glyphicon-usd"></i></button>';
 
   // CARGAR COMPROBANTE
-    btnAcciones += '<button style="display:inline" type="button" id="btnCargarComprobante" class="btn btn-info btn-sm" data-toggle="modal" data-target="#modalCargarComprobante"><i class="glyphicon glyphicon-open"></i></button>';
+    btnAcciones += '<button style="display:inline" type="button" id="btnCargarComprobante" class="btn btn-info btn-sm" data-toggle="modal" data-target="#modalCargarArchivo"><i class="glyphicon glyphicon-open"></i></button>';
 
   $('.dataTables-tabla_pagos5').DataTable({
     "autoWidth": false,
@@ -272,13 +272,9 @@ function getDetallePagoTrabajador(idTrabajador){
         fila += '</div>';
       });
 
-
-
     });
 
     $("#contenedorDetallePago").append(fila);
-
-
 
   });
 }

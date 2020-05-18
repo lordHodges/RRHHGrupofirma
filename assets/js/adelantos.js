@@ -1,5 +1,23 @@
 var base_url = 'http://localhost/GRUPOFIRMA/index.php/';
 
+function cargarBancos(){
+  $.ajax({
+      url: 'getBancos',
+      type: 'GET',
+      dataType: 'json'
+  }).then(function (response) {
+      var fila = "";
+
+      $("#getSelectBanco").empty();
+      fila += '<option value="">Seleccione una opción</opion>'
+      $.each(response, function (i, o) {
+        fila += '<option value="'+o.cp_banco+'">'+o.atr_nombre+'</opion>';
+      });
+      $("#getSelectBanco").append(fila);
+  });
+}
+
+
 function cargarTablaAdelantos(permisoEditar,permisoExportar){
   var table = $('#tabla_adelantos').DataTable();
   table.destroy();
@@ -9,6 +27,9 @@ function cargarTablaAdelantos(permisoEditar,permisoExportar){
   if (permisoEditar == "si") {
     btnAcciones += '<button type="button" id="getDetalleAdelanto" class="btn btn-info btn-sm" data-toggle="modal" data-target="#modalEditarAdelanto"><i class="glyphicon glyphicon-pencil"></i></button>';
   }
+  // if (permisoCargar == "si") {
+    btnAcciones += '<button style="display:inline" type="button" id="btnCargarComprobante" class="btn btn-info btn-sm" data-toggle="modal" data-target="#modalCargarArchivo"><i class="glyphicon glyphicon-open"></i></button>';
+  // }
 
   if (permisoExportar == "si") {
     $('.dataTables-adelantos').DataTable({

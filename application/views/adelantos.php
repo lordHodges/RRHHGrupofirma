@@ -104,6 +104,70 @@ if($usuario[0]->atr_activo == "1" ) { ?>
     </div>
     <!-- /Modal de editar -->
 
+    <!-- Modal ver cargar archivo -->
+    <div id="modalCargarArchivo" class="modal fade" tabindex="-1" role="dialog"  aria-hidden="true" >
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content" style="padding:20px; background: #2a3f54" >
+                <div class="form-row">
+                  <div class="col-md-12">
+                    <h5 class="modal-title mx-auto" style="margin-left:50px;">CARGAR COMPROBANTE</h5><br>
+                  </div>
+                  <div class="col-md-12" id="detalleCargaArchivo">
+                      <form id="uploader" method="post" enctype="multipart/form-data" action="cargar_comprobante">
+                        <div class="col-md-6">
+                            <br>
+                            <label for="getSelectBanco">BANCO</label><br>
+                            <select class="custom-select" id="getSelectBanco" name="getSelectBanco">
+
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                          <br>
+                          <label for="fechaTransferencia">FECHA DE TRANSFERENCIA</label>
+                          <input type="date" class="form-control" name="fechaTransferencia" required style="border-radius:5px;">
+                        </div>
+
+                        <div class="col-md-6">
+                            <br>
+                            <label for="getSelectMotivo">MOTIVO</label><br>
+                            <select class="custom-select" id="getSelectMotivo" name="getSelectMotivo">
+                              <option value="">Seleccionar opción</option>
+                              <option value="Adelanto">Adelanto</option>
+                              <option value="Pago mensual">Pago mensual</option>
+                              <option value="Préstamo">Préstamo</option>
+                              <option value="Otro">Otro</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6" id="contenedorOtroMotivo" style="display:none">
+                          <br>
+                          <label for="otroMotivo">OTRO MOTIVO</label>
+                          <input type="text" class="form-control"  name="otroMotivo" style="border-radius:5px; padding:8px;">
+                        </div>
+
+                        <div class="col-md-12">
+                          <br>
+                          <label for="monto">MONTO</label>
+                          <input type="text" class="form-control" onkeyup="soloNumeros(this.value);formatoMiles(this)" name="monto"  style="border-radius:5px; padding:7px;" required>
+                        </div>
+                        <input type="text" name="labelTrabajador" id="labelTrabajador" style="color:#2a3f54;border:none;border-color:#2a3f54">
+                        <div class="col-md-12" >
+                          <br>
+                          <input lang="es" type="file" name="file" id="file">
+                        </div>
+                        <br>
+                        <div class="col-md-12" style="margin-top:20px; margin-bottom:-20px;">
+                          <button type="submit" class="btn btn-success btn-sm" id="btnCargar" style="width:100%;" >GUARDAR</button>
+                        </div>
+                    </form>
+                  </div>
+
+                </div>
+                <br>
+            </div>
+        </div>
+    </div>
+    <!-- /Modal de cargar archivo -->
+
     <label id="permisoExportar" style="display:none">no</label>
     <label id="permisoEditar" style="display:none">no</label>
 
@@ -129,6 +193,7 @@ if($usuario[0]->atr_activo == "1" ) { ?>
 
     <script>
       $(document).ready(function() {
+          cargarBancos();
           var exportar = "no", editar = "no";
           <?php if( $view_exportarAdelanto == 1 ){  ?>
               exportar = "si";
@@ -139,6 +204,43 @@ if($usuario[0]->atr_activo == "1" ) { ?>
               $("#permisoEditar").text("si");
           <?php } ?>
           cargarTablaAdelantos(editar,exportar);
+      });
+
+      $("#getSelectBanco").change(function (e){
+        $.ajax({
+            url: 'getBancos',
+            type: 'GET',
+            dataType: 'json'
+        }).then(function (response) {
+            $.each(response, function (i, o) {
+              if( $("#getSelectBanco").val()  == o.cp_banco ){
+                if(!o.atr_sitio == ""){
+                  window.open(o.atr_sitio);
+                }
+              }
+            });
+        });
+      });
+
+      $('#uploader').submit(function(e){
+       e.preventDefault();
+          $.ajax({
+              url:$('#uploader').attr('action'),
+              type:"post",
+              data:new FormData(this), // form
+              processData:false,
+              contentType:false,
+              cache:false,
+              async:false,
+              success: function(data){
+                if (data == 'ok') {
+                  $('#modalCargarArchivo').modal('hide');
+                  toastr.success('Comprobante guardado');
+                }else{
+                  toastr.error("Error al guardar");
+                }
+              }
+          });
       });
 
 
