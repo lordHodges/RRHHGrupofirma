@@ -93,7 +93,7 @@ if($usuario[0]->atr_activo == "1" ) { ?>
 
                     <div class="col-md-12 col-sm-12">
                         <br>
-                        <label for="direccion">DIRECCIÓN</label>
+                        <label for="direccion">DIRECCIÓN </label>
                         <input type="text" class="form-control" id="direccion" oninput="mayus(this);" required>
                     </div>
 
