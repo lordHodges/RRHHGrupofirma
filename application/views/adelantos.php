@@ -35,6 +35,7 @@ if($usuario[0]->atr_activo == "1" ) { ?>
                                     <th class="text-center">ID</th>
                                     <th class="text-center">RUT</th>
                                     <th class="text-center">TRABAJADOR</th>
+                                    <th class="text-center">EMPRESA</th>
                                     <th class="text-center">BANCO</th>
                                     <th class="text-center">TIPO</th>
                                     <th class="text-center">N° CUENTA</th>
@@ -274,7 +275,7 @@ if($usuario[0]->atr_activo == "1" ) { ?>
               dataType: 'json',
               data: {"monto": monto, "idTrabajador":idTrabajador}
           }).then(function (msg) {
-              
+
           });
       });
 
