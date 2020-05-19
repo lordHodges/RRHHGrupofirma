@@ -76,28 +76,29 @@ function cargarTablaAdelantos(permisoEditar,permisoExportar){
             buttons: [{
                     extend: 'copy',
                     exportOptions: {
-                        columns: [ 1,2,3,4,5,6 ]
+                        columns: [ 1,2,3,4,5,6,7,8 ]
                     }
                 },
                 {
                     extend: 'csv',
                     exportOptions: {
-                        columns: [ 1,2,3,4,5,6 ]
+                        columns: [ 1,2,3,4,5,6,7,8 ]
                     }
                 },
                 {
                     extend: 'excel',
                     title: 'Lista de adelantos',
                     exportOptions: {
-                        columns: [ 1,2,3,4,5,6 ]
+                        columns: [ 1,2,3,4,5,6,7,8 ]
                     }
 
                 },
                 {
                     extend: 'pdf',
                     title: 'Lista de adelantos',
+                    orientation: 'landscape',
                     exportOptions: {
-                        columns: [ 1,2,3,4,5,6 ]
+                        columns: [ 1,2,3,4,5,6,7,8 ]
                     }
 
                 },
@@ -105,7 +106,7 @@ function cargarTablaAdelantos(permisoEditar,permisoExportar){
                     extend: 'print',
                     title: 'Firma de abogados',
                     exportOptions: {
-                        columns: [ 1,2,3,4,5,6 ]
+                        columns: [ 1,2,3,4,5,6,7,8 ]
                     },
                     customize: function(win) {
                         $(win.document.body).addClass('white-bg');
@@ -116,7 +117,8 @@ function cargarTablaAdelantos(permisoEditar,permisoExportar){
                     }
                 }
             ],
-            "lengthMenu": [[100, 50, 25, -1], [100, 50, 25, "All"]]
+            "lengthMenu": [[100, 50, 25, -1], [100, 50, 25, "All"]],
+            
       });
   }else{
     $('.dataTables-adelantos').DataTable({
