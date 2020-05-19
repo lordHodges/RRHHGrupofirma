@@ -9,10 +9,11 @@ class AdelantosModel extends CI_Model {
     }
 
     function getListadoAdelantos(){
-        $this->db->select(" a.cp_adelanto, a.atr_tipoCuenta, a.atr_numCuenta, a.atr_monto, b.atr_nombre as banco, t.atr_nombres as nombres, t.atr_apellidos as apellidos, t.atr_rut rutTrabajador, t.cp_trabajador ");
+        $this->db->select(" a.cp_adelanto, a.atr_tipoCuenta, a.atr_numCuenta, a.atr_monto, b.atr_nombre as banco, t.atr_nombres as nombres, t.atr_apellidos as apellidos, t.atr_rut rutTrabajador, t.cp_trabajador, e.atr_nombre as empresa ");
         $this->db->from("fa_adelanto a");
         $this->db->join("fa_banco b", "b.cp_banco = a.cf_banco");
         $this->db->join("fa_trabajador t", "t.cp_trabajador = a.cf_trabajador");
+        $this->db->join("fa_empresa e", "t.cf_empresa = e.cp_empresa");
         $this->db->where("t.cf_estado <> 6");
         return $this->db->get();
     }

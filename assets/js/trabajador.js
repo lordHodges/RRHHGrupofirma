@@ -1,5 +1,5 @@
 /*************************** TRABAJADOR ****************************/
-var base_url = 'http://localhost/GRUPOFIRMA/index.php/';
+var base_url = 'http://10.10.11.240/GRUPOFIRMA/index.php/';
 
 function cargarTablaTrabajador(permisoEditar, permisoExportar){
   var table = $('#tabla_trabajador').DataTable();
@@ -49,7 +49,7 @@ function cargarTablaTrabajador(permisoEditar, permisoExportar){
               }
           },
           "ajax": {
-              url: "http://localhost/GRUPOFIRMA/index.php/getListadoTrabajadores",
+              url: "http://10.10.11.240/GRUPOFIRMA/index.php/getListadoTrabajadores",
               type: 'GET'
           },
           "columnDefs": [{
@@ -144,7 +144,7 @@ function cargarTablaTrabajador(permisoEditar, permisoExportar){
               }
           },
           "ajax": {
-              url: "http://localhost/GRUPOFIRMA/index.php/getListadoTrabajadores",
+              url: "http://10.10.11.240/GRUPOFIRMA/index.php/getListadoTrabajadores",
               type: 'GET'
           },
           "columnDefs": [{

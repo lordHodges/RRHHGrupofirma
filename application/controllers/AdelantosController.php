@@ -27,7 +27,7 @@ class AdelantosController extends CI_Controller {
 				$nombreFinal = $r->nombres."".$r->apellidos;
 				foreach ($historial->result() as $key => $h) {
 					if ($h->cf_trabajador == $r->cp_trabajador) {
-						$estado = 'Lista';
+						$estado = 'Transferido';
 					}
 				}
 				$monto = number_format($r->atr_monto, 0, ",", ".");
@@ -35,6 +35,7 @@ class AdelantosController extends CI_Controller {
 					$r->cp_trabajador,
 					$r->rutTrabajador,
 					$r->nombres." ".$r->apellidos,
+					$r->empresa,
 					$r->banco,
 					$r->atr_tipoCuenta,
 					$r->atr_numCuenta,
