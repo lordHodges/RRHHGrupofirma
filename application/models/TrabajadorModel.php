@@ -19,7 +19,7 @@ class TrabajadorModel extends CI_Model {
 
 
     function addTrabajador($rut,$nombres,$apellidos,$direccion,$fechaNacimiento,$ciudad,$sucursal,$cargo,$empresa,$afp, $prevision, $estadoContrato, $estadoCivil, $nacionalidad){
-      
+
 
         $this->db->select("r.atr_sueldoMensual");
         $this->db->from("fa_remuneracion r");
@@ -50,29 +50,31 @@ class TrabajadorModel extends CI_Model {
         $insertTrabajador = $this->db->insert("fa_trabajador", $data);
 
 
-        if ($insertTrabajador) {
-          $this->db->select('cp_trabajador');
-          $this->db->from("fa_trabajador t");
-          $trabajadores = $this->db->get()->result();
+        $this->db->select('cp_trabajador');
+        $this->db->from("fa_trabajador t");
+        $trabajadores = $this->db->get()->result();
 
-          foreach ($trabajadores as $key => $value) {
-            $id = $value->cp_trabajador;
-          }
-
-
-          $numCuenta = explode("-", $rut);
-          $numCuenta = str_replace(".", "", $numCuenta);
-
-          $dataAdelanto = array(
-              "atr_numCuenta"             => $numCuenta[0],
-              "atr_monto"                 => "0",
-              "atr_tipoCuenta"            => "CUENTA RUT",
-              "cf_banco"                  => 7,
-              "cf_trabajador"             => $id
-          );
-
-          $this->db->insert("fa_adelanto", $dataAdelanto);
+        foreach ($trabajadores as $key => $value) {
+          $id = $value->cp_trabajador;
         }
+
+
+        $numCuenta = str_replace(".", "", $rut);
+        $numCuenta = explode("-", $numCuenta);
+
+
+        // var_dump("id: ".$id);
+        // exit();
+
+        $dataAdelanto = array(
+            "atr_numCuenta"             => $numCuenta[0],
+            "atr_monto"                 => "0",
+            "atr_tipoCuenta"            => "CUENTA RUT",
+            "cf_banco"                  => "7",
+            "cf_trabajador"             => $id
+        );
+
+        $this->db->insert("fa_adelanto", $dataAdelanto);
 
         return "ok";
     }

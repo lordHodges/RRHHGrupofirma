@@ -118,7 +118,7 @@ $perfil =  $data['perfil'];
 
 
 
-    <?php } else{ header("Location: http://10.10.11.240/GRUPOFIRMA/"); } ?>
+    <?php } else{ header("Location: http://localhost/GRUPOFIRMA/"); } ?>
 
 
   </body>

@@ -23,7 +23,8 @@ class PrestamosController extends CI_Controller {
 		$books = $this->PrestamosModel->getListadoPrestamosTrabajador();
 		$data = array();
 		foreach ($books->result() as $r) {
-			$montoTotal = "$".$r->atr_montoTotal;
+			$montoTotal = number_format($r->atr_montoTotal, 0, ",", ".");
+			$montoTotal = "$".$montoTotal;
 				$data[] = array(
 					$r->cp_prestamo,
 					$r->atr_rut,
