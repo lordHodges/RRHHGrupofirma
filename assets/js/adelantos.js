@@ -155,7 +155,7 @@ function cargarTablaAdelantos(permisoEditar,permisoExportar){
               type: 'GET'
           },
           "columnDefs": [{
-            "targets": 8,
+            "targets": 9,
             "data": null,
             "defaultContent": btnAcciones
           }
