@@ -31,6 +31,7 @@ class AdelantosController extends CI_Controller {
 					}
 				}
 				$monto = number_format($r->atr_monto, 0, ",", ".");
+				$monto = '$'.$monto;
 				$data[] = array(
 					$r->cp_trabajador,
 					$r->rutTrabajador,
@@ -39,7 +40,7 @@ class AdelantosController extends CI_Controller {
 					$r->banco,
 					$r->atr_tipoCuenta,
 					$r->atr_numCuenta,
-					'$'.$monto,
+					$monto,
 					$estado,
 				);
 				$estado = 'Pendiente';
@@ -52,9 +53,6 @@ class AdelantosController extends CI_Controller {
 		);
 		echo json_encode($output);
 		exit();
-
-		 // $output = $this->AdelantosModel->getListadoAdelantos();
-		 // echo json_encode( $output );
 	}
 
 
