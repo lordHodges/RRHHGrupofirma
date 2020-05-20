@@ -67,6 +67,7 @@ class TrabajadorModel extends CI_Model {
         // exit();
 
         $dataAdelanto = array(
+            "cp_adelanto"               => $id,
             "atr_numCuenta"             => $numCuenta[0],
             "atr_monto"                 => "0",
             "atr_tipoCuenta"            => "CUENTA VISTA",

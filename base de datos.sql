@@ -432,7 +432,7 @@ create table fa_detalle_prestamo(
 create table fa_adelanto(
   cp_adelanto int auto_increment,
   atr_tipoCuenta varchar(200),
-  atr_numCuenta int,
+  atr_numCuenta varchar(200),
   atr_monto int,
   cf_banco int,
   cf_trabajador int unique,
