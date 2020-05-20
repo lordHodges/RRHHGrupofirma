@@ -22,6 +22,23 @@ if($usuario[0]->atr_activo == "1" ) { ?>
             <div class="x_content">
               <h3 class="text-center">PLANILLA DE PAGOS</h3><br>
 
+
+              <!-- <ul class="nav nav-tabs bar_tabs" id="myTab" role="tablist">
+
+                  <li class="nav-item">
+                    <a class="nav-link" id="perfiles-tab" data-toggle="tab" href="#perfiles" role="tab" aria-controls="perfiles" aria-selected="false">Perfiles</a>
+                  </li>
+
+                  <li class="nav-item">
+                    <a class="nav-link" id="usuarios-tab" data-toggle="tab" href="#usuarios" role="tab" aria-controls="usuarios" aria-selected="false">Usuarios</a>
+                  </li>
+
+              </ul> -->
+
+
+
+
+
               <?php if ($view_verPlanillaPagos == "1") {  ?>
                 <div class="row">
 
