@@ -97,6 +97,8 @@ class AdelantosModel extends CI_Model {
             "cf_banco"             => $banco
         );
 
+
+
         $this->db->where('cp_adelanto', $idAdelanto);
         $resultado =  $this->db->update("fa_adelanto", $data);
 
