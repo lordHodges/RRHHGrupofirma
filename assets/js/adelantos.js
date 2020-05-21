@@ -1,4 +1,4 @@
-var base_url = 'http://10.10.11.240/GRUPOFIRMA/index.php/';
+var base_url = 'http://localhost/GRUPOFIRMA/index.php/';
 
 function cargarBancos(){
   $.ajax({
@@ -64,7 +64,7 @@ function cargarTablaAdelantos(permisoEditar,permisoExportar){
               }
           },
           "ajax": {
-              url: "http://10.10.11.240/GRUPOFIRMA/index.php/getListadoAdelantos",
+              url: "http://localhost/GRUPOFIRMA/index.php/getListadoAdelantos",
               type: 'GET'
           },
           "columnDefs": [{
@@ -104,7 +104,7 @@ function cargarTablaAdelantos(permisoEditar,permisoExportar){
                 },
                 {
                     extend: 'print',
-                    title: 'Firma de abogados',
+                    title: 'Grupo Firma',
                     exportOptions: {
                         columns: [ 1,2,3,4,5,6,7,8 ]
                     },
@@ -118,7 +118,7 @@ function cargarTablaAdelantos(permisoEditar,permisoExportar){
                 }
             ],
             "lengthMenu": [[100, 50, 25, -1], [100, 50, 25, "All"]],
-            
+
       });
   }else{
     $('.dataTables-adelantos').DataTable({
@@ -153,7 +153,7 @@ function cargarTablaAdelantos(permisoEditar,permisoExportar){
               }
           },
           "ajax": {
-              url: "http://10.10.11.240/GRUPOFIRMA/index.php/getListadoAdelantos",
+              url: "http://localhost/GRUPOFIRMA/index.php/getListadoAdelantos",
               type: 'GET'
           },
           "columnDefs": [{
@@ -205,10 +205,7 @@ function getDetalleAdelanto(idAdelanto){
 
               $("#contenedorDetalleAdelanto").append(fila);
           });
-
-
         });
-
     });
 }
 

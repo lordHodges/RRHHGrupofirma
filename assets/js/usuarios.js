@@ -1,4 +1,4 @@
-var base_url = 'http://10.10.11.240/GRUPOFIRMA/index.php/';
+var base_url = 'http://localhost/GRUPOFIRMA/index.php/';
 
 function cargarTabla(permisoEditar,permisoExportar, permisoCambiar){
   var table = $('#tabla_usuario').DataTable();
@@ -46,7 +46,7 @@ function cargarTabla(permisoEditar,permisoExportar, permisoCambiar){
               }
           },
           "ajax": {
-              url: "http://10.10.11.240/GRUPOFIRMA/index.php/getListadoUsuarios",
+              url: "http://localhost/GRUPOFIRMA/index.php/getListadoUsuarios",
               type: 'GET'
           },
           "columnDefs": [{
@@ -73,7 +73,7 @@ function cargarTabla(permisoEditar,permisoExportar, permisoCambiar){
                 },
                 {
                     extend: 'print',
-                    title: 'Firma de abogados',
+                    title: 'Grupo Firma',
                     customize: function(win) {
                         $(win.document.body).addClass('white-bg');
                         $(win.document.body).css('font-size', '10px');
@@ -116,7 +116,7 @@ function cargarTabla(permisoEditar,permisoExportar, permisoCambiar){
               }
           },
           "ajax": {
-              url: "http://10.10.11.240/GRUPOFIRMA/index.php/getListadoUsuarios",
+              url: "http://localhost/GRUPOFIRMA/index.php/getListadoUsuarios",
               type: 'GET'
           },
           "columnDefs": [{

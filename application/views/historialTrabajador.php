@@ -64,7 +64,11 @@ if($usuario[0]->atr_activo == "1") { ?>
                 <br>
                 <label for="getSelectAno">AÑO</label><br>
                 <select class="custom-select" id="getSelectAno">
-
+                  <?php
+                    $ahora = date("Y");
+                    for ( $i=$ahora; $i >= 2020  ; $i--) { ?>
+                      <option value="<?php echo $i ?>"><?php echo $i ?></option>
+                  <?php } ?>
                 </select>
             </div>
 
@@ -177,7 +181,7 @@ if($usuario[0]->atr_activo == "1") { ?>
     $(document).ready(function() {
         cargarTrabajadores();
         cargarTablaTrabajadorHistorial();
-        cargarAnos();
+        // cargarAnos();
     });
 
     $("#getSelectTrabajadores").change(function (e){
@@ -215,7 +219,7 @@ if($usuario[0]->atr_activo == "1") { ?>
     });
 </script>
 
-<?php } else{ header("Location: http://10.10.11.240/GRUPOFIRMA/"); } ?>
+<?php } else{ header("Location: http://localhost/GRUPOFIRMA/"); } ?>
 
 </body>
 </html>

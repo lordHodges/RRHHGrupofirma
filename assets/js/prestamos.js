@@ -1,4 +1,4 @@
-var base_url = 'http://10.10.11.240/GRUPOFIRMA/index.php/';
+var base_url = 'http://localhost/GRUPOFIRMA/index.php/';
 
 
 function cargarTablaPrestamoTrabajadores(permisoEditar,permisoExportar){
@@ -44,7 +44,7 @@ function cargarTablaPrestamoTrabajadores(permisoEditar,permisoExportar){
               }
           },
           "ajax": {
-              url: "http://10.10.11.240/GRUPOFIRMA/index.php/getListadoPrestamosTrabajador",
+              url: "http://localhost/GRUPOFIRMA/index.php/getListadoPrestamosTrabajador",
               type: 'GET'
           },
           "columnDefs": [{
@@ -83,7 +83,7 @@ function cargarTablaPrestamoTrabajadores(permisoEditar,permisoExportar){
                 },
                 {
                     extend: 'print',
-                    title: 'Firma de abogados',
+                    title: 'Grupo Firma',
                     exportOptions: {
                         columns: [ 1,2,3,4,5,6 ]
                     },
@@ -130,7 +130,7 @@ function cargarTablaPrestamoTrabajadores(permisoEditar,permisoExportar){
               }
           },
           "ajax": {
-              url: "http://10.10.11.240/GRUPOFIRMA/index.php/getListadoPrestamosTrabajador",
+              url: "http://localhost/GRUPOFIRMA/index.php/getListadoPrestamosTrabajador",
               type: 'GET'
           },
           "columnDefs": [{

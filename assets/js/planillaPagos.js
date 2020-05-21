@@ -1,4 +1,4 @@
-var base_url = 'http://10.10.11.240/GRUPOFIRMA/index.php/';
+var base_url = 'http://localhost/GRUPOFIRMA/index.php/';
 
 
 function cargarTablaPagosFinDeMes (){
@@ -69,7 +69,7 @@ function cargarTablaPagosFinDeMes (){
             }
         },
         "ajax": {
-            url: 'http://10.10.11.240/GRUPOFIRMA/index.php/getListadoPagosFinDeMes?year='+anoActual+'&&mes='+mesActual+'&&diaTermino='+diaTermino,
+            url: 'http://localhost/GRUPOFIRMA/index.php/getListadoPagosFinDeMes?year='+anoActual+'&&mes='+mesActual+'&&diaTermino='+diaTermino,
             type: 'GET',
             data: {}
         },
@@ -276,5 +276,24 @@ function getDetallePagoTrabajador(idTrabajador){
 
     $("#contenedorDetallePago").append(fila);
 
+  });
+}
+
+
+
+function cargarBancos(){
+  $.ajax({
+      url: 'getBancos',
+      type: 'GET',
+      dataType: 'json'
+  }).then(function (response) {
+      var fila = "";
+
+      $("#getSelectBanco").empty();
+      fila += '<option value="">Seleccione una opción</opion>'
+      $.each(response, function (i, o) {
+        fila += '<option value="'+o.cp_banco+'">'+o.atr_nombre+'</opion>';
+      });
+      $("#getSelectBanco").append(fila);
   });
 }

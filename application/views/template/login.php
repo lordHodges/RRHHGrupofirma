@@ -14,7 +14,7 @@
 		<link rel="shortcut icon" type="image/x-icon" href="<?php echo base_url() ?>assets/login/images/brand/favicon.ico" />
 
 		<!-- Title -->
-		<title>FIRMA DE ABOGADOS</title>
+		<title>Grupo Firma</title>
 
 		<!-- Bootstrap Css -->
 		<link href="<?php echo base_url() ?>assets/login/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
@@ -138,7 +138,7 @@
 					var clave = $("#claveCuenta").val();
 
 					$.ajax({
-							url: 'http://10.10.11.240/GRUPOFIRMA/index.php/iniciarSesion',
+							url: 'http://localhost/GRUPOFIRMA/index.php/iniciarSesion',
 							type: 'POST',
 							dataType: 'json',
 							data: { "correo":correo, "clave":clave }
@@ -146,7 +146,7 @@
 						if (msg == 'ok') {
 							toastr.success("Datos correctos");
 							// setTimeout(function(){
-									window.location="http://10.10.11.240/GRUPOFIRMA/index.php/dashboard";
+									window.location="http://localhost/GRUPOFIRMA/index.php/dashboard";
 							// },1500);
 						}else {
 							if (msg == 'inactivo') {

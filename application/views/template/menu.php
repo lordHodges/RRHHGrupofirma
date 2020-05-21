@@ -14,7 +14,7 @@ $menu =  $data['menu'];
     <meta name="viewport" content="width=device-width, initial-scale=1">
 	  <!-- <link rel="icon" href="images/#" type="image/ico" /> -->
 
-    <title>FIRMA DE ABOGADOS</title>
+    <title>Grupo Firma</title>
 
     <!-- Bootstrap -->
     <link href="<?php echo base_url() ?>assets/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -79,7 +79,7 @@ $menu =  $data['menu'];
                   <img src="<?php echo base_url() ?>assets/production/images/img.jpg" alt="..." class="img-circle profile_img">
                 </div>
                 <div class="profile_info">
-                  <span>FIRMA DE ABOGADOS CHILE</span>
+                  <span>Grupo Firma CHILE</span>
                   <h2><?php echo $usuario[0]->atr_nombre ?></h2>
                 </div>
               </div> -->

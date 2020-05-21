@@ -1,5 +1,5 @@
 /*************************** TRABAJADOR ****************************/
-var base_url = 'http://10.10.11.240/GRUPOFIRMA/index.php/';
+var base_url = 'http://localhost/GRUPOFIRMA/index.php/';
 
 function cargarTablaTrabajadorHistorial(){
   var table = $('#tabla_trabajador').DataTable();
@@ -38,7 +38,7 @@ function cargarTablaTrabajadorHistorial(){
             }
         },
         "ajax": {
-            url: "http://10.10.11.240/GRUPOFIRMA/index.php/getListadoTrabajadores",
+            url: "http://localhost/GRUPOFIRMA/index.php/getListadoTrabajadores",
             type: 'GET'
         },
         "columnDefs": [{
@@ -68,19 +68,6 @@ function cargarTrabajadores(){
 
 }
 
-function cargarAnos(){
-    var fecha = new Date();
-    ano = fecha.getFullYear();
-    var comienzo = 2019;
-    var fila = "";
-    $("#getSelectAno").empty();
-    var fila = "<option disabled selected></option>";
-    while ( comienzo <= ano) {
-      fila += "<option value='" +comienzo+ "'>" + comienzo +"</option>";
-      comienzo = comienzo+1;
-    }
-    $("#getSelectAno").append(fila);
-}
 
 
 function cargarDetalleHistorial(idTrabajador){

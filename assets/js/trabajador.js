@@ -1,5 +1,5 @@
 /*************************** TRABAJADOR ****************************/
-var base_url = 'http://10.10.11.240/GRUPOFIRMA/index.php/';
+var base_url = 'http://localhost/GRUPOFIRMA/index.php/';
 
 function cargarTablaTrabajador(permisoEditar, permisoExportar){
   var table = $('#tabla_trabajador').DataTable();
@@ -49,7 +49,7 @@ function cargarTablaTrabajador(permisoEditar, permisoExportar){
               }
           },
           "ajax": {
-              url: "http://10.10.11.240/GRUPOFIRMA/index.php/getListadoTrabajadores",
+              url: "http://localhost/GRUPOFIRMA/index.php/getListadoTrabajadores",
               type: 'GET'
           },
           "columnDefs": [{
@@ -97,7 +97,7 @@ function cargarTablaTrabajador(permisoEditar, permisoExportar){
                 },
                 {
                     extend: 'print',
-                    title: 'Firma de abogados',
+                    title: 'Grupo Firma',
                     exportOptions: {
                         columns: [ 1,2,3,4,5,6,7 ]
                     },
@@ -144,7 +144,7 @@ function cargarTablaTrabajador(permisoEditar, permisoExportar){
               }
           },
           "ajax": {
-              url: "http://10.10.11.240/GRUPOFIRMA/index.php/getListadoTrabajadores",
+              url: "http://localhost/GRUPOFIRMA/index.php/getListadoTrabajadores",
               type: 'GET'
           },
           "columnDefs": [{
