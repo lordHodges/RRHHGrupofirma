@@ -137,7 +137,7 @@ if($usuario[0]->atr_activo == "1" ) { ?>
                     <div class="col-md-6">
                       <br>
                       <label for="montoTransferenciaTrabajador">MONTO SOLICITADO</label>
-                      <input type="text" class="form-control" id="montoTransferenciaTrabajador" disabled required style="border-radius:5px; color:#000;">
+                      <input type="text" class="form-control" id="montoTransferenciaTrabajador" onkeyup="soloNumeros(this.value);formatoMiles(this)" disabled required style="border-radius:5px; color:#000;">
                     </div>
                   </div>
 
@@ -170,7 +170,7 @@ if($usuario[0]->atr_activo == "1" ) { ?>
                         <div class="col-md-12">
                           <br>
                           <label for="monto">MONTO DE LA TRANSFERENCIA</label>
-                          <input type="text" class="form-control" id="monto" name="monto" style="border-radius:5px; padding:7px; " required>
+                          <input type="text" class="form-control" id="monto" name="monto" onkeyup="soloNumeros(this.value);formatoMiles(this)"  style="border-radius:5px; padding:7px; " required>
                         </div>
                         <input type="text" name="labelTrabajador" id="labelTrabajador" style="color:#2a3f54;border:none;border-color:#2a3f54">
                         <div class="col-md-12" >
@@ -230,21 +230,21 @@ if($usuario[0]->atr_activo == "1" ) { ?>
           cargarTablaAdelantos(editar,exportar);
       });
 
-      $("#getSelectBanco").change(function (e){
-        $.ajax({
-            url: 'getBancos',
-            type: 'GET',
-            dataType: 'json'
-        }).then(function (response) {
-            $.each(response, function (i, o) {
-              if( $("#getSelectBanco").val()  == o.cp_banco ){
-                if(!o.atr_sitio == ""){
-                  window.open(o.atr_sitio);
-                }
-              }
-            });
-        });
-      });
+      // $("#getSelectBanco").change(function (e){
+      //   $.ajax({
+      //       url: 'getBancos',
+      //       type: 'GET',
+      //       dataType: 'json'
+      //   }).then(function (response) {
+      //       $.each(response, function (i, o) {
+      //         if( $("#getSelectBanco").val()  == o.cp_banco ){
+      //           if(!o.atr_sitio == ""){
+      //             window.open(o.atr_sitio);
+      //           }
+      //         }
+      //       });
+      //   });
+      // });
 
       $('#uploader').submit(function(e){
        e.preventDefault();

@@ -181,7 +181,6 @@ if($usuario[0]->atr_activo == "1") { ?>
     $(document).ready(function() {
         cargarTrabajadores();
         cargarTablaTrabajadorHistorial();
-        // cargarAnos();
     });
 
     $("#getSelectTrabajadores").change(function (e){

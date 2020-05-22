@@ -19,84 +19,130 @@ if($usuario[0]->atr_activo == "1" ) { ?>
 
     <div class="row">
         <div class="x_panel">
-            <div class="x_content">
+            <div class="x_content" style="margin-bottom:20px;">
               <h3 class="text-center">PLANILLA DE PAGOS</h3><br>
 
+              <div class="col-md-3" style="margin-bottom:20px;">
+                  <br>
+                  <label for="getSelectMes">MES</label><br>
+                  <select class="custom-select" id="getSelectMes">
+                    <option value="00">Seleccionar opción</option>
+                    <option value="01">Enero</option>
+                    <option value="02">Febrero</option>
+                    <option value="03">Marzo</option>
+                    <option value="04">Abril</option>
+                    <option value="05">Mayo</option>
+                    <option value="06">Junio</option>
+                    <option value="07">Julio</option>
+                    <option value="08">Agosto</option>
+                    <option value="09">Septiembre</option>
+                    <option value="10">Octubre</option>
+                    <option value="11">Noviembre</option>
+                    <option value="12">Diciembre</option>
+                  </select>
+              </div>
 
-              <!-- <ul class="nav nav-tabs bar_tabs" id="myTab" role="tablist">
+              <div class="col-md-3" style="margin-bottom:20px;">
+                <br>
+                <label for="getSelectAno">Año</label>
+                <select class="custom-select" id="getSelectAno">
+                  <?php
+                    $ahora = date("Y");
+                    for ( $i=$ahora; $i >= 2020  ; $i--) { ?>
+                      <option value="<?php echo $i ?>"><?php echo $i ?></option>
+                  <?php } ?>
+                </select>
+              </div>
+
+              <div class="col-md-3" style="margin-bottom:20px;">
+                  <br>
+                  <label for="getSelectEmpresa">EMPRESA</label><br>
+                  <select class="custom-select" id="getSelectEmpresa">
+
+                  </select>
+              </div>
+
+
+            </div>
+
+
+              <ul class="nav nav-tabs bar_tabs" id="myTab" role="tablist">
 
                   <li class="nav-item">
-                    <a class="nav-link" id="perfiles-tab" data-toggle="tab" href="#perfiles" role="tab" aria-controls="perfiles" aria-selected="false">Perfiles</a>
+                    <a class="nav-link" id="detalle-tab" data-toggle="tab" href="#detallePagos" role="tab" aria-controls="perfiles" aria-selected="false">Detalle de pagos</a>
                   </li>
 
                   <li class="nav-item">
-                    <a class="nav-link" id="usuarios-tab" data-toggle="tab" href="#usuarios" role="tab" aria-controls="usuarios" aria-selected="false">Usuarios</a>
+                    <a class="nav-link" id="transferir-tab" data-toggle="tab" href="#paraTransferir" role="tab" aria-controls="usuarios" aria-selected="false">Planillas para transferir</a>
                   </li>
 
-              </ul> -->
+              </ul>
 
 
+              <div class="tab-content" id="myTabContent">
 
+                  <div class="tab-pane fade show active" id="detallePagos" role="tabpanel" aria-labelledby="home-tab">
 
+                      <?php if ($view_verPlanillaPagos == "1") {  ?>
+                        <div class="row">
 
-              <?php if ($view_verPlanillaPagos == "1") {  ?>
-                <div class="row">
+                        <table id="tabla_pagos5" class="table table-striped table-bordered table-hover dataTables-tabla_pagos5" style="margin-top:20px;">
+                            <thead >
+                                <tr style="width:100%;">
+                                    <th class="text-center">ID</th>
+                                    <th class="text-center">RUT</th>
+                                    <th class="text-center">TRABAJADOR</th>
+                                    <th class="text-center">SUELDO</th>
+                                    <th class="text-center">BONOS</th>
+                                    <th class="text-center">ADELANTO</th>
+                                    <th class="text-center">PRÉSTAMOS</th>
+                                    <th class="text-center">INASISTENCIA</th>
+                                    <th class="text-center">TOTAL A PAGAR</th>
+                                    <th class="text-center"style="width:10%;">ACCIONES</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tbodyDetalle">
 
-                  <div class="col-md-3" style="margin-bottom:20px;">
-                      <br>
-                      <label for="getSelectMes">MES</label><br>
-                      <select class="custom-select" id="getSelectMes">
-                        <option value="00">Seleccionar opción</option>
-                        <option value="01">Enero</option>
-                        <option value="02">Febrero</option>
-                        <option value="03">Marzo</option>
-                        <option value="04">Abril</option>
-                        <option value="05">Mayo</option>
-                        <option value="06">Junio</option>
-                        <option value="07">Julio</option>
-                        <option value="08">Agosto</option>
-                        <option value="09">Septiembre</option>
-                        <option value="10">Octubre</option>
-                        <option value="11">Noviembre</option>
-                        <option value="12">Diciembre</option>
-                      </select>
-                  </div>
-
-                  <div class="col-md-3" style="margin-bottom:20px;">
-                    <br>
-                    <label for="getSelectAno">Año</label>
-                    <select class="custom-select" id="getSelectAno">
-                      <?php
-                        $ahora = date("Y");
-                        for ( $i=$ahora; $i >= 2020  ; $i--) { ?>
-                          <option value="<?php echo $i ?>"><?php echo $i ?></option>
+                            </tbody>
+                        </table>
                       <?php } ?>
-                    </select>
+
                   </div>
+                </div><!-- FIN TABLA DETALLE PAGOS  -->
 
 
-                </div>
 
-                <table id="tabla_pagos5" class="table table-striped table-bordered table-hover dataTables-tabla_pagos5" style="margin-top:20px;">
-                    <thead >
-                        <tr style="width:100%;">
-                            <th class="text-center">ID</th>
-                            <th class="text-center">RUT</th>
-                            <th class="text-center">TRABAJADOR</th>
-                            <th class="text-center">SUELDO</th>
-                            <th class="text-center">BONOS</th>
-                            <th class="text-center">ADELANTO</th>
-                            <th class="text-center">PRÉSTAMOS</th>
-                            <th class="text-center">INASISTENCIA</th>
-                            <th class="text-center">TOTAL A PAGAR</th>
-                            <th class="text-center"style="width:10%;">ACCIONES</th>
-                        </tr>
-                    </thead>
-                    <tbody id="tbodyDetalle">
 
-                    </tbody>
-                </table>
-              <?php } ?>
+                  <div class="tab-pane fade" id="paraTransferir" role="tabpanel" aria-labelledby="contrato-tab">
+                    <?php if ($view_verPlanillaPagos == "1") {  ?>
+                      <div class="row">
+
+                      <table id="tabla_planillaBanco" class="table table-striped table-bordered table-hover dataTables-planillaBanco" style="margin-top:20px;">
+                          <thead >
+                              <tr style="width:100%;">
+                                  <th class="text-center">RUT BENEFICIARIO</th>
+                                  <th class="text-center">NOMBRE BENEFICIARIO</th>
+                                  <th class="text-center">MONTO</th>
+                                  <th class="text-center">MEDIO DE PAGO</th>
+                                  <th class="text-center">BANCO</th>
+                                  <th class="text-center">TIPO DE CUENTA</th>
+                                  <th class="text-center">NÚMERO DE CUENTA</th>
+                                  <th class="text-center">EMAIL</th>
+                                  <th class="text-center">REFERENCIA CLIENTE</th>
+                                  <th class="text-center">GLOSA CARTOLA ORIGEN</th>
+                                  <th class="text-center">GLOSA CARTOLA DESTINO</th>
+                                  <th class="text-center">DETALLE DE PAGO</th>
+                                  <th class="text-center">DETALLE DE PAGO</th>
+                              </tr>
+                          </thead>
+                          <tbody id="tbodyDetalle2">
+
+                          </tbody>
+                      </table>
+                    <?php } ?>
+
+                  </div>
+              </div><!-- FIN TABLA PLANILLAS PARA TRANSFERIR  -->
 
             </div>
         </div>
@@ -146,7 +192,7 @@ if($usuario[0]->atr_activo == "1" ) { ?>
                         <div class="col-md-6">
                             <br>
                             <label for="getSelectBanco">BANCO</label><br>
-                            <select class="custom-select" id="getSelectBanco" name="getSelectBanco">
+                            <select class="custom-select" id="getSelectBanco" name="getSelectBanco" required>
 
                             </select>
                         </div>
@@ -160,11 +206,7 @@ if($usuario[0]->atr_activo == "1" ) { ?>
                             <br>
                             <label for="getSelectMotivo">MOTIVO</label><br>
                             <select class="custom-select" id="getSelectMotivo" name="getSelectMotivo">
-                              <option value="">Seleccionar opción</option>
-                              <option value="Adelanto">Adelanto</option>
                               <option value="Pago mensual">Pago mensual</option>
-                              <option value="Préstamo">Préstamo</option>
-                              <option value="Otro">Otro</option>
                             </select>
                         </div>
                         <div class="col-md-6" id="contenedorOtroMotivo" style="display:none">
@@ -173,7 +215,7 @@ if($usuario[0]->atr_activo == "1" ) { ?>
                           <input type="text" class="form-control"  name="otroMotivo" style="border-radius:5px; padding:8px;">
                         </div>
 
-                        <div class="col-md-12">
+                        <div class="col-md-6">
                           <br>
                           <label for="monto">MONTO</label>
                           <input type="text" class="form-control" onkeyup="soloNumeros(this.value);formatoMiles(this)" name="monto"  id="monto" style="border-radius:5px; padding:7px;" required>
@@ -221,11 +263,13 @@ if($usuario[0]->atr_activo == "1" ) { ?>
     <script>
       $(document).ready(function() {
         cargarBancos();
+        cargarEmpresas();
       });
 
 
       $("#getSelectMes").change(function (e){
          cargarTablaPagosFinDeMes();
+         cargarTablaPlanillaPagoMes();
       });
 
       $("#getSelectAno").change(function (e){
@@ -233,6 +277,16 @@ if($usuario[0]->atr_activo == "1" ) { ?>
 
         }else{
           cargarTablaPagosFinDeMes();
+          cargarTablaPlanillaPagoMes();
+        }
+      });
+
+      $("#getSelectEmpresa").change(function (e){
+        if (  $('#getSelectMes') == '00' ) {
+
+        }else{
+          cargarTablaPagosFinDeMes();
+          cargarTablaPlanillaPagoMes();
         }
       });
 
@@ -289,75 +343,6 @@ if($usuario[0]->atr_activo == "1" ) { ?>
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      $("body").on("click", "#btnAgregarModelo", function(e) {
-          e.preventDefault();
-          agregarModelo();
-      });
-
-      $("body").on("click", "#getDetalleModelo", function(e) {
-          e.preventDefault();
-          var id = $(this).parent().parent().children()[0];
-          getDetalleModelo($(id).text());
-      });
-
-      $("body").on("click", "#btnEditarModelo", function(e) {
-          e.preventDefault();
-          var id = $(this).parent().parent().children()[0];
-          editarModelo( $(id).text() );
-      });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      $("body").on("click", "#getDetalleEstadosContrato", function(e) {
-          e.preventDefault();
-          var id = $(this).parent().parent().children()[0];
-          getDetalleEstadosContrato($(id).text());
-      });
-
-      $("body").on("click", "#btnEditarEstadoContrato", function(e) {
-          e.preventDefault();
-          updateEstadoContrato();
-          var table = $('#tabla_estadoContrato').DataTable();
-          table.ajax.reload(function(json) {
-            $('#btnEditarEstadoContrato').val(json.lastInput);
-          });
-      });
 
   </script>
 

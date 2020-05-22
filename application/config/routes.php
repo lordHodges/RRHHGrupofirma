@@ -25,6 +25,9 @@ $route['inicioPlanillaPagos'] = 'PagosController/inicioPlanillaPagos';
 $route['getListadoPagosFinDeMes'] = 'PagosController/getListadoPagosFinDeMes';
 $route['getDetallePagoTrabajador'] = 'PagosController/getDetallePagoTrabajador';
 $route['addHistorialPagosMensuales'] = 'PagosController/addHistorialPagosMensuales';
+$route['getListadoPlanillaPagoMes'] = 'PagosController/getListadoPlanillaPagoMes';
+$route['getEmpresas'] = 'PagosController/cargarEmpresas';
+
 
 
 // ADELANTOS
