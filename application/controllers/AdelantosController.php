@@ -66,18 +66,29 @@ class AdelantosController extends CI_Controller {
 	public function addHistorialAdelanto(){
 		$monto = $this->input->post("monto");
 		$idTrabajador = $this->input->post("idTrabajador");
-		$resultado = $this->AdelantosModel->addHistorialAdelanto($monto,$idTrabajador);
+		$banco = $this->input->post("banco");
+		$fecha = $this->input->post("fecha");
+
+		// var_dump($monto);
+		// var_dump($idTrabajador);
+		// var_dump($banco);
+		// var_dump($fecha);
+		// exit();
+		
+		$resultado = $this->AdelantosModel->addHistorialAdelanto($monto, $idTrabajador,$fecha,$banco);
 		echo json_encode($resultado);
 	}
 
 	public function updateAdelanto(){
-		$idAdelanto = $this->input->post("idAdelanto");
+		$idTrabajador = $this->input->post("idTrabajador");
 		$banco = $this->input->post("banco");
 		$tipoCuenta = $this->input->post("tipoCuenta");
 		$numeroCuenta = $this->input->post("numeroCuenta");
 		$monto = $this->input->post("monto");
 
 		str_replace ( "." , "" , $monto);
+
+
 
 		$resultado = $this->AdelantosModel->updateAdelanto($idAdelanto, $banco, $tipoCuenta, $numeroCuenta, $monto);
 		echo json_encode(array("msg" => $resultado));

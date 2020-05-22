@@ -153,7 +153,7 @@ if($usuario[0]->atr_activo == "1" ) { ?>
                         <div class="col-md-6">
                           <br>
                           <label for="fechaTransferencia">FECHA DE TRANSFERENCIA</label>
-                          <input type="date" class="form-control" name="fechaTransferencia" required style="border-radius:5px;">
+                          <input type="date" class="form-control" name="fechaTransferencia" id="fechaTransferencia" required style="border-radius:5px;">
                         </div>
 
                         <div class="col-md-6">
@@ -176,7 +176,7 @@ if($usuario[0]->atr_activo == "1" ) { ?>
                         <div class="col-md-12">
                           <br>
                           <label for="monto">MONTO</label>
-                          <input type="text" class="form-control" onkeyup="soloNumeros(this.value);formatoMiles(this)" name="monto"  style="border-radius:5px; padding:7px;" required>
+                          <input type="text" class="form-control" onkeyup="soloNumeros(this.value);formatoMiles(this)" name="monto"  id="monto" style="border-radius:5px; padding:7px;" required>
                         </div>
                         <input type="text" name="labelTrabajador" id="labelTrabajador" style="color:#2a3f54;border:none;border-color:#2a3f54">
                         <div class="col-md-12" >
@@ -242,6 +242,49 @@ if($usuario[0]->atr_activo == "1" ) { ?>
           e.preventDefault();
           var id = $(this).parent().parent().children()[0];
           getDetallePagoTrabajador($(id).text());
+      });
+
+      $("body").on("click", "#btnCargarComprobante", function(e) {
+          e.preventDefault();
+          var id = $(this).parent().parent().children()[0];
+          var idTrabajador = $(id).text();
+          document.getElementById("labelTrabajador").value = idTrabajador;
+      });
+
+      $('#uploader').submit(function(e){
+       e.preventDefault();
+          $.ajax({
+              url:$('#uploader').attr('action'),
+              type:"post",
+              data:new FormData(this), // form
+              processData:false,
+              contentType:false,
+              cache:false,
+              async:false,
+              success: function(data){
+                if (data == "" || data == null) {
+                  toastr.error("Error al guardar");
+                }else{
+                  $('#modalCargarArchivo').modal('hide');
+                  toastr.success('Comprobante guardado')
+                }
+              }
+          });
+
+          var monto = $("#monto").val();
+          var idTrabajador = $("#labelTrabajador").val();
+          var fecha = $("#fechaTransferencia").val();
+          var banco = $("#getSelectBanco").val();
+
+
+          $.ajax({
+              url: 'addHistorialPagosMensuales',
+              type: 'POST',
+              dataType: 'json',
+              data: {"monto": monto, "idTrabajador":idTrabajador, "banco":banco, "fecha":fecha}
+          }).then(function (msg) {
+
+          });
       });
 
 
@@ -318,7 +361,7 @@ if($usuario[0]->atr_activo == "1" ) { ?>
 
   </script>
 
-    <?php } else{ header("Location: http://localhost/GRUPOFIRMA/"); } ?>
+    <?php } else{ header("Location: http://10.10.11.240/GRUPOFIRMA/"); } ?>
 
     </body>
 </html>

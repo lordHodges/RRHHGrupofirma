@@ -24,8 +24,16 @@ $route['getModulos'] = 'PermisosController/getModulos';
 $route['inicioPlanillaPagos'] = 'PagosController/inicioPlanillaPagos';
 $route['getListadoPagosFinDeMes'] = 'PagosController/getListadoPagosFinDeMes';
 $route['getDetallePagoTrabajador'] = 'PagosController/getDetallePagoTrabajador';
+$route['addHistorialPagosMensuales'] = 'PagosController/addHistorialPagosMensuales';
 
 
+// ADELANTOS
+$route['inicioAdelantos'] = 'AdelantosController/inicioAdelantos';
+$route['getListadoAdelantos'] = 'AdelantosController/getListadoAdelantos';
+$route['getDetalleAdelanto'] = 'AdelantosController/getDetalleAdelanto';
+$route['updateAdelanto'] = 'AdelantosController/updateAdelanto';
+$route['buscarBanco'] = 'AdelantosController/buscarBanco';
+$route['addHistorialAdelanto'] = 'AdelantosController/addHistorialAdelanto';
 
 
 // ASISTENCIA
@@ -47,13 +55,6 @@ $route['editarDetalleDePrestamo'] = 'PrestamosController/editarDetalleDePrestamo
 
 
 
-// ADELANTOS
-$route['inicioAdelantos'] = 'AdelantosController/inicioAdelantos';
-$route['getListadoAdelantos'] = 'AdelantosController/getListadoAdelantos';
-$route['getDetalleAdelanto'] = 'AdelantosController/getDetalleAdelanto';
-$route['updateAdelanto'] = 'AdelantosController/updateAdelanto';
-$route['buscarBanco'] = 'AdelantosController/buscarBanco';
-$route['addHistorialAdelanto'] = 'AdelantosController/addHistorialAdelanto';
 
 
 

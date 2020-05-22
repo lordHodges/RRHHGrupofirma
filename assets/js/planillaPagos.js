@@ -1,4 +1,4 @@
-var base_url = 'http://localhost/GRUPOFIRMA/index.php/';
+var base_url = 'http://10.10.11.240/GRUPOFIRMA/index.php/';
 
 
 function cargarTablaPagosFinDeMes (){
@@ -69,7 +69,7 @@ function cargarTablaPagosFinDeMes (){
             }
         },
         "ajax": {
-            url: 'http://localhost/GRUPOFIRMA/index.php/getListadoPagosFinDeMes?year='+anoActual+'&&mes='+mesActual+'&&diaTermino='+diaTermino,
+            url: 'http://10.10.11.240/GRUPOFIRMA/index.php/getListadoPagosFinDeMes?year='+anoActual+'&&mes='+mesActual+'&&diaTermino='+diaTermino,
             type: 'GET',
             data: {}
         },

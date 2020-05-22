@@ -155,7 +155,7 @@ if($usuario[0]->atr_activo == "1" ) { ?>
                         <div class="col-md-6">
                           <br>
                           <label for="fechaTransferencia">FECHA DE TRANSFERENCIA</label>
-                          <input type="date" class="form-control" name="fechaTransferencia" required style="border-radius:5px;">
+                          <input type="date" class="form-control" name="fechaTransferencia" id="fechaTransferencia" required style="border-radius:5px;">
                         </div>
 
                         <div class="col-md-6">
@@ -269,11 +269,15 @@ if($usuario[0]->atr_activo == "1" ) { ?>
 
           var monto = $("#monto").val();
           var idTrabajador = $("#labelTrabajador").val();
+          var fecha = $("#fechaTransferencia").val();
+          var banco = $("#getSelectBanco").val();
+
+
           $.ajax({
               url: 'addHistorialAdelanto',
               type: 'POST',
               dataType: 'json',
-              data: {"monto": monto, "idTrabajador":idTrabajador}
+              data: {"monto": monto, "idTrabajador":idTrabajador, "banco":banco, "fecha":fecha}
           }).then(function (msg) {
 
           });
@@ -323,7 +327,7 @@ if($usuario[0]->atr_activo == "1" ) { ?>
           updateAdelanto();
       });
   </script>
-  <?php } else{ header("Location: http://localhost/GRUPOFIRMA/"); } ?>
+  <?php } else{ header("Location: http://10.10.11.240/GRUPOFIRMA/"); } ?>
 
 </body>
 </html>

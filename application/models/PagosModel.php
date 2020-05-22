@@ -9,6 +9,61 @@ class PagosModel extends CI_Model {
         parent::__construct();
     }
 
+    function getHistorialPagosMensuales(){
+        $fechaActual = date("Y-m-d");
+
+        $mes = date("m");
+        $ano = date("Y");
+
+        $this->db->select("pm.cf_trabajador");
+        $this->db->from("fa_historial_pagos_mensuales pm");
+        $this->db->where("pm.atr_mes",$mes);
+        $this->db->where("pm.atr_ano",$ano);
+        return $this->db->get();
+    }
+
+    function addHistorialPagosMensuales($monto, $idTrabajador,$fecha,$banco){
+        $fechaActual = date("Y-m-d");
+
+        $mes = date("m");
+        $ano = date("Y");
+
+        $monto = str_replace ( "." , "" , $monto);
+
+        $this->db->select(" t.cp_transferencia ");
+        $this->db->from("fa_transferencia t");
+        $this->db->where("t.atr_fecha",$fecha);
+        $this->db->where("t.cf_banco",$banco);
+        $this->db->where("t.cf_trabajador",$idTrabajador);
+        $this->db->where("t.atr_monto",$monto);
+        $transferencias = $this->db->get()->result();
+
+        foreach ($transferencias as $key => $t) {
+          $idTransferencia = $t->cp_transferencia;
+        }
+
+        $this->db->select("doc.cp_documento ");
+        $this->db->from("fa_documento doc");
+        $this->db->where("doc.cf_transferencia",$idTransferencia);
+        $documento = $this->db->get()->result();
+
+        foreach ($documento as $key => $doc) {
+          $idDocumento = $doc->cp_documento;
+        }
+
+        $data = array(
+            "atr_mes"             => $mes,
+            "atr_ano"             => $ano,
+            "atr_monto"           => $monto,
+            "cf_transferencia"    => $idTransferencia,
+            "cf_documento"        => $idDocumento,
+            "cf_trabajador"       => $idTrabajador
+        );
+
+        $resultado =  $this->db->insert("fa_historial_pagos_mensuales", $data);
+        return $resultado;
+    }
+
     function getListadoPagosFinDeMes($ano, $mes, $diaTermino){
 
         $fechaInicio = $ano.'-'.$mes.'-01';

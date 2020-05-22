@@ -213,6 +213,7 @@ if($usuario[0]->atr_activo == "1") { ?>
             var id = $(this).parent().parent().children()[0];
             var idTrabajador = $(id).text();
             document.getElementById("labelTrabajador").value = idTrabajador;
+
         });
 
        $('#uploader').submit(function(e){
@@ -246,7 +247,7 @@ if($usuario[0]->atr_activo == "1") { ?>
 
     </script>
 
-  <?php } else{ header("Location: http://localhost/GRUPOFIRMA/"); } ?>
+  <?php } else{ header("Location: http://10.10.11.240/GRUPOFIRMA/"); } ?>
 
   </body>
 </html>

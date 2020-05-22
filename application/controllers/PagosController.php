@@ -72,6 +72,16 @@ class PagosController extends CI_Controller {
 	}
 
 
+	public function addHistorialPagosMensuales(){
+		$monto = $this->input->post("monto");
+		$idTrabajador = $this->input->post("idTrabajador");
+		$banco = $this->input->post("banco");
+		$fecha = $this->input->post("fecha");
+		$resultado = $this->PagosModel->addHistorialPagosMensuales($monto, $idTrabajador,$fecha,$banco);
+		echo json_encode($resultado);
+	}
+
+
 
 
 

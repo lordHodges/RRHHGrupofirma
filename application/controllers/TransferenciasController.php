@@ -76,6 +76,9 @@ class TransferenciasController extends CI_Controller {
 					 $motivo = $this->input->post('getSelectMotivo');
 				 }
 
+				 // var_dump($motivo, $banco, $nombreReal, $nombreFinal, $ruta, $fechaTransferencia, $monto, $fechaActual, $idTrabajador);
+				 // exit();
+
 				 //AQUI COMIENZO ENVIO DE DATOS PARA EL MODELO Y PROCEDER EL INGRESO A BASE DE DATOS
 				 $resultado = $this->TransferenciasModel->cargar_comprobante( $motivo, $banco, $nombreReal, $nombreFinal, $ruta, $fechaTransferencia, $monto, $fechaActual, $idTrabajador );
 
