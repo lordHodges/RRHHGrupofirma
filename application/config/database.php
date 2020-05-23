@@ -12,7 +12,7 @@ $query_builder = TRUE;
 // DEVELOPER
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'https://imlchile.cl/phpmyadmin/',
+	'hostname' => '190.121.9.99/phpmyadmin/',
 	'username' => 'root',
 	'password' => 'almendra',
 	'database' => 'fa_rrhh',
