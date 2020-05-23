@@ -29,7 +29,11 @@ Patches and new features are welcome!
 
 - Prerequisites: having `node`, `npm`, `bower` and `grunt` installed in your machine.
 - After a fresh clone for your fork, you need to run `npm install && bower install` inside the project's root folder.
-- For checking your changes in the browser you can execute `node serve` and navigate to http://10.10.10.1:5000/
+<<<<<<< HEAD
+- For checking your changes in the browser you can execute `node serve` and navigate to http://localhost:5000/
+=======
+- For checking your changes in the browser you can execute `node serve` and navigate to http://10.10.11.240:5000/
+>>>>>>> 6d452e33e03ff9b08367071c515f6627be833f1a
 - Before any commit run always `grunt` inside the project's root folder, to update the dist files
   (never modify them manually).
 - Do not change the plugin coding style.

@@ -11,7 +11,11 @@ permalink:      pretty
 # Server
 source:         "site"
 destination:    ./_gh_pages
-host:           "10.10.10.1"
+<<<<<<< HEAD
+host:           "localhost"
+=======
+host:           "10.10.11.240"
+>>>>>>> 6d452e33e03ff9b08367071c515f6627be833f1a
 port:           9001
 baseurl:        ""
 url:            "https://getbootstrap.com"

@@ -1,4 +1,8 @@
-var base_url = 'http://10.10.10.1/GRUPOFIRMA/index.php/';
+<<<<<<< HEAD
+var base_url = 'http://localhost/GRUPOFIRMA/index.php/';
+=======
+var base_url = 'http://10.10.11.240/GRUPOFIRMA/index.php/';
+>>>>>>> 6d452e33e03ff9b08367071c515f6627be833f1a
 
 
 function cargarTablaPrestamoTrabajadores(permisoEditar,permisoExportar){
@@ -44,7 +48,11 @@ function cargarTablaPrestamoTrabajadores(permisoEditar,permisoExportar){
               }
           },
           "ajax": {
-              url: "http://10.10.10.1/GRUPOFIRMA/index.php/getListadoPrestamosTrabajador",
+<<<<<<< HEAD
+              url: "http://localhost/GRUPOFIRMA/index.php/getListadoPrestamosTrabajador",
+=======
+              url: "http://10.10.11.240/GRUPOFIRMA/index.php/getListadoPrestamosTrabajador",
+>>>>>>> 6d452e33e03ff9b08367071c515f6627be833f1a
               type: 'GET'
           },
           "columnDefs": [{
@@ -130,7 +138,11 @@ function cargarTablaPrestamoTrabajadores(permisoEditar,permisoExportar){
               }
           },
           "ajax": {
-              url: "http://10.10.10.1/GRUPOFIRMA/index.php/getListadoPrestamosTrabajador",
+<<<<<<< HEAD
+              url: "http://localhost/GRUPOFIRMA/index.php/getListadoPrestamosTrabajador",
+=======
+              url: "http://10.10.11.240/GRUPOFIRMA/index.php/getListadoPrestamosTrabajador",
+>>>>>>> 6d452e33e03ff9b08367071c515f6627be833f1a
               type: 'GET'
           },
           "columnDefs": [{
@@ -161,6 +173,8 @@ function generarCuotas(valor){
     // alert(monto);
     if (monto > 0) {
       var montoCuota = Math.round( monto / cuotas );
+
+      montoCuota = new Intl.NumberFormat().format(montoCuota);
 
       $("#contenedorCuotasPrestamo").empty();
 
@@ -203,7 +217,7 @@ function generarCuotas(valor){
         fila += '</div>';
 
         fila += '<div class="col-md-4"><br>';
-        fila += '<input type="text" class="form-control custom-input-sm" id="montoCuotaDetalle_'+i+'" value="'+montoCuota+'">';
+        fila += '<input type="text" class="form-control custom-input-sm" id="montoCuotaDetalle_'+i+'" value="$'+montoCuota+'">';
         fila += '</div>';
 
         fila += '<div class="col-md-5"><br>';
@@ -326,6 +340,7 @@ function getDetallePrestamo(idPrestamo, rut, nombre, cuotas, montoTotal){
   $("#rutTrabajador2").val(rut);
   $("#monto2").val(montoTotal);
   $("#cuotas2").val(cuotas);
+  var atr_montoDescontar;
 
   $.ajax({
       url: 'getDetallePrestamo',
@@ -371,8 +386,9 @@ function getDetallePrestamo(idPrestamo, rut, nombre, cuotas, montoTotal){
       fila += '<input type="text" class="form-control custom-input-sm" id="numCuotaDetalle_'+o.atr_numCuota+'" disabled value="'+o.atr_numCuota+'" style="color:#000">';
       fila += '</div>';
       if (o.atr_estado == 0) {
+        atr_montoDescontar = new Intl.NumberFormat().format(o.atr_montoDescontar);
         fila += '<div class="col-md-3"><br>';
-        fila += '<input type="text" class="form-control custom-input-sm" id="montoCuotaDetalle_'+o.atr_numCuota+'" value="'+o.atr_montoDescontar+'">';
+        fila += '<input type="text" class="form-control custom-input-sm" id="montoCuotaDetalle_'+o.atr_numCuota+'" value="$'+atr_montoDescontar+'">';
         fila += '</div>';
 
         fila += '<div class="col-md-3"><br>';
@@ -383,6 +399,7 @@ function getDetallePrestamo(idPrestamo, rut, nombre, cuotas, montoTotal){
         fila += '<input type="text" class="form-control custom-input-sm" id="estado_'+cantEstado+'" value="Pendiente">';
         fila += '</div>';
       }else{
+        atr_montoDescontar = new Intl.NumberFormat().format(o.atr_montoDescontar);
         fila += '<div class="col-md-3"><br>';
         fila += '<input type="text" class="form-control custom-input-sm" id="montoCuotaDetalle_'+o.atr_numCuota+'" disabled style="color:#000" value="'+o.atr_montoDescontar+'">';
         fila += '</div>';

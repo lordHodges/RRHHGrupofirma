@@ -1,4 +1,8 @@
-var base_url = 'http://10.10.10.1/GRUPOFIRMA/index.php/';
+<<<<<<< HEAD
+var base_url = 'http://localhost/GRUPOFIRMA/index.php/';
+=======
+var base_url = 'http://10.10.11.240/GRUPOFIRMA/index.php/';
+>>>>>>> 6d452e33e03ff9b08367071c515f6627be833f1a
 
 /*************************** CONTRATO ****************************/
 
@@ -53,7 +57,11 @@ function cargarTabla(permisoSubir){
             }
         },
         "ajax": {
-            url: "http://10.10.10.1/GRUPOFIRMA/index.php/getListadoTrabajadoresContrato",
+<<<<<<< HEAD
+            url: "http://localhost/GRUPOFIRMA/index.php/getListadoTrabajadoresContrato",
+=======
+            url: "http://10.10.11.240/GRUPOFIRMA/index.php/getListadoTrabajadoresContrato",
+>>>>>>> 6d452e33e03ff9b08367071c515f6627be833f1a
             type: 'GET'
         },
         "columnDefs": [{
@@ -98,7 +106,11 @@ function getContratosTrabajador(idTrabajador){
             fila += '<td> <a class="btn btn-default btn-sm" href="#"><i class="glyphicon glyphicon-download-alt"></i></a> </td>';
           }
         }else{
-          download = "http://10.10.10.1/GRUPOFIRMA/index.php/ContratosController/descargarContrato/"+o.cp_contrato;
+<<<<<<< HEAD
+          download = "http://localhost/GRUPOFIRMA/index.php/ContratosController/descargarContrato/"+o.cp_contrato;
+=======
+          download = "http://10.10.11.240/GRUPOFIRMA/index.php/ContratosController/descargarContrato/"+o.cp_contrato;
+>>>>>>> 6d452e33e03ff9b08367071c515f6627be833f1a
           if (permisoDescargar == "si") {
             fila +='<td> <a class="btn btn-info btn-sm" href="'+download+'" download><i class="glyphicon glyphicon-download-alt"></i></a> </td>';
           }else{

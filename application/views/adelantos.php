@@ -137,7 +137,7 @@ if($usuario[0]->atr_activo == "1" ) { ?>
                     <div class="col-md-6">
                       <br>
                       <label for="montoTransferenciaTrabajador">MONTO SOLICITADO</label>
-                      <input type="text" class="form-control" id="montoTransferenciaTrabajador" disabled required style="border-radius:5px; color:#000;">
+                      <input type="text" class="form-control" id="montoTransferenciaTrabajador" onkeyup="soloNumeros(this.value);formatoMiles(this)" disabled required style="border-radius:5px; color:#000;">
                     </div>
                   </div>
 
@@ -155,7 +155,7 @@ if($usuario[0]->atr_activo == "1" ) { ?>
                         <div class="col-md-6">
                           <br>
                           <label for="fechaTransferencia">FECHA DE TRANSFERENCIA</label>
-                          <input type="date" class="form-control" name="fechaTransferencia" required style="border-radius:5px;">
+                          <input type="date" class="form-control" name="fechaTransferencia" id="fechaTransferencia" required style="border-radius:5px;">
                         </div>
 
                         <div class="col-md-6">
@@ -170,7 +170,7 @@ if($usuario[0]->atr_activo == "1" ) { ?>
                         <div class="col-md-12">
                           <br>
                           <label for="monto">MONTO DE LA TRANSFERENCIA</label>
-                          <input type="text" class="form-control" id="monto" name="monto" style="border-radius:5px; padding:7px; " required>
+                          <input type="text" class="form-control" id="monto" name="monto" onkeyup="soloNumeros(this.value);formatoMiles(this)"  style="border-radius:5px; padding:7px; " required>
                         </div>
                         <input type="text" name="labelTrabajador" id="labelTrabajador" style="color:#2a3f54;border:none;border-color:#2a3f54">
                         <div class="col-md-12" >
@@ -230,21 +230,21 @@ if($usuario[0]->atr_activo == "1" ) { ?>
           cargarTablaAdelantos(editar,exportar);
       });
 
-      $("#getSelectBanco").change(function (e){
-        $.ajax({
-            url: 'getBancos',
-            type: 'GET',
-            dataType: 'json'
-        }).then(function (response) {
-            $.each(response, function (i, o) {
-              if( $("#getSelectBanco").val()  == o.cp_banco ){
-                if(!o.atr_sitio == ""){
-                  window.open(o.atr_sitio);
-                }
-              }
-            });
-        });
-      });
+      // $("#getSelectBanco").change(function (e){
+      //   $.ajax({
+      //       url: 'getBancos',
+      //       type: 'GET',
+      //       dataType: 'json'
+      //   }).then(function (response) {
+      //       $.each(response, function (i, o) {
+      //         if( $("#getSelectBanco").val()  == o.cp_banco ){
+      //           if(!o.atr_sitio == ""){
+      //             window.open(o.atr_sitio);
+      //           }
+      //         }
+      //       });
+      //   });
+      // });
 
       $('#uploader').submit(function(e){
        e.preventDefault();
@@ -269,11 +269,15 @@ if($usuario[0]->atr_activo == "1" ) { ?>
 
           var monto = $("#monto").val();
           var idTrabajador = $("#labelTrabajador").val();
+          var fecha = $("#fechaTransferencia").val();
+          var banco = $("#getSelectBanco").val();
+
+
           $.ajax({
               url: 'addHistorialAdelanto',
               type: 'POST',
               dataType: 'json',
-              data: {"monto": monto, "idTrabajador":idTrabajador}
+              data: {"monto": monto, "idTrabajador":idTrabajador, "banco":banco, "fecha":fecha}
           }).then(function (msg) {
 
           });
@@ -323,7 +327,11 @@ if($usuario[0]->atr_activo == "1" ) { ?>
           updateAdelanto();
       });
   </script>
-  <?php } else{ header("Location: http://10.10.10.1/GRUPOFIRMA/"); } ?>
+<<<<<<< HEAD
+  <?php } else{ header("Location: http://localhost/GRUPOFIRMA/"); } ?>
+=======
+  <?php } else{ header("Location: http://10.10.11.240/GRUPOFIRMA/"); } ?>
+>>>>>>> 6d452e33e03ff9b08367071c515f6627be833f1a
 
 </body>
 </html>

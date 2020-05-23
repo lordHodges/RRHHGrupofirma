@@ -1,4 +1,8 @@
-var base_url = 'http://10.10.10.1/GRUPOFIRMA/index.php/';
+<<<<<<< HEAD
+var base_url = 'http://localhost/GRUPOFIRMA/index.php/';
+=======
+var base_url = 'http://10.10.11.240/GRUPOFIRMA/index.php/';
+>>>>>>> 6d452e33e03ff9b08367071c515f6627be833f1a
 
 
 function inicializarCalendario(){
@@ -52,7 +56,11 @@ function inicializarCalendario(){
         eventLimit: true, // allow "more" link when too many events
         eventSources: [
           {
-            url : 'http://10.10.10.1/GRUPOFIRMA/index.php/getInasistencias',
+<<<<<<< HEAD
+            url : 'http://localhost/GRUPOFIRMA/index.php/getInasistencias',
+=======
+            url : 'http://10.10.11.240/GRUPOFIRMA/index.php/getInasistencias',
+>>>>>>> 6d452e33e03ff9b08367071c515f6627be833f1a
             color: 'red',
             textColor: 'white'
           }

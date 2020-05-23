@@ -1,4 +1,8 @@
-var base_url = 'http://10.10.10.1/GRUPOFIRMA/index.php/';
+<<<<<<< HEAD
+var base_url = 'http://localhost/GRUPOFIRMA/index.php/';
+=======
+var base_url = 'http://10.10.11.240/GRUPOFIRMA/index.php/';
+>>>>>>> 6d452e33e03ff9b08367071c515f6627be833f1a
 
 function cargarTablaSucursales(permisoExportar){
   var table = $('#tabla_sucursal').DataTable();
@@ -36,7 +40,11 @@ function cargarTablaSucursales(permisoExportar){
               }
           },
           "ajax": {
-              url: "http://10.10.10.1/GRUPOFIRMA/index.php/getListadoSucursales",
+<<<<<<< HEAD
+              url: "http://localhost/GRUPOFIRMA/index.php/getListadoSucursales",
+=======
+              url: "http://10.10.11.240/GRUPOFIRMA/index.php/getListadoSucursales",
+>>>>>>> 6d452e33e03ff9b08367071c515f6627be833f1a
               type: 'GET'
           },
           "columnDefs": [{
@@ -119,7 +127,11 @@ function cargarTablaSucursales(permisoExportar){
               }
           },
           "ajax": {
-              url: "http://10.10.10.1/GRUPOFIRMA/index.php/getListadoSucursales",
+<<<<<<< HEAD
+              url: "http://localhost/GRUPOFIRMA/index.php/getListadoSucursales",
+=======
+              url: "http://10.10.11.240/GRUPOFIRMA/index.php/getListadoSucursales",
+>>>>>>> 6d452e33e03ff9b08367071c515f6627be833f1a
               type: 'GET'
           },
           "columnDefs": [{
@@ -170,7 +182,11 @@ function cargarTablaPrevision(permisoEditar,permisoExportar){
             }
         },
         "ajax": {
-            url: "http://10.10.10.1/GRUPOFIRMA/index.php/getListadoPrevisiones",
+<<<<<<< HEAD
+            url: "http://localhost/GRUPOFIRMA/index.php/getListadoPrevisiones",
+=======
+            url: "http://10.10.11.240/GRUPOFIRMA/index.php/getListadoPrevisiones",
+>>>>>>> 6d452e33e03ff9b08367071c515f6627be833f1a
             type: 'GET'
         },
         "columnDefs": [{
@@ -268,7 +284,11 @@ function cargarTablaNacionalidades(permisoEditar,permisoExportar){
               }
           },
           "ajax": {
-              url: "http://10.10.10.1/GRUPOFIRMA/index.php/getListadoNacionalidades",
+<<<<<<< HEAD
+              url: "http://localhost/GRUPOFIRMA/index.php/getListadoNacionalidades",
+=======
+              url: "http://10.10.11.240/GRUPOFIRMA/index.php/getListadoNacionalidades",
+>>>>>>> 6d452e33e03ff9b08367071c515f6627be833f1a
               type: 'GET'
           },
           "columnDefs": [{
@@ -353,7 +373,11 @@ function cargarTablaNacionalidades(permisoEditar,permisoExportar){
               }
           },
           "ajax": {
-              url: "http://10.10.10.1/GRUPOFIRMA/index.php/getListadoNacionalidades",
+<<<<<<< HEAD
+              url: "http://localhost/GRUPOFIRMA/index.php/getListadoNacionalidades",
+=======
+              url: "http://10.10.11.240/GRUPOFIRMA/index.php/getListadoNacionalidades",
+>>>>>>> 6d452e33e03ff9b08367071c515f6627be833f1a
               type: 'GET'
           },
           "columnDefs": [{
@@ -410,7 +434,11 @@ function cargarTablaEstadosContrato(permisoEditar,permisoExportar){
               }
           },
           "ajax": {
-              url: "http://10.10.10.1/GRUPOFIRMA/index.php/getEstadoContrato",
+<<<<<<< HEAD
+              url: "http://localhost/GRUPOFIRMA/index.php/getEstadoContrato",
+=======
+              url: "http://10.10.11.240/GRUPOFIRMA/index.php/getEstadoContrato",
+>>>>>>> 6d452e33e03ff9b08367071c515f6627be833f1a
               type: 'GET'
           },
           "columnDefs": [{
@@ -496,7 +524,11 @@ function cargarTablaEstadosContrato(permisoEditar,permisoExportar){
               }
           },
           "ajax": {
-              url: "http://10.10.10.1/GRUPOFIRMA/index.php/getEstadoContrato",
+<<<<<<< HEAD
+              url: "http://localhost/GRUPOFIRMA/index.php/getEstadoContrato",
+=======
+              url: "http://10.10.11.240/GRUPOFIRMA/index.php/getEstadoContrato",
+>>>>>>> 6d452e33e03ff9b08367071c515f6627be833f1a
               type: 'GET'
           },
           "columnDefs": [{
@@ -547,7 +579,11 @@ function cargarTablaEstadosCiviles(permisoExportar){
               }
           },
           "ajax": {
-              url: "http://10.10.10.1/GRUPOFIRMA/index.php/getListadoEstadosCiviles",
+<<<<<<< HEAD
+              url: "http://localhost/GRUPOFIRMA/index.php/getListadoEstadosCiviles",
+=======
+              url: "http://10.10.11.240/GRUPOFIRMA/index.php/getListadoEstadosCiviles",
+>>>>>>> 6d452e33e03ff9b08367071c515f6627be833f1a
               type: 'GET'
           },
           "columnDefs": [{
@@ -631,7 +667,11 @@ function cargarTablaEstadosCiviles(permisoExportar){
               }
           },
           "ajax": {
-              url: "http://10.10.10.1/GRUPOFIRMA/index.php/getListadoEstadosCiviles",
+<<<<<<< HEAD
+              url: "http://localhost/GRUPOFIRMA/index.php/getListadoEstadosCiviles",
+=======
+              url: "http://10.10.11.240/GRUPOFIRMA/index.php/getListadoEstadosCiviles",
+>>>>>>> 6d452e33e03ff9b08367071c515f6627be833f1a
               type: 'GET'
           },
           "columnDefs": [{
@@ -684,7 +724,11 @@ function cargarTablaCiudades(exportar){
               }
           },
           "ajax": {
-              url: "http://10.10.10.1/GRUPOFIRMA/index.php/getListadoCiudades",
+<<<<<<< HEAD
+              url: "http://localhost/GRUPOFIRMA/index.php/getListadoCiudades",
+=======
+              url: "http://10.10.11.240/GRUPOFIRMA/index.php/getListadoCiudades",
+>>>>>>> 6d452e33e03ff9b08367071c515f6627be833f1a
               type: 'GET'
           },
           "columnDefs": [{
@@ -756,7 +800,11 @@ function cargarTablaCiudades(exportar){
                 }
             },
             "ajax": {
-                url: "http://10.10.10.1/GRUPOFIRMA/index.php/getListadoCiudades",
+<<<<<<< HEAD
+                url: "http://localhost/GRUPOFIRMA/index.php/getListadoCiudades",
+=======
+                url: "http://10.10.11.240/GRUPOFIRMA/index.php/getListadoCiudades",
+>>>>>>> 6d452e33e03ff9b08367071c515f6627be833f1a
                 type: 'GET'
             },
             "columnDefs": [{
@@ -809,7 +857,11 @@ function cargarTablaEmpresa(permisoEditar, exportar){
               }
           },
           "ajax": {
-              url: "http://10.10.10.1/GRUPOFIRMA/index.php/getListadoEmpresa",
+<<<<<<< HEAD
+              url: "http://localhost/GRUPOFIRMA/index.php/getListadoEmpresa",
+=======
+              url: "http://10.10.11.240/GRUPOFIRMA/index.php/getListadoEmpresa",
+>>>>>>> 6d452e33e03ff9b08367071c515f6627be833f1a
               type: 'GET'
           },
           "columnDefs": [{
@@ -893,7 +945,11 @@ function cargarTablaEmpresa(permisoEditar, exportar){
               }
           },
           "ajax": {
-              url: "http://10.10.10.1/GRUPOFIRMA/index.php/getListadoEmpresa",
+<<<<<<< HEAD
+              url: "http://localhost/GRUPOFIRMA/index.php/getListadoEmpresa",
+=======
+              url: "http://10.10.11.240/GRUPOFIRMA/index.php/getListadoEmpresa",
+>>>>>>> 6d452e33e03ff9b08367071c515f6627be833f1a
               type: 'GET'
           },
           "columnDefs": [{
@@ -950,7 +1006,11 @@ function cargarTablaAFP(permisoEditar, permisoExportar){
               }
           },
           "ajax": {
-              url: "http://10.10.10.1/GRUPOFIRMA/index.php/getListadoAFP",
+<<<<<<< HEAD
+              url: "http://localhost/GRUPOFIRMA/index.php/getListadoAFP",
+=======
+              url: "http://10.10.11.240/GRUPOFIRMA/index.php/getListadoAFP",
+>>>>>>> 6d452e33e03ff9b08367071c515f6627be833f1a
               type: 'GET'
           },
           "columnDefs": [{
@@ -1020,7 +1080,11 @@ function cargarTablaAFP(permisoEditar, permisoExportar){
               }
           },
           "ajax": {
-              url: "http://10.10.10.1/GRUPOFIRMA/index.php/getListadoAFP",
+<<<<<<< HEAD
+              url: "http://localhost/GRUPOFIRMA/index.php/getListadoAFP",
+=======
+              url: "http://10.10.11.240/GRUPOFIRMA/index.php/getListadoAFP",
+>>>>>>> 6d452e33e03ff9b08367071c515f6627be833f1a
               type: 'GET'
           },
           "columnDefs": [{

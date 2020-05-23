@@ -15,24 +15,59 @@ class PagosController extends CI_Controller {
 		$this->load->view('planillaPagosTrabajadores');
 	}
 
-	public function getListadoPagosFinDeMes(){
-
+	public function getListadoPlanillaPagoMes(){
 		$ano = $this->input->get("year");
 		$mes = $this->input->get("mes");
 		$diaTermino = $this->input->get("diaTermino");
-
-		// var_dump('$año'.$ano);
-		// var_dump('$mes'.$mes);
-		// var_dump('$diaTermino'.$diaTermino);
-		// exit();
+		$empresa = $this->input->get("empresa");
 
 		$draw = intval($this->input->get("draw"));
 		$start = intval($this->input->get("start"));
 		$length = intval($this->input->get("length"));
 
-		$books = $this->PagosModel->getListadoPagosFinDeMes($ano, $mes, $diaTermino);
-		// var_dump($books);
-		// exit();
+		$books = $this->PagosModel->getListadoPlanillaPagoMes($ano, $mes, $diaTermino, $empresa);
+
+		$data = array();
+		foreach ($books as $r) {
+				$data[] = array(
+					$r->rutBeneficiario,
+					$r->nombreBeneficiario,
+					$r->monto,
+					"Abono en cuenta",
+					$r->banco,
+					$r->tipoDeCuenta,
+					$r->numeroDeCuenta,
+					"FINANZAS@GRUPOFIRMA.CL",
+					$r->nombreBeneficiario,
+					"PAGO MENSUAL MAYO 2020",
+					"PAGO MENSUAL MAYO 2020",
+					"PAGO MENSUAL MAYO 2020"
+				);
+		}
+
+		$output = array(
+			"draw" => $draw,
+			"recordsTotal" => sizeof($data),
+			"recordsFiltered" => sizeof($data),
+			"data" => $data
+		);
+		echo json_encode($output);
+		exit();
+}
+
+
+	public function getListadoPagosFinDeMes(){
+		$ano = $this->input->get("year");
+		$mes = $this->input->get("mes");
+		$diaTermino = $this->input->get("diaTermino");
+		$empresa = $this->input->get("empresa");
+
+		$draw = intval($this->input->get("draw"));
+		$start = intval($this->input->get("start"));
+		$length = intval($this->input->get("length"));
+
+		$books = $this->PagosModel->getListadoPagosFinDeMes( $ano, $mes, $diaTermino, $empresa);
+
 		$data = array();
 		foreach ($books as $r) {
 				$data[] = array(
@@ -56,7 +91,7 @@ class PagosController extends CI_Controller {
 		);
 		echo json_encode($output);
 		exit();
-	}
+}
 
 
 
@@ -72,53 +107,19 @@ class PagosController extends CI_Controller {
 	}
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	public function addInasistencia(){
+	public function addHistorialPagosMensuales(){
+		$monto = $this->input->post("monto");
+		$idTrabajador = $this->input->post("idTrabajador");
+		$banco = $this->input->post("banco");
 		$fecha = $this->input->post("fecha");
-		$motivo = $this->input->post("motivo");
-		$idTrabajador = $this->input->post("idTrabajador");
-
-		$fecha = explode('-',$fecha);
-		$fecha = $fecha[2].'-'.$fecha[1].'-'.$fecha[0];
-
-		$resultado = $this->AsistenciaModel->addInasistencia($fecha, $motivo, $idTrabajador);
-		echo json_encode( $resultado) ;
+		$resultado = $this->PagosModel->addHistorialPagosMensuales($monto, $idTrabajador,$fecha,$banco);
+		echo json_encode($resultado);
 	}
 
-	public function getInasistencias(){
-		$resultado = $this->AsistenciaModel->getInasistencias();
-		echo json_encode( $resultado) ;
+
+	public function cargarEmpresas(){
+		$resultado = $this->PagosModel->cargarEmpresas($id);
+		echo json_encode($resultado);
 	}
 
 
@@ -146,83 +147,25 @@ class PagosController extends CI_Controller {
 
 
 
-	public function getListadoPrestamosTrabajador(){
-		$draw = intval($this->input->get("draw"));
-		$start = intval($this->input->get("start"));
-		$length = intval($this->input->get("length"));
-		$books = $this->PrestamosModel->getListadoPrestamosTrabajador();
-		$data = array();
-		foreach ($books->result() as $r) {
-			$montoTotal = "$".$r->atr_montoTotal;
-				$data[] = array(
-					$r->cp_prestamo,
-					$r->atr_rut,
-					$r->atr_nombres." ".$r->atr_apellidos,
-					$r->atr_fechaPrestamo,
-					$r->atr_cantidadCuotas,
-					$montoTotal
-				);
-		}
-		$output = array(
-				"draw" => $draw,
-				"recordsTotal" => $books->num_rows(),
-				"recordsFiltered" => $books->num_rows(),
-				"data" => $data
-		);
-		echo json_encode($output);
-		exit();
-	}
-
-
-	public function obtenerRutTrabajador(){
-
-		$idTrabajador = $this->input->post("idTrabajador");
-
-		$resultado = $this->PrestamosModel->obtenerRutTrabajador($idTrabajador);
-		echo json_encode( $resultado) ;
-	}
-
-
-	public function addPrestamo(){
-		$montoTotal = $this->input->post("montoTotal");
-		$totalCuotas = $this->input->post("totalCuotas");
-		$idTrabajador = $this->input->post("idTrabajador");
-
-		$resultado = $this->PrestamosModel->addPrestamo($montoTotal,$totalCuotas,$idTrabajador);
-		echo json_encode( $resultado) ;
-	}
-
-	public function addDetallePrestamo(){
-		$idTrabajador = $this->input->post("idTrabajador");
-		$numCuota = $this->input->post("numCuota");
-		$montoDetalle = $this->input->post("montoDetalle");
-		$fechaDetalle = $this->input->post("fechaDetalle");
-		$cfPrestamo = $this->input->post("cfPrestamo");
 
 
 
-		$resultado = $this->PrestamosModel->addDetallePrestamo($idTrabajador,$numCuota,$montoDetalle,$fechaDetalle,$cfPrestamo);
-		echo json_encode( $resultado) ;
-	}
 
 
-	public function getDetallePrestamo(){
-		$idPrestamo = $this->input->post("idPrestamo");
-
-		$resultado = $this->PrestamosModel->getDetallePrestamo($idPrestamo);
-		echo json_encode( $resultado) ;
-	}
 
 
-	public function editarDetalleDePrestamo(){
-		$idPrestamo = $this->input->post("idPrestamo");
-		$numCuota = $this->input->post("numCuota");
-		$montoCuota = $this->input->post("montoCuota");
-		$fechaPago = $this->input->post("fechaPago");
 
-		$resultado = $this->PrestamosModel->editarDetalleDePrestamo($idPrestamo,$numCuota,$montoCuota,$fechaPago);
-		echo json_encode( $resultado) ;
-	}
+
+
+
+
+
+
+
+
+
+
+
 
 
 

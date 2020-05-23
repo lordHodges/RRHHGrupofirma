@@ -70,7 +70,8 @@ class PrestamosController extends CI_Controller {
 		$fechaDetalle = $this->input->post("fechaDetalle");
 		$cfPrestamo = $this->input->post("cfPrestamo");
 
-
+		$montoDetalle = str_replace ( "." , "" , $montoDetalle  );
+		$montoDetalle = str_replace ( "$" , "" , $montoDetalle  );
 
 		$resultado = $this->PrestamosModel->addDetallePrestamo($idTrabajador,$numCuota,$montoDetalle,$fechaDetalle,$cfPrestamo);
 		echo json_encode( $resultado) ;
@@ -90,6 +91,9 @@ class PrestamosController extends CI_Controller {
 		$numCuota = $this->input->post("numCuota");
 		$montoCuota = $this->input->post("montoCuota");
 		$fechaPago = $this->input->post("fechaPago");
+
+		$montoCuota = str_replace ( "." , "" , $montoCuota  );
+		$montoCuota = str_replace ( "$" , "" , $montoCuota  );
 
 		$resultado = $this->PrestamosModel->editarDetalleDePrestamo($idPrestamo,$numCuota,$montoCuota,$fechaPago);
 		echo json_encode( $resultado) ;

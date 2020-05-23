@@ -104,7 +104,11 @@ class CI_Config {
 			}
 			else
 			{
-				$base_url = 'http://10.10.10.1/';
+<<<<<<< HEAD
+				$base_url = 'http://localhost/';
+=======
+				$base_url = 'http://10.10.11.240/';
+>>>>>>> 6d452e33e03ff9b08367071c515f6627be833f1a
 			}
 
 			$this->set_item('base_url', $base_url);

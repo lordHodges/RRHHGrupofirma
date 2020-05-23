@@ -9,6 +9,8 @@ class TransferenciasModel extends CI_Model {
     }
 
     function cargar_comprobante( $motivo, $banco, $nombreReal, $nombreFinal, $ruta, $fechaTransferencia, $monto, $fechaActual, $idTrabajador ){
+      $monto = str_replace ( "." , "" , $monto  );
+
       // 1: Buscar trabajador y obtener id del cargo
       $this->db->select("t.cf_cargo");
       $this->db->from("fa_trabajador t");

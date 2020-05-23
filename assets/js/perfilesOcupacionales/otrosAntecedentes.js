@@ -1,4 +1,8 @@
-var base_url = 'http://10.10.10.1/GRUPOFIRMA/index.php/';
+<<<<<<< HEAD
+var base_url = 'http://localhost/GRUPOFIRMA/index.php/';
+=======
+var base_url = 'http://10.10.11.240/GRUPOFIRMA/index.php/';
+>>>>>>> 6d452e33e03ff9b08367071c515f6627be833f1a
 var constante = 0;
 
 function cargarTabla(permisoEliminar){
@@ -43,7 +47,11 @@ function cargarTabla(permisoEliminar){
             },
         },
         "ajax": {
-            url: 'http://10.10.10.1/GRUPOFIRMA/index.php/getListadoOtrosAntecedentesDataTable?idCargo='+cargo+'&idAntecedente='+antecedente,
+<<<<<<< HEAD
+            url: 'http://localhost/GRUPOFIRMA/index.php/getListadoOtrosAntecedentesDataTable?idCargo='+cargo+'&idAntecedente='+antecedente,
+=======
+            url: 'http://10.10.11.240/GRUPOFIRMA/index.php/getListadoOtrosAntecedentesDataTable?idCargo='+cargo+'&idAntecedente='+antecedente,
+>>>>>>> 6d452e33e03ff9b08367071c515f6627be833f1a
             type: 'GET',
         },
         "columnDefs": [{

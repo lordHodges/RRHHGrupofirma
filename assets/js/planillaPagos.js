@@ -1,13 +1,140 @@
-var base_url = 'http://10.10.10.1/GRUPOFIRMA/index.php/';
+<<<<<<< HEAD
+var base_url = 'http://localhost/GRUPOFIRMA/index.php/';
+=======
+var base_url = 'http://10.10.11.240/GRUPOFIRMA/index.php/';
+>>>>>>> 6d452e33e03ff9b08367071c515f6627be833f1a
+
+function cargarTablaPlanillaPagoMes (){
+  var table = $('#tabla_planillaBanco').DataTable();
+  table.destroy();
+
+  var mesActual = $('#getSelectMes').val();
+  var anoActual = $('#getSelectAno').val();
+  var diaTermino = 29;
+  var empresa = $('#getSelectEmpresa').val();
+
+  if (mesActual == '00') {
+    var fechaHoy = new Date();
+    var mesActual = fechaHoy.getMonth()+1;
+    if (mesActual < 10) {
+      mesActual = '0'+mesActual;
+    }
+  }
 
 
-function cargarTablaPagosFinDeMes (){
+  if (mesActual == '04' || mesActual == '06' || mesActual == '09' || mesActual == '11') {
+    diaTermino = 30;
+  }else{
+    if (mesActual == '01' || mesActual == '03' || mesActual == '05' || mesActual == '07' || mesActual == '08' || mesActual == '10' || mesActual == '12' ) {
+      diaTermino = 31;
+    }
+  }
+
+  $('.dataTables-planillaBanco').DataTable({
+    "autoWidth": false,
+    "sInfo": false,
+    "sInfoEmpty": false,
+    // "dom": '<"top"f>rt<"bottom"flp><"clear">',
+        language: {
+            "sProcessing": "Procesando...",
+            "sLengthMenu": "Registros&nbsp;&nbsp; _MENU_ ",
+            "sZeroRecords": "No se encontraron resultados",
+            "sEmptyTable": "Ningún dato disponible en esta tabla",
+            "sInfo": "",
+            "sInfoEmpty": "",
+            "sInfoFiltered": "",
+            "sInfoPostFix": "",
+            "sSearch": "Buscar:&nbsp;&nbsp;",
+            "sUrl": "",
+            "sInfoThousands": ",",
+            "sLoadingRecords": "Cargando...",
+            "oPaginate": {
+                "sFirst": "Primero",
+                "sLast": "Último",
+                "sNext": "Siguiente",
+                "sPrevious": "Anterior"
+            },
+            "oAria": {
+                "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
+                "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+            },
+            "buttons": {
+                "copy": "Copiar",
+                "colvis": "Visibilidad"
+            }
+        },
+        "ajax": {
+            url: 'http://10.10.11.240/GRUPOFIRMA/index.php/getListadoPlanillaPagoMes?year='+anoActual+'&&mes='+mesActual+'&&diaTermino='+diaTermino+'&&empresa='+empresa,
+            type: 'GET',
+            data: {}
+        },
+        "columnDefs": [{
+                "targets": 12,
+                "data": null,
+                "defaultContent": ""
+            }
+
+        ],dom: '<"html5buttons"B>lTfgitp',
+        buttons: [
+          {
+                  extend: 'copy',
+                  exportOptions: {
+                      columns: [ 0,1,2,3,4,5,6,7,8,9,10,11 ]
+                  }
+              },
+              {
+                  extend: 'csv',
+                  exportOptions: {
+                      columns: [ 0,1,2,3,4,5,6,7,8,9,10,11 ]
+                  }
+              },
+              {
+                  extend: 'excel',
+                  title: 'Listado de pagos mensuales',
+                  exportOptions: {
+                      columns: [ 0,1,2,3,4,5,6,7,8,9,10,11 ]
+                  }
+              },
+              {
+                  extend: 'pdf',
+                  title: 'Listado de pagos mensuales',
+                  exportOptions: {
+                      columns: [ 0,1,2,3,4,5,6,7,8,9,10,11 ]
+                  }
+
+              },
+              {
+                  extend: 'print',
+                  title: 'Listado de pagos mensuales',
+                  exportOptions: {
+                      columns: [ 0,1,2,3,4,5,6,7,8,9,10,11 ]
+                  },
+                  customize: function(win) {
+                      $(win.document.body).addClass('white-bg');
+                      $(win.document.body).css('font-size', '10px');
+                      $(win.document.body).find('table')
+                          .addClass('compact')
+                          .css('font-size', 'inherit');
+                  }
+              }
+        ]
+    });
+}
+
+
+
+
+
+
+
+function cargarTablaPagosFinDeMes(){
   var table = $('#tabla_pagos5').DataTable();
   table.destroy();
 
   var mesActual = $('#getSelectMes').val();
   var anoActual = $('#getSelectAno').val();
   var diaTermino = 29;
+  var empresa = $('#getSelectEmpresa').val();
 
   if (mesActual == '00') {
     var fechaHoy = new Date();
@@ -69,7 +196,11 @@ function cargarTablaPagosFinDeMes (){
             }
         },
         "ajax": {
-            url: 'http://10.10.10.1/GRUPOFIRMA/index.php/getListadoPagosFinDeMes?year='+anoActual+'&&mes='+mesActual+'&&diaTermino='+diaTermino,
+<<<<<<< HEAD
+            url: 'http://localhost/GRUPOFIRMA/index.php/getListadoPagosFinDeMes?year='+anoActual+'&&mes='+mesActual+'&&diaTermino='+diaTermino,
+=======
+            url: 'http://10.10.11.240/GRUPOFIRMA/index.php/getListadoPagosFinDeMes?year='+anoActual+'&&mes='+mesActual+'&&diaTermino='+diaTermino+'&&empresa='+empresa,
+>>>>>>> 6d452e33e03ff9b08367071c515f6627be833f1a
             type: 'GET',
             data: {}
         },
@@ -288,12 +419,27 @@ function cargarBancos(){
       dataType: 'json'
   }).then(function (response) {
       var fila = "";
-
       $("#getSelectBanco").empty();
       fila += '<option value="">Seleccione una opción</opion>'
       $.each(response, function (i, o) {
         fila += '<option value="'+o.cp_banco+'">'+o.atr_nombre+'</opion>';
       });
       $("#getSelectBanco").append(fila);
+  });
+}
+
+function cargarEmpresas(){
+  $.ajax({
+      url: 'getEmpresas',
+      type: 'GET',
+      dataType: 'json'
+  }).then(function (response) {
+      var fila = "";
+      $("#getSelectEmpresa").empty();
+      // fila += '<option value="">Seleccione una opción</opion>'
+      $.each(response, function (i, o) {
+        fila += '<option value="'+o.cp_empresa+'">'+o.atr_nombre+'</opion>';
+      });
+      $("#getSelectEmpresa").append(fila);
   });
 }

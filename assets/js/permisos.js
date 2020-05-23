@@ -1,4 +1,8 @@
-var base_url = 'http://10.10.10.1/GRUPOFIRMA/index.php/';
+<<<<<<< HEAD
+var base_url = 'http://localhost/GRUPOFIRMA/index.php/';
+=======
+var base_url = 'http://10.10.11.240/GRUPOFIRMA/index.php/';
+>>>>>>> 6d452e33e03ff9b08367071c515f6627be833f1a
 
 
 
@@ -124,7 +128,11 @@ function cargarTablaPerfiles(){
   var table = $('#tabla_perfiles').DataTable();
   table.destroy();
 
-  btnAcciones = '<a style="display:inline" href="http://10.10.10.1/GRUPOFIRMA/index.php/inicioPermisosPerfil" type="button" id="btnVerPermisos" class="btn btn-info btn-sm"><i class="fa fa-shield"></i></a>';
+<<<<<<< HEAD
+  btnAcciones = '<a style="display:inline" href="http://localhost/GRUPOFIRMA/index.php/inicioPermisosPerfil" type="button" id="btnVerPermisos" class="btn btn-info btn-sm"><i class="fa fa-shield"></i></a>';
+=======
+  btnAcciones = '<a style="display:inline" href="http://10.10.11.240/GRUPOFIRMA/index.php/inicioPermisosPerfil" type="button" id="btnVerPermisos" class="btn btn-info btn-sm"><i class="fa fa-shield"></i></a>';
+>>>>>>> 6d452e33e03ff9b08367071c515f6627be833f1a
 
   $('.dataTables-perfiles').DataTable({
     "autoWidth": false,
@@ -158,7 +166,11 @@ function cargarTablaPerfiles(){
             }
         },
         "ajax": {
-            url: "http://10.10.10.1/GRUPOFIRMA/index.php/getPerfilesTabla",
+<<<<<<< HEAD
+            url: "http://localhost/GRUPOFIRMA/index.php/getPerfilesTabla",
+=======
+            url: "http://10.10.11.240/GRUPOFIRMA/index.php/getPerfilesTabla",
+>>>>>>> 6d452e33e03ff9b08367071c515f6627be833f1a
             type: 'GET'
         },
         "columnDefs": [{
@@ -179,7 +191,11 @@ function cargarTablaUsuarios(){
   var table = $('#tabla_usuario').DataTable();
   table.destroy();
 
-  var btnAcciones = '<a style="display:inline" href="http://10.10.10.1/GRUPOFIRMA/index.php/inicioPermisosUsuario" type="button" id="btnVerPermisos" class="btn btn-info btn-sm"><i class="fa fa-shield"></i></a>';
+<<<<<<< HEAD
+  var btnAcciones = '<a style="display:inline" href="http://localhost/GRUPOFIRMA/index.php/inicioPermisosUsuario" type="button" id="btnVerPermisos" class="btn btn-info btn-sm"><i class="fa fa-shield"></i></a>';
+=======
+  var btnAcciones = '<a style="display:inline" href="http://10.10.11.240/GRUPOFIRMA/index.php/inicioPermisosUsuario" type="button" id="btnVerPermisos" class="btn btn-info btn-sm"><i class="fa fa-shield"></i></a>';
+>>>>>>> 6d452e33e03ff9b08367071c515f6627be833f1a
 
     $('.dataTables-usuarios').DataTable({
         "autoWidth": false,
@@ -212,7 +228,11 @@ function cargarTablaUsuarios(){
               }
           },
           "ajax": {
-              url: "http://10.10.10.1/GRUPOFIRMA/index.php/getListadoUsuarios",
+<<<<<<< HEAD
+              url: "http://localhost/GRUPOFIRMA/index.php/getListadoUsuarios",
+=======
+              url: "http://10.10.11.240/GRUPOFIRMA/index.php/getListadoUsuarios",
+>>>>>>> 6d452e33e03ff9b08367071c515f6627be833f1a
               type: 'GET'
           },
           "columnDefs": [{
