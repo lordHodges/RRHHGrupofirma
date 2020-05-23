@@ -138,7 +138,7 @@
 					var clave = $("#claveCuenta").val();
 
 					$.ajax({
-							url: 'http://localhost/GRUPOFIRMA/index.php/iniciarSesion',
+							url: 'http://10.10.10.1/GRUPOFIRMA/index.php/iniciarSesion',
 							type: 'POST',
 							dataType: 'json',
 							data: { "correo":correo, "clave":clave }
@@ -146,7 +146,7 @@
 						if (msg == 'ok') {
 							toastr.success("Datos correctos");
 							// setTimeout(function(){
-									window.location="http://localhost/GRUPOFIRMA/index.php/dashboard";
+									window.location="http://10.10.10.1/GRUPOFIRMA/index.php/dashboard";
 							// },1500);
 						}else {
 							if (msg == 'inactivo') {

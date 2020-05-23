@@ -121,7 +121,7 @@ if($usuario[0]->atr_activo == "1") { ?>
                     }
                 },
                 "ajax": {
-                    url: "http://localhost/GRUPOFIRMA/index.php/getlistadecargos",
+                    url: "http://10.10.10.1/GRUPOFIRMA/index.php/getlistadecargos",
                     type: 'GET'
                 },
                 "columnDefs": [{
@@ -148,13 +148,13 @@ if($usuario[0]->atr_activo == "1") { ?>
            e.preventDefault();
            var cargo = $(this).parent().parent().children()[0];
            var idCargo = $(cargo).text()
-           var url = 'http://localhost/GRUPOFIRMA/index.php/docPerfilesOcupacionales?cargo='+idCargo;
+           var url = 'http://10.10.10.1/GRUPOFIRMA/index.php/docPerfilesOcupacionales?cargo='+idCargo;
            window.open(url, '_blank');
        });
 
   </script>
 
-<?php } else{ header("Location: http://localhost/GRUPOFIRMA/"); } ?>
+<?php } else{ header("Location: http://10.10.10.1/GRUPOFIRMA/"); } ?>
 
 </body>
 </html>

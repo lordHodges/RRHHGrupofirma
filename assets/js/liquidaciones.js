@@ -1,4 +1,4 @@
-var base_url = 'http://localhost/GRUPOFIRMA/index.php/';
+var base_url = 'http://10.10.10.1/GRUPOFIRMA/index.php/';
 
 
 
@@ -53,7 +53,7 @@ function cargarTabla(permisoSubir){
               }
           },
           "ajax": {
-              url: "http://localhost/GRUPOFIRMA/index.php/getListadoTrabajadoresContrato",
+              url: "http://10.10.10.1/GRUPOFIRMA/index.php/getListadoTrabajadoresContrato",
               type: 'GET'
           },
           "columnDefs": [{
@@ -104,7 +104,7 @@ function getLiquidacionesTrabajador(idTrabajador){
               fila += '<td> <a class="btn btn-default btn-sm" href="#"><i class="glyphicon glyphicon-download-alt"></i></a> </td>';
             }
           }else{
-            download = "http://localhost/GRUPOFIRMA/index.php/LiquidacionesController/descargarLiquidacion/"+o.cp_liquidacion;
+            download = "http://10.10.10.1/GRUPOFIRMA/index.php/LiquidacionesController/descargarLiquidacion/"+o.cp_liquidacion;
             if (permisoDescargar == "si") {
               fila +='<td> <a class="btn btn-info btn-sm" href="'+download+'" download><i class="glyphicon glyphicon-download-alt"></i></a> </td>';
             }else{

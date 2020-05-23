@@ -1,4 +1,4 @@
-var base_url = 'http://localhost/GRUPOFIRMA/index.php/';
+var base_url = 'http://10.10.10.1/GRUPOFIRMA/index.php/';
 var constante = 0;
 
 function cargarTabla(permisoEliminar){
@@ -43,7 +43,7 @@ function cargarTabla(permisoEliminar){
             },
         },
         "ajax": {
-            url: 'http://localhost/GRUPOFIRMA/index.php/getListadoOtrosAntecedentesDataTable?idCargo='+cargo+'&idAntecedente='+antecedente,
+            url: 'http://10.10.10.1/GRUPOFIRMA/index.php/getListadoOtrosAntecedentesDataTable?idCargo='+cargo+'&idAntecedente='+antecedente,
             type: 'GET',
         },
         "columnDefs": [{

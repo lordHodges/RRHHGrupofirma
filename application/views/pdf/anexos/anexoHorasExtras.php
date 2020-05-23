@@ -152,7 +152,7 @@ if($usuario[0]->atr_activo == "1" &&  $view_anexoHorasExtras == "1") { ?>
 
 
 
-<?php } else{ header("Location: http://localhost/GRUPOFIRMA/"); } ?>
+<?php } else{ header("Location: http://10.10.10.1/GRUPOFIRMA/"); } ?>
 
 </body>
 </html>

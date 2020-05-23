@@ -1,4 +1,4 @@
-var base_url = 'http://localhost/GRUPOFIRMA/index.php/';
+var base_url = 'http://10.10.10.1/GRUPOFIRMA/index.php/';
 
 
 function inicializarCalendario(){
@@ -52,7 +52,7 @@ function inicializarCalendario(){
         eventLimit: true, // allow "more" link when too many events
         eventSources: [
           {
-            url : 'http://localhost/GRUPOFIRMA/index.php/getInasistencias',
+            url : 'http://10.10.10.1/GRUPOFIRMA/index.php/getInasistencias',
             color: 'red',
             textColor: 'white'
           }
