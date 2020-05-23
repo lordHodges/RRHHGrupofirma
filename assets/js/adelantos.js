@@ -166,6 +166,7 @@ function cargarTablaAdelantos(permisoEditar,permisoExportar){
       });
   }
 
+//   
 
 }
 
