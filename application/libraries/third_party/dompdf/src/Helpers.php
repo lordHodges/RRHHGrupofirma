@@ -440,7 +440,7 @@ class Helpers
 <<<<<<< HEAD
             $host = ""; // localhost, really
 =======
-            $host = ""; // 10.10.10.1, really
+            $host = ""; // imlchile.cl, really
 >>>>>>> 6d452e33e03ff9b08367071c515f6627be833f1a
             $file = basename($url);
 

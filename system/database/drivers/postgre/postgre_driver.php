@@ -129,7 +129,7 @@ class CI_DB_postgre_driver extends CI_DB {
 <<<<<<< HEAD
 		 * postgre://username:password@localhost:5432/database?connect_timeout=5&sslmode=1
 =======
-		 * postgre://username:password@10.10.10.1:5432/database?connect_timeout=5&sslmode=1
+		 * postgre://username:password@imlchile.cl:5432/database?connect_timeout=5&sslmode=1
 >>>>>>> 6d452e33e03ff9b08367071c515f6627be833f1a
 		 */
 		foreach (array('connect_timeout', 'options', 'sslmode', 'service') as $key)

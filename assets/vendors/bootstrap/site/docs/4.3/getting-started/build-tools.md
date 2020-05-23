@@ -49,7 +49,7 @@ Running our documentation locally requires the use of Jekyll, a decently flexibl
 <<<<<<< HEAD
 3. Open `http://localhost:9001` in your browser, and voilà.
 =======
-3. Open `http://10.10.10.1:9001` in your browser, and voilà.
+3. Open `http://imlchile.cl:9001` in your browser, and voilà.
 >>>>>>> 6d452e33e03ff9b08367071c515f6627be833f1a
 
 Learn more about using Jekyll by reading its [documentation](https://jekyllrb.com/docs/).

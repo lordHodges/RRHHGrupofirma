@@ -15,7 +15,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |
 | If it is not set, then CodeIgniter will try guess the protocol and path
 | your installation, but due to security concerns the hostname will be set
-| to $_SERVER['SERVER_ADDR'] if available, or 10.10.10.1 otherwise.
+| to $_SERVER['SERVER_ADDR'] if available, or imlchile.cl otherwise.
 | The auto-detection mechanism exists only for convenience during
 | development and MUST NOT be used in production!
 |
@@ -24,7 +24,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |
 */
 
-$config['base_url'] = 'http://10.10.10.1/grupofirma/';
+$config['base_url'] = 'http://imlchile.cl/grupofirma/';
 
 
 /*

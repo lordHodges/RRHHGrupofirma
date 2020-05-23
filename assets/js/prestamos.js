@@ -1,4 +1,4 @@
-var base_url = 'http://10.10.10.1/grupofirma/index.php/';
+var base_url = 'http://imlchile.cl/grupofirma/index.php/';
 
 
 function cargarTablaPrestamoTrabajadores(permisoEditar,permisoExportar){
@@ -44,7 +44,7 @@ function cargarTablaPrestamoTrabajadores(permisoEditar,permisoExportar){
               }
           },
           "ajax": {
-              url: "http://10.10.10.1/grupofirma/index.php/getListadoPrestamosTrabajador",
+              url: "http://imlchile.cl/grupofirma/index.php/getListadoPrestamosTrabajador",
               type: 'GET'
           },
           "columnDefs": [{
@@ -130,7 +130,7 @@ function cargarTablaPrestamoTrabajadores(permisoEditar,permisoExportar){
               }
           },
           "ajax": {
-              url: "http://10.10.10.1/grupofirma/index.php/getListadoPrestamosTrabajador",
+              url: "http://imlchile.cl/grupofirma/index.php/getListadoPrestamosTrabajador",
               type: 'GET'
           },
           "columnDefs": [{
