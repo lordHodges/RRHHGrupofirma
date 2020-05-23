@@ -1,4 +1,4 @@
-var base_url = 'http://10.10.10.1/grupofirma/index.php/';
+var base_url = 'https://imlchile.cl/grupofirma/index.php/';
 
 function cargarCantidadContratos(){
 

@@ -1,4 +1,4 @@
-var base_url = 'http://10.10.10.1/grupofirma/index.php/';
+var base_url = 'https://imlchile.cl/grupofirma/index.php/';
 
 /*************************** TRANSFERENCIAS ****************************/
 
@@ -53,7 +53,7 @@ function cargarTabla(permisoSubir){
             }
         },
         "ajax": {
-            url: "http://10.10.10.1/grupofirma/index.php/getListadoTrabajadoresContrato",
+            url: "https://imlchile.cl/grupofirma/index.php/getListadoTrabajadoresContrato",
             type: 'GET'
         },
         "columnDefs": [{
@@ -101,7 +101,7 @@ function getTransferenciasTrabajador(idTrabajador){
 
       fila +='<h5 class="modal-title mx-auto">LISTADO DE TRANSFERENCIAS</h5><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>';
       fila +='<table class="table table-bordered tableInModal" style="margin-top:20px;"> <thead> <tr> <td class="text-center">Transferencia</td> <td class="text-center">Fecha</td> <td class="text-center">Motivo</td> <td class="text-center">Monto</td> <td class="text-center">Descargar</td> </tr> </thead> <tbody>';
-      // importarScript("http://10.10.10.1/grupofirma/assets/js/validaciones.js");
+      // importarScript("https://imlchile.cl/grupofirma/assets/js/validaciones.js");
       $.each(response.msg, function (i, o) {
         arrayFecha =  o.atr_fecha.split("-");
         fecha = arrayFecha[2]+"-"+arrayFecha[1]+"-"+arrayFecha[0];
@@ -118,7 +118,7 @@ function getTransferenciasTrabajador(idTrabajador){
             fila += '<td> <a class="btn btn-default btn-sm" href="#"><i class="glyphicon glyphicon-download-alt"></i></a> </td>';
           }
         }else{
-          download = "http://10.10.10.1/grupofirma/index.php/TransferenciasController/descargarComprobante/"+o.cp_transferencia;
+          download = "https://imlchile.cl/grupofirma/index.php/TransferenciasController/descargarComprobante/"+o.cp_transferencia;
           if (permisoDescargar == "si") {
             fila +='<td> <a class="btn btn-info btn-sm" href="'+download+'" download><i class="glyphicon glyphicon-download-alt"></i></a> </td>';
           }else{

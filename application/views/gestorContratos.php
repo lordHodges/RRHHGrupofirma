@@ -475,7 +475,7 @@ if($usuario[0]->atr_activo == "1") {?>
 <<<<<<< HEAD
             var url = 'http://localhost/GRUPOFIRMA/index.php/docContratoEstandar?trabajador='+idTrabajador+'&&fechaInicio='+fechaInicio+'&&fechaTermino='+fechaTermino+'&&ciudadFirma='+ciudadFirma;
 =======
-            var url = 'http://10.10.10.1/grupofirma/index.php/docContratoEstandar?trabajador='+idTrabajador+'&&fechaInicio='+fechaInicio+'&&fechaTermino='+fechaTermino+'&&ciudadFirma='+ciudadFirma;
+            var url = 'https://imlchile.cl/grupofirma/index.php/docContratoEstandar?trabajador='+idTrabajador+'&&fechaInicio='+fechaInicio+'&&fechaTermino='+fechaTermino+'&&ciudadFirma='+ciudadFirma;
 >>>>>>> 6d452e33e03ff9b08367071c515f6627be833f1a
             window.open(url, '_blank');
           }
@@ -532,7 +532,7 @@ if($usuario[0]->atr_activo == "1") {?>
 <<<<<<< HEAD
             var url = 'http://localhost/GRUPOFIRMA/index.php/docContratoPersonalizado?trabajador='+idTrabajador+'&&fechaInicio='+fechaInicio+'&&fechaTermino='+fechaTermino+'&&ciudadFirma='+ciudadFirma+'&&arrayItems='+arrayItems;
 =======
-            var url = 'http://10.10.10.1/grupofirma/index.php/docContratoPersonalizado?trabajador='+idTrabajador+'&&fechaInicio='+fechaInicio+'&&fechaTermino='+fechaTermino+'&&ciudadFirma='+ciudadFirma+'&&arrayItems='+arrayItems;
+            var url = 'https://imlchile.cl/grupofirma/index.php/docContratoPersonalizado?trabajador='+idTrabajador+'&&fechaInicio='+fechaInicio+'&&fechaTermino='+fechaTermino+'&&ciudadFirma='+ciudadFirma+'&&arrayItems='+arrayItems;
 >>>>>>> 6d452e33e03ff9b08367071c515f6627be833f1a
             window.open(url, '_blank');
         }
@@ -550,7 +550,7 @@ if($usuario[0]->atr_activo == "1") {?>
 <<<<<<< HEAD
   <?php } else{ header("Location: http://localhost/GRUPOFIRMA/"); } ?>
 =======
-  <?php } else{ header("Location: http://10.10.10.1/grupofirma/"); } ?>
+  <?php } else{ header("Location: https://imlchile.cl/grupofirma/"); } ?>
 >>>>>>> 6d452e33e03ff9b08367071c515f6627be833f1a
 
   </body>
