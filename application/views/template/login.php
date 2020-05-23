@@ -141,7 +141,7 @@
 <<<<<<< HEAD
 							url: 'http://localhost/GRUPOFIRMA/index.php/iniciarSesion',
 =======
-							url: 'http://imlchile.cl/grupofirma/index.php/iniciarSesion',
+							url: 'http://10.10.10.1/grupofirma/index.php/iniciarSesion',
 >>>>>>> 6d452e33e03ff9b08367071c515f6627be833f1a
 							type: 'POST',
 							dataType: 'json',
@@ -153,7 +153,7 @@
 <<<<<<< HEAD
 									window.location="http://localhost/GRUPOFIRMA/index.php/dashboard";
 =======
-									window.location="http://imlchile.cl/grupofirma/index.php/dashboard";
+									window.location="http://10.10.10.1/grupofirma/index.php/dashboard";
 >>>>>>> 6d452e33e03ff9b08367071c515f6627be833f1a
 							// },1500);
 						}else {

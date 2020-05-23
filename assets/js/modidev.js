@@ -1,4 +1,4 @@
-var base_url = 'http://imlchile.cl/grupofirma/index.php/';
+var base_url = 'http://10.10.10.1/grupofirma/index.php/';
 
 function cargarTablaSucursales(permisoExportar){
   var table = $('#tabla_sucursal').DataTable();
@@ -36,7 +36,7 @@ function cargarTablaSucursales(permisoExportar){
               }
           },
           "ajax": {
-              url: "http://imlchile.cl/grupofirma/index.php/getListadoSucursales",
+              url: "http://10.10.10.1/grupofirma/index.php/getListadoSucursales",
               type: 'GET'
           },
           "columnDefs": [{
@@ -119,7 +119,7 @@ function cargarTablaSucursales(permisoExportar){
               }
           },
           "ajax": {
-              url: "http://imlchile.cl/grupofirma/index.php/getListadoSucursales",
+              url: "http://10.10.10.1/grupofirma/index.php/getListadoSucursales",
               type: 'GET'
           },
           "columnDefs": [{
@@ -170,7 +170,7 @@ function cargarTablaPrevision(permisoEditar,permisoExportar){
             }
         },
         "ajax": {
-            url: "http://imlchile.cl/grupofirma/index.php/getListadoPrevisiones",
+            url: "http://10.10.10.1/grupofirma/index.php/getListadoPrevisiones",
             type: 'GET'
         },
         "columnDefs": [{
@@ -268,7 +268,7 @@ function cargarTablaNacionalidades(permisoEditar,permisoExportar){
               }
           },
           "ajax": {
-              url: "http://imlchile.cl/grupofirma/index.php/getListadoNacionalidades",
+              url: "http://10.10.10.1/grupofirma/index.php/getListadoNacionalidades",
               type: 'GET'
           },
           "columnDefs": [{
@@ -353,7 +353,7 @@ function cargarTablaNacionalidades(permisoEditar,permisoExportar){
               }
           },
           "ajax": {
-              url: "http://imlchile.cl/grupofirma/index.php/getListadoNacionalidades",
+              url: "http://10.10.10.1/grupofirma/index.php/getListadoNacionalidades",
               type: 'GET'
           },
           "columnDefs": [{
@@ -410,7 +410,7 @@ function cargarTablaEstadosContrato(permisoEditar,permisoExportar){
               }
           },
           "ajax": {
-              url: "http://imlchile.cl/grupofirma/index.php/getEstadoContrato",
+              url: "http://10.10.10.1/grupofirma/index.php/getEstadoContrato",
               type: 'GET'
           },
           "columnDefs": [{
@@ -496,7 +496,7 @@ function cargarTablaEstadosContrato(permisoEditar,permisoExportar){
               }
           },
           "ajax": {
-              url: "http://imlchile.cl/grupofirma/index.php/getEstadoContrato",
+              url: "http://10.10.10.1/grupofirma/index.php/getEstadoContrato",
               type: 'GET'
           },
           "columnDefs": [{
@@ -547,7 +547,7 @@ function cargarTablaEstadosCiviles(permisoExportar){
               }
           },
           "ajax": {
-              url: "http://imlchile.cl/grupofirma/index.php/getListadoEstadosCiviles",
+              url: "http://10.10.10.1/grupofirma/index.php/getListadoEstadosCiviles",
               type: 'GET'
           },
           "columnDefs": [{
@@ -631,7 +631,7 @@ function cargarTablaEstadosCiviles(permisoExportar){
               }
           },
           "ajax": {
-              url: "http://imlchile.cl/grupofirma/index.php/getListadoEstadosCiviles",
+              url: "http://10.10.10.1/grupofirma/index.php/getListadoEstadosCiviles",
               type: 'GET'
           },
           "columnDefs": [{
@@ -684,7 +684,7 @@ function cargarTablaCiudades(exportar){
               }
           },
           "ajax": {
-              url: "http://imlchile.cl/grupofirma/index.php/getListadoCiudades",
+              url: "http://10.10.10.1/grupofirma/index.php/getListadoCiudades",
               type: 'GET'
           },
           "columnDefs": [{
@@ -756,7 +756,7 @@ function cargarTablaCiudades(exportar){
                 }
             },
             "ajax": {
-                url: "http://imlchile.cl/grupofirma/index.php/getListadoCiudades",
+                url: "http://10.10.10.1/grupofirma/index.php/getListadoCiudades",
                 type: 'GET'
             },
             "columnDefs": [{
@@ -809,7 +809,7 @@ function cargarTablaEmpresa(permisoEditar, exportar){
               }
           },
           "ajax": {
-              url: "http://imlchile.cl/grupofirma/index.php/getListadoEmpresa",
+              url: "http://10.10.10.1/grupofirma/index.php/getListadoEmpresa",
               type: 'GET'
           },
           "columnDefs": [{
@@ -893,7 +893,7 @@ function cargarTablaEmpresa(permisoEditar, exportar){
               }
           },
           "ajax": {
-              url: "http://imlchile.cl/grupofirma/index.php/getListadoEmpresa",
+              url: "http://10.10.10.1/grupofirma/index.php/getListadoEmpresa",
               type: 'GET'
           },
           "columnDefs": [{
@@ -950,7 +950,7 @@ function cargarTablaAFP(permisoEditar, permisoExportar){
               }
           },
           "ajax": {
-              url: "http://imlchile.cl/grupofirma/index.php/getListadoAFP",
+              url: "http://10.10.10.1/grupofirma/index.php/getListadoAFP",
               type: 'GET'
           },
           "columnDefs": [{
@@ -1020,7 +1020,7 @@ function cargarTablaAFP(permisoEditar, permisoExportar){
               }
           },
           "ajax": {
-              url: "http://imlchile.cl/grupofirma/index.php/getListadoAFP",
+              url: "http://10.10.10.1/grupofirma/index.php/getListadoAFP",
               type: 'GET'
           },
           "columnDefs": [{
