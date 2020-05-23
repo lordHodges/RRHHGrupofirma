@@ -12,7 +12,7 @@ $query_builder = TRUE;
 // DEVELOPER
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => '190.121.9.99',
+	'hostname' => '190.121.9.99:443',
 	'username' => 'root',
 	'password' => 'almendra',
 	'database' => 'fa_rrhh',
