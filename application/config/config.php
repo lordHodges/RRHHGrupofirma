@@ -24,7 +24,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |
 */
 
-$config['base_url'] = 'http://10.10.11.240/GRUPOFIRMA/';
+$config['base_url'] = 'http://10.10.10.1/grupofirma/';
 
 
 /*
