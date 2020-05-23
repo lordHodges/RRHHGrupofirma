@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-var base_url = 'http://localhost/GRUPOFIRMA/index.php/';
-=======
 var base_url = 'http://10.10.11.240/GRUPOFIRMA/index.php/';
->>>>>>> 6d452e33e03ff9b08367071c515f6627be833f1a
 
 function cargarTabla(permisoEditar,permisoExportar, permisoCambiar){
   var table = $('#tabla_usuario').DataTable();
@@ -50,11 +46,7 @@ function cargarTabla(permisoEditar,permisoExportar, permisoCambiar){
               }
           },
           "ajax": {
-<<<<<<< HEAD
-              url: "http://localhost/GRUPOFIRMA/index.php/getListadoUsuarios",
-=======
               url: "http://10.10.11.240/GRUPOFIRMA/index.php/getListadoUsuarios",
->>>>>>> 6d452e33e03ff9b08367071c515f6627be833f1a
               type: 'GET'
           },
           "columnDefs": [{
@@ -124,11 +116,7 @@ function cargarTabla(permisoEditar,permisoExportar, permisoCambiar){
               }
           },
           "ajax": {
-<<<<<<< HEAD
-              url: "http://localhost/GRUPOFIRMA/index.php/getListadoUsuarios",
-=======
               url: "http://10.10.11.240/GRUPOFIRMA/index.php/getListadoUsuarios",
->>>>>>> 6d452e33e03ff9b08367071c515f6627be833f1a
               type: 'GET'
           },
           "columnDefs": [{

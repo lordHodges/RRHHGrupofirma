@@ -33,11 +33,7 @@ module.exports = function (grunt) {
 
   var testFiles = grunt.file.expand('tests/**/*.html');
   var testUrls = testFiles.map(function (filePath) {
-<<<<<<< HEAD
-    return 'http://localhost:9999/' + filePath;
-=======
     return 'http://10.10.11.240:9999/' + filePath;
->>>>>>> 6d452e33e03ff9b08367071c515f6627be833f1a
   });
 
   var testBuildNumber = "unknown";

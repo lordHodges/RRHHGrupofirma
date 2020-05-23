@@ -1,6 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-
+// alert
 /*
 |--------------------------------------------------------------------------
 | Base Site URL
@@ -15,11 +15,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |
 | If it is not set, then CodeIgniter will try guess the protocol and path
 | your installation, but due to security concerns the hostname will be set
-<<<<<<< HEAD
-| to $_SERVER['SERVER_ADDR'] if available, or localhost otherwise.
-=======
 | to $_SERVER['SERVER_ADDR'] if available, or 10.10.11.240 otherwise.
->>>>>>> 6d452e33e03ff9b08367071c515f6627be833f1a
 | The auto-detection mechanism exists only for convenience during
 | development and MUST NOT be used in production!
 |
@@ -28,11 +24,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |
 */
 
-<<<<<<< HEAD
-$config['base_url'] = 'http://localhost/GRUPOFIRMA/';
-=======
 $config['base_url'] = 'http://10.10.11.240/GRUPOFIRMA/';
->>>>>>> 6d452e33e03ff9b08367071c515f6627be833f1a
 
 
 /*

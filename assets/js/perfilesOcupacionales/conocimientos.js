@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-var base_url = 'http://localhost/GRUPOFIRMA/index.php/';
-=======
 var base_url = 'http://10.10.11.240/GRUPOFIRMA/index.php/';
->>>>>>> 6d452e33e03ff9b08367071c515f6627be833f1a
 var constante = 0;
 
 function cargarTabla(cargo, permisoEliminar){
@@ -42,11 +38,7 @@ function cargarTabla(cargo, permisoEliminar){
             },
         },
         "ajax": {
-<<<<<<< HEAD
-            url: 'http://localhost/GRUPOFIRMA/index.php/getListadoConocimientosDataTable?id='+cargo,
-=======
             url: 'http://10.10.11.240/GRUPOFIRMA/index.php/getListadoConocimientosDataTable?id='+cargo,
->>>>>>> 6d452e33e03ff9b08367071c515f6627be833f1a
             type: 'GET',
         },
         "columnDefs": [{

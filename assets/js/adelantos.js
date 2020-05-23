@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-var base_url = 'http://localhost/GRUPOFIRMA/index.php/';
-=======
 var base_url = 'http://10.10.11.240/GRUPOFIRMA/index.php/';
->>>>>>> 6d452e33e03ff9b08367071c515f6627be833f1a
 
 function cargarBancos(){
   $.ajax({
@@ -68,11 +64,7 @@ function cargarTablaAdelantos(permisoEditar,permisoExportar){
               }
           },
           "ajax": {
-<<<<<<< HEAD
-              url: "http://localhost/GRUPOFIRMA/index.php/getListadoAdelantos",
-=======
               url: "http://10.10.11.240/GRUPOFIRMA/index.php/getListadoAdelantos",
->>>>>>> 6d452e33e03ff9b08367071c515f6627be833f1a
               type: 'GET'
           },
           "columnDefs": [{
@@ -161,11 +153,7 @@ function cargarTablaAdelantos(permisoEditar,permisoExportar){
               }
           },
           "ajax": {
-<<<<<<< HEAD
-              url: "http://localhost/GRUPOFIRMA/index.php/getListadoAdelantos",
-=======
               url: "http://10.10.11.240/GRUPOFIRMA/index.php/getListadoAdelantos",
->>>>>>> 6d452e33e03ff9b08367071c515f6627be833f1a
               type: 'GET'
           },
           "columnDefs": [{

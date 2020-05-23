@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-var base_url = 'http://localhost/GRUPOFIRMA/index.php/';
-=======
 var base_url = 'http://10.10.11.240/GRUPOFIRMA/index.php/';
->>>>>>> 6d452e33e03ff9b08367071c515f6627be833f1a
 
 
 function cargarTablaPrestamoTrabajadores(permisoEditar,permisoExportar){
@@ -48,11 +44,7 @@ function cargarTablaPrestamoTrabajadores(permisoEditar,permisoExportar){
               }
           },
           "ajax": {
-<<<<<<< HEAD
-              url: "http://localhost/GRUPOFIRMA/index.php/getListadoPrestamosTrabajador",
-=======
               url: "http://10.10.11.240/GRUPOFIRMA/index.php/getListadoPrestamosTrabajador",
->>>>>>> 6d452e33e03ff9b08367071c515f6627be833f1a
               type: 'GET'
           },
           "columnDefs": [{
@@ -138,11 +130,7 @@ function cargarTablaPrestamoTrabajadores(permisoEditar,permisoExportar){
               }
           },
           "ajax": {
-<<<<<<< HEAD
-              url: "http://localhost/GRUPOFIRMA/index.php/getListadoPrestamosTrabajador",
-=======
               url: "http://10.10.11.240/GRUPOFIRMA/index.php/getListadoPrestamosTrabajador",
->>>>>>> 6d452e33e03ff9b08367071c515f6627be833f1a
               type: 'GET'
           },
           "columnDefs": [{
