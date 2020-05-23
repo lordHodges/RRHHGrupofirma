@@ -221,6 +221,6 @@ function serverTask() {
 // Convenience task for opening the project straight from the command line
 
 function _openTask() {
-  exec('open http://10.10.11.240:8000');
+  exec('open http://10.10.10.1:8000');
   exec('subl .');
 }
