@@ -22,45 +22,45 @@ class PagosController extends CI_Controller {
 		$empresa = $this->input->get("empresa");
 
 		if ($mes == '01') {
-			$detalle = 'PAGO MENSUAL ENERO '.$ano;
+			$detalle = 'PAGO ENERO '.$ano;
 		}
 
 		switch ($mes) {
 	    case '01':
-	        $detalle = 'PAGO MENSUAL ENERO '.$ano;
+	        $detalle = 'PAGO ENERO '.$ano;
 	        break;
 	    case '02':
-	        $detalle = 'PAGO MENSUAL FEBRERO '.$ano;
+	        $detalle = 'PAGO FEBRERO '.$ano;
 	        break;
 	    case '03':
-	        $detalle = 'PAGO MENSUAL MARZO '.$ano;
+	        $detalle = 'PAGO MARZO '.$ano;
 	        break;
 			case '04':
-	        $detalle = 'PAGO MENSUAL ABRIL '.$ano;
+	        $detalle = 'PAGO ABRIL '.$ano;
 	        break;
 	    case '05':
-	        $detalle = 'PAGO MENSUAL MAYO '.$ano;
+	        $detalle = 'PAGO MAYO '.$ano;
 	        break;
 	    case '06':
-	        $detalle = 'PAGO MENSUAL JUNIO '.$ano;
+	        $detalle = 'PAGO JUNIO '.$ano;
 	        break;
 			case '07':
-	        $detalle = 'PAGO MENSUAL JULIO '.$ano;
+	        $detalle = 'PAGO JULIO '.$ano;
 	        break;
 	    case '08':
-	        $detalle = 'PAGO MENSUAL AGOSTO '.$ano;
+	        $detalle = 'PAGO AGOSTO '.$ano;
 	        break;
 	    case '09':
-	        $detalle = 'PAGO MENSUAL SEPTIEMBRE '.$ano;
+	        $detalle = 'PAGO SEPTIEMBRE '.$ano;
 	        break;
 			case '10':
-	        $detalle = 'PAGO MENSUAL OCTUBRE '.$ano;
+	        $detalle = 'PAGO OCTUBRE '.$ano;
 	        break;
 	    case '11':
-	        $detalle = 'PAGO MENSUAL NOVIEMBRE '.$ano;
+	        $detalle = 'PAGO NOVIEMBRE '.$ano;
 	        break;
 	    case '12':
-	        $detalle = 'PAGO MENSUAL DICIEMBRE '.$ano;
+	        $detalle = 'PAGO DICIEMBRE '.$ano;
 	        break;
 		}
 

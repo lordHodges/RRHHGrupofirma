@@ -70,7 +70,7 @@ class TrabajadorModel extends CI_Model {
             "cp_adelanto"               => $id,
             "atr_numCuenta"             => $numCuenta[0],
             "atr_monto"                 => "0",
-            "atr_tipoCuenta"            => "CUENTA VISTA",
+            "atr_tipoCuenta"            => "Cuenta Vista",
             "cf_banco"                  => "7",
             "cf_trabajador"             => $id
         );
