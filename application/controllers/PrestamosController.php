@@ -58,8 +58,10 @@ class PrestamosController extends CI_Controller {
 		$montoTotal = $this->input->post("montoTotal");
 		$totalCuotas = $this->input->post("totalCuotas");
 		$idTrabajador = $this->input->post("idTrabajador");
+		$autoriza = $this->input->post("autoriza");
+		$observacion = $this->input->post("observacion");
 
-		$resultado = $this->PrestamosModel->addPrestamo($montoTotal,$totalCuotas,$idTrabajador);
+		$resultado = $this->PrestamosModel->addPrestamo($montoTotal,$totalCuotas,$idTrabajador,$autoriza, $observacion);
 		echo json_encode( $resultado) ;
 	}
 

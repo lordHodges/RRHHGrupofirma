@@ -28,7 +28,7 @@ class PrestamosModel extends CI_Model {
     }
 
 
-    function addPrestamo($montoTotal,$totalCuotas,$idTrabajador){
+    function addPrestamo($montoTotal,$totalCuotas,$idTrabajador,$autoriza, $observacion){
         $fechaActual = date("Y-m-d");
 
         $dia = date("d");
@@ -41,6 +41,8 @@ class PrestamosModel extends CI_Model {
             "atr_montoTotal"      => $montoTotal,
             "atr_fechaPrestamo"   => $fechaActual,
             "atr_cantidadCuotas"  => $totalCuotas,
+            "atr_autoriza"        => $autoriza,
+            "atr_observacion"     => $observacion,
             "cf_trabajador"       => $idTrabajador
         );
         $this->db->insert("fa_prestamo", $data);

@@ -310,6 +310,9 @@ INSERT INTO `fa_permiso_perfil` (`cp_permiso_perfil`, `cf_existencia_permiso`, `
 INSERT INTO `fa_permiso_perfil` (`cp_permiso_perfil`, `cf_existencia_permiso`, `cf_perfil`) VALUES (NULL, '45', '5'), (NULL, '46', '5'), (NULL, '47', '5'), (NULL, '48', '5');
 INSERT INTO `fa_permiso_perfil` (`cp_permiso_perfil`, `cf_existencia_permiso`, `cf_perfil`) VALUES (NULL, '49', '5'), (NULL, '50', '5'), (NULL, '51', '5'), (NULL, '52', '5');
 INSERT INTO `fa_permiso_perfil` (`cp_permiso_perfil`, `cf_existencia_permiso`, `cf_perfil`) VALUES (NULL, '53', '5'), (NULL, '54', '5');
+INSERT INTO `fa_permiso_perfil` (`cp_permiso_perfil`, `cf_existencia_permiso`, `cf_perfil`) VALUES (NULL, '55', '5'), (NULL, '56', '5'), (NULL, '57', '5');
+INSERT INTO `fa_permiso_perfil` (`cp_permiso_perfil`, `cf_existencia_permiso`, `cf_perfil`) VALUES (NULL, '58', '5'), (NULL, '59', '5'), (NULL, '60', '5'), (NULL, '61', '5');
+INSERT INTO `fa_permiso_perfil` (`cp_permiso_perfil`, `cf_existencia_permiso`, `cf_perfil`) VALUES (NULL, '61', '5'), (NULL, '63', '5'), (NULL, '64', '5'), (NULL, '65', '5');
 
 
 
@@ -326,6 +329,7 @@ INSERT INTO `fa_menu_perfil` (`cp_menu_perfil`, `cf_perfil`, `cf_menu`) VALUES (
 INSERT INTO `fa_menu_perfil` (`cp_menu_perfil`, `cf_perfil`, `cf_menu`) VALUES (NULL, '1', '11');
 
 INSERT INTO `fa_menu_perfil` (`cp_menu_perfil`, `cf_perfil`, `cf_menu`) VALUES (NULL, '4', '1');
+INSERT INTO `fa_menu_perfil` (`cp_menu_perfil`, `cf_perfil`, `cf_menu`) VALUES (NULL, '4', '7');
 INSERT INTO `fa_menu_perfil` (`cp_menu_perfil`, `cf_perfil`, `cf_menu`) VALUES (NULL, '4', '10');
 
 
@@ -337,7 +341,7 @@ INSERT INTO `fa_menu_perfil` (`cp_menu_perfil`, `cf_perfil`, `cf_menu`) VALUES (
 INSERT INTO `fa_menu_perfil` (`cp_menu_perfil`, `cf_perfil`, `cf_menu`) VALUES (NULL, '3', '10'), (NULL, '3', '11');
 
 
-INSERT INTO `fa_menu_perfil` (`cp_menu_perfil`, `cf_perfil`, `cf_menu`) VALUES (NULL, '5', '1'), (NULL, '5', '2'), (NULL, '5', '8'), (NULL, '5', '9');
+INSERT INTO `fa_menu_perfil` (`cp_menu_perfil`, `cf_perfil`, `cf_menu`) VALUES (NULL, '5', '1'), (NULL, '5', '2'), (NULL, '5', '7'),(NULL, '5', '8'), (NULL, '5', '9');
 
 
 
@@ -350,7 +354,7 @@ INSERT INTO `fa_menu_perfil` (`cp_menu_perfil`, `cf_perfil`, `cf_menu`) VALUES (
 
 
 
-INSERT INTO `fa_prestamo` (`cp_prestamo`, `atr_montoTotal`, `atr_fechaPrestamo`, `atr_cantidadCuotas`, `cf_trabajador`) VALUES (NULL, '600000', '2020-05-06', '6', '1');
+INSERT INTO `fa_prestamo` (`cp_prestamo`, `atr_montoTotal`, `atr_fechaPrestamo`, `atr_cantidadCuotas`, `atr_autoriza`, `cf_trabajador`) VALUES (NULL, '600000', '2020-05-06', '6','Miguel Vargas', '1');
 
 
 

@@ -9,17 +9,12 @@ class PagosModel extends CI_Model {
         parent::__construct();
     }
 
-    function getHistorialPagosMensuales(){
-        $fechaActual = date("Y-m-d");
-
-        $mes = date("m");
-        $ano = date("Y");
-
+    function getHistorialPagosMensuales($ano, $mes){
         $this->db->select("pm.cf_trabajador");
         $this->db->from("fa_historial_pagos_mensuales pm");
         $this->db->where("pm.atr_mes",$mes);
         $this->db->where("pm.atr_ano",$ano);
-        return $this->db->get();
+        return $this->db->get()->result();
     }
 
     function addHistorialPagosMensuales($monto, $idTrabajador,$fecha,$banco){
@@ -239,6 +234,8 @@ class PagosModel extends CI_Model {
           $rutFormateado = str_replace(".","",$t->atr_rut);
           $rutFormateado = str_replace("-","",$rutFormateado);
 
+          $montoTotalPagar = number_format($montoTotalPagar, 0, ",", ".");
+
           $data = (object) array(
               "rutBeneficiario"             => $rutFormateado,
               "nombreBeneficiario"          => $nombres[0]." ".$apellidos[0],
@@ -348,7 +345,7 @@ class PagosModel extends CI_Model {
 
         $sueldo = $t->atr_sueldo;
 
-        
+
 
 
 

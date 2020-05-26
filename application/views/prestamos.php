@@ -156,6 +156,18 @@ if($usuario[0]->atr_activo == "1") { ?>
                         <input type="number" class="form-control custom-input-sm" onkeyup="this.value=generarCuotas(this.value)" id="cuotas">
                     </div>
 
+                    <div class="col-md-12">
+                        <br>
+                        <label for="autoriza">AUTORIZA</label>
+                        <input type="text" class="form-control custom-input-sm"  id="autoriza">
+                    </div>
+
+                    <div class="col-md-12">
+                        <br>
+                        <label for="observacion">OBSERVACIÓN</label>
+                        <textarea type="text" class="form-control custom-input-sm"  id="observacion"></textarea>
+                    </div>
+
                     <br>
                     <div id="contenedorCuotasPrestamo">
 
@@ -297,7 +309,7 @@ if($usuario[0]->atr_activo == "1") { ?>
               var nombre = $(this).parent().parent().children()[2];
               var cuotas = $(this).parent().parent().children()[4];
               var montoTotal = $(this).parent().parent().children()[5];
-              
+
               getDetallePrestamo(  $(id).text() , $(rut).text(), $(nombre).text(), $(cuotas).text(), $(montoTotal).text()  );
           });
 

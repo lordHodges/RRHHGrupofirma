@@ -98,6 +98,7 @@ if($usuario[0]->atr_activo == "1" ) { ?>
                                     <th class="text-center">PRÉSTAMOS</th>
                                     <th class="text-center">INASISTENCIA</th>
                                     <th class="text-center">TOTAL A PAGAR</th>
+                                    <th class="text-center">TRANSFERENCIA</th>
                                     <th class="text-center"style="width:10%;">ACCIONES</th>
                                 </tr>
                             </thead>
@@ -131,7 +132,6 @@ if($usuario[0]->atr_activo == "1" ) { ?>
                                   <th class="text-center">REFERENCIA CLIENTE</th>
                                   <th class="text-center">GLOSA CARTOLA ORIGEN</th>
                                   <th class="text-center">GLOSA CARTOLA DESTINO</th>
-                                  <th class="text-center">DETALLE DE PAGO</th>
                                   <th class="text-center">DETALLE DE PAGO</th>
                               </tr>
                           </thead>

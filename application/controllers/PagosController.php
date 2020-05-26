@@ -21,6 +21,49 @@ class PagosController extends CI_Controller {
 		$diaTermino = $this->input->get("diaTermino");
 		$empresa = $this->input->get("empresa");
 
+		if ($mes == '01') {
+			$detalle = 'PAGO MENSUAL ENERO '.$ano;
+		}
+
+		switch ($mes) {
+	    case '01':
+	        $detalle = 'PAGO MENSUAL ENERO '.$ano;
+	        break;
+	    case '02':
+	        $detalle = 'PAGO MENSUAL FEBRERO '.$ano;
+	        break;
+	    case '03':
+	        $detalle = 'PAGO MENSUAL MARZO '.$ano;
+	        break;
+			case '04':
+	        $detalle = 'PAGO MENSUAL ABRIL '.$ano;
+	        break;
+	    case '05':
+	        $detalle = 'PAGO MENSUAL MAYO '.$ano;
+	        break;
+	    case '06':
+	        $detalle = 'PAGO MENSUAL JUNIO '.$ano;
+	        break;
+			case '07':
+	        $detalle = 'PAGO MENSUAL JULIO '.$ano;
+	        break;
+	    case '08':
+	        $detalle = 'PAGO MENSUAL AGOSTO '.$ano;
+	        break;
+	    case '09':
+	        $detalle = 'PAGO MENSUAL SEPTIEMBRE '.$ano;
+	        break;
+			case '10':
+	        $detalle = 'PAGO MENSUAL OCTUBRE '.$ano;
+	        break;
+	    case '11':
+	        $detalle = 'PAGO MENSUAL NOVIEMBRE '.$ano;
+	        break;
+	    case '12':
+	        $detalle = 'PAGO MENSUAL DICIEMBRE '.$ano;
+	        break;
+		}
+
 		$draw = intval($this->input->get("draw"));
 		$start = intval($this->input->get("start"));
 		$length = intval($this->input->get("length"));
@@ -39,9 +82,9 @@ class PagosController extends CI_Controller {
 					$r->numeroDeCuenta,
 					"FINANZAS@GRUPOFIRMA.CL",
 					$r->nombreBeneficiario,
-					"PAGO MENSUAL MAYO 2020",
-					"PAGO MENSUAL MAYO 2020",
-					"PAGO MENSUAL MAYO 2020"
+					$detalle,
+					$detalle,
+					$detalle
 				);
 		}
 
@@ -66,10 +109,17 @@ class PagosController extends CI_Controller {
 		$start = intval($this->input->get("start"));
 		$length = intval($this->input->get("length"));
 
+		$historial = $this->PagosModel->getHistorialPagosMensuales( $ano, $mes);
 		$books = $this->PagosModel->getListadoPagosFinDeMes( $ano, $mes, $diaTermino, $empresa);
 
 		$data = array();
 		foreach ($books as $r) {
+				$estado = 'Pendiente';
+				foreach ($historial as $h) {
+					if ($h->cf_trabajador == $r->id) {
+						$estado = 'Transferido';
+					}
+				}
 				$data[] = array(
 					$r->id,
 					$r->rut,
@@ -79,7 +129,8 @@ class PagosController extends CI_Controller {
 					$r->adelanto,
 					$r->prestamos,
 					$r->inasistencia,
-					$r->total
+					$r->total,
+					$estado
 				);
 		}
 

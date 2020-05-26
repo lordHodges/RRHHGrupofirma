@@ -209,7 +209,7 @@ function generarCuotas(valor){
         fila += '</div>';
 
         fila += '<div class="col-md-5"><br>';
-        fila += '<input type="date" class="form-control custom-input-sm" id="fechaPagoDetalle_'+i+'">';
+        fila += '<input type="date" class="form-control required custom-input-sm" id="fechaPagoDetalle_'+i+'">';
         fila += '</div>';
       }
 
@@ -258,27 +258,40 @@ function agregarPrestamo(){
   var rutTrabajador = $("#rutTrabajador").val();
   var monto = $("#monto").val();
   var cuotas = $("#cuotas").val();
+  var autoriza = $("#autoriza").val();
+  var observacion = $("#observacion").val();
 
-  $.ajax({
-      url: 'addPrestamo',
-      type: 'POST',
-      dataType: 'json',
-      data: {"montoTotal":monto, "totalCuotas":cuotas, "idTrabajador":idTrabajador}
-  }).then(function (msg) {
-    var cfPrestamo = msg;
+  var sePuedeAgregar = true;
 
-    var fechasCompletas = 1;
-    for (var j = 1; j <= cuotas; j++) {
-      if (true) {
-        var fecha = '#fechaPagoDetalle_'+j;
-        var idFechaDetalle2 = $(fecha).val();
-        if (idFechaDetalle2 == null || idFechaDetalle2 == "") {
-          fechasCompletas = 0;
+  for (var i = 1; i <= cuotas; i++) {
+    var comprobarFecha = '#fechaPagoDetalle_'+i;
+    var idComprobarDetalle = $(comprobarFecha).val();
+
+    if (idComprobarDetalle == null || idComprobarDetalle == "") {
+      sePuedeAgregar = false;
+    }
+  }
+
+  if (sePuedeAgregar == true) {
+    $.ajax({
+        url: 'addPrestamo',
+        type: 'POST',
+        dataType: 'json',
+        data: {"montoTotal":monto, "totalCuotas":cuotas, "idTrabajador":idTrabajador, "autoriza":autoriza, "observacion":observacion}
+    }).then(function (msg) {
+      var cfPrestamo = msg;
+
+      var fechasCompletas = 1;
+      for (var j = 1; j <= cuotas; j++) {
+        if (true) {
+          var fecha = '#fechaPagoDetalle_'+j;
+          var idFechaDetalle2 = $(fecha).val();
+          if (idFechaDetalle2 == null || idFechaDetalle2 == "") {
+            fechasCompletas = 0;
+          }
         }
       }
-    }
 
-    if (fechasCompletas == 1) {
       for (var i = 1; i <= cuotas; i++) {
         var variableNumCuota = '#numCuotaDetalle_'+i;
         var idNumCuotaDetalle = $(variableNumCuota).val();
@@ -299,25 +312,20 @@ function agregarPrestamo(){
             }
         });
       }
+
       toastr.success("Ingreso exitoso");
       $('#modalCrearPrestamo').modal('hide');
       var permisoEditar = $("#permisoEditarTrabajadores").text();
       var permisoExportar = $("#permisoExportarTrabajadores").text();
       cargarTablaPrestamoTrabajadores(permisoEditar,permisoExportar);
 
-
-    }
-    else{
-      toastr.error("Alguna de las fechas no se ha completado");
-    }
-
+    });
+  }else{
+    toastr.error("Alguna de las fechas no se ha completado");
+  }
 
 
 
-
-
-
-  });
 
 }
 

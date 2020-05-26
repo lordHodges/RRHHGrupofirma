@@ -413,10 +413,13 @@ create table fa_prestamo(
   atr_montoTotal int,
   atr_fechaPrestamo varchar(100),
   atr_cantidadCuotas int,
+  atr_autoriza varchar(200),
+  atr_observacion varchar(200),
   cf_trabajador int,
   constraint pk_prestamo primary key(cp_prestamo),
   constraint fk_prestamo_trabajador foreign key(cf_trabajador) references fa_trabajador(cp_trabajador)
 );
+
 
 create table fa_detalle_prestamo(
   cp_detale_prestamo int auto_increment,

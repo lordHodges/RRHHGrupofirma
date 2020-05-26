@@ -40,7 +40,7 @@
 
 		<style media="screen">
 			body{
-				background-image: url(../assets/login/images/media/photos/construction.jpg);
+				background-image: url(../../assets/login/images/media/photos/construction.jpg);
 				background-position: center;
 				background-size: cover;
 				background-attachment: fixed;

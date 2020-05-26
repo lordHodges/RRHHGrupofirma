@@ -76,6 +76,7 @@ class ContratosController extends CI_Controller {
 
 		 if ( ! $this->upload->do_upload('file')){
 			 $out = array('error' => $this->upload->display_errors());
+			 echo json_encode($out);
 			 exit();
 		 }
 		 else{

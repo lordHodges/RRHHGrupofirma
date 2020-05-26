@@ -113,7 +113,8 @@ function cargarTablaPlanillaPagoMes (){
                           .css('font-size', 'inherit');
                   }
               }
-        ]
+        ],
+        "lengthMenu": [[100, 50, 25, -1], [100, 50, 25, "All"]],
     });
 }
 
@@ -197,14 +198,15 @@ function cargarTablaPagosFinDeMes(){
             data: {}
         },
         "columnDefs": [{
-                "targets": 9,
+                "targets": 10,
                 "data": null,
                 "defaultContent": btnAcciones
             }
 
         ],dom: '<"html5buttons"B>lTfgitp',
         buttons: [
-        ]
+        ],
+        "lengthMenu": [[100, 50, 25, -1], [100, 50, 25, "All"]],
     });
 }
 
@@ -248,7 +250,7 @@ function getDetallePagoTrabajador(idTrabajador){
 
 
       fila += '<div class="col-lg-6 col-md-6 col-sm-6"><br>';
-      fila += '<label class="text-center" for="sueldoBase">SUELDO BASE</label>';
+      fila += '<label class="text-center" for="sueldoBase">SUELDO LÍQUIDO</label>';
       fila += '<input type="text" class="form-control custom-input-sm" id="sueldoBase" disabled style="color:#000;" value="$'+o.sueldoBase+'">';
       fila += '</div>';
 
