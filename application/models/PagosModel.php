@@ -471,12 +471,12 @@ class PagosModel extends CI_Model {
 
 
         //agregar nuevo elemento al array fina
-        $dataFinal[] = $data;
+        // $dataFinal[] = $data;
 
 
 
       } //fin de for para trabajadores contratados activos.
-      return $dataFinal;
+      return $data;
   }
 
 
