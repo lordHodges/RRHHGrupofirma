@@ -30,7 +30,7 @@ function cargarTablaPlanillaPagoMes (){
     "autoWidth": false,
     "sInfo": false,
     "sInfoEmpty": false,
-    // "dom": '<"top"f>rt<"bottom"flp><"clear">',
+    "dom": '<"top"f>rt<"bottom"flp><"clear">',
         language: {
             "sProcessing": "Procesando...",
             "sLengthMenu": "Registros&nbsp;&nbsp; _MENU_ ",
@@ -163,7 +163,7 @@ function cargarTablaPagosFinDeMes(){
     "autoWidth": false,
     "sInfo": false,
     "sInfoEmpty": false,
-    // "dom": '<"top"f>rt<"bottom"flp><"clear">',
+    "dom": '<"top"f>rt<"bottom"flp><"clear">',
         language: {
             "sProcessing": "Procesando...",
             "sLengthMenu": "Registros&nbsp;&nbsp; _MENU_ ",
