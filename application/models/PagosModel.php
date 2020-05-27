@@ -474,7 +474,7 @@ class PagosModel extends CI_Model {
         $dataFinal[] = $data;
 
       } //fin de for para trabajadores contratados activos.
-      return $data;
+      return $dataFinal;
   }
 
 
