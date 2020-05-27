@@ -23,11 +23,12 @@ if($usuario[0]->atr_activo == "1" ) { ?>
         <div class="x_panel">
             <div class="x_content">
               <h3 class="text-center">ADELANTOS</h3><br>
+              <div class="container-fluid">
+                <button type="button" id="abrirModalCrear" class="btn modidev-btn btn-sm" data-toggle="modal" data-target="#modalCrearAdelanto" style="margin-bottom:20px;">INGRESAR ADELANTO</button>
+              </div>
                 <div class="container-fluid">
-
                   <div class="row">
                     <div class="col-md-12">
-
                       <?php if ($view_verAdelantos == "1") {  ?>
                         <table id="tabla_adelantos" class="table table-striped table-bordered table-hover dataTables-adelantos" style="margin-top:20px;">
                             <thead >
@@ -68,7 +69,7 @@ if($usuario[0]->atr_activo == "1" ) { ?>
     <!-- /footer content -->
 
     <!-- Modal crear -->
-    <div id="myModal" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="crearTrabajador"  aria-hidden="true" >
+    <div id="modalCrearAdelanto" class="modal fade fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby=""  aria-hidden="true" >
         <div class="modal-dialog modal-lg">
             <div class="modal-content" style="padding:20px; background: #2a3f54" >
                 <div class="form-row">
@@ -76,15 +77,49 @@ if($usuario[0]->atr_activo == "1" ) { ?>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
+
+                    <div class="col-md-12">
+                        <label for="getTrabajadoresSinAdelanto">TRABAJADOR</label><br>
+                        <select class="custom-select custom-input-sm" id="getTrabajadoresSinAdelanto">
+
+                        </select>
+                    </div>
+
                     <div class="col-md-12">
                         <br>
-                        <label for="nombre">NOMBRE</label>
-                        <input type="text" class="form-control custom-input-sm" id="nombre">
+                        <label for="empresa">EMPRESA</label>
+                        <input type="text" class="form-control custom-input-sm" id="empresa">
+                    </div>
+
+                    <div class="col-md-12">
+                        <br>
+                        <label for="getSelectBanco">BANCO</label><br>
+                        <select class="custom-select custom-input-sm" id="getSelectBanco">
+
+                        </select>
+                    </div>
+
+                    <div class="col-md-6">
+                        <br>
+                        <label for="tipoCuenta">TIPO DE CUENTA</label>
+                        <input type="text" class="form-control custom-input-sm" id="tipoCuenta">
+                    </div>
+
+                    <div class="col-md-6">
+                        <br>
+                        <label for="numCuenta">N° DE CUENTA</label>
+                        <input type="text" class="form-control custom-input-sm" id="numCuenta">
+                    </div>
+
+                    <div class="col-md-6">
+                        <br>
+                        <label for="monto">MONTO</label>
+                        <input type="number" class="form-control custom-input-sm" id="monto">
                     </div>
 
                 </div>
                 <br>
-                <button type="submit" class="btn btn-success btn-sm" id="btnAgregarCiudad">Guardar</button>
+                <button type="submit" class="btn btn-success btn-sm" id="btnAgregarAdelanto">Guardar</button>
             </div>
         </div>
     </div>
@@ -218,6 +253,7 @@ if($usuario[0]->atr_activo == "1" ) { ?>
     <script>
       $(document).ready(function() {
           cargarBancos();
+          getTrabajadoresSinAdelanto();
           var exportar = "no", editar = "no";
           <?php if( $view_exportarAdelanto == 1 ){  ?>
               exportar = "si";
@@ -230,21 +266,21 @@ if($usuario[0]->atr_activo == "1" ) { ?>
           cargarTablaAdelantos(editar,exportar);
       });
 
-      // $("#getSelectBanco").change(function (e){
-      //   $.ajax({
-      //       url: 'getBancos',
-      //       type: 'GET',
-      //       dataType: 'json'
-      //   }).then(function (response) {
-      //       $.each(response, function (i, o) {
-      //         if( $("#getSelectBanco").val()  == o.cp_banco ){
-      //           if(!o.atr_sitio == ""){
-      //             window.open(o.atr_sitio);
-      //           }
-      //         }
-      //       });
-      //   });
-      // });
+      $("#getTrabajadoresSinAdelanto").change(function (e){
+          e.preventDefault();
+          var id = $("#getTrabajadoresSinAdelanto").val();
+          $.ajax({
+              url: 'getDetalleTrabajador',
+              type: 'POST',
+              dataType: 'json',
+              data: {"id": id}
+          }).then(function (msg) {
+            $.each(msg.msg, function (i, o) {
+                $("#empresa").val(o.empresa);
+            });
+          });
+      });
+
 
       $('#uploader').submit(function(e){
        e.preventDefault();
@@ -279,10 +315,36 @@ if($usuario[0]->atr_activo == "1" ) { ?>
               dataType: 'json',
               data: {"monto": monto, "idTrabajador":idTrabajador, "banco":banco, "fecha":fecha}
           }).then(function (msg) {
-
+            // no hace nada porque se da por hecho que ya se ingreso.
           });
       });
 
+      $("body").on("click", "#btnAgregarAdelanto", function(e) {
+          e.preventDefault();
+          var idTrabajador = $("#getTrabajadoresSinAdelanto").val();
+          var empresa = $("#empresa").val();
+          var banco = $("#getSelectBanco").val();
+          var tipoCuenta = $("#tipoCuenta").val();
+          var numCuenta = $("#numCuenta").val();
+          var monto = $("#monto").val();
+
+          $.ajax({
+              url: 'addAdelanto',
+              type: 'POST',
+              dataType: 'json',
+              data: {"idTrabajador": idTrabajador, "empresa":empresa, "banco":banco, "tipoCuenta":tipoCuenta, "numCuenta":numCuenta, "monto":monto}
+          }).then(function (msg) {
+              if (msg) {
+                $('#modalCrearAdelanto').modal('hide');
+                toastr.success('Adelanto agregado');
+                var permisoExportar = $("#permisoExportar").text();
+                var permisoEditar = $("#permisoEditar").text();
+                cargarTablaAdelantos(permisoEditar,permisoExportar);
+                getTrabajadoresSinAdelanto();
+              }
+          });
+
+      });
 
 
 

@@ -6,11 +6,50 @@ class AdelantosController extends CI_Controller {
 	public function __construct(){
 		parent::__construct();
 		$this->load->model("AdelantosModel");
+		$this->load->model("TrabajadorModel");
 	}
 
 	public function inicioAdelantos(){
 		$this->load->view('template/menu');
 		$this->load->view('adelantos');
+	}
+
+	public function addAdelanto(){
+		$id = $this->input->post("idTrabajador");
+		$banco = $this->input->post("banco");
+		$tipoCuenta = $this->input->post("tipoCuenta");
+		$numCuenta = $this->input->post("numCuenta");
+		$monto = $this->input->post("monto");
+
+		$ingreso = $this->AdelantosModel->addAdelanto($id,$banco,$tipoCuenta,$numCuenta,$monto);
+		echo json_encode($ingreso);
+	}
+
+	public function getTrabajadoresSinAdelanto(){
+		$trabajadores = $this->TrabajadorModel->getTrabajadores();
+		$adelantos =  $this->AdelantosModel->getListadoAdelantos();
+
+		$tieneAdelanto = false;
+
+		foreach ($trabajadores as $key => $t) {
+			foreach ($adelantos->result() as $key => $a) {
+				if ( $t->cp_trabajador == $a->cf_trabajador ) {
+					$tieneAdelanto = true;
+				}
+			}
+			if ($tieneAdelanto == false) {
+				$data[] = array(
+						"cp_trabajador"         => $t->cp_trabajador,
+						"nombre"             		=> $t->atr_nombres." ".$t->atr_apellidos,
+						"empresa"								=> $a->empresa,
+						"id_empresa"						=> $a->id_empresa
+				);
+			}else{
+				$tieneAdelanto = false;
+			}
+		}
+		echo json_encode($data);
+		exit();
 	}
 
 	public function getListadoAdelantos(){
@@ -74,7 +113,7 @@ class AdelantosController extends CI_Controller {
 		// var_dump($banco);
 		// var_dump($fecha);
 		// exit();
-		
+
 		$resultado = $this->AdelantosModel->addHistorialAdelanto($monto, $idTrabajador,$fecha,$banco);
 		echo json_encode($resultado);
 	}

@@ -37,7 +37,8 @@ $route['getDetalleAdelanto'] = 'AdelantosController/getDetalleAdelanto';
 $route['updateAdelanto'] = 'AdelantosController/updateAdelanto';
 $route['buscarBanco'] = 'AdelantosController/buscarBanco';
 $route['addHistorialAdelanto'] = 'AdelantosController/addHistorialAdelanto';
-
+$route['getTrabajadoresSinAdelanto'] = 'AdelantosController/getTrabajadoresSinAdelanto';
+$route['addAdelanto'] = 'AdelantosController/addAdelanto';
 
 // ASISTENCIA
 $route['inicioGestorAsistencia'] = 'AsistenciaController/inicioAsistencia';

@@ -18,6 +18,19 @@ function cargarBancos(){
 }
 
 
+function getTrabajadoresSinAdelanto(){
+    var url = base_url+'getTrabajadoresSinAdelanto';
+    $("#getTrabajadoresSinAdelanto").empty();
+    var fila = "<option disabled selected>Seleccione una opción</option>";
+    $.getJSON(url, function (result) {
+        $.each(result, function (i, o) {
+            fila += "<option value='" + o.cp_trabajador + "'>" + o.nombre + "</option>";
+        });
+        $("#getTrabajadoresSinAdelanto").append(fila);
+    });
+}
+
+
 function cargarTablaAdelantos(permisoEditar,permisoExportar){
   var table = $('#tabla_adelantos').DataTable();
   table.destroy();
@@ -166,7 +179,7 @@ function cargarTablaAdelantos(permisoEditar,permisoExportar){
       });
   }
 
-//   
+//
 
 }
 

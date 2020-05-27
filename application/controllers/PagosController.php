@@ -105,44 +105,46 @@ class PagosController extends CI_Controller {
 		$diaTermino = $this->input->get("diaTermino");
 		$empresa = $this->input->get("empresa");
 
+		$historial = $this->PagosModel->getHistorialPagosMensuales( $ano, $mes);
+		$books = $this->PagosModel->getListadoPagosFinDeMes( $ano, $mes, $diaTermino, $empresa);
+
+		if ($books == 'vacio') {
+			exit();
+		}
+
 		$draw = intval($this->input->get("draw"));
 		$start = intval($this->input->get("start"));
 		$length = intval($this->input->get("length"));
 
-		$historial = $this->PagosModel->getHistorialPagosMensuales( $ano, $mes);
-		$books = $this->PagosModel->getListadoPagosFinDeMes( $ano, $mes, $diaTermino, $empresa);
-
-		// if ($books.count() == 0) {
-					$data = array();
-					foreach ($books as $r) {
-							$estado = 'Pendiente';
-							foreach ($historial as $h) {
-								if ($h->cf_trabajador == $r->id) {
-									$estado = 'Transferido';
-								}
-							}
-							$data[] = array(
-								$r->id,
-								$r->rut,
-								$r->trabajador,
-								$r->sueldo,
-								$r->bonos,
-								$r->adelanto,
-								$r->prestamos,
-								$r->inasistencia,
-								$r->total,
-								$estado
-							);
+		$data = array();
+		foreach ($books as $r) {
+				$estado = 'Pendiente';
+				foreach ($historial as $h) {
+					if ($h->cf_trabajador == $r->id) {
+						$estado = 'Transferido';
 					}
+				}
+				$data[] = array(
+					$r->id,
+					$r->rut,
+					$r->trabajador,
+					$r->sueldo,
+					$r->bonos,
+					$r->adelanto,
+					$r->prestamos,
+					$r->inasistencia,
+					$r->total,
+					$estado
+				);
+		}
 
-					$output = array(
-						"draw" => $draw,
-						"recordsTotal" => sizeof($data),
-						"recordsFiltered" => sizeof($data),
-						"data" => $data
-					);
-					echo json_encode($output);
-		// }
+		$output = array(
+			"draw" => $draw,
+			"recordsTotal" => sizeof($data),
+			"recordsFiltered" => sizeof($data),
+			"data" => $data
+		);
+		echo json_encode($output);
 		exit();
 }
 

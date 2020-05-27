@@ -9,7 +9,7 @@ class AdelantosModel extends CI_Model {
     }
 
     function getListadoAdelantos(){
-        $this->db->select(" a.cp_adelanto, a.atr_tipoCuenta, a.atr_numCuenta, a.atr_monto, b.atr_nombre as banco, t.atr_nombres as nombres, t.atr_apellidos as apellidos, t.atr_rut rutTrabajador, t.cp_trabajador, e.atr_nombre as empresa ");
+        $this->db->select(" a.cp_adelanto, a.cf_trabajador, a.atr_tipoCuenta, a.atr_numCuenta, a.atr_monto, b.atr_nombre as banco, t.atr_nombres as nombres, t.atr_apellidos as apellidos, t.atr_rut rutTrabajador, t.cp_trabajador, e.atr_nombre as empresa, e.cp_empresa as id_empresa ");
         $this->db->from("fa_adelanto a");
         $this->db->join("fa_banco b", "b.cp_banco = a.cf_banco");
         $this->db->join("fa_trabajador t", "t.cp_trabajador = a.cf_trabajador");
@@ -121,64 +121,29 @@ class AdelantosModel extends CI_Model {
         return $this->db->get()->result();
     }
 
+    function addAdelanto($id,$banco,$tipoCuenta,$numCuenta,$monto){
 
+        // var_dump($id);
+        // var_dump($banco);
+        // var_dump($tipoCuenta);
+        // var_dump($numCuenta);
+        // var_dump($monto);
+        // exit();
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    function addModelo($nombre, $marca){
         $data = array(
-            "atr_descripcion" => $nombre,
-            "cf_marca"        => $marca
+            "cp_adelanto"       => $id,
+            "atr_tipoCuenta"    => $tipoCuenta,
+            "atr_numCuenta"     => $numCuenta,
+            "atr_monto"         => $monto,
+            "cf_banco"          => $banco,
+            "cf_trabajador"     => $id
         );
-        $this->db->insert("fa_modelo", $data);
-        return "ok";
+        $result = $this->db->insert("fa_adelanto", $data);
+
+        // var_dump($result);
+        // exit();
+        return $result;
     }
-
-    function getDetalleModelo( $idModelo ){
-        $this->db->select(" m.cp_modelo, m.atr_descripcion , m.cf_marca");
-        $this->db->from("fa_modelo m");
-        $this->db->where("m.cp_modelo",$idModelo);
-
-        $resultado =  $this->db->get()->result();
-        return $resultado;
-    }
-
-    function editarModelo($idModelo, $nombre, $marca){
-        $data = array(
-            "atr_descripcion" => $nombre,
-            "cf_marca"        => $marca
-        );
-
-        $this->db->where('m.cp_modelo', $idModelo);
-        $resultado =  $this->db->update("fa_modelo m", $data);
-        if ($resultado) {
-          return "ok";
-        }else{
-          return "error";
-        }
-
-    }
-
 
 
 
