@@ -468,12 +468,10 @@ class PagosModel extends CI_Model {
             "total"           => $montoTotalPagar
         );
 
-
+        // echo json_encode($data);
 
         //agregar nuevo elemento al array fina
-        // $dataFinal[] = $data;
-
-
+        $dataFinal[] = $data;
 
       } //fin de for para trabajadores contratados activos.
       return $data;
