@@ -204,40 +204,42 @@ class PagosModel extends CI_Model {
             $sueldo = $sueldo * $diasPago;
           }
 
+
+
           //CALCULAR EL MONTO TOTAL A PAGAR
 
           $montoTotalPagar = ($sueldo + $bonos) - ($montoAdelanto + $montoPrestamo);
 
-          if ($montoTotalPagar > 0) {
 
-          // CONSULTA DE LOS ADELANTOS
-          $this->db->select("a.atr_tipoCuenta, a.atr_numCuenta, b.atr_nombre as banco");
-          $this->db->from("fa_adelanto a");
-          $this->db->join("fa_banco b","b.cp_banco = a.cf_banco");
-          $this->db->where("a.cf_trabajador", $idTrabajador);
-          $infoAdelanto = $this->db->get()->result();
+            // CONSULTA DE LOS ADELANTOS
+            $this->db->select("a.atr_tipoCuenta, a.atr_numCuenta, b.atr_nombre as banco");
+            $this->db->from("fa_adelanto a");
+            $this->db->join("fa_banco b","b.cp_banco = a.cf_banco");
+            $this->db->where("a.cf_trabajador", $idTrabajador);
+            $infoAdelanto = $this->db->get()->result();
 
+            foreach ($infoAdelanto as $key => $value) {
+              $tipoDeCuenta           = $value->atr_tipoCuenta;
+              $banco                  = $value->banco;
+              $numeroDeCuenta         = $value->atr_numCuenta;
+            }
 
-          foreach ($infoAdelanto as $key => $value) {
-            $tipoDeCuenta           = $value->atr_tipoCuenta;
-            $banco                  = $value->cf_banco;
-            $numeroDeCuenta         = $value->atr_numCuenta;
-          }
+            // TRANSFORMAR LOS NUMEROS A FORMATO MILES
+            $sueldo = number_format($sueldo, 0, ",", ".");
+            $bonos = ''.$bonos;
+            $bonos = number_format($bonos, 0, ",", ".");
+            $montoAdelanto = number_format($montoAdelanto, 0, ",", ".");
+            $montoPrestamo = number_format($montoPrestamo, 0, ",", ".");
 
-          // TRANSFORMAR LOS NUMEROS A FORMATO MILES
-          $sueldo = number_format($sueldo, 0, ",", ".");
-          $bonos = ''.$bonos;
-          $bonos = number_format($bonos, 0, ",", ".");
-          $montoAdelanto = number_format($montoAdelanto, 0, ",", ".");
-          $montoPrestamo = number_format($montoPrestamo, 0, ",", ".");
-
-          $nombres = explode(' ',$t->atr_nombres);
-          $apellidos = explode(' ',$t->atr_apellidos);
-          $rutFormateado = str_replace(".","",$t->atr_rut);
-          $rutFormateado = str_replace("-","",$rutFormateado);
+            $nombres = explode(' ',$t->atr_nombres);
+            $apellidos = explode(' ',$t->atr_apellidos);
+            $rutFormateado = str_replace(".","",$t->atr_rut);
+            $rutFormateado = str_replace("-","",$rutFormateado);
 
 
             $montoTotalPagar = number_format($montoTotalPagar, 0, ",", ".");
+
+
 
             $data = (object) array(
                 "rutBeneficiario"             => $rutFormateado,
@@ -250,11 +252,9 @@ class PagosModel extends CI_Model {
 
             //agregar nuevo elemento al array fina
             $dataFinal[] = $data;
-          }
-
-
 
         } //fin de for para trabajadores contratados activos.
+
         return $dataFinal;
     }
 

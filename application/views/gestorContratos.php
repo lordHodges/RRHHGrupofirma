@@ -472,7 +472,7 @@ if($usuario[0]->atr_activo == "1") {?>
           if(fechaInicio == "" || fechaInicio == null || fechaTermino == "" || fechaTermino == null){
             toastr.error("Debe llenar los campos de fecha");
           }else{
-            var url = 'https://imlchile.cl/grupofirma/index.php/docContratoEstandar?trabajador='+idTrabajador+'&&fechaInicio='+fechaInicio+'&&fechaTermino='+fechaTermino+'&&ciudadFirma='+ciudadFirma;
+            var url = 'http://imlchile.cl/grupofirma/index.php/docContratoEstandar?trabajador='+idTrabajador+'&&fechaInicio='+fechaInicio+'&&fechaTermino='+fechaTermino+'&&ciudadFirma='+ciudadFirma;
             window.open(url, '_blank');
           }
 
@@ -525,7 +525,7 @@ if($usuario[0]->atr_activo == "1") {?>
                  arrayItems.push($(this).text());
             	 });
             });
-            var url = 'https://imlchile.cl/grupofirma/index.php/docContratoPersonalizado?trabajador='+idTrabajador+'&&fechaInicio='+fechaInicio+'&&fechaTermino='+fechaTermino+'&&ciudadFirma='+ciudadFirma+'&&arrayItems='+arrayItems;
+            var url = 'http://imlchile.cl/grupofirma/index.php/docContratoPersonalizado?trabajador='+idTrabajador+'&&fechaInicio='+fechaInicio+'&&fechaTermino='+fechaTermino+'&&ciudadFirma='+ciudadFirma+'&&arrayItems='+arrayItems;
             window.open(url, '_blank');
         }
 
@@ -539,7 +539,7 @@ if($usuario[0]->atr_activo == "1") {?>
 
     </script>
 
-  <?php } else{ header("Location: https://imlchile.cl/grupofirma/"); } ?>
+  <?php } else{ header("Location: http://imlchile.cl/grupofirma/"); } ?>
 
   </body>
 </html>

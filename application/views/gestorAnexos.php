@@ -621,7 +621,7 @@ if($usuario[0]->atr_activo == "1") { ?>
           }else{
             if( tipoAnexoProrroga == "fechaLimite"){
               var fechaTerminoExtencion = $("#fechaTerminoExtencion").val();
-              var url = 'https://imlchile.cl/grupofirma/index.php/docAnexoConFechaTermino?trabajador='+idTrabajador+'&&fechaTermino='+fechaTerminoExtencion+'&&ciudadFirma='+ciudadFirma;
+              var url = 'http://imlchile.cl/grupofirma/index.php/docAnexoConFechaTermino?trabajador='+idTrabajador+'&&fechaTermino='+fechaTerminoExtencion+'&&ciudadFirma='+ciudadFirma;
               window.open(url, '_blank');
             }else{
               if( tipoAnexoProrroga == "indefinido" ){
@@ -664,7 +664,7 @@ if($usuario[0]->atr_activo == "1") { ?>
                   }).then(function (response) {
 
                   });
-                  var url = 'https://imlchile.cl/grupofirma/index.php/docAnexoPasarIndefinido?trabajador='+idTrabajador+'&&fechaComienzo='+fechaComienzoIndefinido+'&&ciudadFirma='+ciudadFirma;
+                  var url = 'http://imlchile.cl/grupofirma/index.php/docAnexoPasarIndefinido?trabajador='+idTrabajador+'&&fechaComienzo='+fechaComienzoIndefinido+'&&ciudadFirma='+ciudadFirma;
                   window.open(url, '_blank');
 
                 }
@@ -711,7 +711,7 @@ if($usuario[0]->atr_activo == "1") { ?>
                   });
 
                 }
-                var url = 'https://imlchile.cl/grupofirma/index.php/docAnexoSujetoLicitacion?trabajador='+idTrabajador+'&&fechaComienzo='+fechaComienzoSujetoLicitacion+'&&ciudadFirma='+ciudadFirma;
+                var url = 'http://imlchile.cl/grupofirma/index.php/docAnexoSujetoLicitacion?trabajador='+idTrabajador+'&&fechaComienzo='+fechaComienzoSujetoLicitacion+'&&ciudadFirma='+ciudadFirma;
                 window.open(url, '_blank');
               } //fin de sujeto a licitación
 
@@ -796,7 +796,7 @@ if($usuario[0]->atr_activo == "1") { ?>
             }).then(function (response) {
 
             });
-            var url = 'https://imlchile.cl/grupofirma/index.php/docAnexoModificacionClausula?trabajador='+idTrabajador+'&&fechaComienzo='+fecha+'&&ciudadFirma='+ciudadFirma;
+            var url = 'http://imlchile.cl/grupofirma/index.php/docAnexoModificacionClausula?trabajador='+idTrabajador+'&&fechaComienzo='+fecha+'&&ciudadFirma='+ciudadFirma;
             window.open(url, '_blank');
           }
       });
@@ -830,7 +830,7 @@ if($usuario[0]->atr_activo == "1") { ?>
           var horasextras = $("#horasextrasdiarias3").val();
           var fechaLimite = $("#fechaTermino3").val();
 
-          var url = 'https://imlchile.cl/grupofirma/index.php/docAnexoHorasExtras?trabajador='+idTrabajador+'&&motivo='+motivo+'&&ciudadFirma='+ciudadFirma+'&&horas='+horasextras+'&&fechaLimite='+fechaLimite;
+          var url = 'http://imlchile.cl/grupofirma/index.php/docAnexoHorasExtras?trabajador='+idTrabajador+'&&motivo='+motivo+'&&ciudadFirma='+ciudadFirma+'&&horas='+horasextras+'&&fechaLimite='+fechaLimite;
           window.open(url, '_blank');
       });
       // FIN SECCION TAB 3
@@ -841,7 +841,7 @@ if($usuario[0]->atr_activo == "1") { ?>
 
     </script>
 
-  <?php } else{ header("Location: https://imlchile.cl/grupofirma/"); } ?>
+  <?php } else{ header("Location: http://imlchile.cl/grupofirma/"); } ?>
 
   </body>
 </html>

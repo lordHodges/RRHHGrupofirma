@@ -1,4 +1,4 @@
-var base_url = 'https://imlchile.cl/grupofirma/index.php/';
+var base_url = 'http://imlchile.cl/grupofirma/index.php/';
 
 
 function cargarTablaMarcas(permisoEditar,permisoExportar){
@@ -44,7 +44,7 @@ function cargarTablaMarcas(permisoEditar,permisoExportar){
               }
           },
           "ajax": {
-              url: "https://imlchile.cl/grupofirma/index.php/getListadoMarcas",
+              url: "http://imlchile.cl/grupofirma/index.php/getListadoMarcas",
               type: 'GET'
           },
           "columnDefs": [{
@@ -129,7 +129,7 @@ function cargarTablaMarcas(permisoEditar,permisoExportar){
               }
           },
           "ajax": {
-              url: "https://imlchile.cl/grupofirma/index.php/getListadoMarcas",
+              url: "http://imlchile.cl/grupofirma/index.php/getListadoMarcas",
               type: 'GET'
           },
           "columnDefs": [{
