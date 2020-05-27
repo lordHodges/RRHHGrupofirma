@@ -1,4 +1,4 @@
-var base_url = 'http://imlchile.cl/grupofirma/index.php/';
+var base_url = 'https://imlchile.cl/grupofirma/index.php/';
 var constante = 0;
 
 function cargarTabla(cargo, permisoEliminar){
@@ -38,7 +38,7 @@ function cargarTabla(cargo, permisoEliminar){
             },
         },
         "ajax": {
-            url: 'http://imlchile.cl/grupofirma/index.php/getListadoConocimientosDataTable?id='+cargo,
+            url: 'https://imlchile.cl/grupofirma/index.php/getListadoConocimientosDataTable?id='+cargo,
             type: 'GET',
         },
         "columnDefs": [{

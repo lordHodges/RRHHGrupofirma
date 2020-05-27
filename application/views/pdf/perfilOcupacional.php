@@ -138,9 +138,9 @@ if($usuario[0]->atr_activo == "1" && $view_docPerfilesOcupacionales == "1") { ?>
     <?php } ?>
 
 <<<<<<< HEAD
-   <?php } else{ header("Location: http://imlchile.cl/GRUPOFIRMA/"); } ?>
+   <?php } else{ header("Location: https://imlchile.cl/GRUPOFIRMA/"); } ?>
 =======
-   <?php } else{ header("Location: http://imlchile.cl/grupofirma/"); } ?>
+   <?php } else{ header("Location: https://imlchile.cl/grupofirma/"); } ?>
 >>>>>>> 6d452e33e03ff9b08367071c515f6627be833f1a
 
   </body>

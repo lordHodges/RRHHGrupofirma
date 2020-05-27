@@ -104,7 +104,7 @@ class CI_Config {
 			}
 			else
 			{
-				$base_url = 'http://imlchile.cl/';
+				$base_url = 'https://imlchile.cl/';
 			}
 
 			$this->set_item('base_url', $base_url);
