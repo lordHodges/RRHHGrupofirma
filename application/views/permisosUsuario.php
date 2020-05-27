@@ -111,7 +111,7 @@ $perfil =  $data['perfil'];
 
     </script>
 
-  <?php } else{ header("Location: https://imlchile.cl/grupofirma/"); } ?>
+  <?php } else{ header("Location: https://imlchile.cl/ grupofirma/"); } ?>
 
     </body>
   </html>

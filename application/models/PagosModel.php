@@ -208,6 +208,8 @@ class PagosModel extends CI_Model {
 
           $montoTotalPagar = ($sueldo + $bonos) - ($montoAdelanto + $montoPrestamo);
 
+          if ($montoTotalPagar > 0) {
+
           // CONSULTA DE LOS ADELANTOS
           $this->db->select("a.atr_tipoCuenta, a.atr_numCuenta, b.atr_nombre as banco");
           $this->db->from("fa_adelanto a");
@@ -218,7 +220,7 @@ class PagosModel extends CI_Model {
 
           foreach ($infoAdelanto as $key => $value) {
             $tipoDeCuenta           = $value->atr_tipoCuenta;
-            $banco                  = $value->banco;
+            $banco                  = $value->cf_banco;
             $numeroDeCuenta         = $value->atr_numCuenta;
           }
 
@@ -234,7 +236,7 @@ class PagosModel extends CI_Model {
           $rutFormateado = str_replace(".","",$t->atr_rut);
           $rutFormateado = str_replace("-","",$rutFormateado);
 
-          if ($montoTotalPagar > 0) {
+
             $montoTotalPagar = number_format($montoTotalPagar, 0, ",", ".");
 
             $data = (object) array(

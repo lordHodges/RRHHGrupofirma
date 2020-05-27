@@ -1,4 +1,4 @@
-var base_url = 'https://imlchile.cl/grupofirma/index.php/';
+var base_url = 'https://imlchile.cl/ grupofirma/index.php/';
 
 
 
@@ -53,7 +53,7 @@ function cargarTabla(permisoSubir){
               }
           },
           "ajax": {
-              url: "https://imlchile.cl/grupofirma/index.php/getListadoTrabajadoresContrato",
+              url: "https://imlchile.cl/ grupofirma/index.php/getListadoTrabajadoresContrato",
               type: 'GET'
           },
           "columnDefs": [{
@@ -104,7 +104,7 @@ function getLiquidacionesTrabajador(idTrabajador){
               fila += '<td> <a class="btn btn-default btn-sm" href="#"><i class="glyphicon glyphicon-download-alt"></i></a> </td>';
             }
           }else{
-            download = "https://imlchile.cl/grupofirma/index.php/LiquidacionesController/descargarLiquidacion/"+o.cp_liquidacion;
+            download = "https://imlchile.cl/ grupofirma/index.php/LiquidacionesController/descargarLiquidacion/"+o.cp_liquidacion;
             if (permisoDescargar == "si") {
               fila +='<td> <a class="btn btn-info btn-sm" href="'+download+'" download><i class="glyphicon glyphicon-download-alt"></i></a> </td>';
             }else{

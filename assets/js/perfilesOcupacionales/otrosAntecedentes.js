@@ -1,4 +1,4 @@
-var base_url = 'https://imlchile.cl/grupofirma/index.php/';
+var base_url = 'https://imlchile.cl/ grupofirma/index.php/';
 var constante = 0;
 
 function cargarTabla(permisoEliminar){
@@ -43,7 +43,7 @@ function cargarTabla(permisoEliminar){
             },
         },
         "ajax": {
-            url: 'https://imlchile.cl/grupofirma/index.php/getListadoOtrosAntecedentesDataTable?idCargo='+cargo+'&idAntecedente='+antecedente,
+            url: 'https://imlchile.cl/ grupofirma/index.php/getListadoOtrosAntecedentesDataTable?idCargo='+cargo+'&idAntecedente='+antecedente,
             type: 'GET',
         },
         "columnDefs": [{

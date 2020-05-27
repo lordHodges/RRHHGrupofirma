@@ -1,4 +1,4 @@
-var base_url = 'https://imlchile.cl/grupofirma/index.php/';
+var base_url = 'https://imlchile.cl/ grupofirma/index.php/';
 var numID = 0;
 var contador = 0;
 
@@ -41,7 +41,7 @@ function cargarTabla(){
             }
         },
         "ajax": {
-            url: "https://imlchile.cl/grupofirma/index.php/getListadoTrabajadoresContrato",
+            url: "https://imlchile.cl/ grupofirma/index.php/getListadoTrabajadoresContrato",
             type: 'GET'
         },
         "columnDefs": [{
@@ -80,7 +80,7 @@ function getContratosTrabajador(idTrabajador){
         if(o.atr_ruta == "vacio"){
           fila +='<td> <a class="btn btn-ded btn-sm" class="isDisabled" href="#"><i class="glyphicon glyphicon-download-alt"></i></a> </td>';
         }else{
-          download = "https://imlchile.cl/grupofirma/index.php/ContratosController/descargarContrato/"+o.cp_contrato;
+          download = "https://imlchile.cl/ grupofirma/index.php/ContratosController/descargarContrato/"+o.cp_contrato;
           fila +='<td> <a class="btn btn-info btn-sm" href="'+download+'" download><i class="glyphicon glyphicon-download-alt"></i></a> </td>';
         }
         fila +='</tr>';
