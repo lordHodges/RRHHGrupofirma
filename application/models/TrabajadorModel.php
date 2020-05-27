@@ -50,32 +50,30 @@ class TrabajadorModel extends CI_Model {
         $insertTrabajador = $this->db->insert("fa_trabajador", $data);
 
 
-        $this->db->select('cp_trabajador');
-        $this->db->from("fa_trabajador t");
-        $trabajadores = $this->db->get()->result();
-
-        foreach ($trabajadores as $key => $value) {
-          $id = $value->cp_trabajador;
-        }
-
-
-        $numCuenta = str_replace(".", "", $rut);
-        $numCuenta = explode("-", $numCuenta);
+        // $this->db->select('cp_trabajador');
+        // $this->db->from("fa_trabajador t");
+        // $trabajadores = $this->db->get()->result();
+        //
+        // foreach ($trabajadores as $key => $value) {
+        //   $id = $value->cp_trabajador;
+        // }
 
 
-        // var_dump("id: ".$id);
-        // exit();
+        // $numCuenta = str_replace(".", "", $rut);
+        // $numCuenta = explode("-", $numCuenta);
 
-        $dataAdelanto = array(
-            "cp_adelanto"               => $id,
-            "atr_numCuenta"             => $numCuenta[0],
-            "atr_monto"                 => "0",
-            "atr_tipoCuenta"            => "Cuenta Vista",
-            "cf_banco"                  => "7",
-            "cf_trabajador"             => $id
-        );
 
-        $this->db->insert("fa_adelanto", $dataAdelanto);
+
+        // $dataAdelanto = array(
+        //     "cp_adelanto"               => $id,
+        //     "atr_numCuenta"             => $numCuenta[0],
+        //     "atr_monto"                 => "0",
+        //     "atr_tipoCuenta"            => "Cuenta Vista",
+        //     "cf_banco"                  => "7",
+        //     "cf_trabajador"             => $id
+        // );
+        //
+        // $this->db->insert("fa_adelanto", $dataAdelanto);
 
         return "ok";
     }
