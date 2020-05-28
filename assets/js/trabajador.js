@@ -109,7 +109,8 @@ function cargarTablaTrabajador(permisoEditar, permisoExportar){
                             .css('font-size', 'inherit');
                     }
                 }
-            ]
+            ],
+            "lengthMenu": [[100, 50, 25, -1], [100, 50, 25, "All"]],
       });
   }else{
     $('.dataTables-trabajadores').DataTable({
@@ -154,7 +155,8 @@ function cargarTablaTrabajador(permisoEditar, permisoExportar){
               }
 
           ],dom: '<"html5buttons"B>lTfgitp',
-            buttons: []
+            buttons: [],
+            "lengthMenu": [[100, 50, 25, -1], [100, 50, 25, "All"]],
       });
   }
 
@@ -501,7 +503,7 @@ function updateTrabajador() {
       }
 
   });
-  var permisoEditar = $("#permisoEditar").text();
-  var permisoExportar = $("#permisoExportar").text();
-  cargarTablaTrabajador(permisoEditar, permisoExportar);
+  // var permisoEditar = $("#permisoEditar").text();
+  // var permisoExportar = $("#permisoExportar").text();
+  // cargarTablaTrabajador(permisoEditar, permisoExportar);
 }
