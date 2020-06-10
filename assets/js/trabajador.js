@@ -1,5 +1,5 @@
 /*************************** TRABAJADOR ****************************/
-var base_url = 'https://imlchile.cl/grupofirma/index.php/';
+var base_url = 'http://localhost/grupofirma/index.php/';
 
 function cargarTablaTrabajador(permisoEditar, permisoExportar){
   var table = $('#tabla_trabajador').DataTable();
@@ -49,7 +49,7 @@ function cargarTablaTrabajador(permisoEditar, permisoExportar){
               }
           },
           "ajax": {
-              url: "https://imlchile.cl/grupofirma/index.php/getListadoTrabajadores",
+              url: "http://localhost/grupofirma/index.php/getListadoTrabajadores",
               type: 'GET'
           },
           "columnDefs": [{
@@ -145,7 +145,7 @@ function cargarTablaTrabajador(permisoEditar, permisoExportar){
               }
           },
           "ajax": {
-              url: "https://imlchile.cl/grupofirma/index.php/getListadoTrabajadores",
+              url: "http://localhost/grupofirma/index.php/getListadoTrabajadores",
               type: 'GET'
           },
           "columnDefs": [{

@@ -45,6 +45,12 @@ class HistorialController extends CI_Controller {
 		echo json_encode( array("msg" => $resultado) );
 	}
 
+	public function vistaPrestamos(){
+		$idTrabajador = $this->input->post("idTrabajador");
+		$resultado = $this->HistorialModel->vistaPrestamos($idTrabajador);
+		echo json_encode( array("msg" => $resultado) );
+	}
+
 
 
 

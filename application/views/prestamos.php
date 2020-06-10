@@ -183,6 +183,51 @@ if($usuario[0]->atr_activo == "1") { ?>
     </div>
     <!-- Modal de crear préstamo -->
 
+    <!-- Modal ver cargar archivo -->
+    <div id="modalCargarArchivo" class="modal fade" tabindex="-1" role="dialog"  aria-hidden="true" >
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content" style="padding:20px; background: #2a3f54" >
+                <div class="form-row">
+                  <div class="col-md-12">
+                    <h5 class="modal-title mx-auto">CARGAR PRÉSTAMO</h5>
+                    <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button> -->
+                  </div>
+                  <div class="col-md-12" id="detalleCargaArchivo">
+                      <form id="uploader" method="post" enctype="multipart/form-data" action="cargar_prestamo">
+
+                          <div class="col-md-12">
+                            <br>
+                            <label for="texto">Tipo de archivo</label>
+                            <input type="text" class="form-control" name="texto" value="Préstamo" disabled style="color:#000">
+                          </div>
+
+                        <br>
+
+
+                        <input type="text" name="labelTrabajador" id="labelTrabajador" style="color:#2a3f54;border:none;border-color:#2a3f54">
+                        <input type="text" name="labelFechaPrestamo" id="labelFechaPrestamo" style="color:#2a3f54;border:none;border-color:#2a3f54">
+
+                        <div class="col-md-12" >
+                          <input lang="es" type="file" name="file" id="file">
+                        </div>
+
+                        <br>
+                        <div class="col-md-12" style="margin-top:20px; margin-bottom:-20px;">
+                          <button type="submit" class="btn btn-success btn-sm" id="btnCargar" style="width:100%;" >GUARDAR</button>
+                        </div>
+
+                    </form>
+                  </div>
+
+                </div>
+                <br>
+            </div>
+        </div>
+    </div>
+    <!-- /Modal de cargar archivo -->
+
 
 
 
@@ -302,6 +347,18 @@ if($usuario[0]->atr_activo == "1") { ?>
              agregarPrestamo();
          });
 
+         $("body").on("click", "#btnModalCargarArchivo", function(e) {
+              e.preventDefault();
+              var id = $(this).parent().parent().children()[0];
+              var idTrabajador = $(id).text();
+              // $("#labelTrabajador").append(idTrabajador);
+              document.getElementById("labelTrabajador").value = idTrabajador;
+
+              var fecha = $(this).parent().parent().children()[3];
+              var fechaPrestamo = $(fecha).text();
+              document.getElementById("labelFechaPrestamo").value = fechaPrestamo;
+          });
+
          $("body").on("click", "#btnGetModalDetallePrestamoTrabajador", function(e) {
               e.preventDefault();
               var id = $(this).parent().parent().children()[0];
@@ -318,12 +375,43 @@ if($usuario[0]->atr_activo == "1") { ?>
           $("body").on("click", "#btnEditarPrestamo", function(e) {
                e.preventDefault();
                editarDetallePrestamo();
-           });
+          });
+
+          $("body").on("click", "#btnGenerarComprobantePrestamo", function(e) {
+              e.preventDefault();
+              var prestamo = $(this).parent().parent().children()[0];
+              var idPrestamo = $(prestamo).text()
+              var url = 'http://localhost/grupofirma/index.php/docPrestamo?id='+idPrestamo;
+              window.open(url, '_blank');
+          });
+
+
+          $('#uploader').submit(function(e){
+           e.preventDefault();
+              $.ajax({
+                  url:$('#uploader').attr('action'),
+                  type:"post",
+                  data:new FormData(this), // form
+                  processData:false,
+                  contentType:false,
+                  cache:false,
+                  async:false,
+                  success: function(data){
+                    if (data == "" || data == null) {
+                      toastr.error("Error al guardar");
+                    }else{
+                      $('#modalCargarArchivo').modal('hide');
+                      toastr.success('Documento guardado')
+                    }
+                  }
+              });
+          });
+
 
 
     </script>
 
-  <?php } else{ header("Location: https://imlchile.cl/grupofirma/"); } ?>
+  <?php } else{ header("Location: http://localhost/grupofirma/"); } ?>
 
     </body>
   </html>

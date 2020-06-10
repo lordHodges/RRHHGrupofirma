@@ -1,4 +1,4 @@
-var base_url = 'https://imlchile.cl/grupofirma/index.php/';
+var base_url = 'http://localhost/grupofirma/index.php/';
 
 
 function cargarTablaModelos(permisoEditar,permisoExportar){
@@ -44,7 +44,7 @@ function cargarTablaModelos(permisoEditar,permisoExportar){
               }
           },
           "ajax": {
-              url: "https://imlchile.cl/grupofirma/index.php/getListadoModelos",
+              url: "http://localhost/grupofirma/index.php/getListadoModelos",
               type: 'GET'
           },
           "columnDefs": [{
@@ -129,7 +129,7 @@ function cargarTablaModelos(permisoEditar,permisoExportar){
               }
           },
           "ajax": {
-              url: "https://imlchile.cl/grupofirma/index.php/getListadoModelos",
+              url: "http://localhost/grupofirma/index.php/getListadoModelos",
               type: 'GET'
           },
           "columnDefs": [{

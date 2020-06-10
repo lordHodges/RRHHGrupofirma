@@ -1,4 +1,4 @@
-var base_url = 'https://imlchile.cl/grupofirma/index.php/';
+var base_url = 'http://localhost/grupofirma/index.php/';
 var constante = 0;
 
 
@@ -39,7 +39,7 @@ function cargarTabla(cargo,permisoEliminar){
           },
         },
         "ajax": {
-            url: 'https://imlchile.cl/grupofirma/index.php/getListadoCompetenciasDataTable?id='+cargo,
+            url: 'http://localhost/grupofirma/index.php/getListadoCompetenciasDataTable?id='+cargo,
             type: 'GET',
         },
         "columnDefs": [{
@@ -151,7 +151,7 @@ function agregarCompetencia() {
    fila.innerHTML += '<div class="col-md-12 perfilOcupacional"><input type="text" style="margin-bottom:15px;"  class="form-control custom-input-sm " onkeypress="bloquearBoton()" id="input_tarea'+count+'"></div>';
 }
 
-// la función contar me devuelve la cantidad de inputs que comienzen con id='input_tarea'
+// la función contar me la cantidad de inputs que comienzen con id='input_tarea'
 function contar (){
   var inputs = $('input[id^=input_tarea]');
   var count = inputs.length+1;

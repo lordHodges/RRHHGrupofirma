@@ -102,6 +102,70 @@ class PrestamosController extends CI_Controller {
 	}
 
 
+	public function descargarComprobante($idPrestamo){
+	// importo libreria helper download
+		$this->load->helper('download');
+
+		// Solicito al modelo registro de la transferencia
+		$prestamos = $this->PrestamosModel->getURLPrestamo($idPrestamo);
+
+		foreach ($prestamos as $key => $value) {
+			 $nombre = $value->atr_nombreDoc;
+			 $nombreReal = $value->atr_nombreReal;
+		}
+
+		// uploads/transferencias = ruta de la carpeta que contiene los documentos
+		// $nombre = nombre asignado al documento en bd
+		$file = 'uploads/prestamos/'.$nombre;
+
+		//si quiero el nombre por defecto al descargar -->  force_download($file, NULL);
+		force_download($file, NULL);
+  }
+
+
+	public function cargar_prestamo(){
+		 $config['upload_path']="./uploads/prestamos/";
+		 $config['allowed_types']='pdf';
+		 $config['encrypt_name'] = TRUE;
+		 $config['max_size'] = "200000";
+		 $config['max_width'] = "2000";
+		 $config['max_height'] = "2000";
+
+		 $this->load->library('upload',$config);
+
+		 if ( ! $this->upload->do_upload('file')){
+			 $out = array('error' => $this->upload->display_errors());
+			 exit();
+		 }
+		 else{
+				 $out = array('upload_data' => $this->upload->data());
+				 $cargaExitosa = true;
+
+				 //CAPTURA DE DATOS
+
+				 $nombreReal  =  	$out['upload_data']['orig_name'];
+				 $nombreFinal =   $out['upload_data']['file_name'];
+				 $ruta        =  	$out['upload_data']['file_path'];
+
+
+				 date_default_timezone_set("America/Santiago");
+				 $fechaActual = date("d-m-Y G:i:s");
+
+
+				 //este valor esta insertado de forma oculta en el formulario
+				 $fecha = $this->input->post('labelFechaPrestamo');
+				 $idTrabajador = $this->input->post('labelTrabajador');
+
+				 //AQUI COMIENZO ENVIO DE DATOS PARA EL MODELO Y PROCEDER EL INGRESO A BASE DE DATOS
+				 $resultado = $this->PrestamosModel->cargar_prestamo( $nombreReal, $nombreFinal, $ruta, $fecha, $fechaActual, $idTrabajador );
+
+				 //REGRESO RESULTADO POSITIVO PARA DESPLEGAR MENSAJE DE EXITO
+				 echo json_encode($resultado);
+				 exit();
+		 }
+	}
+
+
 
 
 

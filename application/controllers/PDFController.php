@@ -63,12 +63,83 @@ class  PDFController extends CI_Controller {
 		$this->load->model("RemuneracionesModel");
 		$this->load->model("ContratosModel");
 		$this->load->model("PDFModel");
+		$this->load->model("PrestamosModel");
 	}
 
 	public function index()
 	{
 
 	}
+
+
+	function view_prestamo(){
+		$prestamo = $this->input->get("id");
+		$titulo = "COMPROBANTE PRÉSTAMO EMPRESARIAL";
+
+		// $prestamo = 3;
+
+		$infoPrestamo = $this->PrestamosModel->getPrestamo($prestamo);
+		$detallePrestamo = $this->PrestamosModel->getDetallePrestamo($prestamo);
+
+		// echo json_encode($detallePrestamo);
+		// exit();
+
+		$fechaDeHoy = date("d-m-Y");
+		$fechaDeHoy = $this->transformarFecha( $fechaDeHoy );
+
+		foreach ($infoPrestamo as $key => $p) {
+			$nombreTrabajador 			= $p->atr_nombres." ".$p->atr_apellidos;
+			$rut 										= $p->atr_rut;
+			$cargo									= $p->cargo;
+			$rutEmpresa							= $p->rut_empresa;
+			$empresa								= $p->empresa;
+
+			$ArrayfechaPrestamo = explode("-", $p->atr_fechaPrestamo);
+			$fecha_prestamo					= $ArrayfechaPrestamo[2]."-".$ArrayfechaPrestamo[1]."-".$ArrayfechaPrestamo[0];
+
+			$monto_solicitado				= number_format($p->atr_montoTotal, 0, ",", ".");
+			$cant_cuotas						= $p->atr_cantidadCuotas;
+
+
+		}
+
+		$monto = str_replace ( "." , "" , $monto_solicitado );
+		$letrasMontoSolicitado = strtolower($this->convertir($monto));
+
+
+		//datos que se enviaran a la Vista
+		$data = array(
+			'titulo'								=> $titulo,
+			'cargo'									=> $cargo,
+			'nombre_trabajador'			=> $nombreTrabajador,
+			'rut'										=> $rut,
+			'rut_empresa'						=> $rutEmpresa,
+			'empresa'								=> $empresa,
+			'fecha_prestamo'				=> $fecha_prestamo,
+			'monto_solicitado'			=> "$".$monto_solicitado,
+			'cant_cuotas'						=> $cant_cuotas,
+			'fecha_hoy'							=> $fechaDeHoy,
+			'letras_monto'					=> $letrasMontoSolicitado,
+			'detalle_prestamo'			=> $detallePrestamo
+		);
+
+
+		$html = $this->load->view('pdf/prestamo', $data, TRUE);
+		// Cargamos la librería
+		$this->load->library('Pdfgenerator');
+		// definamos un nombre para el archivo. No es necesario agregar la extension .pdf
+		$filename = 'prestamo_'.$nombreTrabajador.'';
+		// generamos el PDF. Pasemos por encima de la configuración general y definamos otro tipo de papel
+		$this->pdfgenerator->generate($html, $filename, TRUE, 'Letter', 'portrait', 0);
+	}
+
+
+
+
+
+
+
+
 
 	function cargarPerfilesOcupacionales(){
 		$this->load->view('template/menu');

@@ -1,5 +1,5 @@
 /*************************** TRABAJADOR ****************************/
-var base_url = 'https://imlchile.cl/grupofirma/index.php/';
+var base_url = 'http://localhost/grupofirma/index.php/';
 
 function cargarTablaTrabajadorHistorial(){
   var table = $('#tabla_trabajador').DataTable();
@@ -38,7 +38,7 @@ function cargarTablaTrabajadorHistorial(){
             }
         },
         "ajax": {
-            url: "https://imlchile.cl/grupofirma/index.php/getListadoTrabajadores",
+            url: "http://localhost/grupofirma/index.php/getListadoTrabajadores",
             type: 'GET'
         },
         "columnDefs": [{
@@ -495,5 +495,50 @@ function cargarDetalleCartasDeAmonestacionPorFecha(mes, ano, idTrabajador){
     });
     fila += '</ul></div>';
     $("#cartasAmonestacion").append(fila);
+  });
+}
+
+
+function cargarDetallePrestamosPorFecha(mes, ano, idTrabajador){
+  $.ajax({
+      url: 'vistaPrestamos',
+      type: 'POST',
+      dataType: 'json',
+      data: {"idTrabajador" : idTrabajador}
+  }).then(function (msg) {
+    var fila = '';
+    var urlDescarga = '';
+    $("#prestamos").empty();
+    fila += '<div class="x_content"> <ul class="list-unstyled timeline">';
+    $.each(msg.msg, function (i, o) {
+      fecha = o.atr_fechaPrestamo.split("-");
+
+      alert(o.cp_prestamo);
+      if (  fecha[0] == ano && fecha[1] == mes  ) {
+        urlDescarga = base_url+"PrestamosController/descargarComprobante/"+o.cp_prestamo;
+
+        fila += '<li>';
+        fila += '<div class="block">';
+        fila += '<div class="tags">';
+        fila += '<a href="" class="tag">';
+        fila += '<span>'+fecha[2]+"-"+fecha[1]+"-"+fecha[0]+'</span>';
+        fila += '</a>';
+        fila += '</div>';
+        fila += '<div class="block_content">';
+        fila += '<h2 class="title">';
+        fila += '<a>$'+o.atr_montoTotal+'</a>';
+        fila += '</h2>';
+        fila += '<div class="byline">';
+        fila += '<span>Autoriza: '+o.atr_autoriza+'&nbsp;</span><br><a href="'+urlDescarga+'" style="color:#1ABB9C;">Descargar</a>';
+        fila += '</div>';
+        fila += '</div>';
+        fila += '</div>';
+        fila += '</li>';
+      }
+
+
+    });
+    fila += '</ul></div>';
+    $("#prestamos").append(fila);
   });
 }

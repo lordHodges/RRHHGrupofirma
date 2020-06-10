@@ -1,4 +1,4 @@
-var base_url = 'https://imlchile.cl/grupofirma/index.php/';
+var base_url = 'http://localhost/grupofirma/index.php/';
 
 
 function cargarTablaPrestamoTrabajadores(permisoEditar,permisoExportar){
@@ -10,7 +10,9 @@ function cargarTablaPrestamoTrabajadores(permisoEditar,permisoExportar){
   if (permisoEditar == "si") {
     btnAcciones += '<button type="button" id="btnGetModalDetallePrestamoTrabajador" class="btn btn-info btn-sm" data-toggle="modal" data-target="#modalEditarPrestamoTrabajador"><i class="glyphicon glyphicon-pencil"></i></button>';
   }
-
+  btnAcciones += '<button style="display:inline" type="button" id="btnModalCargarArchivo" class="btn btn-info btn-sm" data-toggle="modal" data-target="#modalCargarArchivo"><i class="glyphicon glyphicon-open"></i></button>';
+  btnAcciones += '<button type="button" id="btnGenerarComprobantePrestamo" class="btn btn-info btn-sm"><i class="glyphicon glyphicon-file"></i></button>';
+  
   if (permisoExportar == "si") {
     $('.dataTables-prestamoTrabajadores').DataTable({
         "autoWidth": false,
@@ -44,7 +46,7 @@ function cargarTablaPrestamoTrabajadores(permisoEditar,permisoExportar){
               }
           },
           "ajax": {
-              url: "https://imlchile.cl/grupofirma/index.php/getListadoPrestamosTrabajador",
+              url: "http://localhost/grupofirma/index.php/getListadoPrestamosTrabajador",
               type: 'GET'
           },
           "columnDefs": [{
@@ -130,7 +132,7 @@ function cargarTablaPrestamoTrabajadores(permisoEditar,permisoExportar){
               }
           },
           "ajax": {
-              url: "https://imlchile.cl/grupofirma/index.php/getListadoPrestamosTrabajador",
+              url: "http://localhost/grupofirma/index.php/getListadoPrestamosTrabajador",
               type: 'GET'
           },
           "columnDefs": [{

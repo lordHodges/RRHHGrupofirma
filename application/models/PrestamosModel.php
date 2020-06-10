@@ -69,6 +69,18 @@ class PrestamosModel extends CI_Model {
         $this->db->select(" dp.atr_numCuota, dp.atr_montoDescontar, dp.atr_fechaDescuento, dp.atr_estado ");
         $this->db->from("fa_detalle_prestamo dp");
         $this->db->where('dp.cf_prestamo', $idPrestamo);
+        $this->db->order_by('dp.atr_numCuota', 'ASC');
+        $resultado =  $this->db->get()->result();
+        return $resultado;
+    }
+
+    function getPrestamo($idPrestamo){
+        $this->db->select(" p.cp_prestamo, p.atr_montoTotal, p.atr_fechaPrestamo, p.atr_cantidadCuotas, t.atr_nombres, t.atr_apellidos, t.atr_rut, c.atr_nombre as cargo, e.atr_run as rut_empresa, e.atr_nombre as empresa");
+        $this->db->from("fa_prestamo p");
+        $this->db->join('fa_trabajador t','t.cp_trabajador = p.cf_trabajador');
+        $this->db->join('fa_cargo c','t.cf_cargo = c.cp_cargo');
+        $this->db->join('fa_empresa e','t.cf_empresa = e.cp_empresa');
+        $this->db->where('p.cp_prestamo', $idPrestamo);
         $resultado =  $this->db->get()->result();
         return $resultado;
     }
@@ -83,6 +95,45 @@ class PrestamosModel extends CI_Model {
         $this->db->where('atr_numCuota', $numCuota);
         $resultado =  $this->db->update("fa_detalle_prestamo", $data);
         if($resultado){
+          return "ok";
+        }else{
+          return "error";
+        }
+    }
+
+    function getURLPrestamo($idPrestamo){
+      $this->db->select("doc.atr_nombreDoc, doc.atr_nombreReal");
+      $this->db->from("fa_documento doc");
+      $this->db->where("doc.cf_prestamo", $idPrestamo);
+      $resultado =  $this->db->get()->result();
+      return $resultado;
+    }
+
+    function cargar_prestamo( $nombreReal, $nombreFinal, $ruta, $fecha, $fechaActual, $idTrabajador  ){
+
+        $this->db->select(" p.cp_prestamo ");
+        $this->db->from("fa_prestamo p");
+        $this->db->where('p.atr_fechaPrestamo', $fecha);
+        $this->db->where('p.cf_trabajador', $idTrabajador);
+        $resultado =  $this->db->get()->result();
+
+        foreach ($resultado as $key => $p) {
+          $idPrestamo = $p->cp_prestamo;
+        }
+
+
+        $data = array(
+            "atr_nombreReal" => $nombreReal,
+            "atr_nombreDoc" => $nombreFinal,
+            "cf_prestamo" => $idPrestamo,
+            "atr_ruta" => $ruta,
+            "atr_fechaCarga" => $fechaActual,
+            "atr_tipo" => 'Préstamo',
+            "atr_fechacronologica" => $fecha,
+            "cf_trabajador" => $idTrabajador,
+        );
+        $insert = $this->db->insert("fa_documento", $data);
+        if($insert){
           return "ok";
         }else{
           return "error";

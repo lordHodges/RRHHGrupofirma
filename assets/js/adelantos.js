@@ -1,4 +1,4 @@
-var base_url = 'https://imlchile.cl/grupofirma/index.php/';
+var base_url = 'http://localhost/grupofirma/index.php/';
 
 function cargarBancos(){
   $.ajax({
@@ -77,7 +77,7 @@ function cargarTablaAdelantos(permisoEditar,permisoExportar){
               }
           },
           "ajax": {
-              url: "https://imlchile.cl/grupofirma/index.php/getListadoAdelantos",
+              url: "http://localhost/grupofirma/index.php/getListadoAdelantos",
               type: 'GET'
           },
           "columnDefs": [{
@@ -166,7 +166,7 @@ function cargarTablaAdelantos(permisoEditar,permisoExportar){
               }
           },
           "ajax": {
-              url: "https://imlchile.cl/grupofirma/index.php/getListadoAdelantos",
+              url: "http://localhost/grupofirma/index.php/getListadoAdelantos",
               type: 'GET'
           },
           "columnDefs": [{

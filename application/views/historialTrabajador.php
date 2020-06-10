@@ -108,6 +108,11 @@ if($usuario[0]->atr_activo == "1") { ?>
                 </li>
               <?php } ?>
 
+              <!-- PESTAÑA DE PRÉSTAMOS -->
+              <li class="nav-item">
+                <a class="nav-link" id="prestamos-tab" data-toggle="tab" href="#prestamos" role="tab" aria-controls="contact" aria-selected="false">Préstamos</a>
+              </li>
+
           </ul>
           <div class="tab-content" id="myTabContent">
 
@@ -133,6 +138,10 @@ if($usuario[0]->atr_activo == "1") { ?>
               </div>
 
               <div class="tab-pane fade" id="transferencias" role="tabpanel" aria-labelledby="contact-tab">
+
+              </div>
+
+              <div class="tab-pane fade" id="prestamos" role="tabpanel" aria-labelledby="prestamos-tab">
 
               </div>
 
@@ -191,6 +200,7 @@ if($usuario[0]->atr_activo == "1") { ?>
         cargarDetalleAnexos(idTrabajador);
         cargarDetalleTransferencias(idTrabajador);
         cargarDetalleCartasDeAmonestacion(idTrabajador);
+        cargarDetallePrestamosPorFecha(idTrabajador);
         $("#getSelectMes").val('0');
         $("#getSelectAno").val('0');
     });
@@ -204,6 +214,7 @@ if($usuario[0]->atr_activo == "1") { ?>
         cargarDetalleCartasDeAmonestacionPorFecha(mes, ano, idTrabajador);
         cargarDetalleTransferenciasPorFecha(mes, ano, idTrabajador);
         cargarDetalleAnexosPorFecha(mes, ano, idTrabajador);
+        cargarDetallePrestamosPorFecha(mes, ano, idTrabajador);
     });
 
     $("#getSelectMes").change(function (e){
@@ -215,10 +226,11 @@ if($usuario[0]->atr_activo == "1") { ?>
         cargarDetalleCartasDeAmonestacionPorFecha(mes, ano, idTrabajador);
         cargarDetalleTransferenciasPorFecha(mes, ano, idTrabajador);
         cargarDetalleAnexosPorFecha(mes, ano, idTrabajador);
+        cargarDetallePrestamosPorFecha(mes, ano, idTrabajador);
     });
 </script>
 
-<?php } else{ header("Location: https://imlchile.cl/grupofirma/"); } ?>
+<?php } else{ header("Location: http://localhost/grupofirma/"); } ?>
 
 </body>
 </html>

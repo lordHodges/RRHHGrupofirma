@@ -55,6 +55,8 @@ $route['addPrestamo'] = 'PrestamosController/addPrestamo';
 $route['addDetallePrestamo'] = 'PrestamosController/addDetallePrestamo';
 $route['getDetallePrestamo'] = 'PrestamosController/getDetallePrestamo';
 $route['editarDetalleDePrestamo'] = 'PrestamosController/editarDetalleDePrestamo';
+$route['cargar_prestamo'] = 'PrestamosController/cargar_prestamo';
+$route['docPrestamo'] = 'PDFController/view_prestamo';
 
 
 
@@ -104,6 +106,7 @@ $route['vistaContratos'] = 'HistorialController/vistaContratos';
 $route['vistaAnexos'] = 'HistorialController/vistaAnexos';
 $route['vistaTransferencias'] = 'HistorialController/vistaTransferencias';
 $route['vistaCartasAmonestacion'] = 'HistorialController/vistaCartasAmonestacion';
+$route['vistaPrestamos'] = 'HistorialController/vistaPrestamos';
 
 
 // TRABAJADORES

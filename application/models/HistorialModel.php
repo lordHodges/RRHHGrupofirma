@@ -54,5 +54,13 @@ class HistorialModel extends CI_Model {
       return $this->db->get()->result();
     }
 
+    function vistaPrestamos($idTrabajador){
+      $this->db->select('p.cp_prestamo, p.atr_montoTotal, p.atr_fechaPrestamo, p.atr_autoriza');
+      $this->db->from('fa_prestamo p');
+      $this->db->where('p.cf_trabajador',$idTrabajador);
+      $this->db->order_by('p.atr_fechaPrestamo', 'DESC');
+      return $this->db->get()->result();
+    }
+
 
 }
