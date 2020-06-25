@@ -205,7 +205,8 @@ if($usuario[0]->atr_activo == "1") { ?>
   });
 </script>
 
-  <?php } else{ header("Location: http://localhost/grupofirma/"); } ?>
+  <?php } else{ header("Location: <?php echo base_url() ?>"); } ?>
 
 </body>
 </html>
+

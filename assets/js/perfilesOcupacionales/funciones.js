@@ -1,4 +1,4 @@
-var base_url = 'http://localhost/grupofirma/index.php/';
+var base_url = 'http://127.0.0.1/grupofirma/index.php/';
 var constante = 0;
 
 function cargarTabla(cargo,permisoEliminar ){
@@ -38,7 +38,7 @@ function cargarTabla(cargo,permisoEliminar ){
             },
         },
         "ajax": {
-            url: 'http://localhost/grupofirma/index.php/getListadoTareasDataTable?id='+cargo,
+            url: 'http://127.0.0.1/grupofirma/index.php/getListadoTareasDataTable?id='+cargo,
             type: 'GET',
         },
         "columnDefs": [{

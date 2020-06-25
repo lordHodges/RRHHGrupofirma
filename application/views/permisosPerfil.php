@@ -72,7 +72,7 @@ $permisos =  $data['permisos'];
         });
     </script>
 
-  <?php } else{ header("Location: http://localhost/grupofirma/"); } ?>
+  <?php } else{ header("Location: http://127.0.0.1/grupofirma/"); } ?>
 
     </body>
   </html>

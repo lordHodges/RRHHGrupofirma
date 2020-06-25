@@ -1,4 +1,4 @@
-var base_url = 'http://localhost/grupofirma/index.php/';
+var base_url = 'http://127.0.0.1/grupofirma/index.php/';
 
 
 function cargarTablaPrestamoTrabajadores(permisoEditar,permisoExportar){
@@ -46,7 +46,7 @@ function cargarTablaPrestamoTrabajadores(permisoEditar,permisoExportar){
               }
           },
           "ajax": {
-              url: "http://localhost/grupofirma/index.php/getListadoPrestamosTrabajador",
+              url: "http://127.0.0.1/grupofirma/index.php/getListadoPrestamosTrabajador",
               type: 'GET'
           },
           "columnDefs": [{
@@ -132,7 +132,7 @@ function cargarTablaPrestamoTrabajadores(permisoEditar,permisoExportar){
               }
           },
           "ajax": {
-              url: "http://localhost/grupofirma/index.php/getListadoPrestamosTrabajador",
+              url: "http://127.0.0.1/grupofirma/index.php/getListadoPrestamosTrabajador",
               type: 'GET'
           },
           "columnDefs": [{

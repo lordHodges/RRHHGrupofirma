@@ -7,6 +7,27 @@ class MantenedoresModel extends CI_Model {
     public function __construct() {
         parent::__construct();
     }
+    // BANCOS
+    function getListadoBancos(){
+      $this->db->select("b.cp_banco, b.atr_nombre");
+      $this->db->from("fa_banco b");
+      return $this->db->get();
+    }
+
+    function getBancoPorID($id){
+      $this->db->select("b.atr_nombre");
+      $this->db->from("fa_banco b");
+      $this->db->where("b.cp_banco",$id);
+      return $this->db->get()->result();
+    }
+
+    function addBanco($nombre){
+        $data = array(
+            "atr_nombre" => $nombre
+        );
+        $this->db->insert("fa_banco", $data);
+        return "ok";
+    }
 
     // CIUDADES
     function getListadoCiudades(){

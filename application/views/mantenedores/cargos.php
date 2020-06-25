@@ -244,7 +244,7 @@ if($usuario[0]->atr_activo == "1" ) { ?>
                     }
                 },
                 "ajax": {
-                    url: "http://localhost/grupofirma/index.php/getlistadecargos",
+                    url: "http://127.0.0.1/grupofirma/index.php/getlistadecargos",
                     type: 'GET'
                 },
                 "columnDefs": [{
@@ -356,7 +356,7 @@ if($usuario[0]->atr_activo == "1" ) { ?>
 
 
   </script>
-    <?php } else{ header("Location: http://localhost/grupofirma/"); } ?>
+    <?php } else{ header("Location: http://127.0.0.1/grupofirma/"); } ?>
 
   </body>
 </html>

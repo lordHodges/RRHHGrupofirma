@@ -389,7 +389,7 @@ if($usuario[0]->atr_activo == "1" ) { ?>
           updateAdelanto();
       });
   </script>
-  <?php } else{ header("Location: http://localhost/grupofirma/"); } ?>
+  <?php } else{ header("Location:"+ base_url()); } ?>
 
 </body>
 </html>

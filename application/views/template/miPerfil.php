@@ -2,6 +2,7 @@
 $data = $this->session->userdata("datos");
 $usuario =  $data['usuario'];
 $perfil =  $data['perfil'];
+$base_url = base_url();
 ?>
 
 <?php if($usuario[0]->atr_activo == "1") { ?>
@@ -118,7 +119,7 @@ $perfil =  $data['perfil'];
 
 
 
-    <?php } else{ header("Location: http://localhost/grupofirma/"); } ?>
+    <?php } else{ header("Location: $base_url"); } ?>
 
 
   </body>

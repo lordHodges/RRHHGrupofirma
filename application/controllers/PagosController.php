@@ -160,7 +160,17 @@ class PagosController extends CI_Controller {
 		$resultado = $this->PagosModel->getDetallePagoTrabajador($idTrabajador,$ano,$mes,$diaTermino);
 		echo json_encode( array( "msg" => $resultado)) ;
 	}
+/* VHT */
+public function getGenerarLiquidacion(){
+	$idTrabajador = $this->input->post("idTrabajador");
+	$ano = $this->input->post("year");
+	$mes = $this->input->post("mes");
+	$diaTermino = $this->input->post("diaTermino");
 
+
+	$resultado = $this->PagosModel->getGenerarLiquidacion($idTrabajador,$ano,$mes,$diaTermino);
+	echo json_encode( array( "msg" => $resultado)) ;
+}
 
 	public function addHistorialPagosMensuales(){
 		$monto = $this->input->post("monto");
@@ -173,7 +183,7 @@ class PagosController extends CI_Controller {
 
 
 	public function cargarEmpresas(){
-		$resultado = $this->PagosModel->cargarEmpresas($id);
+		$resultado = $this->PagosModel->cargarEmpresas();
 		echo json_encode($resultado);
 	}
 

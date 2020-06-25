@@ -1,4 +1,4 @@
-var base_url = 'http://localhost/grupofirma/index.php/';
+var base_url = 'http://127.0.0.1/grupofirma/index.php/';
 
 function cargarTabla(permisoEditar,permisoExportar, permisoCambiar){
   var table = $('#tabla_usuario').DataTable();
@@ -46,7 +46,7 @@ function cargarTabla(permisoEditar,permisoExportar, permisoCambiar){
               }
           },
           "ajax": {
-              url: "http://localhost/grupofirma/index.php/getListadoUsuarios",
+              url: base_url+"getListadoUsuarios",
               type: 'GET'
           },
           "columnDefs": [{
@@ -116,7 +116,7 @@ function cargarTabla(permisoEditar,permisoExportar, permisoCambiar){
               }
           },
           "ajax": {
-              url: "http://localhost/grupofirma/index.php/getListadoUsuarios",
+              url: base_url+"getListadoUsuarios",
               type: 'GET'
           },
           "columnDefs": [{

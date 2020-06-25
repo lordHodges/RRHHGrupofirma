@@ -1,5 +1,5 @@
 /*************************** TRABAJADOR ****************************/
-var base_url = 'http://localhost/grupofirma/index.php/';
+var base_url = '<?php base_url() ?>index.php/';
 
 function cargarTablaTrabajador(permisoEditar, permisoExportar){
   var table = $('#tabla_trabajador').DataTable();
@@ -49,7 +49,7 @@ function cargarTablaTrabajador(permisoEditar, permisoExportar){
               }
           },
           "ajax": {
-              url: "http://localhost/grupofirma/index.php/getListadoTrabajadores",
+              url: base_url+"getListadoTrabajadores",
               type: 'GET'
           },
           "columnDefs": [{
@@ -145,7 +145,7 @@ function cargarTablaTrabajador(permisoEditar, permisoExportar){
               }
           },
           "ajax": {
-              url: "http://localhost/grupofirma/index.php/getListadoTrabajadores",
+              url: base_url+"getListadoTrabajadores",
               type: 'GET'
           },
           "columnDefs": [{
@@ -287,7 +287,7 @@ function getDetalleTrabajadorViewEdit(id){
 
       var fila = "";
       $.each(msg.msg, function (i, o) {
-        fila +='<h5 class="modal-title mx-auto">EDITAR TRABAJADOR</h5><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>';
+          fila +='<h5 class="modal-title mx-auto">EDITAR TRABAJADOR</h5><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>';
           fila +='<div class="col-md-12"><br><label for="rut">RUT:&nbsp;</label><label id="rutActual">'+o.atr_rut+'</label><label id="idTrabajador"  style="color:#2a3f54">'+o.cp_trabajador+'</label><input type="text" style="color:#848484" oninput="checkRutOficial(this)"  onkeyup="this.value=caracteresRUT(this.value)" class="form-control custom-input-sm" id="rutNuevo" ></div>';
 
           fila +='<div class="col-md-12 col-sm-12"><br><label for="nombres">NOMBRES:&nbsp;</label><label id="nombresActual">'+o.atr_nombres+'</label><input type="text" style="color:#848484" class="form-control" id="nombresNuevo" oninput="mayus(this);" onkeyup="this.value=soloLetras(this.value)"></div>';

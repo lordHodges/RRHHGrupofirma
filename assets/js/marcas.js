@@ -1,4 +1,4 @@
-var base_url = 'http://localhost/grupofirma/index.php/';
+var base_url = 'http://127.0.0.1/grupofirma/index.php/';
 
 
 function cargarTablaMarcas(permisoEditar,permisoExportar){
@@ -44,7 +44,7 @@ function cargarTablaMarcas(permisoEditar,permisoExportar){
               }
           },
           "ajax": {
-              url: "http://localhost/grupofirma/index.php/getListadoMarcas",
+              url: "http://127.0.0.1/grupofirma/index.php/getListadoMarcas",
               type: 'GET'
           },
           "columnDefs": [{
@@ -129,7 +129,7 @@ function cargarTablaMarcas(permisoEditar,permisoExportar){
               }
           },
           "ajax": {
-              url: "http://localhost/grupofirma/index.php/getListadoMarcas",
+              url: "http://127.0.0.1/grupofirma/index.php/getListadoMarcas",
               type: 'GET'
           },
           "columnDefs": [{

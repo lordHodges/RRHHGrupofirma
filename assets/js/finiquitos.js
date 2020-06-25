@@ -1,4 +1,4 @@
-var base_url = 'http://localhost/grupofirma/index.php/';
+var base_url = 'http://127.0.0.1/grupofirma/index.php/';
 
 
 function cargarTabla(permisoSubir){
@@ -52,7 +52,7 @@ function cargarTabla(permisoSubir){
               }
           },
           "ajax": {
-              url: "http://localhost/grupofirma/index.php/getListadoTrabajadoresContrato",
+              url: "http://127.0.0.1/grupofirma/index.php/getListadoTrabajadoresContrato",
               type: 'GET'
           },
           "columnDefs": [{
@@ -101,7 +101,7 @@ function getFiniquitosTrabajador(idTrabajador){
               fila += '<td> <a class="btn btn-default btn-sm" href="#"><i class="glyphicon glyphicon-download-alt"></i></a> </td>';
             }
           }else{
-            download = "http://localhost/grupofirma/index.php/FiniquitosController/descargarFiniquito/"+o.cp_finiquito;
+            download = "http://127.0.0.1/grupofirma/index.php/FiniquitosController/descargarFiniquito/"+o.cp_finiquito;
             if (permisoDescargar == "si") {
               fila +='<td> <a class="btn btn-info btn-sm" href="'+download+'" download><i class="glyphicon glyphicon-download-alt"></i></a> </td>';
             }else{

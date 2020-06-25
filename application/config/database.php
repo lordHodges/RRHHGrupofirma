@@ -12,9 +12,9 @@ $query_builder = TRUE;
 // DEVELOPER
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'localhost',
+	'hostname' => '127.0.0.1',
 	'username' => 'root',
-	'password' => 'almendra',
+	'password' => '',
 	'database' => 'fa_rrhh',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',

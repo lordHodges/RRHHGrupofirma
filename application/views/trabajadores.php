@@ -2,6 +2,7 @@
 $data = $this->session->userdata("datos");
 $usuario =  $data['usuario'];
 $permisos =  $data['permisos'];
+$URI = 'http://127.0.0.1/grupofirma';
 ?>
 
 <?php
@@ -323,7 +324,7 @@ if($usuario[0]->atr_activo == "1" ) { ?>
 
 
 
-  <?php } else{ header("Location: http://localhost/grupofirma/"); } ?>
+  <?php } else{ header("Location: $URI "); } ?>
 
 </body>
 </html>

@@ -1,7 +1,5 @@
 <?php
 
-
-
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class TrabajadorModel extends CI_Model {
@@ -47,6 +45,8 @@ class TrabajadorModel extends CI_Model {
             "cf_estadoCivil"            => $estadoCivil,
             "cf_nacionalidad"           => $nacionalidad,
         );
+        //deberia estar en un try catch y retornar el error
+        
         $insertTrabajador = $this->db->insert("fa_trabajador", $data);
 
 

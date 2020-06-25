@@ -2,6 +2,7 @@
 $data = $this->session->userdata("datos");
 $usuario =  $data['usuario'];
 $permisos =  $data['permisos'];
+$base_url = base_url();
 ?>
 
 <?php
@@ -621,7 +622,7 @@ if($usuario[0]->atr_activo == "1") { ?>
           }else{
             if( tipoAnexoProrroga == "fechaLimite"){
               var fechaTerminoExtencion = $("#fechaTerminoExtencion").val();
-              var url = 'http://localhost/grupofirma/index.php/docAnexoConFechaTermino?trabajador='+idTrabajador+'&&fechaTermino='+fechaTerminoExtencion+'&&ciudadFirma='+ciudadFirma;
+              var url = base_url+'index.php/docAnexoConFechaTermino?trabajador='+idTrabajador+'&&fechaTermino='+fechaTerminoExtencion+'&&ciudadFirma='+ciudadFirma;
               window.open(url, '_blank');
             }else{
               if( tipoAnexoProrroga == "indefinido" ){
@@ -664,7 +665,7 @@ if($usuario[0]->atr_activo == "1") { ?>
                   }).then(function (response) {
 
                   });
-                  var url = 'http://localhost/grupofirma/index.php/docAnexoPasarIndefinido?trabajador='+idTrabajador+'&&fechaComienzo='+fechaComienzoIndefinido+'&&ciudadFirma='+ciudadFirma;
+                  var url = base_url+'index.php/docAnexoPasarIndefinido?trabajador='+idTrabajador+'&&fechaComienzo='+fechaComienzoIndefinido+'&&ciudadFirma='+ciudadFirma;
                   window.open(url, '_blank');
 
                 }
@@ -711,7 +712,7 @@ if($usuario[0]->atr_activo == "1") { ?>
                   });
 
                 }
-                var url = 'http://localhost/grupofirma/index.php/docAnexoSujetoLicitacion?trabajador='+idTrabajador+'&&fechaComienzo='+fechaComienzoSujetoLicitacion+'&&ciudadFirma='+ciudadFirma;
+                var url = base_url+'index.php/docAnexoSujetoLicitacion?trabajador='+idTrabajador+'&&fechaComienzo='+fechaComienzoSujetoLicitacion+'&&ciudadFirma='+ciudadFirma;
                 window.open(url, '_blank');
               } //fin de sujeto a licitación
 
@@ -796,7 +797,7 @@ if($usuario[0]->atr_activo == "1") { ?>
             }).then(function (response) {
 
             });
-            var url = 'http://localhost/grupofirma/index.php/docAnexoModificacionClausula?trabajador='+idTrabajador+'&&fechaComienzo='+fecha+'&&ciudadFirma='+ciudadFirma;
+            var url = base_url+'index.php/docAnexoModificacionClausula?trabajador='+idTrabajador+'&&fechaComienzo='+fecha+'&&ciudadFirma='+ciudadFirma;
             window.open(url, '_blank');
           }
       });
@@ -830,7 +831,7 @@ if($usuario[0]->atr_activo == "1") { ?>
           var horasextras = $("#horasextrasdiarias3").val();
           var fechaLimite = $("#fechaTermino3").val();
 
-          var url = 'http://localhost/grupofirma/index.php/docAnexoHorasExtras?trabajador='+idTrabajador+'&&motivo='+motivo+'&&ciudadFirma='+ciudadFirma+'&&horas='+horasextras+'&&fechaLimite='+fechaLimite;
+          var url = base_url+'grupofirma/index.php/docAnexoHorasExtras?trabajador='+idTrabajador+'&&motivo='+motivo+'&&ciudadFirma='+ciudadFirma+'&&horas='+horasextras+'&&fechaLimite='+fechaLimite;
           window.open(url, '_blank');
       });
       // FIN SECCION TAB 3
@@ -841,7 +842,7 @@ if($usuario[0]->atr_activo == "1") { ?>
 
     </script>
 
-  <?php } else{ header("Location: http://localhost/grupofirma/"); } ?>
+  <?php } else{ header("Location: http://127.0.0.1/grupofirma/"); } ?>
 
   </body>
 </html>

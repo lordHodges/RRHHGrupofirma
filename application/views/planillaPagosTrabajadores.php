@@ -178,7 +178,28 @@ if($usuario[0]->atr_activo == "1" ) { ?>
         </div>
     </div>
     <!-- Fin Modal ver detalle de pago -->
+    <!-- modal generar liquidacion VHT-->
+    <div id="modalGenerarLiquidacion" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog"  aria-hidden="true" >
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content" style="padding:20px; background: #2a3f54" >
+                <div class="form-row">
+                  <h5 class="modal-title mx-auto">Generar Liquidacion</h5>
+                  <p>revisar correcciones antes de generar</p>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                  </button>
 
+                  <div class="col-md-12 " id="contenedorGenerarLiquidacion">
+
+                  </div>
+                 
+                </div>
+                <br>
+                <button type="submit" class="btn btn-success btn-sm" id="btnGenerarLiquidacion">Guardar</button>
+            </div>
+        </div>
+    </div>
+<!-- fin modal generar liquidacion -->
     <!-- Modal ver cargar archivo -->
     <div id="modalCargarArchivo" class="modal fade" tabindex="-1" role="dialog"  aria-hidden="true" >
         <div class="modal-dialog modal-lg">
@@ -297,6 +318,11 @@ if($usuario[0]->atr_activo == "1" ) { ?>
           var id = $(this).parent().parent().children()[0];
           getDetallePagoTrabajador($(id).text());
       });
+      $("body").on("click", "#btnGenerarLiquidacion", function(e) {
+          e.preventDefault();
+          var id = $(this).parent().parent().children()[0];
+          getGenerarLiquidacion($(id).text());
+      });
 
       $("body").on("click", "#btnCargarComprobante", function(e) {
           e.preventDefault();
@@ -346,7 +372,7 @@ if($usuario[0]->atr_activo == "1" ) { ?>
 
   </script>
 
-    <?php } else{ header("Location: http://localhost/grupofirma/"); } ?>
+    <?php } else{ header("Location: http://127.0.0.1/grupofirma/"); } ?>
 
     </body>
 </html>

@@ -27,6 +27,7 @@ $route['getDetallePagoTrabajador'] = 'PagosController/getDetallePagoTrabajador';
 $route['addHistorialPagosMensuales'] = 'PagosController/addHistorialPagosMensuales';
 $route['getListadoPlanillaPagoMes'] = 'PagosController/getListadoPlanillaPagoMes';
 $route['getEmpresas'] = 'PagosController/cargarEmpresas';
+$route['getGenerarLiquidacion'] = 'PagosController/getGenerarLiquidacion';
 
 
 
@@ -57,7 +58,6 @@ $route['getDetallePrestamo'] = 'PrestamosController/getDetallePrestamo';
 $route['editarDetalleDePrestamo'] = 'PrestamosController/editarDetalleDePrestamo';
 $route['cargar_prestamo'] = 'PrestamosController/cargar_prestamo';
 $route['docPrestamo'] = 'PDFController/view_prestamo';
-
 
 
 
@@ -107,7 +107,6 @@ $route['vistaAnexos'] = 'HistorialController/vistaAnexos';
 $route['vistaTransferencias'] = 'HistorialController/vistaTransferencias';
 $route['vistaCartasAmonestacion'] = 'HistorialController/vistaCartasAmonestacion';
 $route['vistaPrestamos'] = 'HistorialController/vistaPrestamos';
-
 
 // TRABAJADORES
 $route['inicioTrabajadores'] = 'TrabajadorController/index';
@@ -205,6 +204,7 @@ $route['docContratoPersonalizado'] = 'PDFController/view_contratoPersonalizado';
 
 //MANTENEDORES
     //inicios menu
+    $route['inicioBancos'] = 'BancoController/index';
     $route['inicioCiudades'] = 'CiudadController/index';
     $route['inicioSucursales'] = 'SucursalController/index';
     $route['inicioCargos'] = 'CargoController/index';
@@ -221,6 +221,9 @@ $route['docContratoPersonalizado'] = 'PDFController/view_contratoPersonalizado';
     $route['inicioModelos'] = 'ModelosController/inicioModelos';
 
 
+    //Bancos
+    $route['getListadoBancos'] = 'BancoController/getListadoBancos';
+    $route['addBanco'] = 'BancoController/addBanco';
 
     //ciudades
     $route['getListadoCiudades'] = 'CiudadController/getListadoCiudades';

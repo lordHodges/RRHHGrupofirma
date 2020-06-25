@@ -1,4 +1,4 @@
-var base_url = 'http://localhost/grupofirma/index.php/';
+var base_url = '<?php echo base_url() ?>index.php/';
 
 function cargarTablaSucursales(permisoExportar){
   var table = $('#tabla_sucursal').DataTable();
@@ -36,7 +36,7 @@ function cargarTablaSucursales(permisoExportar){
               }
           },
           "ajax": {
-              url: "http://localhost/grupofirma/index.php/getListadoSucursales",
+              url: "<?php echo base_url() ?>index.php/getListadoSucursales",
               type: 'GET'
           },
           "columnDefs": [{
@@ -119,7 +119,7 @@ function cargarTablaSucursales(permisoExportar){
               }
           },
           "ajax": {
-              url: "http://localhost/grupofirma/index.php/getListadoSucursales",
+              url: "<?php echo base_url() ?>index.php/getListadoSucursales",
               type: 'GET'
           },
           "columnDefs": [{
@@ -170,7 +170,7 @@ function cargarTablaPrevision(permisoEditar,permisoExportar){
             }
         },
         "ajax": {
-            url: "http://localhost/grupofirma/index.php/getListadoPrevisiones",
+            url: "<?php echo base_url() ?>index.php/getListadoPrevisiones",
             type: 'GET'
         },
         "columnDefs": [{
@@ -268,7 +268,7 @@ function cargarTablaNacionalidades(permisoEditar,permisoExportar){
               }
           },
           "ajax": {
-              url: "http://localhost/grupofirma/index.php/getListadoNacionalidades",
+              url: "<?php echo base_url() ?>index.php/getListadoNacionalidades",
               type: 'GET'
           },
           "columnDefs": [{
@@ -353,7 +353,7 @@ function cargarTablaNacionalidades(permisoEditar,permisoExportar){
               }
           },
           "ajax": {
-              url: "http://localhost/grupofirma/index.php/getListadoNacionalidades",
+              url: "<?php echo base_url() ?>index.php/getListadoNacionalidades",
               type: 'GET'
           },
           "columnDefs": [{
@@ -410,7 +410,7 @@ function cargarTablaEstadosContrato(permisoEditar,permisoExportar){
               }
           },
           "ajax": {
-              url: "http://localhost/grupofirma/index.php/getEstadoContrato",
+              url: "<?php echo base_url() ?>index.php/getEstadoContrato",
               type: 'GET'
           },
           "columnDefs": [{
@@ -496,7 +496,7 @@ function cargarTablaEstadosContrato(permisoEditar,permisoExportar){
               }
           },
           "ajax": {
-              url: "http://localhost/grupofirma/index.php/getEstadoContrato",
+              url: "<?php echo base_url() ?>index.php/getEstadoContrato",
               type: 'GET'
           },
           "columnDefs": [{
@@ -547,7 +547,7 @@ function cargarTablaEstadosCiviles(permisoExportar){
               }
           },
           "ajax": {
-              url: "http://localhost/grupofirma/index.php/getListadoEstadosCiviles",
+              url: "<?php echo base_url() ?>index.php/getListadoEstadosCiviles",
               type: 'GET'
           },
           "columnDefs": [{
@@ -631,7 +631,7 @@ function cargarTablaEstadosCiviles(permisoExportar){
               }
           },
           "ajax": {
-              url: "http://localhost/grupofirma/index.php/getListadoEstadosCiviles",
+              url: "<?php echo base_url() ?>index.php/getListadoEstadosCiviles",
               type: 'GET'
           },
           "columnDefs": [{
@@ -643,6 +643,130 @@ function cargarTablaEstadosCiviles(permisoExportar){
   }
 
 }
+function cargarTablaBancos(exportar){
+    var table = $('#tabla_banco').DataTable();
+    table.destroy();
+  
+    if (exportar == "si") {
+      $('.dataTables-bancos').DataTable({
+          "autoWidth": false,
+          "info":false,
+          "sInfo": false,
+          "sInfoEmpty":false,
+          "sInfoFiltered":false,
+            language: {
+              "sProcessing": "Procesando...",
+                "sLengthMenu": "Registros&nbsp;&nbsp; _MENU_ ",
+                "sZeroRecords": "No se encontraron resultados",
+                "sEmptyTable": "Ningún dato disponible en esta tabla",
+                "sInfo": "",
+                "sInfoEmpty": "",
+                "sInfoFiltered": "",
+                "sInfoPostFix": "",
+                "sSearch": "Buscar:&nbsp;&nbsp;",
+                "sUrl": "",
+                "sInfoThousands": ",",
+                "sLoadingRecords": "Cargando...",
+                "oPaginate": {
+                    "sFirst": "Primero",
+                    "sLast": "Último",
+                    "sNext": "Siguiente",
+                    "sPrevious": "Anterior"
+                },
+                "oAria": {
+                    "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
+                    "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+                },
+                "buttons": {
+                    "copy": "Copiar",
+                    "colvis": "Visibilidad"
+                }
+            },
+            "ajax": {
+                url: "<?php echo base_url() ?>index.php/getListadoBancos",
+                type: 'GET'
+            },
+            "columnDefs": [{
+  
+            }
+            ] ,dom: '<"html5buttons"B>lTfgitp',
+              buttons: [{
+                      extend: 'copy'
+                  },
+                  {
+                      extend: 'csv'
+                  },
+                  {
+                      extend: 'excel',
+                      title: 'Listado de bancos',
+  
+                  },
+                  {
+                      extend: 'pdf',
+                      title: 'Listado de bancos'
+  
+                  },
+                  {
+                      extend: 'print',
+                      title: 'Grupo Firma',
+                      customize: function(win) {
+                          $(win.document.body).addClass('white-bg');
+                          $(win.document.body).css('font-size', '10px');
+                          $(win.document.body).find('table')
+                              .addClass('compact')
+                              .css('font-size', 'inherit');
+                      }
+                  }
+              ]
+        });
+      }else{
+        $('.dataTables-bancos').DataTable({
+            "autoWidth": false,
+            "info":false,
+            "sInfo": false,
+            "sInfoEmpty":false,
+            "sInfoFiltered":false,
+              language: {
+                "sProcessing": "Procesando...",
+                  "sLengthMenu": "Registros&nbsp;&nbsp; _MENU_ ",
+                  "sZeroRecords": "No se encontraron resultados",
+                  "sEmptyTable": "Ningún dato disponible en esta tabla",
+                  "sInfo": "",
+                  "sInfoEmpty": "",
+                  "sInfoFiltered": "",
+                  "sInfoPostFix": "",
+                  "sSearch": "Buscar:&nbsp;&nbsp;",
+                  "sUrl": "",
+                  "sInfoThousands": ",",
+                  "sLoadingRecords": "Cargando...",
+                  "oPaginate": {
+                      "sFirst": "Primero",
+                      "sLast": "Último",
+                      "sNext": "Siguiente",
+                      "sPrevious": "Anterior"
+                  },
+                  "oAria": {
+                      "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
+                      "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+                  },
+                  "buttons": {
+                      "copy": "Copiar",
+                      "colvis": "Visibilidad"
+                  }
+              },
+              "ajax": {
+                  url: "<?php echo base_url() ?>index.php/getListadoBancos",
+                  type: 'GET'
+              },
+              "columnDefs": [{
+  
+              }
+              ] ,dom: '<"html5buttons"B>lTfgitp',
+                buttons: [
+                ]
+          });
+      }
+  }
 
 function cargarTablaCiudades(exportar){
   var table = $('#tabla_ciudad').DataTable();
@@ -684,7 +808,7 @@ function cargarTablaCiudades(exportar){
               }
           },
           "ajax": {
-              url: "http://localhost/grupofirma/index.php/getListadoCiudades",
+              url: "<?php echo base_url() ?>index.php/getListadoCiudades",
               type: 'GET'
           },
           "columnDefs": [{
@@ -756,7 +880,7 @@ function cargarTablaCiudades(exportar){
                 }
             },
             "ajax": {
-                url: "http://localhost/grupofirma/index.php/getListadoCiudades",
+                url: "<?php echo base_url() ?>index.php/getListadoCiudades",
                 type: 'GET'
             },
             "columnDefs": [{
@@ -809,7 +933,7 @@ function cargarTablaEmpresa(permisoEditar, exportar){
               }
           },
           "ajax": {
-              url: "http://localhost/grupofirma/index.php/getListadoEmpresa",
+              url: "<?php echo base_url() ?>index.php/getListadoEmpresa",
               type: 'GET'
           },
           "columnDefs": [{
@@ -893,7 +1017,7 @@ function cargarTablaEmpresa(permisoEditar, exportar){
               }
           },
           "ajax": {
-              url: "http://localhost/grupofirma/index.php/getListadoEmpresa",
+              url: "<?php echo base_url() ?>index.php/getListadoEmpresa",
               type: 'GET'
           },
           "columnDefs": [{
@@ -950,7 +1074,7 @@ function cargarTablaAFP(permisoEditar, permisoExportar){
               }
           },
           "ajax": {
-              url: "http://localhost/grupofirma/index.php/getListadoAFP",
+              url: "<?php echo base_url() ?>index.php/getListadoAFP",
               type: 'GET'
           },
           "columnDefs": [{
@@ -1020,7 +1144,7 @@ function cargarTablaAFP(permisoEditar, permisoExportar){
               }
           },
           "ajax": {
-              url: "http://localhost/grupofirma/index.php/getListadoAFP",
+              url: "<?php echo base_url() ?>index.php/getListadoAFP",
               type: 'GET'
           },
           "columnDefs": [{
@@ -1047,6 +1171,18 @@ function getSelectCiudad(){
             fila += "<option value='" + o.cp_ciudad + "'>" + o.atr_nombre + "</option>";
         });
         $("#getSelectCiudad").append(fila);
+    });
+}
+
+function getSelectBanco(){
+    var url = base_url+'getBancos';
+    $("#getSelectBanco").empty();
+    var fila = "<option disabled selected>Seleccione una opción</option>";
+    $.getJSON(url, function (result) {
+        $.each(result, function (i, o) {
+            fila += "<option value='" + o.cp_banco + "'>" + o.atr_nombre + "</option>";
+        });
+        $("#getSelectBanco").append(fila);
     });
 }
 
@@ -1316,6 +1452,30 @@ function updateNacionalidad(){
 
 /*************************** MANTENEDORES ****************************/
 
+function agregarBanco() {
+    var nombre = $("#nombre").val();
+    if (nombre == "" ) {
+        toastr.error("Rellene todos los campos");
+    } else {
+        $.ajax({
+            url: 'addBanco',
+            type: 'POST',
+            dataType: 'json',
+            data: { "nombre":nombre }
+        }).then(function (msg) {
+
+            if (msg.msg == "ok") {
+               toastr.success('Banco ingresado')
+               document.getElementById("nombre").value = "";
+               $('#myModal').modal('hide');
+               var permisoExportar = $("#permisoExportar").text();
+               cargarTablaBancos(permisoExportar);
+            } else {
+                toastr.error("Error en el ingreso.");
+            }
+        });
+    }
+}
 
 function agregarCiudad() {
     var nombre = $("#nombre").val();

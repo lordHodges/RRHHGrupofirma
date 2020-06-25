@@ -229,7 +229,7 @@ if($usuario[0]->atr_activo == "1" ) { ?>
 
   </script>
 
-  <?php } else{ header("Location: http://localhost/grupofirma/"); } ?>
+  <?php } else{ header("Location: http://127.0.0.1/grupofirma/"); } ?>
 
 </body>
 </html>

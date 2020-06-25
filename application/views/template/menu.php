@@ -4,12 +4,13 @@ $data = $this->session->userdata("datos");
 $usuario =  $data['usuario'];
 $permisos =  $data['permisos'];
 $menu =  $data['menu'];
+$base_url = base_url();
 ?>
 <html lang="en">
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <head><meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    
     <!-- Meta, title, CSS, favicons, etc. -->
-    <meta charset="utf-8">
+    
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 	  <!-- <link rel="icon" href="images/#" type="image/ico" /> -->
@@ -306,6 +307,10 @@ $menu =  $data['menu'];
 
                                 <?php  if ( $valuePermiso->cf_existencia_permiso == "79") {  ?>
                                   <li><a href="<?php echo base_url() ?>index.php/inicioUsuarios">Usuarios</a></li>
+                                <?php } ?>
+
+                                <?php  if ( $valuePermiso->cf_existencia_permiso == "119") {  ?>
+                                  <li><a href="<?php echo base_url() ?>index.php/inicioBancos">Bancos</a></li>
                                 <?php } ?>
 
                               <?php } ?>
