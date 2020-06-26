@@ -194,6 +194,7 @@ if($usuario[0]->atr_activo == "1" ) { ?>
                   </div>
                  
                 </div>
+               
                 <br>
                 <button type="submit" class="btn btn-success btn-sm" id="btnGenerarLiquidacion">Guardar</button>
             </div>
@@ -318,11 +319,105 @@ if($usuario[0]->atr_activo == "1" ) { ?>
           var id = $(this).parent().parent().children()[0];
           getDetallePagoTrabajador($(id).text());
       });
-      $("body").on("click", "#btnGenerarLiquidacion", function(e) {
+      /* modificaciones generarLiquidacion VHT */
+
+      $("body").on("click", "#btnVerLiquidacion", function(e) {
           e.preventDefault();
           var id = $(this).parent().parent().children()[0];
           getGenerarLiquidacion($(id).text());
       });
+      /* capturar funcion del bioton generarliquidacion */
+      $("body").on("click", "#btnGenerarLiquidacion", function(e) {
+          e.preventDefault();
+         /*  var idTrabajador = $("#selectTrabajador1").val();
+          var fechaInicio = $("#fechaInicio").val();
+          var fechaTermino = $("#terminoContrato").val();
+          var ciudadFirma = $("#ciudad").val(); */
+          var mesCorriente = $("#mesCorriente").val();
+          var razonSocial = $("#razonSocial").val();
+          var rutEmpresa = $("#rutEmpresa").val();
+          var nombreTrabajador = $("#nombreTrabajador").val();
+          var rutTrabajador = $("#rutTrabajador").val();
+          var centralCosto = $("#centralCosto").val();
+          var afpTrabajador = $("#afpTrabajador").val();
+          var saludTrabajador = $("#saludTrabajador").val();
+          var diasTrabajados = $("#diasTrabajados").val();
+          var horasExtras = $("#horasExtras").val();
+          var cargasFamiliares = $("#cargasFamiliares").val();
+          var sueldoBase = $("#sueldoBase").val();
+          var gratificacionLegal = $("#gratificacionLegal").val();
+          var totalImponible = $("#totalImponible").val();
+          var cargasFamiliaresMonto = $("#cargasFamiliaresMonto").val();
+          var montoBono = $("#montoBono").val();
+          var totalNoImponible = $("#totalNoImponible").val();
+          var valorPrevision = $("#valorPrevision").val();
+          var valorSalud = $("#valorSalud").val();
+          var valorCesantia = $("#valorCesantia").val();
+          var valorImpuestoUnico = $("#valorImpuestoUnico").val();
+          var totalDescuentosLegales = $("#totalDescuentosLegales").val();
+          var fechaOrdenadaAdelanto = $("#fechaOrdenadaAdelanto").val();
+          var atr_monto = $("#atr_monto").val();
+          var totalPrestamo = $("#totalPrestamo").val();
+          var cantidadCuotas = $("#cantidadCuotas").val();
+          var montoDescuento = $("#montoDescuento").val();
+          var totalOtrosDescuentos = $("#totalOtrosDescuentos").val();
+          var totalDescuentos = $("#totalDescuentos").val();
+          var totalHaberes = $("#totalHaberes").val();
+          var valorAlcanceLiquido = $("#valorAlcanceLiquido").val();
+          var montoPrestamo = $("#montoPrestamo").val();
+
+
+
+
+        
+            var url = 'http://127.0.0.1/grupofirma/index.php/docGenerarLiquidacion?'
+           
+            +'mesCorriente='+mesCorriente
+            +'&&razonSocial='+razonSocial
+            +'&&rutEmpresa='+rutEmpresa
+            +'&&nombreTrabajador='+nombreTrabajador
+            +'&&rutTrabajador='+rutTrabajador
+            +'&&centralCosto='+centralCosto
+            +'&&afpTrabajador='+afpTrabajador
+            +'&&saludTrabajador='+saludTrabajador
+            +'&&diasTrabajados='+diasTrabajados
+            +'&&horasExtras='+horasExtras
+            +'&&cargasFamiliares='+cargasFamiliares
+            +'&&sueldoBase='+sueldoBase
+            +'&&gratificacionLegal='+gratificacionLegal
+            +'&&totalImponible='+totalImponible
+            +'&&cargasFamiliaresMonto='+cargasFamiliaresMonto
+            +'&&montoBono='+montoBono
+            +'&&totalNoImponible='+totalNoImponible
+            +'&&valorPrevision='+valorPrevision
+            +'&&valorSalud='+valorSalud
+            +'&&valorCesantia='+valorCesantia
+            +'&&valorImpuestoUnico='+valorImpuestoUnico
+            +'&&totalDescuentosLegales='+totalDescuentosLegales
+            +'&&fechaOrdenadaAdelanto='+fechaOrdenadaAdelanto
+            +'&&atr_monto='+atr_monto
+            +'&&totalPrestamo='+totalPrestamo
+            +'&&cantidadCuotas='+cantidadCuotas
+            +'&&montoDescuento='+montoDescuento
+            +'&&totalOtrosDescuentos='+totalOtrosDescuentos
+            +'&&totalDescuentos='+totalDescuentos
+            +'&&totalHaberes='+totalHaberes
+            +'&&valorAlcanceLiquido='+valorAlcanceLiquido
+            +'&&montoPrestamo='+montoPrestamo
+           /*  +'&&fechaInicio='+fechaInicio
+            +'&&fechaTermino='+fechaTermino
+            +'&&ciudadFirma='+ciudadFirma; */
+
+            window.open(url, '_blank');
+        
+
+      });
+
+
+
+
+
+      /* fin modificaiones generar contrato */
 
       $("body").on("click", "#btnCargarComprobante", function(e) {
           e.preventDefault();

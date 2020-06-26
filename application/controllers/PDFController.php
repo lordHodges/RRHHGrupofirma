@@ -146,7 +146,7 @@ class  PDFController extends CI_Controller {
 		$this->load->view('perfilOcupacional/perfilOcupacionalCargos');
 	}
 
-  function view_perfilesOcupacionales(){
+  	function view_perfilesOcupacionales(){
 		$cargo = $this->input->get("cargo");
 		$titulo = "PERFIL OCUPACIONAL DEL PUESTO O VACANTE";
 
@@ -286,26 +286,7 @@ class  PDFController extends CI_Controller {
 		// generamos el PDF. Pasemos por encima de la configuración general y definamos otro tipo de papel
 		$this->pdfgenerator->generate($html, $filename, TRUE, 'Letter', 'portrait', 0);
 	}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+	
 	function view_contratoPersonalizado(){
 		$trabajador = $this->input->get("trabajador");
 		$ciudadFirma = $this->input->get("ciudadFirma");
@@ -413,6 +394,90 @@ class  PDFController extends CI_Controller {
 		$filename = 'contrato';
 		// generamos el PDF. Pasemos por encima de la configuración general y definamos otro tipo de papel
 		$this->pdfgenerator->generate($html, $filename, TRUE, 'Letter', 'portrait', 0);
+	}
+	function view_generarLiquidacion(){
+		/* llenar con valores desde planilladepago.php */
+		/* $trabajador = $this->input->get("trabajador");
+		$ciudadFirma = $this->input->get("ciudadFirma");
+		$fechaInicioContrato = $this->input->get("fechaInicio");
+		$fechaTerminoContrato = $this->input->get("fechaTermino"); */
+		$mesCorriente = $this->input->get("mesCorriente");
+		$razonSocial = $this->input->get("razonSocial");
+		$rutEmpresa = $this->input->get("rutEmpresa");
+		$nombreTrabajador = $this->input->get("nombreTrabajador");
+		$rutTrabajador = $this->input->get("rutTrabajador");
+		$centralCosto = $this->input->get("centralCosto");
+		$afpTrabajador = $this->input->get("afpTrabajador");
+		$saludTrabajador = $this->input->get("saludTrabajador");
+		$diasTrabajados = $this->input->get("diasTrabajados");
+		$horasExtras = $this->input->get("horasExtras");
+		$cargasFamiliares = $this->input->get("cargasFamiliares");
+		$sueldoBase = $this->input->get("sueldoBase");
+		$gratificacionLegal = $this->input->get("gratificacionLegal");
+		$totalImponible = $this->input->get("totalImponible");
+		$montoBono = $this->input->get("montoBono");
+		$totalNoImponible = $this->input->get("totalNoImponible");
+		$valorPrevision = $this->input->get("valorPrevision");
+		$valorSalud = $this->input->get("valorSalud");
+		$valorCesantia = $this->input->get("valorCesantia");
+		$valorImpuestoUnico = $this->input->get("valorImpuestoUnico");
+		$totalDescuentosLegales = $this->input->get("totalDescuentosLegales");
+		$fechaOrdenadaAdelanto = $this->input->get("fechaOrdenadaAdelanto");
+		$atr_monto = $this->input->get("atr_monto");
+		$totalPrestamo = $this->input->get("totalPrestamo");
+		$cantidadCuotas = $this->input->get("cantidadCuotas");
+		$montoDescuento = $this->input->get("montoDescuento");
+		$totalOtrosDescuentos = $this->input->get("totalOtrosDescuentos");
+		$totalDescuentos = $this->input->get("totalDescuentos");
+		$totalHaberes = $this->input->get("totalHaberes");
+		$valorAlcanceLiquido = $this->input->get("valorAlcanceLiquido");
+		$montoPrestamo =  $this->input->get("montoPrestamo");
+		/* fin datos calculados */
+		/* vaslores para el documento */
+		$tituloCabecera = "LIQUIDACION DE SUELDO";
+		$data = array(
+			'mesCorriente'	=> $mesCorriente,
+			'razonSocial'	=> $razonSocial,
+			'rutEmpresa'	=> $rutEmpresa,
+			'nombreTrabajador'	=> $nombreTrabajador,
+			'rutTrabajador'	=> $rutTrabajador,
+			'centralCosto'	=> $centralCosto,
+			'afpTrabajador'	=> $afpTrabajador,
+			'saludTrabajador'	=> $saludTrabajador,
+			'diasTrabajados'	=> $diasTrabajados,
+			'horasExtras'	=> $horasExtras,
+			'cargasFamiliares'	=> $cargasFamiliares,
+			'sueldoBase'	=> $sueldoBase,
+			'gratificacionLegal'	=> $gratificacionLegal,
+			'totalImponible'	=> $totalImponible,
+			'montoBono'	=> $montoBono,
+			'totalNoImponible'	=> $totalNoImponible,
+			'valorPrevision'	=> $valorPrevision,
+			'valorSalud'	=> $valorSalud,
+			'valorCesantia'	=> $valorCesantia,
+			'valorImpuestoUnico'	=> $valorImpuestoUnico,
+			'totalDescuentosLegales'	=> $totalDescuentosLegales,
+			'fechaOrdenadaAdelanto'	=> $fechaOrdenadaAdelanto,
+			'atr_monto'	=> $atr_monto,
+			'totalPrestamo'	=> $totalPrestamo,
+			'cantidadCuotas'	=> $cantidadCuotas,
+			'montoDescuento'	=> $montoDescuento,
+			'totalOtrosDescuentos'	=> $totalOtrosDescuentos,
+			'totalDescuentos'	=> $totalDescuentos,
+			'totalHaberes'	=> $totalHaberes,
+			'valorAlcanceLiquido'	=> $valorAlcanceLiquido,
+			'tituloCabecera'	=> $tituloCabecera,
+			'montoPrestamo'=>$montoPrestamo
+			
+		);
+		$html = $this->load->view('pdf/liquidacionGenerada', $data, TRUE);
+		$this->load->library('PDFgenerator');
+		$filename = 'liquidacionGenerada';
+		$this->pdfgenerator->generate($html,$filename,TRUE,'Letter', 'portrait', 0);
+
+
+
+
 	}
 
 	function obtenerInformacion(){

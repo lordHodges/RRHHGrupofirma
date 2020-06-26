@@ -162,6 +162,8 @@ $route['getInfoTrabajadorEmpresa'] = 'ContratosController/getInfoTrabajadorEmpre
 $route['perfilOcupacionalVista'] = 'PDFController/cargarPerfilesOcupacionales';
 $route['docPerfilesOcupacionales'] = 'PDFController/view_perfilesOcupacionales';
 $route['docContratoEstandar'] = 'PDFController/view_contratoEstandar';
+$route['docGenerarLiquidacion'] = 'PDFController/view_generarLiquidacion';//vht
+
 $route['docContratoPersonalizado'] = 'PDFController/view_contratoPersonalizado';
 
 

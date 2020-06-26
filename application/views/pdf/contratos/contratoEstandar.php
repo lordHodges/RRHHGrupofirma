@@ -33,7 +33,7 @@ if($usuario[0]->atr_activo == "1" && $view_contratoEstadar == "1") { ?>
       }
 
       .caja1 { float:left;margin-left:5px; }
-      .caja2 { float:right;;margin-right: :5px;}
+      .caja2 { float:right;;margin-right:5px;}
 
 
 

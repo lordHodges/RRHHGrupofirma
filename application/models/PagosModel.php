@@ -786,7 +786,10 @@ function getGenerarLiquidacion($idTrabajador,$ano,$mes,$diaTermino){
     //CALCULAR EL MONTO TOTAL A PAGAR
     $montoTotalPagar = ($sueldo + $bonos) - ($montoAdelanto + $montoPrestamo);
 
-
+    $sumaBonos = $bonoBaseColacion + $bonoBaseAsistencia + $bonoBaseMovilizacion;
+    
+    $totalOtrosDescuentos = $montoAdelanto + $montoPrestamo;
+    
 
     // TRANSFORMAR LOS NUMEROS A FORMATO MILES
 
@@ -817,9 +820,88 @@ function getGenerarLiquidacion($idTrabajador,$ano,$mes,$diaTermino){
     if ($gratificacion>=126865) {
       $gratificacion=126865;
     }
+    $totalImponible= $sbase+$gratificacion;
+    $cargasFamiliaresMonto = 0 ;
+    $arrayBonos =[
+       /*  { atr_nombreBono:"bonoColacionBase" => atr_montobono:$bonoBaseColacion},
+        "bonoColacionDiario"      => $colacionDiaria,
+        "bonoColacionAPagar"      => $colacion,
+        "bonoAsistenciaAPagar"    => $bonoAsistencia,
+        "bonoBaseAsistencia"      => $bonoBaseAsistencia,
+        "bonoMovilizacionDiaria"  => $movilizacionDiaria,
+        "bonoBaseMovilizacion"    => $bonoBaseMovilizacion,
+        "bonoMovilizacionAPagar"  => $movilizacion, */
+     
+    ];
+  
+    $totalNoImponible = $cargasFamiliaresMonto+ $sumaBonos; //se debe calcularsuma bonificaciones no imponibles
+    $totalHaberes = $totalNoImponible + $totalImponible;
+    $valorPrevision= 0;//se debe calcular desde valor en base de datos que no existe
+    $valorSalud = 0;
+    $valorCesantia = 0;
+    $valorImpuestoUnico = 0;
+    $totalDescuentosLegales = 0;
+    $totalDescuentos = $totalOtrosDescuentos+$totalDescuentosLegales;
+    $valorAlcanceLiquido = $totalHaberes - $totalDescuentos;
+   
+    $mesCorriente=$mes;
+    switch ($mesCorriente) {
+      case '01':
+        $mesCorriente="Enero";
+        # code...
+        break;
+      case '02':
+          $mesCorriente="Febrero";
+          # code...
+          break;
+      case '03':
+            $mesCorriente="Marzo";
+            # code...
+            break;
+      
+      case '04':
+        $mesCorriente="Abril";
+        break;
+      case '05':
+          $mesCorriente="Mayo";
+          # code...
+          break;
+      case '06':
+            $mesCorriente="Junio";
+            # code...
+            break;
+      case '07':
+              $mesCorriente="Julio";
+              # code...
+              break;
+      case '08':
+                $mesCorriente="Agosto";
+                # code...
+                break;
+      case '09':
+                  $mesCorriente="Septiembre";
+                  # code...
+                  break;
+      case '10':
+                    $mesCorriente="Octubre";
+                    # code...
+                    break;
+      case '11':
+                      $mesCorriente="Noviembre";
+                      # code...
+                      break;
+      case '12':
+                        $mesCorriente="Diciembre";
+                        # code...
+                        break;
+      default:
+        # code...
+        break;
+    }
 
 
     $data = array(
+        "mesCorriente" => $mesCorriente,
         "razonSocial"             => $t->empresa,
         "rutEmpresa"              => $t->rutEmpresa,
         "nombres"                 => $t->atr_nombres,
@@ -828,11 +910,25 @@ function getGenerarLiquidacion($idTrabajador,$ano,$mes,$diaTermino){
         "afpTrabajador"           => $t->afp,
         "saludTrabajador"         => $t->prevision,
         "sueldoBase"              => $sueldoBaseParaMandar,
-        "gratificacionLegal"       => $gratificacion,
+        "gratificacionLegal"      => $gratificacion,
+
         "sueldoAPago"             => $montoTotalPagar,
         "inasistencias"           => $cont,
         "diasTrabajados"          => $diasPago,
-
+        "totalImponible"          => $totalImponible,
+        "cargasFamiliaresMonto"   => $cargasFamiliaresMonto,
+        "arrayBonos"              => $arrayBonos,
+        "totalNoImponible"        => $totalNoImponible,
+        "valorPrevision" => $valorPrevision,
+        "valorSalud" => $valorSalud,
+        "valorCesantia" => $valorCesantia,
+        "valorImpuestoUnico" => $valorImpuestoUnico,
+        "totalDescuentosLegales" => $totalDescuentosLegales,
+        "totalOtrosDescuentos" => $totalOtrosDescuentos,
+        "totalDescuentos" => $totalDescuentos,
+        "totalHaberes" => $totalHaberes,
+        "valorAlcanceLiquido" => $valorAlcanceLiquido,
+        "montoPrestamo"=>$montoPrestamo,
         "bonoColacionBase"        => $bonoBaseColacion,
         "bonoColacionDiario"      => $colacionDiaria,
         "bonoColacionAPagar"      => $colacion,

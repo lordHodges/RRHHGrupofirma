@@ -183,7 +183,7 @@ if($usuario[0]->atr_activo == "1") {?>
             <!-- FIN CONTRATO -->
 
             <br>
-            <button type="submit" id="btnGenerarContrato" class="btn btn-success btn-sm botonLargo" style="display:none" id="btnAgregarTrabajador">GENERAR CONTRATO</button>
+            <button type="submit" id="btnGenerarContrato" class="btn btn-success btn-sm botonLargo" style="display:none" >GENERAR CONTRATO</button>
 
           </div>
 
