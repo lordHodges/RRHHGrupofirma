@@ -170,7 +170,7 @@ function cargarTablaPrevision(permisoEditar,permisoExportar){
             }
         },
         "ajax": {
-            url: "<?php echo base_url() ?>index.php/getListadoPrevisiones",
+            url: base_url+"getListadoPrevisiones",
             type: 'GET'
         },
         "columnDefs": [{
@@ -1074,7 +1074,7 @@ function cargarTablaAFP(permisoEditar, permisoExportar){
               }
           },
           "ajax": {
-              url: "<?php echo base_url() ?>index.php/getListadoAFP",
+              url: base_url+"getListadoAFP",
               type: 'GET'
           },
           "columnDefs": [{
@@ -1144,7 +1144,7 @@ function cargarTablaAFP(permisoEditar, permisoExportar){
               }
           },
           "ajax": {
-              url: "<?php echo base_url() ?>index.php/getListadoAFP",
+              url: base_url+"getListadoAFP",
               type: 'GET'
           },
           "columnDefs": [{

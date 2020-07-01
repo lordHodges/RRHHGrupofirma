@@ -14,118 +14,185 @@ if($usuario[0]->atr_activo == "1" && $view_contratoEstadar == "1") { ?>
 <!DOCTYPE html>
     <html lang="en" dir="ltr">
     <head>
+
         <meta charset="utf-8">
-        <title>Contrato</title>
-        <style media="screen">
-        body{ margin-left: 40px; margin-right: 40px}
-        h2{ text-align: center; text-decoration:underline;}
-        h3{ text-align: left;}
-        .puesto-trabajo{white-space:nowrap;}
-        ul {  list-style-type: disc; }
-        ul li{ margin-top:10px; }
-
-        .padre{
-            border: 1px;
-            display: inline-block;
-            width: auto;
-            margin: auto;
-            text-align: left;
-        }
-
-        .caja1 { float:left;margin-left:5px; }
-        .caja2 { float:right;;margin-right:5px;}
+        <title>liquidacion</title>
+       
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+       
+</head>
 
 
-
-        </style>
-    </head>
   <body>
-    <!-- PUESTO DE TRABAJO -->
-    <h3 style="text-decoration:underline; text-align:center;">  <?php echo($tituloCabecera); ?> </h3>
+      <div class="container-xl">
+        <h5 style="text-decoration:underline; text-align:center;">  <?php echo($tituloCabecera); ?> </h5>
 
     <br>
     
+        <table class="table table-borderless text-left"  style="font-size: 12px;">
+            <tbody> 
+                <tr style="padding-top:-20px;padding-bottom: -20px;">
+                    <td>Remuneraciones Mes :</td>
+                    <td><?php echo($mesCorriente); ?></td>
+                </tr>
+                <tr style="padding-top:-20px;padding-bottom: -20px;">
+                    <td>Razon Social:</td>
+                    <td><?php echo($razonSocial); ?></td>
+                    <td>RUT:</td>
+                    <td><?php echo($rutEmpresa); ?></td>
+                </tr>
+            </tbody>
+        </table>
+   
 
-    <h4 style="display:inline"><h4 style="display:inline;">Remuneraciones Mes de <?php echo($mesCorriente); ?> </h4></h4>
-
-    <h5>Razon Social: <?php echo($razonSocial); ?> </h5>
-    <h5>R.U.T.: <?php echo($rutEmpresa); ?> </h5>
-    <p style="margin-top: -20px;">________________________________________________________________________________</p>
-    <h5 style="margin-top: -10px;">Nombre Trabajador: <?php echo($nombreTrabajador); ?>&nbsp;&nbsp; </h5>
-    <h5 > R.U.N.: <?php echo($rutTrabajador); ?> </h5>
-    <h5 > C.C.: <?php echo($centralCosto); ?> </h5>
-    
-    <p style="margin-top: -40px;">________________________________________________________________________________</p> <p style="margin-top: -40px;">________________________________________________________________________________</p> <p style="margin-top: -40px;">________________________________________________________________________________</p>
-<br>
-    <div style="display:inline-block">
-        <h5 style="margin-top:-12px;">Dias Trabajados</h5>
-        <h5 style="margin-top:-12px; text-align: left;"><?php echo($diasTrabajados)?></h5>
-
-    </div>&nbsp;&nbsp;
-
-    <div style="display:inline-block">
-        <h5 style="margin-top:-12px;">Cargas Familiares</h5>
-        <h5 style="margin-top:-12px;text-align: left;"><?php echo($cargasFamiliares)?></h5>
-
-    </div>
-    <div style="display:inline-block; margin-left: 10rem;">
-        <h5 style="margin-top:-12px;">AFP</h5>
-        <h5 style="margin-top:-12px;text-align: left;"><?php echo($afpTrabajador)?></h5>
-
-    </div>&nbsp;&nbsp;
-    <div style="display:inline-block">
-        <h5 style="margin-top:-12px;">SALUD</h5>
-        <h5 style="margin-top:-12px;text-align: left;"><?php echo($saludTrabajador)?></h5>
-
-    </div>
-    <p style="margin-top: -40px;">________________________________________________________________________________</p>
-        <!-- ---------------------------- -->
-            <h4 style="margin-top:-60px;">DESCUENTOS</h5>
-            <p style="margin-top:-12px;text-align: left;">Prevision :&nbsp;<?php echo($valorPrevision)?></p>
-            <p style="margin-top:-12px;text-align: left;">Salud: &nbsp;<?php echo($valorSalud)?></p>
-            <p style="margin-top:-12px;text-align: left;">Seg, Cesantia:&nbsp; <?php echo($valorCesantia)?></p>
-            <p style="margin-top:-12px;text-align: left;">Impuesto Unico :&nbsp; <?php echo($valorImpuestoUnico)?></p>
-            <p style="margin-top:-12px;text-align: left;">Seg, Cesantia:&nbsp; <?php echo($valorCesantia)?></p>
-            <h4 style="margin-top:-12px;text-align: left;text-decoration: underline;">Total desc. Legales:&nbsp; <?php echo($totalDescuentosLegales)?></h4>
-            <p style="margin-top:-12px;text-align: left;">Prestamos :&nbsp; <?php echo($montoPrestamo)?></p>
-            <p style="margin-top:-12px;text-align: left;">Adelanto :&nbsp; <?php echo($atr_monto)?></p>
-            <h4 style="margin-top:-12px;text-align: left;text-decoration: underline;">Total Descuentos:&nbsp; <?php echo($totalDescuentos)?></h4>
-            <p style="margin-top: -20px;">________________________________________________________________________________</p>
-            <h4 style="margin-top:-12px;text-decoration: underline;">HABERES</h5>
+    <hr>
+    <div class="row">
+        <div class="col col-sm-12">
+            <h6>INFORMACION TRABAJADOR</h6>
+            <table class="table table-borderless"  style="font-size: 12px; padding-bottom: -30px;">
             
-            <p style="margin-top:-12px;text-align: left;">Sueldo Base:&nbsp;<?php echo($sueldoBase)?></p>
-            <p style="margin-top:-12px;text-align: left;">Gratificacion Legal: &nbsp;<?php echo($gratificacionLegal)?></p>
-            <h4 style="margin-top:-12px;text-align: left;">Total Imponible:&nbsp; <?php echo($totalImponible)?></h4>
-            <h4 style="margin-top:-12px;text-align: left;">Total no Imponible:&nbsp; <?php echo($totalNoImponible)?></h4>
+                <tbody>
+                <tr>
+                    <th>Nombre :</th>
+                    <td><?php echo($nombreTrabajador); ?></td>
+                    
+                </tr>
+                <tr>
+                    <th>RUN :</th>
+                    <td><?php echo($rutTrabajador); ?></td>
+                </tr>
+                <tr>
+                    <th>CC :</th>
+                    <td><?php echo($centralCosto); ?></td>
+                </tr>
+            </tbody>
+            </table>
+            
+        </div>
+    </div>
 
-<h4 style="margin-top:-12px;text-align: right;">Alcance Liquido:&nbsp; <?php echo($valorAlcanceLiquido)?></h4>
-    <!-- Firma Trabajador -->
-     <div class="caja1">
-        <p>__________________________________</p>
-        <div style="display:inline-block">
-            <h5 style="margin-top:-12px;"><strong> <?php echo $nombreTrabajador ?> </strong></h5>
-        	<h5 style="margin-top:-12px;">R.U.N N° <?php echo $rutTrabajador ?></h5>
-            <h5 style="margin-top:-12px;">TRABAJADOR.</h5>
+   <hr> 
+    <div class="row" >
+        <div class="col col-sm-12 text-center" >
+            <table class="table table-bordered" style="font-size: 12px;">
+                <thead>
+                    <tr>
+                        <th>AFP</th>
+                        <th>SALUD</th>
+                        <th>CARGAS FAMILIARES</th>
+                        
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><?php echo($afpTrabajador); ?></td>
+                        <td><?php echo($saludTrabajador); ?></td>
+                        <td><?php echo($cargasFamiliares); ?></td>                    
+                    </tr>
+                </tbody>
+            </table>
         </div>
         
-     </div>
+        
+       
+    </div>
+ 
+    <div class="row">
+        <div class="col col-sm-12 text-center">
+            <table class="table table-bordered" style="font-size: 12px; margin-top: -10px;">
+                <thead>
+                    <tr>
+                        <th>Dias Trabajados</th>
+                        <th>Horas Extra</th>
+                        <th>Valor Imponible</th>
+                        <th>Valor Tributable</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><?php echo($diasTrabajados); ?></td>
+                        <td><?php echo($horasExtras); ?></td>
+                        <td><?php echo($totalImponible); ?></td>
+                        <td><?php echo($totalImponible); ?></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <hr class="dark">
+    <div class="row">
+        <div class="col col-sm-12">
+            <table class="table text-center" style="font-size: 12px;">
+                <thead>
+                    <tr>
+                        <th>HABERES</th>
+                        <th>DESCUENTOS</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>  
+    </div>
+    <div class="row">
+         <div class="col col-sm-6 ">
+            <table class="table text-left" style="font-size: 12px;">
+                <tbody>
+                    <tr>
+                        <td>Sueldo Base</td>
+                        <td><?php echo($sueldoBase) ?></td>
+                    </tr>
+                    <tr>
+                        <td>Gratificacion Legal</td>
+                        <td><?php echo($gratificacionLegal); ?></td>
+                    </tr>
+                    <tr>
+                        <th>Total Imponible</th>
+                        <th><?php echo($totalImponible); ?></th>
+                    </tr>
+                    <?php if ($bonoColacion) {?>
+                    <tr>
+                        <td>Asigancion Colacion</td>
+                        <td><?php echo($bonoColacion); ?></td>
+                    </tr>   
+                    <?php }?>
+                    <?php if ($bonoMobilizacion) {?>
+                    <tr>
+                        <td>Asignacion Mobilizacion</td>
+                        <td><?php echo($bonoMobilizacion); ?></td>
+                    </tr>
+                    <?php } ?>
 
-     <!-- Firma empleador -->
-     <div class="caja2">
-        <p>__________________________________</p>
-          <div style="display:inline-block">
+                    <?php if ($bonoAsistenciaAPagar) {?>
+                        <tr>
+                            <td>Bono Asistencia</td>
+                            <td><?php echo($bonoAsistenciaAPagar); ?></td>
+                        </tr>
+                    <?php } ?>
+                    <tr>
+                        <th>Total No Imponible</th>
+                        <th><?php echo($totalNoImponible) ?></th>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>    
 
-            <h5 style="margin-top:-12px;"><strong> <?php echo $razonSocial ?> </strong></h5>
-        		<h5 style="margin-top:-12px;">R.U.T N° <?php echo $rutEmpresa?></h5>
-            <h5 style="margin-top:-12px;">EMPLEADOR.</h5>
-        	</div>
-     </div>
 
 
 
 
 
-   <?php } else{ header("Location: http://127.0.0.1/grupofirma/"); } ?>
 
+
+
+
+            <?php } else{ header("Location: http://127.0.0.1/grupofirma/"); } ?>
+
+
+      </div>
+    <!-- PUESTO DE TRABAJO -->
+    
 </body>
 </html>

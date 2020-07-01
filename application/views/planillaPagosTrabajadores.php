@@ -196,6 +196,7 @@ if($usuario[0]->atr_activo == "1" ) { ?>
                 </div>
                
                 <br>
+                
                 <button type="submit" class="btn btn-success btn-sm" id="btnGenerarLiquidacion">Guardar</button>
             </div>
         </div>
@@ -365,6 +366,7 @@ if($usuario[0]->atr_activo == "1" ) { ?>
           var totalHaberes = $("#totalHaberes").val();
           var valorAlcanceLiquido = $("#valorAlcanceLiquido").val();
           var montoPrestamo = $("#montoPrestamo").val();
+          var bonoAsistenciaAPagar= $("#bonoAsistenciaAPagar").val();
 
 
 
@@ -404,10 +406,8 @@ if($usuario[0]->atr_activo == "1" ) { ?>
             +'&&totalHaberes='+totalHaberes
             +'&&valorAlcanceLiquido='+valorAlcanceLiquido
             +'&&montoPrestamo='+montoPrestamo
-           /*  +'&&fechaInicio='+fechaInicio
-            +'&&fechaTermino='+fechaTermino
-            +'&&ciudadFirma='+ciudadFirma; */
-
+            +'&&bonoAsistenciaAPagar='+bonoAsistenciaAPagar
+          
             window.open(url, '_blank');
         
 

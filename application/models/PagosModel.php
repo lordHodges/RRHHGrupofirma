@@ -674,10 +674,20 @@ function getGenerarLiquidacion($idTrabajador,$ano,$mes,$diaTermino){
  //consultar datos completos trabajador
  $this->db->select("t.cp_trabajador, t.atr_rut, t.atr_nombres, t.atr_apellidos,
   t.atr_direccion, t.atr_fechaNacimiento,
-  t.atr_sueldo, e.atr_nombre as estado,t.cf_cargo, ci.atr_nombre as ciudad,
-   ca.atr_nombre as cargo, su.atr_nombre as sucursal,
-   n.atr_nombre as nacionalidad, ec.atr_nombre as estadocivil, a.atr_nombre as afp,
-    p.atr_nombre as prevision, em.atr_nombre as empresa, em.atr_run as rutEmpresa");
+  t.atr_sueldo,
+  e.atr_nombre as estado,
+  t.cf_cargo,
+  ci.atr_nombre as ciudad,
+  ca.atr_nombre as cargo,
+  su.atr_nombre as sucursal,
+  n.atr_nombre as nacionalidad,
+  ec.atr_nombre as estadocivil,
+  a.atr_nombre as afp,
+  a.tasa as tasaAfp,
+  p.atr_nombre as prevision,
+  p.tasa as tasaPrevision,
+   em.atr_nombre as empresa,
+    em.atr_run as rutEmpresa");
       $this->db->from("fa_trabajador t");
       $this->db->join("fa_estado e", "t.cf_estado = e.cp_estado");
       $this->db->join("fa_ciudad ci","t.cf_ciudad = ci.cp_ciudad");
@@ -709,15 +719,12 @@ function getGenerarLiquidacion($idTrabajador,$ano,$mes,$diaTermino){
 
     // CONSULTA DE LAS REMUNERACIONES EN EL MES SOLICITADO
     foreach ($remuneracionTrabajador as $key => $r) {
+
       $colacion = str_replace ( "." , "" , $r->atr_colacion  );
       $movilizacion = str_replace ( "." , "" , $r->atr_movilizacion  );
-
-
-
       $bonoBaseColacion = $r->atr_colacion;
       $bonoBaseMovilizacion = $r->atr_movilizacion;
       $bonoBaseAsistencia = $r->atr_asistencia;
-
       $bonoAsistencia = $r->atr_asistencia;
 
       $cont = 0;
@@ -732,10 +739,8 @@ function getGenerarLiquidacion($idTrabajador,$ano,$mes,$diaTermino){
 
       if ( $cont > 0) {
         $bonoAsistencia = 0;
-
         $colacion = $colacionDiaria * $diasPago;
         $movilizacion = $movilizacionDiaria * $diasPago;
-
         $bonos = $colacion + $movilizacion;
       }else{
 
@@ -743,7 +748,6 @@ function getGenerarLiquidacion($idTrabajador,$ano,$mes,$diaTermino){
 
       }
     }
-
 
     // CONSULTA DE LOS ADELANTOS EN EL MES CONSULTADO
     $this->db->select("t.atr_monto, t.atr_fecha");
@@ -787,31 +791,11 @@ function getGenerarLiquidacion($idTrabajador,$ano,$mes,$diaTermino){
     $montoTotalPagar = ($sueldo + $bonos) - ($montoAdelanto + $montoPrestamo);
 
     $sumaBonos = $bonoBaseColacion + $bonoBaseAsistencia + $bonoBaseMovilizacion;
-    
+
     $totalOtrosDescuentos = $montoAdelanto + $montoPrestamo;
     
 
-    // TRANSFORMAR LOS NUMEROS A FORMATO MILES
-
-
-    $sueldo = number_format($sueldo, 0, ",", ".");
-    $bonos = ''.$bonos;
-    $bonos = number_format($bonos, 0, ",", ".");
-    $montoAdelanto = number_format($montoAdelanto, 0, ",", ".");
-    $montoPrestamo = number_format($montoPrestamo, 0, ",", ".");
-
-    $sueldoBaseParaMandar = number_format($t->atr_sueldo, 0, ",", ".");
-
-    $montoTotalPagar = number_format($montoTotalPagar, 0, ",", ".");
-
-    $bonoBaseColacion = number_format($bonoBaseColacion, 0, ",", ".");
-    $colacionDiaria = number_format($colacionDiaria, 0, ",", ".");
-
-
-    $bonoBaseAsistencia = number_format($bonoBaseAsistencia, 0, ",", ".");
-
-    $bonoBaseMovilizacion = number_format($bonoBaseMovilizacion, 0, ",", ".");
-    $movilizacionDiaria = number_format($movilizacionDiaria, 0, ",", ".");
+   
 
     //esto deberia estar en controller calculo de gratificacion o en un servicio php
     //=SI(D17*0,25>=Datos!C2;Datos!C2;D17*0,25)
@@ -834,13 +818,17 @@ function getGenerarLiquidacion($idTrabajador,$ano,$mes,$diaTermino){
      
     ];
   
-    $totalNoImponible = $cargasFamiliaresMonto+ $sumaBonos; //se debe calcularsuma bonificaciones no imponibles
-    $totalHaberes = $totalNoImponible + $totalImponible;
-    $valorPrevision= 0;//se debe calcular desde valor en base de datos que no existe
-    $valorSalud = 0;
-    $valorCesantia = 0;
+
+    $totalNoImponible = $cargasFamiliaresMonto + $sumaBonos; //se debe calcularsuma bonificaciones no imponibles
+    $totalHaberes =( $totalNoImponible + $totalImponible);
+    $valorPrevision = round($totalImponible*(float)$t->tasaAfp);//se debe calcular desde valor en base de datos que no existe
+    
+    $valorSalud = round($totalImponible*(float)$t->tasaPrevision);
+
+    $valorCesantia = round($totalImponible*0.006);
+
     $valorImpuestoUnico = 0;
-    $totalDescuentosLegales = 0;
+    $totalDescuentosLegales = ($valorPrevision+$valorSalud) ;
     $totalDescuentos = $totalOtrosDescuentos+$totalDescuentosLegales;
     $valorAlcanceLiquido = $totalHaberes - $totalDescuentos;
    
@@ -899,9 +887,30 @@ function getGenerarLiquidacion($idTrabajador,$ano,$mes,$diaTermino){
         break;
     }
 
+ // TRANSFORMAR LOS NUMEROS A FORMATO MILES
+
+
+ $sueldo = number_format($sueldo, 0, ",", ".");
+ $bonos = ''.$bonos;
+ $bonos = number_format($bonos, 0, ",", ".");
+ $montoAdelanto = number_format($montoAdelanto, 0, ",", ".");
+ $montoPrestamo = number_format($montoPrestamo, 0, ",", ".");
+
+ $sueldoBaseParaMandar = number_format($t->atr_sueldo, 0, ",", ".");
+
+ $montoTotalPagar = number_format($montoTotalPagar, 0, ",", ".");
+
+ $bonoBaseColacion = number_format($bonoBaseColacion, 0, ",", ".");
+ $colacionDiaria = number_format($colacionDiaria, 0, ",", ".");
+
+
+ $bonoBaseAsistencia = number_format($bonoBaseAsistencia, 0, ",", ".");
+
+ $bonoBaseMovilizacion = number_format($bonoBaseMovilizacion, 0, ",", ".");
+ $movilizacionDiaria = number_format($movilizacionDiaria, 0, ",", ".");
 
     $data = array(
-        "mesCorriente" => $mesCorriente,
+        "mesCorriente"            => $mesCorriente,
         "razonSocial"             => $t->empresa,
         "rutEmpresa"              => $t->rutEmpresa,
         "nombres"                 => $t->atr_nombres,
@@ -911,24 +920,23 @@ function getGenerarLiquidacion($idTrabajador,$ano,$mes,$diaTermino){
         "saludTrabajador"         => $t->prevision,
         "sueldoBase"              => $sueldoBaseParaMandar,
         "gratificacionLegal"      => $gratificacion,
-
         "sueldoAPago"             => $montoTotalPagar,
         "inasistencias"           => $cont,
         "diasTrabajados"          => $diasPago,
         "totalImponible"          => $totalImponible,
         "cargasFamiliaresMonto"   => $cargasFamiliaresMonto,
         "arrayBonos"              => $arrayBonos,
+        "valorPrevision"          => $valorPrevision,
+        "valorSalud"              => $valorSalud,
+        "valorCesantia"           => $valorCesantia,
+        "valorImpuestoUnico"      => $valorImpuestoUnico,
+        "totalDescuentosLegales"  => $totalDescuentosLegales,
+        "totalOtrosDescuentos"    => $totalOtrosDescuentos,
+        "totalDescuentos"         => $totalDescuentos,
+        "totalHaberes"            => $totalHaberes,
         "totalNoImponible"        => $totalNoImponible,
-        "valorPrevision" => $valorPrevision,
-        "valorSalud" => $valorSalud,
-        "valorCesantia" => $valorCesantia,
-        "valorImpuestoUnico" => $valorImpuestoUnico,
-        "totalDescuentosLegales" => $totalDescuentosLegales,
-        "totalOtrosDescuentos" => $totalOtrosDescuentos,
-        "totalDescuentos" => $totalDescuentos,
-        "totalHaberes" => $totalHaberes,
-        "valorAlcanceLiquido" => $valorAlcanceLiquido,
-        "montoPrestamo"=>$montoPrestamo,
+        "valorAlcanceLiquido"     => $valorAlcanceLiquido,
+        "montoPrestamo"           =>$montoPrestamo,
         "bonoColacionBase"        => $bonoBaseColacion,
         "bonoColacionDiario"      => $colacionDiaria,
         "bonoColacionAPagar"      => $colacion,
@@ -938,7 +946,6 @@ function getGenerarLiquidacion($idTrabajador,$ano,$mes,$diaTermino){
         "bonoBaseMovilizacion"    => $bonoBaseMovilizacion,
         "bonoMovilizacionAPagar"  => $movilizacion,
         "arrayPrestamos"          => $prestamos,
-
         "arrayAdelantos"          => $adelantos
     );
 

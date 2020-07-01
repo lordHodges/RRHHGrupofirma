@@ -323,6 +323,7 @@ function getDetallePagoTrabajador(idTrabajador){
       fila += '<label class="text-center" for="bonoAsistencia">BONO A PAGAR</label>';
       fila += '<input type="text" class="form-control custom-input-sm" id="bonoAsistencia" disabled style="color:#000;" value="$'+bonoAsistenciaAPagar+'">';
       fila += '</div>';
+     /*  fila += '<input type="text" id="bonoAsistenciaAPagar" value="'+o.bonoAsistenciaAPagar+'"></input>' */
 
 
 
@@ -558,7 +559,11 @@ function getGenerarLiquidacion(idTrabajador){
         });
         
       }
-       
+      fila += '<div class="col-md-4 col-sm-12"><br>';
+      fila += '<label class="text-center" for="bonoAsistencia">BONO ASISTENCIA</label>';
+      fila += '<input type="text" class="form-control custom-input-sm" id="bonoAsistenciaAPagar" disabled style="color:#000;" value="$'+o.bonoAsistenciaAPagar+'">';
+      fila += '</div>';
+     /*  fila += '<input type="text" id="bonoAsistenciaAPagar" value="'+o.bonoAsistenciaAPagar+'"></input>' */
       /* TOTAL NO IMPONIBLE  */
       fila += '<div class="col-lg-12 col-md-12 col-sm-12"><br>';
       fila += '<label class="text-center" for="totalNoImponible" style="text-decoration:underline green">TOTAL NO IMPONIBLE</label>';
@@ -574,19 +579,19 @@ function getGenerarLiquidacion(idTrabajador){
       fila += '<div class="col-lg-12 col-md-12 col-sm-12"><br>';
       fila += '<div class="input-group">';
       fila += '<label class="text-center" for="valorPrevision" style="">PREVISION</label>';
-      fila += '<input type="text" class="form-control custom-input-sm" id="valorPrevision"  style="color:#000;margin-left:1rem" value="'+o.valorPrevision+'">';
+      fila += '<input type="text" class="form-control custom-input-sm" id="valorPrevision" disabled style="color:#000;margin-left:1rem" value="'+o.valorPrevision+'">';
       fila += '</div>';
       fila += '</div>';
       fila += '<div class="col-lg-12 col-md-12 col-sm-12"><br>';
       fila += '<div class="input-group">';
       fila += '<label class="text-center" for="valorSalud" style="">SALUD</label>';
-      fila += '<input type="text" class="form-control custom-input-sm" id="valorSalud"  style="color:#000;margin-left:1rem" value="'+o.valorSalud+'">';
+      fila += '<input type="text" class="form-control custom-input-sm" id="valorSalud" disabled style="color:#000;margin-left:1rem" value="'+o.valorSalud+'">';
       fila += '</div>';
       fila += '</div>';
       fila += '<div class="col-lg-12 col-md-12 col-sm-12"><br>';
       fila += '<div class="input-group">';
       fila += '<label class="text-center" for="valorCesantia" style="">SEGURO CESANTIA</label>';
-      fila += '<input type="text" class="form-control custom-input-sm" id="valorCesantia"  style="color:#000;margin-left:1rem" value="'+o.valorCesantia+'">';
+      fila += '<input type="text" class="form-control custom-input-sm" id="valorCesantia" disabled style="color:#000;margin-left:1rem" value="'+o.valorCesantia+'">';
       fila += '</div>';
       fila += '</div>';
       if (o.valorImpuestoUnico != "") {
@@ -603,7 +608,7 @@ function getGenerarLiquidacion(idTrabajador){
       fila += '<div class="col-lg-12 col-md-12 col-sm-12"><br>';
       fila += '<div class="input-group">';
       fila += '<label class="text-center" for="totalDescuentosLegales" style="">TOTAL DESC. LEGALES</label>';
-      fila += '<input type="text" class="form-control custom-input-sm" id="totalDescuentosLegales"  style="color:#000;margin-left:1rem" value="'+o.totalDescuentosLegales+'">';
+      fila += '<input type="text" class="form-control custom-input-sm" id="totalDescuentosLegales" disabled style="color:#000;margin-left:1rem" value="'+o.totalDescuentosLegales+'">';
       fila += '</div>';
       fila += '</div>';
       

@@ -423,7 +423,7 @@ class  PDFController extends CI_Controller {
 		$valorImpuestoUnico = $this->input->get("valorImpuestoUnico");
 		$totalDescuentosLegales = $this->input->get("totalDescuentosLegales");
 		$fechaOrdenadaAdelanto = $this->input->get("fechaOrdenadaAdelanto");
-		$atr_monto = $this->input->get("atr_monto");
+		$atr_monto = $this->input->get("atr_monto");//montoAdelanto
 		$totalPrestamo = $this->input->get("totalPrestamo");
 		$cantidadCuotas = $this->input->get("cantidadCuotas");
 		$montoDescuento = $this->input->get("montoDescuento");
@@ -432,6 +432,9 @@ class  PDFController extends CI_Controller {
 		$totalHaberes = $this->input->get("totalHaberes");
 		$valorAlcanceLiquido = $this->input->get("valorAlcanceLiquido");
 		$montoPrestamo =  $this->input->get("montoPrestamo");
+		$bonoAsistenciaAPagar =  $this->input->get("bonoAsistenciaAPagar");
+		$bonoMobilizacion = 100;
+		$bonoColacion = 100;
 		/* fin datos calculados */
 		/* vaslores para el documento */
 		$tituloCabecera = "LIQUIDACION DE SUELDO";
@@ -451,6 +454,7 @@ class  PDFController extends CI_Controller {
 			'gratificacionLegal'	=> $gratificacionLegal,
 			'totalImponible'	=> $totalImponible,
 			'montoBono'	=> $montoBono,
+			'bonoAsistenciaAPagar' => $bonoAsistenciaAPagar,
 			'totalNoImponible'	=> $totalNoImponible,
 			'valorPrevision'	=> $valorPrevision,
 			'valorSalud'	=> $valorSalud,
@@ -467,8 +471,10 @@ class  PDFController extends CI_Controller {
 			'totalHaberes'	=> $totalHaberes,
 			'valorAlcanceLiquido'	=> $valorAlcanceLiquido,
 			'tituloCabecera'	=> $tituloCabecera,
-			'montoPrestamo'=>$montoPrestamo
-			
+			'montoPrestamo'=>$montoPrestamo,
+			'bonoMobilizacion'	=> $bonoMobilizacion,
+			'bonoColacion'	=> $bonoColacion,
+						
 		);
 		$html = $this->load->view('pdf/liquidacionGenerada', $data, TRUE);
 		$this->load->library('PDFgenerator');
