@@ -687,15 +687,6 @@ class  PDFController extends CI_Controller
 		$this->pdfgenerator->generate($html, $filename, TRUE, 'Letter', 'portrait', 0);
 	}
 
-
-
-
-
-
-
-
-
-
 	function view_anexoModificacionClausula()
 	{
 		$trabajador = $this->input->get("trabajador");
@@ -751,14 +742,6 @@ class  PDFController extends CI_Controller
 		// generamos el PDF. Pasemos por encima de la configuración general y definamos otro tipo de papel
 		$this->pdfgenerator->generate($html, $filename, TRUE, 'Letter', 'portrait', 0);
 	}
-
-
-
-
-
-
-
-
 
 
 
@@ -826,24 +809,6 @@ class  PDFController extends CI_Controller
 		// generamos el PDF. Pasemos por encima de la configuración general y definamos otro tipo de papel
 		$this->pdfgenerator->generate($html, $filename, TRUE, 'Letter', 'portrait', 0);
 	}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 	function transformarFecha($fecha)

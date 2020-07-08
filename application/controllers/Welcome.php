@@ -1,7 +1,8 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
-class Welcome extends CI_Controller {
+class Welcome extends CI_Controller
+{
 
 	public function __construct()
 	{
@@ -13,7 +14,6 @@ class Welcome extends CI_Controller {
 		$this->load->model("FuncionesModel");
 		$this->load->model("OtrosModel");
 		$this->load->model("RemuneracionesModel");
-
 	}
 
 	public function index()
@@ -22,7 +22,9 @@ class Welcome extends CI_Controller {
 		$this->load->view('template/login');
 	}
 
-	function testpdf(){
+	function testpdf($viewdata)
+	{
+
 		$html = $this->load->view('Pdf/test', $viewdata, TRUE);
 		// Cargamos la librería
 		$this->load->library('Pdfgenerator');
@@ -32,7 +34,7 @@ class Welcome extends CI_Controller {
 		$this->pdfgenerator->generate($html, $filename, true, 'Letter', 'portrait');
 	}
 
-	function testDoc(){
-
+	function testDoc()
+	{
 	}
 }
