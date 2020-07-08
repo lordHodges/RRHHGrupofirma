@@ -1,4 +1,4 @@
-var base_url = "http://www.imlchile.cl/grupofirma/index.php/";
+var base_url = "https://www.imlchile.cl/grupofirma/index.php/";
 
 var constante = 0;
 var constanteResponsabilidades = 0;
@@ -51,7 +51,7 @@ function agregarCargo() {
 							type: "POST",
 							dataType: "json",
 							data: { responsabilidad: responsabilidad, cargo: cargo },
-						}).then(function (msg) {});
+						}).then(function (msg) { });
 					}
 				}
 

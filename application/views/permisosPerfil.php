@@ -73,7 +73,7 @@ $permisos =  $data['permisos'];
   </script>
 
 <?php } else {
-  header("Location: http://www.imlchile.cl/grupofirma/");
+  header("Location: https://www.imlchile.cl/grupofirma/");
 } ?>
 
 </body>

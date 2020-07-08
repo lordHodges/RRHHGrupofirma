@@ -1,4 +1,4 @@
-var base_url = "http://www.imlchile.cl/grupofirma/index.php/";
+var base_url = "https://www.imlchile.cl/grupofirma/index.php/";
 
 /*************************** TRANSFERENCIAS ****************************/
 
@@ -55,7 +55,7 @@ function cargarTabla(permisoSubir) {
 			},
 		},
 		ajax: {
-			url: "http://www.imlchile.cl/grupofirma/index.php/getListadoTrabajadoresContrato",
+			url: "https://www.imlchile.cl/grupofirma/index.php/getListadoTrabajadoresContrato",
 			type: "GET",
 		},
 		columnDefs: [
@@ -105,7 +105,7 @@ function getTransferenciasTrabajador(idTrabajador) {
 			'<h5 class="modal-title mx-auto">LISTADO DE TRANSFERENCIAS</h5><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>';
 		fila +=
 			'<table class="table table-bordered tableInModal" style="margin-top:20px;"> <thead> <tr> <td class="text-center">Transferencia</td> <td class="text-center">Fecha</td> <td class="text-center">Motivo</td> <td class="text-center">Monto</td> <td class="text-center">Descargar</td> </tr> </thead> <tbody>';
-		// importarScript("http://www.imlchile.cl/grupofirma/assets/js/validaciones.js");
+		// importarScript("https://www.imlchile.cl/grupofirma/assets/js/validaciones.js");
 		$.each(response.msg, function (i, o) {
 			arrayFecha = o.atr_fecha.split("-");
 			fecha = arrayFecha[2] + "-" + arrayFecha[1] + "-" + arrayFecha[0];
@@ -125,7 +125,7 @@ function getTransferenciasTrabajador(idTrabajador) {
 				}
 			} else {
 				download =
-					"http://www.imlchile.cl/grupofirma/index.php/TransferenciasController/descargarComprobante/" +
+					"https://www.imlchile.cl/grupofirma/index.php/TransferenciasController/descargarComprobante/" +
 					o.cp_transferencia;
 				if (permisoDescargar == "si") {
 					fila +=
