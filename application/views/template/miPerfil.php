@@ -78,30 +78,30 @@ $base_url = base_url();
 
 
         <!-- jQuery -->
-        <script src="<?php echo base_url() ?>assets/vendors/jquery/dist/jquery.min.js"></script>
+        <script src="<?php echo base_url() ;   ?>assets/vendors/jquery/dist/jquery.min.js"></script>
         <!-- Bootstrap -->
-       <script src="<?php echo base_url() ?>assets/vendors/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+       <script src="<?php echo base_url() ;   ?>assets/vendors/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
         <!-- FastClick -->
-        <script src="<?php echo base_url() ?>assets/vendors/fastclick/lib/fastclick.js"></script>
+        <script src="<?php echo base_url() ;   ?>assets/vendors/fastclick/lib/fastclick.js"></script>
         <!-- NProgress -->
-        <script src="<?php echo base_url() ?>assets/vendors/nprogress/nprogress.js"></script>
+        <script src="<?php echo base_url() ;   ?>assets/vendors/nprogress/nprogress.js"></script>
         <!-- morris.js -->
-        <script src="<?php echo base_url() ?>assets/vendors/raphael/raphael.min.js"></script>
-        <script src="<?php echo base_url() ?>assets/vendors/morris.js/morris.min.js"></script>
+        <script src="<?php echo base_url() ;   ?>assets/vendors/raphael/raphael.min.js"></script>
+        <script src="<?php echo base_url() ;   ?>assets/vendors/morris.js/morris.min.js"></script>
 
         <!-- MODIDEV -->
-        <script src="<?php echo base_url() ?>assets/js/miPerfil.js"></script>
+        <script src="<?php echo base_url() ;   ?>assets/js/miPerfil.js"></script>
 
         <!-- bootstrap-progressbar -->
-        <script src="<?php echo base_url() ?>assets/vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
+        <script src="<?php echo base_url() ;   ?>assets/vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
         <!-- bootstrap-daterangepicker -->
-        <script src="<?php echo base_url() ?>assets/vendors/moment/min/moment.min.js"></script>
-        <script src="<?php echo base_url() ?>assets/vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
+        <script src="<?php echo base_url() ;   ?>assets/vendors/moment/min/moment.min.js"></script>
+        <script src="<?php echo base_url() ;   ?>assets/vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
         <!-- Toast -->
-       <script src="<?php echo base_url() ?>assets/js/toastr.min.js" type="text/javascript"></script>
+       <script src="<?php echo base_url() ;   ?>assets/js/toastr.min.js" type="text/javascript"></script>
 
         <!-- Custom Theme Scripts -->
-        <script src="<?php echo base_url() ?>assets/build/js/custom.min.js"></script>
+        <script src="<?php echo base_url() ;   ?>assets/build/js/custom.min.js"></script>
 
 
         <script>

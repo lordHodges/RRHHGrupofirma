@@ -26,7 +26,7 @@
       }
 
       .caja1 { float:left;margin-left:5px; }
-      .caja2 { float:right;;margin-right: :5px;}
+      .caja2 { float:right;;margin-right:5px;}
     </style>
   </head>
   <body>

@@ -1,54 +1,55 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
-class  PDFController extends CI_Controller {
+class  PDFController extends CI_Controller
+{
 
 	private static $UNIDADES = [
-			'',
-			'UN ',
-			'DOS ',
-			'TRES ',
-			'CUATRO ',
-			'CINCO ',
-			'SEIS ',
-			'SIETE ',
-			'OCHO ',
-			'NUEVE ',
-			'DIEZ ',
-			'ONCE ',
-			'DOCE ',
-			'TRECE ',
-			'CATORCE ',
-			'QUINCE ',
-			'DIECISEIS ',
-			'DIECISIETE ',
-			'DIECIOCHO ',
-			'DIECINUEVE ',
-			'VEINTE '
+		'',
+		'UN ',
+		'DOS ',
+		'TRES ',
+		'CUATRO ',
+		'CINCO ',
+		'SEIS ',
+		'SIETE ',
+		'OCHO ',
+		'NUEVE ',
+		'DIEZ ',
+		'ONCE ',
+		'DOCE ',
+		'TRECE ',
+		'CATORCE ',
+		'QUINCE ',
+		'DIECISEIS ',
+		'DIECISIETE ',
+		'DIECIOCHO ',
+		'DIECINUEVE ',
+		'VEINTE '
 	];
 
 	private static $DECENAS = [
-			'VENTI',
-			'TREINTA ',
-			'CUARENTA ',
-			'CINCUENTA ',
-			'SESENTA ',
-			'SETENTA ',
-			'OCHENTA ',
-			'NOVENTA ',
-			'CIEN '
+		'VENTI',
+		'TREINTA ',
+		'CUARENTA ',
+		'CINCUENTA ',
+		'SESENTA ',
+		'SETENTA ',
+		'OCHENTA ',
+		'NOVENTA ',
+		'CIEN '
 	];
 
 	private static $CENTENAS = [
-			'CIENTO ',
-			'DOSCIENTOS ',
-			'TRESCIENTOS ',
-			'CUATROCIENTOS ',
-			'QUINIENTOS ',
-			'SEISCIENTOS ',
-			'SETECIENTOS ',
-			'OCHOCIENTOS ',
-			'NOVECIENTOS '
+		'CIENTO ',
+		'DOSCIENTOS ',
+		'TRESCIENTOS ',
+		'CUATROCIENTOS ',
+		'QUINIENTOS ',
+		'SEISCIENTOS ',
+		'SETECIENTOS ',
+		'OCHOCIENTOS ',
+		'NOVECIENTOS '
 	];
 
 	public function __construct()
@@ -68,11 +69,11 @@ class  PDFController extends CI_Controller {
 
 	public function index()
 	{
-
 	}
 
 
-	function view_prestamo(){
+	function view_prestamo()
+	{
 		$prestamo = $this->input->get("id");
 		$titulo = "COMPROBANTE PRÉSTAMO EMPRESARIAL";
 
@@ -85,25 +86,23 @@ class  PDFController extends CI_Controller {
 		// exit();
 
 		$fechaDeHoy = date("d-m-Y");
-		$fechaDeHoy = $this->transformarFecha( $fechaDeHoy );
+		$fechaDeHoy = $this->transformarFecha($fechaDeHoy);
 
 		foreach ($infoPrestamo as $key => $p) {
-			$nombreTrabajador 			= $p->atr_nombres." ".$p->atr_apellidos;
+			$nombreTrabajador 			= $p->atr_nombres . " " . $p->atr_apellidos;
 			$rut 										= $p->atr_rut;
 			$cargo									= $p->cargo;
 			$rutEmpresa							= $p->rut_empresa;
 			$empresa								= $p->empresa;
 
 			$ArrayfechaPrestamo = explode("-", $p->atr_fechaPrestamo);
-			$fecha_prestamo					= $ArrayfechaPrestamo[2]."-".$ArrayfechaPrestamo[1]."-".$ArrayfechaPrestamo[0];
+			$fecha_prestamo					= $ArrayfechaPrestamo[2] . "-" . $ArrayfechaPrestamo[1] . "-" . $ArrayfechaPrestamo[0];
 
 			$monto_solicitado				= number_format($p->atr_montoTotal, 0, ",", ".");
 			$cant_cuotas						= $p->atr_cantidadCuotas;
-
-
 		}
 
-		$monto = str_replace ( "." , "" , $monto_solicitado );
+		$monto = str_replace(".", "", $monto_solicitado);
 		$letrasMontoSolicitado = strtolower($this->convertir($monto));
 
 
@@ -116,7 +115,7 @@ class  PDFController extends CI_Controller {
 			'rut_empresa'						=> $rutEmpresa,
 			'empresa'								=> $empresa,
 			'fecha_prestamo'				=> $fecha_prestamo,
-			'monto_solicitado'			=> "$".$monto_solicitado,
+			'monto_solicitado'			=> "$" . $monto_solicitado,
 			'cant_cuotas'						=> $cant_cuotas,
 			'fecha_hoy'							=> $fechaDeHoy,
 			'letras_monto'					=> $letrasMontoSolicitado,
@@ -128,7 +127,7 @@ class  PDFController extends CI_Controller {
 		// Cargamos la librería
 		$this->load->library('Pdfgenerator');
 		// definamos un nombre para el archivo. No es necesario agregar la extension .pdf
-		$filename = 'prestamo_'.$nombreTrabajador.'';
+		$filename = 'prestamo_' . $nombreTrabajador . '';
 		// generamos el PDF. Pasemos por encima de la configuración general y definamos otro tipo de papel
 		$this->pdfgenerator->generate($html, $filename, TRUE, 'Letter', 'portrait', 0);
 	}
@@ -141,12 +140,14 @@ class  PDFController extends CI_Controller {
 
 
 
-	function cargarPerfilesOcupacionales(){
+	function cargarPerfilesOcupacionales()
+	{
 		$this->load->view('template/menu');
 		$this->load->view('perfilOcupacional/perfilOcupacionalCargos');
 	}
 
-  	function view_perfilesOcupacionales(){
+	function view_perfilesOcupacionales()
+	{
 		$cargo = $this->input->get("cargo");
 		$titulo = "PERFIL OCUPACIONAL DEL PUESTO O VACANTE";
 
@@ -170,14 +171,14 @@ class  PDFController extends CI_Controller {
 		);
 
 		foreach ($infoCargo as $key => $value) {
-			 $nombreCargo = $key->$atr_nombre;
+			$nombreCargo = $key->$atr_nombre;
 		}
 
 		$html = $this->load->view('pdf/perfilOcupacional', $data, TRUE);
 		// Cargamos la librería
 		$this->load->library('Pdfgenerator');
 		// definamos un nombre para el archivo. No es necesario agregar la extension .pdf
-		$filename = 'perfilOcupacional_'.$nombreCargo.'';
+		$filename = 'perfilOcupacional_' . $nombreCargo . '';
 		// generamos el PDF. Pasemos por encima de la configuración general y definamos otro tipo de papel
 		$this->pdfgenerator->generate($html, $filename, TRUE, 'Letter', 'portrait', 0);
 	}
@@ -185,7 +186,8 @@ class  PDFController extends CI_Controller {
 
 
 
-	function view_contratoEstandar(){
+	function view_contratoEstandar()
+	{
 		$trabajador = $this->input->get("trabajador");
 		$ciudadFirma = $this->input->get("ciudadFirma");
 		$fechaInicioContrato = $this->input->get("fechaInicio");
@@ -199,13 +201,13 @@ class  PDFController extends CI_Controller {
 
 		$contador = 0;
 		foreach ($informacion as $key => $i) {
-			if($contador == 0){
+			if ($contador == 0) {
 				$arrayTrabajador = $i;
 			}
-			if($contador == 1){
+			if ($contador == 1) {
 				$arrayRemuneracion = $i;
 			}
-			if($contador == 2){
+			if ($contador == 2) {
 				$arrayRemuneracionExtra = $i;
 			}
 			$contador = $contador + 1;
@@ -213,25 +215,25 @@ class  PDFController extends CI_Controller {
 
 		// Tranformación de fecha actual
 		$fechaDeHoy = date("d-m-Y");
-		$fechaDeHoy = $this->transformarFecha( $fechaDeHoy );
+		$fechaDeHoy = $this->transformarFecha($fechaDeHoy);
 
 		// Tranformación de fecha de inicio del contrato
 		$fechaInicioContrato = explode("-", $fechaInicioContrato);
-		$fechaInicioContrato = $this->transformarFecha( $fechaInicioContrato[2]."-".$fechaInicioContrato[1]."-".$fechaInicioContrato[0] );
+		$fechaInicioContrato = $this->transformarFecha($fechaInicioContrato[2] . "-" . $fechaInicioContrato[1] . "-" . $fechaInicioContrato[0]);
 
 		// Tranformación de fecha de termino del contrato
 		$fechaTerminoContrato = explode("-", $fechaTerminoContrato);
-		$fechaTerminoContrato = $this->transformarFecha( $fechaTerminoContrato[2]."-".$fechaTerminoContrato[1]."-".$fechaTerminoContrato[0] );
+		$fechaTerminoContrato = $this->transformarFecha($fechaTerminoContrato[2] . "-" . $fechaTerminoContrato[1] . "-" . $fechaTerminoContrato[0]);
 
 
 
 		// Tranformación de fecha de nacimiento
 		foreach ($arrayTrabajador as $key => $t) {
 			$idCargo = $t->idCargo;
-			$fecha = $this->transformarFecha( $t->atr_fechaNacimiento );
+			$fecha = $this->transformarFecha($t->atr_fechaNacimiento);
 			$t->atr_fechaNacimiento = $fecha;
-			$t->prevision = strtoupper( $t->prevision );
-			$t->cargo = strtoupper( $t->cargo );
+			$t->prevision = strtoupper($t->prevision);
+			$t->cargo = strtoupper($t->cargo);
 			$sueldo = $t->atr_sueldo;
 		}
 		$funciones = $this->FuncionesModel->getListadoTareasViewContrato($idCargo);
@@ -245,16 +247,16 @@ class  PDFController extends CI_Controller {
 		}
 
 
-		$sueldo = str_replace ( "." , "" , $sueldo  );
+		$sueldo = str_replace(".", "", $sueldo);
 		$letras = strtolower($this->convertir($sueldo));
 
-		$colacion = str_replace ( "." , "" , $colacion  );
+		$colacion = str_replace(".", "", $colacion);
 		$letrasColacion = strtolower($this->convertir($colacion));
 
-		$movilizacion = str_replace ( "." , "" , $movilizacion  );
+		$movilizacion = str_replace(".", "", $movilizacion);
 		$letrasMovilizacion = strtolower($this->convertir($movilizacion));
 
-		$asistencia = str_replace ( "." , "" , $asistencia  );
+		$asistencia = str_replace(".", "", $asistencia);
 		$letrasAsistencia = strtolower($this->convertir($asistencia));
 
 
@@ -286,8 +288,9 @@ class  PDFController extends CI_Controller {
 		// generamos el PDF. Pasemos por encima de la configuración general y definamos otro tipo de papel
 		$this->pdfgenerator->generate($html, $filename, TRUE, 'Letter', 'portrait', 0);
 	}
-	
-	function view_contratoPersonalizado(){
+
+	function view_contratoPersonalizado()
+	{
 		$trabajador = $this->input->get("trabajador");
 		$ciudadFirma = $this->input->get("ciudadFirma");
 		$fechaInicioContrato = $this->input->get("fechaInicio");
@@ -297,7 +300,7 @@ class  PDFController extends CI_Controller {
 		$itemsContrato = explode(",", $itemsContrato);
 		$titulo = "CONTRATO DE TRABAJO A PLAZO";
 
-		$arrayNumerosRomanos = ["I", "II","III","IV","V","VI","VII","VIII","IX","X","XI","XII","XIII", "XIV","XV","XVI","XVII","XVIII","XIX","XX"];
+		$arrayNumerosRomanos = ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI", "XII", "XIII", "XIV", "XV", "XVI", "XVII", "XVIII", "XIX", "XX"];
 
 
 
@@ -308,13 +311,13 @@ class  PDFController extends CI_Controller {
 
 		$contador = 0;
 		foreach ($informacion as $key => $i) {
-			if($contador == 0){
+			if ($contador == 0) {
 				$arrayTrabajador = $i;
 			}
-			if($contador == 1){
+			if ($contador == 1) {
 				$arrayRemuneracion = $i;
 			}
-			if($contador == 2){
+			if ($contador == 2) {
 				$arrayRemuneracionExtra = $i;
 			}
 			$contador = $contador + 1;
@@ -322,25 +325,25 @@ class  PDFController extends CI_Controller {
 
 		// Tranformación de fecha actual
 		$fechaDeHoy = date("d-m-Y");
-		$fechaDeHoy = $this->transformarFecha( $fechaDeHoy );
+		$fechaDeHoy = $this->transformarFecha($fechaDeHoy);
 
 		// Tranformación de fecha de inicio del contrato
 		$fechaInicioContrato = explode("-", $fechaInicioContrato);
-		$fechaInicioContrato = $this->transformarFecha( $fechaInicioContrato[2]."-".$fechaInicioContrato[1]."-".$fechaInicioContrato[0] );
+		$fechaInicioContrato = $this->transformarFecha($fechaInicioContrato[2] . "-" . $fechaInicioContrato[1] . "-" . $fechaInicioContrato[0]);
 
 		// Tranformación de fecha de termino del contrato
 		$fechaTerminoContrato = explode("-", $fechaTerminoContrato);
-		$fechaTerminoContrato = $this->transformarFecha( $fechaTerminoContrato[2]."-".$fechaTerminoContrato[1]."-".$fechaTerminoContrato[0] );
+		$fechaTerminoContrato = $this->transformarFecha($fechaTerminoContrato[2] . "-" . $fechaTerminoContrato[1] . "-" . $fechaTerminoContrato[0]);
 
 
 
 		// Tranformación de fecha de nacimiento
 		foreach ($arrayTrabajador as $key => $t) {
 			$idCargo = $t->idCargo;
-			$fecha = $this->transformarFecha( $t->atr_fechaNacimiento );
+			$fecha = $this->transformarFecha($t->atr_fechaNacimiento);
 			$t->atr_fechaNacimiento = $fecha;
-			$t->prevision = strtoupper( $t->prevision );
-			$t->cargo = strtoupper( $t->cargo );
+			$t->prevision = strtoupper($t->prevision);
+			$t->cargo = strtoupper($t->cargo);
 		}
 		$funciones = $this->FuncionesModel->getListadoTareasViewContrato($idCargo);
 
@@ -353,16 +356,16 @@ class  PDFController extends CI_Controller {
 		}
 
 
-		$sueldo = str_replace ( "." , "" , $sueldo  );
+		$sueldo = str_replace(".", "", $sueldo);
 		$letras = strtolower($this->convertir($sueldo));
 
-		$colacion = str_replace ( "." , "" , $colacion  );
+		$colacion = str_replace(".", "", $colacion);
 		$letrasColacion = strtolower($this->convertir($colacion));
 
-		$movilizacion = str_replace ( "." , "" , $movilizacion  );
+		$movilizacion = str_replace(".", "", $movilizacion);
 		$letrasMovilizacion = strtolower($this->convertir($movilizacion));
 
-		$asistencia = str_replace ( "." , "" , $asistencia  );
+		$asistencia = str_replace(".", "", $asistencia);
 		$letrasAsistencia = strtolower($this->convertir($asistencia));
 
 
@@ -395,12 +398,14 @@ class  PDFController extends CI_Controller {
 		// generamos el PDF. Pasemos por encima de la configuración general y definamos otro tipo de papel
 		$this->pdfgenerator->generate($html, $filename, TRUE, 'Letter', 'portrait', 0);
 	}
-	function view_generarLiquidacion(){
+	function view_generarLiquidacion()
+	{
 		/* llenar con valores desde planilladepago.php */
 		/* $trabajador = $this->input->get("trabajador");
 		$ciudadFirma = $this->input->get("ciudadFirma");
 		$fechaInicioContrato = $this->input->get("fechaInicio");
 		$fechaTerminoContrato = $this->input->get("fechaTermino"); */
+
 		$mesCorriente = $this->input->get("mesCorriente");
 		$razonSocial = $this->input->get("razonSocial");
 		$rutEmpresa = $this->input->get("rutEmpresa");
@@ -415,7 +420,7 @@ class  PDFController extends CI_Controller {
 		$sueldoBase = $this->input->get("sueldoBase");
 		$gratificacionLegal = $this->input->get("gratificacionLegal");
 		$totalImponible = $this->input->get("totalImponible");
-		$montoBono = $this->input->get("montoBono");
+		/* $montoBono = $this->input->get("montoBono"); */
 		$totalNoImponible = $this->input->get("totalNoImponible");
 		$valorPrevision = $this->input->get("valorPrevision");
 		$valorSalud = $this->input->get("valorSalud");
@@ -423,7 +428,7 @@ class  PDFController extends CI_Controller {
 		$valorImpuestoUnico = $this->input->get("valorImpuestoUnico");
 		$totalDescuentosLegales = $this->input->get("totalDescuentosLegales");
 		$fechaOrdenadaAdelanto = $this->input->get("fechaOrdenadaAdelanto");
-		$atr_monto = $this->input->get("atr_monto");//montoAdelanto
+		$atr_monto = $this->input->get("atr_monto"); //montoAdelanto
 		$totalPrestamo = $this->input->get("totalPrestamo");
 		$cantidadCuotas = $this->input->get("cantidadCuotas");
 		$montoDescuento = $this->input->get("montoDescuento");
@@ -433,13 +438,22 @@ class  PDFController extends CI_Controller {
 		$valorAlcanceLiquido = $this->input->get("valorAlcanceLiquido");
 		$montoPrestamo =  $this->input->get("montoPrestamo");
 		$bonoAsistenciaAPagar =  $this->input->get("bonoAsistenciaAPagar");
-		$bonoMobilizacion = 100;
-		$bonoColacion = 100;
+		$bonoMobilizacion = 0;
+		$bonoColacion = 0;
+		$valorUF = $this->input->get("valorUF");
+		$valorUTM = $this->input->get("valorUTM");
+		$fechaTermino = $this->input->get("fechaTermino");
+		$totalTributable =
+			$this->input->get("totalTributable");
+		$adicionalIsapre = 0;
 		/* fin datos calculados */
 		/* vaslores para el documento */
 		$tituloCabecera = "LIQUIDACION DE SUELDO";
 		$data = array(
+			'valorUF'	=> $valorUF,
+			'valorUTM' => $valorUTM,
 			'mesCorriente'	=> $mesCorriente,
+			'fechaTermino'  => $fechaTermino,
 			'razonSocial'	=> $razonSocial,
 			'rutEmpresa'	=> $rutEmpresa,
 			'nombreTrabajador'	=> $nombreTrabajador,
@@ -453,13 +467,14 @@ class  PDFController extends CI_Controller {
 			'sueldoBase'	=> $sueldoBase,
 			'gratificacionLegal'	=> $gratificacionLegal,
 			'totalImponible'	=> $totalImponible,
-			'montoBono'	=> $montoBono,
+			/* 'montoBono'	=> $montoBono, */
 			'bonoAsistenciaAPagar' => $bonoAsistenciaAPagar,
 			'totalNoImponible'	=> $totalNoImponible,
 			'valorPrevision'	=> $valorPrevision,
 			'valorSalud'	=> $valorSalud,
 			'valorCesantia'	=> $valorCesantia,
 			'valorImpuestoUnico'	=> $valorImpuestoUnico,
+			'totalTributable'		=> $totalTributable,
 			'totalDescuentosLegales'	=> $totalDescuentosLegales,
 			'fechaOrdenadaAdelanto'	=> $fechaOrdenadaAdelanto,
 			'atr_monto'	=> $atr_monto,
@@ -471,29 +486,28 @@ class  PDFController extends CI_Controller {
 			'totalHaberes'	=> $totalHaberes,
 			'valorAlcanceLiquido'	=> $valorAlcanceLiquido,
 			'tituloCabecera'	=> $tituloCabecera,
-			'montoPrestamo'=>$montoPrestamo,
+			'montoPrestamo' => $montoPrestamo,
 			'bonoMobilizacion'	=> $bonoMobilizacion,
 			'bonoColacion'	=> $bonoColacion,
-						
+			'adicionalIsapre' => $adicionalIsapre
+
 		);
 		$html = $this->load->view('pdf/liquidacionGenerada', $data, TRUE);
 		$this->load->library('PDFgenerator');
 		$filename = 'liquidacionGenerada';
-		$this->pdfgenerator->generate($html,$filename,TRUE,'Letter', 'portrait', 0);
-
-
-
-
+		$this->pdfgenerator->generate($html, $filename, TRUE, 'Letter', 'portrait', 0);
 	}
 
-	function obtenerInformacion(){
+	function obtenerInformacion()
+	{
 		$trabajador = $this->input->get("trabajador");
 		var_dump($this->ContratosModel->getDetalleTrabajadorContrato($trabajador));
 	}
 
 
 
-	function view_anexoConFechaTermino(){
+	function view_anexoConFechaTermino()
+	{
 		$trabajador = $this->input->get("trabajador");
 		$fechaTermino = $this->input->get("fechaTermino");
 		$ciudadFirma = $this->input->get("ciudadFirma");
@@ -501,23 +515,23 @@ class  PDFController extends CI_Controller {
 
 		// Tranformación de fecha actual
 		$fechaDeHoy = date("d-m-Y");
-		$fechaDeHoy = $this->transformarFecha( $fechaDeHoy );
+		$fechaDeHoy = $this->transformarFecha($fechaDeHoy);
 
-		$fechaTermino = explode( '-', $fechaTermino );
-		$fechaTermino = $fechaTermino[2]."-".$fechaTermino[1]."-".$fechaTermino[0];
-		$fechaTermino = $this->transformarFecha( $fechaTermino );
+		$fechaTermino = explode('-', $fechaTermino);
+		$fechaTermino = $fechaTermino[2] . "-" . $fechaTermino[1] . "-" . $fechaTermino[0];
+		$fechaTermino = $this->transformarFecha($fechaTermino);
 
 		$informacion = $this->ContratosModel->getDetalleTrabajadorContrato($trabajador);
 
 		$contador = 0;
 		foreach ($informacion as $key => $i) {
-			if($contador == 0){
+			if ($contador == 0) {
 				$arrayTrabajador = $i;
 			}
-			if($contador == 1){
+			if ($contador == 1) {
 				$arrayRemuneracion = $i;
 			}
-			if($contador == 2){
+			if ($contador == 2) {
 				$arrayRemuneracionExtra = $i;
 			}
 			$contador = $contador + 1;
@@ -548,13 +562,14 @@ class  PDFController extends CI_Controller {
 
 
 
-	function view_anexoPasarIndefinido(){
+	function view_anexoPasarIndefinido()
+	{
 		$trabajador = $this->input->get("trabajador");
 		$fechaComienzo = $this->input->get("fechaComienzo");
 		$ciudadFirma = $this->input->get("ciudadFirma");
 		$clausulas = $this->input->get("clausula");
 
-		$clausulas = explode( ',', $clausulas );
+		$clausulas = explode(',', $clausulas);
 
 		$cantClausulas = count($clausulas);
 
@@ -565,13 +580,13 @@ class  PDFController extends CI_Controller {
 
 		// Tranformación de fecha actual
 		$fechaDeHoy = date("d-m-Y");
-		$fechaDeHoy = $this->transformarFecha( $fechaDeHoy );
+		$fechaDeHoy = $this->transformarFecha($fechaDeHoy);
 
-		$fechaComienzo = explode( '-', $fechaComienzo );
-		$fechaComienzo = $fechaComienzo[2]."-".$fechaComienzo[1]."-".$fechaComienzo[0];
-		$fechaComienzo = $this->transformarFecha( $fechaComienzo );
+		$fechaComienzo = explode('-', $fechaComienzo);
+		$fechaComienzo = $fechaComienzo[2] . "-" . $fechaComienzo[1] . "-" . $fechaComienzo[0];
+		$fechaComienzo = $this->transformarFecha($fechaComienzo);
 
-		$manipularContrato = $this->PDFModel->manipulaciones($trabajador, date("Y-m-d") );
+		$manipularContrato = $this->PDFModel->manipulaciones($trabajador, date("Y-m-d"));
 		// var_dump($manipularContrato);
 		// exit();
 
@@ -579,13 +594,13 @@ class  PDFController extends CI_Controller {
 
 		$contador = 0;
 		foreach ($informacion as $key => $i) {
-			if($contador == 0){
+			if ($contador == 0) {
 				$arrayTrabajador = $i;
 			}
-			if($contador == 1){
+			if ($contador == 1) {
 				$arrayRemuneracion = $i;
 			}
-			if($contador == 2){
+			if ($contador == 2) {
 				$arrayRemuneracionExtra = $i;
 			}
 			$contador = $contador + 1;
@@ -617,7 +632,8 @@ class  PDFController extends CI_Controller {
 
 
 
-	function view_anexoSujetoLicitacion(){
+	function view_anexoSujetoLicitacion()
+	{
 		$trabajador = $this->input->get("trabajador");
 		$fechaComienzo = $this->input->get("fechaComienzo");
 		$ciudadFirma = $this->input->get("ciudadFirma");
@@ -626,13 +642,13 @@ class  PDFController extends CI_Controller {
 
 		// Tranformación de fecha actual
 		$fechaDeHoy = date("d-m-Y");
-		$fechaDeHoy = $this->transformarFecha( $fechaDeHoy );
+		$fechaDeHoy = $this->transformarFecha($fechaDeHoy);
 
-		$fechaComienzo = explode( '-', $fechaComienzo );
-		$fechaComienzo = $fechaComienzo[2]."-".$fechaComienzo[1]."-".$fechaComienzo[0];
-		$fechaComienzo = $this->transformarFecha( $fechaComienzo );
+		$fechaComienzo = explode('-', $fechaComienzo);
+		$fechaComienzo = $fechaComienzo[2] . "-" . $fechaComienzo[1] . "-" . $fechaComienzo[0];
+		$fechaComienzo = $this->transformarFecha($fechaComienzo);
 
-		$manipularContrato = $this->PDFModel->manipulaciones($trabajador, date("Y-m-d") );
+		$manipularContrato = $this->PDFModel->manipulaciones($trabajador, date("Y-m-d"));
 		// var_dump($manipularContrato);
 		// exit();
 
@@ -640,13 +656,13 @@ class  PDFController extends CI_Controller {
 
 		$contador = 0;
 		foreach ($informacion as $key => $i) {
-			if($contador == 0){
+			if ($contador == 0) {
 				$arrayTrabajador = $i;
 			}
-			if($contador == 1){
+			if ($contador == 1) {
 				$arrayRemuneracion = $i;
 			}
-			if($contador == 2){
+			if ($contador == 2) {
 				$arrayRemuneracionExtra = $i;
 			}
 			$contador = $contador + 1;
@@ -680,7 +696,8 @@ class  PDFController extends CI_Controller {
 
 
 
-	function view_anexoModificacionClausula(){
+	function view_anexoModificacionClausula()
+	{
 		$trabajador = $this->input->get("trabajador");
 		$fechaComienzo = $this->input->get("fechaComienzo");
 		$ciudadFirma = $this->input->get("ciudadFirma");
@@ -689,25 +706,25 @@ class  PDFController extends CI_Controller {
 
 		// Tranformación de fecha actual
 		$fechaDeHoy = date("d-m-Y");
-		$fechaDeHoy = $this->transformarFecha( $fechaDeHoy );
+		$fechaDeHoy = $this->transformarFecha($fechaDeHoy);
 
-		$fechaComienzo = explode( '-', $fechaComienzo );
-		$fechaComienzo = $fechaComienzo[2]."-".$fechaComienzo[1]."-".$fechaComienzo[0];
-		$fechaComienzo = $this->transformarFecha( $fechaComienzo );
+		$fechaComienzo = explode('-', $fechaComienzo);
+		$fechaComienzo = $fechaComienzo[2] . "-" . $fechaComienzo[1] . "-" . $fechaComienzo[0];
+		$fechaComienzo = $this->transformarFecha($fechaComienzo);
 
-		$manipularContrato = $this->PDFModel->manipulaciones($trabajador, date("Y-m-d") );
+		$manipularContrato = $this->PDFModel->manipulaciones($trabajador, date("Y-m-d"));
 
 		$informacion = $this->ContratosModel->getDetalleTrabajadorContrato($trabajador);
 
 		$contador = 0;
 		foreach ($informacion as $key => $i) {
-			if($contador == 0){
+			if ($contador == 0) {
 				$arrayTrabajador = $i;
 			}
-			if($contador == 1){
+			if ($contador == 1) {
 				$arrayRemuneracion = $i;
 			}
-			if($contador == 2){
+			if ($contador == 2) {
 				$arrayRemuneracionExtra = $i;
 			}
 			$contador = $contador + 1;
@@ -745,22 +762,23 @@ class  PDFController extends CI_Controller {
 
 
 
-	function view_anexoHorasExtras(){
+	function view_anexoHorasExtras()
+	{
 		$trabajador = $this->input->get("trabajador");
 		$motivo = $this->input->get("motivo");
 		$ciudadFirma = $this->input->get("ciudadFirma");
 		$horasextras = $this->input->get("horas");
 		$fechaTermino = $this->input->get("fechaLimite");
 
-		$fechaTermino = explode( '-', $fechaTermino );
-		$fechaTermino = $fechaTermino[2]."-".$fechaTermino[1]."-".$fechaTermino[0];
-		$fechaTermino = $this->transformarFecha( $fechaTermino );
+		$fechaTermino = explode('-', $fechaTermino);
+		$fechaTermino = $fechaTermino[2] . "-" . $fechaTermino[1] . "-" . $fechaTermino[0];
+		$fechaTermino = $this->transformarFecha($fechaTermino);
 
 		$titulo = "PACTO TEMPORAL DE HORAS EXTRAS";
 
 		// Tranformación de fecha actual
 		$fechaDeHoy = date("d-m-Y");
-		$fechaDeHoy = $this->transformarFecha( $fechaDeHoy );
+		$fechaDeHoy = $this->transformarFecha($fechaDeHoy);
 
 		// $fechaComienzo = explode( '-', $fechaComienzo );
 		// $fechaComienzo = $fechaComienzo[2]."-".$fechaComienzo[1]."-".$fechaComienzo[0];
@@ -772,13 +790,13 @@ class  PDFController extends CI_Controller {
 
 		$contador = 0;
 		foreach ($informacion as $key => $i) {
-			if($contador == 0){
+			if ($contador == 0) {
 				$arrayTrabajador = $i;
 			}
-			if($contador == 1){
+			if ($contador == 1) {
 				$arrayRemuneracion = $i;
 			}
-			if($contador == 2){
+			if ($contador == 2) {
 				$arrayRemuneracionExtra = $i;
 			}
 			$contador = $contador + 1;
@@ -828,96 +846,98 @@ class  PDFController extends CI_Controller {
 
 
 
-	function transformarFecha( $fecha ){
+	function transformarFecha($fecha)
+	{
 		// Convertir fecha guardada en bd al formato 14 enero 2001
 		$partesFecha = explode("-", $fecha);
 
-		switch ( $partesFecha[1] ) {
-	    case "01":
-	        $nombreMes = "enero";
-	        break;
+		switch ($partesFecha[1]) {
+			case "01":
+				$nombreMes = "enero";
+				break;
 			case "02":
-	        $nombreMes = "febrero";
-	        break;
+				$nombreMes = "febrero";
+				break;
 			case "03":
-	        $nombreMes = "marzo";
-	        break;
+				$nombreMes = "marzo";
+				break;
 			case "04":
-	        $nombreMes = "abril";
-	        break;
+				$nombreMes = "abril";
+				break;
 			case "05":
-	        $nombreMes = "mayo";
-	        break;
+				$nombreMes = "mayo";
+				break;
 			case "06":
-	        $nombreMes = "junio";
-	        break;
+				$nombreMes = "junio";
+				break;
 			case "07":
-	        $nombreMes = "julio";
-	        break;
+				$nombreMes = "julio";
+				break;
 			case "08":
-	        $nombreMes = "agosto";
-	        break;
+				$nombreMes = "agosto";
+				break;
 			case "09":
-	        $nombreMes = "septiembre";
-	        break;
+				$nombreMes = "septiembre";
+				break;
 			case "10":
-	        $nombreMes = "octubre";
-	        break;
+				$nombreMes = "octubre";
+				break;
 			case "11":
-	        $nombreMes = "noviembre";
-	        break;
+				$nombreMes = "noviembre";
+				break;
 			case "12":
-	        $nombreMes = "diciembre";
-	        break;
+				$nombreMes = "diciembre";
+				break;
 		}
-		return $fecha = $partesFecha[0]." de ".$nombreMes." de ".$partesFecha[2];
+		return $fecha = $partesFecha[0] . " de " . $nombreMes . " de " . $partesFecha[2];
 	}
 
 
-	function transformarFechaAJAX( ){
+	function transformarFechaAJAX()
+	{
 		// Convertir fecha guardada en bd al formato 14 enero 2001
 		$fecha = $this->input->post('fecha');
 		$partesFecha = explode("-", $fecha);
 
-		switch ( $partesFecha[1] ) {
+		switch ($partesFecha[1]) {
 			case "01":
-					$nombreMes = "enero";
-					break;
+				$nombreMes = "enero";
+				break;
 			case "02":
-					$nombreMes = "febrero";
-					break;
+				$nombreMes = "febrero";
+				break;
 			case "03":
-					$nombreMes = "marzo";
-					break;
+				$nombreMes = "marzo";
+				break;
 			case "04":
-					$nombreMes = "abril";
-					break;
+				$nombreMes = "abril";
+				break;
 			case "05":
-					$nombreMes = "mayo";
-					break;
+				$nombreMes = "mayo";
+				break;
 			case "06":
-					$nombreMes = "junio";
-					break;
+				$nombreMes = "junio";
+				break;
 			case "07":
-					$nombreMes = "julio";
-					break;
+				$nombreMes = "julio";
+				break;
 			case "08":
-					$nombreMes = "agosto";
-					break;
+				$nombreMes = "agosto";
+				break;
 			case "09":
-					$nombreMes = "septiembre";
-					break;
+				$nombreMes = "septiembre";
+				break;
 			case "10":
-					$nombreMes = "octubre";
-					break;
+				$nombreMes = "octubre";
+				break;
 			case "11":
-					$nombreMes = "noviembre";
-					break;
+				$nombreMes = "noviembre";
+				break;
 			case "12":
-					$nombreMes = "diciembre";
-					break;
+				$nombreMes = "diciembre";
+				break;
 		}
-		$fecha = $partesFecha[0]." de ".$nombreMes." de ".$partesFecha[2];
+		$fecha = $partesFecha[0] . " de " . $nombreMes . " de " . $partesFecha[2];
 		echo json_encode($fecha);
 	}
 
@@ -927,94 +947,94 @@ class  PDFController extends CI_Controller {
 
 	public function convertir($number, $moneda = '', $centimos = '', $forzarCentimos = false)
 	{
-			$converted = '';
-			$decimales = '';
+		$converted = '';
+		$decimales = '';
 
-			if (($number < 0) || ($number > 999999999)) {
-					return 'No es posible convertir el numero a letras';
+		if (($number < 0) || ($number > 999999999)) {
+			return 'No es posible convertir el numero a letras';
+		}
+
+		$div_decimales = explode('.', $number);
+
+		if (count($div_decimales) > 1) {
+			$number = $div_decimales[0];
+			$decNumberStr = (string) $div_decimales[1];
+			if (strlen($decNumberStr) == 2) {
+				$decNumberStrFill = str_pad($decNumberStr, 9, '0', STR_PAD_LEFT);
+				$decCientos = substr($decNumberStrFill, 6);
+				$decimales = self::convertGroup($decCientos);
 			}
+		} else if (count($div_decimales) == 1 && $forzarCentimos) {
+			$decimales = 'CERO ';
+		}
 
-			$div_decimales = explode('.',$number);
+		$numberStr = (string) $number;
+		$numberStrFill = str_pad($numberStr, 9, '0', STR_PAD_LEFT);
+		$millones = substr($numberStrFill, 0, 3);
+		$miles = substr($numberStrFill, 3, 3);
+		$cientos = substr($numberStrFill, 6);
 
-			if(count($div_decimales) > 1){
-					$number = $div_decimales[0];
-					$decNumberStr = (string) $div_decimales[1];
-					if(strlen($decNumberStr) == 2){
-							$decNumberStrFill = str_pad($decNumberStr, 9, '0', STR_PAD_LEFT);
-							$decCientos = substr($decNumberStrFill, 6);
-							$decimales = self::convertGroup($decCientos);
-					}
+		if (intval($millones) > 0) {
+			if ($millones == '001') {
+				$converted .= 'UN MILLON ';
+			} else if (intval($millones) > 0) {
+				$converted .= sprintf('%sMILLONES ', self::convertGroup($millones));
 			}
-			else if (count($div_decimales) == 1 && $forzarCentimos){
-					$decimales = 'CERO ';
+		}
+
+		if (intval($miles) > 0) {
+			if ($miles == '001') {
+				$converted .= 'MIL ';
+			} else if (intval($miles) > 0) {
+				$converted .= sprintf('%sMIL ', self::convertGroup($miles));
 			}
+		}
 
-			$numberStr = (string) $number;
-			$numberStrFill = str_pad($numberStr, 9, '0', STR_PAD_LEFT);
-			$millones = substr($numberStrFill, 0, 3);
-			$miles = substr($numberStrFill, 3, 3);
-			$cientos = substr($numberStrFill, 6);
-
-			if (intval($millones) > 0) {
-					if ($millones == '001') {
-							$converted .= 'UN MILLON ';
-					} else if (intval($millones) > 0) {
-							$converted .= sprintf('%sMILLONES ', self::convertGroup($millones));
-					}
+		if (intval($cientos) > 0) {
+			if ($cientos == '001') {
+				$converted .= 'UN ';
+			} else if (intval($cientos) > 0) {
+				$converted .= sprintf('%s ', self::convertGroup($cientos));
 			}
+		}
 
-			if (intval($miles) > 0) {
-					if ($miles == '001') {
-							$converted .= 'MIL ';
-					} else if (intval($miles) > 0) {
-							$converted .= sprintf('%sMIL ', self::convertGroup($miles));
-					}
-			}
+		if (empty($decimales)) {
+			$valor_convertido = $converted . strtoupper($moneda);
+		} else {
+			$valor_convertido = $converted . strtoupper($moneda) . ' CON ' . $decimales . ' ' . strtoupper($centimos);
+		}
 
-			if (intval($cientos) > 0) {
-					if ($cientos == '001') {
-							$converted .= 'UN ';
-					} else if (intval($cientos) > 0) {
-							$converted .= sprintf('%s ', self::convertGroup($cientos));
-					}
-			}
-
-			if(empty($decimales)){
-					$valor_convertido = $converted . strtoupper($moneda);
-			} else {
-					$valor_convertido = $converted . strtoupper($moneda) . ' CON ' . $decimales . ' ' . strtoupper($centimos);
-			}
-
-			return $valor_convertido;
+		return $valor_convertido;
 	}
 
 	private static function convertGroup($n)
 	{
-			$output = '';
+		$output = '';
 
-			if ($n == '100') {
-					$output = "CIEN ";
-			} else if ($n[0] !== '0') {
-					$output = self::$CENTENAS[$n[0] - 1];
-			}
+		if ($n == '100') {
+			$output = "CIEN ";
+		} else if ($n[0] !== '0') {
+			$output = self::$CENTENAS[$n[0] - 1];
+		}
 
-			$k = intval(substr($n,1));
+		$k = intval(substr($n, 1));
 
-			if ($k <= 20) {
-					$output .= self::$UNIDADES[$k];
+		if ($k <= 20) {
+			$output .= self::$UNIDADES[$k];
+		} else {
+			if (($k > 30) && ($n[2] !== '0')) {
+				$output .= sprintf('%sY %s', self::$DECENAS[intval($n[1]) - 2], self::$UNIDADES[intval($n[2])]);
 			} else {
-					if(($k > 30) && ($n[2] !== '0')) {
-							$output .= sprintf('%sY %s', self::$DECENAS[intval($n[1]) - 2], self::$UNIDADES[intval($n[2])]);
-					} else {
-							$output .= sprintf('%s%s', self::$DECENAS[intval($n[1]) - 2], self::$UNIDADES[intval($n[2])]);
-					}
+				$output .= sprintf('%s%s', self::$DECENAS[intval($n[1]) - 2], self::$UNIDADES[intval($n[2])]);
 			}
+		}
 
-			return $output;
+		return $output;
 	}
 
 
-	function getManipularContrato(){
+	function getManipularContrato()
+	{
 		$idTrabajador 					= $this->input->post("idTrabajador");
 		$numRomano 							= $this->input->post("numRomano");
 		$item 									= $this->input->post("item");
@@ -1024,24 +1044,15 @@ class  PDFController extends CI_Controller {
 		$str1 = str_replace(array("\r\n", "\n\r", "\r", "\n"), "<br />", $modificacion);
 		var_dump($str1);
 
-		$resultado = $this->PDFModel->getManipularContrato( $numRomano, $item, $modificacion, $fecha, $idTrabajador );
+		$resultado = $this->PDFModel->getManipularContrato($numRomano, $item, $modificacion, $fecha, $idTrabajador);
 		echo json_encode($resultado);
 	}
 
-	function limpiarManipularContrato(){
+	function limpiarManipularContrato()
+	{
 		$fecha 									= date("Y-m-d");
 
-		$resultado = $this->PDFModel->limpiarManipularContrato( $fecha );
+		$resultado = $this->PDFModel->limpiarManipularContrato($fecha);
 		echo json_encode($resultado);
 	}
-
-
-
-
-
-
-
-
-
-
 }

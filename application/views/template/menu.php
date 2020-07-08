@@ -18,45 +18,45 @@ $base_url = base_url();
     <title>Grupo Firma</title>
 
     <!-- Bootstrap -->
-    <link href="<?php echo base_url() ?>assets/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="<?php echo base_url() ;   ?>assets/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome -->
-    <link href="<?php echo base_url() ?>assets/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="<?php echo base_url() ;   ?>assets/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
 
-    <link href="<?php echo base_url() ?>assets/vendors/nprogress/nprogress.css" rel="stylesheet">
+    <link href="<?php echo base_url() ;   ?>assets/vendors/nprogress/nprogress.css" rel="stylesheet">
     <!-- iCheck -->
-    <link href="<?php echo base_url() ?>assets/vendors/iCheck/skins/flat/green.css" rel="stylesheet">
+    <link href="<?php echo base_url() ;   ?>assets/vendors/iCheck/skins/flat/green.css" rel="stylesheet">
     <!-- bootstrap-progressbar -->
-    <link href="<?php echo base_url() ?>assets/vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet">
+    <link href="<?php echo base_url() ;   ?>assets/vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet">
     <!-- JQVMap -->
-    <link href="<?php echo base_url() ?>assets/vendors/jqvmap/dist/jqvmap.min.css" rel="stylesheet"/>
+    <link href="<?php echo base_url() ;   ?>assets/vendors/jqvmap/dist/jqvmap.min.css" rel="stylesheet"/>
     <!-- bootstrap-daterangepicker -->
-    <link href="<?php echo base_url() ?>assets/vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
+    <link href="<?php echo base_url() ;   ?>assets/vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
 
-    <link href="<?php echo base_url() ?>assets/css/toastr.min.css" rel="stylesheet" type="text/css" />
+    <link href="<?php echo base_url() ;   ?>assets/css/toastr.min.css" rel="stylesheet" type="text/css" />
 
     <!-- Switchery -->
-    <link href="<?php echo base_url() ?>assets/vendors/switchery/dist/switchery.min.css" rel="stylesheet">
+    <link href="<?php echo base_url() ;   ?>assets/vendors/switchery/dist/switchery.min.css" rel="stylesheet">
 
     <!-- MODIDEV -->
-    <link href="<?php echo base_url() ?>assets/css/modidev.css" rel="stylesheet">
+    <link href="<?php echo base_url() ;   ?>assets/css/modidev.css" rel="stylesheet">
 
     <!-- Autocompletado -->
-    <link href="<?php echo base_url() ?>assets/css/jquery-ui.css" rel="stylesheet">
+    <link href="<?php echo base_url() ;   ?>assets/css/jquery-ui.css" rel="stylesheet">
 
     <!-- SELECT2 -->
     <link href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" rel="stylesheet" />
 
     <!-- FullCalendar -->
-    <link href="<?php echo base_url() ?>assets/vendors/fullcalendar/packages/core/main.css" rel="stylesheet">
-    <link href="<?php echo base_url() ?>assets/vendors/fullcalendar/packages/daygrid/main.css" rel="stylesheet">
-    <link href="<?php echo base_url() ?>assets/vendors/fullcalendar/packages/list/main.css" rel="stylesheet">
+    <link href="<?php echo base_url() ;   ?>assets/vendors/fullcalendar/packages/core/main.css" rel="stylesheet">
+    <link href="<?php echo base_url() ;   ?>assets/vendors/fullcalendar/packages/daygrid/main.css" rel="stylesheet">
+    <link href="<?php echo base_url() ;   ?>assets/vendors/fullcalendar/packages/list/main.css" rel="stylesheet">
 
 
 
 
 
     <!-- Custom Theme Style -->
-    <link href="<?php echo base_url() ?>assets/build/css/custom.min.css" rel="stylesheet">
+    <link href="<?php echo base_url() ;   ?>assets/build/css/custom.min.css" rel="stylesheet">
 
 
 
@@ -77,7 +77,7 @@ $base_url = base_url();
               <!-- menu profile quick info -->
               <!-- <div class="profile clearfix">
                 <div class="profile_pic">
-                  <img src="<?php echo base_url() ?>assets/production/images/img.jpg" alt="..." class="img-circle profile_img">
+                  <img src="<?php echo base_url() ;   ?>assets/production/images/img.jpg" alt="..." class="img-circle profile_img">
                 </div>
                 <div class="profile_info">
                   <span>Grupo Firma CHILE</span>
@@ -103,7 +103,7 @@ $base_url = base_url();
 
                           <?php  if ( $valueModulo->cf_menu == "1" ) {  ?>
                             <li>
-                              <a href="<?php echo base_url() ?>index.php/dashboard">
+                              <a href="<?php echo base_url() ;   ?>index.php/dashboard">
                                 <i class="fa fa-home"></i> Inicio
                               </a>
                             </li>
@@ -111,7 +111,7 @@ $base_url = base_url();
 
                             <?php  if ( $valueModulo->cf_menu == "2" ) {  ?>
                             <li>
-                              <a href="<?php echo base_url() ?>index.php/inicioTrabajadores">
+                              <a href="<?php echo base_url() ;   ?>index.php/inicioTrabajadores">
                                 <i class="fa fa-users"></i> Trabajadores
                               </a>
                             </li>
@@ -119,7 +119,7 @@ $base_url = base_url();
 
                             <?php  if ( $valueModulo->cf_menu == "3" ) {  ?>
                             <li>
-                              <a href="<?php echo base_url() ?>index.php/inicioHistorial">
+                              <a href="<?php echo base_url() ;   ?>index.php/inicioHistorial">
                                 <i class="fa fa-archive"></i> Historial de trabajadores
                               </a>
                             </li>
@@ -127,7 +127,7 @@ $base_url = base_url();
 
                             <?php  if ( $valueModulo->cf_menu == "4" ) {  ?>
                             <li>
-                              <a href="<?php echo base_url() ?>index.php/inicioGestorContratos">
+                              <a href="<?php echo base_url() ;   ?>index.php/inicioGestorContratos">
                                 <i class="fa fa-file"></i> Generar contrato
                               </a>
                             </li>
@@ -136,7 +136,7 @@ $base_url = base_url();
 
                           <?php  if ( $valueModulo->cf_menu == "5" ) {  ?>
                             <li>
-                              <a href="<?php echo base_url() ?>index.php/inicioGestorAnexos">
+                              <a href="<?php echo base_url() ;   ?>index.php/inicioGestorAnexos">
                                 <i class="fa fa-file"></i> Generar anexo
                               </a>
                             </li>
@@ -144,7 +144,7 @@ $base_url = base_url();
 
                           <?php  if ( $valueModulo->cf_menu == "11" ) {  ?>
                             <li>
-                              <a href="<?php echo base_url() ?>index.php/inicioGestorAsistencia">
+                              <a href="<?php echo base_url() ;   ?>index.php/inicioGestorAsistencia">
                                 <i class="fa fa-calendar"></i> Gestor de asistencia
                               </a>
                             </li>
@@ -154,8 +154,8 @@ $base_url = base_url();
                           <?php  if ( $valueModulo->cf_menu == "6" ) {  ?>
                             <li><a><i class="fa fa-shield"></i> Permisos <span class="fa fa-chevron-down"></span></a>
                             <ul class="nav child_menu">
-                              <li><a href="<?php echo base_url() ?>index.php/inicioPermisosPerfil">Perfiles</a></li>
-                              <li><a href="<?php echo base_url() ?>index.php/inicioPermisosUsuario">Usuarios</a></li>
+                              <li><a href="<?php echo base_url() ;   ?>index.php/inicioPermisosPerfil">Perfiles</a></li>
+                              <li><a href="<?php echo base_url() ;   ?>index.php/inicioPermisosUsuario">Usuarios</a></li>
                             </ul>
                           <?php } ?>
 
@@ -165,15 +165,15 @@ $base_url = base_url();
                               <?php foreach ($permisos as $key => $valuePermiso) {  ?>
 
                                 <?php  if ( $valuePermiso->cf_existencia_permiso == "102") {  ?>
-                                  <li><a href="<?php echo base_url() ?>index.php/inicioAdelantos">Adelantos</a></li>
+                                  <li><a href="<?php echo base_url() ;   ?>index.php/inicioAdelantos">Adelantos</a></li>
                                 <?php } ?>
 
                                 <?php  if ( $valuePermiso->cf_existencia_permiso == "106") {  ?>
-                                  <li><a href="<?php echo base_url() ?>index.php/inicioPrestamos">Préstamos</a></li>
+                                  <li><a href="<?php echo base_url() ;   ?>index.php/inicioPrestamos">Préstamos</a></li>
                                 <?php } ?>
 
                                 <?php  if ( $valuePermiso->cf_existencia_permiso == "111") {  ?>
-                                  <li><a href="<?php echo base_url() ?>index.php/inicioPlanillaPagos">Planilla de pagos</a></li>
+                                  <li><a href="<?php echo base_url() ;   ?>index.php/inicioPlanillaPagos">Planilla de pagos</a></li>
                                 <?php } ?>
 
                               <?php } ?>
@@ -189,27 +189,27 @@ $base_url = base_url();
                               <?php foreach ($permisos as $key => $valuePermiso) {  ?>
 
                                 <?php  if ( $valuePermiso->cf_existencia_permiso == "84") {  ?>
-                                  <li><a href="<?php echo base_url() ?>index.php/inicioLiquidaciones">Liquidaciones</a></li>
+                                  <li><a href="<?php echo base_url() ;   ?>index.php/inicioLiquidaciones">Liquidaciones</a></li>
                                 <?php } ?>
 
                                 <?php  if ( $valuePermiso->cf_existencia_permiso == "87") {  ?>
-                                  <li><a href="<?php echo base_url() ?>index.php/inicioFiniquitos">Finiquitos</a></li>
+                                  <li><a href="<?php echo base_url() ;   ?>index.php/inicioFiniquitos">Finiquitos</a></li>
                                 <?php } ?>
 
                                 <?php  if ( $valuePermiso->cf_existencia_permiso == "55") {  ?>
-                                  <li><a href="<?php echo base_url() ?>index.php/inicioContratos">Contratos</a></li>
+                                  <li><a href="<?php echo base_url() ;   ?>index.php/inicioContratos">Contratos</a></li>
                                 <?php } ?>
 
                                 <?php  if ( $valuePermiso->cf_existencia_permiso == "58") {  ?>
-                                  <li><a href="<?php echo base_url() ?>index.php/inicioTransferencias">Transferencias</a></li>
+                                  <li><a href="<?php echo base_url() ;   ?>index.php/inicioTransferencias">Transferencias</a></li>
                                 <?php } ?>
 
                                 <?php  if ( $valuePermiso->cf_existencia_permiso == "61") {  ?>
-                                  <li><a href="<?php echo base_url() ?>index.php/inicioCartasAmonestacion">Cartas de amonestación</a></li>
+                                  <li><a href="<?php echo base_url() ;   ?>index.php/inicioCartasAmonestacion">Cartas de amonestación</a></li>
                                 <?php } ?>
 
                                 <?php  if ( $valuePermiso->cf_existencia_permiso == "64") {  ?>
-                                  <li><a href="<?php echo base_url() ?>index.php/perfilOcupacionalVista">Perfiles Ocupacionales</a></li>
+                                  <li><a href="<?php echo base_url() ;   ?>index.php/perfilOcupacionalVista">Perfiles Ocupacionales</a></li>
                                 <?php } ?>
 
                               <?php } ?>
@@ -225,23 +225,23 @@ $base_url = base_url();
                               <?php foreach ($permisos as $key => $valuePermiso) {  ?>
 
                                 <?php  if ( $valuePermiso->cf_existencia_permiso == "39") {  ?>
-                                  <li><a href="<?php echo base_url() ?>index.php/inicioRequisitosMinimos">Requisitos Mínimos</a></li>
+                                  <li><a href="<?php echo base_url() ;   ?>index.php/inicioRequisitosMinimos">Requisitos Mínimos</a></li>
                                 <?php } ?>
 
                                 <?php  if ( $valuePermiso->cf_existencia_permiso == "42") {  ?>
-                                  <li><a href="<?php echo base_url() ?>index.php/inicioFunciones">Funciones</a></li>
+                                  <li><a href="<?php echo base_url() ;   ?>index.php/inicioFunciones">Funciones</a></li>
                                 <?php } ?>
 
                                 <?php  if ( $valuePermiso->cf_existencia_permiso == "45") {  ?>
-                                  <li><a href="<?php echo base_url() ?>index.php/inicioCompetencias">Competencias y Características</a></li>
+                                  <li><a href="<?php echo base_url() ;   ?>index.php/inicioCompetencias">Competencias y Características</a></li>
                                 <?php } ?>
 
                                 <?php  if ( $valuePermiso->cf_existencia_permiso == "48") {  ?>
-                                  <li><a href="<?php echo base_url() ?>index.php/inicioConocimientos">Conocimientos Básicos</a></li>
+                                  <li><a href="<?php echo base_url() ;   ?>index.php/inicioConocimientos">Conocimientos Básicos</a></li>
                                 <?php } ?>
 
                                 <?php  if ( $valuePermiso->cf_existencia_permiso == "51") {  ?>
-                                  <li><a href="<?php echo base_url() ?>index.php/inicioOtros">Otros Antecedentes</a></li>
+                                  <li><a href="<?php echo base_url() ;   ?>index.php/inicioOtros">Otros Antecedentes</a></li>
                                 <?php } ?>
 
                               <?php } ?>
@@ -258,59 +258,59 @@ $base_url = base_url();
                               <?php foreach ($permisos as $key => $valuePermiso) {  ?>
 
                                 <?php  if ( $valuePermiso->cf_existencia_permiso == "90") {  ?>
-                                  <li><a href="<?php echo base_url() ?>index.php/inicioVehiculos">Vehículos</a></li>
+                                  <li><a href="<?php echo base_url() ;   ?>index.php/inicioVehiculos">Vehículos</a></li>
                                 <?php } ?>
 
                                 <?php  if ( $valuePermiso->cf_existencia_permiso == "94") {  ?>
-                                  <li><a href="<?php echo base_url() ?>index.php/inicioMarcas">Marcas</a></li>
+                                  <li><a href="<?php echo base_url() ;   ?>index.php/inicioMarcas">Marcas</a></li>
                                 <?php } ?>
 
                                 <?php  if ( $valuePermiso->cf_existencia_permiso == "98") {  ?>
-                                  <li><a href="<?php echo base_url() ?>index.php/inicioModelos">Modelos</a></li>
+                                  <li><a href="<?php echo base_url() ;   ?>index.php/inicioModelos">Modelos</a></li>
                                 <?php } ?>
 
                                 <?php  if ( $valuePermiso->cf_existencia_permiso == "1") {  ?>
-                                  <li><a href="<?php echo base_url() ?>index.php/inicioCargos">Cargos</a></li>
+                                  <li><a href="<?php echo base_url() ;   ?>index.php/inicioCargos">Cargos</a></li>
                                 <?php } ?>
 
                                 <?php  if ( $valuePermiso->cf_existencia_permiso == "6") {  ?>
-                                  <li><a href="<?php echo base_url() ?>index.php/inicioCiudades">Ciudades</a></li>
+                                  <li><a href="<?php echo base_url() ;   ?>index.php/inicioCiudades">Ciudades</a></li>
                                 <?php } ?>
 
                                 <?php  if ( $valuePermiso->cf_existencia_permiso == "9") {  ?>
-                                  <li><a href="<?php echo base_url() ?>index.php/inicioEmpresa">Empresas</a></li>
+                                  <li><a href="<?php echo base_url() ;   ?>index.php/inicioEmpresa">Empresas</a></li>
                                 <?php } ?>
 
                                 <?php  if ( $valuePermiso->cf_existencia_permiso == "13") {  ?>
-                                  <li><a href="<?php echo base_url() ?>index.php/inicioEstadosCiviles">Estado Civil</a></li>
+                                  <li><a href="<?php echo base_url() ;   ?>index.php/inicioEstadosCiviles">Estado Civil</a></li>
                                 <?php } ?>
 
                                 <?php  if ( $valuePermiso->cf_existencia_permiso == "16") {  ?>
-                                  <li><a href="<?php echo base_url() ?>index.php/inicioEstadoContrato">Estados de contrato</a></li>
+                                  <li><a href="<?php echo base_url() ;   ?>index.php/inicioEstadoContrato">Estados de contrato</a></li>
                                 <?php } ?>
 
                                 <?php  if ( $valuePermiso->cf_existencia_permiso == "20") {  ?>
-                                  <li><a href="<?php echo base_url() ?>index.php/inicioNacionalidades">Nacionalidades</a></li>
+                                  <li><a href="<?php echo base_url() ;   ?>index.php/inicioNacionalidades">Nacionalidades</a></li>
                                 <?php } ?>
 
                                 <?php  if ( $valuePermiso->cf_existencia_permiso == "24") {  ?>
-                                  <li><a href="<?php echo base_url() ?>index.php/inicioSalud">Previsión de salud</a></li>
+                                  <li><a href="<?php echo base_url() ;   ?>index.php/inicioSalud">Previsión de salud</a></li>
                                 <?php } ?>
 
                                 <?php  if ( $valuePermiso->cf_existencia_permiso == "28") {  ?>
-                                  <li><a href="<?php echo base_url() ?>index.php/inicioPrevision">Previsión</a></li>
+                                  <li><a href="<?php echo base_url() ;   ?>index.php/inicioPrevision">Previsión</a></li>
                                 <?php } ?>
 
                                 <?php  if ( $valuePermiso->cf_existencia_permiso == "32") {  ?>
-                                  <li><a href="<?php echo base_url() ?>index.php/inicioSucursales">Sucursales</a></li>
+                                  <li><a href="<?php echo base_url() ;   ?>index.php/inicioSucursales">Sucursales</a></li>
                                 <?php } ?>
 
                                 <?php  if ( $valuePermiso->cf_existencia_permiso == "79") {  ?>
-                                  <li><a href="<?php echo base_url() ?>index.php/inicioUsuarios">Usuarios</a></li>
+                                  <li><a href="<?php echo base_url() ;   ?>index.php/inicioUsuarios">Usuarios</a></li>
                                 <?php } ?>
 
                                 <?php  if ( $valuePermiso->cf_existencia_permiso == "119") {  ?>
-                                  <li><a href="<?php echo base_url() ?>index.php/inicioBancos">Bancos</a></li>
+                                  <li><a href="<?php echo base_url() ;   ?>index.php/inicioBancos">Bancos</a></li>
                                 <?php } ?>
 
                               <?php } ?>
@@ -352,14 +352,14 @@ $base_url = base_url();
               <ul class=" navbar-right">
                 <li class="nav-item dropdown open" style="padding-left: 15px;">
                   <a href="javascript:;" class="user-profile dropdown-toggle" aria-haspopup="true" id="navbarDropdown" data-toggle="dropdown" aria-expanded="false">
-                    <!-- <img src="<?php echo base_url() ?>assets/production/images/img.jpg" alt=""> -->
+                    <!-- <img src="<?php echo base_url() ;   ?>assets/production/images/img.jpg" alt=""> -->
                     Bienvenido
                     <?php echo $usuario[0]->atr_nombre ?>
                   </a>
                   <div class="dropdown-menu dropdown-usermenu pull-right" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item"  href="<?php echo base_url() ?>index.php/miPerfil"><i class="fa fa-user pull-right"></i> Mi perfil</a>
+                    <a class="dropdown-item"  href="<?php echo base_url() ;   ?>index.php/miPerfil"><i class="fa fa-user pull-right"></i> Mi perfil</a>
                     <!-- <a class="dropdown-item"  href="javascript:;"> <i class="fa fa-user pull-right"></i>Mi perfil</a> -->
-                    <a class="dropdown-item"  href="<?php echo base_url() ?>index.php/login"><i class="fa fa-sign-out pull-right"></i> Cerrar Sesión</a>
+                    <a class="dropdown-item"  href="<?php echo base_url() ;   ?>index.php/login"><i class="fa fa-sign-out pull-right"></i> Cerrar Sesión</a>
                   </div>
                 </li>
 

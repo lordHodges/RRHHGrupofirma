@@ -6,54 +6,68 @@ $permisos =  $data['permisos'];
 ?>
 
 <?php
-$view_verCargo = 0; $view_editarCargo = 0; $view_editarRemuneracion = 0; $view_crearCargo = 0; $view_exportarCargo = 0;
+$view_verCargo = 0;
+$view_editarCargo = 0;
+$view_editarRemuneracion = 0;
+$view_crearCargo = 0;
+$view_exportarCargo = 0;
 foreach ($permisos as $key => $value) {
-  if ($value->cf_existencia_permiso == "1") { $view_verCargo = "1"; } else
-  if ($value->cf_existencia_permiso == "2") { $view_editarCargo = "1"; } else
-  if ($value->cf_existencia_permiso == "3") { $view_editarRemuneracion = "1"; } else
-  if ($value->cf_existencia_permiso == "4") { $view_crearCargo = "1"; } else
-  if ($value->cf_existencia_permiso == "5") { $view_exportarCargo = "1"; }
+    if ($value->cf_existencia_permiso == "1") {
+        $view_verCargo = "1";
+    } else
+  if ($value->cf_existencia_permiso == "2") {
+        $view_editarCargo = "1";
+    } else
+  if ($value->cf_existencia_permiso == "3") {
+        $view_editarRemuneracion = "1";
+    } else
+  if ($value->cf_existencia_permiso == "4") {
+        $view_crearCargo = "1";
+    } else
+  if ($value->cf_existencia_permiso == "5") {
+        $view_exportarCargo = "1";
+    }
 }
 
-if($usuario[0]->atr_activo == "1" ) { ?>
+if ($usuario[0]->atr_activo == "1") { ?>
 
-<div class="right_col" role="main">
-    <!-- Contenedor principal -->
-    <div class="x_content">
+    <div class="right_col" role="main">
+        <!-- Contenedor principal -->
+        <div class="x_content">
 
-    </div>
+        </div>
 
-    <div class="row">
-        <div class="x_panel">
-            <div class="x_content">
-              <h3 class="text-center">CARGOS</h3><br>
-                <?php if ( $view_crearCargo == 1 ) {  ?>
-                  <button type="button" class="btn modidev-btn btn-sm" data-toggle="modal" data-target=".bd-example-modal-lg" style="margin-bottom:20px;">INGRESAR CARGO</button>
-                <?php } ?>
+        <div class="row">
+            <div class="x_panel">
+                <div class="x_content">
+                    <h3 class="text-center">CARGOS</h3><br>
+                    <?php if ($view_crearCargo == 1) {  ?>
+                        <button type="button" class="btn modidev-btn btn-sm" data-toggle="modal" data-target=".bd-example-modal-lg" style="margin-bottom:20px;">INGRESAR CARGO</button>
+                    <?php } ?>
 
-                <?php if ($view_verCargo == "1") {  ?>
-                  <table id="tabla_cargo" class="table table-striped table-bordered table-hover dataTables-cargos" style="margin-top:20px;">
-                      <thead >
-                          <tr style="width:100%;">
-                              <th class="text-center">ID</th>
-                              <th class="text-center">CARGO</th>
-                              <th class="text-center">SUCURSALES</th>
-                              <th class="text-center">JEFE(S) DIRECTO(S)</th>
-                              <th class="text-center">LUGAR DE TRABAJO</th>
-                              <th class="text-center">JORNADA DE TRABAJO</th>
-                              <th class="text-center">ACCIONES</th>
-                          </tr>
-                      </thead>
-                      <tbody id="tbodyDetalle">
+                    <?php if ($view_verCargo == "1") {  ?>
+                        <table id="tabla_cargo" class="table table-striped table-bordered table-hover dataTables-cargos" style="margin-top:20px;">
+                            <thead>
+                                <tr style="width:100%;">
+                                    <th class="text-center">ID</th>
+                                    <th class="text-center">CARGO</th>
+                                    <th class="text-center">SUCURSALES</th>
+                                    <th class="text-center">JEFE(S) DIRECTO(S)</th>
+                                    <th class="text-center">LUGAR DE TRABAJO</th>
+                                    <th class="text-center">JORNADA DE TRABAJO</th>
+                                    <th class="text-center">ACCIONES</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tbodyDetalle">
 
-                      </tbody>
-                  </table>
-                <?php } ?>
+                            </tbody>
+                        </table>
+                    <?php } ?>
 
+                </div>
             </div>
         </div>
     </div>
-</div>
 
     <!-- /Contenedor principal-->
 
@@ -64,9 +78,9 @@ if($usuario[0]->atr_activo == "1" ) { ?>
     <!-- /footer content -->
 
     <!-- Modal crear -->
-    <div id="myModal" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="crearTrabajador"  aria-hidden="true" >
+    <div id="myModal" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="crearTrabajador" aria-hidden="true">
         <div class="modal-dialog modal-lg">
-            <div class="modal-content" style="padding:20px; background: #2a3f54" >
+            <div class="modal-content" style="padding:20px; background: #2a3f54">
                 <div class="form-row">
                     <h5 class="modal-title mx-auto">INGRESAR CARGO</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -87,11 +101,11 @@ if($usuario[0]->atr_activo == "1" ) { ?>
                     </div>
 
                     <div class="col-md-12">
-                      <br>
-                      <label >RESPONSABILIDADES PRINCIPALES</label>
-                      <button type="button" class="btn btn-success btn-sm center"  id="btnAgregarInputResponsabilidad" >
-                        <i class="glyphicon glyphicon-plus"></i>
-                      </button>
+                        <br>
+                        <label>RESPONSABILIDADES PRINCIPALES</label>
+                        <button type="button" class="btn btn-success btn-sm center" id="btnAgregarInputResponsabilidad">
+                            <i class="glyphicon glyphicon-plus"></i>
+                        </button>
                     </div>
                     <div class="col-md-12" id="containerResponsabilidades">
 
@@ -130,24 +144,24 @@ if($usuario[0]->atr_activo == "1" ) { ?>
     <!-- /Modal de crear -->
 
     <!-- Modal editar -->
-    <div id="modaleditarCargo" class="modal fade" tabindex="-1" role="dialog"  aria-hidden="true" >
+    <div id="modaleditarCargo" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog modal-lg">
-            <div class="modal-content" style="padding:20px; background: #2a3f54" >
+            <div class="modal-content" style="padding:20px; background: #2a3f54">
                 <div class="row">
                     <div class="col-md-12">
-                      <h5 class="modal-title text-center">CARGO</h5>
-                      <button type="button" class="close" style="margin-top:-27px;"  data-dismiss="modal" aria-label="Close">
-                          <span aria-hidden="true">&times;</span>
-                      </button>
+                        <h5 class="modal-title text-center">CARGO</h5>
+                        <button type="button" class="close" style="margin-top:-27px;" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
                     </div>
                     <div class="modal-body">
-                      <div id="modalDetalleCargo">
+                        <div id="modalDetalleCargo">
 
-                      </div>
-                      <div class="col-md-12">
-                        <br>
-                        <button type="submit" class="btn btn-success btn-sm" style="width:100%"  id="btnUpdateCargo">Guardar cambios</button>
-                      </div>
+                        </div>
+                        <div class="col-md-12">
+                            <br>
+                            <button type="submit" class="btn btn-success btn-sm" style="width:100%" id="btnUpdateCargo">Guardar cambios</button>
+                        </div>
                     </div>
                 </div>
                 <br>
@@ -158,9 +172,9 @@ if($usuario[0]->atr_activo == "1" ) { ?>
 
 
     <!-- Modal editar remuneración -->
-    <div id="modalEditarRemuneración" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="crearTrabajador"  aria-hidden="true" >
+    <div id="modalEditarRemuneración" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="crearTrabajador" aria-hidden="true">
         <div class="modal-dialog modal-lg">
-            <div class="modal-content" style="padding:20px; background: #2a3f54" >
+            <div class="modal-content" style="padding:20px; background: #2a3f54">
                 <div class="form-row" id="contenedorDetalleRemuneración">
 
 
@@ -175,46 +189,45 @@ if($usuario[0]->atr_activo == "1" ) { ?>
 
 
     <!-- jQuery -->
-    <script src="<?php echo base_url() ?>assets/vendors/jquery/dist/jquery.min.js"></script>
+    <script src="<?php echo base_url();   ?>assets/vendors/jquery/dist/jquery.min.js"></script>
     <!-- Bootstrap -->
-    <script src="<?php echo base_url() ?>assets/vendors/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-     <!-- Datatables -->
-    <script src="<?php echo base_url() ?>assets/js/datatables.min.js" type="text/javascript"></script>
+    <script src="<?php echo base_url();   ?>assets/vendors/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Datatables -->
+    <script src="<?php echo base_url();   ?>assets/js/datatables.min.js" type="text/javascript"></script>
     <!-- Custom Theme Scripts -->
-    <script src="<?php echo base_url() ?>assets/build/js/custom.min.js"></script>
+    <script src="<?php echo base_url();   ?>assets/build/js/custom.min.js"></script>
     <!-- MODIDEV -->
-    <script src="<?php echo base_url() ?>assets/js/modidev.js"></script>
-    <script src="<?php echo base_url() ?>assets/js/perfilesOcupacionales/responsabilidades.js"></script>
-    <script src="<?php echo base_url() ?>assets/js/remuneracion.js"></script>
-    <script src="<?php echo base_url() ?>assets/js/trabajador.js"></script>
-    <script src="<?php echo base_url() ?>assets/js/validaciones.js"></script>
+    <script src="<?php echo base_url();   ?>assets/js/modidev.js"></script>
+    <script src="<?php echo base_url();   ?>assets/js/perfilesOcupacionales/responsabilidades.js"></script>
+    <script src="<?php echo base_url();   ?>assets/js/remuneracion.js"></script>
+    <script src="<?php echo base_url();   ?>assets/js/trabajador.js"></script>
+    <script src="<?php echo base_url();   ?>assets/js/validaciones.js"></script>
     <!-- Toast -->
-    <script src="<?php echo base_url() ?>assets/js/toastr.min.js" type="text/javascript"></script>}
+    <script src="<?php echo base_url();   ?>assets/js/toastr.min.js" type="text/javascript"></script>}
     <!-- Switchery -->
-    <script src="<?php echo base_url() ?>assets/vendors/switchery/dist/switchery.min.js"></script>
+    <script src="<?php echo base_url();   ?>assets/vendors/switchery/dist/switchery.min.js"></script>
     <!-- iCheck -->
-    <script src="<?php echo base_url() ?>assets/vendors/iCheck/icheck.min.js"></script>
+    <script src="<?php echo base_url();   ?>assets/vendors/iCheck/icheck.min.js"></script>
 
 
 
     <script>
+        $(document).ready(function() {
+            getSucursales();
+            var btnAcciones = '';
 
-      $(document).ready(function() {
-        getSucursales();
-        var btnAcciones = '';
+            <?php if ($view_editarCargo == 1) {  ?>
+                btnAcciones += '<button type="button" id="btnVerCargo" class="btn btn-info btnVerCargo btn-sm" data-toggle="modal" data-target="#modaleditarCargo"><i class="glyphicon glyphicon-pencil"></i></button>';
+            <?php } ?>
+            <?php if ($view_editarRemuneracion == 1) {  ?>
+                btnAcciones += '<button type="button" id="btnEditarRemuneracion" class="btn btn-info btn-sm" data-toggle="modal" data-target="#modalEditarRemuneración"><i class="glyphicon glyphicon-usd"></i></button>';
+            <?php } ?>
 
-        <?php if( $view_editarCargo == 1 ){  ?>
-          btnAcciones += '<button type="button" id="btnVerCargo" class="btn btn-info btnVerCargo btn-sm" data-toggle="modal" data-target="#modaleditarCargo"><i class="glyphicon glyphicon-pencil"></i></button>';
-        <?php } ?>
-        <?php if( $view_editarRemuneracion == 1 ){  ?>
-          btnAcciones += '<button type="button" id="btnEditarRemuneracion" class="btn btn-info btn-sm" data-toggle="modal" data-target="#modalEditarRemuneración"><i class="glyphicon glyphicon-usd"></i></button>';
-        <?php } ?>
-
-        document.getElementById("jornadaTrabajo").value = "La jornada de trabajo será de 45 horas semanales, las que serán distribuidas de lunes a viernes, de la siguiente manera: jornada de la mañana de 09:00 horas a 14:00 horas, y en la jornada de la tarde de 15:00 horas a 19:00 horas.";
-        document.getElementById("diasTrabajo").value = "De lunes a viernes de 09:00 hasta las 19:00 horas. Sábados de 09:00 a 14:00 horas";
-        document.getElementById("lugarTrabajo").value = "Los servicios se prestarán en las dos sucursales de Hostal Plaza Maule Limitada ubicadas en 1 Sir 24 y media oriente N°3183 y 1 Sur 24 oriente N°3155 de la ciudad de Talca. La jornada de trabajo será de 45 horas semanales, las que serán distribuidas de lunes a viernes, de la siguiente manera: jornada de la mañana de 09:00 horas a 14:00 horas, y en la jornada de la tarde de 15:00 horas a 19:00 horas.";
-          $('.dataTables-cargos').DataTable({
-              "autoWidth": false,
+            document.getElementById("jornadaTrabajo").value = "La jornada de trabajo será de 45 horas semanales, las que serán distribuidas de lunes a viernes, de la siguiente manera: jornada de la mañana de 09:00 horas a 14:00 horas, y en la jornada de la tarde de 15:00 horas a 19:00 horas.";
+            document.getElementById("diasTrabajo").value = "De lunes a viernes de 09:00 hasta las 19:00 horas. Sábados de 09:00 a 14:00 horas";
+            document.getElementById("lugarTrabajo").value = "Los servicios se prestarán en las dos sucursales de Hostal Plaza Maule Limitada ubicadas en 1 Sir 24 y media oriente N°3183 y 1 Sur 24 oriente N°3155 de la ciudad de Talca. La jornada de trabajo será de 45 horas semanales, las que serán distribuidas de lunes a viernes, de la siguiente manera: jornada de la mañana de 09:00 horas a 14:00 horas, y en la jornada de la tarde de 15:00 horas a 19:00 horas.";
+            $('.dataTables-cargos').DataTable({
+                "autoWidth": false,
                 language: {
                     "sProcessing": "Procesando...",
                     "sLengthMenu": "Registros&nbsp;&nbsp; _MENU_ ",
@@ -244,42 +257,40 @@ if($usuario[0]->atr_activo == "1" ) { ?>
                     }
                 },
                 "ajax": {
-                    url: "http://127.0.0.1/grupofirma/index.php/getlistadecargos",
+                    url: "http://www.imlchile.cl/grupofirma/index.php/getlistadecargos",
                     type: 'GET'
                 },
                 "columnDefs": [{
                     "targets": 6,
                     "data": null,
                     "defaultContent": btnAcciones
-                }
-                ]
-                <?php if( $view_exportarCargo == 1 ){  ?>
-                  ,dom: '<"html5buttons"B>lTfgitp',
-                  buttons:  [
-                    {
+                }]
+                <?php if ($view_exportarCargo == 1) {  ?>: dom,
+                    '<"html5buttons"B>lTfgitp': buttons,
+                    [{
                             extend: 'copy',
                             exportOptions: {
-                                columns: [ 1,2,3,4,5 ]
+                                columns: [1, 2, 3, 4, 5]
                             }
                         },
                         {
                             extend: 'csv',
                             exportOptions: {
-                                columns: [ 1,2,3,4,5 ]
+                                columns: [1, 2, 3, 4, 5]
                             }
                         },
                         {
                             extend: 'excel',
                             title: 'Lista de cargos',
                             exportOptions: {
-                                columns: [ 1,2,3,4,5 ]
+                                columns: [1, 2, 3, 4, 5]
                             }
                         },
                         {
                             extend: 'pdf',
                             title: 'Lista de cargos',
                             exportOptions: {
-                                columns: [ 1,2,3,4,5 ]
+                                columns: [1, 2, 3, 4, 5]
                             }
 
                         },
@@ -294,69 +305,69 @@ if($usuario[0]->atr_activo == "1" ) { ?>
                                     .css('font-size', 'inherit');
                             },
                             exportOptions: {
-                                columns: [ 1,2,3,4,5 ]
+                                columns: [1, 2, 3, 4, 5]
                             }
                         }
-                  ]
-                  <?php } ?>
+                    ]
+                <?php } ?>
             });
-      });
+        });
 
-      $("#btnAgregarCargo").click(function (e){
-          e.preventDefault();
-          agregarCargo();
-          var table = $('#tabla_cargo').DataTable();
-          table.ajax.reload(function(json) {
-            $('#btnAgregarCargo').val(json.lastInput);
-          });
-      });
+        $("#btnAgregarCargo").click(function(e) {
+            e.preventDefault();
+            agregarCargo();
+            var table = $('#tabla_cargo').DataTable();
+            table.ajax.reload(function(json) {
+                $('#btnAgregarCargo').val(json.lastInput);
+            });
+        });
 
-     $("body").on("click", "#btnVerCargo", function(e) {
-          e.preventDefault();
-          var id = $(this).parent().parent().children()[0];
-          getDetalleCargo($(id).text());
-       });
+        $("body").on("click", "#btnVerCargo", function(e) {
+            e.preventDefault();
+            var id = $(this).parent().parent().children()[0];
+            getDetalleCargo($(id).text());
+        });
 
-     $("body").on("click", "#btnUpdateCargo", function(e) {
-          e.preventDefault();
-          var id = $(this).parent().parent().children()[0];
-          updateCargo($(id).text());
-          var table = $('#tabla_cargo').DataTable();
-          table.ajax.reload(function(json) {
-            $('#btnUpdateCargo').val(json.lastInput);
-          });
-      });
+        $("body").on("click", "#btnUpdateCargo", function(e) {
+            e.preventDefault();
+            var id = $(this).parent().parent().children()[0];
+            updateCargo($(id).text());
+            var table = $('#tabla_cargo').DataTable();
+            table.ajax.reload(function(json) {
+                $('#btnUpdateCargo').val(json.lastInput);
+            });
+        });
 
-      $("#btnAgregarInputResponsabilidad").click(function (e){
-          e.preventDefault();
-          agregaInputResponsabilidad();
-      });
+        $("#btnAgregarInputResponsabilidad").click(function(e) {
+            e.preventDefault();
+            agregaInputResponsabilidad();
+        });
 
-      $("body").on("click", "#btnAgregarInputResponsabilidadEditar", function(e) {
-           e.preventDefault();
-           agregaInputResponsabilidadEditar();
-       });
+        $("body").on("click", "#btnAgregarInputResponsabilidadEditar", function(e) {
+            e.preventDefault();
+            agregaInputResponsabilidadEditar();
+        });
 
-       $("body").on("click", "#btnEditarRemuneracion", function(e) {
+        $("body").on("click", "#btnEditarRemuneracion", function(e) {
             e.preventDefault();
             var id = $(this).parent().parent().children()[0];
             getDetalleRemuneracion($(id).text());
         });
 
         $("body").on("click", "#btnGuardarRemuneracion", function(e) {
-             e.preventDefault();
-             updateRemuneracion();
-         });
+            e.preventDefault();
+            updateRemuneracion();
+        });
 
         $("body").on("click", "#btnAgregarInputRemuneracionesExtra", function(e) {
-             e.preventDefault();
-             agregaInputRemuneracionesExtra();
-         });
+            e.preventDefault();
+            agregaInputRemuneracionesExtra();
+        });
+    </script>
+<?php } else {
+    header("Location: http://www.imlchile.cl/grupofirma/");
+} ?>
 
+</body>
 
-
-  </script>
-    <?php } else{ header("Location: http://127.0.0.1/grupofirma/"); } ?>
-
-  </body>
 </html>

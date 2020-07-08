@@ -208,23 +208,23 @@
 
 
     <!-- jQuery -->
-    <script src="<?php echo base_url() ?>assets/vendors/jquery/dist/jquery.min.js"></script>
+    <script src="<?php echo base_url() ;   ?>assets/vendors/jquery/dist/jquery.min.js"></script>
     <!-- Bootstrap -->
-    <script src="<?php echo base_url() ?>assets/vendors/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="<?php echo base_url() ?>assets/vendors/DateJS/build/date.js"></script>
+    <script src="<?php echo base_url() ;   ?>assets/vendors/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="<?php echo base_url() ;   ?>assets/vendors/DateJS/build/date.js"></script>
      <!-- Datatables -->
-    <script src="<?php echo base_url() ?>assets/js/datatables.min.js" type="text/javascript"></script>
+    <script src="<?php echo base_url() ;   ?>assets/js/datatables.min.js" type="text/javascript"></script>
     <!-- Custom Theme Scripts -->
-    <script src="<?php echo base_url() ?>assets/build/js/custom.min.js"></script>
+    <script src="<?php echo base_url() ;   ?>assets/build/js/custom.min.js"></script>
     <!-- MODIDEV -->
-    <script src="<?php echo base_url() ?>assets/js/modidev.js"></script>
-    <script src="<?php echo base_url() ?>assets/js/trabajador.js"></script>
-    <script src="<?php echo base_url() ?>assets/js/historial.js"></script>
-    <script src="<?php echo base_url() ?>assets/js/validaciones.js"></script>
+    <script src="<?php echo base_url() ;   ?>assets/js/modidev.js"></script>
+    <script src="<?php echo base_url() ;   ?>assets/js/trabajador.js"></script>
+    <script src="<?php echo base_url() ;   ?>assets/js/historial.js"></script>
+    <script src="<?php echo base_url() ;   ?>assets/js/validaciones.js"></script>
     <!-- Toast -->
-    <script src="<?php echo base_url() ?>assets/js/toastr.min.js" type="text/javascript"></script>
+    <script src="<?php echo base_url() ;   ?>assets/js/toastr.min.js" type="text/javascript"></script>
 
-    <script src="<?php echo base_url() ?>assets/js/dashboard.js"></script>
+    <script src="<?php echo base_url() ;   ?>assets/js/dashboard.js"></script>
 
 
     <script>
