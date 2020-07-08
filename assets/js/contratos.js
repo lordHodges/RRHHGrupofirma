@@ -1,4 +1,4 @@
-var base_url = "https://www.imlchile.cl/grupofirma/index.php/";
+var base_url = "https://www.imlchile.cl/dev_test/grupofirma/index.php/";
 
 /*************************** CONTRATO ****************************/
 
@@ -57,7 +57,7 @@ function cargarTabla(permisoSubir) {
 			},
 		},
 		ajax: {
-			url: "https://www.imlchile.cl/grupofirma/index.php/getListadoTrabajadoresContrato",
+			url: "https://www.imlchile.cl/dev_test/grupofirma/index.php/getListadoTrabajadoresContrato",
 			type: "GET",
 		},
 		columnDefs: [
@@ -106,7 +106,7 @@ function getContratosTrabajador(idTrabajador) {
 				}
 			} else {
 				download =
-					"https://www.imlchile.cl/grupofirma/index.php/ContratosController/descargarContrato/" +
+					"https://www.imlchile.cl/dev_test/grupofirma/index.php/ContratosController/descargarContrato/" +
 					o.cp_contrato;
 				if (permisoDescargar == "si") {
 					fila +=

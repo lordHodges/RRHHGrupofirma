@@ -1,4 +1,4 @@
-var base_url = "https://www.imlchile.cl/grupofirma/index.php/";
+var base_url = "https://www.imlchile.cl/dev_test/grupofirma/index.php/";
 
 function editarPerfil() {
 	var nombre = $("#name").val();
