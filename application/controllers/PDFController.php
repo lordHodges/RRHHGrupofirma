@@ -134,12 +134,6 @@ class  PDFController extends CI_Controller
 
 
 
-
-
-
-
-
-
 	function cargarPerfilesOcupacionales()
 	{
 		$this->load->view('template/menu');
@@ -169,7 +163,7 @@ class  PDFController extends CI_Controller
 			'remuneracion'					=> $this->RemuneracionesModel->getDetalleRemuneracionPDF($cargo),
 			'remuneracionesExtras'	=> $this->RemuneracionesModel->getDetalleRemuneracionExtraPDF($cargo)
 		);
-
+		$atr_nombre = '';
 		foreach ($infoCargo as $key => $value) {
 			$nombreCargo = $key->$atr_nombre;
 		}
@@ -182,9 +176,6 @@ class  PDFController extends CI_Controller
 		// generamos el PDF. Pasemos por encima de la configuración general y definamos otro tipo de papel
 		$this->pdfgenerator->generate($html, $filename, TRUE, 'Letter', 'portrait', 0);
 	}
-
-
-
 
 	function view_contratoEstandar()
 	{
@@ -420,15 +411,15 @@ class  PDFController extends CI_Controller
 		$sueldoBase = $this->input->get("sueldoBase");
 		$gratificacionLegal = $this->input->get("gratificacionLegal");
 		$totalImponible = $this->input->get("totalImponible");
-		/* $montoBono = $this->input->get("montoBono"); */
+
 		$totalNoImponible = $this->input->get("totalNoImponible");
 		$valorPrevision = $this->input->get("valorPrevision");
 		$valorSalud = $this->input->get("valorSalud");
 		$valorCesantia = $this->input->get("valorCesantia");
 		$valorImpuestoUnico = $this->input->get("valorImpuestoUnico");
 		$totalDescuentosLegales = $this->input->get("totalDescuentosLegales");
-		$fechaOrdenadaAdelanto = $this->input->get("fechaOrdenadaAdelanto");
-		$atr_monto = $this->input->get("atr_monto"); //montoAdelanto
+
+		$atr_monto = $this->input->get("atr_monto");
 		$totalPrestamo = $this->input->get("totalPrestamo");
 		$cantidadCuotas = $this->input->get("cantidadCuotas");
 		$montoDescuento = $this->input->get("montoDescuento");
@@ -467,7 +458,7 @@ class  PDFController extends CI_Controller
 			'sueldoBase'	=> $sueldoBase,
 			'gratificacionLegal'	=> $gratificacionLegal,
 			'totalImponible'	=> $totalImponible,
-			/* 'montoBono'	=> $montoBono, */
+
 			'bonoAsistenciaAPagar' => $bonoAsistenciaAPagar,
 			'totalNoImponible'	=> $totalNoImponible,
 			'valorPrevision'	=> $valorPrevision,
@@ -476,7 +467,7 @@ class  PDFController extends CI_Controller
 			'valorImpuestoUnico'	=> $valorImpuestoUnico,
 			'totalTributable'		=> $totalTributable,
 			'totalDescuentosLegales'	=> $totalDescuentosLegales,
-			'fechaOrdenadaAdelanto'	=> $fechaOrdenadaAdelanto,
+
 			'atr_monto'	=> $atr_monto,
 			'totalPrestamo'	=> $totalPrestamo,
 			'cantidadCuotas'	=> $cantidadCuotas,
@@ -503,8 +494,6 @@ class  PDFController extends CI_Controller
 		$trabajador = $this->input->get("trabajador");
 		var_dump($this->ContratosModel->getDetalleTrabajadorContrato($trabajador));
 	}
-
-
 
 	function view_anexoConFechaTermino()
 	{
@@ -557,9 +546,6 @@ class  PDFController extends CI_Controller
 		// generamos el PDF. Pasemos por encima de la configuración general y definamos otro tipo de papel
 		$this->pdfgenerator->generate($html, $filename, TRUE, 'Letter', 'portrait', 0);
 	}
-
-
-
 
 
 	function view_anexoPasarIndefinido()
@@ -627,9 +613,6 @@ class  PDFController extends CI_Controller
 		// generamos el PDF. Pasemos por encima de la configuración general y definamos otro tipo de papel
 		$this->pdfgenerator->generate($html, $filename, TRUE, 'Letter', 'portrait', 0);
 	}
-
-
-
 
 
 	function view_anexoSujetoLicitacion()
@@ -905,9 +888,6 @@ class  PDFController extends CI_Controller
 		$fecha = $partesFecha[0] . " de " . $nombreMes . " de " . $partesFecha[2];
 		echo json_encode($fecha);
 	}
-
-
-
 
 
 	public function convertir($number, $moneda = '', $centimos = '', $forzarCentimos = false)
