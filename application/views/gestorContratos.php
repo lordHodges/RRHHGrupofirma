@@ -501,7 +501,7 @@ if ($usuario[0]->atr_activo == "1") { ?>
         if (fechaInicio == "" || fechaInicio == null || fechaTermino == "" || fechaTermino == null) {
           toastr.error("Debe llenar los campos de fecha");
         } else {
-          var url = 'http://www.rrhh.cl/index.php/docContratoEstandar?trabajador=' + idTrabajador + '&&fechaInicio=' + fechaInicio + '&&fechaTermino=' + fechaTermino + '&&ciudadFirma=' + ciudadFirma;
+          var url = 'http://www.imlchilelocal.cl/index.php/docContratoEstandar?trabajador=' + idTrabajador + '&&fechaInicio=' + fechaInicio + '&&fechaTermino=' + fechaTermino + '&&ciudadFirma=' + ciudadFirma;
           window.open(url, '_blank');
         }
 
@@ -554,7 +554,7 @@ if ($usuario[0]->atr_activo == "1") { ?>
               arrayItems.push($(this).text());
             });
           });
-          var url = 'http://www.rrhh.cl/index.php/docContratoPersonalizado?trabajador=' + idTrabajador + '&&fechaInicio=' + fechaInicio + '&&fechaTermino=' + fechaTermino + '&&ciudadFirma=' + ciudadFirma + '&&arrayItems=' + arrayItems;
+          var url = 'http://www.imlchilelocal.cl/index.php/docContratoPersonalizado?trabajador=' + idTrabajador + '&&fechaInicio=' + fechaInicio + '&&fechaTermino=' + fechaTermino + '&&ciudadFirma=' + ciudadFirma + '&&arrayItems=' + arrayItems;
           window.open(url, '_blank');
         }
 
@@ -563,7 +563,7 @@ if ($usuario[0]->atr_activo == "1") { ?>
     </script>
 
   <?php } else {
-  header("Location: http://www.rrhh.cl/");
+  header("Location: http://www.imlchilelocal.cl/");
 } ?>
 
   </body>

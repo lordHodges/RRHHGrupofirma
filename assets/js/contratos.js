@@ -1,4 +1,4 @@
-var base_url = "http://www.rrhh.cl/index.php/";
+var base_url = "http://www.imlchilelocal.cl/index.php/";
 
 /*************************** CONTRATO ****************************/
 
@@ -57,7 +57,7 @@ function cargarTabla(permisoSubir) {
 			},
 		},
 		ajax: {
-			url: "http://www.rrhh.cl/index.php/getListadoTrabajadoresContrato",
+			url: "http://www.imlchilelocal.cl/index.php/getListadoTrabajadoresContrato",
 			type: "GET",
 		},
 		columnDefs: [
@@ -106,7 +106,7 @@ function getContratosTrabajador(idTrabajador) {
 				}
 			} else {
 				download =
-					"http://www.rrhh.cl/index.php/ContratosController/descargarContrato/" +
+					"http://www.imlchilelocal.cl/index.php/ContratosController/descargarContrato/" +
 					o.cp_contrato;
 				if (permisoDescargar == "si") {
 					fila +=

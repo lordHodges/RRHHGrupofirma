@@ -191,7 +191,7 @@ if ($usuario[0]->atr_activo == "1") { ?>
 
 
 <?php } else {
-  header("Location: http://www.rrhh.cl/");
+  header("Location: http://www.imlchilelocal.cl/");
 } ?>
 
 </body>

@@ -111,7 +111,7 @@ $perfil =  $data['perfil'];
   </script>
 
 <?php } else {
-  header("Location: http://www.rrhh.cl/");
+  header("Location: http://www.imlchilelocal.cl/");
 } ?>
 
 </body>

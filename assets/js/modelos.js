@@ -1,4 +1,4 @@
-var base_url = "http://www.rrhh.cl/index.php/";
+var base_url = "http://www.imlchilelocal.cl/index.php/";
 
 function cargarTablaModelos(permisoEditar, permisoExportar) {
 	var table = $("#tabla_modelo").DataTable();
@@ -46,7 +46,7 @@ function cargarTablaModelos(permisoEditar, permisoExportar) {
 				},
 			},
 			ajax: {
-				url: "http://www.rrhh.cl/index.php/getListadoModelos",
+				url: "http://www.imlchilelocal.cl/index.php/getListadoModelos",
 				type: "GET",
 			},
 			columnDefs: [
@@ -136,7 +136,7 @@ function cargarTablaModelos(permisoEditar, permisoExportar) {
 				},
 			},
 			ajax: {
-				url: "http://www.rrhh.cl/index.php/getListadoModelos",
+				url: "http://www.imlchilelocal.cl/index.php/getListadoModelos",
 				type: "GET",
 			},
 			columnDefs: [

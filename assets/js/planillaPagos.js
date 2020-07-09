@@ -1,4 +1,4 @@
-var base_url = "http://www.rrhh.cl/index.php/";
+var base_url = "http://www.imlchilelocal.cl/index.php/";
 
 function cargarTablaPlanillaPagoMes() {
 	var table = $("#tabla_planillaBanco").DataTable();
@@ -75,7 +75,7 @@ function cargarTablaPlanillaPagoMes() {
 		},
 		ajax: {
 			url:
-				"http://www.rrhh.cl/index.php/getListadoPlanillaPagoMes?year=" +
+				"http://www.imlchilelocal.cl/index.php/getListadoPlanillaPagoMes?year=" +
 				anoActual +
 				"&&mes=" +
 				mesActual +
@@ -233,7 +233,7 @@ function cargarTablaPagosFinDeMes() {
 		},
 		ajax: {
 			url:
-				"http://www.rrhh.cl/index.php/getListadoPagosFinDeMes?year=" +
+				"http://www.imlchilelocal.cl/index.php/getListadoPagosFinDeMes?year=" +
 				anoActual +
 				"&&mes=" +
 				mesActual +

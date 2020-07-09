@@ -257,7 +257,7 @@ if ($usuario[0]->atr_activo == "1") { ?>
                     }
                 },
                 "ajax": {
-                    url: "http://www.rrhh.cl/index.php/getlistadecargos",
+                    url: "http://www.imlchilelocal.cl/index.php/getlistadecargos",
                     type: 'GET'
                 },
                 "columnDefs": [{
@@ -365,7 +365,7 @@ if ($usuario[0]->atr_activo == "1") { ?>
         });
     </script>
 <?php } else {
-    header("Location: http://www.rrhh.cl/");
+    header("Location: http://www.imlchilelocal.cl/");
 } ?>
 
 </body>

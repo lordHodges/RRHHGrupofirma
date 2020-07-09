@@ -1,4 +1,4 @@
-var base_url = "http://www.rrhh.cl/index.php/";
+var base_url = "http://www.imlchilelocal.cl/index.php/";
 
 function cargarCantidadContratos() {
 	var url = base_url + "totalContratosPlazo";
