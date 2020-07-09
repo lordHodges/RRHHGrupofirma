@@ -160,7 +160,7 @@ if ($usuario[0]->atr_activo == "1" && $view_anexoFechaEstandar == "1") { ?>
 
 
   <?php } else {
-  header("Location: http://www.imlchile.cl/dev_test/grupofirma");
+  header("Location: https://www.imlchile.cl/dev_test/grupofirma");
 } ?>
 
   </body>

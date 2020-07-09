@@ -393,7 +393,7 @@ if ($usuario[0]->atr_activo == "1") { ?>
       e.preventDefault();
       var prestamo = $(this).parent().parent().children()[0];
       var idPrestamo = $(prestamo).text()
-      var url = 'http://www.imlchile.cl/dev_test/grupofirmaindex.php/docPrestamo?id=' + idPrestamo;
+      var url = 'https://www.imlchile.cl/dev_test/grupofirmaindex.php/docPrestamo?id=' + idPrestamo;
       window.open(url, '_blank');
     });
 
@@ -421,7 +421,7 @@ if ($usuario[0]->atr_activo == "1") { ?>
   </script>
 
 <?php } else {
-  header("Location: http://www.imlchile.cl/dev_test/grupofirma");
+  header("Location: https://www.imlchile.cl/dev_test/grupofirma");
 } ?>
 
 </body>

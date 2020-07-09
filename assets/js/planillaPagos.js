@@ -1,4 +1,4 @@
-var base_url = "http://www.imlchile.cl/dev_test/grupofirmaindex.php/";
+var base_url = "https://www.imlchile.cl/dev_test/grupofirmaindex.php/";
 
 function cargarTablaPlanillaPagoMes() {
 	var table = $("#tabla_planillaBanco").DataTable();
@@ -75,7 +75,7 @@ function cargarTablaPlanillaPagoMes() {
 		},
 		ajax: {
 			url:
-				"http://www.imlchile.cl/dev_test/grupofirmaindex.php/getListadoPlanillaPagoMes?year=" +
+				"https://www.imlchile.cl/dev_test/grupofirmaindex.php/getListadoPlanillaPagoMes?year=" +
 				anoActual +
 				"&&mes=" +
 				mesActual +
@@ -233,7 +233,7 @@ function cargarTablaPagosFinDeMes() {
 		},
 		ajax: {
 			url:
-				"http://www.imlchile.cl/dev_test/grupofirmaindex.php/getListadoPagosFinDeMes?year=" +
+				"https://www.imlchile.cl/dev_test/grupofirmaindex.php/getListadoPagosFinDeMes?year=" +
 				anoActual +
 				"&&mes=" +
 				mesActual +

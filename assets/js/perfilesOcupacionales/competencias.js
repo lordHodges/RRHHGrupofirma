@@ -1,4 +1,4 @@
-var base_url = "http://www.imlchile.cl/dev_test/grupofirmaindex.php/";
+var base_url = "https://www.imlchile.cl/dev_test/grupofirmaindex.php/";
 var constante = 0;
 
 function cargarTabla(cargo, permisoEliminar) {
@@ -42,7 +42,7 @@ function cargarTabla(cargo, permisoEliminar) {
 		},
 		ajax: {
 			url:
-				"http://www.imlchile.cl/dev_test/grupofirmaindex.php/getListadoCompetenciasDataTable?id=" +
+				"https://www.imlchile.cl/dev_test/grupofirmaindex.php/getListadoCompetenciasDataTable?id=" +
 				cargo,
 			type: "GET",
 		},

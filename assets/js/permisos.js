@@ -1,4 +1,4 @@
-var base_url = "http://www.imlchile.cl/dev_test/grupofirmaindex.php/";
+var base_url = "https://www.imlchile.cl/dev_test/grupofirmaindex.php/";
 
 function getExistenciasPorModulo() {
 	var url = base_url + "getModulos";
@@ -86,7 +86,7 @@ function cargarTablaPerfiles() {
 	table.destroy();
 
 	btnAcciones =
-		'<a style="display:inline" href="http://www.imlchile.cl/dev_test/grupofirmaindex.php/inicioPermisosPerfil" type="button" id="btnVerPermisos" class="btn btn-info btn-sm"><i class="fa fa-shield"></i></a>';
+		'<a style="display:inline" href="https://www.imlchile.cl/dev_test/grupofirmaindex.php/inicioPermisosPerfil" type="button" id="btnVerPermisos" class="btn btn-info btn-sm"><i class="fa fa-shield"></i></a>';
 
 	$(".dataTables-perfiles").DataTable({
 		autoWidth: false,
@@ -122,7 +122,7 @@ function cargarTablaPerfiles() {
 			},
 		},
 		ajax: {
-			url: "http://www.imlchile.cl/dev_test/grupofirmaindex.php/getPerfilesTabla",
+			url: "https://www.imlchile.cl/dev_test/grupofirmaindex.php/getPerfilesTabla",
 			type: "GET",
 		},
 		columnDefs: [
@@ -142,7 +142,7 @@ function cargarTablaUsuarios() {
 	table.destroy();
 
 	var btnAcciones =
-		'<a style="display:inline" href="http://www.imlchile.cl/dev_test/grupofirmaindex.php/inicioPermisosUsuario" type="button" id="btnVerPermisos" class="btn btn-info btn-sm"><i class="fa fa-shield"></i></a>';
+		'<a style="display:inline" href="https://www.imlchile.cl/dev_test/grupofirmaindex.php/inicioPermisosUsuario" type="button" id="btnVerPermisos" class="btn btn-info btn-sm"><i class="fa fa-shield"></i></a>';
 
 	$(".dataTables-usuarios").DataTable({
 		autoWidth: false,
@@ -177,7 +177,7 @@ function cargarTablaUsuarios() {
 			},
 		},
 		ajax: {
-			url: "http://www.imlchile.cl/dev_test/grupofirmaindex.php/getListadoUsuarios",
+			url: "https://www.imlchile.cl/dev_test/grupofirmaindex.php/getListadoUsuarios",
 			type: "GET",
 		},
 		columnDefs: [

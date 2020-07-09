@@ -1,4 +1,4 @@
-var base_url = "http://www.imlchile.cl/dev_test/grupofirmaindex.php/";
+var base_url = "https://www.imlchile.cl/dev_test/grupofirmaindex.php/";
 
 var constante = 0;
 var constanteRemuneraciones = 0;
