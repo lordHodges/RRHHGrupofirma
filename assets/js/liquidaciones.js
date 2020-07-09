@@ -1,4 +1,4 @@
-var base_url = "http://www.imlchilelocal.cl/index.php/";
+var base_url = "http://www.imlchile.cl/dev_test/grupofirmaindex.php/";
 
 function cargarTabla(permisoSubir) {
 	var table = $("#tabla_liquidaciones").DataTable();
@@ -55,7 +55,7 @@ function cargarTabla(permisoSubir) {
 			},
 		},
 		ajax: {
-			url: "http://www.imlchilelocal.cl/index.php/getListadoTrabajadoresContrato",
+			url: "http://www.imlchile.cl/dev_test/grupofirmaindex.php/getListadoTrabajadoresContrato",
 			type: "GET",
 		},
 		columnDefs: [
@@ -105,7 +105,7 @@ function getLiquidacionesTrabajador(idTrabajador) {
 				}
 			} else {
 				download =
-					"http://www.imlchilelocal.cl/index.php/LiquidacionesController/descargarLiquidacion/" +
+					"http://www.imlchile.cl/dev_test/grupofirmaindex.php/LiquidacionesController/descargarLiquidacion/" +
 					o.cp_liquidacion;
 				if (permisoDescargar == "si") {
 					fila +=
