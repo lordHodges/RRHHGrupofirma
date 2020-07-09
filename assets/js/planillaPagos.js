@@ -1,4 +1,4 @@
-var base_url = "https://www.imlchile.cl/dev_test/grupofirma/index.php/";
+var base_url = "http://www.rrhh.cl/index.php/";
 
 function cargarTablaPlanillaPagoMes() {
 	var table = $("#tabla_planillaBanco").DataTable();
@@ -75,7 +75,7 @@ function cargarTablaPlanillaPagoMes() {
 		},
 		ajax: {
 			url:
-				"https://www.imlchile.cl/dev_test/grupofirma/index.php/getListadoPlanillaPagoMes?year=" +
+				"http://www.rrhh.cl/index.php/getListadoPlanillaPagoMes?year=" +
 				anoActual +
 				"&&mes=" +
 				mesActual +
@@ -233,7 +233,7 @@ function cargarTablaPagosFinDeMes() {
 		},
 		ajax: {
 			url:
-				"https://www.imlchile.cl/dev_test/grupofirma/index.php/getListadoPagosFinDeMes?year=" +
+				"http://www.rrhh.cl/index.php/getListadoPagosFinDeMes?year=" +
 				anoActual +
 				"&&mes=" +
 				mesActual +
@@ -825,18 +825,7 @@ function getGenerarLiquidacion(idTrabajador) {
 				'">';
 			fila += "</div>";
 			fila += "</div>";
-			if (o.valorImpuestoUnico != "undefined") {
-				fila += '<div class="col-lg-12 col-md-12 col-sm-12"><br>';
-				fila += '<div class="input-group">';
-				fila +=
-					'<label class="text-center" for="valorImpuestoUnico" style="">IMPUESTO UNICO</label>';
-				fila +=
-					'<input type="text" class="form-control custom-input-sm" id="valorImpuestoUnico" disabled style="color:#000;margin-left:1rem" value="' +
-					o.valorImpuestoUnico +
-					'">';
-				fila += "</div>";
-				fila += "</div>";
-			}
+
 
 			/* Subtotal descuentos legales (valor calculado suma anteriores)*/
 			fila += '<div class="col-lg-12 col-md-12 col-sm-12"><br>';
@@ -995,16 +984,19 @@ function getGenerarLiquidacion(idTrabajador) {
 			fila += "</div>";
 			fila += "</div>";
 			/* HHHHHHHHHHHHHHIMPUESTO UNICOHHHHHHHHHHHHHHHH */
-			fila += '<div class="col-lg-6 col-md-6 col-sm-6">';
-			fila += '<div class="input-group">';
-			fila +=
-				'<label class="text-center " for="valorImpuestoUnico" style="text-decoration: underline green; font-weight: bold;">IMPUESTO UNICO</label>';
-			fila +=
-				'<input type="text" class="form-control custom-input-sm" id="valorImpuestoUnico" disabled style="color:#000;margin-left:1rem;font-weight: bold;" value="' +
-				o.valorImpuestoUnico +
-				'">';
-			fila += "</div>";
-			fila += "</div>";
+			if (o.valorImpuestoUnico != "undefined" && o.valorImpuestoUnico > 0) {
+				fila += '<div class="col-lg-12 col-md-12 col-sm-12"><br>';
+				fila += '<div class="input-group">';
+				fila +=
+					'<label class="text-center" for="valorImpuestoUnico" style="">IMPUESTO UNICO</label>';
+				fila +=
+					'<input type="text" class="form-control custom-input-sm" id="valorImpuestoUnico" disabled style="color:#000;margin-left:1rem" value="' +
+					o.valorImpuestoUnico +
+					'">';
+				fila += "</div>";
+				fila += "</div>";
+			}
+
 			/* total descuentos */
 			fila += '<div class="col-lg-6 col-md-6 col-sm-6">';
 			fila += '<div class="input-group">';
