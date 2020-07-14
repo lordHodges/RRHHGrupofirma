@@ -407,7 +407,7 @@ class  PDFController extends CI_Controller
 		$saludTrabajador = $this->input->get("saludTrabajador");
 		$diasTrabajados = $this->input->get("diasTrabajados");
 		$horasExtras = $this->input->get("horasExtras");
-		$cargasFamiliares = $this->input->get("cargasFamiliares");
+		$cargas = $this->input->get("cargas");
 		$sueldoBase = $this->input->get("sueldoBase");
 		$gratificacionLegal = $this->input->get("gratificacionLegal");
 		$totalImponible = $this->input->get("totalImponible");
@@ -436,7 +436,8 @@ class  PDFController extends CI_Controller
 		$fechaTermino = $this->input->get("fechaTermino");
 		$totalTributable =
 			$this->input->get("totalTributable");
-		$adicionalIsapre = 0;
+		$valorSaludAdicional = $this->input->get("valorSaludAdicional");
+		$plan = $this->input->get("plan");
 		/* fin datos calculados */
 		/* vaslores para el documento */
 		$tituloCabecera = "LIQUIDACION DE SUELDO";
@@ -454,11 +455,10 @@ class  PDFController extends CI_Controller
 			'saludTrabajador'	=> $saludTrabajador,
 			'diasTrabajados'	=> $diasTrabajados,
 			'horasExtras'	=> $horasExtras,
-			'cargasFamiliares'	=> $cargasFamiliares,
+			'cargas'	=> $cargas,
 			'sueldoBase'	=> $sueldoBase,
 			'gratificacionLegal'	=> $gratificacionLegal,
 			'totalImponible'	=> $totalImponible,
-
 			'bonoAsistenciaAPagar' => $bonoAsistenciaAPagar,
 			'totalNoImponible'	=> $totalNoImponible,
 			'valorPrevision'	=> $valorPrevision,
@@ -467,7 +467,6 @@ class  PDFController extends CI_Controller
 			'valorImpuestoUnico'	=> $valorImpuestoUnico,
 			'totalTributable'		=> $totalTributable,
 			'totalDescuentosLegales'	=> $totalDescuentosLegales,
-
 			'atr_monto'	=> $atr_monto,
 			'totalPrestamo'	=> $totalPrestamo,
 			'cantidadCuotas'	=> $cantidadCuotas,
@@ -480,7 +479,8 @@ class  PDFController extends CI_Controller
 			'montoPrestamo' => $montoPrestamo,
 			'bonoMobilizacion'	=> $bonoMobilizacion,
 			'bonoColacion'	=> $bonoColacion,
-			'adicionalIsapre' => $adicionalIsapre
+			'valorSaludAdicional' => $valorSaludAdicional,
+			'plan' => $plan
 
 		);
 		$html = $this->load->view('pdf/liquidacionGenerada', $data, TRUE);

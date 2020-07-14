@@ -346,7 +346,7 @@ if ($usuario[0]->atr_activo == "1") { ?>
       var saludTrabajador = $("#saludTrabajador").val();
       var diasTrabajados = $("#diasTrabajados").val();
       var horasExtras = $("#horasExtras").val();
-      var cargasFamiliares = $("#cargasFamiliares").val();
+      var cargas = $("#cargas").val();
       var sueldoBase = $("#sueldoBase").val();
       var gratificacionLegal = $("#gratificacionLegal").val();
       var totalImponible = $("#totalImponible").val();
@@ -374,11 +374,13 @@ if ($usuario[0]->atr_activo == "1") { ?>
       var valorImpuestoUnico = $("#valorImpuestoUnico").val();
       var valorUF = $("#valorUF").val();
       var valorUTM = $("#valorUTM").val();
+      var plan = $("#plan").val();
+      var valorSaludAdicional = $("#valorSaludAdicional").val();
 
 
 
 
-      var url = 'https://www.imlchile.cl/dev_test/grupofirma/index.php/docGenerarLiquidacion?'
+      var url = 'http://www.imlchilelocal.cl/index.php/docGenerarLiquidacion?'
 
         +
         'mesCorriente=' + mesCorriente +
@@ -395,7 +397,8 @@ if ($usuario[0]->atr_activo == "1") { ?>
         '&&saludTrabajador=' + saludTrabajador +
         '&&diasTrabajados=' + diasTrabajados +
         '&&horasExtras=' + horasExtras +
-        '&&cargasFamiliares=' + cargasFamiliares +
+        '&&cargas=' + cargas +
+        '&&plan=' + plan +
         '&&sueldoBase=' + sueldoBase +
         '&&gratificacionLegal=' + gratificacionLegal +
         '&&totalImponible=' + totalImponible +
@@ -480,7 +483,7 @@ if ($usuario[0]->atr_activo == "1") { ?>
   </script>
 
 <?php } else {
-  header("Location: https://www.imlchile.cl/dev_test/grupofirma/");
+  header("Location: http://www.imlchilelocal.cl/");
 } ?>
 
 </body>

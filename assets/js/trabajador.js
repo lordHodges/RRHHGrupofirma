@@ -1,5 +1,5 @@
 /*************************** TRABAJADOR ****************************/
-var base_url = '<?php base_url() ?>index.php/';
+var base_url = 'http://www.imlchilelocal.cl/index.php/';
 
 function cargarTablaTrabajador(permisoEditar, permisoExportar) {
   var table = $('#tabla_trabajador').DataTable();
@@ -14,6 +14,7 @@ function cargarTablaTrabajador(permisoEditar, permisoExportar) {
 
   if (permisoEditar == "si") {
     btnAcciones += '<button style="display:inline" type="button" id="getDetalleTrabajadorViewEdit" class="btn btn-info btn-sm" data-toggle="modal" data-target="#modalEditarTrabajador"><i class="glyphicon glyphicon-pencil"></i></button>';
+    btnAcciones += '<button style="display:inline" type="button" id="getRemuneracionTrabajadorViewEdit" class="btn btn-info btn-sm" data-toggle="modal" data-target="#modalEditarRemuneracionTrabajador"><i class="glyphicon glyphicon-usd"></i></button>';
   }
 
   if (permisoExportar == "si") {
@@ -49,7 +50,7 @@ function cargarTablaTrabajador(permisoEditar, permisoExportar) {
         }
       },
       "ajax": {
-        url: base_url + "getListadoTrabajadores",
+        url: "http://www.imlchilelocal.cl/index.php/getListadoTrabajadores",
         type: 'GET'
       },
       "columnDefs": [{
@@ -145,7 +146,7 @@ function cargarTablaTrabajador(permisoEditar, permisoExportar) {
         }
       },
       "ajax": {
-        url: base_url + "getListadoTrabajadores",
+        url: "http://www.imlchilelocal.cl/index.php/getListadoTrabajadores",
         type: 'GET'
       },
       "columnDefs": [{
@@ -165,7 +166,7 @@ function cargarTablaTrabajador(permisoEditar, permisoExportar) {
 function agregarTrabajador() {
 
 
-  var rut = $("#rut").val();
+  var nombreTrabajador = $("#nombreTrabajador").val();
   var nombres = $("#nombres").val();
   var apellidos = $("#apellidos").val();
   var direccion = $("#direccion").val();
@@ -288,8 +289,8 @@ function getDetalleTrabajadorViewEdit(id) {
 
     var fila = "";
     $.each(msg.msg, function (i, o) {
-      /*   fila += '<div class="col-md-12 col-sm-12"><br><label for="valorPlanPrevision">Valor Plan(UF):&nbsp;</label><label id="valorPlanPrevisionActual">' + o.plan + '</label><input type="text" style="color:#848484" class="form-control" id="valorPlanPrevision" "></div><br><br>'; */
       fila += '<h5 class="modal-title mx-auto">EDITAR TRABAJADOR</h5><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>';
+
       fila += '<div class="col-md-12"><br><label for="rut">RUT:&nbsp;</label><label id="rutActual">' + o.atr_rut + '</label><label id="idTrabajador"  style="color:#2a3f54">' + o.cp_trabajador + '</label><input type="text" style="color:#848484" oninput="checkRutOficial(this)"  onkeyup="this.value=caracteresRUT(this.value)" class="form-control custom-input-sm" id="rutNuevo" ></div>';
 
       fila += '<div class="col-md-12 col-sm-12"><br><label for="nombres">NOMBRES:&nbsp;</label><label id="nombresActual">' + o.atr_nombres + '</label><input type="text" style="color:#848484" class="form-control" id="nombresNuevo" oninput="mayus(this);" onkeyup="this.value=soloLetras(this.value)"></div>';
@@ -298,7 +299,11 @@ function getDetalleTrabajadorViewEdit(id) {
 
       fila += '<div class="col-md-12 col-sm-12"><br><label for="direccion">DIRECCIÓN:&nbsp;</label><label id="direccionActual">' + o.atr_direccion + '</label><input type="text" style="color:#848484" class="form-control" id="direccionNuevo" oninput="mayus(this);"></div><br><br>';
 
-      fila += '<div class="col-md-12 col-sm-12"><br><label for="direccion">SUELDO:&nbsp;</label><label id="sueldoActual">' + o.atr_sueldo + '</label><input type="text" style="color:#848484" class="form-control" id="sueldoNuevo" oninput="mayus(this);"></div><br><br>';
+      fila += '<div class="col-md-12 col-sm-12"><br><label for="direccion">SUELDO:&nbsp;</label><label id="sueldoActual">' + o.atr_sueldo + '</label><input type="text" style="color:#848484" class="form-control" id="sueldoNuevo" ></div><br><br>';
+
+      fila += '<div class="col-md-12 col-sm-12"><br><label for="plan">Valor Isapre UF:&nbsp;</label><label id="planActual">' + o.atr_plan + '</label><input type="number" style="color:#848484" class="form-control" id="planNuevo"></div><br><br>';
+
+      fila += '<div class="col-md-12 col-sm-12"><br><label for="cargas">Cantidad Cargas Familiares:&nbsp;</label><label id="cargasActual">' + o.atr_cargas + '</label><input type="number" style="color:#848484" class="form-control" id="cargasNuevo"></div><br><br>';
 
       //SELECTOR DE CIUDAD
       fila += '<div class="col-md-12"><br><label for="ciudad">CIUDAD / COMUNA:&nbsp;</label><label id="ciudadActual">' + o.ciudad + '</label><select class="custom-select" id="getSelectCiudad2"> '; //<input type="text" style="color:#848484" class="form-control" id="ciudadNuevo"></div>
@@ -365,8 +370,6 @@ function getDetalleTrabajadorViewEdit(id) {
                     fila += '<option value="' + o.cp_prevision + '">' + o.atr_nombre + '</option>';
                   });
                   fila += '</select></div>'; //cerrando el select
-                  //planPrevisional
-
 
                   //SELECTOR DE ESTADO DE CONTRATACIÓN
                   fila += '<div class="col-md-12"><br><label for="contrato">ESTADO DE CONTRATACIÓN:&nbsp;</label><label id="estadoActual">' + o.estado + '</label> <select class="custom-select" id="getSelectEstadoContrato2">';
@@ -411,7 +414,6 @@ function getDetalleTrabajadorViewEdit(id) {
                       }); //fin getJSON Nacionalidad
                     }); //fin getJSON Estado civil
                   }); //fin getJSON Estado de contratación
-
                 }); //fin getJSON Previsión
               }); //fin getJSON AFP
             }); //fin getJSON empresa contratante
@@ -430,6 +432,8 @@ function updateTrabajador() {
   var nombres = $("#nombresNuevo").val();
   var apellidos = $("#apellidosNuevo").val();
   var direccion = $("#direccionNuevo").val();
+  var plan = $("#planNuevo").val();
+  var cargas = $("#cargasNuevo").val();
   var ciudad = $("#getSelectCiudad2").val();
   var sucursal = $("#getSelectSucursal2").val();
   var cargo = $("#getSelectCargo2").val();
@@ -440,9 +444,8 @@ function updateTrabajador() {
   var estadoCivil = $("#getSelectEstadoCivil2").val();
   var nacionalidad = $("#getSelectNacionalidad2").val();
   var fechaNacimiento = $("#fechaNacimiento2").val();
-  var valorPlanPrevision = $("#valorPlanPrevision").val();
 
-  if (rut == "" && nombres == "" && apellidos == "" && direccion == "" && sueldo == "" && ciudad == null && sucursal == null && cargo == null && empresa == null && afp == null && prevision == null && estadoContrato == null && estadoCivil == null && nacionalidad == null && fechaNacimiento == "") {
+  if (rut == "" && nombres == "" && apellidos == "" && direccion == "" && sueldo == "" && plan == "" && cargas == "" && ciudad == null && sucursal == null && cargo == null && empresa == null && afp == null && prevision == null && estadoContrato == null && estadoCivil == null && nacionalidad == null && fechaNacimiento == "") {
     toastr.error("No se ha modificado información.");
     $('#modalEditarTrabajador').modal('hide');
   } else {
@@ -460,6 +463,12 @@ function updateTrabajador() {
     }
     if (direccion == "") {
       direccion = $("#direccionActual").text();
+    }
+    if (plan == "") {
+      plan = $("#planActual").text();
+    }
+    if (cargas == "") {
+      cargas = $("#cargasActual").text();
     }
     if (ciudad == null || ciudad == "Seleccione una opción") {
       ciudad = $("#ciudadActual").text();
@@ -491,9 +500,6 @@ function updateTrabajador() {
     if (fechaNacimiento == "") {
       fechaNacimiento = $("#fechaNacimientoActual").text();
     }
-    if (valorPlanPrevision == "") {
-      valorPlanPrevision = $("#valorPlanPrevisionActual").text();
-    }
 
 
 
@@ -504,18 +510,183 @@ function updateTrabajador() {
     url: 'updateTrabajador',
     type: 'POST',
     dataType: 'json',
-    data: { "valorPlanPrevision": valorPlanPrevision, "idTrabajador": idTrabajador, "sueldo": sueldo, "rut": rut, "nombres": nombres, "apellidos": apellidos, "direccion": direccion, "ciudad": ciudad, "sucursal": sucursal, "cargo": cargo, "empresa": empresa, "afp": afp, "prevision": prevision, "estadoContrato": estadoContrato, "estadoCivil": estadoCivil, "nacionalidad": nacionalidad, "fechaNacimiento": fechaNacimiento }
+    data: { "idTrabajador": idTrabajador, "sueldo": sueldo, "rut": rut, "nombres": nombres, "apellidos": apellidos, "direccion": direccion, "ciudad": ciudad, "sucursal": sucursal, "cargo": cargo, "empresa": empresa, "afp": afp, "prevision": prevision, "estadoContrato": estadoContrato, "estadoCivil": estadoCivil, "nacionalidad": nacionalidad, "fechaNacimiento": fechaNacimiento, "plan": plan, "cargas": cargas }
   }).then(function (msg) {
-    if (msg.msg == "ok") {
+    if (msg == "ok") {
       toastr.success("Información actualizada.");
       $('#modalEditarTrabajador').modal('hide');
-    } else {
-      toastr.waring("Información no actualizada.");
-
     }
 
   });
   // var permisoEditar = $("#permisoEditar").text();
   // var permisoExportar = $("#permisoExportar").text();
   // cargarTablaTrabajador(permisoEditar, permisoExportar);
+}
+function getRemuneracionTrabajadorViewEdit(id) {
+  var id = id;
+  $.ajax({
+    url: 'getRemuneracionTrabajadorViewEdit',
+    type: 'POST',
+    dataType: 'json',
+    data: { "id": id }
+  }).then(function (msg) {
+    $("#contenedorDetalleRemuneracionTrabajador").empty();
+
+    var fila = "";
+    $.each(msg.msg, function (i, o) {
+      fila += '<h5 class="modal-title mx-auto">EDITAR REMUNERACION</h5><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>';
+      fila +=
+        '<div class="col-md-12"><br><label for="nombre">Sueldo mensual:&nbsp;$ </label><label id="sueldoMensualActual">' +
+        o.atr_sueldoMensual +
+        '</label><input type="text" onkeyup="this.value=soloNumeros(this.value); formatoMiles(this);" class="form-control custom-input-sm" id="sueldoMensualNuevo"></div>';
+
+      fila +=
+        '<div class="col-md-12"><br><label for="nombre">Colación:&nbsp;$ </label><label id="colacionActual">' +
+        o.atr_colacion +
+        '</label><input type="text" class="form-control custom-input-sm" onkeyup="this.value=soloNumeros(this.value); formatoMiles(this);" id="colacionNuevo"></div>';
+
+      fila +=
+        '<div class="col-md-12"><br><label for="nombre">Movilización:&nbsp; $</label><label id="movilizacionActual">' +
+        o.atr_movilizacion +
+        '</label><input type="text" class="form-control custom-input-sm" onkeyup="this.value=soloNumeros(this.value); formatoMiles(this);" id="movilizacionNuevo"></div>';
+      fila +=
+        '<div class="col-md-12"><br><label for="nombre">Asistencia:&nbsp; $</label><label id="asistenciaActual">' +
+        o.atr_asistencia +
+        '</label><input type="text" class="form-control custom-input-sm" onkeyup="this.value=soloNumeros(this.value); formatoMiles(this);" id="asistenciaNuevo"></div>';
+      fila +=
+        '<input type="text" class="form-control custom-input-sm" id="idTrabajador" hidden="true" disabled value="' + o.cp_trabajador + '"></div>';
+
+
+
+
+
+      $("#contenedorDetalleRemuneracionTrabajador").append(fila);
+
+
+    }); //fin foreach de creación del contenido del modal
+  });
+}
+function updateRemuneracionTrabajador() {
+  var idTrabajador = $("#idTrabajador").val();
+  var sueldoMensual = $("#sueldoMensualNuevo").val();
+  var colacion = $("#colacionNuevo").val();
+  var movilizacion = $("#movilizacionNuevo").val();
+
+  var asistencia = $("#asistenciaNuevo").val();
+
+  if (
+    sueldoMensual == "" &&
+    colacion == "" &&
+    movilizacion == "" &&
+
+    asistencia == ""
+  ) {
+    // SI ENTRA AQUI ES PORQUE NO SE MODIFICO NINGUN DATO, POR ENDE NO SE EJECUTA NADA MAS.
+  } else {
+    // VALIDACIÓN DE CAMPOS DE TEXTO VACIOS. Si los campos son vacios se mantiene el valor original en la base de datos.
+    if (sueldoMensual == "") {
+      sueldoMensual = $("#sueldoMensualActual").text();
+    }
+    if (colacion == "") {
+      colacion = $("#colacionActual").text();
+    }
+    if (movilizacion == "") {
+      movilizacion = $("#movilizacionActual").text();
+    }
+    if (asistencia == "") {
+      asistencia = $("#asistenciaActual").text();
+    }
+    // ACTUALIZACION DE CARGOS
+    $.ajax({
+      url: "updateRemuneracionTrabajador",
+      type: "POST",
+      dataType: "json",
+      data: {
+        idTrabajador: idTrabajador,
+        sueldoMensual: sueldoMensual,
+        colacion: colacion,
+        movilizacion: movilizacion,
+
+        asistencia: asistencia,
+      },
+    }).then(function (msg) {
+      if (msg == "ok") {
+      } else {
+        // toastr.error('Ha ocurrido un error, favor contáctese con el soporte.');
+      }
+    });
+    toastr.success("Remuneracion actualizada");
+    $("#modalEditarRemuneracionTrabajador").modal("hide");
+  }
+
+  // ACTUALIZACION DE OTRAS REMUNERACIONES EXISTENTES
+  /* var identificadorInput = "";
+  var remuneracion = "",
+    cnt = 1;
+  var cantidadIngresoExitoso = 0;
+
+  // Recorrer eL listado de remuneraciones creadas
+  for (var i = 0; i < constanteRemuneraciones; i++) {
+    //genero el id del input
+    identificadorInputActual = "remuneracionActual_" + cnt;
+
+    identificadorInputNuevo = "remuneracionNuevo_" + cnt;
+    //controlo el autoincrementable del id de los inputs generados
+    cnt = cnt + 1;
+
+    var descripcionNueva = $("#" + identificadorInputNuevo).val();
+
+    if (descripcionNueva == "" || descripcionNueva == null) {
+    } else {
+      var descripcionActual = $("#" + identificadorInputActual).text();
+
+      $.ajax({
+        url: "updateRemuneracionExtra",
+        type: "POST",
+        dataType: "json",
+        data: {
+          descripcionActual: descripcionActual,
+          descripcionNueva: descripcionNueva,
+          idCargo: id,
+        },
+      }).then(function (msg) {
+        toastr.success("Remuneración extra actualizada");
+      });
+    } }*/
+
+
+  // ADICIÓN DE NUEVAS RESPONSABILIDADES
+
+  /* identificadorInput = "";
+  (remuneracion = ""), (cnt = 1);
+  cantidadIngresoExitoso = 0;
+  
+  // Recorrer eL listado de tareas creadas
+  for (var i = 0; i < constante; i++) {
+    //genero el id del input
+    identificadorInput = "input_tarea" + cnt;
+    //controlo el autoincrementable del id de los inputs generados
+    cnt = cnt + 1;
+  
+    var remuneracion = $("#" + identificadorInput).val();
+    // alert("responsabilidad: "+responsabilidad);
+    if (remuneracion != "") {
+      $.ajax({
+        url: "addRemuneracionPorIDCargo",
+        type: "POST",
+        dataType: "json",
+        data: { remuneracion: remuneracion, cargo: id },
+      }).then(function (msg) {
+        if (msg.msg == "ok") {
+          toastr.success("Remuneración extra agregada");
+        } else {
+          // toastr.error('Ha ocurrido un error, favor contáctese con el soporte.');
+        }
+      });
+    }
+  } */
+
+
+  //getDetalleRemuneracion($("#idCargo").text());
+  // $('#modalEditarRemuneración').modal('hide');
 }

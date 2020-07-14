@@ -1,5 +1,7 @@
 <?php
 
+
+
 defined('BASEPATH') or exit('No direct script access allowed');
 
 class TrabajadorModel extends CI_Model
@@ -49,8 +51,6 @@ class TrabajadorModel extends CI_Model
       "cf_estadoCivil"            => $estadoCivil,
       "cf_nacionalidad"           => $nacionalidad,
     );
-    //deberia estar en un try catch y retornar el error
-
     $insertTrabajador = $this->db->insert("fa_trabajador", $data);
 
 
@@ -156,8 +156,7 @@ class TrabajadorModel extends CI_Model
 
   function getListadoTrabajadores()
   {
-    $this->db->select("t.cp_trabajador, t.atr_rut, t.atr_nombres, t.atr_apellidos, e.atr_nombre as empresa, t.atr_direccion as direccion, ca.atr_nombre as cargo,
-                        su.atr_nombre as sucursal");
+    $this->db->select("t.cp_trabajador, t.atr_rut, t.atr_nombres, t.atr_apellidos, e.atr_nombre as empresa, t.atr_direccion as direccion, ca.atr_nombre as cargo,su.atr_nombre as sucursal");
     $this->db->from("fa_trabajador t");
     $this->db->join("fa_cargo ca", "t.cf_cargo = ca.cp_cargo");
     $this->db->join("fa_empresa e", "t.cf_empresa = e.cp_empresa");
@@ -167,23 +166,7 @@ class TrabajadorModel extends CI_Model
 
   function getDetalleTrabajador($id)
   {
-    $this->db->select("t.cp_trabajador,
-     t.atr_rut,
-     t.atr_nombres,
-     t.atr_apellidos,
-     t.atr_direccion, 
-     t.atr_fechaNacimiento, 
-     t.atr_sueldo, 
-     t.plan,
-     e.atr_nombre as estado, 
-     ci.atr_nombre as ciudad, 
-     ca.atr_nombre as cargo, 
-     su.atr_nombre as sucursal, 
-     n.atr_nombre as nacionalidad, 
-     ec.atr_nombre as estadocivil, 
-     a.atr_nombre as afp, 
-     p.atr_nombre as prevision, 
-     em.atr_nombre as empresa");
+    $this->db->select("t.cp_trabajador, t.atr_rut, t.atr_nombres, t.atr_apellidos, t.atr_direccion, t.atr_fechaNacimiento, t.atr_sueldo, e.atr_nombre as estado, ci.atr_nombre as ciudad, ca.atr_nombre as cargo, su.atr_nombre as sucursal, n.atr_nombre as nacionalidad, ec.atr_nombre as estadocivil, a.atr_nombre as afp, p.atr_nombre as prevision, em.atr_nombre as empresa, t.atr_plan, t.atr_cargas");
     $this->db->from("fa_trabajador t");
     $this->db->join("fa_estado e", "t.cf_estado = e.cp_estado");
     $this->db->join("fa_ciudad ci", "t.cf_ciudad = ci.cp_ciudad");
@@ -197,8 +180,39 @@ class TrabajadorModel extends CI_Model
     $this->db->where("t.cp_trabajador", $id);
     return $this->db->get()->result();
   }
+  function getRemuneracionTrabajadorViewEdit($id)
+  {
+    $this->db->select("t.cp_trabajador, t.atr_nombres, t.atr_apellidos,r.atr_sueldoMensual, r.atr_colacion, r.atr_movilizacion, r.atr_asistencia");
+    $this->db->from("fa_trabajador t");
+    $this->db->join("fa_remuneracion r", "r.cf_trabajador = t.cp_trabajador");
 
-  function updateTrabajador($valorPlanPrevision, $idTrabajador, $rut, $sueldo, $nombres, $apellidos, $direccion, $ciudad, $sucursal, $cargo, $empresa, $afp, $prevision, $estadoContrato, $estadoCivil, $nacionalidad, $fechaNacimiento)
+    $this->db->where("t.cp_trabajador", $id);
+    return $this->db->get()->result();
+  }
+
+  function updateRemuneracionTrabajador($idTrabajador, $sueldoMensual, $colacion, $movilizacion, $imposiciones, $asistencia)
+  {
+    //code
+    $sueldoMensual = str_replace(".", "", $sueldoMensual);
+    $colacion = str_replace(".", "", $colacion);
+    $movilizacion = str_replace(".", "", $movilizacion);
+    $asistencia = str_replace(".", "", $asistencia);
+    $data = array(
+      "atr_sueldoMensual" => $sueldoMensual,
+      "atr_colacion" => $colacion,
+      "atr_movilizacion" => $movilizacion,
+      "atr_cotizaciones" => $imposiciones,
+      "atr_asistencia"   => $asistencia
+    );
+    $this->db->where('r.cf_trabajador', $idTrabajador);
+    $resultado =  $this->db->update("fa_remuneracion r", $data);
+    if ($resultado) {
+      return "ok";
+    } else {
+      return "error";
+    }
+  }
+  function updateTrabajador($idTrabajador, $rut, $sueldo, $nombres, $apellidos, $direccion, $ciudad, $sucursal, $cargo, $empresa, $afp, $prevision, $estadoContrato, $estadoCivil, $nacionalidad, $fechaNacimiento, $plan, $cargas)
   {
 
     if (!is_numeric($ciudad)) {
@@ -212,7 +226,6 @@ class TrabajadorModel extends CI_Model
         $ciudad = $c->cp_ciudad;
       }
     }
-
 
     if (!is_numeric($sucursal)) {
       //Buscar la ID de la sucursal ingresada
@@ -311,11 +324,13 @@ class TrabajadorModel extends CI_Model
     }
 
     $dataTrabajador = array(
-      "atr_nombreSs"               => $nombres,
+      "atr_rut"                   => $rut,
+      "atr_nombres"               => $nombres,
       "atr_apellidos"             => $apellidos,
       "atr_direccion"             => $direccion,
       "atr_fechaNacimiento"       => $fechaNacimiento,
       "atr_sueldo"                => $sueldo,
+
       "cf_prevision"              => $prevision,
       "cf_empresa"                => $empresa,
       "cf_estado"                 => $estadoContrato,
@@ -324,10 +339,9 @@ class TrabajadorModel extends CI_Model
       "cf_nacionalidad"           => $nacionalidad,
       "cf_estadoCivil"            => $estadoCivil,
       "cf_afp"                    => $afp,
-      "plan"                      => $valorPlanPrevision
+      "atr_plan"                  => $plan,
+      "atr_cargas"                => $cargas
     );
-
-
 
     $this->db->where('t.cp_trabajador', $idTrabajador);
     $resultado =  $this->db->update("fa_trabajador t", $dataTrabajador);

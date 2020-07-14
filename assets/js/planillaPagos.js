@@ -1,4 +1,4 @@
-var base_url = "https://www.imlchile.cl/dev_test/grupofirma/index.php/";
+var base_url = "http://www.imlchilelocal.cl/index.php/";
 
 function cargarTablaPlanillaPagoMes() {
 	var table = $("#tabla_planillaBanco").DataTable();
@@ -75,7 +75,7 @@ function cargarTablaPlanillaPagoMes() {
 		},
 		ajax: {
 			url:
-				"https://www.imlchile.cl/dev_test/grupofirma/index.php/getListadoPlanillaPagoMes?year=" +
+				"http://www.imlchilelocal.cl/index.php/getListadoPlanillaPagoMes?year=" +
 				anoActual +
 				"&&mes=" +
 				mesActual +
@@ -233,7 +233,7 @@ function cargarTablaPagosFinDeMes() {
 		},
 		ajax: {
 			url:
-				"https://www.imlchile.cl/dev_test/grupofirma/index.php/getListadoPagosFinDeMes?year=" +
+				"http://www.imlchilelocal.cl/index.php/getListadoPagosFinDeMes?year=" +
 				anoActual +
 				"&&mes=" +
 				mesActual +
@@ -678,6 +678,17 @@ function getGenerarLiquidacion(idTrabajador) {
 				'">';
 			fila += "</div>";
 			fila += "</div>";
+			if (o.saludTrabajador != "Fonasa") {
+				fila += '<div class="col-lg-6 col-md-6 col-sm-6"><br>';
+				fila += '<div class="input-group">';
+				fila += '<label class="text-center" for="plan">ValorPlan</label>';
+				fila +=
+					'<input type="text" class="form-control custom-input-sm" id="plan" disabled style="color:#000;margin-left:1rem" value="' +
+					o.plan +
+					'">';
+				fila += "</div>";
+				fila += "</div>";
+			}
 			/* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% titulo*/
 			fila +=
 				'<p class="col-md-12 text-center" style="color:#fff; text-decoration: underline;margin-top:80px; margin-bottom:0px">INFORMACION PARA CALCULO</p>';
@@ -703,7 +714,7 @@ function getGenerarLiquidacion(idTrabajador) {
 			fila +=
 				'<label class="text-center" for="cargasFamiliares">CARGAS FAMILIARES</label>';
 			fila +=
-				'<input type="text" class="form-control custom-input-sm" id="cargasFamiliares" style="color:#000;" value="0">'; //ingreso manual;
+				'<input type="number" class="form-control custom-input-sm" id="cargasFamiliares" disabled style="color:#000;" value="' + o.cargas + '">'; //ingreso manual;
 			fila += "</div>";
 			/* TOTAL TRUBUTABLE valor calculado*/
 			/* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
@@ -779,6 +790,23 @@ function getGenerarLiquidacion(idTrabajador) {
 				o.bonoAsistenciaAPagar +
 				'">';
 			fila += "</div>";
+			fila += '<div class="col-md-4 col-sm-12"><br>';
+			fila +=
+				'<label class="text-center" for="bonoColacionAPagar">BONO COLACION</label>';
+			fila +=
+				'<input type="text" class="form-control custom-input-sm" id="bonoColacionAPAgar" disabled style="color:#000;" value="$' +
+				o.bonoColacionAPagar +
+				'">';
+			fila += "</div>";
+			fila += '<div class="col-md-4 col-sm-12"><br>';
+			fila +=
+				'<label class="text-center" for="bonoMovilizacionAPagar">BONO MOVILIZACION</label>';
+			fila +=
+				'<input type="text" class="form-control custom-input-sm" id="bonoMovilizacionAPAgar" disabled style="color:#000;" value="$' +
+				o.bonoMovilizacionAPagar +
+				'">';
+			fila += "</div>";
+
 			/*  fila += '<input type="text" id="bonoAsistenciaAPagar" value="'+o.bonoAsistenciaAPagar+'"></input>' */
 			/* TOTAL NO IMPONIBLE  */
 			fila += '<div class="col-lg-12 col-md-12 col-sm-12"><br>';
@@ -813,6 +841,15 @@ function getGenerarLiquidacion(idTrabajador) {
 				'<input type="text" class="form-control custom-input-sm" id="valorSalud" disabled style="color:#000;margin-left:1rem" value="' +
 				o.valorSalud +
 				'">';
+			fila += "</div>";
+			fila += "</div>";
+			fila += '<div class="col-lg-12 col-md-12 col-sm-12"><br>';
+			fila += '<div class="input-group">';
+			fila +=
+				'<label class="text-center" for="valorSaludAdicional" style="">Adicional Isapre :</label>';
+			fila +=
+				'<input type="text" class="form-control custom-input-sm" id="valorSaludAdicional" disabled style="color:#000;margin-left:1rem" value="' +
+				o.valorSaludAdicional + '">';
 			fila += "</div>";
 			fila += "</div>";
 			fila += '<div class="col-lg-12 col-md-12 col-sm-12"><br>';

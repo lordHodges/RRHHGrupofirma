@@ -1,4 +1,4 @@
-var base_url = "https://www.imlchile.cl/dev_test/grupofirma/index.php/";
+var base_url = "http://www.imlchilelocal.cl/index.php/";
 
 function inicializarCalendario() {
 	var initialLocaleCode = "es";
@@ -47,7 +47,7 @@ function inicializarCalendario() {
 		eventLimit: true, // allow "more" link when too many events
 		eventSources: [
 			{
-				url: "https://www.imlchile.cl/dev_test/grupofirma/index.php/getInasistencias",
+				url: "http://www.imlchilelocal.cl/index.php/getInasistencias",
 				color: "red",
 				textColor: "white",
 			},

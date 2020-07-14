@@ -93,8 +93,10 @@ if ($usuario[0]->atr_activo == "1" && $view_contratoEstadar == "1") { ?>
                         <tbody>
                             <tr>
                                 <td style="padding-top: 0px;padding-bottom: 0px;"><?php echo ($afpTrabajador); ?></td>
-                                <td style="padding-top: 0px;padding-bottom: 0px;"><?php echo ($saludTrabajador); ?></td>
-                                <td style="padding-top: 0px;padding-bottom: 0px;"><?php echo ($cargasFamiliares); ?></td>
+                                <td style="padding-top: 0px;padding-bottom: 0px;"><?php echo ($saludTrabajador); ?><?php if ($valorSaludAdicional > 0) { ?>
+                                    Valor Plan UF :<?php echo ($plan); ?>
+                                <?php } ?> </td>
+                                <td style="padding-top: 0px;padding-bottom: 0px;"><?php echo ($cargas); ?></td>
                             </tr>
                         </tbody>
                     </table>
@@ -212,10 +214,10 @@ if ($usuario[0]->atr_activo == "1" && $view_contratoEstadar == "1") { ?>
                                 <td style="padding-top: 0px;padding-bottom: 0px;"><?php echo ($valorSalud) ?></td>
                             </tr>
 
-                            <?php if ($adicionalIsapre) { ?>
+                            <?php if ($valorSaludAdicional > 0) { ?>
                                 <tr>
                                     <td style="padding-top: 0px;padding-bottom: 0px;">Adicional Isapre</td>
-                                    <td style="padding-top: 0px;padding-bottom: 0px;"><?php echo ($adicionalIsapre); ?></td>
+                                    <td style="padding-top: 0px;padding-bottom: 0px;"><?php echo ($valorSaludAdicional); ?></td>
                                 </tr>
                             <?php } ?>
                             <?php if ($valorCesantia) { ?>
@@ -349,7 +351,7 @@ if ($usuario[0]->atr_activo == "1" && $view_contratoEstadar == "1") { ?>
 
 
         <?php } else {
-        header("Location: https://www.imlchile.cl/dev_test/grupofirma/");
+        header("Location: http://www.imlchilelocal.cl/");
     } ?>
 
 

@@ -157,7 +157,6 @@ class TrabajadorController extends CI_Controller
 			$data[] = array(
 				$r->cp_trabajador,
 				$r->atr_rut,
-				// $r->atr_nombres.concat( $r->atr_apellidos ),
 				$r->atr_nombres,
 				$r->atr_apellidos,
 				$r->direccion,
@@ -193,7 +192,25 @@ class TrabajadorController extends CI_Controller
 		$resultado = $this->TrabajadorModel->getDetalleTrabajador($idTrabajador);
 		echo json_encode(array("msg" => $resultado));
 	}
+	public function getRemuneracionTrabajadorViewEdit()
+	{
+		$idTrabajador = $this->input->post("id");
 
+		$resultado = $this->TrabajadorModel->getRemuneracionTrabajadorViewEdit($idTrabajador);
+		echo json_encode(array("msg" => $resultado));
+	}
+	public function updateRemuneracionTrabajador()
+	{
+		//code
+		$idTrabajador = $this->input->post("idTrabajador");
+		$sueldoMensual = $this->input->post("sueldoMensual");
+		$colacion = $this->input->post("colacion");
+		$movilizacion = $this->input->post("movilizacion");
+		$imposiciones = $this->input->post("imposiciones");
+		$asistencia = $this->input->post("asistencia");
+		$resultado = $this->TrabajadorModel->updateRemuneracionTrabajador($idTrabajador, $sueldoMensual, $colacion, $movilizacion, $imposiciones, $asistencia);
+		echo json_encode(array("msg" => $resultado));
+	}
 
 
 	public function updateTrabajador()
@@ -201,38 +218,42 @@ class TrabajadorController extends CI_Controller
 		$idTrabajador = $this->input->post("idTrabajador");
 		var_dump($idTrabajador);
 		$rut = $this->input->post("rut");
-		var_dump($rut);
+		// var_dump($rut);
 		$sueldo = $this->input->post("sueldo");
-		var_dump($sueldo);
+		// var_dump($sueldo);
 		$nombres = $this->input->post("nombres");
-		var_dump($nombres);
+		// var_dump($nombres);
 		$apellidos = $this->input->post("apellidos");
-		var_dump($apellidos);
+		// var_dump($apellidos);
 		$direccion = $this->input->post("direccion");
-		var_dump($direccion);
+		// var_dump($direccion);
+
 		$ciudad = $this->input->post("ciudad");
-		var_dump($ciudad);
+		// var_dump($ciudad);
 		$sucursal = $this->input->post("sucursal");
-		var_dump($sucursal);
+		// var_dump($sucursal);
 		$cargo = $this->input->post("cargo");
-		var_dump($cargo);
+		// var_dump($cargo);
 		$empresa = $this->input->post("empresa");
-		var_dump($empresa);
+		// var_dump($empresa);
 		$afp = $this->input->post("afp");
-		var_dump($afp);
+		// var_dump($afp);
 		$prevision = $this->input->post("prevision");
-		var_dump($prevision);
+		// var_dump($prevision);
 		$estadoContrato = $this->input->post("estadoContrato");
-		var_dump($estadoContrato);
+		// var_dump($estadoContrato);
 		$estadoCivil = $this->input->post("estadoCivil");
-		var_dump($estadoCivil);
+		// var_dump($estadoCivil);
 		$nacionalidad = $this->input->post("nacionalidad");
-		var_dump($nacionalidad);
+		// var_dump($nacionalidad);
 		$fechaNacimiento = $this->input->post("fechaNacimiento");
-		var_dump($fechaNacimiento);
-		$valorPlanPrevision = $this->input->post("valorPlanPrevision");
-		var_dump($valorPlanPrevision);
-		$resultado = $this->TrabajadorModel->updateTrabajador($idTrabajador,  $rut, $sueldo, $nombres, $apellidos, $direccion, $ciudad, $sucursal, $cargo, $empresa, $afp, $prevision, $estadoContrato, $estadoCivil, $nacionalidad, $fechaNacimiento, $valorPlanPrevision);
+		// var_dump($fechaNacimiento);
+		$plan = $this->input->post("plan");
+		// var_dump($plan);
+		$cargas = $this->input->post("cargas");
+		// var_dump($plan);
+
+		$resultado = $this->TrabajadorModel->updateTrabajador($idTrabajador, $rut, $sueldo, $nombres, $apellidos, $direccion, $ciudad, $sucursal, $cargo, $empresa, $afp, $prevision, $estadoContrato, $estadoCivil, $nacionalidad, $fechaNacimiento, $plan, $cargas);
 		echo json_encode($resultado);
 	}
 }

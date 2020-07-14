@@ -186,7 +186,7 @@ if ($usuario[0]->atr_activo == "1") { ?>
     </script>
 
 <?php } else {
-    header("Location: https://www.imlchile.cl/dev_test/grupofirma/");
+    header("Location: http://www.imlchilelocal.cl/");
 } ?>
 
 </body>

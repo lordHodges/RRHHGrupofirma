@@ -1,5 +1,5 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
 $route['default_controller'] = 'Welcome/index';
 $route['login'] = 'Welcome/index';
@@ -116,22 +116,24 @@ $route['getDetalleTrabajador'] = 'TrabajadorController/getDetalleTrabajador';
 
 $route['updateTrabajador'] = 'TrabajadorController/updateTrabajador';
 $route['getDetalleTrabajadorViewEdit'] = 'TrabajadorController/getDetalleTrabajadorViewEdit';
-
+$route['getRemuneracionTrabajadorViewEdit'] = 'TrabajadorController/getRemuneracionTrabajadorViewEdit';
+//updateRemuneracionTrabajador
+$route['updateRemuneracionTrabajador'] = 'TrabajadorController/updateRemuneracionTrabajador';
 $route['getTrabajadores'] = 'TrabajadorController/getTrabajadores';
 $route['getDetalleTrabajadorContrato'] = 'ContratosController/getDetalleTrabajadorContrato';
 
 
-    //Lo necesario para ingresar trabajadores
-    $route['getCiudades'] = 'TrabajadorController/getCiudades';
-    $route['getCargos'] = 'TrabajadorController/getCargos';
-    $route['getSucursales'] = 'TrabajadorController/getSucursales';
+//Lo necesario para ingresar trabajadores
+$route['getCiudades'] = 'TrabajadorController/getCiudades';
+$route['getCargos'] = 'TrabajadorController/getCargos';
+$route['getSucursales'] = 'TrabajadorController/getSucursales';
 
-    $route['getEmpresas'] = 'TrabajadorController/getEmpresas';
-    $route['getAFP'] = 'TrabajadorController/getAFP';
-    $route['getPrevisiones'] = 'TrabajadorController/getPrevisiones';
-    $route['getEstadosContrato'] = 'TrabajadorController/getEstadosContrato';
-    $route['getEstadosCiviles'] = 'TrabajadorController/getEstadosCiviles';
-    $route['getNacionalidades'] = 'TrabajadorController/getNacionalidades';
+$route['getEmpresas'] = 'TrabajadorController/getEmpresas';
+$route['getAFP'] = 'TrabajadorController/getAFP';
+$route['getPrevisiones'] = 'TrabajadorController/getPrevisiones';
+$route['getEstadosContrato'] = 'TrabajadorController/getEstadosContrato';
+$route['getEstadosCiviles'] = 'TrabajadorController/getEstadosCiviles';
+$route['getNacionalidades'] = 'TrabajadorController/getNacionalidades';
 
 //CONTRATOS
 $route['inicioContratos'] = 'ContratosController/index';
@@ -162,162 +164,162 @@ $route['getInfoTrabajadorEmpresa'] = 'ContratosController/getInfoTrabajadorEmpre
 $route['perfilOcupacionalVista'] = 'PDFController/cargarPerfilesOcupacionales';
 $route['docPerfilesOcupacionales'] = 'PDFController/view_perfilesOcupacionales';
 $route['docContratoEstandar'] = 'PDFController/view_contratoEstandar';
-$route['docGenerarLiquidacion'] = 'PDFController/view_generarLiquidacion';//vht
+$route['docGenerarLiquidacion'] = 'PDFController/view_generarLiquidacion'; //vht
 
 $route['docContratoPersonalizado'] = 'PDFController/view_contratoPersonalizado';
 
 
 
 //PERFILES OCUPACIONALES
-  //funciones
-  $route['inicioFunciones'] = 'FuncionesController/index';
-  $route['getListadoTareas'] = 'FuncionesController/getListadoTareas';
-  $route['addTarea'] = 'FuncionesController/addTarea';
-  $route['getListadoTareasDataTable'] = 'FuncionesController/getListadoTareasDataTable';
-  $route['deleteTarea'] = 'FuncionesController/deleteTarea';
+//funciones
+$route['inicioFunciones'] = 'FuncionesController/index';
+$route['getListadoTareas'] = 'FuncionesController/getListadoTareas';
+$route['addTarea'] = 'FuncionesController/addTarea';
+$route['getListadoTareasDataTable'] = 'FuncionesController/getListadoTareasDataTable';
+$route['deleteTarea'] = 'FuncionesController/deleteTarea';
 
-  //requisitos mínimos
-  $route['inicioRequisitosMinimos'] = 'RequisitosMinimosController/index';
-  $route['getListadoRequisitosMinimos'] = 'RequisitosMinimosController/getListadoRequisitosMinimos';
-  $route['addRequisitoMinimo'] = 'RequisitosMinimosController/addRequisitoMinimo';
-  $route['getListadoRequisitosMinimosDataTable'] = 'RequisitosMinimosController/getListadoRequisitosMinimosDataTable';
-  $route['deleteRequisitoMinimo'] = 'RequisitosMinimosController/deleteRequisitoMinimo';
+//requisitos mínimos
+$route['inicioRequisitosMinimos'] = 'RequisitosMinimosController/index';
+$route['getListadoRequisitosMinimos'] = 'RequisitosMinimosController/getListadoRequisitosMinimos';
+$route['addRequisitoMinimo'] = 'RequisitosMinimosController/addRequisitoMinimo';
+$route['getListadoRequisitosMinimosDataTable'] = 'RequisitosMinimosController/getListadoRequisitosMinimosDataTable';
+$route['deleteRequisitoMinimo'] = 'RequisitosMinimosController/deleteRequisitoMinimo';
 
-  //competencias
-  $route['inicioCompetencias'] = 'CompetenciasController/index';
-  $route['getListadoCompetencias'] = 'CompetenciasController/getListadoCompetencias';
-  $route['addCompetencia'] = 'CompetenciasController/addCompetencia';
-  $route['getListadoCompetenciasDataTable'] = 'CompetenciasController/getListadoCompetenciasDataTable';
-  $route['deleteCompetencia'] = 'CompetenciasController/deleteCompetencia';
+//competencias
+$route['inicioCompetencias'] = 'CompetenciasController/index';
+$route['getListadoCompetencias'] = 'CompetenciasController/getListadoCompetencias';
+$route['addCompetencia'] = 'CompetenciasController/addCompetencia';
+$route['getListadoCompetenciasDataTable'] = 'CompetenciasController/getListadoCompetenciasDataTable';
+$route['deleteCompetencia'] = 'CompetenciasController/deleteCompetencia';
 
-  //conocimientos
-  $route['inicioConocimientos'] = 'ConocimientosController/index';
-  $route['getListadoConocimientos'] = 'ConocimientosController/getListadoConocimientos';
-  $route['addConocimiento'] = 'ConocimientosController/addConocimiento';
-  $route['getListadoConocimientosDataTable'] = 'ConocimientosController/getListadoConocimientosDataTable';
-  $route['deleteConocimiento'] = 'ConocimientosController/deleteConocimiento';
-  //otros
-  $route['inicioOtros'] = 'OtrosController/index';
-  $route['getListadoOtros'] = 'OtrosController/getListadoOtros';
-  $route['addAntecedente'] = 'OtrosController/addAntecedente';
-  $route['getListadoOtrosAntecedentesDataTable'] = 'OtrosController/getListadoOtrosAntecedentesDataTable';
-  $route['deleteOtroAntecedente'] = 'OtrosController/deleteOtroAntecedente';
+//conocimientos
+$route['inicioConocimientos'] = 'ConocimientosController/index';
+$route['getListadoConocimientos'] = 'ConocimientosController/getListadoConocimientos';
+$route['addConocimiento'] = 'ConocimientosController/addConocimiento';
+$route['getListadoConocimientosDataTable'] = 'ConocimientosController/getListadoConocimientosDataTable';
+$route['deleteConocimiento'] = 'ConocimientosController/deleteConocimiento';
+//otros
+$route['inicioOtros'] = 'OtrosController/index';
+$route['getListadoOtros'] = 'OtrosController/getListadoOtros';
+$route['addAntecedente'] = 'OtrosController/addAntecedente';
+$route['getListadoOtrosAntecedentesDataTable'] = 'OtrosController/getListadoOtrosAntecedentesDataTable';
+$route['deleteOtroAntecedente'] = 'OtrosController/deleteOtroAntecedente';
 
 
 //MANTENEDORES
-    //inicios menu
-    $route['inicioBancos'] = 'BancoController/index';
-    $route['inicioCiudades'] = 'CiudadController/index';
-    $route['inicioSucursales'] = 'SucursalController/index';
-    $route['inicioCargos'] = 'CargoController/index';
-    $route['inicioPerfiles'] = 'PerfilController/index';
-    $route['inicioEstadosCiviles'] = 'EstadoCivilController/index';
-    $route['inicioPrevision'] = 'AFPController/index';
-    $route['inicioNacionalidades'] = 'NacionalidadController/index';
-    $route['inicioEstadoContrato'] = 'EstadoContratoController/index';
-    $route['inicioSalud'] = 'PrevisionesController/index';
-    $route['inicioEmpresa'] = 'EmpresaController/index';
-    $route['inicioUsuarios'] = 'SesionesController/inicioUsuarios';
-    $route['inicioVehiculos'] = 'VehiculosController/inicioVehiculos';
-    $route['inicioMarcas'] = 'MarcasController/inicioMarcas';
-    $route['inicioModelos'] = 'ModelosController/inicioModelos';
+//inicios menu
+$route['inicioBancos'] = 'BancoController/index';
+$route['inicioCiudades'] = 'CiudadController/index';
+$route['inicioSucursales'] = 'SucursalController/index';
+$route['inicioCargos'] = 'CargoController/index';
+$route['inicioPerfiles'] = 'PerfilController/index';
+$route['inicioEstadosCiviles'] = 'EstadoCivilController/index';
+$route['inicioPrevision'] = 'AFPController/index';
+$route['inicioNacionalidades'] = 'NacionalidadController/index';
+$route['inicioEstadoContrato'] = 'EstadoContratoController/index';
+$route['inicioSalud'] = 'PrevisionesController/index';
+$route['inicioEmpresa'] = 'EmpresaController/index';
+$route['inicioUsuarios'] = 'SesionesController/inicioUsuarios';
+$route['inicioVehiculos'] = 'VehiculosController/inicioVehiculos';
+$route['inicioMarcas'] = 'MarcasController/inicioMarcas';
+$route['inicioModelos'] = 'ModelosController/inicioModelos';
 
 
-    //Bancos
-    $route['getListadoBancos'] = 'BancoController/getListadoBancos';
-    $route['addBanco'] = 'BancoController/addBanco';
+//Bancos
+$route['getListadoBancos'] = 'BancoController/getListadoBancos';
+$route['addBanco'] = 'BancoController/addBanco';
 
-    //ciudades
-    $route['getListadoCiudades'] = 'CiudadController/getListadoCiudades';
-    $route['addCiudad'] = 'CiudadController/addCiudad';
+//ciudades
+$route['getListadoCiudades'] = 'CiudadController/getListadoCiudades';
+$route['addCiudad'] = 'CiudadController/addCiudad';
 
-    //sucursales
-    $route['getListadoSucursales'] = 'SucursalController/getListadoSucursales';
-    $route['addSucursal'] = 'SucursalController/addSucursal';
-    $route['buscarSucursal'] = 'CargoController/buscarSucursal';
+//sucursales
+$route['getListadoSucursales'] = 'SucursalController/getListadoSucursales';
+$route['addSucursal'] = 'SucursalController/addSucursal';
+$route['buscarSucursal'] = 'CargoController/buscarSucursal';
 
-    //cargos
-    $route['getlistadecargos'] = 'CargoController/getListadoCargos';
-    $route['addCargo'] = 'CargoController/addCargo';
-    $route['addResponsabilidades'] = 'CargoController/addResponsabilidades';
-    $route['addResponsabilidadesPorIDCargo'] = 'CargoController/addResponsabilidadesPorIDCargo';
-    $route['getDetalleCargo'] = 'CargoController/getDetalleCargo';
-    $route['getDetalleResponsabilidades'] = 'CargoController/getDetalleResponsablidades';
-    $route['updateCargo'] = 'CargoController/updateCargo';
-    $route['updateResponsabilidad'] = 'CargoController/updateResponsabilidad';
-    $route['deleteResponsabilidad'] = 'CargoController/deleteResponsabilidad';
-        //remuneracion de cargo
-    $route['getDetalleRemuneracion'] = 'RemuneracionController/getDetalleRemuneracion';
-    $route['updateRemuneracion'] = 'RemuneracionController/updateRemuneracion';
-    $route['updateRemuneracionExtra'] = 'RemuneracionController/updateRemuneracionExtra';
-    $route['addRemuneracionPorIDCargo'] = 'RemuneracionController/addRemuneracionPorIDCargo';
-    $route['deleteRemuneracionExtra'] = 'RemuneracionController/deleteRemuneracionExtra';
-
-
-    //estados civiles
-    $route['getListadoEstadosCiviles'] = 'EstadoCivilController/getListadoEstadosCiviles';
-    $route['addEstadoCivil'] = 'EstadoCivilController/addEstadoCivil';
-
-    //AFP
-    $route['getListadoAFP'] = 'AFPController/getListadoAFP';
-    $route['addAFP'] = 'AFPController/addAFP';
-    $route['getDetalleAFP'] = 'AFPController/getDetalleAFP';
-    $route['updateAFP'] = 'AFPController/updateAFP';
+//cargos
+$route['getlistadecargos'] = 'CargoController/getListadoCargos';
+$route['addCargo'] = 'CargoController/addCargo';
+$route['addResponsabilidades'] = 'CargoController/addResponsabilidades';
+$route['addResponsabilidadesPorIDCargo'] = 'CargoController/addResponsabilidadesPorIDCargo';
+$route['getDetalleCargo'] = 'CargoController/getDetalleCargo';
+$route['getDetalleResponsabilidades'] = 'CargoController/getDetalleResponsablidades';
+$route['updateCargo'] = 'CargoController/updateCargo';
+$route['updateResponsabilidad'] = 'CargoController/updateResponsabilidad';
+$route['deleteResponsabilidad'] = 'CargoController/deleteResponsabilidad';
+//remuneracion de cargo
+$route['getDetalleRemuneracion'] = 'RemuneracionController/getDetalleRemuneracion';
+$route['updateRemuneracion'] = 'RemuneracionController/updateRemuneracion';
+$route['updateRemuneracionExtra'] = 'RemuneracionController/updateRemuneracionExtra';
+$route['addRemuneracionPorIDCargo'] = 'RemuneracionController/addRemuneracionPorIDCargo';
+$route['deleteRemuneracionExtra'] = 'RemuneracionController/deleteRemuneracionExtra';
 
 
-    //nacionalidades
-    $route['getListadoNacionalidades'] = 'NacionalidadController/getListadoNacionalidades';
-    $route['addNacionalidad'] = 'NacionalidadController/addNacionalidad';
-    $route['updateNacionalidad'] = 'NacionalidadController/updateNacionalidad';
-    $route['getDetalleNacionalidad'] = 'NacionalidadController/getDetalleNacionalidad';
+//estados civiles
+$route['getListadoEstadosCiviles'] = 'EstadoCivilController/getListadoEstadosCiviles';
+$route['addEstadoCivil'] = 'EstadoCivilController/addEstadoCivil';
+
+//AFP
+$route['getListadoAFP'] = 'AFPController/getListadoAFP';
+$route['addAFP'] = 'AFPController/addAFP';
+$route['getDetalleAFP'] = 'AFPController/getDetalleAFP';
+$route['updateAFP'] = 'AFPController/updateAFP';
 
 
-    //estado contrato
-    $route['getEstadoContrato'] = 'EstadoContratoController/getEstadoContrato';
-    $route['addEstadoContrato'] = 'EstadoContratoController/addEstadoContrato';
-    $route['updateEstadoContrato'] = 'EstadoContratoController/updateEstadoContrato';
-    $route['getDetalleEstadosContrato'] = 'EstadoContratoController/getDetalleEstadosContrato';
+//nacionalidades
+$route['getListadoNacionalidades'] = 'NacionalidadController/getListadoNacionalidades';
+$route['addNacionalidad'] = 'NacionalidadController/addNacionalidad';
+$route['updateNacionalidad'] = 'NacionalidadController/updateNacionalidad';
+$route['getDetalleNacionalidad'] = 'NacionalidadController/getDetalleNacionalidad';
 
 
-    //previsiones
-    $route['getListadoPrevisiones'] = 'PrevisionesController/getListadoPrevisiones';
-    $route['addPrevision'] = 'PrevisionesController/addPrevision';
-    $route['updatePrevision'] = 'PrevisionesController/updatePrevision';
-    $route['getDetallePrevision'] = 'PrevisionesController/getDetallePrevision';
+//estado contrato
+$route['getEstadoContrato'] = 'EstadoContratoController/getEstadoContrato';
+$route['addEstadoContrato'] = 'EstadoContratoController/addEstadoContrato';
+$route['updateEstadoContrato'] = 'EstadoContratoController/updateEstadoContrato';
+$route['getDetalleEstadosContrato'] = 'EstadoContratoController/getDetalleEstadosContrato';
 
 
-    //empresa
-    $route['getListadoEmpresa'] = 'EmpresaController/getListadoEmpresas';
-    $route['addEmpresa'] = 'EmpresaController/addEmpresa';
-    $route['updateEmpresa'] = 'EmpresaController/updateEmpresa';
-    $route['getDetalleEmpresa'] = 'EmpresaController/getDetalleEmpresa';
-
-    //titulo
-    $route['getTitulos'] = 'TitulosController/getTitulos';
-    $route['addTitulo'] = 'TitulosController/addTitulo';
-
-    // usuario
-    $route['getDetalleUsuario'] = 'SesionesController/getDetalleUsuario';
-    $route['getListadoUsuarios'] = 'SesionesController/getListadoUsuarios';
-    $route['getPerfiles'] = 'SesionesController/getSelectPerfiles';
-    $route['addUsuario'] = 'SesionesController/agregarUsuario';
-    $route['cambiarEstado'] = 'SesionesController/cambiarEstado';
+//previsiones
+$route['getListadoPrevisiones'] = 'PrevisionesController/getListadoPrevisiones';
+$route['addPrevision'] = 'PrevisionesController/addPrevision';
+$route['updatePrevision'] = 'PrevisionesController/updatePrevision';
+$route['getDetallePrevision'] = 'PrevisionesController/getDetallePrevision';
 
 
-    //Vehículos
+//empresa
+$route['getListadoEmpresa'] = 'EmpresaController/getListadoEmpresas';
+$route['addEmpresa'] = 'EmpresaController/addEmpresa';
+$route['updateEmpresa'] = 'EmpresaController/updateEmpresa';
+$route['getDetalleEmpresa'] = 'EmpresaController/getDetalleEmpresa';
 
-    //Modelos de Vehículos
-    $route['getListadoModelos'] = 'ModelosController/getListadoModelos';
-    $route['addModelo'] = 'ModelosController/addModelo';
-    $route['editarModelo'] = 'ModelosController/editarModelo';
-    $route['getDetalleModelo'] = 'ModelosController/getDetalleModelo';
+//titulo
+$route['getTitulos'] = 'TitulosController/getTitulos';
+$route['addTitulo'] = 'TitulosController/addTitulo';
 
-    //Marcas de Vehículos
-    $route['getListadoMarcas'] = 'MarcasController/getListadoMarcas';
-    $route['addMarca'] = 'MarcasController/addMarca';
-    $route['editarMarca'] = 'MarcasController/editarMarca';
-    $route['getDetalleMarca'] = 'MarcasController/getDetalleMarca';
-    $route['getMarcas'] = 'MarcasController/getMarcas';
+// usuario
+$route['getDetalleUsuario'] = 'SesionesController/getDetalleUsuario';
+$route['getListadoUsuarios'] = 'SesionesController/getListadoUsuarios';
+$route['getPerfiles'] = 'SesionesController/getSelectPerfiles';
+$route['addUsuario'] = 'SesionesController/agregarUsuario';
+$route['cambiarEstado'] = 'SesionesController/cambiarEstado';
+
+
+//Vehículos
+
+//Modelos de Vehículos
+$route['getListadoModelos'] = 'ModelosController/getListadoModelos';
+$route['addModelo'] = 'ModelosController/addModelo';
+$route['editarModelo'] = 'ModelosController/editarModelo';
+$route['getDetalleModelo'] = 'ModelosController/getDetalleModelo';
+
+//Marcas de Vehículos
+$route['getListadoMarcas'] = 'MarcasController/getListadoMarcas';
+$route['addMarca'] = 'MarcasController/addMarca';
+$route['editarMarca'] = 'MarcasController/editarMarca';
+$route['getDetalleMarca'] = 'MarcasController/getDetalleMarca';
+$route['getMarcas'] = 'MarcasController/getMarcas';
 
 
 

@@ -101,7 +101,7 @@ class PagosModel extends CI_Model
     $fechaTerminoPrestamo = $anoPrestamo . '-' . $mesPrestamo . '-' . $diaTerminoPrestamo;
 
 
-    $this->db->select(" t.cp_trabajador, t.atr_nombres, t.atr_apellidos, t.atr_rut, t.atr_sueldo, t.cf_cargo");
+    $this->db->select(" t.cp_trabajador, t.atr_nombres,t.atr_sueldo, t.atr_apellidos, t.atr_rut, t.cf_cargo");
     $this->db->from("fa_trabajador t");
     $this->db->where('t.cf_estado != 6');
     $this->db->where('t.cf_empresa', $empresa);
@@ -115,9 +115,10 @@ class PagosModel extends CI_Model
 
 
       // CONSULTA DE LAS REMUNERACIONES QUE TIENE DETERMINADO CARGO
-      $this->db->select(" r.atr_colacion, r.atr_movilizacion, r.atr_asistencia");
+      $this->db->select("r.atr_sueldoMensual, r.atr_colacion, r.atr_movilizacion, r.atr_asistencia");
       $this->db->from("fa_remuneracion r");
-      $this->db->where("r.cf_cargo", $t->cf_cargo);
+      $this->db->where("r.cf_trabajador", $t->cp_trabajador);
+
       $remuneracionTrabajador = $this->db->get()->result();
 
       $sueldo = $t->atr_sueldo;
@@ -132,8 +133,10 @@ class PagosModel extends CI_Model
 
       // CONSULTA DE LAS REMUNERACIONES EN EL MES SOLICITADO
       foreach ($remuneracionTrabajador as $key => $r) {
+
         $colacion = str_replace(".", "", $r->atr_colacion);
         $movilizacion = str_replace(".", "", $r->atr_movilizacion);
+
 
 
 
@@ -258,10 +261,6 @@ class PagosModel extends CI_Model
 
     return $dataFinal;
   }
-  /* no estiendo
- por que hacen
-  este espaciado */
-
 
 
   function getListadoPagosFinDeMes($ano, $mes, $diaTermino, $empresa)
@@ -299,7 +298,7 @@ class PagosModel extends CI_Model
     $fechaTerminoPrestamo = $anoPrestamo . '-' . $mesPrestamo . '-' . $diaTerminoPrestamo;
 
 
-    $this->db->select(" t.cp_trabajador, t.atr_nombres, t.atr_apellidos, t.atr_rut, t.atr_sueldo, t.cf_cargo");
+    $this->db->select(" t.cp_trabajador, t.atr_nombres, t.atr_sueldo ,t.atr_apellidos, t.atr_rut, t.cf_cargo");
     $this->db->from("fa_trabajador t");
     $this->db->where('t.cf_estado != 6');
     $this->db->where('t.cf_empresa', $empresa);
@@ -314,7 +313,7 @@ class PagosModel extends CI_Model
         // CONSULTA DE LAS REMUNERACIONES QUE TIENE DETERMINADO CARGO
         $this->db->select(" r.atr_colacion, r.atr_movilizacion, r.atr_asistencia");
         $this->db->from("fa_remuneracion r");
-        $this->db->where("r.cf_cargo", $t->cf_cargo);
+        $this->db->where("r.cf_trabajador", $t->cp_trabajador);
         $remuneracionTrabajador = $this->db->get()->result();
 
         $sueldo = $t->atr_sueldo;
@@ -481,7 +480,7 @@ class PagosModel extends CI_Model
     $fechaInicioPrestamo = $anoPrestamo . '-' . $mesPrestamo . '-01';
     $fechaTerminoPrestamo = $anoPrestamo . '-' . $mesPrestamo . '-' . $diaTerminoPrestamo;
 
-    $this->db->select(" t.cp_trabajador, t.atr_nombres, t.atr_apellidos, t.atr_rut, t.atr_sueldo, t.cf_cargo");
+    $this->db->select(" t.cp_trabajador, t.atr_nombres, t.atr_apellidos, t.atr_rut,  t.cf_cargo, t.atr_sueldo");
     $this->db->from("fa_trabajador t");
     $this->db->where('t.cp_trabajador', $idTrabajador);
     $infoTrabajador = $this->db->get()->result();
@@ -500,22 +499,17 @@ class PagosModel extends CI_Model
       // CONSULTA DE LAS REMUNERACIONES QUE TIENE DETERMINADO CARGO
       $this->db->select(" r.atr_colacion, r.atr_movilizacion, r.atr_asistencia");
       $this->db->from("fa_remuneracion r");
-      $this->db->where("r.cf_cargo", $t->cf_cargo);
+      $this->db->where("r.cf_trabajador", $t->cp_trabajador);
       $remuneracionTrabajador = $this->db->get()->result();
 
       // CONSULTA DE LAS REMUNERACIONES EN EL MES SOLICITADO
       foreach ($remuneracionTrabajador as $key => $r) {
         $colacion = str_replace(".", "", $r->atr_colacion);
         $movilizacion = str_replace(".", "", $r->atr_movilizacion);
-
-
-
         $bonoBaseColacion = $r->atr_colacion;
         $bonoBaseMovilizacion = $r->atr_movilizacion;
         $bonoBaseAsistencia = $r->atr_asistencia;
-
         $bonoAsistencia = $r->atr_asistencia;
-
         $cont = 0;
 
         foreach ($diasInsistencia as $key => $dias) {
@@ -528,16 +522,15 @@ class PagosModel extends CI_Model
 
         if ($cont > 0) {
           $bonoAsistencia = 0;
-
           $colacion = $colacionDiaria * $diasPago;
           $movilizacion = $movilizacionDiaria * $diasPago;
-
           $bonos = $colacion + $movilizacion;
         } else {
 
           $bonos = $colacion + $movilizacion + $bonoAsistencia;
         }
       }
+
 
 
       // CONSULTA DE LOS ADELANTOS EN EL MES CONSULTADO
@@ -605,10 +598,6 @@ class PagosModel extends CI_Model
       $bonoBaseMovilizacion = number_format($bonoBaseMovilizacion, 0, ",", ".");
       $movilizacionDiaria = number_format($movilizacionDiaria, 0, ",", ".");
 
-
-
-
-
       $data = array(
 
         "sueldoBase"              => $sueldoBaseParaMandar,
@@ -664,26 +653,28 @@ class PagosModel extends CI_Model
     $fechaInicioPrestamo = $anoPrestamo . '-' . $mesPrestamo . '-01';
     $fechaTerminoPrestamo = $anoPrestamo . '-' . $mesPrestamo . '-' . $diaTerminoPrestamo;
     //trae los datos del trabajador
-    /*  $this->db->select(" t.cp_trabajador, t.atr_nombres, t.atr_apellidos, t.atr_rut, t.atr_sueldo, t.cf_cargo");
+    /*  $this->db->select(" t.cp_trabajador, t.atr_nombres, t.atr_apellidos, t.atr_rut,  t.cf_cargo");
   $this->db->from("fa_trabajador t");
   $this->db->where('t.cp_trabajador',$idTrabajador);
   $infoTrabajador = $this->db->get()->result(); */
     //consultar datos completos trabajador
     $this->db->select("t.cp_trabajador, t.atr_rut, t.atr_nombres, t.atr_apellidos,
-  t.atr_direccion, t.atr_fechaNacimiento,
-  t.atr_sueldo,
-  e.atr_nombre as estado,
-  t.cf_cargo,
-  ci.atr_nombre as ciudad,
-  ca.atr_nombre as cargo,
-  su.atr_nombre as sucursal,
-  n.atr_nombre as nacionalidad,
-  ec.atr_nombre as estadocivil,
-  a.atr_nombre as afp,
-  a.tasa as tasaAfp,
-  p.atr_nombre as prevision,
-  p.tasa as tasaPrevision,
-   em.atr_nombre as empresa,
+    t.atr_direccion, t.atr_fechaNacimiento,
+    t.atr_sueldo,
+    t.atr_plan,
+    t.atr_cargas,
+    e.atr_nombre as estado,
+    t.cf_cargo,
+    ci.atr_nombre as ciudad,
+    ca.atr_nombre as cargo,
+    su.atr_nombre as sucursal,
+    n.atr_nombre as nacionalidad,
+    ec.atr_nombre as estadocivil,
+    a.atr_nombre as afp,
+    a.tasa as tasaAfp,
+    p.atr_nombre as prevision,
+    p.tasa as tasaPrevision,
+    em.atr_nombre as empresa,
     em.atr_run as rutEmpresa");
     $this->db->from("fa_trabajador t");
     $this->db->join("fa_estado e", "t.cf_estado = e.cp_estado");
@@ -711,7 +702,7 @@ class PagosModel extends CI_Model
       // CONSULTA DE LAS REMUNERACIONES QUE TIENE DETERMINADO CARGO
       $this->db->select(" r.atr_colacion, r.atr_movilizacion, r.atr_asistencia");
       $this->db->from("fa_remuneracion r");
-      $this->db->where("r.cf_cargo", $t->cf_cargo);
+      $this->db->where("r.cf_trabajador", $t->cp_trabajador);
       $remuneracionTrabajador = $this->db->get()->result();
 
       // CONSULTA DE LAS REMUNERACIONES EN EL MES SOLICITADO
@@ -790,13 +781,8 @@ class PagosModel extends CI_Model
       $sumaBonos = $bonoBaseColacion + $bonoBaseAsistencia + $bonoBaseMovilizacion;
 
 
-
-
-
-
-      //esto deberia estar en controller calculo de gratificacion o en un servicio php
       //=SI(D17*0,25>=Datos!C2;Datos!C2;D17*0,25)
-      $sbase = (int) $t->atr_sueldo;
+      $sbase = (int)$t->atr_sueldo;
       $gratificacion = $sbase * 0.25;
       if ($gratificacion >= 126865) {
         $gratificacion = 126865;
@@ -812,6 +798,9 @@ class PagosModel extends CI_Model
         "bonoMovilizacionDiaria"  => $movilizacionDiaria,
         "bonoBaseMovilizacion"    => $bonoBaseMovilizacion,
         "bonoMovilizacionAPagar"  => $movilizacion, */];
+
+
+
       /* https://mindicador.cl/api/{tipo_indicador}/{dd-mm-yyyy} */
       $fechaOrd = explode('-', $fechaTermino);
 
@@ -824,59 +813,77 @@ class PagosModel extends CI_Model
       $valorUTM = $decodeUTM->serie[0]->valor;
 
 
-      $totalNoImponible = $cargasFamiliaresMonto + $sumaBonos; //se debe calcularsuma bonificaciones no imponibles
-      $totalHaberes = ($totalNoImponible + $totalImponible);
+
+      //se debe calcularsuma bonificaciones no imponibles
+
       $valorPrevision = round($totalImponible * (float) $t->tasaAfp); //se debe calcular desde valor en base de datos que no existe
 
-      $valorSalud = round($totalImponible * (float) $t->tasaPrevision);
+      $valorSalud = 0;
+      $valorSaludAdicional = 0;
+      if ($t->prevision != "Fonasa") {
+        $valorSalud = round($totalImponible * (float) $t->tasaPrevision);
+        $valorSaludAdicional = round(($valorUF * $t->atr_plan) - $valorSalud);
+      } else {
+        $valorSalud = round($totalImponible * (float) $t->tasaPrevision);
+      }
+
+
 
       $valorCesantia = round($totalImponible * 0.006);
-      $totalDescuentosLegales = ($valorPrevision + $valorSalud + $valorCesantia);
+
+      $totalDescuentosLegales = ($valorPrevision + $valorSalud + $valorCesantia + $valorSaludAdicional);
+
       $totalTributable = $totalImponible - $totalDescuentosLegales;
+
       if ($t->prevision != "Fonasa") {
       } else {
-        # code...
-
       }
+
 
       $tr_UTM = $totalTributable / $valorUTM;
       if ($totalTributable >= ($valorUTM * 13.5) && $totalTributable < ($valorUTM * 30)) {
-        # code...
+
 
         $valorImpuestoUnico = round((($tr_UTM * 0.04) -  0.54) * $valorUTM);
       }
       if ($totalTributable >= ($valorUTM * 30) && $totalTributable < ($valorUTM * 50)) {
-        # code...
+
         $valorImpuestoUnico = round((($tr_UTM * 0.08) - 1.74) * $valorUTM);
       }
       if ($totalTributable > ($valorUTM * 50) && $totalTributable < ($valorUTM * 70)) {
-        # code...
         $valorImpuestoUnico = round((($tr_UTM * 0.135) - 4.49) * $valorUTM);
       }
       if ($totalTributable > ($valorUTM * 70) && $totalTributable < ($valorUTM * 90)) {
-        # code...
         $valorImpuestoUnico = round((($tr_UTM * 0.23) - 11.14) * $valorUTM);
       }
       if ($totalTributable > ($valorUTM * 90) && $totalTributable < ($valorUTM * 120)) {
-        # code...
         $valorImpuestoUnico = round((($tr_UTM * 0.304) - 17.8) * $valorUTM);
       }
       if ($totalTributable >= ($valorUTM * 120)) {
-        # code...
         $valorImpuestoUnico = round((($tr_UTM * 0.35) - 23.32) * $valorUTM);
       }
       if ($totalTributable < ($valorUTM * 13.05)) {
-        # code...
         $valorImpuestoUnico = 0;
       }
 
       $totalOtrosDescuentos = $montoAdelanto + $montoPrestamo + $valorImpuestoUnico;
 
       $totalDescuentos = $totalOtrosDescuentos + $totalDescuentosLegales;
+
+      $totalNoImponible = $cargasFamiliaresMonto + $sumaBonos;
+
+      if ($totalImponible <= 336055) {
+        $cargasFamiliaresMonto = 13155 * $t->atr_cargas;
+      } else if ($totalImponible > 336055 && $totalImponible <= 490844) {
+        $cargasFamiliaresMonto = 8073 * $t->atr_cargas;
+      } else if ($totalImponible > 490844 && $totalImponible <= 765550) {
+        $cargasFamiliaresMonto = 2551 * $t->atr_cargas;
+      } else if ($totalImponible > 765550) {
+        $cargasFamiliaresMonto = 0 * $t->atr_cargas;
+      }
+
+      $totalHaberes = ($totalNoImponible + $totalImponible);
       $valorAlcanceLiquido = $totalHaberes - $totalDescuentos;
-
-
-
       $mesCorriente = $mes;
       switch ($mesCorriente) {
         case '01':
@@ -967,6 +974,8 @@ class PagosModel extends CI_Model
         "rutTrabajador"           => $t->atr_rut,
         "afpTrabajador"           => $t->afp,
         "saludTrabajador"         => $t->prevision,
+        "cargas"                  => $t->atr_cargas,
+        "plan"                    => $t->atr_plan,
         "sueldoBase"              => $sueldoBaseParaMandar,
         "gratificacionLegal"      => $gratificacion,
         "sueldoAPago"             => $montoTotalPagar,
@@ -996,7 +1005,8 @@ class PagosModel extends CI_Model
         "bonoMovilizacionAPagar"  => $movilizacion,
         "arrayPrestamos"          => $prestamos,
         "arrayAdelantos"          => $adelantos,
-        "fechaTermino"            => $fechaTermino
+        "fechaTermino"            => $fechaTermino,
+        "valorSaludAdicional"     => $valorSaludAdicional
       );
 
       return $data;

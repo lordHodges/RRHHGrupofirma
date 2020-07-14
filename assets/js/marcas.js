@@ -1,4 +1,4 @@
-var base_url = "https://www.imlchile.cl/dev_test/grupofirma/index.php/";
+var base_url = "http://www.imlchilelocal.cl/index.php/";
 
 function cargarTablaMarcas(permisoEditar, permisoExportar) {
 	var table = $("#tabla_marcas").DataTable();
@@ -46,7 +46,7 @@ function cargarTablaMarcas(permisoEditar, permisoExportar) {
 				},
 			},
 			ajax: {
-				url: "https://www.imlchile.cl/dev_test/grupofirma/index.php/getListadoMarcas",
+				url: "http://www.imlchilelocal.cl/index.php/getListadoMarcas",
 				type: "GET",
 			},
 			columnDefs: [
@@ -136,7 +136,7 @@ function cargarTablaMarcas(permisoEditar, permisoExportar) {
 				},
 			},
 			ajax: {
-				url: "https://www.imlchile.cl/dev_test/grupofirma/index.php/getListadoMarcas",
+				url: "http://www.imlchilelocal.cl/index.php/getListadoMarcas",
 				type: "GET",
 			},
 			columnDefs: [
