@@ -2,7 +2,7 @@
 $data = $this->session->userdata("datos");
 $usuario =  $data['usuario'];
 $permisos =  $data['permisos'];
-$URI = 'http://www.imlchilelocal.cl/';
+$URI = 'https://www.imlchile.cl/grupofirma/';
 ?>
 
 <?php

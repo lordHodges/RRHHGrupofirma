@@ -1,5 +1,5 @@
 /*************************** TRABAJADOR ****************************/
-var base_url = "http://www.imlchilelocal.cl/index.php/";
+var base_url = "https://www.imlchile.cl/grupofirma/index.php/";
 
 function cargarTablaTrabajadorHistorial() {
 	var table = $("#tabla_trabajador").DataTable();
@@ -40,7 +40,7 @@ function cargarTablaTrabajadorHistorial() {
 			},
 		},
 		ajax: {
-			url: "http://www.imlchilelocal.cl/index.php/getListadoTrabajadores",
+			url: "https://www.imlchile.cl/grupofirma/index.php/getListadoTrabajadores",
 			type: "GET",
 		},
 		columnDefs: [

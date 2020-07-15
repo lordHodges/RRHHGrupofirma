@@ -8,14 +8,14 @@
 			"name": "Launch Edge",
 			"request": "launch",
 			"type": "pwa-msedge",
-			"url": "http://www.imlchilelocal.cl/",
+			"url": "https://www.imlchile.cl/grupofirma/",
 			"webRoot": "${workspaceFolder}"
 		},
 		{
 			"type": "pwa-chrome",
 			"request": "launch",
 			"name": "Launch Chrome against localhost",
-			"url": "http://www.imlchilelocal.cl/",
+			"url": "https://www.imlchile.cl/grupofirma/",
 			"webRoot": "${workspaceFolder}"
 		}
 	]

@@ -101,8 +101,9 @@ class PagosModel extends CI_Model
     $fechaTerminoPrestamo = $anoPrestamo . '-' . $mesPrestamo . '-' . $diaTerminoPrestamo;
 
 
-    $this->db->select(" t.cp_trabajador, t.atr_nombres,t.atr_sueldo, t.atr_apellidos, t.atr_rut, t.cf_cargo");
+    $this->db->select(" t.cp_trabajador, t.atr_nombres, t.atr_apellidos, t.atr_rut, t.cf_cargo,r.atr_sueldoMensual");
     $this->db->from("fa_trabajador t");
+    $this->db->join("fa_remuneracion r", "r.cf_trabajador = t.cp_trabajador");
     $this->db->where('t.cf_estado != 6');
     $this->db->where('t.cf_empresa', $empresa);
     $arrayTrabajadores = $this->db->get()->result();
@@ -121,7 +122,7 @@ class PagosModel extends CI_Model
 
       $remuneracionTrabajador = $this->db->get()->result();
 
-      $sueldo = $t->atr_sueldo;
+      $sueldo = $t->atr_sueldoMensual;
 
       // CONSULTAR SI EL TRABAJADOR FALTO O NO PARA DESCONTAR EL BONO DE ASISTENCIA Y PUNTUALIDAD
       $this->db->select(" i.atr_motivo ");
@@ -203,7 +204,7 @@ class PagosModel extends CI_Model
 
 
       // Calcular sueldo si el trabajador falto
-      $sueldo = $t->atr_sueldo;
+      $sueldo = $t->atr_sueldoMensual;
       if ($cont > 0) {
         $sueldo = $sueldo / 30;
         $sueldo = $sueldo * $diasPago;
@@ -298,8 +299,9 @@ class PagosModel extends CI_Model
     $fechaTerminoPrestamo = $anoPrestamo . '-' . $mesPrestamo . '-' . $diaTerminoPrestamo;
 
 
-    $this->db->select(" t.cp_trabajador, t.atr_nombres, t.atr_sueldo ,t.atr_apellidos, t.atr_rut, t.cf_cargo");
+    $this->db->select(" t.cp_trabajador, t.atr_nombres, t.atr_sueldo ,t.atr_apellidos, t.atr_rut, t.cf_cargo, r.atr_sueldoMensual");
     $this->db->from("fa_trabajador t");
+    $this->db->join("fa_remuneracion r", "r.cf_trabajador = t.cp_trabajador");
     $this->db->where('t.cf_estado != 6');
     $this->db->where('t.cf_empresa', $empresa);
     $arrayTrabajadores = $this->db->get()->result();
@@ -316,7 +318,7 @@ class PagosModel extends CI_Model
         $this->db->where("r.cf_trabajador", $t->cp_trabajador);
         $remuneracionTrabajador = $this->db->get()->result();
 
-        $sueldo = $t->atr_sueldo;
+        $sueldo = $t->atr_sueldoMensual;
 
 
 
@@ -400,7 +402,7 @@ class PagosModel extends CI_Model
 
 
         // Calcular sueldo si el trabajador falto
-        $sueldo = $t->atr_sueldo;
+        $sueldo = $t->atr_sueldoMensual;
         if ($cont > 0) {
           $sueldo = $sueldo / 30;
           $sueldo = $sueldo * $diasPago;
@@ -480,8 +482,9 @@ class PagosModel extends CI_Model
     $fechaInicioPrestamo = $anoPrestamo . '-' . $mesPrestamo . '-01';
     $fechaTerminoPrestamo = $anoPrestamo . '-' . $mesPrestamo . '-' . $diaTerminoPrestamo;
 
-    $this->db->select(" t.cp_trabajador, t.atr_nombres, t.atr_apellidos, t.atr_rut,  t.cf_cargo, t.atr_sueldo");
+    $this->db->select(" t.cp_trabajador, t.atr_nombres, t.atr_apellidos, t.atr_rut,  t.cf_cargo, r.atr_sueldoMensual ");
     $this->db->from("fa_trabajador t");
+    $this->db->join("fa_remuneracion r", "r.cf_trabajador = t.cp_trabajador");
     $this->db->where('t.cp_trabajador', $idTrabajador);
     $infoTrabajador = $this->db->get()->result();
 
@@ -565,7 +568,7 @@ class PagosModel extends CI_Model
       }
 
       // Calcular sueldo si el trabajador falto
-      $sueldo = $t->atr_sueldo;
+      $sueldo = $t->atr_sueldoMensual;
       if ($cont > 0) {
         $sueldo = $sueldo / 30;
         $sueldo = $sueldo * $diasPago;
@@ -585,7 +588,7 @@ class PagosModel extends CI_Model
       $montoAdelanto = number_format($montoAdelanto, 0, ",", ".");
       $montoPrestamo = number_format($montoPrestamo, 0, ",", ".");
 
-      $sueldoBaseParaMandar = number_format($t->atr_sueldo, 0, ",", ".");
+      $sueldoBaseParaMandar = number_format($t->atr_sueldoMensual, 0, ",", ".");
 
       $montoTotalPagar = number_format($montoTotalPagar, 0, ",", ".");
 
@@ -675,7 +678,7 @@ class PagosModel extends CI_Model
     p.atr_nombre as prevision,
     p.tasa as tasaPrevision,
     em.atr_nombre as empresa,
-    em.atr_run as rutEmpresa");
+    em.atr_run as rutEmpresa, r.atr_sueldoMensual");
     $this->db->from("fa_trabajador t");
     $this->db->join("fa_estado e", "t.cf_estado = e.cp_estado");
     $this->db->join("fa_ciudad ci", "t.cf_ciudad = ci.cp_ciudad");
@@ -686,6 +689,7 @@ class PagosModel extends CI_Model
     $this->db->join("fa_afp a", "t.cf_afp = a.cp_afp");
     $this->db->join("fa_prevision p", "t.cf_prevision = p.cp_prevision");
     $this->db->join("fa_empresa em ", "t.cf_empresa = em.cp_empresa");
+    $this->db->join("fa_remuneracion r", "r.cf_trabajador = t.cp_trabajador");
     $this->db->where('t.cp_trabajador', $idTrabajador);
     $infoTrabajador = $this->db->get()->result();
     // comienzo de for al arreglo de trabajadores contratados activos.
@@ -769,7 +773,7 @@ class PagosModel extends CI_Model
       }
 
       // Calcular sueldo si el trabajador falto
-      $sueldo = $t->atr_sueldo;
+      $sueldo = $t->atr_sueldoMensual;
       if ($cont > 0) {
         $sueldo = $sueldo / 30;
         $sueldo = $sueldo * $diasPago;
@@ -782,7 +786,7 @@ class PagosModel extends CI_Model
 
 
       //=SI(D17*0,25>=Datos!C2;Datos!C2;D17*0,25)
-      $sbase = (int)$t->atr_sueldo;
+      $sbase = (int)$t->atr_sueldoMensual;
       $gratificacion = $sbase * 0.25;
       if ($gratificacion >= 126865) {
         $gratificacion = 126865;
@@ -948,7 +952,7 @@ class PagosModel extends CI_Model
       $montoAdelanto = number_format($montoAdelanto, 0, ",", ".");
       $montoPrestamo = number_format($montoPrestamo, 0, ",", ".");
 
-      $sueldoBaseParaMandar = number_format($t->atr_sueldo, 0, ",", ".");
+      $sueldoBaseParaMandar = number_format($sbase, 0, ",", ".");
 
       $montoTotalPagar = number_format($montoTotalPagar, 0, ",", ".");
 
