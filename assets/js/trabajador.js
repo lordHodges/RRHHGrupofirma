@@ -166,7 +166,7 @@ function cargarTablaTrabajador(permisoEditar, permisoExportar) {
 function agregarTrabajador() {
 
 
-  var nombreTrabajador = $("#nombreTrabajador").val();
+  var rut = $("#nombreTrabajador").val();
   var nombres = $("#nombres").val();
   var apellidos = $("#apellidos").val();
   var direccion = $("#direccion").val();
