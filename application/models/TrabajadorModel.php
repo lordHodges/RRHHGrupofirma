@@ -25,15 +25,6 @@ class TrabajadorModel extends CI_Model
   {
 
 
-    $this->db->select("r.atr_sueldoMensual");
-    $this->db->from("fa_remuneracion r");
-    $this->db->where('r.cf_cargo', $cargo);
-    $remuneracion =  $this->db->get()->result();
-
-    foreach ($remuneracion as $key => $value) {
-      $sueldo = $value->atr_sueldoMensual;
-    }
-
     $data = array(
       "atr_rut"                   => $rut,
       "atr_nombres"               => $nombres,
