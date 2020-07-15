@@ -413,7 +413,7 @@ if ($usuario[0]->atr_activo == "1") { ?>
     });
   </script>
 <?php } else {
-  header("Location:" + base_url());
+  header("Location: https://www.imlchile.cl/grupofirma/");
 } ?>
 
 </body>
