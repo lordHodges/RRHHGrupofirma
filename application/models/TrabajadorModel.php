@@ -23,6 +23,7 @@ class TrabajadorModel extends CI_Model
 
   function addTrabajador($rut, $nombres, $apellidos, $direccion, $fechaNacimiento, $ciudad, $sucursal, $cargo, $empresa, $afp, $prevision, $estadoContrato, $estadoCivil, $nacionalidad)
   {
+    $sueldo = 0;
 
 
     $data = array(
