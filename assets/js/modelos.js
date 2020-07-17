@@ -1,4 +1,4 @@
-var base_url = "http://www.imlchile.cl/grupofirma/index.php/";
+var base_url = "https://www.imlchile.cl/grupofirma/index.php/";
 
 function cargarTablaModelos(permisoEditar, permisoExportar) {
 	var table = $("#tabla_modelo").DataTable();
@@ -46,7 +46,7 @@ function cargarTablaModelos(permisoEditar, permisoExportar) {
 				},
 			},
 			ajax: {
-				url: "http://www.imlchile.cl/grupofirma/index.php/getListadoModelos",
+				url: "https://www.imlchile.cl/grupofirma/index.php/getListadoModelos",
 				type: "GET",
 			},
 			columnDefs: [
@@ -136,7 +136,7 @@ function cargarTablaModelos(permisoEditar, permisoExportar) {
 				},
 			},
 			ajax: {
-				url: "http://www.imlchile.cl/grupofirma/index.php/getListadoModelos",
+				url: "https://www.imlchile.cl/grupofirma/index.php/getListadoModelos",
 				type: "GET",
 			},
 			columnDefs: [
