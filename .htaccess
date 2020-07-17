@@ -4,5 +4,6 @@ RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^(.*)$ index.php?/$1 [L,QSA]
 <IfModule mod_headers.c>
     Header set Access-Control-Allow-Origin "*"  
-    Header set Access-Control-Allow-Credentials true
+    Header set Access-Control-Allow-Credentials true		
 </IfModule>
+SetEnv CI_ENV production
