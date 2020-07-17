@@ -89,17 +89,17 @@ function cargarDetalleHistorial(idTrabajador) {
 		$.each(msg.msg, function (i, o) {
 			if (o.atr_tipo == "Contrato") {
 				urlDescarga =
-					"https://www.imlchile.cl/grupofirma/ContratosController/descargarContrato/" + o.cf_contrato;
+					"https://www.imlchile.cl/grupofirma/index.php/ContratosController/descargarContrato/" + o.cf_contrato;
 			} else if (o.atr_tipo == "Carta de amonestación") {
 				urlDescarga =
-					"https://www.imlchile.cl/grupofirma/CartaAmonestacionController/descargarCartaAmonestacion/" +
+					"https://www.imlchile.cl/grupofirma/index.php/CartaAmonestacionController/descargarCartaAmonestacion/" +
 					o.cf_cartaamonestacion;
 			} else if (o.atr_tipo == "Anexo") {
 				urlDescarga =
-					"https://www.imlchile.cl/grupofirma/ContratosController/descargarAnexo/" + o.cf_anexo;
+					"https://www.imlchile.cl/grupofirma/index.php/ContratosController/descargarAnexo/" + o.cf_anexo;
 			} else {
 				urlDescarga =
-					"https://www.imlchile.cl/grupofirma/TransferenciasController/descargarComprobante/" +
+					"https://www.imlchile.cl/grupofirma/index.php/TransferenciasController/descargarComprobante/" +
 					o.cf_transferencia;
 			}
 			fecha = o.atr_fechacronologica.split("-");
@@ -141,7 +141,7 @@ function cargarDetalleContratos(idTrabajador) {
 		fila += '<div class="x_content"> <ul class="list-unstyled timeline">';
 		$.each(msg.msg, function (i, o) {
 			urlDescarga =
-				"https://www.imlchile.cl/grupofirma/ContratosController/descargarContrato/" + o.cp_contrato;
+				"https://www.imlchile.cl/grupofirma/index.php/ContratosController/descargarContrato/" + o.cp_contrato;
 
 			fecha = o.atr_fechaInicio.split("-");
 
@@ -182,7 +182,7 @@ function cargarDetalleAnexos(idTrabajador) {
 		fila += '<div class="x_content"> <ul class="list-unstyled timeline">';
 		$.each(msg.msg, function (i, o) {
 			urlDescarga =
-				"https://www.imlchile.cl/grupofirma/ContratosController/descargarAnexo/" + o.cp_anexo;
+				"https://www.imlchile.cl/grupofirma/index.php/ContratosController/descargarAnexo/" + o.cp_anexo;
 
 			fecha = o.atr_fechaDesde.split("-");
 
@@ -223,7 +223,7 @@ function cargarDetalleTransferencias(idTrabajador) {
 		fila += '<div class="x_content"> <ul class="list-unstyled timeline">';
 		$.each(msg.msg, function (i, o) {
 			urlDescarga =
-				"https://www.imlchile.cl/grupofirma/TransferenciasController/descargarComprobante/" +
+				"https://www.imlchile.cl/grupofirma/index.php/TransferenciasController/descargarComprobante/" +
 				o.cp_transferencia;
 
 			fecha = o.atr_fecha.split("-");
@@ -269,7 +269,7 @@ function cargarDetalleCartasDeAmonestacion(idTrabajador) {
 		fila += '<div class="x_content"> <ul class="list-unstyled timeline">';
 		$.each(msg.msg, function (i, o) {
 			urlDescarga =
-				"https://www.imlchile.cl/grupofirma/CartaAmonestacionController/descargarCartaAmonestacion/" +
+				"https://www.imlchile.cl/grupofirma/index.php/CartaAmonestacionController/descargarCartaAmonestacion/" +
 				o.cp_cartaAmonestacion;
 
 			fecha = o.atr_fecha.split("-");
@@ -318,7 +318,7 @@ function cargarDetalleContratosPorFecha(mes, ano, idTrabajador) {
 
 			if (fecha[0] == ano && fecha[1] == mes) {
 				urlDescarga =
-					"https://www.imlchile.cl/grupofirma/ContratosController/descargarContrato/" + o.cp_contrato;
+					"https://www.imlchile.cl/grupofirma/index.php/ContratosController/descargarContrato/" + o.cp_contrato;
 
 				fila += "<li>";
 				fila += '<div class="block">';
@@ -362,7 +362,7 @@ function cargarDetalleAnexosPorFecha(mes, ano, idTrabajador) {
 
 			if (fecha[0] == ano && fecha[1] == mes) {
 				urlDescarga =
-					"https://www.imlchile.cl/grupofirma/ContratosController/descargarAnexo/" + o.cp_anexo;
+					"https://www.imlchile.cl/grupofirma/index.php/ContratosController/descargarAnexo/" + o.cp_anexo;
 
 				fila += "<li>";
 				fila += '<div class="block">';
@@ -406,7 +406,7 @@ function cargarDetalleTransferenciasPorFecha(mes, ano, idTrabajador) {
 
 			if (fecha[0] == ano && fecha[1] == mes) {
 				urlDescarga =
-					"https://www.imlchile.cl/grupofirma/TransferenciasController/descargarComprobante/" +
+					"https://www.imlchile.cl/grupofirma/index.php/TransferenciasController/descargarComprobante/" +
 					o.cp_transferencia;
 
 				fila += "<li>";
@@ -455,7 +455,7 @@ function cargarDetalleCartasDeAmonestacionPorFecha(mes, ano, idTrabajador) {
 
 			if (fecha[0] == ano && fecha[1] == mes) {
 				urlDescarga =
-					"https://www.imlchile.cl/grupofirma/CartaAmonestacionController/descargarCartaAmonestacion/" +
+					"https://www.imlchile.cl/grupofirma/index.php/CartaAmonestacionController/descargarCartaAmonestacion/" +
 					o.cp_cartaAmonestacion;
 
 				fila += "<li>";
@@ -505,7 +505,7 @@ function cargarDetallePrestamosPorFecha(mes, ano, idTrabajador) {
 			alert(o.cp_prestamo);
 			if (fecha[0] == ano && fecha[1] == mes) {
 				urlDescarga =
-					"https://www.imlchile.cl/grupofirma/PrestamosController/descargarComprobante/" +
+					"https://www.imlchile.cl/grupofirma/index.php/PrestamosController/descargarComprobante/" +
 					o.cp_prestamo;
 
 				fila += "<li>";
