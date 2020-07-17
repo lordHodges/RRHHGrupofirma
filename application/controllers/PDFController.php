@@ -434,8 +434,7 @@ class  PDFController extends CI_Controller
 		$valorUF = $this->input->get("valorUF");
 		$valorUTM = $this->input->get("valorUTM");
 		$fechaTermino = $this->input->get("fechaTermino");
-		$totalTributable =
-			$this->input->get("totalTributable");
+		$totalTributable = $this->input->get("totalTributable");
 		$valorSaludAdicional = $this->input->get("valorSaludAdicional");
 		$plan = $this->input->get("plan");
 		/* fin datos calculados */
@@ -484,7 +483,7 @@ class  PDFController extends CI_Controller
 
 		);
 		$html = $this->load->view('pdf/liquidacionGenerada', $data, TRUE);
-		$this->load->library('PDFgenerator');
+		$this->load->library('Pdfgenerator');
 		$filename = 'liquidacionGenerada';
 		$this->pdfgenerator->generate($html, $filename, TRUE, 'Letter', 'portrait', 0);
 	}
