@@ -101,6 +101,7 @@ function cargarDetalleHistorial(idTrabajador) {
 				urlDescarga =
 					"https://www.imlchile.cl/grupofirma/index.php/TransferenciasController/descargarComprobante/" +
 					o.cf_transferencia;
+
 			}
 			fecha = o.atr_fechacronologica.split("-");
 
