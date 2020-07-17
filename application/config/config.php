@@ -2,7 +2,7 @@
 defined('BASEPATH') or exit('No direct script access allowed');
 
 
-$config['base_url'] = 'http://www.imlchilelocal.cl/';
+$config['base_url'] = 'http://www.imlchile.cl/grupofirma/';
 
 
 /*

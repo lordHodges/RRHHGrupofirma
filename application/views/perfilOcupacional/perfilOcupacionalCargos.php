@@ -126,7 +126,7 @@ if ($usuario[0]->atr_activo == "1") { ?>
           }
         },
         "ajax": {
-          url: "http://www.imlchilelocal.cl/index.php/getlistadecargos",
+          url: "http://www.imlchile.cl/grupofirma/index.php/getlistadecargos",
           type: 'GET'
         },
         "columnDefs": [{
@@ -152,13 +152,13 @@ if ($usuario[0]->atr_activo == "1") { ?>
       e.preventDefault();
       var cargo = $(this).parent().parent().children()[0];
       var idCargo = $(cargo).text()
-      var url = 'http://www.imlchilelocal.cl/index.php/docPerfilesOcupacionales?cargo=' + idCargo;
+      var url = 'http://www.imlchile.cl/grupofirma/index.php/docPerfilesOcupacionales?cargo=' + idCargo;
       window.open(url, '_blank');
     });
   </script>
 
 <?php } else {
-  header("Location: http://www.imlchilelocal.cl/");
+  header("Location: http://www.imlchile.cl/grupofirma/");
 } ?>
 
 </body>

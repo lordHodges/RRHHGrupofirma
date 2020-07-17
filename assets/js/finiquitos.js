@@ -1,4 +1,4 @@
-var base_url = "http://www.imlchilelocal.cl/index.php/";
+var base_url = "http://www.imlchile.cl/grupofirma/index.php/";
 
 function cargarTabla(permisoSubir) {
 	var table = $("#tabla_finiquitos").DataTable();
@@ -55,7 +55,7 @@ function cargarTabla(permisoSubir) {
 			},
 		},
 		ajax: {
-			url: "http://www.imlchilelocal.cl/index.php/getListadoTrabajadoresContrato",
+			url: "http://www.imlchile.cl/grupofirma/index.php/getListadoTrabajadoresContrato",
 			type: "GET",
 		},
 		columnDefs: [
@@ -103,7 +103,7 @@ function getFiniquitosTrabajador(idTrabajador) {
 				}
 			} else {
 				download =
-					"http://www.imlchilelocal.cl/index.php/FiniquitosController/descargarFiniquito/" +
+					"http://www.imlchile.cl/grupofirma/index.php/FiniquitosController/descargarFiniquito/" +
 					o.cp_finiquito;
 				if (permisoDescargar == "si") {
 					fila +=
