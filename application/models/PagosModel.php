@@ -787,7 +787,7 @@ class PagosModel extends CI_Model
 
       //=SI(D17*0,25>=Datos!C2;Datos!C2;D17*0,25)
       $sbase = (int)$t->atr_sueldoMensual;
-      $gratificacion = $sbase * 0.25;
+      $gratificacion = round($sbase * 0.25);
       if ($gratificacion >= 126865) {
         $gratificacion = 126865;
       }
