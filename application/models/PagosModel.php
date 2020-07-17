@@ -832,8 +832,13 @@ class PagosModel extends CI_Model
       }
 
 
+      if ($t->estado == "Contrato indefinido") {
 
-      $valorCesantia = round($totalImponible * 0.006);
+        $valorCesantia = round($totalImponible * 0.006);
+      } else {
+        $valorCesantia = 0;
+      }
+
 
       $totalDescuentosLegales = ($valorPrevision + $valorSalud + $valorCesantia + $valorSaludAdicional);
 
