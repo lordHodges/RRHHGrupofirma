@@ -238,10 +238,10 @@ function updateAdelanto() {
     if (tipoCuenta == "") {
         tipoCuenta = $("#tipoCuentaActual").text();
     }
-    if (numeroCuenta) {
+    if (numeroCuenta == "") {
         nuemroCuenta = $("#numeroCuentaActual").text();
     }
-    if (monto) {
+    if (monto == "") {
         monto = $("#montoActual").text();
     }
 
