@@ -128,17 +128,17 @@ class AdelantosController extends CI_Controller
 
 	public function updateAdelanto()
 	{
-		$idTrabajador = $this->input->post("idTrabajador");
+		$idAdelanto = $this->input->post("idAdelanto");
 		$banco = $this->input->post("banco");
 		$tipoCuenta = $this->input->post("tipoCuenta");
 		$numeroCuenta = $this->input->post("numeroCuenta");
 		$monto = $this->input->post("monto");
 
-		str_replace(".", "", $monto);
+		/* str_replace(".", "", $monto); */
 
 
 
-		$resultado = $this->AdelantosModel->updateAdelanto($idTrabajador, $banco, $tipoCuenta, $numeroCuenta, $monto);
+		$resultado = $this->AdelantosModel->updateAdelanto($idAdelanto, $banco, $tipoCuenta, $numeroCuenta, $monto);
 		echo json_encode(array("msg" => $resultado));
 	}
 
