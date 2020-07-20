@@ -212,9 +212,9 @@ function getDetalleAdelanto(idAdelanto) {
                     fila += "<option value='" + o.cp_banco + "'>" + o.atr_nombre + "</option>";
                 });
                 fila += '</select></div>';
-                fila += '<div class="col-md-6"><br><label for="nombre">TIPO DE CUENTA&nbsp; </label><input type="text" style="color:#848484" class="form-control custom-input-sm" id="tipoCuenta" value="' + o.atr_tipoCuenta + '"></div>';
-                fila += '<div class="col-md-6"><br><label for="nombre">NÚMERO DE CUENTA&nbsp; </label><input type="text" style="color:#848484" class="form-control custom-input-sm" id="numCuenta" value="' + o.atr_numCuenta + '"></div>';
-                fila += '<div class="col-md-6"><br><label for="nombre">MONTO&nbsp; </label><input type="text" style="color:#848484" class="form-control custom-input-sm" id="monto" value="' + o.atr_monto + '"></div>';
+                fila += '<div class="col-md-6"><br><label for="nombre" >TIPO DE CUENTA&nbsp;<label id="tipoCuentaActual"> ' + o.atr_tipoCuenta + ' </label></label><input type="text" style="color:#848484" class="form-control custom-input-sm" id="tipoCuentaNuevo" value=""></div>';
+                fila += '<div class="col-md-6"><br><label for="nombre" >NÚMERO DE CUENTA&nbsp;<label id="numeroCuentaActual"> ' + o.atr_numCuenta + ' </label></label><input type="text" style="color:#848484" class="form-control custom-input-sm" id="numeroCuentaNuevo" value=""></div>';
+                fila += '<div class="col-md-6"><br><label for="nombre">MONTO&nbsp;<label  id="montoActual"> ' + o.atr_monto + '</label></label><input type="text" style="color:#848484" class="form-control custom-input-sm" id="monto" value=""></div>';
                 fila += '<label style="display:none" id="idAdelanto">' + idAdelanto + '</label>';
 
                 $("#contenedorDetalleAdelanto").append(fila);
@@ -228,13 +228,23 @@ function getDetalleAdelanto(idAdelanto) {
 function updateAdelanto() {
     var id = $("#idAdelanto").text();
     var banco = $("#getSelectBanco2").val();
-    var tipoCuenta = $("#tipoCuenta").val();
-    var numeroCuenta = $("#numCuenta").val();
+    var tipoCuenta = $("#tipoCuentaNuevo").val();
+    var numeroCuenta = $("#numCuentaNuevo").val();
     var monto = $("#monto").val();
 
     if (banco == null) {
         banco = $("#bancoActual").text();
     }
+    if (tipoCuenta == "") {
+        tipoCuenta = $("#tipoCuentaActual").text();
+    }
+    if (numeroCuenta) {
+        nuemroCuenta = $("#numeroCuentaActual").text();
+    }
+    if (monto) {
+        monto = $("#montoActual").text();
+    }
+
 
     $.ajax({
         url: 'updateAdelanto',
