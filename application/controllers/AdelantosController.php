@@ -128,7 +128,7 @@ class AdelantosController extends CI_Controller
 
 	public function updateAdelanto()
 	{
-		$idAdelanto = $this->input->post("idAdelanto");
+		$idTrabajador = $this->input->post("idTrabajador");
 		$banco = $this->input->post("banco");
 		$tipoCuenta = $this->input->post("tipoCuenta");
 		$numeroCuenta = $this->input->post("numeroCuenta");
@@ -138,9 +138,10 @@ class AdelantosController extends CI_Controller
 
 
 
-		$resultado = $this->AdelantosModel->updateAdelanto($idAdelanto, $banco, $tipoCuenta, $numeroCuenta, $monto);
+		$resultado = $this->AdelantosModel->updateAdelanto($idTrabajador, $banco, $tipoCuenta, $numeroCuenta, $monto);
 		echo json_encode(array("msg" => $resultado));
 	}
+
 
 	public function buscarBanco()
 	{
