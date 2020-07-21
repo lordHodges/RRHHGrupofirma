@@ -968,7 +968,7 @@ class PagosModel extends CI_Model
       $totalDescuentos = number_format($totalDescuentos, 0, ",", ".");
       $valorAlcanceLiquido = number_format($valorAlcanceLiquido, 0, ",", ".");
       $montoTotalPagar = number_format($montoTotalPagar, 0, ",", ".");
-
+      $totalTributable = number_format($totalTributable, 0, ",", ".");
       $bonoBaseColacion = number_format($bonoBaseColacion, 0, ",", ".");
       $colacionDiaria = number_format($colacionDiaria, 0, ",", ".");
 
