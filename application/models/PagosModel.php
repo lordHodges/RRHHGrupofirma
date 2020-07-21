@@ -259,6 +259,7 @@ class PagosModel extends CI_Model
       $totalImponible = $sueldo + $gratificacion;
       $valorAfp = round($totalImponible * $t->tasaAfp);
       $valorSalud = round($totalImponible * $t->tasaPrevision);
+      $fechaOrd = explode('-', $fechaTermino);
 
       if ($t->prevision != "Fonasa") {
         $decodeUF = json_decode(file_get_contents("https://mindicador.cl/api/uf/$fechaOrd[2]-$fechaOrd[1]-$fechaOrd[0]"));
