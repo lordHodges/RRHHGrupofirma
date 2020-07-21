@@ -76,7 +76,7 @@ class TrabajadorModel extends CI_Model
     //
     // $this->db->insert("fa_adelanto", $dataAdelanto);
 
-    return "ok $insertTrabajador";
+    return "ok";
   }
 
   function getCiudades()
