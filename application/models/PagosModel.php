@@ -293,8 +293,8 @@ class PagosModel extends CI_Model
 
       //CALCULAR EL MONTO TOTAL A PAGAR
 
-      $montoTotalPagar = ($sueldo + $bonos + $cargasFamiliaresMonto) - ($montoAdelanto + $montoPrestamo);
-      $montoTotalPagar = $montoTotalPagar - ($valorSalud + $valorAfp + $adicionalPlan + $valorCesantia);
+      $montoTotalPagar = ($sueldo + $bonos + $cargasFamiliaresMonto + $gratificacion) - ($montoAdelanto + $montoPrestamo);
+      $montoTotalPagar = ($montoTotalPagar) - ($valorSalud + $valorAfp + $adicionalPlan + $valorCesantia);
 
 
       // CONSULTA DE LOS ADELANTOS
