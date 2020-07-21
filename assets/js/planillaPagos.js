@@ -786,7 +786,7 @@ function getGenerarLiquidacion(idTrabajador) {
 			fila +=
 				'<label class="text-center" for="bonoAsistencia">BONO ASISTENCIA</label>';
 			fila +=
-				'<input type="text" class="form-control custom-input-sm" id="bonoAsistenciaAPagar" disabled style="color:#000;" value="$' +
+				'<input type="text" class="form-control custom-input-sm" id="bonoAsistenciaAPagar" disabled style="color:#000;" value="' +
 				o.bonoAsistenciaAPagar +
 				'">';
 			fila += "</div>";
@@ -917,7 +917,7 @@ function getGenerarLiquidacion(idTrabajador) {
 				var atr_monto = new Intl.NumberFormat("de-DE").format(a.atr_monto);
 				fila += '<div class="col-md-6"><br>';
 				fila +=
-					'<input type="text" class="form-control custom-input-sm" id="atr_monto" disabled style="color:#000;" value="$' +
+					'<input type="text" class="form-control custom-input-sm" id="atr_monto" disabled style="color:#000;" value="' +
 					atr_monto +
 					'">';
 				fila += "</div>";
