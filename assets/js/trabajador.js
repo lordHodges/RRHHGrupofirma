@@ -299,7 +299,7 @@ function getDetalleTrabajadorViewEdit(id) {
 
       fila += '<div class="col-md-12 col-sm-12"><br><label for="direccion">DIRECCIÓN:&nbsp;</label><label id="direccionActual">' + o.atr_direccion + '</label><input type="text" style="color:#848484" class="form-control" id="direccionNuevo" oninput="mayus(this);"></div><br><br>';
 
-      fila += '<div class="col-md-12 col-sm-12"><br><label for="direccion">SUELDO:&nbsp;</label><label id="sueldoActual">' + o.atr_sueldo + '</label><input type="text" style="color:#848484" class="form-control" id="sueldoNuevo" ></div><br><br>';
+      fila += '<div class="col-md-12 col-sm-12"><br><label for="direccion"style="display:none" >SUELDO:&nbsp;</label><label style="display:none" id="sueldoActual">' + o.atr_sueldo + '</label><input type="text" style="color:#848484" class="form-control" id="sueldoNuevo" style="display:none" ></div><br><br>';
 
       fila += '<div class="col-md-12 col-sm-12"><br><label for="plan">Valor Isapre UF:&nbsp;</label><label id="planActual">' + o.atr_plan + '</label><input type="number" style="color:#848484" class="form-control" id="planNuevo"></div><br><br>';
 
