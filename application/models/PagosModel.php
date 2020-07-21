@@ -951,14 +951,22 @@ class PagosModel extends CI_Model
       // TRANSFORMAR LOS NUMEROS A FORMATO MILES
 
 
-      /*  $sueldo = number_format($sueldo, 0, ",", ".");
+      $sueldo = number_format($sueldo, 0, ",", ".");
       $bonos = '' . $bonos;
       $bonos = number_format($bonos, 0, ",", ".");
       $montoAdelanto = number_format($montoAdelanto, 0, ",", ".");
       $montoPrestamo = number_format($montoPrestamo, 0, ",", ".");
-
+      $gratificacion = number_format($gratificacion, 0, ",", ".");
       $sueldoBaseParaMandar = number_format($sbase, 0, ",", ".");
-
+      $totalImponible = number_format($totalImponible, 0, ",", ".");
+      $totalNoImponible = number_format($totalNoImponible, 0, ",", ".");
+      $totalHaberes = number_format($totalHaberes, 0, ",", ".");
+      $valorPrevision = number_format($valorPrevision, 0, ",", ".");
+      $valorSalud = number_format($valorSalud, 0, ",", ".");
+      $totalDescuentosLegales = number_format($totalDescuentosLegales, 0, ",", ".");
+      $totalOtrosDescuentos = number_format($totalOtrosDescuentos, 0, ",", ".");
+      $totalDescuentos = number_format($totalDescuentos, 0);
+      $valorAlcanceLiquido = number_format($valorAlcanceLiquido, 0, ",", ".");
       $montoTotalPagar = number_format($montoTotalPagar, 0, ",", ".");
 
       $bonoBaseColacion = number_format($bonoBaseColacion, 0, ",", ".");
@@ -968,11 +976,11 @@ class PagosModel extends CI_Model
       $bonoBaseAsistencia = number_format($bonoBaseAsistencia, 0, ",", ".");
 
       $bonoBaseMovilizacion = number_format($bonoBaseMovilizacion, 0, ",", ".");
-      $movilizacionDiaria = number_format($movilizacionDiaria, 0, ",", "."); */
+      $movilizacionDiaria = number_format($movilizacionDiaria, 0, ",", ".");
 
       $data = array(
-        "valorUF" => $valorUF,
-        "valorUTM" => $valorUTM,
+        "valorUF"                 => $valorUF,
+        "valorUTM"                => $valorUTM,
         "valorImpuestoUnico"      => $valorImpuestoUnico,
         "totalTributable"         => $totalTributable,
         "mesCorriente"            => $mesCorriente,
@@ -985,7 +993,7 @@ class PagosModel extends CI_Model
         "saludTrabajador"         => $t->prevision,
         "cargas"                  => $t->atr_cargas,
         "plan"                    => $t->atr_plan,
-        "sueldoBase"              => $sbase,
+        "sueldoBase"              => $sueldoBaseParaMandar,
         "gratificacionLegal"      => $gratificacion,
         "sueldoAPago"             => $montoTotalPagar,
         "inasistencias"           => $cont,

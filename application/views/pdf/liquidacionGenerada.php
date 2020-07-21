@@ -3,28 +3,7 @@ $data = $this->session->userdata("datos");
 $usuario =  $data['usuario'];
 $permisos =  $data['permisos'];
 ?>
-<?php
-// TRANSFORMAR LOS NUMEROS A FORMATO MILES
 
-$sueldo = number_format($sueldo, 0, ",", ".");
-$bonos = '' . $bonos;
-$bonos = number_format($bonos, 0, ",", ".");
-$montoAdelanto = number_format($montoAdelanto, 0, ",", ".");
-$montoPrestamo = number_format($montoPrestamo, 0, ",", ".");
-
-$sueldoBaseParaMandar = number_format($sbase, 0, ",", ".");
-
-$montoTotalPagar = number_format($montoTotalPagar, 0, ",", ".");
-
-$bonoBaseColacion = number_format($bonoBaseColacion, 0, ",", ".");
-$colacionDiaria = number_format($colacionDiaria, 0, ",", ".");
-
-
-$bonoBaseAsistencia = number_format($bonoBaseAsistencia, 0, ",", ".");
-
-$bonoBaseMovilizacion = number_format($bonoBaseMovilizacion, 0, ",", ".");
-$movilizacionDiaria = number_format($movilizacionDiaria, 0, ",", ".");
-?>
 <?php
 $view_contratoEstadar = 0;
 foreach ($permisos as $key => $value) {
