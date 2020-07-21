@@ -951,7 +951,7 @@ class PagosModel extends CI_Model
       // TRANSFORMAR LOS NUMEROS A FORMATO MILES
 
 
-      $sueldo = number_format($sueldo, 0, ",", ".");
+      /*  $sueldo = number_format($sueldo, 0, ",", ".");
       $bonos = '' . $bonos;
       $bonos = number_format($bonos, 0, ",", ".");
       $montoAdelanto = number_format($montoAdelanto, 0, ",", ".");
@@ -968,7 +968,7 @@ class PagosModel extends CI_Model
       $bonoBaseAsistencia = number_format($bonoBaseAsistencia, 0, ",", ".");
 
       $bonoBaseMovilizacion = number_format($bonoBaseMovilizacion, 0, ",", ".");
-      $movilizacionDiaria = number_format($movilizacionDiaria, 0, ",", ".");
+      $movilizacionDiaria = number_format($movilizacionDiaria, 0, ",", "."); */
 
       $data = array(
         "valorUF" => $valorUF,
@@ -985,7 +985,7 @@ class PagosModel extends CI_Model
         "saludTrabajador"         => $t->prevision,
         "cargas"                  => $t->atr_cargas,
         "plan"                    => $t->atr_plan,
-        "sueldoBase"              => $sueldoBaseParaMandar,
+        "sueldoBase"              => $sbase,
         "gratificacionLegal"      => $gratificacion,
         "sueldoAPago"             => $montoTotalPagar,
         "inasistencias"           => $cont,
