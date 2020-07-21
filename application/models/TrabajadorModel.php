@@ -46,6 +46,11 @@ class TrabajadorModel extends CI_Model
     $insertTrabajador = $this->db->insert("fa_trabajador", $data);
 
 
+
+
+    $idTrabajador = $this->db->insert_id();
+
+    $insertRemuneraciones = $this->db->insert("fa_remuneracion", $idTrabajador);
     // $this->db->select('cp_trabajador');
     // $this->db->from("fa_trabajador t");
     // $trabajadores = $this->db->get()->result();
