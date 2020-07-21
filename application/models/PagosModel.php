@@ -269,6 +269,8 @@ class PagosModel extends CI_Model
         } else {
           $adicionalPlan = 0;
         }
+      } else {
+        $adicionalPlan = 0;
       }
       if ($t->estado == 2) {
         $valorCesantia = round($totalImponible * 0.006);
