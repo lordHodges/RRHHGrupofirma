@@ -116,37 +116,6 @@ class PagosModel extends CI_Model
     $this->db->where('t.cf_estado != 6');
     $this->db->where('t.cf_empresa', $empresa);
     $arrayTrabajadores = $this->db->get()->result();
-    /*  $this->db->select("t.cp_trabajador, t.atr_rut, t.atr_nombres, t.atr_apellidos,
-    t.atr_direccion, t.atr_fechaNacimiento,
-    t.atr_sueldo,
-    t.atr_plan,
-    t.atr_cargas,
-    e.atr_nombre as estado,
-    t.cf_cargo,
-    ci.atr_nombre as ciudad,
-    ca.atr_nombre as cargo,
-    su.atr_nombre as sucursal,
-    n.atr_nombre as nacionalidad,
-    ec.atr_nombre as estadocivil,
-    a.atr_nombre as afp,
-    a.tasa as tasaAfp,
-    p.atr_nombre as prevision,
-    p.tasa as tasaPrevision,
-    em.atr_nombre as empresa,
-    em.atr_run as rutEmpresa, r.atr_sueldoMensual");
-    $this->db->from("fa_trabajador t");
-    $this->db->join("fa_estado e", "t.cf_estado = e.cp_estado");
-    $this->db->join("fa_ciudad ci", "t.cf_ciudad = ci.cp_ciudad");
-    $this->db->join("fa_cargo ca", "t.cf_cargo = ca.cp_cargo");
-    $this->db->join("fa_sucursal su", "t.cf_sucursal = su.cp_sucursal");
-    $this->db->join("fa_nacionalidad n", "t.cf_nacionalidad = n.cp_nacionalidad");
-    $this->db->join("fa_estadoCivil ec", "t.cf_estadoCivil = ec.cp_estadoCivil");
-    $this->db->join("fa_afp a", "t.cf_afp = a.cp_afp");
-    $this->db->join("fa_prevision p", "t.cf_prevision = p.cp_prevision");
-    $this->db->join("fa_empresa em ", "t.cf_empresa = em.cp_empresa");
-    $this->db->join("fa_remuneracion r", "r.cf_trabajador = t.cp_trabajador");
-    $this->db->where('t.cp_trabajador', $idTrabajador);
-    $infoTrabajador = $this->db->get()->result(); */
 
 
     // comienzo de for al arreglo de trabajadores contratados activos.
@@ -379,8 +348,19 @@ class PagosModel extends CI_Model
     $fechaTerminoPrestamo = $anoPrestamo . '-' . $mesPrestamo . '-' . $diaTerminoPrestamo;
 
 
-    $this->db->select(" t.cp_trabajador, t.atr_nombres, t.atr_sueldo ,t.atr_apellidos, t.atr_rut, t.cf_cargo, r.atr_sueldoMensual");
+    $this->db->select(" t.cp_trabajador, t.atr_nombres, t.atr_sueldo ,t.atr_apellidos, t.atr_rut, t.cf_cargo, r.atr_sueldoMensual,
+    t.atr_plan,
+    t.atr_cargas,
+    e.atr_nombre as estado,
+    a.atr_nombre as afp,
+    a.tasa as tasaAfp,
+    p.atr_nombre as prevision,
+    p.tasa as tasaPrevision");
     $this->db->from("fa_trabajador t");
+    $this->db->from("fa_trabajador t");
+    $this->db->join("fa_estado e", "t.cf_estado = e.cp_estado");
+    $this->db->join("fa_afp a", "t.cf_afp = a.cp_afp");
+    $this->db->join("fa_prevision p", "t.cf_prevision = p.cp_prevision");
     $this->db->join("fa_remuneracion r", "r.cf_trabajador = t.cp_trabajador");
     $this->db->where('t.cf_estado != 6');
     $this->db->where('t.cf_empresa', $empresa);
@@ -487,11 +467,46 @@ class PagosModel extends CI_Model
           $sueldo = $sueldo / 30;
           $sueldo = $sueldo * $diasPago;
         }
+        //
+        $gratificacion = round($sueldo * 0.25);
+        if ($gratificacion >= 126865) {
+          $gratificacion = 126865;
+        }
+        $totalImponible = $sueldo + $gratificacion;
+        $valorAfp = round($totalImponible * $t->tasaAfp);
+        $valorSalud = round($totalImponible * $t->tasaPrevision);
+        $fechaOrd = explode('-', $fechaTermino);
+        if ($t->prevision != "Fonasa") {
+          $decodeUF = json_decode(file_get_contents("https://mindicador.cl/api/uf/$fechaOrd[2]-$fechaOrd[1]-$fechaOrd[0]"));
+          $valorUF = $decodeUF->serie[0]->valor;
+          $adicionalPlan = round($t->atr_plan * $valorUF);
+          if ($valorSalud < $adicionalPlan) {
+            $adicionalPlan = $adicionalPlan - $valorSalud;
+          } else {
+            $adicionalPlan = 0;
+          }
+        } else {
+          $adicionalPlan = 0;
+        }
+        if ($t->estado == 2) {
+          $valorCesantia = round($totalImponible * 0.006);
+        } else {
+          $valorCesantia = 0;
+        }
+        if ($totalImponible <= 336055) {
+          $cargasFamiliaresMonto = 13155 * $t->atr_cargas;
+        } else if ($totalImponible > 336055 && $totalImponible <= 490844) {
+          $cargasFamiliaresMonto = 8073 * $t->atr_cargas;
+        } else if ($totalImponible > 490844 && $totalImponible <= 765550) {
+          $cargasFamiliaresMonto = 2551 * $t->atr_cargas;
+        } else if ($totalImponible > 765550) {
+          $cargasFamiliaresMonto = 0 * $t->atr_cargas;
+        }
 
         //CALCULAR EL MONTO TOTAL A PAGAR
 
-        $montoTotalPagar = ($sueldo + $bonos) - ($montoAdelanto + $montoPrestamo);
-
+        $montoTotalPagar = ($sueldo + $bonos + $cargasFamiliaresMonto + $gratificacion) - ($montoAdelanto + $montoPrestamo);
+        $montoTotalPagar = ($montoTotalPagar) - ($valorSalud + $valorAfp + $adicionalPlan + $valorCesantia);
 
 
         // TRANSFORMAR LOS NUMEROS A FORMATO MILES
