@@ -190,7 +190,7 @@ function cargarDatosEsenciales(idTrabajador) {
 				filaRemuneracion += "<ul>";
 				filaRemuneracion +=
 					'<li><h6 style="color:#49505c;">Sueldo: $' +
-					p.atr_sueldo +
+					o.atr_sueldoMensual +
 					"</h6></li>";
 				if (o.atr_cotizaciones == 1) {
 					filaRemuneracion +=
