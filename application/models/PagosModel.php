@@ -103,7 +103,7 @@ class PagosModel extends CI_Model
 
     $this->db->select(" t.cp_trabajador, t.atr_nombres, t.atr_apellidos, t.atr_rut, t.cf_cargo,r.atr_sueldoMensual, t.atr_plan,
     t.atr_cargas,
-    e.atr_nombre as estado,
+    e.cp_nombre as estado,
     a.atr_nombre as afp,
     a.tasa as tasaAfp,
     p.atr_nombre as prevision,
@@ -351,7 +351,7 @@ class PagosModel extends CI_Model
     $this->db->select(" t.cp_trabajador, t.atr_nombres, t.atr_sueldo ,t.atr_apellidos, t.atr_rut, t.cf_cargo, r.atr_sueldoMensual,
     t.atr_plan,
     t.atr_cargas,
-    e.atr_nombre as estado,
+    e.cp_estado as estado,
     a.atr_nombre as afp,
     a.tasa as tasaAfp,
     p.atr_nombre as prevision,
