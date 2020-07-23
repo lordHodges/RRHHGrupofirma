@@ -435,6 +435,7 @@ class  PDFController extends CI_Controller
 		$fechaTermino = $this->input->get("fechaTermino");
 		$totalTributable = $this->input->get("totalTributable");
 		$valorSaludAdicional = $this->input->get("valorSaludAdicional");
+		$valorImponible = $this->input->get("valorImponible");
 		$plan = $this->input->get("plan");
 		/* fin datos calculados */
 		/* vaslores para el documento */
@@ -478,7 +479,8 @@ class  PDFController extends CI_Controller
 			'bonoMobilizacion'	=> $bonoMobilizacion,
 			'bonoColacion'	=> $bonoColacion,
 			'valorSaludAdicional' => $valorSaludAdicional,
-			'plan' => $plan
+			'plan' => $plan,
+			'valorImponible' => $valorImponible
 
 		);
 		$html = $this->load->view('pdf/liquidacionGenerada', $data, TRUE);
