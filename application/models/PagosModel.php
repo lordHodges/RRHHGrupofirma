@@ -942,7 +942,7 @@ class PagosModel extends CI_Model
 
 
 
-      $totalDescuentosLegales = ($valorPrevision + $valorSalud + $valorCesantia + $valorSaludAdicional);
+
 
       $totalTributable = ($totalImponible2) - ($valorSalud + $valorPrevision + $valorCesantia);
 
@@ -974,8 +974,9 @@ class PagosModel extends CI_Model
       if ($totalTributable < ($valorUTM * 13.05)) {
         $valorImpuestoUnico = 0;
       }
+      $totalDescuentosLegales = ($valorPrevision + $valorSalud + $valorCesantia + $valorSaludAdicional + $valorImpuestoUnico);
 
-      $totalOtrosDescuentos = $montoAdelanto + $montoPrestamo + $valorImpuestoUnico;
+      $totalOtrosDescuentos = $montoAdelanto + $montoPrestamo;
 
       $totalDescuentos = $totalOtrosDescuentos + $totalDescuentosLegales;
 
@@ -991,7 +992,7 @@ class PagosModel extends CI_Model
         $cargasFamiliaresMonto = 0 * $t->atr_cargas;
       }
 
-      $totalHaberes = ($totalNoImponible + $totalImponible);
+      $totalHaberes = ($totalNoImponible + $totalImponible2);
       $valorAlcanceLiquido = $totalHaberes - $totalDescuentos;
       $mesCorriente = $mes;
       switch ($mesCorriente) {
