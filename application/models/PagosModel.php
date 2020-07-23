@@ -889,6 +889,12 @@ class PagosModel extends CI_Model
         $gratificacion = 126865;
       }
       $totalImponible = $sbase + $gratificacion;
+      if ($t->estado == "Contrato indefinido") {
+
+        $valorCesantia = round($totalImponible * 0.006);
+      } else {
+        $valorCesantia = 0;
+      }
       if ($totalImponible >= 2299129) {
         $totalImponible = 2299129;
       }
@@ -932,21 +938,14 @@ class PagosModel extends CI_Model
       }
 
 
-      if ($t->estado == "Contrato indefinido") {
 
-        $valorCesantia = round($totalImponible * 0.006);
-      } else {
-        $valorCesantia = 0;
-      }
 
 
       $totalDescuentosLegales = ($valorPrevision + $valorSalud + $valorCesantia + $valorSaludAdicional);
 
-      $totalTributable = $totalImponible - $totalDescuentosLegales;
+      $totalTributable = ($totalImponible + $valorSaludAdicional) - $totalDescuentosLegales;
 
-      if ($t->prevision != "Fonasa") {
-      } else {
-      }
+
 
 
       $tr_UTM = $totalTributable / $valorUTM;
