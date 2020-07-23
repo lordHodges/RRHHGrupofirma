@@ -423,7 +423,7 @@ if ($usuario[0]->atr_activo == "1") { ?>
         '&&montoPrestamo=' + montoPrestamo +
         '&&bonoAsistenciaAPagar=' + bonoAsistenciaAPagar +
         '&&fechaTermino=' + fechaTernmino +
-        '&&valorImponible' + valorImponible
+        '&&valorImponible=' + valorImponible
       window.open(url, '_blank');
 
 
