@@ -889,6 +889,7 @@ class PagosModel extends CI_Model
         $gratificacion = 126865;
       }
       $totalImponible = $sbase + $gratificacion;
+      $totalImponible2 = $totalImponible;
       if ($t->estado == "Contrato indefinido") {
 
         $valorCesantia = round($totalImponible * 0.006);
@@ -943,7 +944,7 @@ class PagosModel extends CI_Model
 
       $totalDescuentosLegales = ($valorPrevision + $valorSalud + $valorCesantia + $valorSaludAdicional);
 
-      $totalTributable = ($totalImponible + $valorSaludAdicional) - $totalDescuentosLegales;
+      $totalTributable = ($totalImponible2) - ($valorSalud + $valorPrevision + $valorCesantia);
 
 
 
