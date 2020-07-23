@@ -28,8 +28,8 @@ foreach ($permisos as $key => $value) {
         $view_exportarCargo = "1";
     }
 }
-
-if ($usuario[0]->atr_activo == "1") { ?>
+//$usuario[0]->atr_activo == "1"
+if (true) { ?>
 
     <div class="right_col" role="main">
         <!-- Contenedor principal -->
@@ -189,25 +189,25 @@ if ($usuario[0]->atr_activo == "1") { ?>
 
 
     <!-- jQuery -->
-    <script src="<?php echo base_url() ?>assets/vendors/jquery/dist/jquery.min.js"></script>
+    <script src="<?php echo base_url();   ?>assets/vendors/jquery/dist/jquery.min.js"></script>
     <!-- Bootstrap -->
-    <script src="<?php echo base_url() ?>assets/vendors/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="<?php echo base_url();   ?>assets/vendors/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Datatables -->
-    <script src="<?php echo base_url() ?>assets/js/datatables.min.js" type="text/javascript"></script>
+    <script src="<?php echo base_url();   ?>assets/js/datatables.min.js" type="text/javascript"></script>
     <!-- Custom Theme Scripts -->
-    <script src="<?php echo base_url() ?>assets/build/js/custom.min.js"></script>
+    <script src="<?php echo base_url();   ?>assets/build/js/custom.min.js"></script>
     <!-- MODIDEV -->
-    <script src="<?php echo base_url() ?>assets/js/modidev.js"></script>
-    <script src="<?php echo base_url() ?>assets/js/perfilesOcupacionales/responsabilidades.js"></script>
-    <script src="<?php echo base_url() ?>assets/js/remuneracion.js"></script>
-    <script src="<?php echo base_url() ?>assets/js/trabajador.js"></script>
-    <script src="<?php echo base_url() ?>assets/js/validaciones.js"></script>
+    <script src="<?php echo base_url();   ?>assets/js/modidev.js"></script>
+    <script src="<?php echo base_url();   ?>assets/js/perfilesOcupacionales/responsabilidades.js"></script>
+    <script src="<?php echo base_url();   ?>assets/js/remuneracion.js"></script>
+    <script src="<?php echo base_url();   ?>assets/js/trabajador.js"></script>
+    <script src="<?php echo base_url();   ?>assets/js/validaciones.js"></script>
     <!-- Toast -->
-    <script src="<?php echo base_url() ?>assets/js/toastr.min.js" type="text/javascript"></script>}
+    <script src="<?php echo base_url();   ?>assets/js/toastr.min.js" type="text/javascript"></script>}
     <!-- Switchery -->
-    <script src="<?php echo base_url() ?>assets/vendors/switchery/dist/switchery.min.js"></script>
+    <script src="<?php echo base_url();   ?>assets/vendors/switchery/dist/switchery.min.js"></script>
     <!-- iCheck -->
-    <script src="<?php echo base_url() ?>assets/vendors/iCheck/icheck.min.js"></script>
+    <script src="<?php echo base_url();   ?>assets/vendors/iCheck/icheck.min.js"></script>
 
 
 
@@ -265,51 +265,54 @@ if ($usuario[0]->atr_activo == "1") { ?>
                     "data": null,
                     "defaultContent": btnAcciones
                 }],
-                <?php if ($view_exportarCargo == 1) {  ?>
-                    dom: '<"html5buttons"B>lTfgitp',
-                    buttons: [{
-                            extend: 'copy',
-                            exportOptions: {
-                                columns: [1, 2, 3, 4, 5]
-                            }
+                dom: '<"html5buttons"B>lTfgitp',
+                buttons,
+                [{
+                        extend: 'copy',
+                        exportOptions: {
+                            columns: [1, 2, 3, 4, 5]
                         },
-                        {
-                            extend: 'csv',
-                            exportOptions: {
-                                columns: [1, 2, 3, 4, 5]
-                            }
+                    },
+                    {
+                        extend: 'csv',
+                        exportOptions: {
+                            columns: [1, 2, 3, 4, 5]
                         },
-                        {
-                            extend: 'excel',
-                            title: 'Lista de cargos',
-                            exportOptions: {
-                                columns: [1, 2, 3, 4, 5]
-                            }
+                    },
+                    {
+                        extend: 'excel',
+                        title: 'Lista de cargos',
+                        exportOptions: {
+                            columns: [1, 2, 3, 4, 5]
                         },
-                        {
-                            extend: 'pdf',
-                            title: 'Lista de cargos',
-                            exportOptions: {
-                                columns: [1, 2, 3, 4, 5]
-                            }
+                    },
+                    {
+                        extend: 'pdf',
+                        title: 'Lista de cargos',
+                        exportOptions: {
+                            columns: [1, 2, 3, 4, 5]
+                        },
 
+                    },
+                    {
+                        extend: 'print',
+                        title: 'Grupo Firma',
+                        customize: function(win) {
+                            $(win.document.body).addClass('white-bg');
+                            $(win.document.body).css('font-size', '10px');
+                            $(win.document.body).find('table')
+                                .addClass('compact')
+                                .css('font-size', 'inherit');
                         },
-                        {
-                            extend: 'print',
-                            title: 'Grupo Firma',
-                            customize: function(win) {
-                                $(win.document.body).addClass('white-bg');
-                                $(win.document.body).css('font-size', '10px');
-                                $(win.document.body).find('table')
-                                    .addClass('compact')
-                                    .css('font-size', 'inherit');
-                            },
-                            exportOptions: {
-                                columns: [1, 2, 3, 4, 5]
-                            }
+                        exportOptions: {
+                            columns: [1, 2, 3, 4, 5]
                         }
-                    ]
-                <?php } ?>
+                    }
+                ],
+                "lengthMenu": [
+                    [100, 50, 25, -1],
+                    [100, 50, 25, "All"]
+                ],
             });
         });
 
@@ -365,7 +368,7 @@ if ($usuario[0]->atr_activo == "1") { ?>
         });
     </script>
 <?php } else {
-    header("Location: https://www.imlchile.cl/grupofirma/");
+    header("Location: http://www.imlchilelocal.cl/");
 } ?>
 
 </body>
