@@ -28,8 +28,8 @@ foreach ($permisos as $key => $value) {
         $view_exportarCargo = "1";
     }
 }
-
-if ($usuario[0]->atr_activo == "1") { ?>
+//$usuario[0]->atr_activo == "1"
+if (true) { ?>
 
     <div class="right_col" role="main">
         <!-- Contenedor principal -->
@@ -265,8 +265,9 @@ if ($usuario[0]->atr_activo == "1") { ?>
                     "data": null,
                     "defaultContent": btnAcciones
                 }]
-                <?php if ($view_exportarCargo == 1) {  ?>: dom,
-                    '<"html5buttons"B>lTfgitp': buttons,
+                <?php if ($view_exportarCargo == 1) {  ?>,
+                    dom: '<"html5buttons"B>lTfgitp',
+                    buttons,
                     [{
                             extend: 'copy',
                             exportOptions: {
