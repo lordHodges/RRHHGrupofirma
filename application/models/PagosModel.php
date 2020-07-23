@@ -890,7 +890,7 @@ class PagosModel extends CI_Model
       }
       $totalImponible = $sbase + $gratificacion;
       if ($totalImponible >= 2299129) {
-        $totalImponible >= 2299129;
+        $totalImponible = 2299129;
       }
       $cargasFamiliaresMonto = 0;
       $arrayBonos = [
