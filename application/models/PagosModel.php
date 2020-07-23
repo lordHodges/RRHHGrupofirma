@@ -889,6 +889,9 @@ class PagosModel extends CI_Model
         $gratificacion = 126865;
       }
       $totalImponible = $sbase + $gratificacion;
+      if ($totalImponible >= 2299129) {
+        $totalImponible >= 2299129;
+      }
       $cargasFamiliaresMonto = 0;
       $arrayBonos = [
         /*  { atr_nombreBono:"bonoColacionBase" => atr_montobono:$bonoBaseColacion},
