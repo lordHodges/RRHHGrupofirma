@@ -126,7 +126,7 @@ if ($usuario[0]->atr_activo == "1") { ?>
           }
         },
         "ajax": {
-          url: "http://www.imlchilelocal.cl/index.php/getlistadecargos",
+          url: "https://www.imlchile.cl/grupofirma/index.php/getlistadecargos",
           type: 'GET'
         },
         "columnDefs": [{
