@@ -472,6 +472,9 @@ class PagosModel extends CI_Model
           $gratificacion = 126865;
         }
         $totalImponible = $sueldo + $gratificacion;
+        if ($totalImponible >= 2299129) {
+          $totalImponible = 2299129;
+        }
         $valorAfp = round($totalImponible * $t->tasaAfp);
         $valorSalud = round($totalImponible * $t->tasaPrevision);
         $fechaOrd = explode('-', $fechaTermino);
