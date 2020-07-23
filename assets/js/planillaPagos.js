@@ -1020,6 +1020,16 @@ function getGenerarLiquidacion(idTrabajador) {
 				'">';
 			fila += "</div>";
 			fila += "</div>";
+			fila += '<div class="col-lg-6 col-md-6 col-sm-6">';
+			fila += '<div class="input-group">';
+			fila +=
+				'<label class="text-center " for="valorImponible" style="text-decoration: underline green; font-weight: bold;">TOTAL TRIBUTABLE</label>';
+			fila +=
+				'<input type="text" class="form-control custom-input-sm" id="valorImponible" disabled style="color:#000;margin-left:1rem;font-weight: bold;" value="' +
+				o.valorImponible +
+				'">';
+			fila += "</div>";
+			fila += "</div>";
 			/* HHHHHHHHHHHHHHIMPUESTO UNICOHHHHHHHHHHHHHHHH */
 			if (o.valorImpuestoUnico != "undefined" && o.valorImpuestoUnico > 0) {
 				fila += '<div class="col-lg-12 col-md-12 col-sm-12"><br>';

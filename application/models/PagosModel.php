@@ -1099,7 +1099,7 @@ class PagosModel extends CI_Model
         "sueldoAPago"             => $montoTotalPagar,
         "inasistencias"           => $cont,
         "diasTrabajados"          => $diasPago,
-        "totalImponible"          => $totalImponible,
+        "totalImponible"          => $totalImponible2,
         "cargasFamiliaresMonto"   => $cargasFamiliaresMonto,
         "arrayBonos"              => $arrayBonos,
         "valorPrevision"          => $valorPrevision,
@@ -1124,7 +1124,8 @@ class PagosModel extends CI_Model
         "arrayPrestamos"          => $prestamos,
         "arrayAdelantos"          => $adelantos,
         "fechaTermino"            => $fechaTermino,
-        "valorSaludAdicional"     => $valorSaludAdicional
+        "valorSaludAdicional"     => $valorSaludAdicional,
+        "valorImponible"          => $totalImponible
       );
 
       return $data;

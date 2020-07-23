@@ -376,6 +376,7 @@ if ($usuario[0]->atr_activo == "1") { ?>
       var valorUTM = $("#valorUTM").val();
       var plan = $("#plan").val();
       var valorSaludAdicional = $("#valorSaludAdicional").val();
+      var valorImponible = $("#valorImponible").val();
 
 
 
@@ -421,7 +422,8 @@ if ($usuario[0]->atr_activo == "1") { ?>
         '&&valorAlcanceLiquido=' + valorAlcanceLiquido +
         '&&montoPrestamo=' + montoPrestamo +
         '&&bonoAsistenciaAPagar=' + bonoAsistenciaAPagar +
-        '&&fechaTermino=' + fechaTernmino
+        '&&fechaTermino=' + fechaTernmino +
+        '&&valorImponible' + valorImponible
       window.open(url, '_blank');
 
 
