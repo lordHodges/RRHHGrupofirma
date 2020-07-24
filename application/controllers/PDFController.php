@@ -225,13 +225,12 @@ class  PDFController extends CI_Controller
 			$t->atr_fechaNacimiento = $fecha;
 			$t->prevision = strtoupper($t->prevision);
 			$t->cargo = strtoupper($t->cargo);
-			$sueldo = $t->atr_sueldo;
 		}
 		$funciones = $this->FuncionesModel->getListadoTareasViewContrato($idCargo);
 
 
 		foreach ($arrayRemuneracion as $key => $r) {
-
+			$sueldo = $r->atr_sueldoMensual;
 			$colacion = $r->atr_colacion;
 			$movilizacion = $r->atr_movilizacion;
 			$asistencia = $r->atr_asistencia;
@@ -436,6 +435,7 @@ class  PDFController extends CI_Controller
 		$fechaTermino = $this->input->get("fechaTermino");
 		$totalTributable = $this->input->get("totalTributable");
 		$valorSaludAdicional = $this->input->get("valorSaludAdicional");
+		$valorImponible = $this->input->get("valorImponible");
 		$plan = $this->input->get("plan");
 		/* fin datos calculados */
 		/* vaslores para el documento */
@@ -479,7 +479,8 @@ class  PDFController extends CI_Controller
 			'bonoMobilizacion'	=> $bonoMobilizacion,
 			'bonoColacion'	=> $bonoColacion,
 			'valorSaludAdicional' => $valorSaludAdicional,
-			'plan' => $plan
+			'plan' => $plan,
+			'valorImponible' => $valorImponible
 
 		);
 		$html = $this->load->view('pdf/liquidacionGenerada', $data, TRUE);

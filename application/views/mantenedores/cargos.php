@@ -189,25 +189,25 @@ if ($usuario[0]->atr_activo == "1") { ?>
 
 
     <!-- jQuery -->
-    <script src="<?php echo base_url();   ?>assets/vendors/jquery/dist/jquery.min.js"></script>
+    <script src="<?php echo base_url() ?>assets/vendors/jquery/dist/jquery.min.js"></script>
     <!-- Bootstrap -->
-    <script src="<?php echo base_url();   ?>assets/vendors/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="<?php echo base_url() ?>assets/vendors/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Datatables -->
-    <script src="<?php echo base_url();   ?>assets/js/datatables.min.js" type="text/javascript"></script>
+    <script src="<?php echo base_url() ?>assets/js/datatables.min.js" type="text/javascript"></script>
     <!-- Custom Theme Scripts -->
-    <script src="<?php echo base_url();   ?>assets/build/js/custom.min.js"></script>
+    <script src="<?php echo base_url() ?>assets/build/js/custom.min.js"></script>
     <!-- MODIDEV -->
-    <script src="<?php echo base_url();   ?>assets/js/modidev.js"></script>
-    <script src="<?php echo base_url();   ?>assets/js/perfilesOcupacionales/responsabilidades.js"></script>
-    <script src="<?php echo base_url();   ?>assets/js/remuneracion.js"></script>
-    <script src="<?php echo base_url();   ?>assets/js/trabajador.js"></script>
-    <script src="<?php echo base_url();   ?>assets/js/validaciones.js"></script>
+    <script src="<?php echo base_url() ?>assets/js/modidev.js"></script>
+    <script src="<?php echo base_url() ?>assets/js/perfilesOcupacionales/responsabilidades.js"></script>
+    <script src="<?php echo base_url() ?>assets/js/remuneracion.js"></script>
+    <script src="<?php echo base_url() ?>assets/js/trabajador.js"></script>
+    <script src="<?php echo base_url() ?>assets/js/validaciones.js"></script>
     <!-- Toast -->
-    <script src="<?php echo base_url();   ?>assets/js/toastr.min.js" type="text/javascript"></script>}
+    <script src="<?php echo base_url() ?>assets/js/toastr.min.js" type="text/javascript"></script>}
     <!-- Switchery -->
-    <script src="<?php echo base_url();   ?>assets/vendors/switchery/dist/switchery.min.js"></script>
+    <script src="<?php echo base_url() ?>assets/vendors/switchery/dist/switchery.min.js"></script>
     <!-- iCheck -->
-    <script src="<?php echo base_url();   ?>assets/vendors/iCheck/icheck.min.js"></script>
+    <script src="<?php echo base_url() ?>assets/vendors/iCheck/icheck.min.js"></script>
 
 
 
@@ -264,10 +264,10 @@ if ($usuario[0]->atr_activo == "1") { ?>
                     "targets": 6,
                     "data": null,
                     "defaultContent": btnAcciones
-                }]
-                <?php if ($view_exportarCargo == 1) {  ?>: dom,
-                    '<"html5buttons"B>lTfgitp': buttons,
-                    [{
+                }],
+                <?php if ($view_exportarCargo == 1) {  ?>
+                    dom: '<"html5buttons"B>lTfgitp',
+                    buttons: [{
                             extend: 'copy',
                             exportOptions: {
                                 columns: [1, 2, 3, 4, 5]

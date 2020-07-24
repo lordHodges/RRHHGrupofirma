@@ -786,7 +786,7 @@ function getGenerarLiquidacion(idTrabajador) {
 			fila +=
 				'<label class="text-center" for="bonoAsistencia">BONO ASISTENCIA</label>';
 			fila +=
-				'<input type="text" class="form-control custom-input-sm" id="bonoAsistenciaAPagar" disabled style="color:#000;" value="$' +
+				'<input type="text" class="form-control custom-input-sm" id="bonoAsistenciaAPagar" disabled style="color:#000;" value="' +
 				o.bonoAsistenciaAPagar +
 				'">';
 			fila += "</div>";
@@ -917,7 +917,7 @@ function getGenerarLiquidacion(idTrabajador) {
 				var atr_monto = new Intl.NumberFormat("de-DE").format(a.atr_monto);
 				fila += '<div class="col-md-6"><br>';
 				fila +=
-					'<input type="text" class="form-control custom-input-sm" id="atr_monto" disabled style="color:#000;" value="$' +
+					'<input type="text" class="form-control custom-input-sm" id="atr_monto" disabled style="color:#000;" value="' +
 					atr_monto +
 					'">';
 				fila += "</div>";
@@ -1017,6 +1017,16 @@ function getGenerarLiquidacion(idTrabajador) {
 			fila +=
 				'<input type="text" class="form-control custom-input-sm" id="totalTributable" disabled style="color:#000;margin-left:1rem;font-weight: bold;" value="' +
 				o.totalTributable +
+				'">';
+			fila += "</div>";
+			fila += "</div>";
+			fila += '<div class="col-lg-6 col-md-6 col-sm-6">';
+			fila += '<div class="input-group">';
+			fila +=
+				'<label class="text-center " for="valorImponible" style="text-decoration: underline green; font-weight: bold;">TOTAL TRIBUTABLE</label>';
+			fila +=
+				'<input type="text" class="form-control custom-input-sm" id="valorImponible" disabled style="color:#000;margin-left:1rem;font-weight: bold;" value="' +
+				o.valorImponible +
 				'">';
 			fila += "</div>";
 			fila += "</div>";

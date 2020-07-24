@@ -101,8 +101,17 @@ class PagosModel extends CI_Model
     $fechaTerminoPrestamo = $anoPrestamo . '-' . $mesPrestamo . '-' . $diaTerminoPrestamo;
 
 
-    $this->db->select(" t.cp_trabajador, t.atr_nombres, t.atr_apellidos, t.atr_rut, t.cf_cargo,r.atr_sueldoMensual");
+    $this->db->select(" t.cp_trabajador, t.atr_nombres, t.atr_apellidos, t.atr_rut, t.cf_cargo,r.atr_sueldoMensual, t.atr_plan,
+    t.atr_cargas,
+    e.cp_estado as estado,
+    a.atr_nombre as afp,
+    a.tasa as tasaAfp,
+    p.atr_nombre as prevision,
+    p.tasa as tasaPrevision");
     $this->db->from("fa_trabajador t");
+    $this->db->join("fa_estado e", "t.cf_estado = e.cp_estado");
+    $this->db->join("fa_afp a", "t.cf_afp = a.cp_afp");
+    $this->db->join("fa_prevision p", "t.cf_prevision = p.cp_prevision");
     $this->db->join("fa_remuneracion r", "r.cf_trabajador = t.cp_trabajador");
     $this->db->where('t.cf_estado != 6');
     $this->db->where('t.cf_empresa', $empresa);
@@ -123,6 +132,7 @@ class PagosModel extends CI_Model
       $remuneracionTrabajador = $this->db->get()->result();
 
       $sueldo = $t->atr_sueldoMensual;
+
 
       // CONSULTAR SI EL TRABAJADOR FALTO O NO PARA DESCONTAR EL BONO DE ASISTENCIA Y PUNTUALIDAD
       $this->db->select(" i.atr_motivo ");
@@ -205,16 +215,55 @@ class PagosModel extends CI_Model
 
       // Calcular sueldo si el trabajador falto
       $sueldo = $t->atr_sueldoMensual;
+
+
       if ($cont > 0) {
         $sueldo = $sueldo / 30;
         $sueldo = $sueldo * $diasPago;
+      }
+      $gratificacion = round($sueldo * 0.25);
+      if ($gratificacion >= 126865) {
+        $gratificacion = 126865;
+      }
+      $totalImponible = $sueldo + $gratificacion;
+      $valorAfp = round($totalImponible * $t->tasaAfp);
+      $valorSalud = round($totalImponible * $t->tasaPrevision);
+      $fechaOrd = explode('-', $fechaTermino);
+
+      if ($t->prevision != "Fonasa") {
+        $decodeUF = json_decode(file_get_contents("https://mindicador.cl/api/uf/$fechaOrd[2]-$fechaOrd[1]-$fechaOrd[0]"));
+        $valorUF = $decodeUF->serie[0]->valor;
+        $adicionalPlan = round($t->atr_plan * $valorUF);
+        if ($valorSalud < $adicionalPlan) {
+          $adicionalPlan = $adicionalPlan - $valorSalud;
+        } else {
+          $adicionalPlan = 0;
+        }
+      } else {
+        $adicionalPlan = 0;
+      }
+      if ($t->estado == 2) {
+        $valorCesantia = round($totalImponible * 0.006);
+      } else {
+        $valorCesantia = 0;
+      }
+
+      if ($totalImponible <= 336055) {
+        $cargasFamiliaresMonto = 13155 * $t->atr_cargas;
+      } else if ($totalImponible > 336055 && $totalImponible <= 490844) {
+        $cargasFamiliaresMonto = 8073 * $t->atr_cargas;
+      } else if ($totalImponible > 490844 && $totalImponible <= 765550) {
+        $cargasFamiliaresMonto = 2551 * $t->atr_cargas;
+      } else if ($totalImponible > 765550) {
+        $cargasFamiliaresMonto = 0 * $t->atr_cargas;
       }
 
 
 
       //CALCULAR EL MONTO TOTAL A PAGAR
 
-      $montoTotalPagar = ($sueldo + $bonos) - ($montoAdelanto + $montoPrestamo);
+      $montoTotalPagar = ($sueldo + $bonos + $cargasFamiliaresMonto + $gratificacion) - ($montoAdelanto + $montoPrestamo);
+      $montoTotalPagar = ($montoTotalPagar) - ($valorSalud + $valorAfp + $adicionalPlan + $valorCesantia);
 
 
       // CONSULTA DE LOS ADELANTOS
@@ -299,8 +348,18 @@ class PagosModel extends CI_Model
     $fechaTerminoPrestamo = $anoPrestamo . '-' . $mesPrestamo . '-' . $diaTerminoPrestamo;
 
 
-    $this->db->select(" t.cp_trabajador, t.atr_nombres, t.atr_sueldo ,t.atr_apellidos, t.atr_rut, t.cf_cargo, r.atr_sueldoMensual");
+    $this->db->select(" t.cp_trabajador, t.atr_nombres, t.atr_sueldo ,t.atr_apellidos, t.atr_rut, t.cf_cargo, r.atr_sueldoMensual,
+    t.atr_plan,
+    t.atr_cargas,
+    e.cp_estado as estado,
+    a.atr_nombre as afp,
+    a.tasa as tasaAfp,
+    p.atr_nombre as prevision,
+    p.tasa as tasaPrevision");
     $this->db->from("fa_trabajador t");
+    $this->db->join("fa_estado e", "t.cf_estado = e.cp_estado");
+    $this->db->join("fa_afp a", "t.cf_afp = a.cp_afp");
+    $this->db->join("fa_prevision p", "t.cf_prevision = p.cp_prevision");
     $this->db->join("fa_remuneracion r", "r.cf_trabajador = t.cp_trabajador");
     $this->db->where('t.cf_estado != 6');
     $this->db->where('t.cf_empresa', $empresa);
@@ -407,11 +466,49 @@ class PagosModel extends CI_Model
           $sueldo = $sueldo / 30;
           $sueldo = $sueldo * $diasPago;
         }
+        //
+        $gratificacion = round($sueldo * 0.25);
+        if ($gratificacion >= 126865) {
+          $gratificacion = 126865;
+        }
+        $totalImponible = $sueldo + $gratificacion;
+        if ($totalImponible >= 2299129) {
+          $totalImponible = 2299129;
+        }
+        $valorAfp = round($totalImponible * $t->tasaAfp);
+        $valorSalud = round($totalImponible * $t->tasaPrevision);
+        $fechaOrd = explode('-', $fechaTermino);
+        if ($t->prevision != "Fonasa") {
+          $decodeUF = json_decode(file_get_contents("https://mindicador.cl/api/uf/$fechaOrd[2]-$fechaOrd[1]-$fechaOrd[0]"));
+          $valorUF = $decodeUF->serie[0]->valor;
+          $adicionalPlan = round($t->atr_plan * $valorUF);
+          if ($valorSalud < $adicionalPlan) {
+            $adicionalPlan = $adicionalPlan - $valorSalud;
+          } else {
+            $adicionalPlan = 0;
+          }
+        } else {
+          $adicionalPlan = 0;
+        }
+        if ($t->estado == 2) {
+          $valorCesantia = round($totalImponible * 0.006);
+        } else {
+          $valorCesantia = 0;
+        }
+        if ($totalImponible <= 336055) {
+          $cargasFamiliaresMonto = 13155 * $t->atr_cargas;
+        } else if ($totalImponible > 336055 && $totalImponible <= 490844) {
+          $cargasFamiliaresMonto = 8073 * $t->atr_cargas;
+        } else if ($totalImponible > 490844 && $totalImponible <= 765550) {
+          $cargasFamiliaresMonto = 2551 * $t->atr_cargas;
+        } else if ($totalImponible > 765550) {
+          $cargasFamiliaresMonto = 0 * $t->atr_cargas;
+        }
 
         //CALCULAR EL MONTO TOTAL A PAGAR
 
-        $montoTotalPagar = ($sueldo + $bonos) - ($montoAdelanto + $montoPrestamo);
-
+        $montoTotalPagar = ($sueldo + $bonos + $cargasFamiliaresMonto + $gratificacion) - ($montoAdelanto + $montoPrestamo);
+        $montoTotalPagar = ($montoTotalPagar) - ($valorSalud + $valorAfp + $adicionalPlan + $valorCesantia);
 
 
         // TRANSFORMAR LOS NUMEROS A FORMATO MILES
@@ -792,6 +889,16 @@ class PagosModel extends CI_Model
         $gratificacion = 126865;
       }
       $totalImponible = $sbase + $gratificacion;
+      $totalImponible2 = $totalImponible;
+      if ($t->estado == "Contrato indefinido") {
+
+        $valorCesantia = round($totalImponible * 0.006);
+      } else {
+        $valorCesantia = 0;
+      }
+      if ($totalImponible >= 2299129) {
+        $totalImponible = 2299129;
+      }
       $cargasFamiliaresMonto = 0;
       $arrayBonos = [
         /*  { atr_nombreBono:"bonoColacionBase" => atr_montobono:$bonoBaseColacion},
@@ -832,21 +939,14 @@ class PagosModel extends CI_Model
       }
 
 
-      if ($t->estado == "Contrato indefinido") {
-
-        $valorCesantia = round($totalImponible * 0.006);
-      } else {
-        $valorCesantia = 0;
-      }
 
 
-      $totalDescuentosLegales = ($valorPrevision + $valorSalud + $valorCesantia + $valorSaludAdicional);
 
-      $totalTributable = $totalImponible - $totalDescuentosLegales;
 
-      if ($t->prevision != "Fonasa") {
-      } else {
-      }
+
+      $totalTributable = ($totalImponible2) - ($valorSalud + $valorPrevision + $valorCesantia);
+
+
 
 
       $tr_UTM = $totalTributable / $valorUTM;
@@ -874,8 +974,9 @@ class PagosModel extends CI_Model
       if ($totalTributable < ($valorUTM * 13.05)) {
         $valorImpuestoUnico = 0;
       }
+      $totalDescuentosLegales = ($valorPrevision + $valorSalud + $valorCesantia + $valorSaludAdicional + $valorImpuestoUnico);
 
-      $totalOtrosDescuentos = $montoAdelanto + $montoPrestamo + $valorImpuestoUnico;
+      $totalOtrosDescuentos = $montoAdelanto + $montoPrestamo;
 
       $totalDescuentos = $totalOtrosDescuentos + $totalDescuentosLegales;
 
@@ -891,7 +992,7 @@ class PagosModel extends CI_Model
         $cargasFamiliaresMonto = 0 * $t->atr_cargas;
       }
 
-      $totalHaberes = ($totalNoImponible + $totalImponible);
+      $totalHaberes = ($totalNoImponible + $totalImponible2);
       $valorAlcanceLiquido = $totalHaberes - $totalDescuentos;
       $mesCorriente = $mes;
       switch ($mesCorriente) {
@@ -956,11 +1057,19 @@ class PagosModel extends CI_Model
       $bonos = number_format($bonos, 0, ",", ".");
       $montoAdelanto = number_format($montoAdelanto, 0, ",", ".");
       $montoPrestamo = number_format($montoPrestamo, 0, ",", ".");
-
+      $gratificacion = number_format($gratificacion, 0, ",", ".");
       $sueldoBaseParaMandar = number_format($sbase, 0, ",", ".");
-
+      $totalImponible = number_format($totalImponible, 0, ",", ".");
+      $totalNoImponible = number_format($totalNoImponible, 0, ",", ".");
+      $totalHaberes = number_format($totalHaberes, 0, ",", ".");
+      $valorPrevision = number_format($valorPrevision, 0, ",", ".");
+      $valorSalud = number_format($valorSalud, 0, ",", ".");
+      $totalDescuentosLegales = number_format($totalDescuentosLegales, 0, ",", ".");
+      $totalOtrosDescuentos = number_format($totalOtrosDescuentos, 0, ",", ".");
+      $totalDescuentos = number_format($totalDescuentos, 0, ",", ".");
+      $valorAlcanceLiquido = number_format($valorAlcanceLiquido, 0, ",", ".");
       $montoTotalPagar = number_format($montoTotalPagar, 0, ",", ".");
-
+      $totalTributable = number_format($totalTributable, 0, ",", ".");
       $bonoBaseColacion = number_format($bonoBaseColacion, 0, ",", ".");
       $colacionDiaria = number_format($colacionDiaria, 0, ",", ".");
 
@@ -971,8 +1080,8 @@ class PagosModel extends CI_Model
       $movilizacionDiaria = number_format($movilizacionDiaria, 0, ",", ".");
 
       $data = array(
-        "valorUF" => $valorUF,
-        "valorUTM" => $valorUTM,
+        "valorUF"                 => $valorUF,
+        "valorUTM"                => $valorUTM,
         "valorImpuestoUnico"      => $valorImpuestoUnico,
         "totalTributable"         => $totalTributable,
         "mesCorriente"            => $mesCorriente,
@@ -990,7 +1099,7 @@ class PagosModel extends CI_Model
         "sueldoAPago"             => $montoTotalPagar,
         "inasistencias"           => $cont,
         "diasTrabajados"          => $diasPago,
-        "totalImponible"          => $totalImponible,
+        "totalImponible"          => $totalImponible2,
         "cargasFamiliaresMonto"   => $cargasFamiliaresMonto,
         "arrayBonos"              => $arrayBonos,
         "valorPrevision"          => $valorPrevision,
@@ -1015,7 +1124,8 @@ class PagosModel extends CI_Model
         "arrayPrestamos"          => $prestamos,
         "arrayAdelantos"          => $adelantos,
         "fechaTermino"            => $fechaTermino,
-        "valorSaludAdicional"     => $valorSaludAdicional
+        "valorSaludAdicional"     => $valorSaludAdicional,
+        "valorImponible"          => $totalImponible
       );
 
       return $data;

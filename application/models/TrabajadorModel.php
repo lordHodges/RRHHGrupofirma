@@ -43,36 +43,19 @@ class TrabajadorModel extends CI_Model
       "cf_estadoCivil"            => $estadoCivil,
       "cf_nacionalidad"           => $nacionalidad,
     );
-    $insertTrabajador = $this->db->insert("fa_trabajador", $data);
+    if ($this->db->insert("fa_trabajador", $data)) {
+      $idTrabajador = $this->db->insert_id();
+      $dataRem = array(
+        "cf_trabajador" => $idTrabajador
+      );
 
-
-    // $this->db->select('cp_trabajador');
-    // $this->db->from("fa_trabajador t");
-    // $trabajadores = $this->db->get()->result();
-    //
-    // foreach ($trabajadores as $key => $value) {
-    //   $id = $value->cp_trabajador;
-    // }
-
-
-    // $numCuenta = str_replace(".", "", $rut);
-    // $numCuenta = explode("-", $numCuenta);
-
-
-
-    // $dataAdelanto = array(
-    //     "cp_adelanto"               => $id,
-    //     "atr_numCuenta"             => $numCuenta[0],
-    //     "atr_monto"                 => "0",
-    //     "atr_tipoCuenta"            => "Cuenta Vista",
-    //     "cf_banco"                  => "7",
-    //     "cf_trabajador"             => $id
-    // );
-    //
-    // $this->db->insert("fa_adelanto", $dataAdelanto);
-
-    return "ok";
+      $this->db->insert("fa_remuneracion", $dataRem);
+      return "ok";
+    } else {
+      return "false";
+    }
   }
+
 
   function getCiudades()
   {
