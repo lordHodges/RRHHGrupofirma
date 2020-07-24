@@ -92,8 +92,8 @@ if ($usuario[0]->atr_activo == "1" && $view_contratoEstadar == "1") { ?>
                         </thead>
                         <tbody>
                             <tr>
-                                <td style="padding-top: 0px;padding-bottom: 0px;"><?php echo ($afpTrabajador); ?></td>
-                                <td style="padding-top: 0px;padding-bottom: 0px;"><?php echo ($saludTrabajador); ?><?php if ($valorSaludAdicional > 0) { ?>
+                                <td style="padding-top: 0px;padding-bottom: 0px;"><?php echo($afpTrabajador); ?></td>
+                                <td style="padding-top: 0px;padding-bottom: 0px;"><?php echo($saludTrabajador); ?><?php if ($valorSaludAdicional > 0) { ?>
                                     Valor Plan UF :<?php echo ($plan); ?>
                                 <?php } ?> </td>
                                 <?php if ($cargas == "undefined") {
@@ -114,8 +114,8 @@ if ($usuario[0]->atr_activo == "1" && $view_contratoEstadar == "1") { ?>
                     <table class="table table-bordered" style="font-size: 12px; margin-top: -10px;">
                         <thead>
                             <tr>
-                                <th style="padding-top: 0px;padding-bottom: 0px;">Dias Trabajados</th>
-                                <th style="padding-top: 0px;padding-bottom: 0px;">Horas Extra</th>
+                                <th style="padding-top: 0px;padding-bottom: 0px;">Dias</th>
+                                <th style="padding-top: 0px;padding-bottom: 0px;">Horas Extras</th>
                                 <th style="padding-top: 0px;padding-bottom: 0px;">Valor Imponible</th>
                                 <th style="padding-top: 0px;padding-bottom: 0px;">Valor Tributable</th>
                             </tr>
@@ -217,16 +217,22 @@ if ($usuario[0]->atr_activo == "1" && $view_contratoEstadar == "1") { ?>
                                 <td style="padding-top: 0px;padding-bottom: 0px;"><?php echo ($valorSalud) ?></td>
                             </tr>
 
-                            <?php if ($valorSaludAdicional > 0) { ?>
+                            <?php if ($valorSaludAdicional > 0 && $valorSaludAdicional != "undefined") { ?>
                                 <tr>
                                     <td style="padding-top: 0px;padding-bottom: 0px;">Adicional Isapre</td>
                                     <td style="padding-top: 0px;padding-bottom: 0px;"><?php echo ($valorSaludAdicional); ?></td>
                                 </tr>
                             <?php } ?>
-                            <?php if ($valorCesantia) { ?>
+                            <?php if ($valorCesantia >0 && $valorCesantia!= "undefined") { ?>
                                 <tr>
                                     <td style="padding-top: 0px;padding-bottom: 0px;">Seguro Cesantía</td>
                                     <td style="padding-top: 0px;padding-bottom: 0px;"><?php echo ($valorCesantia); ?></td>
+                                </tr>
+                            <?php } ?>
+                             <?php if ($valorImpuestoUnico != "undefined" && $valorImpuestoUnico > 0) { ?>
+                                <tr>
+                                    <td style="padding-top: 0px;padding-bottom: 0px;">Impuesto Unico</td>
+                                    <td style="padding-top: 0px;padding-bottom: 0px;"><?php echo ($valorImpuestoUnico); ?></td>
                                 </tr>
                             <?php } ?>
 
@@ -234,12 +240,7 @@ if ($usuario[0]->atr_activo == "1" && $view_contratoEstadar == "1") { ?>
                                 <th style="padding-top: 0px;padding-bottom: 0px;">Total Desc. Legales</th>
                                 <th style="padding-top: 0px;padding-bottom: 0px;"><?php echo ($totalDescuentosLegales) ?></th>
                             </tr>
-                            <?php if ($valorImpuestoUnico != "undefined" && $valorImpuestoUnico > 0) { ?>
-                                <tr>
-                                    <td style="padding-top: 0px;padding-bottom: 0px;">Impuesto Unico</td>
-                                    <td style="padding-top: 0px;padding-bottom: 0px;"><?php echo ($valorImpuestoUnico); ?></td>
-                                </tr>
-                            <?php } ?>
+                           
                             <?php if ($atr_monto != "undefined") { ?>
                                 <tr>
                                     <td style="padding-top: 0px;padding-bottom: 0px;">Adelanto</td>
