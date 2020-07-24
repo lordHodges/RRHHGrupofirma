@@ -176,7 +176,7 @@ class PagosModel extends CI_Model
           $bonos = $colacion + $movilizacion;
         } else {
 
-          $bonos = $colacion + $movilizacion + $bonoAsistencia;
+          $bonos = $colacion + $movilizacion;
         }
       }
 
@@ -221,18 +221,29 @@ class PagosModel extends CI_Model
         $sueldo = $sueldo / 30;
         $sueldo = $sueldo * $diasPago;
       }
-      $gratificacion = round($sueldo * 0.25);
+      $gratificacion = round(($sueldo + $bonoAsistencia) * 0.25);
       if ($gratificacion >= 126865) {
         $gratificacion = 126865;
       }
-      $totalImponible = $sueldo + $gratificacion;
+      $totalImponible = $sueldo + $gratificacion + $bonoAsistencia;
+      $totalImponible2 = $totalImponible;
+      if ($t->estado == 2) {
+        $valorCesantia = round($totalImponible * 0.006);
+      } else {
+        $valorCesantia = 0;
+      }
       $valorAfp = round($totalImponible * $t->tasaAfp);
       $valorSalud = round($totalImponible * $t->tasaPrevision);
       $fechaOrd = explode('-', $fechaTermino);
 
+      $decodeUF = json_decode(file_get_contents("https://mindicador.cl/api/uf/$fechaOrd[2]-$fechaOrd[1]-$fechaOrd[0]"));
+      $valorUF = $decodeUF->serie[0]->valor;
+      $decodeUTM = json_decode(file_get_contents("https://mindicador.cl/api/utm/$fechaOrd[2]-$fechaOrd[1]-$fechaOrd[0]"));
+      $valorUTM = $decodeUTM->serie[0]->valor;
+
       if ($t->prevision != "Fonasa") {
-        $decodeUF = json_decode(file_get_contents("https://mindicador.cl/api/uf/$fechaOrd[2]-$fechaOrd[1]-$fechaOrd[0]"));
-        $valorUF = $decodeUF->serie[0]->valor;
+
+
         $adicionalPlan = round($t->atr_plan * $valorUF);
         if ($valorSalud < $adicionalPlan) {
           $adicionalPlan = $adicionalPlan - $valorSalud;
@@ -242,11 +253,7 @@ class PagosModel extends CI_Model
       } else {
         $adicionalPlan = 0;
       }
-      if ($t->estado == 2) {
-        $valorCesantia = round($totalImponible * 0.006);
-      } else {
-        $valorCesantia = 0;
-      }
+      $totalTributable = ($totalImponible2) - ($valorSalud + $valorAfp + $valorCesantia);
 
       if ($totalImponible <= 336055) {
         $cargasFamiliaresMonto = 13155 * $t->atr_cargas;
@@ -257,13 +264,42 @@ class PagosModel extends CI_Model
       } else if ($totalImponible > 765550) {
         $cargasFamiliaresMonto = 0 * $t->atr_cargas;
       }
+      $tr_UTM = $totalTributable / $valorUTM;
+      if ($totalTributable >= ($valorUTM * 13.5) && $totalTributable < ($valorUTM * 30)) {
 
 
+        $valorImpuestoUnico = round((($tr_UTM * 0.04) -  0.54) * $valorUTM);
+      }
+      if ($totalTributable >= ($valorUTM * 30) && $totalTributable < ($valorUTM * 50)) {
 
+        $valorImpuestoUnico = round((($tr_UTM * 0.08) - 1.74) * $valorUTM);
+      }
+      if ($totalTributable > ($valorUTM * 50) && $totalTributable < ($valorUTM * 70)) {
+        $valorImpuestoUnico = round((($tr_UTM * 0.135) - 4.49) * $valorUTM);
+      }
+      if ($totalTributable > ($valorUTM * 70) && $totalTributable < ($valorUTM * 90)) {
+        $valorImpuestoUnico = round((($tr_UTM * 0.23) - 11.14) * $valorUTM);
+      }
+      if ($totalTributable > ($valorUTM * 90) && $totalTributable < ($valorUTM * 120)) {
+        $valorImpuestoUnico = round((($tr_UTM * 0.304) - 17.8) * $valorUTM);
+      }
+      if ($totalTributable >= ($valorUTM * 120)) {
+        $valorImpuestoUnico = round((($tr_UTM * 0.35) - 23.32) * $valorUTM);
+      }
+      if ($totalTributable < ($valorUTM * 13.05)) {
+        $valorImpuestoUnico = 0;
+      }
+      $totalDescuentosLegales = ($valorAfp + $valorSalud + $valorCesantia + $adicionalPlan + $valorImpuestoUnico);
+
+      $totalOtrosDescuentos = $montoAdelanto + $montoPrestamo;
+      $totalDescuentos = $totalOtrosDescuentos + $totalDescuentosLegales;
+      $totalNoImponible = $cargasFamiliaresMonto + $colacion + $movilizacion;
+      $totalHaberes = ($totalNoImponible + $totalImponible2);
+      $valorAlcanceLiquido = $totalHaberes - $totalDescuentos;
       //CALCULAR EL MONTO TOTAL A PAGAR
 
-      $montoTotalPagar = ($sueldo + $bonos + $cargasFamiliaresMonto + $gratificacion) - ($montoAdelanto + $montoPrestamo);
-      $montoTotalPagar = ($montoTotalPagar) - ($valorSalud + $valorAfp + $adicionalPlan + $valorCesantia);
+      $montoTotalPagar = $valorAlcanceLiquido;
+
 
 
       // CONSULTA DE LOS ADELANTOS
