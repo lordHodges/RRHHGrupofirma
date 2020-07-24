@@ -163,14 +163,14 @@ function generarCuotas(valor) {
 	if (monto == "" || cuotas == "") {
 	} else {
 		if (cuotas > 100) {
-			toastr.error("No se pueden ingresar prestamos mayores a 100");
+			toastr.error("No se pueden ingresar prestamos mayores a 100 cuotas");
 		}
 
 		// alert(monto);
 		if (monto > 0) {
 			var montoCuota = Math.round(monto / cuotas);
 
-			montoCuota = new Intl.NumberFormat().format(montoCuota);
+			/* 	montoCuota = new Intl.NumberFormat().format(montoCuota); */
 
 			$("#contenedorCuotasPrestamo").empty();
 
