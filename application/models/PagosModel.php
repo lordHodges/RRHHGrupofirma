@@ -877,19 +877,19 @@ class PagosModel extends CI_Model
       }
 
       //CALCULAR EL MONTO TOTAL A PAGAR
-     // $montoTotalPagar = ($sueldo + $bonos) - ($montoAdelanto + $montoPrestamo);
+      // $montoTotalPagar = ($sueldo + $bonos) - ($montoAdelanto + $montoPrestamo);
 
-     // $sumaBonos = $bonoBaseColacion + $bonoBaseAsistencia + $bonoBaseMovilizacion;
+      // $sumaBonos = $bonoBaseColacion + $bonoBaseAsistencia + $bonoBaseMovilizacion;
 
 
       //=SI(D17*0,25>=Datos!C2;Datos!C2;D17*0,25)
       $sbase = (int)$t->atr_sueldoMensual;
 
-      $gratificacion = round(($sbase+$bonoAsistencia) * 0.25);//bonoAsistenciaGratificable
+      $gratificacion = round(($sbase + $bonoAsistencia) * 0.25); //bonoAsistenciaGratificable
       if ($gratificacion >= 126865) {
         $gratificacion = 126865;
       }
-      $totalImponible = $sbase + $gratificacion + $bonoAsistencia;//bonoAsistenciaImponible
+      $totalImponible = $sbase + $gratificacion + $bonoAsistencia; //bonoAsistenciaImponible
       $totalImponible2 = $totalImponible;
       if ($t->estado == "Contrato indefinido") {
 
@@ -1069,7 +1069,7 @@ class PagosModel extends CI_Model
       $totalOtrosDescuentos = number_format($totalOtrosDescuentos, 0, ",", ".");
       $totalDescuentos = number_format($totalDescuentos, 0, ",", ".");
       $valorAlcanceLiquido = number_format($valorAlcanceLiquido, 0, ",", ".");
-      $montoTotalPagar = number_format($montoTotalPagar, 0, ",", ".");
+      /*  $montoTotalPagar = number_format($montoTotalPagar, 0, ",", "."); */
       $totalTributable = number_format($totalTributable, 0, ",", ".");
       $bonoBaseColacion = number_format($bonoBaseColacion, 0, ",", ".");
       $colacionDiaria = number_format($colacionDiaria, 0, ",", ".");
@@ -1097,7 +1097,7 @@ class PagosModel extends CI_Model
         "plan"                    => $t->atr_plan,
         "sueldoBase"              => $sueldoBaseParaMandar,
         "gratificacionLegal"      => $gratificacion,
-        "sueldoAPago"             => $montoTotalPagar,
+        /* "sueldoAPago"             => $montoTotalPagar, */
         "inasistencias"           => $cont,
         "diasTrabajados"          => $diasPago,
         "totalImponible"          => $totalImponible2,
