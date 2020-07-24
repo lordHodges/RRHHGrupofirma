@@ -877,18 +877,19 @@ class PagosModel extends CI_Model
       }
 
       //CALCULAR EL MONTO TOTAL A PAGAR
-      $montoTotalPagar = ($sueldo + $bonos) - ($montoAdelanto + $montoPrestamo);
+     // $montoTotalPagar = ($sueldo + $bonos) - ($montoAdelanto + $montoPrestamo);
 
-      $sumaBonos = $bonoBaseColacion + $bonoBaseAsistencia + $bonoBaseMovilizacion;
+     // $sumaBonos = $bonoBaseColacion + $bonoBaseAsistencia + $bonoBaseMovilizacion;
 
 
       //=SI(D17*0,25>=Datos!C2;Datos!C2;D17*0,25)
       $sbase = (int)$t->atr_sueldoMensual;
-      $gratificacion = round($sbase * 0.25);
+
+      $gratificacion = round(($sbase+$bonoAsistencia) * 0.25);//bonoAsistenciaGratificable
       if ($gratificacion >= 126865) {
         $gratificacion = 126865;
       }
-      $totalImponible = $sbase + $gratificacion;
+      $totalImponible = $sbase + $gratificacion + $bonoAsistencia;//bonoAsistenciaImponible
       $totalImponible2 = $totalImponible;
       if ($t->estado == "Contrato indefinido") {
 
@@ -914,7 +915,7 @@ class PagosModel extends CI_Model
 
       /* https://mindicador.cl/api/{tipo_indicador}/{dd-mm-yyyy} */
       $fechaOrd = explode('-', $fechaTermino);
-
+      $añoLiquidacion = $fechaOrd[0];
       /*    $valorUF_json = file_get_contents("https://mindicador.cl/api/uf/$fechaOrd[2]-$fechaOrd[1]-$fechaOrd[0]"); */
       $decodeUF = json_decode(file_get_contents("https://mindicador.cl/api/uf/$fechaOrd[2]-$fechaOrd[1]-$fechaOrd[0]"));
       $valorUF = $decodeUF->serie[0]->valor;
@@ -980,7 +981,7 @@ class PagosModel extends CI_Model
 
       $totalDescuentos = $totalOtrosDescuentos + $totalDescuentosLegales;
 
-      $totalNoImponible = $cargasFamiliaresMonto + $sumaBonos;
+      $totalNoImponible = $cargasFamiliaresMonto + $colacion + $movilizacion;
 
       if ($totalImponible <= 336055) {
         $cargasFamiliaresMonto = 13155 * $t->atr_cargas;
@@ -1125,7 +1126,8 @@ class PagosModel extends CI_Model
         "arrayAdelantos"          => $adelantos,
         "fechaTermino"            => $fechaTermino,
         "valorSaludAdicional"     => $valorSaludAdicional,
-        "valorImponible"          => $totalImponible
+        "valorImponible"          => $totalImponible,
+        "añoLiquidacion"          => $añoLiquidacion
       );
 
       return $data;
