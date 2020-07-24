@@ -101,7 +101,8 @@ class PagosModel extends CI_Model
     $fechaTerminoPrestamo = $anoPrestamo . '-' . $mesPrestamo . '-' . $diaTerminoPrestamo;
 
 
-    $this->db->select(" t.cp_trabajador, t.atr_nombres, t.atr_apellidos, t.atr_rut, t.cf_cargo,r.atr_sueldoMensual, t.atr_plan,
+    $this->db->select(" t.cp_trabajador, t.atr_nombres, t.atr_apellidos, t.atr_rut, t.cf_cargo,r.atr_sueldoMensual,
+    t.atr_plan,
     t.atr_cargas,
     e.cp_estado as estado,
     a.atr_nombre as afp,
@@ -503,20 +504,29 @@ class PagosModel extends CI_Model
           $sueldo = $sueldo * $diasPago;
         }
         //
-        $gratificacion = round($sueldo * 0.25);
+        $gratificacion = round(($sueldo + $bonoAsistencia) * 0.25);
         if ($gratificacion >= 126865) {
           $gratificacion = 126865;
         }
-        $totalImponible = $sueldo + $gratificacion;
-        if ($totalImponible >= 2299129) {
-          $totalImponible = 2299129;
+        $totalImponible = $sueldo + $gratificacion + $bonoAsistencia;
+        $totalImponible2 = $totalImponible;
+        if ($t->estado == 2) {
+          $valorCesantia = round($totalImponible * 0.006);
+        } else {
+          $valorCesantia = 0;
         }
         $valorAfp = round($totalImponible * $t->tasaAfp);
         $valorSalud = round($totalImponible * $t->tasaPrevision);
         $fechaOrd = explode('-', $fechaTermino);
+
+        $decodeUF = json_decode(file_get_contents("https://mindicador.cl/api/uf/$fechaOrd[2]-$fechaOrd[1]-$fechaOrd[0]"));
+        $valorUF = $decodeUF->serie[0]->valor;
+        $decodeUTM = json_decode(file_get_contents("https://mindicador.cl/api/utm/$fechaOrd[2]-$fechaOrd[1]-$fechaOrd[0]"));
+        $valorUTM = $decodeUTM->serie[0]->valor;
+
         if ($t->prevision != "Fonasa") {
-          $decodeUF = json_decode(file_get_contents("https://mindicador.cl/api/uf/$fechaOrd[2]-$fechaOrd[1]-$fechaOrd[0]"));
-          $valorUF = $decodeUF->serie[0]->valor;
+
+
           $adicionalPlan = round($t->atr_plan * $valorUF);
           if ($valorSalud < $adicionalPlan) {
             $adicionalPlan = $adicionalPlan - $valorSalud;
@@ -526,11 +536,7 @@ class PagosModel extends CI_Model
         } else {
           $adicionalPlan = 0;
         }
-        if ($t->estado == 2) {
-          $valorCesantia = round($totalImponible * 0.006);
-        } else {
-          $valorCesantia = 0;
-        }
+        $totalTributable = ($totalImponible2) - ($valorSalud + $valorAfp + $valorCesantia);
         if ($totalImponible <= 336055) {
           $cargasFamiliaresMonto = 13155 * $t->atr_cargas;
         } else if ($totalImponible > 336055 && $totalImponible <= 490844) {
@@ -540,11 +546,42 @@ class PagosModel extends CI_Model
         } else if ($totalImponible > 765550) {
           $cargasFamiliaresMonto = 0 * $t->atr_cargas;
         }
+        $tr_UTM = $totalTributable / $valorUTM;
+        if ($totalTributable >= ($valorUTM * 13.5) && $totalTributable < ($valorUTM * 30)) {
+
+
+          $valorImpuestoUnico = round((($tr_UTM * 0.04) -  0.54) * $valorUTM);
+        }
+        if ($totalTributable >= ($valorUTM * 30) && $totalTributable < ($valorUTM * 50)) {
+
+          $valorImpuestoUnico = round((($tr_UTM * 0.08) - 1.74) * $valorUTM);
+        }
+        if ($totalTributable > ($valorUTM * 50) && $totalTributable < ($valorUTM * 70)) {
+          $valorImpuestoUnico = round((($tr_UTM * 0.135) - 4.49) * $valorUTM);
+        }
+        if ($totalTributable > ($valorUTM * 70) && $totalTributable < ($valorUTM * 90)) {
+          $valorImpuestoUnico = round((($tr_UTM * 0.23) - 11.14) * $valorUTM);
+        }
+        if ($totalTributable > ($valorUTM * 90) && $totalTributable < ($valorUTM * 120)) {
+          $valorImpuestoUnico = round((($tr_UTM * 0.304) - 17.8) * $valorUTM);
+        }
+        if ($totalTributable >= ($valorUTM * 120)) {
+          $valorImpuestoUnico = round((($tr_UTM * 0.35) - 23.32) * $valorUTM);
+        }
+        if ($totalTributable < ($valorUTM * 13.05)) {
+          $valorImpuestoUnico = 0;
+        }
+        $totalDescuentosLegales = ($valorAfp + $valorSalud + $valorCesantia + $adicionalPlan + $valorImpuestoUnico);
+
+        $totalOtrosDescuentos = $montoAdelanto + $montoPrestamo;
+        $totalDescuentos = $totalOtrosDescuentos + $totalDescuentosLegales;
+        $totalNoImponible = $cargasFamiliaresMonto + $colacion + $movilizacion;
+        $totalHaberes = ($totalNoImponible + $totalImponible2);
+        $valorAlcanceLiquido = $totalHaberes - $totalDescuentos;
 
         //CALCULAR EL MONTO TOTAL A PAGAR
 
-        $montoTotalPagar = ($sueldo + $bonos + $cargasFamiliaresMonto + $gratificacion) - ($montoAdelanto + $montoPrestamo);
-        $montoTotalPagar = ($montoTotalPagar) - ($valorSalud + $valorAfp + $adicionalPlan + $valorCesantia);
+        $montoTotalPagar = $valorAlcanceLiquido;
 
 
         // TRANSFORMAR LOS NUMEROS A FORMATO MILES
@@ -937,22 +974,13 @@ class PagosModel extends CI_Model
         $totalImponible = 2299129;
       }
       $cargasFamiliaresMonto = 0;
-      $arrayBonos = [
-        /*  { atr_nombreBono:"bonoColacionBase" => atr_montobono:$bonoBaseColacion},
-        "bonoColacionDiario"      => $colacionDiaria,
-        "bonoColacionAPagar"      => $colacion,
-        "bonoAsistenciaAPagar"    => $bonoAsistencia,
-        "bonoBaseAsistencia"      => $bonoBaseAsistencia,
-        "bonoMovilizacionDiaria"  => $movilizacionDiaria,
-        "bonoBaseMovilizacion"    => $bonoBaseMovilizacion,
-        "bonoMovilizacionAPagar"  => $movilizacion, */];
 
 
 
       /* https://mindicador.cl/api/{tipo_indicador}/{dd-mm-yyyy} */
       $fechaOrd = explode('-', $fechaTermino);
       $añoLiquidacion = $fechaOrd[0];
-      /*    $valorUF_json = file_get_contents("https://mindicador.cl/api/uf/$fechaOrd[2]-$fechaOrd[1]-$fechaOrd[0]"); */
+      /* $valorUF_json = file_get_contents("https://mindicador.cl/api/uf/$fechaOrd[2]-$fechaOrd[1]-$fechaOrd[0]"); */
       $decodeUF = json_decode(file_get_contents("https://mindicador.cl/api/uf/$fechaOrd[2]-$fechaOrd[1]-$fechaOrd[0]"));
       $valorUF = $decodeUF->serie[0]->valor;
 
@@ -1138,7 +1166,7 @@ class PagosModel extends CI_Model
         "diasTrabajados"          => $diasPago,
         "totalImponible"          => $totalImponible2,
         "cargasFamiliaresMonto"   => $cargasFamiliaresMonto,
-        "arrayBonos"              => $arrayBonos,
+
         "valorPrevision"          => $valorPrevision,
         "valorSalud"              => $valorSalud,
         "valorCesantia"           => $valorCesantia,
