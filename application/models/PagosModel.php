@@ -233,6 +233,9 @@ class PagosModel extends CI_Model
       } else {
         $valorCesantia = 0;
       }
+      if ($totalImponible >= 2299129) {
+        $totalImponible = 2299129;
+      }
       $valorAfp = round($totalImponible * $t->tasaAfp);
       $valorSalud = round($totalImponible * $t->tasaPrevision);
       $fechaOrd = explode('-', $fechaTermino);
@@ -514,6 +517,9 @@ class PagosModel extends CI_Model
           $valorCesantia = round($totalImponible * 0.006);
         } else {
           $valorCesantia = 0;
+        }
+        if ($totalImponible >= 2299129) {
+          $totalImponible = 2299129;
         }
         $valorAfp = round($totalImponible * $t->tasaAfp);
         $valorSalud = round($totalImponible * $t->tasaPrevision);
