@@ -182,7 +182,7 @@ if ($usuario[0]->atr_activo == "1" &&  $view_anexoHorasExtras == "1") { ?>
 
 
   <?php } else {
-  header("Location: http://www.imlchilelocal.cl/");
+  header("Location: https://www.imlchile.cl/grupofirma/");
 } ?>
 
   </body>

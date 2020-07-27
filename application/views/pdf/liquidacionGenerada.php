@@ -307,11 +307,21 @@ if ($usuario[0]->atr_activo == "1" && $view_contratoEstadar == "1") { ?>
 
                         </tr>
 
+
+
+
                     </table>
 
                 </div>
             </div>
-            <br><br><br><br>
+
+
+            <div class="row">
+                <div class="col col-sm-12">
+                    <p style="padding-top: 0px;padding-bottom: 0px;">Declaro que he leído detenida y detalladamente la liquidación y el monto contenido en ella, encontrándome absolutamete conforme, no teniendo reclamo alguno que formular al respecto : &nbsp;<strong> <?php echo ($letrasValorAlcanceLiquido) ?>&nbsp; pesos.</strong></p>
+                </div>
+            </div>
+            <br><br><br>
             <div class="row">
                 <div class="col col-sm-12">
                     <table class="table table-borderless text-center" style="font-size: 12px;">
@@ -343,11 +353,9 @@ if ($usuario[0]->atr_activo == "1" && $view_contratoEstadar == "1") { ?>
 
                 </div>
             </div>
-            <p style="font-size: 12px;">Recibí conforme la suma de : &nbsp; <?php echo ($letrasValorAlcanceLiquido) ?>&nbsp; pesos.</p>
 
-            <pre>
-                print_r($this->session->userdata());
-            </pre>
+
+
 
 
 
@@ -359,7 +367,7 @@ if ($usuario[0]->atr_activo == "1" && $view_contratoEstadar == "1") { ?>
 
 
         <?php } else {
-        header("Location: http://www.imlchilelocal.cl/");
+        header("Location: https://www.imlchile.cl/grupofirma/");
     } ?>
 
 
