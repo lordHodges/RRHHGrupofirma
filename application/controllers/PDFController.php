@@ -395,7 +395,9 @@ class  PDFController extends CI_Controller
 		$ciudadFirma = $this->input->get("ciudadFirma");
 		$fechaInicioContrato = $this->input->get("fechaInicio");
 		$fechaTerminoContrato = $this->input->get("fechaTermino"); */
+		//
 
+		//
 		$mesCorriente = $this->input->get("mesCorriente");
 		$razonSocial = $this->input->get("razonSocial");
 		$rutEmpresa = $this->input->get("rutEmpresa");
@@ -437,7 +439,8 @@ class  PDFController extends CI_Controller
 		$valorSaludAdicional = $this->input->get("valorSaludAdicional");
 		$valorImponible = $this->input->get("valorImponible");
 		$plan = $this->input->get("plan");
-		$letrasValorAlcanceLiquido = strtolower($this->convertir($valorAlcanceLiquido));
+		$valorConvertido = str_replace(".", "", $valorAlcanceLiquido);
+		$letrasValorAlcanceLiquido = strtolower($this->convertir($valorConvertido));
 		/* fin datos calculados */
 		/* vaslores para el documento */
 		$tituloCabecera = "LIQUIDACION DE SUELDO";
