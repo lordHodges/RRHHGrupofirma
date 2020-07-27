@@ -257,7 +257,7 @@ function getDetalleTrabajador(id) {
       fila += '<div class="col-md-6 col-sm-12"><br><label for="nombres">NOMBRES</label><input type="text" style="color:#848484" class="form-control" id="nombres" value="' + o.atr_nombres + '"  disabled></div>';
       fila += '<div class="col-md-6 col-sm-12"><br><label for="apellidos">APELLIDOS</label><input type="text" style="color:#848484" class="form-control" id="apellidos" value="' + o.atr_apellidos + '"disabled></div>';
       fila += '<div class="col-md-12 col-sm-12"><br><label for="direccion">DIRECCIÓN</label><input type="text" style="color:#848484" class="form-control" id="direccion" value="' + o.atr_direccion + '"disabled></div><br><br>';
-      fila += '<div class="col-md-12 col-sm-12"><br><label for="direccion">SUELDO</label><input type="text" style="color:#848484" class="form-control" id="sueldo" value="' + o.atr_sueldo + '"disabled></div><br><br>';
+      fila += '<div class="col-md-12 col-sm-12"><br><label for="direccion">SUELDO</label><input type="text" style="color:#848484; display: none" class="form-control" id="sueldo" value="' + o.atr_sueldo + '"disabled></div><br><br>';
       fila += '<div class="col-md-6"><br><label for="ciudad">CIUDAD / COMUNA</label><input type="text" style="color:#848484" class="form-control" id="ciudad" value="' + o.ciudad + '"disabled></div>';
       fila += '<div class="col-md-6"><br><label for="sucursal">SUCURSAL</label><input type="text" style="color:#848484" class="form-control" id="sucursal" value="' + o.sucursal + '"disabled></div>'
       fila += '<div class="col-md-6"><br><label for="cargo">CARGO</label> <input type="text" style="color:#848484" class="form-control" id="cargo" value="' + o.cargo + '"disabled></div>'
