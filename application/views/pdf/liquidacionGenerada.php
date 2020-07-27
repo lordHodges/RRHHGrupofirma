@@ -343,7 +343,7 @@ if ($usuario[0]->atr_activo == "1" && $view_contratoEstadar == "1") { ?>
 
                 </div>
             </div>
-            <p>Recibí conforme la suma de : &nbsp; <?php echo ($letrasValorAlcanceLiquido) ?>&nbsp; pesos.</p>
+            <p style="font-size: 12px;">Recibí conforme la suma de : &nbsp; <?php echo ($letrasValorAlcanceLiquido) ?>&nbsp; pesos.</p>
 
 
 
