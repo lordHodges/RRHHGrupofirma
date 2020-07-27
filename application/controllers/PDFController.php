@@ -437,6 +437,7 @@ class  PDFController extends CI_Controller
 		$valorSaludAdicional = $this->input->get("valorSaludAdicional");
 		$valorImponible = $this->input->get("valorImponible");
 		$plan = $this->input->get("plan");
+		$letrasValorAlcanceLiquido = strtolower($this->convertir($valorAlcanceLiquido));
 		/* fin datos calculados */
 		/* vaslores para el documento */
 		$tituloCabecera = "LIQUIDACION DE SUELDO";
@@ -480,7 +481,8 @@ class  PDFController extends CI_Controller
 			'bonoColacion'	=> $bonoColacion,
 			'valorSaludAdicional' => $valorSaludAdicional,
 			'plan' => $plan,
-			'valorImponible' => $valorImponible
+			'valorImponible' => $valorImponible,
+			'letrasValorAlcanceLiquido' => $letrasValorAlcanceLiquido
 
 		);
 		$html = $this->load->view('pdf/liquidacionGenerada', $data, TRUE);
