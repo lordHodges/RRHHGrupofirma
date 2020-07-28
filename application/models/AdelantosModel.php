@@ -113,6 +113,7 @@ class AdelantosModel extends CI_Model
 
     $this->db->where('cp_adelanto', $idAdelanto);
     $resultado =  $this->db->update("fa_adelanto", $data);
+    $this->LogController->capturarActividad($resultado);
 
     if ($resultado) {
       return "ok";
@@ -132,12 +133,6 @@ class AdelantosModel extends CI_Model
   function addAdelanto($id, $banco, $tipoCuenta, $numCuenta, $monto)
   {
 
-    // var_dump($id);
-    // var_dump($banco);
-    // var_dump($tipoCuenta);
-    // var_dump($numCuenta);
-    // var_dump($monto);
-    // exit();
 
     $data = array(
       "cp_adelanto"       => $id,
@@ -149,8 +144,7 @@ class AdelantosModel extends CI_Model
     );
     $result = $this->db->insert("fa_adelanto", $data);
 
-    // var_dump($result);
-    // exit();
+
     return $result;
   }
 }

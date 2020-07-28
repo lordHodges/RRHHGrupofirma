@@ -1,5 +1,5 @@
 <?php
-defined('BASEPATH') or exit('No direct script access allowed');
+defined('BASEPATH') || exit('No direct script access allowed');
 
 class BancoController extends CI_Controller
 {
@@ -10,14 +10,11 @@ class BancoController extends CI_Controller
         $this->load->model("");
     }
 
-    /* public function capturarActividad
+    public function capturarActividad($data)
     {
-        $data = $this->session->userdata("datos");
-        $usuario =  $data['usuario'];
-        $actividad = $this->session->
-        
+        $data_sesion = $this->session->userdata("datos");
+        $usuario =  $data_sesion['usuario'];
 
-
+        $this->LogModel->addLog($usuario, $data_sesion);
     }
- */
 }

@@ -124,13 +124,11 @@ if ($usuario[0]->atr_activo == "1") { ?>
                     <div class="col-md-12">
                         <br>
                         <label for="jornadaTrabajo">JORNADA DE TRABAJO</label>
-                        <!-- <input type="text" class="form-control custom-input-sm" id="jornadaTrabajo"> -->
                         <textarea class="form-control" id="jornadaTrabajo" style="color:#848484" rows="5"></textarea>
                     </div>
                     <div class="col-md-12">
                         <br>
                         <label for="diasTrabajo">DÍAS DE TRABAJO</label>
-                        <!-- <input type="text" class="form-control custom-input-sm" id="diasTrabajo"> -->
                         <textarea class="form-control" id="diasTrabajo" style="color:#848484" rows="5"></textarea>
                     </div>
 
