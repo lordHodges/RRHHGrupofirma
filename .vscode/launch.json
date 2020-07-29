@@ -8,7 +8,7 @@
 			"name": "Launch Edge",
 			"request": "launch",
 			"type": "pwa-msedge",
-			"url": "http://www.imlchilel.cl/grupofirma/",
+			"url": "https://www.imlchile.cl/grupofirma/",
 			"runtimeExecutable": "stable",
 			"webRoot": "${workspaceFolder}"
 		},
@@ -17,7 +17,7 @@
 			"type": "pwa-chrome",
 			"request": "launch",
 			"name": "Launch Chrome against localhost",
-			"url": "http://www.imlchilel.cl/grupofirma/index.php/inicioPlanillaPagos",
+			"url": "https://www.imlchile.cl/grupofirma/index.php/inicioPlanillaPagos",
 			"webRoot": "${workspaceFolder}"
 		}
 	]

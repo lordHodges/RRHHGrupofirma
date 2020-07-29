@@ -202,7 +202,7 @@ if ($usuario[0]->atr_activo == "1" &&  $view_anexoModificacionClausula == "1") {
 
 
   <?php } else {
-  header("Location: http://www.imlchilel.cl/grupofirma/");
+  header("Location: https://www.imlchile.cl/grupofirma/");
 } ?>
 
 
