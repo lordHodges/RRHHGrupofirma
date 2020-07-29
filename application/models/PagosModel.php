@@ -60,7 +60,12 @@ class PagosModel extends CI_Model
     );
 
     $resultado =  $this->db->insert("fa_historial_pagos_mensuales", $data);
-    return $resultado;
+    if ($resultado) {
+      registrarActividad();
+      return 'ok';
+    } else {
+      return 'error';
+    }
   }
 
 

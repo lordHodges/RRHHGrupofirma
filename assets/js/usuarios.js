@@ -1,4 +1,4 @@
-var base_url = "https://www.imlchile.cl/grupofirma/index.php/";
+var base_url = "http://www.imlchilel.cl/grupofirma/index.php/";
 
 function cargarTabla(permisoEditar, permisoExportar, permisoCambiar) {
 	var table = $("#tabla_usuario").DataTable();

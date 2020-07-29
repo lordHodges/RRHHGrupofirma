@@ -83,7 +83,7 @@ class ContratosModel extends CI_Model
       "cf_trabajador" => $idTrabajador,
     );
     $insert = $this->db->insert("fa_contrato", $data);
-
+    registrarActividad();
 
     $dataTrabajadorEdit = array(
       "cf_estado"   =>   $getSelectEstadoContrato
@@ -111,6 +111,7 @@ class ContratosModel extends CI_Model
       );
       $insert = $this->db->insert("fa_documento", $data);
       if ($insert) {
+        registrarActividad();
         return "ok";
       } else {
         return "error";

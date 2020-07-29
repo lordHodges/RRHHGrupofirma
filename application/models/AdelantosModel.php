@@ -113,9 +113,10 @@ class AdelantosModel extends CI_Model
 
     $this->db->where('cp_adelanto', $idAdelanto);
     $resultado =  $this->db->update("fa_adelanto", $data);
-    $this->LogController->capturarActividad($resultado);
+
 
     if ($resultado) {
+      registrarActividad();
       return "ok";
     } else {
       return "error";
@@ -143,8 +144,11 @@ class AdelantosModel extends CI_Model
       "cf_trabajador"     => $id
     );
     $result = $this->db->insert("fa_adelanto", $data);
-
-
-    return $result;
+    if ($result) {
+      registrarActividad();
+      return 'ok';
+    } else {
+      return 'error';
+    }
   }
 }

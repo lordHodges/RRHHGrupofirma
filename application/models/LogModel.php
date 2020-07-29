@@ -5,13 +5,22 @@ defined('BASEPATH') || exit('No direct script access allowed');
 class LogModel extends CI_Model
 {
     function
-    addLog($usuario, $data_sesion)
+    addLog($usuario)
     {
+
+        $query = $this->db->last_query();
+        $sesion = (string)($query);
         $data = array(
             "atr_usuario"   => $usuario,
-            "atr_sesion"    => $data_sesion
+            "atr_sesion"    => $sesion
 
         );
-        $this->db->insert("fa_log_sesion", $data);
+
+
+        if ($this->db->insert("fa_log_sesion", $data)) {
+            return "ok";
+        } else {
+            return "fallo el log de actividad";
+        }
     }
 }

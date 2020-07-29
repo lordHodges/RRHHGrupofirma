@@ -1,6 +1,6 @@
 <?php
 
-defined('BASEPATH') or exit('No direct script access allowed');
+defined('BASEPATH') || exit('No direct script access allowed');
 
 class MarcasModel extends CI_Model
 {
@@ -12,7 +12,7 @@ class MarcasModel extends CI_Model
 
     function getListadoMarcas()
     {
-        $this->db->select(" m.cp_marca, m.atr_descripcion ");
+        $this->db->select("m.cp_marca, m.atr_descripcion");
         $this->db->from("fa_marca m");
 
         $resultado =  $this->db->get();
@@ -25,9 +25,14 @@ class MarcasModel extends CI_Model
             "atr_descripcion" => $nombre
         );
 
-        $resultado = $this->db->insert("fa_marca", $data);
-        $this->LogController->capturarActividad($resultado);
-        return "ok";
+
+
+        if ($this->db->insert("fa_marca", $data)) {
+            registrarActividad();
+            return "ok";
+        } else {
+            return "error";
+        }
     }
 
     function editarMarca($nombre, $idMarca)
@@ -37,8 +42,14 @@ class MarcasModel extends CI_Model
         );
 
         $this->db->where('m.cp_marca', $idMarca);
-        $resultado =  $this->db->update("fa_marca m", $data);
-        return "ok";
+        $resultado = $this->db->update("fa_marca m", $data);
+        registrarActividad();
+        if ($resultado) {
+
+            return "ok";
+        } else {
+            return "error";
+        }
     }
 
 

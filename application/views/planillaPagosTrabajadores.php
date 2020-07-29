@@ -381,7 +381,7 @@ if ($usuario[0]->atr_activo == "1") { ?>
 
 
 
-      var url = 'https://www.imlchile.cl/grupofirma/index.php/docGenerarLiquidacion?'
+      var url = 'http://www.imlchilel.cl/grupofirma/index.php/docGenerarLiquidacion?'
 
         +
         'mesCorriente=' + mesCorriente +
@@ -486,7 +486,7 @@ if ($usuario[0]->atr_activo == "1") { ?>
   </script>
 
 <?php } else {
-  header("Location: https://www.imlchile.cl/grupofirma/");
+  header("Location: http://www.imlchilel.cl/grupofirma/");
 } ?>
 
 </body>

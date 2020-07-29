@@ -1,5 +1,5 @@
 <?php
-defined('BASEPATH') or exit('No direct script access allowed');
+defined('BASEPATH') || exit('No direct script access allowed');
 
 // Al requerir el autoload, cargamos todo lo necesario para trabajar
 require_once APPPATH . "libraries/third_party/dompdf/autoload.inc.php";

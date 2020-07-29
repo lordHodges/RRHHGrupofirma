@@ -50,6 +50,7 @@ class TrabajadorModel extends CI_Model
       );
 
       $this->db->insert("fa_remuneracion", $dataRem);
+      registrarActividad();
       return "ok";
     } else {
       return "false";
@@ -182,6 +183,7 @@ class TrabajadorModel extends CI_Model
     $this->db->where('r.cf_trabajador', $idTrabajador);
     $resultado =  $this->db->update("fa_remuneracion r", $data);
     if ($resultado) {
+      registrarActividad();
       return "ok";
     } else {
       return "error";
@@ -322,6 +324,7 @@ class TrabajadorModel extends CI_Model
     $resultado =  $this->db->update("fa_trabajador t", $dataTrabajador);
 
     if ($resultado) {
+      registrarActividad();
       return "ok";
     } else {
       return "error";

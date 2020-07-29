@@ -1,4 +1,4 @@
-var base_url = "https://www.imlchile.cl/grupofirma/index.php/";
+var base_url = "http://www.imlchilel.cl/grupofirma/index.php/";
 
 function cargarTablaPrestamoTrabajadores(permisoEditar, permisoExportar) {
 	var table = $("#tabla_prestamoTrabajadores").DataTable();
@@ -50,7 +50,7 @@ function cargarTablaPrestamoTrabajadores(permisoEditar, permisoExportar) {
 				},
 			},
 			ajax: {
-				url: "https://www.imlchile.cl/grupofirma/index.php/getListadoPrestamosTrabajador",
+				url: "http://www.imlchilel.cl/grupofirma/index.php/getListadoPrestamosTrabajador",
 				type: "GET",
 			},
 			columnDefs: [
@@ -140,7 +140,7 @@ function cargarTablaPrestamoTrabajadores(permisoEditar, permisoExportar) {
 				},
 			},
 			ajax: {
-				url: "https://www.imlchile.cl/grupofirma/index.php/getListadoPrestamosTrabajador",
+				url: "http://www.imlchilel.cl/grupofirma/index.php/getListadoPrestamosTrabajador",
 				type: "GET",
 			},
 			columnDefs: [

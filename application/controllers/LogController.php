@@ -7,14 +7,19 @@ class BancoController extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->load->model("");
+        $this->load->model("LogModel");
     }
 
-    public function capturarActividad($data)
+    public function capturarActividad()
     {
-        $data_sesion = $this->session->userdata("datos");
-        $usuario =  $data_sesion['usuario'];
 
-        $this->LogModel->addLog($usuario, $data_sesion);
+        $datos = $this->session->userdata("datos");
+        $usuario =  $datos['usuario'];
+
+        $query = $this->db->last_query();
+        $sesion = (string)($query);
+
+        $resultado = $this->LogModel->addLog($usuario, $sesion);
+        echo json_encode(array("msg" => $resultado));
     }
 }
