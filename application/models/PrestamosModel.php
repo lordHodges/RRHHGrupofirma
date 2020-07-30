@@ -51,16 +51,9 @@ class PrestamosModel extends CI_Model
             "cf_trabajador"       => $idTrabajador
         );
 
-        if ($resultado = $this->db->insert("fa_prestamo", $data)) {
-
-            return $resultado;
-        } else {
-            return 'error';
-        }
-
-        /* $ultimoId = $this->db->insert_id();
-
-        return $ultimoId; */
+        $this->db->insert("fa_prestamo", $data);
+        $ultimoId = $this->db->insert_id();
+        return $ultimoId;
     }
 
     function addDetallePrestamo($idTrabajador, $numCuota, $montoDetalle, $fechaDetalle, $cfPrestamo)
