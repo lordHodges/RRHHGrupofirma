@@ -120,7 +120,7 @@ function cargarGraficoTransferenciasPorEmpresaMes() {
 		}
 		$.each(result, function (i, o) {
 			empresas.push(o.atr_nombre);
-			var valor = new Intl.NumberFormat("en-US", { style: "currency", currency: "DOL" }).format(o.totalTransferencias);
+			var valor = o.totalTransferencias;
 			montos.push(valor);
 			colores.push("#000");
 		});
@@ -130,7 +130,7 @@ function cargarGraficoTransferenciasPorEmpresaMes() {
 			var data = {
 				datasets: [
 					{
-						data: montos,
+						data: new Intl.NumberFormat("en-US", { style: "currency", currency: "DOL" }).format(montos),
 						backgroundColor: colors,
 						label: "My dataset", // for legend
 					},
