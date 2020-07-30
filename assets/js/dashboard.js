@@ -130,7 +130,7 @@ function cargarGraficoTransferenciasPorEmpresaMes() {
 			var data = {
 				datasets: [
 					{
-						data: new Intl.NumberFormat("en-US", { style: "currency", currency: "DOL" }).format(montos),
+						data: montos,
 						backgroundColor: colors,
 						label: "My dataset", // for legend
 					},
