@@ -51,9 +51,9 @@ class PrestamosModel extends CI_Model
             "cf_trabajador"       => $idTrabajador
         );
 
-        if ($this->db->insert("fa_prestamo", $data)) {
+        if ($resultado = $this->db->insert("fa_prestamo", $data)) {
             registrarActividad();
-            return 'ok';
+            return $resultado;
         } else {
             return 'error';
         }
