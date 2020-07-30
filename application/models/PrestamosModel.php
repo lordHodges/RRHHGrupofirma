@@ -52,7 +52,7 @@ class PrestamosModel extends CI_Model
         );
 
         if ($resultado = $this->db->insert("fa_prestamo", $data)) {
-            registrarActividad();
+
             return $resultado;
         } else {
             return 'error';
