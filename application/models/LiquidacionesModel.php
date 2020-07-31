@@ -33,7 +33,7 @@ class LiquidacionesModel extends CI_Model
 
 
 
-  function cargar_liquidacion($fecha, $fechaCarga, $haberes, $descuentos, $alcanceLiquido, $nombreReal, $nombreFinal, $ruta, $monto, $idTrabajador)
+  function cargar_liquidacion($fecha, $fechaCarga, $haberes, $descuentos, $alcanceLiquido, $nombreReal, $nombreFinal, $ruta, $idTrabajador)
   {
     // 1: Buscar trabajador y obtener id del cargo
     $this->db->select("t.cf_cargo");
