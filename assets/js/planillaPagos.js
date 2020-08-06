@@ -581,9 +581,9 @@ function getGenerarLiquidacion(idTrabajador) {
 		$("#contenedorGenerarLiquidacion").empty();
 
 		$.each(response, function (i, o) {
-			var bonoAsistenciaAPagar = new Intl.NumberFormat("es-ES").format(
+			/* var bonoAsistenciaAPagar = new Intl.NumberFormat("es-ES").format(
 				Math.round(o.bonoAsistenciaAPagar)
-			);
+			); */
 
 			/* vht */
 
