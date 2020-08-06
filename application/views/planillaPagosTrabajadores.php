@@ -369,6 +369,8 @@ if ($usuario[0]->atr_activo == "1") { ?>
       var valorAlcanceLiquido = $("#valorAlcanceLiquido").val();
       var montoPrestamo = $("#montoPrestamo").val();
       var bonoAsistenciaAPagar = $("#bonoAsistenciaAPagar").val();
+      var bonoColacionAPagar= $("#bonoColacionAPagar").val();
+      var bonoMobilizacionAPagar = $("#bonoMobilizacionAPagar").val();
       var fechaTernmino = $("#fechaTermino").val();
       var totalTributable = $("#totalTributable").val();
       var valorImpuestoUnico = $("#valorImpuestoUnico").val();
@@ -422,6 +424,8 @@ if ($usuario[0]->atr_activo == "1") { ?>
         '&&valorAlcanceLiquido=' + valorAlcanceLiquido +
         '&&montoPrestamo=' + montoPrestamo +
         '&&bonoAsistenciaAPagar=' + bonoAsistenciaAPagar +
+        '&&bonoColacion=' + bonoColacionAPagar +
+        '&&bonoMobilizacion=' + bonoMobilizacionAPagar +
         '&&fechaTermino=' + fechaTernmino +
         '&&valorImponible=' + valorImponible +
         '&&valorSaludAdicional=' + valorSaludAdicional

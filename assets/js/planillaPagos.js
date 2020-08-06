@@ -594,7 +594,9 @@ function getGenerarLiquidacion(idTrabajador) {
 				'<label class="text-center" for="mesCorriente">REMUNERACIONES MES:</label>';
 			fila +=
 				'<input type="text" class="form-control custom-input-sm" id="mesCorriente" disabled style="color:#000;" value="' +
-				o.mesCorriente + ' ' + o.añoLiquidacion +
+				o.mesCorriente +
+				" " +
+				o.añoLiquidacion +
 				'">';
 			fila += "</div>";
 
@@ -714,7 +716,9 @@ function getGenerarLiquidacion(idTrabajador) {
 			fila +=
 				'<label class="text-center" for="cargasFamiliares">CARGAS FAMILIARES</label>';
 			fila +=
-				'<input type="number" class="form-control custom-input-sm" id="cargasFamiliares" disabled style="color:#000;" value="' + o.cargas + '">'; //ingreso manual;
+				'<input type="number" class="form-control custom-input-sm" id="cargasFamiliares" disabled style="color:#000;" value="' +
+				o.cargas +
+				'">'; //ingreso manual;
 			fila += "</div>";
 			/* TOTAL TRUBUTABLE valor calculado*/
 			/* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
@@ -849,7 +853,8 @@ function getGenerarLiquidacion(idTrabajador) {
 				'<label class="text-center" for="valorSaludAdicional" style="">Adicional Isapre :</label>';
 			fila +=
 				'<input type="text" class="form-control custom-input-sm" id="valorSaludAdicional" disabled style="color:#000;margin-left:1rem" value="' +
-				o.valorSaludAdicional + '">';
+				o.valorSaludAdicional +
+				'">';
 			fila += "</div>";
 			fila += "</div>";
 			fila += '<div class="col-lg-12 col-md-12 col-sm-12"><br>';
@@ -862,7 +867,6 @@ function getGenerarLiquidacion(idTrabajador) {
 				'">';
 			fila += "</div>";
 			fila += "</div>";
-
 
 			/* Subtotal descuentos legales (valor calculado suma anteriores)*/
 			fila += '<div class="col-lg-12 col-md-12 col-sm-12"><br>';

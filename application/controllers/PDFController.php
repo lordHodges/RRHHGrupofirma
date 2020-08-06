@@ -430,8 +430,8 @@ class  PDFController extends CI_Controller
 		$valorAlcanceLiquido = $this->input->get("valorAlcanceLiquido");
 		$montoPrestamo =  $this->input->get("montoPrestamo");
 		$bonoAsistenciaAPagar =  $this->input->get("bonoAsistenciaAPagar");
-		$bonoMobilizacion = 0;
-		$bonoColacion = 0;
+		$bonoMobilizacion = $this->input->get("bonoMobilizacion");
+		$bonoColacion = $this->input->get("bonoColacion");;
 		$valorUF = $this->input->get("valorUF");
 		$valorUTM = $this->input->get("valorUTM");
 		$fechaTermino = $this->input->get("fechaTermino");
@@ -442,7 +442,7 @@ class  PDFController extends CI_Controller
 		$valorConvertido = str_replace(".", "", $valorAlcanceLiquido);
 		$letrasValorAlcanceLiquido = strtolower($this->convertir($valorConvertido));
 		/* fin datos calculados */
-		/* vaslores para el documento */
+		/* valores para el documento */
 		$tituloCabecera = "LIQUIDACION DE SUELDO";
 		$data = array(
 			'valorUF'	=> $valorUF,
