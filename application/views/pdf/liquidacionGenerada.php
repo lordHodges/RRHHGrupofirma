@@ -165,13 +165,13 @@ if ($usuario[0]->atr_activo == "1" && $view_contratoEstadar == "1") { ?>
                                 <th style="padding-top: 0px;padding-bottom: 0px;">Total Imponible</th>
                                 <th style="padding-top: 0px;padding-bottom: 0px;"><?php echo ($totalImponible); ?></th>
                             </tr>
-                            <?php if ($bonoColacion > 0 && $bonoColacion != "undefined") { ?>
+                            <?php if ( $bonoColacion != "undefined") { ?>
                                 <tr>
                                     <td style="padding-top: 0px;padding-bottom: 0px;">Asigancion Colacion</td>
                                     <td style="padding-top: 0px;padding-bottom: 0px;"><?php echo ($bonoColacion); ?></td>
                                 </tr>
                             <?php } ?>
-                            <?php if ($bonoMobilizacion > 0 && $bonoMobilizacion != "undefined") { ?>
+                            <?php if ( $bonoMobilizacion != "undefined") { ?>
                                 <tr>
                                     <td style="padding-top: 0px;padding-bottom: 0px;">Asignacion Mobilizacion</td>
                                     <td style="padding-top: 0px;padding-bottom: 0px;"><?php echo ($bonoMobilizacion); ?></td>
