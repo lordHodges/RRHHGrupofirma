@@ -171,9 +171,11 @@ if ($usuario[0]->atr_activo == "1" && $view_contratoEstadar == "1") { ?>
                                     <td style="padding-top: 0px;padding-bottom: 0px;"><?php echo ($bonoColacion); ?></td>
                                 </tr>
                             <?php } ?>
+
+                            <?php if ( $bonoMovilizacion != "undefined") { ?>
                            
                                 <tr>
-                                    <td style="padding-top: 0px;padding-bottom: 0px;">Asignacion Mobilizacion</td>
+                                    <td style="padding-top: 0px;padding-bottom: 0px;">Asignacion Movilizacion</td>
                                     <td style="padding-top: 0px;padding-bottom: 0px;"><?php echo ($bonoMovilizacion); ?></td>
                                 </tr>
                             <?php } ?>
