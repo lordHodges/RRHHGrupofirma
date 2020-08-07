@@ -370,7 +370,7 @@ if ($usuario[0]->atr_activo == "1") { ?>
       var montoPrestamo = $("#montoPrestamo").val();
       var bonoAsistenciaAPagar = $("#bonoAsistenciaAPagar").val();
       var bonoColacionAPagar= $("#bonoColacionAPagar").val();
-      var bonoMobilizacionAPagar = $("#bonoMovilizacionAPagar").val();
+      var bonoMovilizacionAPagar = $("#bonoMovilizacionAPagar").val();
       var fechaTernmino = $("#fechaTermino").val();
       var totalTributable = $("#totalTributable").val();
       var valorImpuestoUnico = $("#valorImpuestoUnico").val();
