@@ -714,9 +714,9 @@ function getGenerarLiquidacion(idTrabajador) {
 			/* CARGAS FAMILIARES (se debe ingresar valor manualmente) */
 			fila += '<div class="col-lg-4 col-md-4 col-sm-4"><br>';
 			fila +=
-				'<label class="text-center" for="cargasFamiliares">CARGAS FAMILIARES</label>';
+				'<label class="text-center" for="cargas">CARGAS FAMILIARES</label>';
 			fila +=
-				'<input type="number" class="form-control custom-input-sm" id="cargasFamiliares" disabled style="color:#000;" value="' +
+				'<input type="number" class="form-control custom-input-sm" id="cargas" disabled style="color:#000;" value="' +
 				o.cargas +
 				'">'; //ingreso manual;
 			fila += "</div>";
