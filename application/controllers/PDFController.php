@@ -430,7 +430,7 @@ class  PDFController extends CI_Controller
 		$valorAlcanceLiquido = $this->input->get("valorAlcanceLiquido");
 		$montoPrestamo =  $this->input->get("montoPrestamo");
 		$bonoAsistenciaAPagar =  $this->input->get("bonoAsistenciaAPagar");
-		$bonoMobilizacion = $this->input->get("bonoMobilizacion");
+		$bonoMovilizacion = $this->input->get("bonoMovilizacion");
 		$bonoColacion = $this->input->get("bonoColacion");;
 		$valorUF = $this->input->get("valorUF");
 		$valorUTM = $this->input->get("valorUTM");
@@ -480,7 +480,7 @@ class  PDFController extends CI_Controller
 			'valorAlcanceLiquido'	=> $valorAlcanceLiquido,
 			'tituloCabecera'	=> $tituloCabecera,
 			'montoPrestamo' => $montoPrestamo,
-			'bonoMobilizacion'	=> $bonoMobilizacion,
+			'bonoMovilizacion'	=> $bonoMovilizacion,
 			'bonoColacion'	=> $bonoColacion,
 			'valorSaludAdicional' => $valorSaludAdicional,
 			'plan' => $plan,
