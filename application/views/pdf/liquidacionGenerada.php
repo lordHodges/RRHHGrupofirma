@@ -38,15 +38,15 @@ if ($usuario[0]->atr_activo == "1" && $view_contratoEstadar == "1") { ?>
 
             <table class="table table-borderless text-left" style="font-size: 12px;">
                 <tbody>
-                    <tr style="padding-top:-20px;padding-bottom: -20px;">
-                        <td style="padding-top: 0px;padding-bottom: 0px;">Remuneraciones Mes :</td>
-                        <td style="padding-top: 0px;padding-bottom: 0px;"><?php echo ($mesCorriente); ?></td>
+                    <tr style="padding-top:-20px;padding-bottom: -20px;font-size: 12px;">
+                        <td style="padding-top: 0px;padding-bottom: 0px;font-size: 12px;">Remuneraciones Mes :</td>
+                        <td style="padding-top: 0px;padding-bottom: 0px;font-size: 12px;"><?php echo ($mesCorriente); ?></td>
                     </tr>
-                    <tr style="padding-top:-20px;padding-bottom: -20px;">
-                        <td style="padding-top: 0px;padding-bottom: 0px;">Razon Social:</td>
-                        <td style="padding-top: 0px;padding-bottom: 0px;"><?php echo ($razonSocial); ?></td>
-                        <td style="padding-top: 0px;padding-bottom: 0px;">RUT:</td>
-                        <td style="padding-top: 0px;padding-bottom: 0px;"><?php echo ($rutEmpresa); ?></td>
+                    <tr style="padding-top:-20px;padding-bottom: -20px;font-size: 12px;">
+                        <td style="padding-top: 0px;padding-bottom: 0px;font-size: 12px;">Razon Social:</td>
+                        <td style="padding-top: 0px;padding-bottom: 0px;font-size: 12px;"><?php echo ($razonSocial); ?></td>
+                        <td style="padding-top: 0px;padding-bottom: 0px;font-size: 12px;">RUT:</td>
+                        <td style="padding-top: 0px;padding-bottom: 0px;font-size: 12px;"><?php echo ($rutEmpresa); ?></td>
                     </tr>
                 </tbody>
             </table>
@@ -60,17 +60,17 @@ if ($usuario[0]->atr_activo == "1" && $view_contratoEstadar == "1") { ?>
 
                         <tbody>
                             <tr>
-                                <th style="padding-top: 0px;padding-bottom: 0px;">Nombre :</th>
-                                <td style="padding-top: 0px;padding-bottom: 0px;"><?php echo ($nombreTrabajador); ?></td>
+                                <th style="padding-top: 0px;padding-bottom: 0px;font-size: 12px;">Nombre :</th>
+                                <td style="padding-top: 0px;padding-bottom: 0px;font-size: 12px;"><?php echo ($nombreTrabajador); ?></td>
 
                             </tr>
                             <tr>
-                                <th style="padding-top: 0px;padding-bottom: 0px;">RUN :</th>
-                                <td style="padding-top: 0px;padding-bottom: 0px;"><?php echo ($rutTrabajador); ?></td>
+                                <th style="padding-top: 0px;padding-bottom: 0px;font-size: 12px;">RUN :</th>
+                                <td style="padding-top: 0px;padding-bottom: 0px;font-size: 12px;"><?php echo ($rutTrabajador); ?></td>
                             </tr>
                             <tr>
-                                <th style="padding-top: 0px;padding-bottom: 0px;">CC :</th>
-                                <td style="padding-top: 0px;padding-bottom: 0px;"><?php echo ($centralCosto); ?></td>
+                                <th style="padding-top: 0px;padding-bottom: 0px;font-size: 12px;">CC :</th>
+                                <td style="padding-top: 0px;padding-bottom: 0px;font-size: 12px;"><?php echo ($centralCosto); ?></td>
                             </tr>
                         </tbody>
                     </table>
@@ -342,18 +342,18 @@ if ($usuario[0]->atr_activo == "1" && $view_contratoEstadar == "1") { ?>
                         </thead>
                         <tbody>
                             <tr>
-                                <th style="padding-top: 0px;padding-bottom: 0px;">FIRMA EMPLEADOR</th>
-                                <td style="padding-top: 0px;padding-bottom: 0px;">FIRMA TRABAJADOR</td>
+                                <th style="padding-top: 0px;padding-bottom: 0px;font-size: 12px;">FIRMA EMPLEADOR</th>
+                                <td style="padding-top: 0px;padding-bottom: 0px;font-size: 12px;">FIRMA TRABAJADOR</td>
 
                             </tr>
                             <tr>
-                                <th style="padding-top: 0px;padding-bottom: 0px;"><?php echo ($razonSocial) ?></th>
-                                <td style="padding-top: 0px;padding-bottom: 0px;"><?php echo ($nombreTrabajador) ?></td>
+                                <th style="padding-top: 0px;padding-bottom: 0px;font-size: 12px;"><?php echo ($razonSocial) ?></th>
+                                <td style="padding-top: 0px;padding-bottom: 0px;font-size: 12px;"><?php echo ($nombreTrabajador) ?></td>
 
                             </tr>
                             <tr>
-                                <th style="padding-top: 0px;padding-bottom: 0px;"><?php echo ($rutEmpresa) ?></th>
-                                <td style="padding-top: 0px;padding-bottom: 0px;"><?php echo ($rutTrabajador) ?></td>
+                                <th style="padding-top: 0px;padding-bottom: 0px;font-size: 12px;"><?php echo ($rutEmpresa) ?></th>
+                                <td style="padding-top: 0px;padding-bottom: 0px;font-size: 12px;"><?php echo ($rutTrabajador) ?></td>
 
                             </tr>
                         </tbody>
