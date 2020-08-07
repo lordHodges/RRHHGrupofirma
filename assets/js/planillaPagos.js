@@ -753,7 +753,7 @@ function getGenerarLiquidacion(idTrabajador) {
 				'">';
 			fila += "</div>";
 			/* cargas familiares, bonificaciones no imponibles(colacion locomocion, etc) */
-			if (o.cargasFamiliares != "") {
+			if (o.cargasFamiliaresMonto > 0) {
 				fila += '<div class="col-lg-12 col-md-12 col-sm-12"><br>';
 				fila += '<div class="input-group">';
 				fila +=

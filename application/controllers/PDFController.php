@@ -409,6 +409,7 @@ class  PDFController extends CI_Controller
 		$diasTrabajados = $this->input->get("diasTrabajados");
 		$horasExtras = $this->input->get("horasExtras");
 		$cargas = $this->input->get("cargas");
+		$cargasFamiliaresMonto = $this->input->get("cargasFamiliaresMonto");
 		$sueldoBase = $this->input->get("sueldoBase");
 		$gratificacionLegal = $this->input->get("gratificacionLegal");
 		$totalImponible = $this->input->get("totalImponible");
@@ -459,6 +460,7 @@ class  PDFController extends CI_Controller
 			'diasTrabajados'	=> $diasTrabajados,
 			'horasExtras'	=> $horasExtras,
 			'cargas'	=> $cargas,
+			'cargasFamiliaresMonto'	=> $cargasFamiliaresMonto,
 			'sueldoBase'	=> $sueldoBase,
 			'gratificacionLegal'	=> $gratificacionLegal,
 			'totalImponible'	=> $totalImponible,

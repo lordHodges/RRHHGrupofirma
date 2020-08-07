@@ -984,7 +984,7 @@ class PagosModel extends CI_Model
       if ($totalImponible >= 2299129) {
         $totalImponible = 2299129;
       }
-      $cargasFamiliaresMonto = 0;
+      
 
 
 
@@ -1013,10 +1013,6 @@ class PagosModel extends CI_Model
       } else {
         $valorSalud = round($totalImponible * (float) $t->tasaPrevision);
       }
-
-
-
-
 
 
 
@@ -1055,9 +1051,7 @@ class PagosModel extends CI_Model
       $totalOtrosDescuentos = $montoAdelanto + $montoPrestamo;
 
       $totalDescuentos = $totalOtrosDescuentos + $totalDescuentosLegales;
-
-      $totalNoImponible = $cargasFamiliaresMonto + $colacion + $movilizacion;
-
+      $cargasFamiliaresMonto = 0;
       if ($totalImponible <= 336055) {
         $cargasFamiliaresMonto = 13155 * $t->atr_cargas;
       } else if ($totalImponible > 336055 && $totalImponible <= 490844) {
@@ -1067,6 +1061,8 @@ class PagosModel extends CI_Model
       } else if ($totalImponible > 765550) {
         $cargasFamiliaresMonto = 0 * $t->atr_cargas;
       }
+
+      $totalNoImponible = $cargasFamiliaresMonto + $colacion + $movilizacion;
 
       $totalHaberes = ($totalNoImponible + $totalImponible2);
       $valorAlcanceLiquido = $totalHaberes - $totalDescuentos;
