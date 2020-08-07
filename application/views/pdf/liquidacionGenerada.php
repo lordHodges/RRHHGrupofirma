@@ -322,11 +322,11 @@ if ($usuario[0]->atr_activo == "1" && $view_contratoEstadar == "1") { ?>
 
                 </div>
             </div>
-
+ 
 
             <div class="row">
                 <div class="col col-sm-12">
-                    <p style="padding-top: 0px;padding-bottom: 0px;">Declaro que he leído detenida y detalladamente la liquidación y el monto contenido en ella, encontrándome absolutamete conforme, no teniendo reclamo alguno que formular al respecto.<br>Recibí conforme &nbsp;<strong> <?php echo ($letrasValorAlcanceLiquido) ?>&nbsp; pesos.</strong></p>
+                    <p style="padding-top: 0px;padding-bottom: 0px;font-size: 12px;">Declaro que he leído detenida y detalladamente la liquidación y el monto contenido en ella, encontrándome absolutamete conforme, no teniendo reclamo alguno que formular al respecto.<br>Recibí conforme &nbsp;<strong> <?php echo ($letrasValorAlcanceLiquido) ?>&nbsp; pesos.</strong></p>
                 </div>
             </div>
             <br><br><br>
