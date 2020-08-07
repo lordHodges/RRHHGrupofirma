@@ -10,7 +10,7 @@ class pdfgenerator
 {
 
 
-    public function generate($html, $filename = '', $stream = TRUE, $paper = 'A4', $orientation = "portrait", $download)
+    public function generate($html, $filename = '', $stream = TRUE, $paper = 'legal', $orientation = "portrait", $download)
     {
         VAR_DUMP(APPPATH . "libraries/third_party/dompdf/autoload.inc.php");
         $dompdf = new DOMPDF();
