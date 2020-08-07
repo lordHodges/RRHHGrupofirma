@@ -798,7 +798,7 @@ function getGenerarLiquidacion(idTrabajador) {
 			fila +=
 				'<label class="text-center" for="bonoColacionAPagar">BONO COLACION</label>';
 			fila +=
-				'<input type="text" class="form-control custom-input-sm" id="bonoColacionAPagar" disabled style="color:#000;" value="$' +
+				'<input type="text" class="form-control custom-input-sm" id="bonoColacionAPagar" disabled style="color:#000;" value="' +
 				o.bonoColacionAPagar +
 				'">';
 			fila += "</div>";
@@ -806,7 +806,7 @@ function getGenerarLiquidacion(idTrabajador) {
 			fila +=
 				'<label class="text-center" for="bonoMovilizacionAPagar">BONO MOVILIZACION</label>';
 			fila +=
-				'<input type="text" class="form-control custom-input-sm" id="bonoMovilizacionAPagar" disabled style="color:#000;" value="$' +
+				'<input type="text" class="form-control custom-input-sm" id="bonoMovilizacionAPagar" disabled style="color:#000;" value="' +
 				o.bonoMovilizacionAPagar +
 				'">';
 			fila += "</div>";
