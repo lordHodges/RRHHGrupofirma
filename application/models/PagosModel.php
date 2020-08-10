@@ -968,7 +968,7 @@ class PagosModel extends CI_Model
       $sbase = (int)$t->atr_sueldoMensual;
       if ($cont > 0) {
         $sbase = $sbase = 30;
-        $sbase = $sbase * $diasPago;
+        $sbase = round($sbase * $diasPago);
       }
 
       $gratificacion = round(($sbase + $bonoAsistencia) * 0.25); //bonoAsistenciaGratificable
