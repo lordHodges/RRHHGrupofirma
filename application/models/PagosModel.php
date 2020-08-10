@@ -955,10 +955,7 @@ class PagosModel extends CI_Model
 
       // Calcular sueldo si el trabajador falto
       $sueldo = $t->atr_sueldoMensual;
-      if ($cont > 0) {
-        $sueldo = $sueldo / 30;
-        $sueldo = $sueldo * $diasPago;
-      }
+      
 
       //CALCULAR EL MONTO TOTAL A PAGAR
       // $montoTotalPagar = ($sueldo + $bonos) - ($montoAdelanto + $montoPrestamo);
@@ -967,7 +964,12 @@ class PagosModel extends CI_Model
 
 
       //=SI(D17*0,25>=Datos!C2;Datos!C2;D17*0,25)
+
       $sbase = (int)$t->atr_sueldoMensual;
+      if ($cont > 0) {
+        $sbase = $sbase = 30;
+        $sbase = $sbase * $diasPago;
+      }
 
       $gratificacion = round(($sbase + $bonoAsistencia) * 0.25); //bonoAsistenciaGratificable
       if ($gratificacion >= 126865) {
