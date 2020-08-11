@@ -913,8 +913,8 @@ class PagosModel extends CI_Model
 
         if ($cont > 0) {
           $bonoAsistencia = 0;
-          $colacion = $colacionDiaria * $diasPago;
-          $movilizacion = $movilizacionDiaria * $diasPago;
+          $colacion = round($colacionDiaria * $diasPago);
+          $movilizacion = round($movilizacionDiaria * $diasPago);
           $bonos = $colacion + $movilizacion;
         } else {
 
