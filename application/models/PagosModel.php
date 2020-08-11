@@ -977,7 +977,7 @@ class PagosModel extends CI_Model
       }
       $totalImponible = $sbase + $gratificacion + $bonoAsistencia; //bonoAsistenciaImponible
       $totalImponible2 = $totalImponible;
-      if ($t->estado == "Contrato indefinido" || $t->prevision !="DIPRECA" ) {
+      if ($t->estado == "Contrato indefinido" && $t->prevision !="DIPRECA" ) {
 
         $valorCesantia = round($totalImponible * 0.006);
       } else {
