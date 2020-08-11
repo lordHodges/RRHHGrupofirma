@@ -967,7 +967,7 @@ class PagosModel extends CI_Model
 
       $sbase = $t->atr_sueldoMensual;
       if ($cont > 0) {
-        $sbase = $sbase = 30;
+        $sbase = $sbase / 30;
         $sbase = round($sbase * $diasPago);
       }
 
@@ -1009,7 +1009,7 @@ class PagosModel extends CI_Model
 
       $valorSalud = 0;
       $valorSaludAdicional = 0;
-      if ($t->prevision != "FONASA") {
+      if ($t->prevision != "FONASA" && $t->prevision != "DIPRECA") {
         $valorSalud = round($totalImponible * (float) $t->tasaPrevision);
         $valorSaludAdicional = round(($valorUF * $t->atr_plan) - $valorSalud);
       } else {
