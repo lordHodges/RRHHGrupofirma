@@ -93,7 +93,7 @@ if ($usuario[0]->atr_activo == "1" && $view_contratoEstadar == "1") { ?>
                         <tbody>
                             <tr>
                                 <td style="padding-top: 0px;padding-bottom: 0px;"><?php echo ($afpTrabajador); ?></td>
-                                <td style="padding-top: 0px;padding-bottom: 0px;"><?php echo ($saludTrabajador); ?><?php if ($valorSaludAdicional > 0) { ?>
+                                <td style="padding-top: 0px;padding-bottom: 0px;"><?php echo ($saludTrabajador); ?><?php if ($plan > 0) { ?>
                                     Valor Plan UF :<?php echo ($plan); ?>
                                 <?php } ?> </td>
                                 <?php if ($cargas == "undefined") {

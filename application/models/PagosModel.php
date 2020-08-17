@@ -1068,7 +1068,7 @@ class PagosModel extends CI_Model
       if ($totalTributable < ($valorUTM * 13.05)) {
         $valorImpuestoUnico = 0;
       }
-      $totalDescuentosLegales = ($valorPrevision + $valorSalud + $valorCesantia  + $valorImpuestoUnico);
+      $totalDescuentosLegales = ($valorPrevision + $valorSalud + $valorCesantia +$valorSaludAdicional + $valorImpuestoUnico);
 
       $totalOtrosDescuentos = $montoAdelanto + $montoPrestamo;
 
