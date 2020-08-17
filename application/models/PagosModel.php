@@ -1011,7 +1011,8 @@ class PagosModel extends CI_Model
       $valorSaludAdicional = 0;
       if ($t->prevision != "FONASA" && $t->prevision != "DIPRECA") {
         $valorSalud = round($totalImponible * (float) $t->tasaPrevision);
-        $valorSaludAdicional = round(($valorUF * $t->atr_plan) - $valorSalud);
+        $valorSaludAdicional =   $valorSalud - round(($valorUF * $t->atr_plan));
+       
       } else {
         $valorSalud = round($totalImponible * (float) $t->tasaPrevision);
       }
