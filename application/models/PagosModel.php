@@ -535,7 +535,7 @@ class PagosModel extends CI_Model
         $decodeUTM = json_decode(file_get_contents("https://mindicador.cl/api/utm/$fechaOrd[2]-$fechaOrd[1]-$fechaOrd[0]"));
         $valorUTM = $decodeUTM->serie[0]->valor;
 
-        if ($t->prevision != "Fonasa") {
+        if ($t->prevision != "FONASA") {
 
 
           $adicionalPlan = round($t->atr_plan * $valorUF);
@@ -1009,10 +1009,29 @@ class PagosModel extends CI_Model
 
       $valorSalud = 0;
       $valorSaludAdicional = 0;
+
+      /* if ($t->prevision != "FONASA") {
+
+
+          $adicionalPlan = round($t->atr_plan * $valorUF);
+          if ($valorSalud < $adicionalPlan) {
+            $adicionalPlan = $adicionalPlan - $valorSalud;
+          } else {
+            $adicionalPlan = 0;
+          }
+        } else {
+          $adicionalPlan = 0;
+        } */
+
       if ($t->prevision != "FONASA" && $t->prevision != "DIPRECA") {
         $valorSalud = round($totalImponible * (float) $t->tasaPrevision);
-        $valorSaludAdicional =   $valorSalud - round(($valorUF * $t->atr_plan));
-       
+        if ($valorSalud<$valorSaludAdicional) {
+          $valorSaludAdicional =  round(($valorUF * $t->atr_plan) - $valorSalud );
+        }else {
+          $valorSaludAdicional = 0;
+        }
+        
+        
       } else {
         $valorSalud = round($totalImponible * (float) $t->tasaPrevision);
       }
@@ -1049,7 +1068,7 @@ class PagosModel extends CI_Model
       if ($totalTributable < ($valorUTM * 13.05)) {
         $valorImpuestoUnico = 0;
       }
-      $totalDescuentosLegales = ($valorPrevision + $valorSalud + $valorCesantia + $valorSaludAdicional + $valorImpuestoUnico);
+      $totalDescuentosLegales = ($valorPrevision + $valorSalud + $valorCesantia  + $valorImpuestoUnico);
 
       $totalOtrosDescuentos = $montoAdelanto + $montoPrestamo;
 
