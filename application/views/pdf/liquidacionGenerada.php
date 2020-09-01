@@ -13,6 +13,7 @@ foreach ($permisos as $key => $value) {
 }
 
 if ($usuario[0]->atr_activo == "1" && $view_contratoEstadar == "1") { ?>
+
     <!DOCTYPE html>
     <html lang="en" dir="ltr">
 

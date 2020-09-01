@@ -77,7 +77,7 @@ class  PDFController extends CI_Controller
 		$prestamo = $this->input->get("id");
 		$titulo = "COMPROBANTE PRÉSTAMO EMPRESARIAL";
 
-		// $prestamo = 3;
+
 
 		$infoPrestamo = $this->PrestamosModel->getPrestamo($prestamo);
 		$detallePrestamo = $this->PrestamosModel->getDetallePrestamo($prestamo);
@@ -129,7 +129,7 @@ class  PDFController extends CI_Controller
 		// definamos un nombre para el archivo. No es necesario agregar la extension .pdf
 		$filename = 'prestamo_' . $nombreTrabajador . '';
 		// generamos el PDF. Pasemos por encima de la configuración general y definamos otro tipo de papel
-		$this->pdfgenerator->generate($html, $filename, TRUE, 'Letter', 'portrait', 0);
+		$this->pdfgenerator->generate($html, $filename, TRUE, 'Letter', 'portrait', 1);
 	}
 
 
