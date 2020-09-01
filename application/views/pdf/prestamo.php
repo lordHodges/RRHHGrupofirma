@@ -81,23 +81,18 @@
           <?php
           // for ($i = 1; $i <= $cant_cuotas; $i++) {
             foreach ($detalle_prestamo as $key => $dp){ ?>
-
             <?php
-              // if ($dp->atr_numCuota == $i) {
                 $ArrayfechaCuota = explode("-", $dp->atr_fechaDescuento);
           		  $fechaCuota = $ArrayfechaCuota[2]."-".$ArrayfechaCuota[1]."-".$ArrayfechaCuota[0];
                 echo $fechaCuota;
-                // $i++;
-              // }
             ?>
               =
               <?php echo "$".number_format($dp->atr_montoDescontar, 0, ",", "."); ?>
               <br>
 
-           <?php
-              // }
+          <?php
               }
-           ?>
+          ?>
         </td>
       </tr>
     </table>
@@ -160,7 +155,7 @@
 
 
     <!-- Firma Trabajador -->
-     <div class="caja1">
+    <div class="caja1">
         <p>__________________________________</p>
           <div style="display:inline-block">
 
@@ -168,10 +163,10 @@
             <h5 style="margin-top:-12px;">R.U.T N° <?php echo $rut ?></h5>
             <h5 style="margin-top:-12px;">TRABAJADOR.</h5>
           </div>
-     </div>
+    </div>
 
-     <!-- Firma empleador -->
-     <div class="caja2">
+    <!-- Firma empleador -->
+    <div class="caja2">
         <p>__________________________________</p>
           <div style="display:inline-block">
 
@@ -179,7 +174,7 @@
             <h5 style="margin-top:-12px;">R.U.T N° <?php echo $rut_empresa?></h5>
             <h5 style="margin-top:-12px;">EMPLEADOR.</h5>
           </div>
-     </div>
+    </div>
 
 
 

@@ -17,16 +17,13 @@ if ($usuario[0]->atr_activo == "1" && $view_contratoEstadar == "1") { ?>
     <html lang="en" dir="ltr">
 
     <head>
-
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>liquidacion</title>
-
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
-
     </head>
 
 
@@ -165,7 +162,7 @@ if ($usuario[0]->atr_activo == "1" && $view_contratoEstadar == "1") { ?>
                                 <th style="padding-top: 0px;padding-bottom: 0px;">Total Imponible</th>
                                 <th style="padding-top: 0px;padding-bottom: 0px;"><?php echo ($totalImponible); ?></th>
                             </tr>
-                             <?php if ( $cargasFamiliaresMonto != "undefined") { ?>
+                            <?php if ( $cargasFamiliaresMonto != "undefined") { ?>
                                 <tr>
                                     <td style="padding-top: 0px;padding-bottom: 0px;">Asigancion Familiar</td>
                                     <td style="padding-top: 0px;padding-bottom: 0px;"><?php echo ($cargasFamiliaresMonto); ?></td>
@@ -179,7 +176,6 @@ if ($usuario[0]->atr_activo == "1" && $view_contratoEstadar == "1") { ?>
                             <?php } ?>
 
                             <?php if ( $bonoMovilizacion != "undefined") { ?>
-                           
                                 <tr>
                                     <td style="padding-top: 0px;padding-bottom: 0px;">Asignacion Movilizacion</td>
                                     <td style="padding-top: 0px;padding-bottom: 0px;"><?php echo ($bonoMovilizacion); ?></td>
@@ -225,7 +221,6 @@ if ($usuario[0]->atr_activo == "1" && $view_contratoEstadar == "1") { ?>
                                 <td style="padding-top: 0px;padding-bottom: 0px;">Salud</td>
                                 <td style="padding-top: 0px;padding-bottom: 0px;"><?php echo ($valorSalud) ?></td>
                             </tr>
-
                             <?php if ($valorSaludAdicional > 0 && $valorSaludAdicional != "undefined") { ?>
                                 <tr>
                                     <td style="padding-top: 0px;padding-bottom: 0px;">Adicional Isapre</td>
@@ -244,43 +239,35 @@ if ($usuario[0]->atr_activo == "1" && $view_contratoEstadar == "1") { ?>
                                     <td style="padding-top: 0px;padding-bottom: 0px;"><?php echo ($valorImpuestoUnico); ?></td>
                                 </tr>
                             <?php } ?>
-
                             <tr style="padding-top: 0px;padding-bottom: 0px;">
                                 <th style="padding-top: 0px;padding-bottom: 0px;">Total Desc. Legales</th>
                                 <th style="padding-top: 0px;padding-bottom: 0px;"><?php echo ($totalDescuentosLegales) ?></th>
                             </tr>
-
                             <?php if ($atr_monto != "undefined") { ?>
                                 <tr>
                                     <td style="padding-top: 0px;padding-bottom: 0px;">Adelanto</td>
                                     <td style="padding-top: 0px;padding-bottom: 0px;"><?php echo ($atr_monto); ?></td>
                                 </tr>
-
                             <?php } ?>
                             <?php if ($montoPrestamo) { ?>
                                 <tr>
                                     <td style="padding-top: 0px;padding-bottom: 0px;">Prestamo </td>
                                     <td style="padding-top: 0px;padding-bottom: 0px;"><?php echo ($montoPrestamo); ?></td>
                                 </tr>
-
                             <?php } ?>
-
                             <?php if ($totalOtrosDescuentos) { ?>
                                 <tr>
                                     <th style="padding-top: 0px;padding-bottom: 0px;">Total Otros Desc.</th>
                                     <th style="padding-top: 0px;padding-bottom: 0px;"><?php echo ($totalOtrosDescuentos); ?></th>
                                 </tr>
-
                             <?php } ?>
                             <tr>
                                 <th style="padding-top: 0px;padding-bottom: 0px;">Total Descuentos</th>
                                 <th style="padding-top: 0px;padding-bottom: 0px;"><?php echo ($totalDescuentos) ?></th>
                             </tr>
                         </tbody>
-
                     </table>
                 </div>
-
             </div>
             <div class="row">
                 <div class="col sm-12">
@@ -300,30 +287,17 @@ if ($usuario[0]->atr_activo == "1" && $view_contratoEstadar == "1") { ?>
                             </tr>
                         </tbody>
                     </table>
-
                 </div>
-
-            </div>
-
             <div class="row">
                 <div class="col col-sm-6">
                     <table class="table text-left" style="font-size: 12px;margin-top: -10px;">
-
                         <tr>
                             <th style="padding-top: 0px;padding-bottom: 0px;">Fecha Emision:</th>
                             <td style="padding-top: 0px;padding-bottom: 0px;"><?php echo ($fechaTermino) ?></td>
-
                         </tr>
-
-
-
-
                     </table>
-
                 </div>
             </div>
- 
-
             <div class="row">
                 <div class="col col-sm-12">
                     <p style="padding-top: 0px;padding-bottom: 0px;font-size: 12px;">Declaro que he leído detenida y detalladamente la liquidación y el monto contenido en ella, encontrándome absolutamete conforme, no teniendo reclamo alguno que formular al respecto.<br>Recibí conforme &nbsp;<strong> <?php echo ($letrasValorAlcanceLiquido) ?>&nbsp; pesos.</strong></p>
@@ -337,48 +311,28 @@ if ($usuario[0]->atr_activo == "1" && $view_contratoEstadar == "1") { ?>
                             <tr>
                                 <th style="padding-top: 0px;padding-bottom: 0px;">_____________________________</th>
                                 <th style="padding-top: 0px;padding-bottom: 0px;">_____________________________</th>
-
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
                                 <th style="padding-top: 0px;padding-bottom: 0px;font-size: 12px;">FIRMA EMPLEADOR</th>
                                 <td style="padding-top: 0px;padding-bottom: 0px;font-size: 12px;">FIRMA TRABAJADOR</td>
-
                             </tr>
                             <tr>
                                 <th style="padding-top: 0px;padding-bottom: 0px;font-size: 12px;"><?php echo ($razonSocial) ?></th>
                                 <td style="padding-top: 0px;padding-bottom: 0px;font-size: 12px;"><?php echo ($nombreTrabajador) ?></td>
-
                             </tr>
                             <tr>
                                 <th style="padding-top: 0px;padding-bottom: 0px;font-size: 12px;"><?php echo ($rutEmpresa) ?></th>
                                 <td style="padding-top: 0px;padding-bottom: 0px;font-size: 12px;"><?php echo ($rutTrabajador) ?></td>
-
                             </tr>
                         </tbody>
                     </table>
-
                 </div>
             </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
         <?php } else {
         header("Location: https://www.imlchile.cl/grupofirma/");
     } ?>
-
-
         </div>
         <!-- PUESTO DE TRABAJO -->
 
