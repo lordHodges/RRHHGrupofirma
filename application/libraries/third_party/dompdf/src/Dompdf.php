@@ -726,7 +726,7 @@ class Dompdf
 
             $this->startTime = microtime(true);
             if (is_writable($logOutputFile)) {
-                ob_start();
+                ob_start(PHP_OUTPUT_HANDLER_CLEANABLE);
             }
         }
 
