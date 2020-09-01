@@ -15,7 +15,7 @@
 spl_autoload_register(function($class)
 {
     if (strpos($class, 'Sabberworm') !== false) {
-        $file = str_replace('\\', DIRECTORY_SEPARATOR, $class);
+        $file = str_replace('\\',DIRECTORY_SEPARATOR,$class);
         $file = realpath(__DIR__ .'/lib/php-css-parser/lib/'.(empty($file)?'':DIRECTORY_SEPARATOR).$file.'.php');
         if (file_exists($file)) {
             require_once $file;
