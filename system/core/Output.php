@@ -464,7 +464,7 @@ class CI_Output {
 			&& $this->_compress_output === TRUE
 			&& isset($_SERVER['HTTP_ACCEPT_ENCODING']) && strpos($_SERVER['HTTP_ACCEPT_ENCODING'], 'gzip') !== FALSE)
 		{
-			ob_start('ob_gzhandler');
+			ob_start('ob_gzhandler',PHP_OUTPUT_HANDLER_CLEANABLE);
 		}
 
 		// --------------------------------------------------------------------
