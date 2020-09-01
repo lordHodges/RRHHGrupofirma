@@ -19,8 +19,9 @@ class pdfgenerator
         $dompdf->render();
         if ($stream) {
             // "Attachment" => 1 hará que por defecto los PDF se descarguen en lugar de presentarse en pantalla.
+			ob_flush();
 			$dompdf->stream($filename.".pdf", array("Attachment" => $download));
-			ob_clean();
+			
         } else {
             return $dompdf->output();
         }
