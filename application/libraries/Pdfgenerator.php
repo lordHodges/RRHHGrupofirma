@@ -18,7 +18,12 @@ class pdfgenerator
         $dompdf->setPaper($paper, $orientation);
 
 		$dompdf->render();
-		echo ini_get('output_buffering');
+		$f;
+$l;
+if(headers_sent($f,$l)){
+    echo $f,'<br/>',$l,'<br/>';
+    die('se detecto linea');
+}
         if ($stream) {
             // "Attachment" => 1 hará que por defecto los PDF se descarguen en lugar de presentarse en pantalla.
 			ob_get_clean();
