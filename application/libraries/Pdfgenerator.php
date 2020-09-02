@@ -18,7 +18,8 @@ class pdfgenerator
         $dompdf = new DOMPDF();
         $dompdf->loadHtml($html);
         $dompdf->setPaper($paper, $orientation);
-		/* $f;
+		/*exelente script para localizar error de errores de ejecucion 
+		$f;
 		$l;
 		if(headers_sent($f,$l)){
 			echo $f,'<br/>',$l,'<br/>';
