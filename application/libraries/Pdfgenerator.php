@@ -18,12 +18,12 @@ class pdfgenerator
         $dompdf = new DOMPDF();
         $dompdf->loadHtml($html);
         $dompdf->setPaper($paper, $orientation);
-		$f;
+		/* $f;
 		$l;
 		if(headers_sent($f,$l)){
 			echo $f,'<br/>',$l,'<br/>';
 			die('se detecto linea');
-		}
+		} */
 		$dompdf->render();
 		
         if ($stream) {
