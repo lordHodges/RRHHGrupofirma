@@ -534,6 +534,8 @@ class PagosModel extends CI_Model
         $valorUF = $decodeUF->serie[0]->valor;
         $decodeUTM = json_decode(file_get_contents("https://mindicador.cl/api/utm/$fechaOrd[2]-$fechaOrd[1]-$fechaOrd[0]"));
         $valorUTM = $decodeUTM->serie[0]->valor; */
+				$valorUF =1;
+				$valorUTM =1;
 
         if ($t->prevision != "FONASA") {
 
