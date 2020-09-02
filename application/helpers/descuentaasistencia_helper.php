@@ -15,7 +15,7 @@ if (!function_exists('inicioContrato')) {
 		foreach ($rs as $key => $r) {
 			$rfecha = $r->atr_fechaInicio;
 		}
-		$fechaOrd = explode('-', $r);
+		$fechaOrd = explode('-', $rfecha);
 		if ($fechaOrd[1]==$mesConsulta) {
 			return TRUE;
 		}
