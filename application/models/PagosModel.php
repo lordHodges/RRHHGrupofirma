@@ -982,6 +982,7 @@ class PagosModel extends CI_Model
 
 
 			/* https://mindicador.cl/api/{tipo_indicador}/{dd-mm-yyyy} */
+			$fechaOrd = explode('-', $fechaTermino);
 			
 
 
@@ -1201,7 +1202,7 @@ class PagosModel extends CI_Model
 				"fechaTermino"            => $fechaTermino,
 				"valorSaludAdicional"     => $valorSaludAdicional,
 				"valorImponible"          => $totalImponible,
-				"añoLiquidacion"          => $añoLiquidacion
+				"añoLiquidacion"          => $fechaOrd[2]
 			);
 
 			return $data;
