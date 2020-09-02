@@ -12,16 +12,17 @@ class pdfgenerator
 
     public function generate($html, $filename = '', $stream = TRUE, $paper = 'legal', $orientation = "portrait", $download)
     {
-        VAR_DUMP(APPPATH."libraries/third_party/dompdf/autoload.inc.php");
-        $dompdf = new DOMPDF();
-        $dompdf->loadHtml($html);
-        $dompdf->setPaper($paper, $orientation);
-$f;
+		$f;
 		$l;
 		if(headers_sent($f,$l)){
 			echo $f,'<br/>',$l,'<br/>';
 			die('se detecto linea');
 		}
+        VAR_DUMP(APPPATH."libraries/third_party/dompdf/autoload.inc.php");
+        $dompdf = new DOMPDF();
+        $dompdf->loadHtml($html);
+        $dompdf->setPaper($paper, $orientation);
+
 		$dompdf->render();
 		
         if ($stream) {
