@@ -20,7 +20,7 @@ if ($usuario[0]->atr_activo == "1" && $view_contratoEstadar == "1") { ?>
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>liquidacion</title>
+        <title>liquidacion <?php echo $nombreTrabajador; ?> </title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
@@ -270,6 +270,7 @@ if ($usuario[0]->atr_activo == "1" && $view_contratoEstadar == "1") { ?>
                     </table>
                 </div>
             </div>
+			<br>
             <div class="row">
                 <div class="col sm-12">
                     <table class="table text-center" style="font-size: 12px;">
@@ -332,11 +333,10 @@ if ($usuario[0]->atr_activo == "1" && $view_contratoEstadar == "1") { ?>
                 </div>
             </div>
         <?php } else {
-        header("Location: https://www.imlchile.cl/grupofirma/");
-    } ?>
+    	   header("Location: https://www.imlchile.cl/grupofirma/");
+    }?>
         </div>
-        <!-- PUESTO DE TRABAJO -->
-
+       
     </body>
 
     </html>
