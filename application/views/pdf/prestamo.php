@@ -18,11 +18,11 @@
       }
 
       .padre{
-         border: 1px;
-         display: inline-block;
-         width: auto;
-         margin: auto;
-         text-align: left;
+        border: 1px;
+        display: inline-block;
+        width: auto;
+        margin: auto;
+        text-align: left;
       }
 
       .caja1 { float:left;margin-left:5px; }

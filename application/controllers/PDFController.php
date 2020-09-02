@@ -1,5 +1,4 @@
-<?php
-defined('BASEPATH') or exit('No direct script access allowed');
+<?php defined('BASEPATH') or exit('No direct script access allowed');
 
 class  PDFController extends CI_Controller
 {
@@ -89,17 +88,17 @@ class  PDFController extends CI_Controller
 		$fechaDeHoy = $this->transformarFecha($fechaDeHoy);
 
 		foreach ($infoPrestamo as $key => $p) {
-			$nombreTrabajador 			= $p->atr_nombres . " " . $p->atr_apellidos;
-			$rut 										= $p->atr_rut;
-			$cargo									= $p->cargo;
-			$rutEmpresa							= $p->rut_empresa;
-			$empresa								= $p->empresa;
+			$nombreTrabajador= $p->atr_nombres." ".$p->atr_apellidos;
+			$rut=$p->atr_rut;
+			$cargo=$p->cargo;
+			$rutEmpresa=$p->rut_empresa;
+			$empresa=$p->empresa;
 
 			$ArrayfechaPrestamo = explode("-", $p->atr_fechaPrestamo);
-			$fecha_prestamo					= $ArrayfechaPrestamo[2] . "-" . $ArrayfechaPrestamo[1] . "-" . $ArrayfechaPrestamo[0];
+			$fecha_prestamo= $ArrayfechaPrestamo[2]."-".$ArrayfechaPrestamo[1]."-".$ArrayfechaPrestamo[0];
 
-			$monto_solicitado				= number_format($p->atr_montoTotal, 0, ",", ".");
-			$cant_cuotas						= $p->atr_cantidadCuotas;
+			$monto_solicitado=number_format($p->atr_montoTotal, 0, ",", ".");
+			$cant_cuotas= $p->atr_cantidadCuotas;
 		}
 
 		$monto = str_replace(".", "", $monto_solicitado);
@@ -108,18 +107,18 @@ class  PDFController extends CI_Controller
 
 		//datos que se enviaran a la Vista
 		$data = array(
-			'titulo'								=> $titulo,
-			'cargo'									=> $cargo,
-			'nombre_trabajador'			=> $nombreTrabajador,
-			'rut'										=> $rut,
-			'rut_empresa'						=> $rutEmpresa,
-			'empresa'								=> $empresa,
-			'fecha_prestamo'				=> $fecha_prestamo,
-			'monto_solicitado'			=> "$" . $monto_solicitado,
-			'cant_cuotas'						=> $cant_cuotas,
-			'fecha_hoy'							=> $fechaDeHoy,
-			'letras_monto'					=> $letrasMontoSolicitado,
-			'detalle_prestamo'			=> $detallePrestamo
+			'titulo'=> $titulo,
+			'cargo'=> $cargo,
+			'nombre_trabajador'=> $nombreTrabajador,
+			'rut'=> $rut,
+			'rut_empresa'=> $rutEmpresa,
+			'empresa'=> $empresa,
+			'fecha_prestamo'=> $fecha_prestamo,
+			'monto_solicitado'=> "$" . $monto_solicitado,
+			'cant_cuotas'=> $cant_cuotas,
+			'fecha_hoy'=> $fechaDeHoy,
+			'letras_monto'=> $letrasMontoSolicitado,
+			'detalle_prestamo'=> $detallePrestamo
 		);
 
 
