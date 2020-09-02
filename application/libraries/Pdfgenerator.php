@@ -16,12 +16,13 @@ class pdfgenerator
         $dompdf = new DOMPDF();
         $dompdf->loadHtml($html);
         $dompdf->setPaper($paper, $orientation);
+
 		$dompdf->render();
-		
+		echo "end!";exit;
         if ($stream) {
             // "Attachment" => 1 hará que por defecto los PDF se descarguen en lugar de presentarse en pantalla.
 			/* ob_flush(); */
-			echo "end!";exit;
+			
 			$dompdf->stream($filename.".pdf", array("Attachment" => $download));
 			
         } else {
