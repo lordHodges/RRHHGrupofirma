@@ -487,7 +487,7 @@ class  PDFController extends CI_Controller
 		$html = $this->load->view('pdf/liquidacionGenerada', $data, TRUE);
 		$this->load->library('Pdfgenerator');
 		$filename = 'liquidacionGenerada';
-		$this->pdfgenerator->generate($html, $filename, TRUE, 'Legal', 'portrait', 1);
+		$this->pdfgenerator->generate($html, $filename, TRUE, 'Legal', 'portrait', 0);
 	}
 
 	function obtenerInformacion()
