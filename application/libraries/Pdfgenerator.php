@@ -16,7 +16,7 @@ class pdfgenerator
         $dompdf = new DOMPDF();
         $dompdf->loadHtml($html);
         $dompdf->setPaper($paper, $orientation);
-echo "end!";exit;
+
 		$dompdf->render();
 		
         if ($stream) {
@@ -30,3 +30,4 @@ echo "end!";exit;
         }
     }
 }
+/* echo "end!";exit; */
