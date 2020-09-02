@@ -150,11 +150,6 @@
     <?php } ?>
 
   </b>quien lo recibe firmando de conformidad todos los involucrados.</p>
-
-
-
-
-    <!-- Firma Trabajador -->
     <div class="caja1">
         <p>__________________________________</p>
           <div style="display:inline-block">
