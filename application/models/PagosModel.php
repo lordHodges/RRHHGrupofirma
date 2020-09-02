@@ -4,7 +4,10 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class PagosModel extends CI_Model
 {
-
+  $decodeUF = json_decode(file_get_contents("https://mindicador.cl/api/uf/$fechaOrd[2]-$fechaOrd[1]-$fechaOrd[0]"));
+  $valorUF = $decodeUF->serie[0]->valor;
+  $decodeUTM = json_decode(file_get_contents("https://mindicador.cl/api/utm/$fechaOrd[2]-$fechaOrd[1]-$fechaOrd[0]"));
+  $valorUTM = $decodeUTM->serie[0]->valor; 
 
   public function __construct()
   {
@@ -244,12 +247,6 @@ class PagosModel extends CI_Model
       $valorAfp = round($totalImponible * $t->tasaAfp);
       $valorSalud = round($totalImponible * $t->tasaPrevision);
       $fechaOrd = explode('-', $fechaTermino);
-
-     /*  $decodeUF = json_decode(file_get_contents("https://mindicador.cl/api/uf/$fechaOrd[2]-$fechaOrd[1]-$fechaOrd[0]"));
-      $valorUF = $decodeUF->serie[0]->valor;
-      $decodeUTM = json_decode(file_get_contents("https://mindicador.cl/api/utm/$fechaOrd[2]-$fechaOrd[1]-$fechaOrd[0]"));
-      $valorUTM = $decodeUTM->serie[0]->valor; */
-
       if ($t->prevision != "Fonasa") {
 
 
@@ -530,12 +527,7 @@ class PagosModel extends CI_Model
         $valorSalud = round($totalImponible * $t->tasaPrevision);
         $fechaOrd = explode('-', $fechaTermino);
 
-       /*  $decodeUF = json_decode(file_get_contents("https://mindicador.cl/api/uf/$fechaOrd[2]-$fechaOrd[1]-$fechaOrd[0]"));
-        $valorUF = $decodeUF->serie[0]->valor;
-        $decodeUTM = json_decode(file_get_contents("https://mindicador.cl/api/utm/$fechaOrd[2]-$fechaOrd[1]-$fechaOrd[0]"));
-        $valorUTM = $decodeUTM->serie[0]->valor; */
-				$valorUF =1;
-				$valorUTM =1;
+       
 
         if ($t->prevision != "FONASA") {
 
@@ -838,11 +830,7 @@ class PagosModel extends CI_Model
 
     $fechaInicioPrestamo = $anoPrestamo . '-' . $mesPrestamo . '-01';
     $fechaTerminoPrestamo = $anoPrestamo . '-' . $mesPrestamo . '-' . $diaTerminoPrestamo;
-    //trae los datos del trabajador
-    /*  $this->db->select(" t.cp_trabajador, t.atr_nombres, t.atr_apellidos, t.atr_rut,  t.cf_cargo");
-  $this->db->from("fa_trabajador t");
-  $this->db->where('t.cp_trabajador',$idTrabajador);
-  $infoTrabajador = $this->db->get()->result(); */
+   
     //consultar datos completos trabajador
     $this->db->select("t.cp_trabajador, t.atr_rut, t.atr_nombres, t.atr_apellidos,
     t.atr_direccion, t.atr_fechaNacimiento,
