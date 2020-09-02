@@ -245,12 +245,9 @@ class PagosModel extends CI_Model
         $totalImponible = 2299129;
       }
       $valorAfp = round($totalImponible * $t->tasaAfp);
-      $valorSalud = round($totalImponible * $t->tasaPrevision);
-      $fechaOrd = explode('-', $fechaTermino);
-			$decodeUF = json_decode(file_get_contents("https://mindicador.cl/api/uf/$fechaOrd[2]-$fechaOrd[1]-$fechaOrd[0]"));
-  		$valorUF = $decodeUF->serie[0]->valor;
-  		$decodeUTM = json_decode(file_get_contents("https://mindicador.cl/api/utm/$fechaOrd[2]-$fechaOrd[1]-$fechaOrd[0]"));
-  		$valorUTM = $decodeUTM->serie[0]->valor; 
+			$valorSalud = round($totalImponible * $t->tasaPrevision);
+			
+		
 			if ($t->prevision != "Fonasa") {
 
         $adicionalPlan = round($t->atr_plan * $valorUF);
@@ -528,7 +525,12 @@ class PagosModel extends CI_Model
         }
         $valorAfp = round($totalImponible * $t->tasaAfp);
         $valorSalud = round($totalImponible * $t->tasaPrevision);
-        $fechaOrd = explode('-', $fechaTermino);
+        	//consulta los valores de uf y utm
+      $fechaOrd = explode('-', $fechaTermino);
+			$decodeUF = json_decode(file_get_contents("https://mindicador.cl/api/uf/$fechaOrd[2]-$fechaOrd[1]-$fechaOrd[0]"));
+  		$valorUF = $decodeUF->serie[0]->valor;
+  		$decodeUTM = json_decode(file_get_contents("https://mindicador.cl/api/utm/$fechaOrd[2]-$fechaOrd[1]-$fechaOrd[0]"));
+  		$valorUTM = $decodeUTM->serie[0]->valor; 
 
        
 
