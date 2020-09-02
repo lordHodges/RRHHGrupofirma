@@ -211,7 +211,7 @@ if ($usuario[0]->atr_activo == "1" && $view_contratoEstadar == "1") { ?>
 
             </div>
             <div class="row">
-                <div class="col col-sm-6">
+                <div class="col col-sm-7">
                     <table class="table table-borderless" style="font-size: 12px;">
                         <tbody>
                             <tr style="padding-top: 0px;padding-bottom: 0px;">
@@ -290,6 +290,7 @@ if ($usuario[0]->atr_activo == "1" && $view_contratoEstadar == "1") { ?>
                         </tbody>
                     </table>
                 </div>
+			</div>
             <div class="row">
                 <div class="col col-sm-6">
                     <table class="table text-left" style="font-size: 12px;margin-top: -10px;">
