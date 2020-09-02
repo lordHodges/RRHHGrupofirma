@@ -389,12 +389,7 @@ class  PDFController extends CI_Controller
 	}
 	function view_generarLiquidacion()
 	{
-		/* llenar con valores desde planilladepago.php */
-		/* $trabajador = $this->input->get("trabajador");
-		$ciudadFirma = $this->input->get("ciudadFirma");
-		$fechaInicioContrato = $this->input->get("fechaInicio");
-		$fechaTerminoContrato = $this->input->get("fechaTermino"); */
-		//
+		
 
 		//
 		$mesCorriente = $this->input->get("mesCorriente");
@@ -492,7 +487,7 @@ class  PDFController extends CI_Controller
 		$html = $this->load->view('pdf/liquidacionGenerada', $data, TRUE);
 		$this->load->library('Pdfgenerator');
 		$filename = 'liquidacionGenerada';
-		$this->pdfgenerator->generate($html, $filename, TRUE, 'Letter', 'portrait', 0);
+		$this->pdfgenerator->generate($html, $filename, TRUE);
 	}
 
 	function obtenerInformacion()
