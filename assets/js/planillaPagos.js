@@ -591,7 +591,9 @@ function getGenerarLiquidacion(idTrabajador) {
 			fila += '<div class="col-lg-6 col-md-6 col-sm-6"><br>';
 
 			fila +=
-				'<label class="text-center" for="mesCorriente">REMUNERACIONES MES:</label>';
+				'<label class="text-center" for="mesCorriente">REMUNERACIONES MES: ' +
+				o.comprobacion +
+				" </label>";
 			fila +=
 				'<input type="text" class="form-control custom-input-sm" id="mesCorriente" disabled style="color:#000;" value="' +
 				o.mesCorriente +

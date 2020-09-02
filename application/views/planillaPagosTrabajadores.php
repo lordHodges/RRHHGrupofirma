@@ -284,7 +284,7 @@ if ($usuario[0]->atr_activo == "1") { ?>
 
   <script src="<?php echo base_url();   ?>assets/js/dashboard.js"></script>
 
-
+  
   <script>
     $(document).ready(function() {
       cargarBancos();
@@ -328,14 +328,16 @@ if ($usuario[0]->atr_activo == "1") { ?>
       e.preventDefault();
       var id = $(this).parent().parent().children()[0];
       getGenerarLiquidacion($(id).text());
-    });
+		});
+		//consultar
+		
+
+
+
     /* capturar funcion del bioton generarliquidacion */
     $("body").on("click", "#btnGenerarLiquidacion", function(e) {
       e.preventDefault();
-      /*  var idTrabajador = $("#selectTrabajador1").val();
-       var fechaInicio = $("#fechaInicio").val();
-       var fechaTermino = $("#terminoContrato").val();
-       var ciudadFirma = $("#ciudad").val(); */
+      
       var mesCorriente = $("#mesCorriente").val();
       var razonSocial = $("#razonSocial").val();
       var rutEmpresa = $("#rutEmpresa").val();

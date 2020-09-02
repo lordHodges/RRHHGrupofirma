@@ -18,8 +18,8 @@ class TrabajadorModel extends CI_Model
     $this->db->from("fa_trabajador t");
     $this->db->order_by('t.atr_nombres', 'ASC');
     return $this->db->get()->result();
-  }
-
+	}
+	
 
   function addTrabajador($rut, $nombres, $apellidos, $direccion, $fechaNacimiento, $ciudad, $sucursal, $cargo, $empresa, $afp, $prevision, $estadoContrato, $estadoCivil, $nacionalidad)
   {
