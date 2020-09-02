@@ -987,7 +987,7 @@ class PagosModel extends CI_Model
 
 			$mesConsulta = $fechaOrd[1];
 
-			$comprobacion ="h"
+			$comprobacion ="h";
 
 
 			//se debe calcularsuma bonificaciones no imponibles
