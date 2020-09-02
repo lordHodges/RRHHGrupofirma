@@ -21,7 +21,7 @@ class pdfgenerator
 		
         if ($stream) {
             // "Attachment" => 1 hará que por defecto los PDF se descarguen en lugar de presentarse en pantalla.
-			ob_end_clean();
+			ob_get_clean();
 			
 			$dompdf->stream($filename.".pdf", array("Attachment" => $download));
 			
