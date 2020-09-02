@@ -987,7 +987,7 @@ class PagosModel extends CI_Model
 
 			$mesConsulta = $fechaOrd[1];
 
-			$comprobacion =inicioContrato($idTrabajador, $mesConsulta);
+			$comprobacion =true;
 
 
 			//se debe calcularsuma bonificaciones no imponibles

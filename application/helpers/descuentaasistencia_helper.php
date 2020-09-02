@@ -10,9 +10,9 @@ if (!function_exists('inicioContrato')) {
     {
         $_CI = &get_instance();
         $_CI->load->model('ContratosModel', 'contratosModel');
-	    $rs = $_CI->contratosModel-> getContratosTrabajador($idTrabajador);
+	    $rs = $_CI->contratosModel->getContratosTrabajador($idTrabajador);
 		$fechaContrato= $rs->atr_fechaInicio;
-		
+
 		$fechaOrd = explode('-', $fechaContrato);
 		if ($fechaOrd[1]==$mesConsulta) {
 			return TRUE;
