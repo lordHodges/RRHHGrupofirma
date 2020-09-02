@@ -270,7 +270,7 @@ if ($usuario[0]->atr_activo == "1" && $view_contratoEstadar == "1") { ?>
                     </table>
                 </div>
             </div>
-			<br>
+		
             <div class="row">
                 <div class="col sm-12">
                     <table class="table text-center" style="font-size: 12px;">
