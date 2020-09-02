@@ -1202,7 +1202,7 @@ class PagosModel extends CI_Model
 				"fechaTermino"            => $fechaTermino,
 				"valorSaludAdicional"     => $valorSaludAdicional,
 				"valorImponible"          => $totalImponible,
-				"añoLiquidacion"          => $fechaOrd[2]
+				"añoLiquidacion"          => $fechaOrd[0]
 			);
 
 			return $data;
