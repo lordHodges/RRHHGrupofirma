@@ -445,6 +445,20 @@ class PagosModel extends CI_Model
 				$this->db->where('i.atr_start <= ', $fechaTermino);
 				$diasInsistencia = $this->db->get()->result();
 
+
+				//consulta contrato trabajador
+				$this->db->select(" co.atr_fechaInicio as fechaIngreso ");
+				$this->db->from("fa_contrato co");
+				$this->db->where("co.cf_trabajador", $t->cp_trabajador);
+				$contratoTrabajador = $this->db->get()->result();
+
+				foreach ($contratoTrabajador as $key => $co) {
+					$fechaIngreso = $co->fechaIngreso;
+				}
+
+				$fechaConsulta = $fechaTermino;
+				$comprobacion = descuentaAsistencia($fechaIngreso, $fechaConsulta);
+
 				// CONSULTA DE LAS REMUNERACIONES EN EL MES SOLICITADO
 				foreach ($remuneracionTrabajador as $key => $r) {
 					$colacion = str_replace(".", "", $r->atr_colacion);
@@ -471,7 +485,11 @@ class PagosModel extends CI_Model
 
 
 					if ($cont > 0) {
-						$bonoAsistencia = 0;
+						if ($comprobacion) {
+							$bonoAsistencia = round(($bonoAsistencia / 30) * $diasPago);
+						} else {
+							$bonoAsistencia = 0;
+						}
 
 
 						$colacion = $colacionDiaria * $diasPago;
