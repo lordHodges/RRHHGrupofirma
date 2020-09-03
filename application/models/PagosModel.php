@@ -116,7 +116,7 @@ class PagosModel extends CI_Model
 		a.atr_nombre as afp,
 		a.tasa as tasaAfp,
 		p.atr_nombre as prevision,
-		p.tasa as tasaPrevision
+		p.tasa as tasaPrevision,
 		co.atr_fechaInicio as fechaIngreso");
 		$this->db->from("fa_trabajador t");
 		$this->db->join("fa_estado e", "t.cf_estado = e.cp_estado");
@@ -406,7 +406,7 @@ class PagosModel extends CI_Model
 		a.atr_nombre as afp,
 		a.tasa as tasaAfp,
 		p.atr_nombre as prevision,
-		p.tasa as tasaPrevision
+		p.tasa as tasaPrevision,
 		co.atr_fechaInicio as fechaIngreso");
 		$this->db->from("fa_trabajador t");
 		$this->db->join("fa_estado e", "t.cf_estado = e.cp_estado");
