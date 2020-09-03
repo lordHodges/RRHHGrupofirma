@@ -912,8 +912,8 @@ class PagosModel extends CI_Model
 				if ($cont > 0) {
 					if ($comprobacion) {
 						$bonoAsistencia = round(($bonoAsistencia / 30) * $diasPago);
-					}else {
-						$bonoAsistencia=0
+					} else {
+						$bonoAsistencia = 0;
 					}
 
 					$colacion = round($colacionDiaria * $diasPago);
@@ -998,7 +998,7 @@ class PagosModel extends CI_Model
 			$fechaOrd = explode('-', $fechaTermino);
 
 
-			
+
 
 			//se debe calcularsuma bonificaciones no imponibles
 
