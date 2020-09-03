@@ -237,10 +237,10 @@ class PagosModel extends CI_Model
 			$totalImponible = $sueldo + $gratificacion + $bonoAsistencia;
 			$totalImponible2 = $totalImponible;
 			if ($t->estado == 2 && $t->prevision != "DIPRECA") {
-					$valorCesantia = round($totalImponible * 0.006);
-				} else {
-					$valorCesantia = 0;
-				}
+				$valorCesantia = round($totalImponible * 0.006);
+			} else {
+				$valorCesantia = 0;
+			}
 			if ($totalImponible >= 2299129) {
 				$totalImponible = 2299129;
 			}
@@ -905,8 +905,17 @@ class PagosModel extends CI_Model
 				$movilizacionDiaria = $movilizacion / 30;
 				$diasPago = 30 - $cont;
 
+				$fechaIngreso = $t->fechaIngreso;
+				$fechaConsulta = $fechaTermino;
+				$comprobacion = descuentaAsistencia($fechaIngreso, $fechaConsulta);
+
 				if ($cont > 0) {
-					$bonoAsistencia = 0;
+					if ($comprobacion) {
+						$bonoAsistencia = round(($bonoAsistencia / 30) * $diasPago);
+					}else {
+						$bonoAsistencia=0
+					}
+
 					$colacion = round($colacionDiaria * $diasPago);
 					$movilizacion = round($movilizacionDiaria * $diasPago);
 					$bonos = $colacion + $movilizacion;
@@ -988,11 +997,8 @@ class PagosModel extends CI_Model
 			/* https://mindicador.cl/api/{tipo_indicador}/{dd-mm-yyyy} */
 			$fechaOrd = explode('-', $fechaTermino);
 
+
 			
-			$fechaIngreso= $t->fechaIngreso;
-			$fechaConsulta = $fechaTermino;
-			$comprobacion = descuentaAsistencia($fechaIngreso, $fechaConsulta);
-/*  descuentaAsistencia($fechaIngreso, $fechaConsulta); */
 
 			//se debe calcularsuma bonificaciones no imponibles
 

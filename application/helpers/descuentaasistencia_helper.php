@@ -12,9 +12,9 @@ if (!function_exists('descuentaAsistencia')) {
 	  $fechaConsultaSplit = explode('-', $fechaConsulta);
 
 	  if ($fechaIngresoSplit[0]==$fechaConsultaSplit[0] && $fechaIngresoSplit[1]==$fechaConsultaSplit[1]) {
-		  return 'True';
+		  return TRUE;
 	  } else {
-		  return 'False';
+		  return FALSE;
 	  }
 	  
 	  
