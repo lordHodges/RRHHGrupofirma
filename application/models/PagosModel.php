@@ -468,9 +468,7 @@ class PagosModel extends CI_Model
 					$movilizacionDiaria = $movilizacion / 30;
 					$diasPago = 30 - $cont;
 
-					$fechaIngreso = $t->fechaIngreso;
-					$fechaConsulta = $fechaTermino;
-					$comprobacion = descuentaAsistencia($fechaIngreso, $fechaConsulta);
+
 
 					if ($cont > 0) {
 						$bonoAsistencia = 0;
