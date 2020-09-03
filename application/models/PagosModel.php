@@ -236,11 +236,11 @@ class PagosModel extends CI_Model
 			}
 			$totalImponible = $sueldo + $gratificacion + $bonoAsistencia;
 			$totalImponible2 = $totalImponible;
-			if ($t->estado == 2) {
-				$valorCesantia = round($totalImponible * 0.006);
-			} else {
-				$valorCesantia = 0;
-			}
+			if ($t->estado == 2 && $t->prevision != "DIPRECA") {
+					$valorCesantia = round($totalImponible * 0.006);
+				} else {
+					$valorCesantia = 0;
+				}
 			if ($totalImponible >= 2299129) {
 				$totalImponible = 2299129;
 			}
@@ -516,7 +516,7 @@ class PagosModel extends CI_Model
 				}
 				$totalImponible = $sueldo + $gratificacion + $bonoAsistencia;
 				$totalImponible2 = $totalImponible;
-				if ($t->estado == 2) {
+				if ($t->estado == 2 && $t->prevision != "DIPRECA") {
 					$valorCesantia = round($totalImponible * 0.006);
 				} else {
 					$valorCesantia = 0;
@@ -834,23 +834,23 @@ class PagosModel extends CI_Model
 
 		//consultar datos completos trabajador
 		$this->db->select("t.cp_trabajador, t.atr_rut, t.atr_nombres, t.atr_apellidos,
-    t.atr_direccion, t.atr_fechaNacimiento,
-    t.atr_sueldo,
-    t.atr_plan,
-    t.atr_cargas,
-    e.atr_nombre as estado,
-    t.cf_cargo,
-    ci.atr_nombre as ciudad,
-    ca.atr_nombre as cargo,
-    su.atr_nombre as sucursal,
-    n.atr_nombre as nacionalidad,
-    ec.atr_nombre as estadocivil,
-    a.atr_nombre as afp,
-    a.tasa as tasaAfp,
-    p.atr_nombre as prevision,
-    p.tasa as tasaPrevision,
-    em.atr_nombre as empresa,
-    em.atr_run as rutEmpresa, r.atr_sueldoMensual");
+			t.atr_direccion, t.atr_fechaNacimiento,
+			t.atr_sueldo,
+			t.atr_plan,
+			t.atr_cargas,
+			e.atr_nombre as estado,
+			t.cf_cargo,
+			ci.atr_nombre as ciudad,
+			ca.atr_nombre as cargo,
+			su.atr_nombre as sucursal,
+			n.atr_nombre as nacionalidad,
+			ec.atr_nombre as estadocivil,
+			a.atr_nombre as afp,
+			a.tasa as tasaAfp,
+			p.atr_nombre as prevision,
+			p.tasa as tasaPrevision,
+			em.atr_nombre as empresa,
+			em.atr_run as rutEmpresa, r.atr_sueldoMensual");
 		$this->db->from("fa_trabajador t");
 		$this->db->join("fa_estado e", "t.cf_estado = e.cp_estado");
 		$this->db->join("fa_ciudad ci", "t.cf_ciudad = ci.cp_ciudad");

@@ -161,7 +161,7 @@ function getListadoPagosFinDeMes($ano, $mes, $diaTermino, $empresa, $valorUF, $v
 				}
 				$totalImponible = $sueldo + $gratificacion + $bonoAsistencia;
 				$totalImponible2 = $totalImponible;
-				if ($t->estado == 2) {
+				if ($t->estado == 2 && $t->prevision != "DIPRECA") {
 					$valorCesantia = round($totalImponible * 0.006);
 				} else {
 					$valorCesantia = 0;
