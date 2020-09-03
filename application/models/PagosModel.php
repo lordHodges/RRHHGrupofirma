@@ -403,7 +403,7 @@ class PagosModel extends CI_Model
 		$this->db->join("fa_afp a", "t.cf_afp = a.cp_afp");
 		$this->db->join("fa_prevision p", "t.cf_prevision = p.cp_prevision");
 		$this->db->join("fa_remuneracion r", "r.cf_trabajador = t.cp_trabajador");
-		
+
 		$this->db->where('t.cf_estado != 6');
 		$this->db->where('t.cf_empresa', $empresa);
 		$arrayTrabajadores = $this->db->get()->result();
@@ -530,8 +530,7 @@ class PagosModel extends CI_Model
 				$fechaOrd = explode('-', $fechaTermino);
 
 
-
-				if ($t->prevision != "FONASA") {
+				if ($t->prevision != "FONASA" && $t->prevision != "DIPRECA") {
 
 
 					$adicionalPlan = round($t->atr_plan * $valorUF);
@@ -987,7 +986,7 @@ class PagosModel extends CI_Model
 
 			$mesConsulta = $fechaOrd[1];
 
-			$comprobacion ="h";
+			$comprobacion = "h";
 
 
 			//se debe calcularsuma bonificaciones no imponibles
@@ -997,8 +996,9 @@ class PagosModel extends CI_Model
 			$valorSalud = 0;
 			$valorSaludAdicional = 0;
 
-		
+
 			if ($t->prevision != "FONASA" && $t->prevision != "DIPRECA") {
+				$valorSaludAdicional = round($t->atr_plan * $valorUF);
 				$valorSalud = round($totalImponible * (float) $t->tasaPrevision);
 				if ($valorSalud < $valorSaludAdicional) {
 					$valorSaludAdicional =  round(($valorUF * $t->atr_plan) - $valorSalud);
