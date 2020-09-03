@@ -4,21 +4,21 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 $_CI;
 
-if (!function_exists('inicioContrato')) {
+if (!function_exists('descuentaAsistencia')) {
 
-    function inicioContrato($idTrabajador, $mesConsulta)
+    function descuentaAsistencia($fechaIngreso, $fechaConsulta)
     {
-        $_CI = &get_instance();
-        $_CI->load->model('ContratosModel', 'contratosModel');
-	    $rs = $_CI->contratosModel->getContratosTrabajador($idTrabajador);
-		
-		foreach ($rs as $key => $r) {
-			$rfecha = $r->atr_fechaInicio;
-		}
-		$fechaOrd = explode('-', $rfecha);
-		if ($fechaOrd[1]==$mesConsulta) {
-			return TRUE;
-		}
-        return FALSE;
+	  $fechaIngresoSplit = explode('-',$fechaIngreso);
+	  $fechaConsultaSplit = explode('-', $fechaConsulta);
+
+	  if ($fechaIngresoSplit[0]==$fechaConsultaSplit[0] && $fechaIngresoSplit[1]==$fechaConsultaSplit[1]) {
+		  return 'True';
+	  } else {
+		  return 'False';
+	  }
+	  
+	  
+	  
+
     }
 }

@@ -988,9 +988,10 @@ class PagosModel extends CI_Model
 			/* https://mindicador.cl/api/{tipo_indicador}/{dd-mm-yyyy} */
 			$fechaOrd = explode('-', $fechaTermino);
 
-			$mesConsulta = $fechaOrd[1];
-
-			$comprobacion = $t->fechaIngreso;
+			
+			$fechaIngreso= $t->fechaIngreso;
+			$fechaConsulta = $fechaTermino;
+			$comprobacion = descuentaAsistencia($fechaIngreso, $fechaConsulta);
 
 
 			//se debe calcularsuma bonificaciones no imponibles
