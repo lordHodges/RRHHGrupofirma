@@ -175,9 +175,16 @@ class PagosModel extends CI_Model
 				$colacionDiaria = $colacion / 30;
 				$movilizacionDiaria = $movilizacion / 30;
 				$diasPago = 30 - $cont;
+				$fechaIngreso = $t->fechaIngreso;
+				$fechaConsulta = $fechaTermino;
+				$comprobacion = descuentaAsistencia($fechaIngreso, $fechaConsulta);
 
 				if ($cont > 0) {
-					$bonoAsistencia = 0;
+					if ($comprobacion) {
+						$bonoAsistencia = round(($bonoAsistencia / 30) * $diasPago);
+					} else {
+						$bonoAsistencia = 0;
+					}
 
 					$colacion = $colacionDiaria * $diasPago;
 					$movilizacion = $movilizacionDiaria * $diasPago;
@@ -457,8 +464,16 @@ class PagosModel extends CI_Model
 					$movilizacionDiaria = $movilizacion / 30;
 					$diasPago = 30 - $cont;
 
+					$fechaIngreso = $t->fechaIngreso;
+					$fechaConsulta = $fechaTermino;
+					$comprobacion = descuentaAsistencia($fechaIngreso, $fechaConsulta);
+
 					if ($cont > 0) {
-						$bonoAsistencia = 0;
+						if ($comprobacion) {
+							$bonoAsistencia = round(($bonoAsistencia / 30) * $diasPago);
+						} else {
+							$bonoAsistencia = 0;
+						}
 
 						$colacion = $colacionDiaria * $diasPago;
 						$movilizacion = $movilizacionDiaria * $diasPago;
