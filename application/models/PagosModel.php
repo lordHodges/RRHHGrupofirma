@@ -850,7 +850,9 @@ class PagosModel extends CI_Model
 			p.atr_nombre as prevision,
 			p.tasa as tasaPrevision,
 			em.atr_nombre as empresa,
-			em.atr_run as rutEmpresa, r.atr_sueldoMensual");
+			em.atr_run as rutEmpresa, 
+			r.atr_sueldoMensual,
+			co.atr_fechaInicio as fechaIngreso");
 		$this->db->from("fa_trabajador t");
 		$this->db->join("fa_estado e", "t.cf_estado = e.cp_estado");
 		$this->db->join("fa_ciudad ci", "t.cf_ciudad = ci.cp_ciudad");
@@ -862,6 +864,7 @@ class PagosModel extends CI_Model
 		$this->db->join("fa_prevision p", "t.cf_prevision = p.cp_prevision");
 		$this->db->join("fa_empresa em ", "t.cf_empresa = em.cp_empresa");
 		$this->db->join("fa_remuneracion r", "r.cf_trabajador = t.cp_trabajador");
+		$this->db->join("fa_contrato co", "co.cf_trabajador = t.cp_trabajador");
 		$this->db->where('t.cp_trabajador', $idTrabajador);
 		$infoTrabajador = $this->db->get()->result();
 		// comienzo de for al arreglo de trabajadores contratados activos.
