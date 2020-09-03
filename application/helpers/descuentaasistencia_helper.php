@@ -11,7 +11,7 @@ if (!function_exists('descuentaAsistencia')) {
 	  $fechaIngresoSplit = explode('-',$fechaIngreso);
 	  $fechaConsultaSplit = explode('-', $fechaConsulta);
 
-	  if ($fechaIngresoSplit[2]==$fechaConsultaSplit[2] && $fechaIngresoSplit[1]==$fechaConsultaSplit[1]) {
+	  if ( $fechaIngresoSplit[1]==$fechaConsultaSplit[1]) {
 		  return 'True';
 	  } else {
 		  return 'False';
@@ -22,3 +22,4 @@ if (!function_exists('descuentaAsistencia')) {
 
     }
 }
+/* $fechaIngresoSplit[2]==$fechaConsultaSplit[2] && */
