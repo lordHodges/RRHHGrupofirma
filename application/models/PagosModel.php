@@ -991,7 +991,7 @@ class PagosModel extends CI_Model
 			
 			$fechaIngreso= $t->fechaIngreso;
 			$fechaConsulta = $fechaTermino;
-			$comprobacion = "$fechaIngreso $fechaConsulta";
+			$comprobacion = descuentaAsistencia($fechaIngreso, $fechaConsulta);
 /*  descuentaAsistencia($fechaIngreso, $fechaConsulta); */
 
 			//se debe calcularsuma bonificaciones no imponibles
