@@ -405,15 +405,17 @@ class PagosModel extends CI_Model
 		e.cp_estado as estado,
 		a.atr_nombre as afp,
 		a.tasa as tasaAfp,
+		co.atr_fechaInicio as fechaIngreso,
 		p.atr_nombre as prevision,
-		p.tasa as tasaPrevision,
-		co.atr_fechaInicio as fechaIngreso");
+		p.tasa as tasaPrevision
+		");
 		$this->db->from("fa_trabajador t");
+		$this->db->join("fa_contrato co", "co.cf_trabajador = t.cp_trabajador");
+
 		$this->db->join("fa_estado e", "t.cf_estado = e.cp_estado");
 		$this->db->join("fa_afp a", "t.cf_afp = a.cp_afp");
 		$this->db->join("fa_prevision p", "t.cf_prevision = p.cp_prevision");
 		$this->db->join("fa_remuneracion r", "r.cf_trabajador = t.cp_trabajador");
-		$this->db->join("fa_contrato co", "co.cf_trabajador = t.cp_trabajador");
 		$this->db->where('t.cf_estado != 6');
 		$this->db->where('t.cf_empresa', $empresa);
 		$arrayTrabajadores = $this->db->get()->result();
