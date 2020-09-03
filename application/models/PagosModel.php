@@ -915,7 +915,7 @@ class PagosModel extends CI_Model
 					$bonos = $colacion + $movilizacion + $bonoAsistencia;
 				}
 			}
-			
+
 
 			// CONSULTA DE LOS ADELANTOS EN EL MES CONSULTADO
 			$this->db->select("t.atr_monto, t.atr_fecha");
@@ -990,7 +990,7 @@ class PagosModel extends CI_Model
 
 			$mesConsulta = $fechaOrd[1];
 
-			$comprobacion = "h";
+			$comprobacion = $t->fechaInicio;
 
 
 			//se debe calcularsuma bonificaciones no imponibles
