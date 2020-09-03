@@ -405,12 +405,11 @@ class PagosModel extends CI_Model
 		e.cp_estado as estado,
 		a.atr_nombre as afp,
 		a.tasa as tasaAfp,
-		co.atr_fechaInicio as fechaIngreso,
+		
 		p.atr_nombre as prevision,
 		p.tasa as tasaPrevision
 		");
 		$this->db->from("fa_trabajador t");
-		$this->db->join("fa_contrato co", "co.cf_trabajador = t.cp_trabajador");
 
 		$this->db->join("fa_estado e", "t.cf_estado = e.cp_estado");
 		$this->db->join("fa_afp a", "t.cf_afp = a.cp_afp");
@@ -474,11 +473,8 @@ class PagosModel extends CI_Model
 					$comprobacion = descuentaAsistencia($fechaIngreso, $fechaConsulta);
 
 					if ($cont > 0) {
-						if ($comprobacion) {
-							$bonoAsistencia = round(($bonoAsistencia / 30) * $diasPago);
-						} else {
-							$bonoAsistencia = 0;
-						}
+						$bonoAsistencia = 0;
+
 
 						$colacion = $colacionDiaria * $diasPago;
 						$movilizacion = $movilizacionDiaria * $diasPago;
