@@ -623,14 +623,14 @@ class PagosModel extends CI_Model
 
 
 				// TRANSFORMAR LOS NUMEROS A FORMATO MILES
-				$sueldo = number_format($sueldo, 0, ",", ".");
+				/* $sueldo = number_format($sueldo, 0, ",", ".");
 				$bonos = '' . $bonos;
 				$bonos = number_format($bonos, 0, ",", ".");
 				$montoAdelanto = number_format($montoAdelanto, 0, ",", ".");
 				$montoPrestamo = number_format($montoPrestamo, 0, ",", ".");
 
 				$montoTotalPagar = number_format($montoTotalPagar, 0, ",", ".");
-
+ */
 
 
 
@@ -638,12 +638,12 @@ class PagosModel extends CI_Model
 					"id"              => $t->cp_trabajador,
 					"rut"             => $t->atr_rut,
 					"trabajador"      => $t->atr_nombres . ' ' . $t->atr_apellidos,
-					"sueldo"          => $sueldo,
-					"bonos"           => $bonos,
-					"adelanto"        => $montoAdelanto,
-					"prestamos"       => $montoPrestamo,
-					"inasistencia"    => $cont,
-					"total"           => $montoTotalPagar
+					"sueldo"          => round($sueldo),
+					"bonos"           => round($bonos),
+					"adelanto"        => round($montoAdelanto),
+					"prestamos"       => round($montoPrestamo),
+					"inasistencia"    => round($cont),
+					"total"           => round($montoTotalPagar)
 				);
 
 				// echo json_encode($data);
