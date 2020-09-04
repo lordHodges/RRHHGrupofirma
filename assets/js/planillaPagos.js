@@ -246,7 +246,7 @@ function cargarTablaPagosFinDeMes() {
 		},
 		columnDefs: [
 			{
-				targets: 10,
+				targets: 11,
 				data: null,
 				defaultContent: btnAcciones,
 			},
