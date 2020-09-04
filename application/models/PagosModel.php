@@ -343,7 +343,7 @@ class PagosModel extends CI_Model
 			$rutFormateado = str_replace("-", "", $rutFormateado);
 
 
-			$montoTotalPagar = number_format($montoTotalPagar, 0, ",", ".");
+			//$montoTotalPagar = number_format($montoTotalPagar, 0, ",", ".");
 
 
 
