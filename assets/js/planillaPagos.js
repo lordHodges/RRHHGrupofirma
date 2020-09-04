@@ -256,27 +256,27 @@ function cargarTablaPagosFinDeMes() {
 			{
 				extend: "copy",
 				exportOptions: {
-					columns: [1, 2, 3, 4, 5, 6, 7],
+					columns: [1, 2, 3, 4, 5, 6, 7, 8, 9],
 				},
 			},
 			{
 				extend: "csv",
 				exportOptions: {
-					columns: [1, 2, 3, 4, 5, 6, 7],
+					columns: [1, 2, 3, 4, 5, 6, 7, 8, 9],
 				},
 			},
 			{
 				extend: "excel",
-				title: "Lista de Trabajadores",
+				title: "Lista de Remuneraciones",
 				exportOptions: {
-					columns: [1, 2, 3, 4, 5, 6, 7],
+					columns: [1, 2, 3, 4, 5, 6, 7, 8, 9],
 				},
 			},
 			{
 				extend: "pdf",
 				title: "Lista de Trabajadores",
 				exportOptions: {
-					columns: [1, 2, 3, 4, 5, 6, 7],
+					columns: [1, 2, 3, 4, 5, 6, 7, 8, 9],
 				},
 				customize: function (doc) {
 					doc.styles.title = {
