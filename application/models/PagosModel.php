@@ -185,7 +185,7 @@ class PagosModel extends CI_Model
 				$colacionDiaria = $colacion / 30;
 				$movilizacionDiaria = $movilizacion / 30;
 				$diasPago = 30 - $cont;
-				$fechaIngreso = $t->fechaIngreso;
+
 				$fechaConsulta = $fechaTermino;
 				$comprobacion = descuentaAsistencia($fechaIngreso, $fechaConsulta);
 
