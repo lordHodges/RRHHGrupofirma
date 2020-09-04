@@ -636,6 +636,7 @@ class PagosModel extends CI_Model
 
 				$data = (object) array(
 					"id"              => $t->cp_trabajador,
+					"fechaIngreso"	  => $fechaIngreso,
 					"rut"             => $t->atr_rut,
 					"trabajador"      => $t->atr_nombres . ' ' . $t->atr_apellidos,
 					"sueldo"          => round($sueldo),
