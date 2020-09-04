@@ -144,6 +144,7 @@ class PagosController extends CI_Controller
 			}
 			$data[] = array(
 				$r->id,
+				$r->fechaInicio,
 				$r->rut,
 				$r->trabajador,
 				$r->sueldo,
