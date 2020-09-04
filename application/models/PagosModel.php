@@ -350,7 +350,7 @@ class PagosModel extends CI_Model
 			$data = (object) array(
 				"rutBeneficiario"             => $rutFormateado,
 				"nombreBeneficiario"          => $nombres[0] . " " . $apellidos[0],
-				"monto"                       => $montoTotalPagar,
+				"monto"                       => round($montoTotalPagar),
 				"banco"                       => $banco,
 				"tipoDeCuenta"                => $tipoDeCuenta,
 				"numeroDeCuenta"              => $numeroDeCuenta
