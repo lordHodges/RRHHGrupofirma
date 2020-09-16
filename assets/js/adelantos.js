@@ -85,7 +85,7 @@ function cargarTablaAdelantos(permisoEditar, permisoExportar) {
 			},
 			columnDefs: [
 				{
-					targets: 9,
+					targets: 8,
 					data: null,
 					defaultContent: btnAcciones,
 				},
