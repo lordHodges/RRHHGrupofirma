@@ -371,8 +371,7 @@ function getDetallePagoTrabajador(idTrabajador) {
 			);
 
 			fila += '<div class="col-lg-6 col-md-6 col-sm-6"><br>';
-			fila +=
-				'<label class="text-center" for="sueldoBase">SUELDO LÍQUIDO</label>';
+			fila += '<label class="text-center" for="sueldoBase">SUELDO</label>';
 			fila +=
 				'<input type="text" class="form-control custom-input-sm" id="sueldoBase" disabled style="color:#000;" value="$' +
 				o.sueldoBase +
