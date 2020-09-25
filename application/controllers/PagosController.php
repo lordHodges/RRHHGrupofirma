@@ -175,9 +175,13 @@ class PagosController extends CI_Controller
 		$ano = $this->input->post("year");
 		$mes = $this->input->post("mes");
 		$diaTermino = $this->input->post("diaTermino");
+		//vht
+		$decodeUF = json_decode(file_get_contents("https://mindicador.cl/api/uf/$diaTermino-$mes-$ano"));
+		$valorUF = $decodeUF->serie[0]->valor;
+		$decodeUTM = json_decode(file_get_contents("https://mindicador.cl/api/utm/$diaTermino-$mes-$ano"));
+		$valorUTM = $decodeUTM->serie[0]->valor;
 
-
-		$resultado = $this->PagosModel->getDetallePagoTrabajador($idTrabajador, $ano, $mes, $diaTermino);
+		$resultado = $this->PagosModel->getDetallePagoTrabajador($idTrabajador, $ano, $mes, $diaTermino, $valorUF, $valorUTM);
 		echo json_encode(array("msg" => $resultado));
 	}
 	/* VHT */
