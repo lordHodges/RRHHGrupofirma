@@ -631,14 +631,6 @@ class PagosModel extends CI_Model
 
 
 				// TRANSFORMAR LOS NUMEROS A FORMATO MILES
-				/* $sueldo = number_format($sueldo, 0, ",", ".");
-				$bonos = '' . $bonos;
-				$bonos = number_format($bonos, 0, ",", ".");
-				$montoAdelanto = number_format($montoAdelanto, 0, ",", ".");
-				$montoPrestamo = number_format($montoPrestamo, 0, ",", ".");
-
-				$montoTotalPagar = number_format($montoTotalPagar, 0, ",", ".");
- */
 
 
 
@@ -655,7 +647,6 @@ class PagosModel extends CI_Model
 					"total"           => round($montoTotalPagar)
 				);
 
-				// echo json_encode($data);
 
 				//agregar nuevo elemento al array fina
 				$dataFinal[] = $data;
@@ -666,7 +657,7 @@ class PagosModel extends CI_Model
 
 
 
-	function getDetallePagoTrabajador($idTrabajador, $ano, $mes, $diaTermino)
+	function getDetallePagoTrabajador($idTrabajador, $ano, $mes, $diaTermino, $valorUF, $valorUTM)
 	{
 		$fechaInicio = $ano . '-' . $mes . '-01';
 		$fechaTermino = $ano . '-' . $mes . '-' . $diaTermino;
@@ -705,6 +696,11 @@ class PagosModel extends CI_Model
 		$this->db->where('t.cp_trabajador', $idTrabajador);
 		$infoTrabajador = $this->db->get()->result();
 
+
+
+
+
+
 		// comienzo de for al arreglo de trabajadores contratados activos.
 		foreach ($infoTrabajador as $key => $t) {
 			// CONSULTAR SI EL TRABAJADOR FALTO O NO PARA DESCONTAR EL BONO DE ASISTENCIA Y PUNTUALIDAD
@@ -721,6 +717,16 @@ class PagosModel extends CI_Model
 			$this->db->from("fa_remuneracion r");
 			$this->db->where("r.cf_trabajador", $t->cp_trabajador);
 			$remuneracionTrabajador = $this->db->get()->result();
+
+			$this->db->select(" co.atr_fechaInicio as fechaIngreso ");
+			$this->db->from("fa_contrato co");
+			$this->db->where("co.cf_trabajador", $t->cp_trabajador);
+			$contratoTrabajador = $this->db->get()->result();
+
+			foreach ($contratoTrabajador as $key => $co) {
+				$fechaIngreso = $co->fechaIngreso;
+			}
+
 
 			// CONSULTA DE LAS REMUNERACIONES EN EL MES SOLICITADO
 			foreach ($remuneracionTrabajador as $key => $r) {
@@ -739,15 +745,24 @@ class PagosModel extends CI_Model
 				$colacionDiaria = $colacion / 30;
 				$movilizacionDiaria = $movilizacion / 30;
 				$diasPago = 30 - $cont;
+				//vht
+				$fechaConsulta = $fechaTermino;
+				$comprobacion = descuentaAsistencia($fechaIngreso, $fechaConsulta);
 
 				if ($cont > 0) {
-					$bonoAsistencia = 0;
+					if ($comprobacion) {
+						$bonoAsistencia = round(($bonoAsistencia / 30) * $diasPago);
+					} else {
+						$bonoAsistencia = 0;
+					}
+
 					$colacion = $colacionDiaria * $diasPago;
 					$movilizacion = $movilizacionDiaria * $diasPago;
+
 					$bonos = $colacion + $movilizacion;
 				} else {
 
-					$bonos = $colacion + $movilizacion + $bonoAsistencia;
+					$bonos = $colacion + $movilizacion;
 				}
 			}
 
@@ -792,7 +807,83 @@ class PagosModel extends CI_Model
 			}
 
 			//CALCULAR EL MONTO TOTAL A PAGAR
-			$montoTotalPagar = ($sueldo + $bonos) - ($montoAdelanto + $montoPrestamo);
+			$gratificacion = round(($sueldo + $bonoAsistencia) * 0.25);
+			if ($gratificacion >= 126865) {
+				$gratificacion = 126865;
+			}
+			$totalImponible = $sueldo + $gratificacion + $bonoAsistencia;
+			$totalImponible2 = $totalImponible;
+			if ($t->estado == 2 && $t->prevision != "DIPRECA") {
+				$valorCesantia = round($totalImponible * 0.006);
+			} else {
+				$valorCesantia = 0;
+			}
+			if ($totalImponible >= 2299129) {
+				$totalImponible = 2299129;
+			}
+			$valorAfp = round($totalImponible * $t->tasaAfp);
+			$valorSalud = round($totalImponible * $t->tasaPrevision);
+
+
+			if ($t->prevision != "Fonasa") {
+
+				$adicionalPlan = round($t->atr_plan * $valorUF);
+				if ($valorSalud < $adicionalPlan) {
+					$adicionalPlan = $adicionalPlan - $valorSalud;
+				} else {
+					$adicionalPlan = 0;
+				}
+			} else {
+				$adicionalPlan = 0;
+			}
+			$totalTributable = ($totalImponible2) - ($valorSalud + $valorAfp + $valorCesantia);
+
+			if ($totalImponible <= 336055) {
+				$cargasFamiliaresMonto = 13155 * $t->atr_cargas;
+			} else if ($totalImponible > 336055 && $totalImponible <= 490844) {
+				$cargasFamiliaresMonto = 8073 * $t->atr_cargas;
+			} else if ($totalImponible > 490844 && $totalImponible <= 765550) {
+				$cargasFamiliaresMonto = 2551 * $t->atr_cargas;
+			} else if ($totalImponible > 765550) {
+				$cargasFamiliaresMonto = 0 * $t->atr_cargas;
+			}
+			$tr_UTM = $totalTributable / $valorUTM;
+			if ($totalTributable >= ($valorUTM * 13.5) && $totalTributable < ($valorUTM * 30)) {
+
+
+				$valorImpuestoUnico = round((($tr_UTM * 0.04) -  0.54) * $valorUTM);
+			}
+			if ($totalTributable >= ($valorUTM * 30) && $totalTributable < ($valorUTM * 50)) {
+
+				$valorImpuestoUnico = round((($tr_UTM * 0.08) - 1.74) * $valorUTM);
+			}
+			if ($totalTributable > ($valorUTM * 50) && $totalTributable < ($valorUTM * 70)) {
+				$valorImpuestoUnico = round((($tr_UTM * 0.135) - 4.49) * $valorUTM);
+			}
+			if ($totalTributable > ($valorUTM * 70) && $totalTributable < ($valorUTM * 90)) {
+				$valorImpuestoUnico = round((($tr_UTM * 0.23) - 11.14) * $valorUTM);
+			}
+			if ($totalTributable > ($valorUTM * 90) && $totalTributable < ($valorUTM * 120)) {
+				$valorImpuestoUnico = round((($tr_UTM * 0.304) - 17.8) * $valorUTM);
+			}
+			if ($totalTributable >= ($valorUTM * 120)) {
+				$valorImpuestoUnico = round((($tr_UTM * 0.35) - 23.32) * $valorUTM);
+			}
+			if ($totalTributable < ($valorUTM * 13.05)) {
+				$valorImpuestoUnico = 0;
+			}
+			$totalDescuentosLegales = ($valorAfp + $valorSalud + $valorCesantia + $adicionalPlan + $valorImpuestoUnico);
+
+			$totalOtrosDescuentos = $montoAdelanto + $montoPrestamo;
+			$totalDescuentos = $totalOtrosDescuentos + $totalDescuentosLegales;
+			$totalNoImponible = $cargasFamiliaresMonto + $colacion + $movilizacion;
+			$totalHaberes = ($totalNoImponible + $totalImponible2);
+			$valorAlcanceLiquido = $totalHaberes - $totalDescuentos;
+			//CALCULAR EL MONTO TOTAL A PAGAR
+
+			$montoTotalPagar = $valorAlcanceLiquido;
+
+
 
 
 
