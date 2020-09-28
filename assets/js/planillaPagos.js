@@ -781,7 +781,7 @@ function getGenerarLiquidacion(idTrabajador) {
 			fila += '<div class="col-lg-4 col-md-4 col-sm-4"><br>';
 			fila += '<label class="text-center" for="sueldoBase">SUELDO BASE</label>';
 			fila +=
-				'<input type="text" class="form-control custom-input-sm" id="sueldoBase" disabled style="color:#000;" value="' +
+				'<input type="text" class="form-control custom-input-sm" id="sueldoBaseLiquidacion" disabled style="color:#000;" value="' +
 				o.sueldoBase +
 				'">';
 			fila += "</div>";

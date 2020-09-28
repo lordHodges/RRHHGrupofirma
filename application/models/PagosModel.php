@@ -1113,17 +1113,17 @@ class PagosModel extends CI_Model
 
 			//=SI(D17*0,25>=Datos!C2;Datos!C2;D17*0,25)
 
-			$sbase = $t->atr_sueldoMensual;
+			$sueldoBaseLiquidacion = $t->atr_sueldoMensual;
 			if ($cont > 0) {
-				$sbase = $sbase / 30;
-				$sbase = round($sbase * $diasPago);
+				$sueldoBaseLiquidacion = $sueldoBaseLiquidacion / 30;
+				$sueldoBaseLiquidacion = round($sueldoBaseLiquidacion * $diasPago);
 			}
 
-			$gratificacion = round(($sbase + $bonoAsistencia) * 0.25); //bonoAsistenciaGratificable
+			$gratificacion = round(($sueldoBaseLiquidacion + $bonoAsistencia) * 0.25); //bonoAsistenciaGratificable
 			if ($gratificacion >= 126865) {
 				$gratificacion = 126865;
 			}
-			$totalImponible = $sbase + $gratificacion + $bonoAsistencia; //bonoAsistenciaImponible
+			$totalImponible = $sueldoBaseLiquidacion + $gratificacion + $bonoAsistencia; //bonoAsistenciaImponible
 			$totalImponible2 = $totalImponible;
 			if ($t->estado == "Contrato indefinido" && $t->prevision != "DIPRECA") {
 
@@ -1280,7 +1280,7 @@ class PagosModel extends CI_Model
 			$montoAdelanto = number_format($montoAdelanto, 0, ",", ".");
 			$montoPrestamo = number_format($montoPrestamo, 0, ",", ".");
 			$gratificacion = number_format($gratificacion, 0, ",", ".");
-			$sueldoBaseParaMandar = number_format($sbase, 0, ",", ".");
+			$sueldoBaseLiquidacion = number_format($sueldoBaseLiquidacion, 0, ",", ".");
 			$totalImponible = number_format($totalImponible, 0, ",", ".");
 			$totalNoImponible = number_format($totalNoImponible, 0, ",", ".");
 			$totalHaberes = number_format($totalHaberes, 0, ",", ".");
@@ -1316,7 +1316,7 @@ class PagosModel extends CI_Model
 				"saludTrabajador"         => $t->prevision,
 				"cargas"                  => $t->atr_cargas,
 				"plan"                    => $t->atr_plan,
-				"sueldoBase"              => $sueldoBaseParaMandar,
+				"sueldoBaseLiquidacion"              => $sueldoBaseLiquidacion,
 				"gratificacionLegal"      => $gratificacion,
 				"inasistencias"           => $cont,
 				"diasTrabajados"          => $diasPago,

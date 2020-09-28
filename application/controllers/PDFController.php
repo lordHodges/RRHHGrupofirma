@@ -404,7 +404,7 @@ class  PDFController extends CI_Controller
 		$horasExtras = $this->input->get("horasExtras");
 		$cargas = $this->input->get("cargas");
 		$cargasFamiliaresMonto = $this->input->get("cargasFamiliaresMonto");
-		$sueldoBase = $this->input->get("sueldoBase");
+		$sueldoBaseLiquidacion = $this->input->get("sueldoBaseLiquidacion");
 		$gratificacionLegal = $this->input->get("gratificacionLegal");
 		$totalImponible = $this->input->get("totalImponible");
 
@@ -455,7 +455,7 @@ class  PDFController extends CI_Controller
 			'horasExtras'	=> $horasExtras,
 			'cargas'	=> $cargas,
 			'cargasFamiliaresMonto'	=> $cargasFamiliaresMonto,
-			'sueldoBase'	=> $sueldoBase,
+			'sueldoBaseLiquidacion'	=> $sueldoBaseLiquidacion,
 			'gratificacionLegal'	=> $gratificacionLegal,
 			'totalImponible'	=> $totalImponible,
 			'bonoAsistenciaAPagar' => $bonoAsistenciaAPagar,
@@ -487,7 +487,7 @@ class  PDFController extends CI_Controller
 		$html = $this->load->view('pdf/liquidacionGenerada', $data, TRUE);
 		$this->load->library('Pdfgenerator');
 		$filename = 'liquidacionGenerada';
-		ob_get_clean();
+
 		$this->pdfgenerator->generate($html, $filename, TRUE, 'Legal', 'portrait', 0);
 	}
 

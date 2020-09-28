@@ -350,7 +350,7 @@ if ($usuario[0]->atr_activo == "1") { ?>
 			var diasTrabajados = $("#diasTrabajados").val();
 			var horasExtras = $("#horasExtras").val();
 			var cargas = $("#cargas").val();
-			var sueldoBase = $("#sueldoBase").val();
+			var sueldoBaseLiquidacion = $("#sueldoBaseLiquidacion").val();
 			var gratificacionLegal = $("#gratificacionLegal").val();
 			var totalImponible = $("#totalImponible").val();
 			var cargasFamiliaresMonto = $("#cargasFamiliaresMonto").val();
@@ -405,7 +405,7 @@ if ($usuario[0]->atr_activo == "1") { ?>
 				'&&horasExtras=' + horasExtras +
 				'&&cargas=' + cargas +
 				'&&plan=' + plan +
-				'&&sueldoBase=' + sueldoBase +
+				'&&sueldoBaseLiquidacion=' + sueldoBaseLiquidacion +
 				'&&gratificacionLegal=' + gratificacionLegal +
 				'&&totalImponible=' + totalImponible +
 				'&&cargasFamiliaresMonto=' + cargasFamiliaresMonto +
