@@ -782,7 +782,7 @@ function getGenerarLiquidacion(idTrabajador) {
 			fila += '<label class="text-center" for="sueldoBase">SUELDO BASE</label>';
 			fila +=
 				'<input type="text" class="form-control custom-input-sm" id="sueldoBaseLiquidacion" disabled style="color:#000;" value="' +
-				o.sueldoBase +
+				o.sueldoBaseLiquidacion +
 				'">';
 			fila += "</div>";
 			/* gratificacion legal (valor calculado) */
