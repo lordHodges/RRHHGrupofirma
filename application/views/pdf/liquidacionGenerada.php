@@ -122,8 +122,8 @@ if ($usuario[0]->atr_activo == "1" && $view_contratoEstadar == "1") { ?>
 							<tr>
 								<td style="padding-top: 0px;padding-bottom: 0px;"><?php echo ($diasTrabajados); ?></td>
 								<td style="padding-top: 0px;padding-bottom: 0px;"><?php echo ($horasExtras); ?></td>
-								<td style="padding-top: 0px;padding-bottom: 0px;"><?php echo ($valorImponible); ?></td>
-								<td style="padding-top: 0px;padding-bottom: 0px;"><?php echo ($totalTributable); ?></td>
+								<td style="padding-top: 0px;padding-bottom: 0px;">$ <?php echo ($valorImponible); ?></td>
+								<td style="padding-top: 0px;padding-bottom: 0px;">$ <?php echo ($totalTributable); ?></td>
 							</tr>
 						</tbody>
 					</table>
