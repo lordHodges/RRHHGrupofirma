@@ -374,7 +374,7 @@ function getDetallePagoTrabajador(idTrabajador) {
 			fila += '<label class="text-center" for="sueldoBase">SUELDO</label>';
 			fila +=
 				'<input type="text" class="form-control custom-input-sm" id="sueldoBase" disabled style="color:#000;" value="$' +
-				o.sueldoBase +
+				o.sueldoBaseParaMandar +
 				'">';
 			fila += "</div>";
 

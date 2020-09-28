@@ -690,13 +690,7 @@ class PagosModel extends CI_Model
 		$fechaInicioPrestamo = $anoPrestamo . '-' . $mesPrestamo . '-01';
 		$fechaTerminoPrestamo = $anoPrestamo . '-' . $mesPrestamo . '-' . $diaTerminoPrestamo;
 
-		/* $this->db->select(" t.cp_trabajador, t.atr_nombres, t.atr_apellidos, t.atr_rut,  t.cf_cargo, r.atr_sueldoMensual,e.cp_estado as estado ");
-		$this->db->from("fa_trabajador t");
-		$this->db->join("fa_estado e", "t.cf_estado = e.cp_estado");
-		$this->db->join("fa_remuneracion r", "r.cf_trabajador = t.cp_trabajador");
-		$this->db->where('t.cp_trabajador', $idTrabajador);
-		$infoTrabajador = $this->db->get()->result();
- */
+
 		$this->db->select(" t.cp_trabajador, t.atr_nombres, t.atr_apellidos, t.atr_rut, t.cf_cargo,r.atr_sueldoMensual,
 		t.atr_plan,
 		t.atr_cargas,
@@ -929,7 +923,7 @@ class PagosModel extends CI_Model
 
 			$data = array(
 
-				"sueldoBase"              => $sueldoBaseParaMandar,
+				"sueldoBaseParaMandar"              => $sueldoBaseParaMandar,
 				"sueldoAPago"             => $montoTotalPagar,
 				"inasistencias"           => $cont,
 				"diasAPagar"              => $diasPago,
@@ -1324,7 +1318,6 @@ class PagosModel extends CI_Model
 				"plan"                    => $t->atr_plan,
 				"sueldoBase"              => $sueldoBaseParaMandar,
 				"gratificacionLegal"      => $gratificacion,
-				/* "sueldoAPago"             => $montoTotalPagar, */
 				"inasistencias"           => $cont,
 				"diasTrabajados"          => $diasPago,
 				"totalImponible"          => $totalImponible2,
