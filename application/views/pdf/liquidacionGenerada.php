@@ -147,50 +147,50 @@ if ($usuario[0]->atr_activo == "1" && $view_contratoEstadar == "1") { ?>
 						<tbody>
 							<tr style="padding-top: 0px;padding-bottom: 0px;">
 								<td style="padding-top: 0px;padding-bottom: 0px;">Sueldo Base</td>
-								<td style="padding-top: 0px;padding-bottom: 0px;"><?php echo ($sueldoBaseLiquidacion) ?></td>
+								<td style="padding-top: 0px;padding-bottom: 0px;">$ <?php echo ($sueldoBaseLiquidacion) ?></td>
 							</tr>
 							<tr>
 								<td style="padding-top: 0px;padding-bottom: 0px;">Gratificacion Legal</td>
-								<td style="padding-top: 0px;padding-bottom: 0px;"><?php echo ($gratificacionLegal); ?></td>
+								<td style="padding-top: 0px;padding-bottom: 0px;">$ <?php echo ($gratificacionLegal); ?></td>
 							</tr>
 							<?php if ($bonoAsistenciaAPagar) { ?>
 								<tr>
 									<td style="padding-top: 0px;padding-bottom: 0px;">Bono Asistencia</td>
-									<td style="padding-top: 0px;padding-bottom: 0px;"><?php echo ($bonoAsistenciaAPagar); ?></td>
+									<td style="padding-top: 0px;padding-bottom: 0px;">$ <?php echo ($bonoAsistenciaAPagar); ?></td>
 								</tr>
 							<?php } ?>
 							<tr>
 								<th style="padding-top: 0px;padding-bottom: 0px;">Total Imponible</th>
-								<th style="padding-top: 0px;padding-bottom: 0px;"><?php echo ($totalImponible); ?></th>
+								<th style="padding-top: 0px;padding-bottom: 0px;">$ <?php echo ($totalImponible); ?></th>
 							</tr>
 							<?php if ($cargasFamiliaresMonto != "undefined") { ?>
 								<tr>
 									<td style="padding-top: 0px;padding-bottom: 0px;">Asigancion Familiar</td>
-									<td style="padding-top: 0px;padding-bottom: 0px;"><?php echo ($cargasFamiliaresMonto); ?></td>
+									<td style="padding-top: 0px;padding-bottom: 0px;">$ <?php echo ($cargasFamiliaresMonto); ?></td>
 								</tr>
 							<?php } ?>
 							<?php if ($bonoColacion != "undefined") { ?>
 								<tr>
 									<td style="padding-top: 0px;padding-bottom: 0px;">Asigancion Colacion</td>
-									<td style="padding-top: 0px;padding-bottom: 0px;"><?php echo ($bonoColacion); ?></td>
+									<td style="padding-top: 0px;padding-bottom: 0px;">$ <?php echo ($bonoColacion); ?></td>
 								</tr>
 							<?php } ?>
 
 							<?php if ($bonoMovilizacion != "undefined") { ?>
 								<tr>
 									<td style="padding-top: 0px;padding-bottom: 0px;">Asignacion Movilizacion</td>
-									<td style="padding-top: 0px;padding-bottom: 0px;"><?php echo ($bonoMovilizacion); ?></td>
+									<td style="padding-top: 0px;padding-bottom: 0px;">$ <?php echo ($bonoMovilizacion); ?></td>
 								</tr>
 							<?php } ?>
 
 
 							<tr>
 								<th style="padding-top: 0px;padding-bottom: 0px;">Total No Imponible</th>
-								<th style="padding-top: 0px;padding-bottom: 0px;"><?php echo ($totalNoImponible) ?></th>
+								<th style="padding-top: 0px;padding-bottom: 0px;">$ <?php echo ($totalNoImponible) ?></th>
 							</tr>
 							<tr>
 								<th style="padding-top: 0px;padding-bottom: 0px;">Total Haberes</th>
-								<th style="padding-top: 0px;padding-bottom: 0px;"><?php echo ($totalHaberes) ?></th>
+								<th style="padding-top: 0px;padding-bottom: 0px;">$ <?php echo ($totalHaberes) ?></th>
 							</tr>
 						</tbody>
 					</table>
@@ -216,55 +216,55 @@ if ($usuario[0]->atr_activo == "1" && $view_contratoEstadar == "1") { ?>
 						<tbody>
 							<tr style="padding-top: 0px;padding-bottom: 0px;">
 								<td style="padding-top: 0px;padding-bottom: 0px;">AFP</td>
-								<td style="padding-top: 0px;padding-bottom: 0px;"><?php echo ($valorPrevision) ?></td>
+								<td style="padding-top: 0px;padding-bottom: 0px;">$ <?php echo ($valorPrevision) ?></td>
 							</tr>
 							<tr style="padding-top: 0px;padding-bottom: 0px;">
 								<td style="padding-top: 0px;padding-bottom: 0px;">Salud</td>
-								<td style="padding-top: 0px;padding-bottom: 0px;"><?php echo ($valorSalud) ?></td>
+								<td style="padding-top: 0px;padding-bottom: 0px;">$ <?php echo ($valorSalud) ?></td>
 							</tr>
 							<?php if ($valorSaludAdicional > 0 && $valorSaludAdicional != "undefined") { ?>
 								<tr>
 									<td style="padding-top: 0px;padding-bottom: 0px;">Adicional Isapre</td>
-									<td style="padding-top: 0px;padding-bottom: 0px;"><?php echo ($valorSaludAdicional); ?></td>
+									<td style="padding-top: 0px;padding-bottom: 0px;">$ <?php echo ($valorSaludAdicional); ?></td>
 								</tr>
 							<?php } ?>
 							<?php if ($valorCesantia > 0 && $valorCesantia != "undefined") { ?>
 								<tr>
 									<td style="padding-top: 0px;padding-bottom: 0px;">Seguro Cesantía</td>
-									<td style="padding-top: 0px;padding-bottom: 0px;"><?php echo ($valorCesantia); ?></td>
+									<td style="padding-top: 0px;padding-bottom: 0px;">$ <?php echo ($valorCesantia); ?></td>
 								</tr>
 							<?php } ?>
 							<?php if ($valorImpuestoUnico != "undefined" && $valorImpuestoUnico > 0) { ?>
 								<tr>
 									<td style="padding-top: 0px;padding-bottom: 0px;">Impuesto Unico</td>
-									<td style="padding-top: 0px;padding-bottom: 0px;"><?php echo ($valorImpuestoUnico); ?></td>
+									<td style="padding-top: 0px;padding-bottom: 0px;">$ <?php echo ($valorImpuestoUnico); ?></td>
 								</tr>
 							<?php } ?>
 							<tr style="padding-top: 0px;padding-bottom: 0px;">
 								<th style="padding-top: 0px;padding-bottom: 0px;">Total Desc. Legales</th>
-								<th style="padding-top: 0px;padding-bottom: 0px;"><?php echo ($totalDescuentosLegales) ?></th>
+								<th style="padding-top: 0px;padding-bottom: 0px;">$ <?php echo ($totalDescuentosLegales) ?></th>
 							</tr>
 							<?php if ($atr_monto != "undefined") { ?>
 								<tr>
 									<td style="padding-top: 0px;padding-bottom: 0px;">Adelanto</td>
-									<td style="padding-top: 0px;padding-bottom: 0px;"><?php echo ($atr_monto); ?></td>
+									<td style="padding-top: 0px;padding-bottom: 0px;">$ <?php echo ($atr_monto); ?></td>
 								</tr>
 							<?php } ?>
 							<?php if ($montoPrestamo) { ?>
 								<tr>
 									<td style="padding-top: 0px;padding-bottom: 0px;">Prestamo </td>
-									<td style="padding-top: 0px;padding-bottom: 0px;"><?php echo ($montoPrestamo); ?></td>
+									<td style="padding-top: 0px;padding-bottom: 0px;">$ <?php echo ($montoPrestamo); ?></td>
 								</tr>
 							<?php } ?>
 							<?php if ($totalOtrosDescuentos) { ?>
 								<tr>
 									<th style="padding-top: 0px;padding-bottom: 0px;">Total Otros Desc.</th>
-									<th style="padding-top: 0px;padding-bottom: 0px;"><?php echo ($totalOtrosDescuentos); ?></th>
+									<th style="padding-top: 0px;padding-bottom: 0px;">$ <?php echo ($totalOtrosDescuentos); ?></th>
 								</tr>
 							<?php } ?>
 							<tr>
 								<th style="padding-top: 0px;padding-bottom: 0px;">Total Descuentos</th>
-								<th style="padding-top: 0px;padding-bottom: 0px;"><?php echo ($totalDescuentos) ?></th>
+								<th style="padding-top: 0px;padding-bottom: 0px;">$ <?php echo ($totalDescuentos) ?></th>
 							</tr>
 						</tbody>
 					</table>
@@ -283,9 +283,9 @@ if ($usuario[0]->atr_activo == "1" && $view_contratoEstadar == "1") { ?>
 						</thead>
 						<tbody>
 							<tr>
-								<td style="padding-top: 0px;padding-bottom: 0px;"><?php echo ($totalHaberes) ?></td>
-								<td style="padding-top: 0px;padding-bottom: 0px;"><?php echo ($totalDescuentos) ?></td>
-								<th style="padding-top: 0px;padding-bottom: 0px;"><?php echo ($valorAlcanceLiquido) ?></th>
+								<td style="padding-top: 0px;padding-bottom: 0px;">$ <?php echo ($totalHaberes) ?></td>
+								<td style="padding-top: 0px;padding-bottom: 0px;">$ <?php echo ($totalDescuentos) ?></td>
+								<th style="padding-top: 0px;padding-bottom: 0px;">$ <?php echo ($valorAlcanceLiquido) ?></th>
 							</tr>
 						</tbody>
 					</table>
