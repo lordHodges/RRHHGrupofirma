@@ -688,9 +688,9 @@ class PagosModel extends CI_Model
 
 
 		$fechaInicioPrestamo
-			= $anoPrestamo . '-' . $mesPrestamo . '-' . '01';
+			= $fechaInicio; //$anoPrestamo . '-' . $mesPrestamo . '-' . '01';
 
-		$fechaTerminoPrestamo =  $anoPrestamo . '-' . $mesPrestamo . '-' . $diaTerminoPrestamo;
+		$fechaTerminoPrestamo =  $fechaTermino; //$anoPrestamo . '-' . $mesPrestamo . '-' . $diaTerminoPrestamo;
 
 
 		$this->db->select(" t.cp_trabajador, t.atr_nombres, t.atr_apellidos, t.atr_rut, t.cf_cargo,r.atr_sueldoMensual,
