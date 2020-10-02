@@ -351,7 +351,7 @@ function getDetallePagoTrabajador(idTrabajador) {
 		dataType: "json",
 		data: {
 			idTrabajador: idTrabajador,
-			ano: anoActual,
+			year: anoActual,
 			mes: mesActual,
 			diaTermino: diaTermino,
 		},
