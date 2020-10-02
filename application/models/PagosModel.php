@@ -803,7 +803,7 @@ class PagosModel extends CI_Model
 			$this->db->where("p.cf_trabajador", $t->cp_trabajador);
 			$this->db->where("dp.atr_estado", '0');
 			$this->db->where('dp.atr_fechaDescuento >= ', $fechaInicioPrestamo);
-			$this->db->where('dp.atr_fechaDescuento <= ', "2020-09-30");
+			$this->db->where('dp.atr_fechaDescuento <= ', $fechaTerminoPrestamo);
 			$prestamos = $this->db->get()->result();
 
 			$montoPrestamo = 0;
