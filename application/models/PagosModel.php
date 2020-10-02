@@ -687,7 +687,8 @@ class PagosModel extends CI_Model
 		}
 
 
-		$fechaInicioPrestamo = $anoPrestamo . '-' . $mesPrestamo . '-01';
+		$fechaInicioPrestamo =
+			'2020-08-30'; //$anoPrestamo . '-' . $mesPrestamo . '-01';
 		$fechaTerminoPrestamo = '2020-09-30'; //$anoPrestamo . '-' . $mesPrestamo . '-' . $diaTerminoPrestamo;
 
 
