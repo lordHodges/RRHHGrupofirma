@@ -679,10 +679,10 @@ class PagosModel extends CI_Model
 		}
 
 		if ($mesPrestamo == '04' || $mesPrestamo == '06' || $mesPrestamo == '09' || $mesPrestamo == '11') {
-			$diaTerminoPrestamo = 30;
+			$diaTerminoPrestamo = '30';
 		} else {
 			if ($mesPrestamo == '01' || $mesPrestamo == '03' || $mesPrestamo == '05' || $mesPrestamo == '07' || $mesPrestamo == '08' || $mesPrestamo == '10' || $mesPrestamo == '12') {
-				$diaTerminoPrestamo = 31;
+				$diaTerminoPrestamo = '31';
 			}
 		}
 
