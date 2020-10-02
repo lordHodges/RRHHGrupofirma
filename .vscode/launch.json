@@ -5,6 +5,14 @@
 	"version": "0.2.0",
 	"configurations": [
 		{
+			"type": "chrome",
+			"request": "launch",
+			"name": "chromeDebugging",
+			"url": "https://www.imlchile.cl/grupofirma",
+			"webRoot": "${workspaceFolder}",
+			"runtimeExecutable": "/usr/bin/chromium"
+		},
+		{
 			"name": "Launch Edge",
 			"request": "launch",
 			"type": "pwa-msedge",

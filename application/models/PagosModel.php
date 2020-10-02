@@ -527,8 +527,8 @@ class PagosModel extends CI_Model
 				}
 
 
-				// CONSULTA DE LOS ADELANTOS EN EL MES CONSULTADO
-				$this->db->select("");
+				// CONSULTA DE LOS Prestamos EN EL MES CONSULTADO
+				$this->db->select("*");
 				$this->db->from("fa_prestamo p");
 				$this->db->join("fa_detalle_prestamo dp", "dp.cf_prestamo = p.cp_prestamo");
 				$this->db->where("p.cf_trabajador", $t->cp_trabajador);
@@ -688,7 +688,7 @@ class PagosModel extends CI_Model
 
 
 		$fechaInicioPrestamo = $anoPrestamo . '-' . $mesPrestamo . '-01';
-		$fechaTerminoPrestamo = $anoPrestamo . '-' . $mesPrestamo . '-' . $diaTerminoPrestamo;
+		$fechaTerminoPrestamo = $anoPrestamo . '-' . $mesPrestamo . '-' . "30";
 
 
 		$this->db->select(" t.cp_trabajador, t.atr_nombres, t.atr_apellidos, t.atr_rut, t.cf_cargo,r.atr_sueldoMensual,
