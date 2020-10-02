@@ -975,8 +975,8 @@ class PagosModel extends CI_Model
 		}
 
 
-		$fechaInicioPrestamo = $anoPrestamo . '-' . $mesPrestamo . '-01';
-		$fechaTerminoPrestamo = $anoPrestamo . '-' . $mesPrestamo . '-' . $diaTerminoPrestamo;
+		$fechaInicioPrestamo = $fechaInicio; //$anoPrestamo . '-' . $mesPrestamo . '-01';
+		$fechaTerminoPrestamo = $fechaTermino; //$anoPrestamo . '-' . $mesPrestamo . '-' . $diaTerminoPrestamo;
 
 		//consultar datos completos trabajador
 		$this->db->select("t.cp_trabajador, t.atr_rut, t.atr_nombres, t.atr_apellidos,
