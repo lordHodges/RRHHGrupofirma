@@ -677,8 +677,8 @@ class PagosModel extends CI_Model
 				$mesPrestamo = '0' . $mesPrestamo;
 			}
 		}
-		if ($mes == 09) {
-			$mesPrestamo = 10;
+		if ($mes == '09') {
+			$mesPrestamo = '10';
 		}
 
 		if ($mesPrestamo == '04' || $mesPrestamo == '06' || $mesPrestamo == '09' || $mesPrestamo == '11') {
