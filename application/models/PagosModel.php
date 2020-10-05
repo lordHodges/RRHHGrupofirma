@@ -81,7 +81,7 @@ class PagosModel extends CI_Model
 
 		$anoPrestamo = $ano;
 
-		if ($mes == '12') {
+		/* if ($mes == '12') {
 			$mesPrestamo = '01';
 			$anoPrestamo = $ano + 1;
 		} else {
@@ -93,6 +93,19 @@ class PagosModel extends CI_Model
 				$mesPrestamo = $arrayMes + 1;
 				$mesPrestamo = '0' . $mesPrestamo;
 			}
+		} */
+		if ($mes == '09') {
+			$mesPrestamo = '10';
+		} else if ($mes == '12') {
+			$mesPrestamo = '01';
+			$anoPrestamo = $ano + 1;
+		} else if ($mes == '01') {
+			$mesPrestamo = '12';
+			$anoPrestamo = $ano - 1;
+		} else {
+			$arrayMes = substr($mes, 0);
+			$mesPrestamo = $arrayMes + 1;
+			$mesPrestamo = '0' . $mesPrestamo;
 		}
 
 
@@ -105,8 +118,9 @@ class PagosModel extends CI_Model
 		}
 
 
-		$fechaInicioPrestamo = $fechaInicio; //$anoPrestamo . '-' . $mesPrestamo . '-01';
-		$fechaTerminoPrestamo = $fechaTermino; //$anoPrestamo . '-' . $mesPrestamo . '-' . $diaTerminoPrestamo;
+
+		$fechaInicioPrestamo = $anoPrestamo . '-' . $mesPrestamo . '-01';
+		$fechaTerminoPrestamo = $anoPrestamo . '-' . $mesPrestamo . '-' . $diaTerminoPrestamo;
 
 
 		$this->db->select(" t.cp_trabajador, t.atr_nombres, t.atr_apellidos, t.atr_rut, t.cf_cargo,r.atr_sueldoMensual,
@@ -379,7 +393,7 @@ class PagosModel extends CI_Model
 
 		$anoPrestamo = $ano;
 
-		if ($mes == '12') {
+		/* if ($mes == '12') {
 			$mesPrestamo = '01';
 			$anoPrestamo = $ano + 1;
 		} else {
@@ -391,6 +405,19 @@ class PagosModel extends CI_Model
 				$mesPrestamo = $arrayMes + 1;
 				$mesPrestamo = '0' . $mesPrestamo;
 			}
+		} */
+		if ($mes == '09') {
+			$mesPrestamo = '10';
+		} else if ($mes == '12') {
+			$mesPrestamo = '01';
+			$anoPrestamo = $ano + 1;
+		} else if ($mes == '01') {
+			$mesPrestamo = '12';
+			$anoPrestamo = $ano - 1;
+		} else {
+			$arrayMes = substr($mes, 0);
+			$mesPrestamo = $arrayMes + 1;
+			$mesPrestamo = '0' . $mesPrestamo;
 		}
 
 
@@ -403,8 +430,9 @@ class PagosModel extends CI_Model
 		}
 
 
-		$fechaInicioPrestamo = $fechaInicio; // $anoPrestamo . '-' . $mesPrestamo . '-01';
-		$fechaTerminoPrestamo = $fechaTermino; //($anoPrestamo . '-' . $mesPrestamo . '-' . $diaTerminoPrestamo;
+
+		$fechaInicioPrestamo =  $anoPrestamo . '-' . $mesPrestamo . '-01';
+		$fechaTerminoPrestamo = $anoPrestamo . '-' . $mesPrestamo . '-' . $diaTerminoPrestamo;
 
 
 		$this->db->select(" t.cp_trabajador, t.atr_nombres, t.atr_sueldo ,t.atr_apellidos, t.atr_rut, t.cf_cargo, r.atr_sueldoMensual,
@@ -664,7 +692,7 @@ class PagosModel extends CI_Model
 
 		$anoPrestamo = $ano;
 
-		if ($mes == '12') {
+		/* if ($mes == '12') {
 			$mesPrestamo = '01';
 			$anoPrestamo = $ano + 1;
 		} else {
@@ -679,6 +707,19 @@ class PagosModel extends CI_Model
 		}
 		if ($mes == '09') {
 			$mesPrestamo = '10';
+		} */
+		if ($mes == '09') {
+			$mesPrestamo = '10';
+		} else if ($mes == '12') {
+			$mesPrestamo = '01';
+			$anoPrestamo = $ano + 1;
+		} else if ($mes == '01') {
+			$mesPrestamo = '12';
+			$anoPrestamo = $ano - 1;
+		} else {
+			$arrayMes = substr($mes, 0);
+			$mesPrestamo = $arrayMes + 1;
+			$mesPrestamo = '0' . $mesPrestamo;
 		}
 
 		if ($mesPrestamo == '04' || $mesPrestamo == '06' || $mesPrestamo == '09' || $mesPrestamo == '11') {
@@ -954,19 +995,18 @@ class PagosModel extends CI_Model
 		$fechaTermino = $ano . '-' . $mes . '-' . $diaTermino;
 
 		$anoPrestamo = $ano;
-
-		if ($mes == '12') {
+		if ($mes == '09') {
+			$mesPrestamo = '10';
+		} else if ($mes == '12') {
 			$mesPrestamo = '01';
 			$anoPrestamo = $ano + 1;
+		} else if ($mes == '01') {
+			$mesPrestamo = '12';
+			$anoPrestamo = $ano - 1;
 		} else {
-			if ($mes == '01') {
-				$mesPrestamo = '12';
-				$anoPrestamo = $ano - 1;
-			} else {
-				$arrayMes = substr($mes, 0);
-				$mesPrestamo = $arrayMes + 1;
-				$mesPrestamo = '0' . $mesPrestamo;
-			}
+			$arrayMes = substr($mes, 0);
+			$mesPrestamo = $arrayMes + 1;
+			$mesPrestamo = '0' . $mesPrestamo;
 		}
 
 		if ($mesPrestamo == '04' || $mesPrestamo == '06' || $mesPrestamo == '09' || $mesPrestamo == '11') {
@@ -978,8 +1018,8 @@ class PagosModel extends CI_Model
 		}
 
 
-		$fechaInicioPrestamo = $fechaInicio; //$anoPrestamo . '-' . $mesPrestamo . '-01';
-		$fechaTerminoPrestamo = $fechaTermino; //$anoPrestamo . '-' . $mesPrestamo . '-' . $diaTerminoPrestamo;
+		$fechaInicioPrestamo = $anoPrestamo . '-' . $mesPrestamo . '-01';
+		$fechaTerminoPrestamo = $anoPrestamo . '-' . $mesPrestamo . '-' . $diaTerminoPrestamo;
 
 		//consultar datos completos trabajador
 		$this->db->select("t.cp_trabajador, t.atr_rut, t.atr_nombres, t.atr_apellidos,
