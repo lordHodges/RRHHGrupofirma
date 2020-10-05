@@ -677,6 +677,9 @@ class PagosModel extends CI_Model
 				$mesPrestamo = '0' . $mesPrestamo;
 			}
 		}
+		if ($mes == 09) {
+			$mesPrestamo = 10;
+		}
 
 		if ($mesPrestamo == '04' || $mesPrestamo == '06' || $mesPrestamo == '09' || $mesPrestamo == '11') {
 			$diaTerminoPrestamo = '30';
@@ -688,9 +691,9 @@ class PagosModel extends CI_Model
 
 
 		$fechaInicioPrestamo
-			= $anoPrestamo . '-' . $mes . '-' . '06';
+			= $anoPrestamo . '-' . $mesPrestamo . '-' . '01';
 
-		$fechaTerminoPrestamo =  $fechaTermino; //$anoPrestamo . '-' . $mesPrestamo . '-' . $diaTerminoPrestamo;
+		$fechaTerminoPrestamo =  $anoPrestamo . '-' . $mesPrestamo . '-' . $diaTerminoPrestamo;
 
 
 		$this->db->select(" t.cp_trabajador, t.atr_nombres, t.atr_apellidos, t.atr_rut, t.cf_cargo,r.atr_sueldoMensual,
