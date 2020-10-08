@@ -438,7 +438,7 @@ class PagosModel extends CI_Model
 		$this->db->join("fa_contrato co", "co.cf_trabajador = t.cp_trabajador");
 		$this->db->where('t.cf_estado != 6');
 		$this->db->where('t.cf_empresa', $empresa);
-		$this->db->where("t.atr_fechaInicio <= $fechaTermino");
+		$this->db->where('t.atr_fechaInicio <=', "$fechaTermino");
 		$arrayTrabajadores = $this->db->get()->result();
 
 		if ($arrayTrabajadores == null) {
