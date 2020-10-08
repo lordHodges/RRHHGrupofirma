@@ -121,12 +121,12 @@ class PagosController extends CI_Controller
 		//requiriendo valores de UF y UTM
 		$consultaApi = file_get_contents("https://mindicador.cl/api/uf/$diaTermino-$mes-$ano");
 		$decodeUF = json_decode($consultaApi);
-		try {
-			$valorUF = $decodeUF->serie[0]->valor;
-		} catch (\Throwable $th) {
+		if (($valorUF = $decodeUF->serie[0]->valor) == 'Undefined') {
 			$nMes = $mes - 1;
 			$consultaApi = file_get_contents("https://mindicador.cl/api/uf/30-$nMes-$ano");
 			$decodeUF = json_decode($consultaApi);
+			$valorUF = $decodeUF->serie[0]->valor;
+		} else {
 			$valorUF = $decodeUF->serie[0]->valor;
 		}
 
