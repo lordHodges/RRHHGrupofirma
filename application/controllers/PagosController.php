@@ -119,8 +119,15 @@ class PagosController extends CI_Controller
 		$historial = $this->PagosModel->getHistorialPagosMensuales($ano, $mes);
 
 		//requiriendo valores de UF y UTM
-		$decodeUF = json_decode(file_get_contents("https://mindicador.cl/api/uf/$diaTermino-$mes-$ano"));
-		$valorUF = $decodeUF->serie[0]->valor;
+
+		try {
+			$decodeUF = json_decode(file_get_contents("https://mindicador.cl/api/uf/$diaTermino-$mes-$ano"));
+			$valorUF = $decodeUF->serie[0]->valor;
+		} catch (\Throwable $th) {
+			$mes = $mes - 1;
+			$decodeUF = json_decode(file_get_contents("https://mindicador.cl/api/uf/$diaTermino-$mes-$ano"));
+			$valorUF = $decodeUF->serie[0]->valor;
+		}
 		$decodeUTM = json_decode(file_get_contents("https://mindicador.cl/api/utm/$diaTermino-$mes-$ano"));
 		$valorUTM = $decodeUTM->serie[0]->valor;
 
@@ -176,6 +183,14 @@ class PagosController extends CI_Controller
 		$mes = $this->input->post("mes");
 		$diaTermino = $this->input->post("diaTermino");
 		//vht
+		try {
+			$decodeUF = json_decode(file_get_contents("https://mindicador.cl/api/uf/$diaTermino-$mes-$ano"));
+			$valorUF = $decodeUF->serie[0]->valor;
+		} catch (\Throwable $th) {
+			$mes = $mes - 1;
+			$decodeUF = json_decode(file_get_contents("https://mindicador.cl/api/uf/$diaTermino-$mes-$ano"));
+			$valorUF = $decodeUF->serie[0]->valor;
+		}
 		$decodeUF = json_decode(file_get_contents("https://mindicador.cl/api/uf/$diaTermino-$mes-$ano"));
 		$valorUF = $decodeUF->serie[0]->valor;
 		$decodeUTM = json_decode(file_get_contents("https://mindicador.cl/api/utm/$diaTermino-$mes-$ano"));
