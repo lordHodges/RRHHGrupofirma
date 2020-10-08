@@ -81,9 +81,11 @@ class PagosModel extends CI_Model
 
 		$anoPrestamo = $ano;
 
-		
+
 		if ($mes == '09') {
 			$mesPrestamo = '10';
+		} else if ($mes == '10') {
+			$mesPrestamo = '11';
 		} else if ($mes == '12') {
 			$mesPrestamo = '01';
 			$anoPrestamo = $ano + 1;
@@ -107,7 +109,7 @@ class PagosModel extends CI_Model
 
 
 		$fechaInicioPrestamo
-		= $ano . '-' . $mes . '-' . '06';
+			= $ano . '-' . $mes . '-' . '06';
 
 		$fechaTerminoPrestamo =  $anoPrestamo . '-' . $mesPrestamo . '-' . '05';
 
@@ -382,9 +384,11 @@ class PagosModel extends CI_Model
 
 		$anoPrestamo = $ano;
 
-		
+
 		if ($mes == '09') {
 			$mesPrestamo = '10';
+		} else if ($mes == '10') {
+			$mesPrestamo = '11';
 		} else if ($mes == '12') {
 			$mesPrestamo = '01';
 			$anoPrestamo = $ano + 1;
@@ -673,6 +677,8 @@ class PagosModel extends CI_Model
 
 		if ($mes == '09') {
 			$mesPrestamo = '10';
+		} else if ($mes == '10') {
+			$mesPrestamo = '11';
 		} else if ($mes == '12') {
 			$mesPrestamo = '01';
 			$anoPrestamo = $ano + 1;
@@ -960,6 +966,8 @@ class PagosModel extends CI_Model
 		$anoPrestamo = $ano;
 		if ($mes == '09') {
 			$mesPrestamo = '10';
+		} else if ($mes == '10') {
+			$mesPrestamo = '11';
 		} else if ($mes == '12') {
 			$mesPrestamo = '01';
 			$anoPrestamo = $ano + 1;
