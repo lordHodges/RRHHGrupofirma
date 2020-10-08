@@ -119,16 +119,19 @@ class PagosController extends CI_Controller
 		$historial = $this->PagosModel->getHistorialPagosMensuales($ano, $mes);
 
 		//requiriendo valores de UF y UTM
-
+		$consultaApi = file_get_contents("https://mindicador.cl/api/uf/$diaTermino-$mes-$ano");
+		$decodeUF = json_decode($consultaApi);
 		try {
-			$consultaApi = file_get_contents("https://mindicador.cl/api/uf/$diaTermino-$mes-$ano");
+			$valorUF = $decodeUF->serie[0]->valor;
 		} catch (\Throwable $th) {
 			$nMes = $mes - 1;
 			$consultaApi = file_get_contents("https://mindicador.cl/api/uf/30-$nMes-$ano");
+			$decodeUF = json_decode($consultaApi);
+			$valorUF = $decodeUF->serie[0]->valor;
 		}
 
-		$decodeUF = json_decode($consultaApi);
-		$valorUF = $decodeUF->serie[0]->valor;
+
+
 
 		$decodeUTM = json_decode(file_get_contents("https://mindicador.cl/api/utm/$diaTermino-$mes-$ano"));
 		$valorUTM = $decodeUTM->serie[0]->valor;
