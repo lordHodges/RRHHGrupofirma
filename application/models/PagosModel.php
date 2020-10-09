@@ -427,7 +427,7 @@ class PagosModel extends CI_Model
 		
 		p.atr_nombre as prevision,
 		p.tasa as tasaPrevision,
-		co.atr_fechaInicio as fechaInicio
+		
 		");
 		$this->db->from("fa_trabajador t");
 
