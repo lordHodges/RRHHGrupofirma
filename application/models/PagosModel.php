@@ -358,19 +358,19 @@ class PagosModel extends CI_Model
 
 			//$montoTotalPagar = number_format($montoTotalPagar, 0, ",", ".");
 
+			if ($fechaIngreso <= $fechaTermino) {
+				$data = (object) array(
+					"rutBeneficiario"             => $rutFormateado,
+					"nombreBeneficiario"          => $nombres[0] . " " . $apellidos[0],
+					"monto"                       => round($montoTotalPagar),
+					"banco"                       => $banco,
+					"tipoDeCuenta"                => $tipoDeCuenta,
+					"numeroDeCuenta"              => $numeroDeCuenta
+				);
 
-
-			$data = (object) array(
-				"rutBeneficiario"             => $rutFormateado,
-				"nombreBeneficiario"          => $nombres[0] . " " . $apellidos[0],
-				"monto"                       => round($montoTotalPagar),
-				"banco"                       => $banco,
-				"tipoDeCuenta"                => $tipoDeCuenta,
-				"numeroDeCuenta"              => $numeroDeCuenta
-			);
-
-			//agregar nuevo elemento al array final
-			$dataFinal[] = $data;
+				//agregar nuevo elemento al array final
+				$dataFinal[] = $data;
+			}
 		} //fin de for para trabajadores contratados activos.
 
 		return $dataFinal;
