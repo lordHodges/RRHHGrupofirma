@@ -444,6 +444,20 @@ class PagosModel extends CI_Model
 		} else {
 			// comienzo de for al arreglo de trabajadores contratados activos.
 			foreach ($arrayTrabajadores as $key => $t) {
+				//consulta contrato trabajador
+				$this->db->select(" co.atr_fechaInicio as fechaIngreso ");
+				$this->db->from("fa_contrato co");
+				$this->db->where("co.cf_trabajador", $t->cp_trabajador);
+				$contratoTrabajador = $this->db->get()->result();
+
+
+				foreach ($contratoTrabajador as $key => $co) {
+					$fechaIngreso = $co->fechaIngreso;
+				}
+				$fechaConsulta = $fechaTermino;
+				$comprobacion = descuentaAsistencia($fechaIngreso, $fechaConsulta);
+
+				////////////////////////
 
 				// CONSULTA DE LAS REMUNERACIONES QUE TIENE DETERMINADO CARGO
 				$this->db->select(" r.atr_colacion, r.atr_movilizacion, r.atr_asistencia");
@@ -466,18 +480,9 @@ class PagosModel extends CI_Model
 				$diasInsistencia = $this->db->get()->result();
 
 
-				//consulta contrato trabajador
-				$this->db->select(" co.atr_fechaInicio as fechaIngreso ");
-				$this->db->from("fa_contrato co");
-				$this->db->where("co.cf_trabajador", $t->cp_trabajador);
-				$contratoTrabajador = $this->db->get()->result();
 
-				foreach ($contratoTrabajador as $key => $co) {
-					$fechaIngreso = $co->fechaIngreso;
-				}
 
-				$fechaConsulta = $fechaTermino;
-				$comprobacion = descuentaAsistencia($fechaIngreso, $fechaConsulta);
+
 
 				// CONSULTA DE LAS REMUNERACIONES EN EL MES SOLICITADO
 				foreach ($remuneracionTrabajador as $key => $r) {
@@ -643,25 +648,25 @@ class PagosModel extends CI_Model
 
 
 				// TRANSFORMAR LOS NUMEROS A FORMATO MILES
+				if ($fechaIngreso <= $fechaTermino) {
+
+					$data = (object) array(
+						"id"              => $t->cp_trabajador,
+						"fechaIngreso"	  => $fechaIngreso,
+						"rut"             => $t->atr_rut,
+						"trabajador"      => $t->atr_nombres . ' ' . $t->atr_apellidos,
+						"sueldo"          => round($sueldo),
+						"bonos"           => round($bonos),
+						"adelanto"        => round($montoAdelanto),
+						"prestamos"       => round($montoPrestamo),
+						"inasistencia"    => round($cont),
+						"total"           => round($montoTotalPagar)
+					);
 
 
-
-				$data = (object) array(
-					"id"              => $t->cp_trabajador,
-					"fechaIngreso"	  => $fechaIngreso,
-					"rut"             => $t->atr_rut,
-					"trabajador"      => $t->atr_nombres . ' ' . $t->atr_apellidos,
-					"sueldo"          => round($sueldo),
-					"bonos"           => round($bonos),
-					"adelanto"        => round($montoAdelanto),
-					"prestamos"       => round($montoPrestamo),
-					"inasistencia"    => round($cont),
-					"total"           => round($montoTotalPagar)
-				);
-
-
-				//agregar nuevo elemento al array fina
-				$dataFinal[] = $data;
+					//agregar nuevo elemento al array fina
+					$dataFinal[] = $data;
+				}
 			} //fin de for para trabajadores contratados activos.
 			return $dataFinal;
 		}
