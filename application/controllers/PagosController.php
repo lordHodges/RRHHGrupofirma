@@ -137,8 +137,8 @@ class PagosController extends CI_Controller
 		if (($valorUF = $decodeUF->serie) == []) {
 			$nMes = $mes - 1;
 			if($nMes == 0){
-				$nMes= 12
-				$ano = $ano-1
+				$nMes= 12;
+				$ano = $ano-1;
 			}
 			$consultaApi = file_get_contents("https://mindicador.cl/api/uf/30-$nMes-$ano");
 			$decodeUF = json_decode($consultaApi);
