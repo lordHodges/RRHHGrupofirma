@@ -208,7 +208,7 @@ if ($usuario[0]->atr_activo == "1" && $view_anexoIndefinido == "1") { ?>
 
 
   <?php } else {
-  header("Location: https://www.imlchile.cl/grupofirma/");
+  header("Location: http://localhost/RRHHGrupofirma/");
 } ?>
 
 

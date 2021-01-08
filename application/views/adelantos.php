@@ -27,7 +27,7 @@ if ($usuario[0]->atr_activo == "1") { ?>
 
 		</div>
 
-		<div class="row">
+		<div class="row" style="overflow-x:scroll">
 			<div class="x_panel">
 				<div class="x_content">
 					<h3 class="text-center">ADELANTOS</h3><br>
@@ -413,7 +413,7 @@ if ($usuario[0]->atr_activo == "1") { ?>
 		});
 	</script>
 <?php } else {
-	header("Location: https://www.imlchile.cl/grupofirma/");
+	header("Location: http://localhost/RRHHGrupofirma/");
 } ?>
 
 </body>

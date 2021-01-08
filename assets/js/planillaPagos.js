@@ -1,4 +1,4 @@
-var base_url = "https://www.imlchile.cl/grupofirma/index.php/";
+var base_url = "http://localhost/RRHHGrupofirma/index.php/";
 
 function cargarTablaPlanillaPagoMes() {
 	var table = $("#tabla_planillaBanco").DataTable();
@@ -75,7 +75,7 @@ function cargarTablaPlanillaPagoMes() {
 		},
 		ajax: {
 			url:
-				"https://www.imlchile.cl/grupofirma/index.php/getListadoPlanillaPagoMes?year=" +
+				"http://localhost/RRHHGrupofirma/index.php/getListadoPlanillaPagoMes?year=" +
 				anoActual +
 				"&&mes=" +
 				mesActual +
@@ -233,7 +233,7 @@ function cargarTablaPagosFinDeMes() {
 		},
 		ajax: {
 			url:
-				"https://www.imlchile.cl/grupofirma/index.php/getListadoPagosFinDeMes?year=" +
+				"http://localhost/RRHHGrupofirma/index.php/getListadoPagosFinDeMes?year=" +
 				anoActual +
 				"&&mes=" +
 				mesActual +
@@ -246,7 +246,7 @@ function cargarTablaPagosFinDeMes() {
 		},
 		columnDefs: [
 			{
-				targets: 11,
+				targets: 13,
 				data: null,
 				defaultContent: btnAcciones,
 			},
@@ -256,27 +256,27 @@ function cargarTablaPagosFinDeMes() {
 			{
 				extend: "copy",
 				exportOptions: {
-					columns: [1, 2, 3, 4, 5, 6, 7, 8, 9],
+					columns: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
 				},
 			},
 			{
 				extend: "csv",
 				exportOptions: {
-					columns: [1, 2, 3, 4, 5, 6, 7, 8, 9],
+					columns: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
 				},
 			},
 			{
 				extend: "excel",
 				title: "Lista de Remuneraciones",
 				exportOptions: {
-					columns: [1, 2, 3, 4, 5, 6, 7, 8, 9],
+					columns: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
 				},
 			},
 			{
 				extend: "pdf",
 				title: "Lista de Trabajadores",
 				exportOptions: {
-					columns: [1, 2, 3, 4, 5, 6, 7, 8, 9],
+					columns: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
 				},
 				customize: function (doc) {
 					doc.styles.title = {
@@ -292,7 +292,7 @@ function cargarTablaPagosFinDeMes() {
 				extend: "print",
 				title: "Grupo Firma",
 				exportOptions: {
-					columns: [1, 2, 3, 4, 5, 6, 7],
+					columns: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
 				},
 				customize: function (win) {
 					$(win.document.body).addClass("white-bg");

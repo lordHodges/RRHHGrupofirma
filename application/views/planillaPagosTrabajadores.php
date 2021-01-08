@@ -81,9 +81,9 @@ if ($usuario[0]->atr_activo == "1") { ?>
 				</ul>
 
 
-				<div class="tab-content" id="myTabContent">
+				<div class="tab-content" style="overflow-x:scroll" id="myTabContent">
 
-					<div class="tab-pane fade show active" id="detallePagos" role="tabpanel" aria-labelledby="home-tab">
+					<div class="tab-panel fade show active" id="detallePagos" role="tabpanel" aria-labelledby="home-tab">
 
 						<?php if ($view_verPlanillaPagos == "1") {  ?>
 							<div class="row">
@@ -95,11 +95,13 @@ if ($usuario[0]->atr_activo == "1") { ?>
 											<th class="text-center">FECHA INICIO</th>
 											<th class="text-center">RUT</th>
 											<th class="text-center">TRABAJADOR</th>
-											<th class="text-center">SUELDO</th>
+											<th class="text-center">SUELDO BASE</th>
 											<th class="text-center">BONOS</th>
 											<th class="text-center">ADELANTO</th>
 											<th class="text-center">PRÉSTAMOS</th>
 											<th class="text-center">INASISTENCIA</th>
+											<th class="text-center">ASIGNACIÓN FAMILIAR</th>
+											<th class="text-center">SUELDO LÍQUIDO</th>
 											<th class="text-center">TOTAL A PAGAR</th>
 											<th class="text-center">TRANSFERENCIA</th>
 											<th class="text-center" style="width:10%;">ACCIONES</th>
@@ -335,7 +337,7 @@ if ($usuario[0]->atr_activo == "1") { ?>
 
 
 
-		/* capturar funcion del bioton generarliquidacion */
+		/* capturar funcion del boton generarliquidacion */
 		$("body").on("click", "#btnGenerarLiquidacion", function(e) {
 			e.preventDefault();
 
@@ -386,7 +388,7 @@ if ($usuario[0]->atr_activo == "1") { ?>
 
 
 
-			var url = 'https://www.imlchile.cl/grupofirma/index.php/docGenerarLiquidacion?'
+			var url = 'http://localhost/RRHHGrupofirma/index.php/docGenerarLiquidacion?'
 
 				+
 				'mesCorriente=' + mesCorriente +
@@ -441,7 +443,7 @@ if ($usuario[0]->atr_activo == "1") { ?>
 
 
 
-		/* fin modificaiones generar contrato */
+		/* fin modificaciones generar contrato */
 
 		$("body").on("click", "#btnCargarComprobante", function(e) {
 			e.preventDefault();
@@ -493,7 +495,7 @@ if ($usuario[0]->atr_activo == "1") { ?>
 	</script>
 
 <?php } else {
-	header("Location: https://www.imlchile.cl/grupofirma/");
+	header("Location: http://localhost/RRHHGrupofirma/");
 } ?>
 
 </body>

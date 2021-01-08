@@ -1,4 +1,4 @@
-var base_url = "https://www.imlchile.cl/grupofirma/index.php/";
+var base_url = "http://localhost/RRHHGrupofirma/index.php/";
 
 function cargarBancos() {
 	$.ajax({

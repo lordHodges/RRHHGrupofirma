@@ -181,6 +181,8 @@ class PagosController extends CI_Controller
 				$r->adelanto,
 				$r->prestamos,
 				$r->inasistencia,
+				$r->valorAsignacionFamiliar,
+				$r->valorSueldoLiquido,
 				$r->total,
 				$estado
 			);

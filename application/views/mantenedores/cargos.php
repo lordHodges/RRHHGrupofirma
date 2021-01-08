@@ -255,7 +255,7 @@ if ($usuario[0]->atr_activo == "1") { ?>
                     }
                 },
                 "ajax": {
-                    url: "https://www.imlchile.cl/grupofirma/index.php/getlistadecargos",
+                    url: "http://localhost/RRHHGrupofirma/index.php/getlistadecargos",
                     type: 'GET'
                 },
                 "columnDefs": [{
@@ -363,7 +363,7 @@ if ($usuario[0]->atr_activo == "1") { ?>
         });
     </script>
 <?php } else {
-    header("Location: https://www.imlchile.cl/grupofirma/");
+    header("Location: http://localhost/RRHHGrupofirma/");
 } ?>
 
 </body>

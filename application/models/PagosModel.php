@@ -320,6 +320,7 @@ class PagosModel extends CI_Model
 			$totalDescuentosLegales = ($valorAfp + $valorSalud + $valorCesantia + $adicionalPlan + $valorImpuestoUnico);
 
 			$totalOtrosDescuentos = $montoAdelanto + $montoPrestamo;
+			// GENERAR VARIABLE SUELDOLIQUIDO
 			$totalDescuentos = $totalOtrosDescuentos + $totalDescuentosLegales;
 			$totalNoImponible = $cargasFamiliaresMonto + $colacion + $movilizacion;
 			$totalHaberes = ($totalNoImponible + $totalImponible2);
@@ -640,7 +641,9 @@ class PagosModel extends CI_Model
 				$totalDescuentos = $totalOtrosDescuentos + $totalDescuentosLegales;
 				$totalNoImponible = $cargasFamiliaresMonto + $colacion + $movilizacion;
 				$totalHaberes = ($totalNoImponible + $totalImponible2);
+				$valorSueldoLiquido = $totalHaberes - $totalDescuentosLegales;
 				$valorAlcanceLiquido = $totalHaberes - $totalDescuentos;
+				$valorAsignacionFamiliar = $cargasFamiliaresMonto;
 
 				//CALCULAR EL MONTO TOTAL A PAGAR
 
@@ -660,6 +663,8 @@ class PagosModel extends CI_Model
 						"adelanto"        => round($montoAdelanto),
 						"prestamos"       => round($montoPrestamo),
 						"inasistencia"    => round($cont),
+						"valorAsignacionFamiliar" => round($valorAsignacionFamiliar),
+						"valorSueldoLiquido" => round($valorSueldoLiquido),
 						"total"           => round($montoTotalPagar)
 					);
 
@@ -871,13 +876,13 @@ class PagosModel extends CI_Model
 			}
 			$totalTributable = ($totalImponible2) - ($valorSalud + $valorAfp + $valorCesantia);
 
-			if ($totalImponible <= 336055) {
-				$cargasFamiliaresMonto = 13155 * $t->atr_cargas;
-			} else if ($totalImponible > 336055 && $totalImponible <= 490844) {
-				$cargasFamiliaresMonto = 8073 * $t->atr_cargas;
-			} else if ($totalImponible > 490844 && $totalImponible <= 765550) {
-				$cargasFamiliaresMonto = 2551 * $t->atr_cargas;
-			} else if ($totalImponible > 765550) {
+			if ($totalImponible <= 342346) {
+				$cargasFamiliaresMonto = 13401 * $t->atr_cargas;
+			} else if ($totalImponible > 342346 && $totalImponible <= 500033) {
+				$cargasFamiliaresMonto = 8224 * $t->atr_cargas;
+			} else if ($totalImponible > 500033 && $totalImponible <= 779882) {
+				$cargasFamiliaresMonto = 2599 * $t->atr_cargas;
+			} else if ($totalImponible > 779882) {
 				$cargasFamiliaresMonto = 0 * $t->atr_cargas;
 			}
 			$tr_UTM = $totalTributable / $valorUTM;
@@ -906,7 +911,7 @@ class PagosModel extends CI_Model
 				$valorImpuestoUnico = 0;
 			}
 			$totalDescuentosLegales = ($valorAfp + $valorSalud + $valorCesantia + $adicionalPlan + $valorImpuestoUnico);
-
+			// GENERAR VARIABLE SUELDOLIQUIDO
 			$totalOtrosDescuentos = $montoAdelanto + $montoPrestamo;
 			$totalDescuentos = $totalOtrosDescuentos + $totalDescuentosLegales;
 			$totalNoImponible = $cargasFamiliaresMonto + $colacion + $movilizacion;
