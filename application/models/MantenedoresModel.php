@@ -516,4 +516,61 @@ class MantenedoresModel extends CI_Model
 		$resultado =  $this->db->get()->result();
 		return $resultado;
 	}
+
+	// HABERES Y DESCUENTOS
+
+	function getListadoHaberDescuento(){
+		$this->db->select("h.cp_hdescuentos, h.atr_dhdescuentos, h.atr_tipo, h.atr_imponible, h.atr_tributable, h.atr_gratificable, h.atr_fijo, h.atr_variable, h.atr_semcorrida");
+		$this->db->from("fa_hdescuentos h");
+		return $this->db->get();
+	}
+
+	function addHaberDescuento($dhdescuentos, $tipo, $imponible, $tributable, $gratificable, $fijo, $variable, $semcorrida){
+		try {
+			$data = array(
+				"atr_dhdescuentos" => $dhdescuentos,
+				"atr_tipo" => $tipo,
+				"atr_imponible" => $imponible,
+				"atr_tributable" => $tributable,
+				"atr_gratificable" => $gratificable,
+				"atr_fijo" => $fijo,
+				"atr_variable" => $variable,
+				"atr_semcorrida" => $semcorrida
+			);
+			$this->db->insert("fa_hdescuentos", $data);
+			return "ok";
+		} catch (\Throwable $th) {
+			return "error modelo".$th;
+		}
+		
+	}
+
+	function getDetalleHaberDescuento($hdescuentos){
+		$this->db->select("h.cp_hdescuentos, h.atr_dhdescuentos, h.atr_tipo, h.atr_imponible, h.atr_tributable, h.atr_gratificable, h.atr_fijo, h.atr_variable, h.atr_semcorrida");
+		$this->db->from("fa_hdescuentos h");
+		$this->db->where("h.cp_hdescuentos", $hdescuentos);
+
+		return $this->db->get()->result(); 
+	}
+
+	public function updateHaberDescuento($hdescuentos, $dhdescuentos){
+		$data = array(
+			"atr_dhdescuentos" => $dhdescuentos,
+			"atr_tipo" => $tipo,
+			"atr_imponible" => $imponible,
+			"atr_tributable" => $tributable,
+			"atr_gratificable" => $gratificable,
+			"atr_fijo" => $fijo,
+			"atr_variable" => $variable,
+			"atr_semcorrida" => $semcorrida
+		);
+		$this->db->where("h.cp_hdescuentos", $hdescuentos);
+		$result = $this->db->update("fa_hdescuentos h", $data);
+
+		if ($result == true) {
+			return "ok";
+		} else {
+			return "error";
+		}
+	}
 }

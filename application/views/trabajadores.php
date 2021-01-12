@@ -39,24 +39,26 @@ if ($usuario[0]->atr_activo == "1") { ?>
                         <?php } ?>
 
                         <?php if ($view_verTrabajador == "1") {  ?>
-                            <table id="tabla_trabajador" class="table table-striped table-bordered table-hover dataTables-trabajadores" style="margin-top:20px;">
-                                <thead>
-                                    <tr>
-                                        <th class="text-center">ID</th>
-                                        <th class="text-center">RUT</th>
-                                        <th class="text-center">NOMBRES</th>
-                                        <th class="text-center">APELLIDOS</th>
-                                        <th class="text-center">DIRECCIÓN</th>
-                                        <th class="text-center">EMPRESA</th>
-                                        <th class="text-center">SUCURSAL</th>
-                                        <th class="text-center">CARGO</th>
-                                        <th class="text-center">ACCIONES</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="tbodyDetalle">
+                            <div class="tab-content" style="overflow-x:scroll" id="myTabContent">
+                                <table id="tabla_trabajador" class="table table-striped table-bordered table-hover dataTables-trabajadores" style="margin-top:20px;" >
+                                    <thead>
+                                        <tr>
+                                            <th class="text-center">ID</th>
+                                            <th class="text-center">RUT</th>
+                                            <th class="text-center">NOMBRES</th>
+                                            <th class="text-center">APELLIDOS</th>
+                                            <th class="text-center">DIRECCIÓN</th>
+                                            <th class="text-center">EMPRESA</th>
+                                            <th class="text-center">SUCURSAL</th>
+                                            <th class="text-center">CARGO</th>
+                                            <th class="text-center">ACCIONES</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="tbodyDetalle">
 
-                                </tbody>
-                            </table>
+                                    </tbody>
+                                </table>
+                            </div>
                         <?php } ?>
 
                     </div>
@@ -211,7 +213,6 @@ if ($usuario[0]->atr_activo == "1") { ?>
                     </button>
                     <div class="modal-body">
                         <div class="row" id="modalDetalleTrabajador">
-
 
                         </div>
                     </div>

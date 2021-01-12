@@ -135,6 +135,22 @@ create table fa_remuneracion_extra(
     constraint fk_remunercionExtra_cargo foreign key(cf_cargo) references fa_cargo(cp_cargo)
 );
 
+
+create table fa_hdescuentos(
+	cp_hdescuentos int auto_increment,
+	atr_dhdescuentos varchar(200) not null,
+	atr_tipo varchar(50),
+	atr_imponible varchar(50),
+	atr_tributable varchar(50),
+	atr_gratificable varchar(50),
+	atr_fijo varchar(50),
+	atr_variable varchar(50),
+	atr_semcorrida varchar(50),
+  cf_remuneracion int,
+	constraint pk_hdescuentos primary key(cp_hdescuentos),
+	constraint fk_hdescuentos_remuneracion foreign key(cf_remuneracion) references fa_remuneracion(cp_remuneracion)
+);
+
 create table fa_tarea(
     cp_tarea int auto_increment,
     atr_descripcion varchar(200) unique not null,

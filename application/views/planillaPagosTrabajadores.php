@@ -83,7 +83,7 @@ if ($usuario[0]->atr_activo == "1") { ?>
 
 				<div class="tab-content" style="overflow-x:scroll" id="myTabContent">
 
-					<div class="tab-panel fade show active" id="detallePagos" role="tabpanel" aria-labelledby="home-tab">
+					<div class="tab-pane fade show active" id="detallePagos" role="tabpanel" aria-labelledby="home-tab">
 
 						<?php if ($view_verPlanillaPagos == "1") {  ?>
 							<div class="row">

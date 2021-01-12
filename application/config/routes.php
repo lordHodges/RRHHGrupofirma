@@ -223,7 +223,13 @@ $route['inicioUsuarios'] = 'SesionesController/inicioUsuarios';
 $route['inicioVehiculos'] = 'VehiculosController/inicioVehiculos';
 $route['inicioMarcas'] = 'MarcasController/inicioMarcas';
 $route['inicioModelos'] = 'ModelosController/inicioModelos';
+$route['inicioHaberDescuento'] = 'HaberDescuentoController/index';
 
+//Haberes o Descuentos
+$route['getListadoHaberDescuento'] = 'HaberDescuentoController/getListadoHaberDescuento';
+$route['addHaberDescuento'] = 'HaberDescuentoController/addHaberDescuento';
+$route['getDetalleHaberDescuento'] = 'HaberDescuentoController/getDetalleHaberDescuento';
+$route['updateHaberDescuento'] = 'HaberDescuentoController/updateHaberDescuento';
 
 //Bancos
 $route['getListadoBancos'] = 'BancoController/getListadoBancos';

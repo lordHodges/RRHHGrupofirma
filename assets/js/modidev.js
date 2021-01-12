@@ -663,6 +663,7 @@ function cargarTablaEstadosCiviles(permisoExportar) {
 		});
 	}
 }
+
 function cargarTablaBancos(exportar) {
 	var table = $("#tabla_banco").DataTable();
 	table.destroy();

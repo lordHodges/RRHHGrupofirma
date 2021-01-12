@@ -313,6 +313,10 @@ $base_url = base_url();
                                   <li><a href="<?php echo base_url() ;   ?>index.php/inicioBancos">Bancos</a></li>
                                 <?php } ?>
 
+                                <?php  if ( $valuePermiso->cf_existencia_permiso == "119") {  ?>
+                                  <li><a href="<?php echo base_url() ;   ?>index.php/inicioHaberDescuento">Haberes o Descuentos</a></li>
+                                <?php } ?>
+
                               <?php } ?>
 
 
