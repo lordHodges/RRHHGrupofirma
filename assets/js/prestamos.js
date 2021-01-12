@@ -1,4 +1,4 @@
-var base_url = "http://localhost/RRHHGrupofirma/index.php/";
+var base_url = "https://www.imlchile.cl/grupofirma/index.php/";
 
 function cargarTablaPrestamoTrabajadores(permisoEditar, permisoExportar) {
 	var table = $("#tabla_prestamoTrabajadores").DataTable();
@@ -50,7 +50,7 @@ function cargarTablaPrestamoTrabajadores(permisoEditar, permisoExportar) {
 				},
 			},
 			ajax: {
-				url: "http://localhost/RRHHGrupofirma/index.php/getListadoPrestamosTrabajador",
+				url: "https://www.imlchile.cl/grupofirma/index.php/getListadoPrestamosTrabajador",
 				type: "GET",
 			},
 			columnDefs: [
@@ -140,7 +140,7 @@ function cargarTablaPrestamoTrabajadores(permisoEditar, permisoExportar) {
 				},
 			},
 			ajax: {
-				url: "http://localhost/RRHHGrupofirma/index.php/getListadoPrestamosTrabajador",
+				url: "https://www.imlchile.cl/grupofirma/index.php/getListadoPrestamosTrabajador",
 				type: "GET",
 			},
 			columnDefs: [
@@ -176,6 +176,8 @@ function generarCuotas(valor) {
 
 			var fila = "";
 			var f = new Date();
+			
+			
 			var mes,
 				dia = "05";
 			var fechaActual;

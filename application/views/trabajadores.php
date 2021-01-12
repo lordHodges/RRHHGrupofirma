@@ -2,7 +2,7 @@
 $data = $this->session->userdata("datos");
 $usuario =  $data['usuario'];
 $permisos =  $data['permisos'];
-$URI = 'http://localhost/RRHHGrupofirma/';
+$URI = 'https://www.imlchile.cl/grupofirma/';
 ?>
 
 <?php
@@ -359,7 +359,7 @@ if ($usuario[0]->atr_activo == "1") { ?>
 
 
 <?php } else {
-    header("Location:http://localhost/RRHHGrupofirma/ ");
+    header("Location:https://www.imlchile.cl/grupofirma/ ");
 } ?>
 
 </body>

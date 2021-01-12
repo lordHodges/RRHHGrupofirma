@@ -8,7 +8,7 @@
 			"type": "chrome",
 			"request": "launch",
 			"name": "chromeDebugging",
-			"url": "http://localhost/RRHHGrupofirma//grupofirma",
+			"url": "https://www.imlchile.cl/grupofirma//grupofirma",
 			"webRoot": "${workspaceFolder}",
 			"runtimeExecutable": "/usr/bin/chromium"
 		},
@@ -17,7 +17,7 @@
 			"name": "Launch Edge",
 			"request": "launch",
 			"type": "pwa-msedge",
-			"url": "http://localhost/RRHHGrupofirma/",
+			"url": "https://www.imlchile.cl/grupofirma/",
 			"runtimeExecutable": "stable",
 			"webRoot": "${workspaceFolder}"
 		},
@@ -26,7 +26,7 @@
 			"type": "pwa-chrome",
 			"request": "launch",
 			"name": "Launch Chrome against localhost",
-			"url": "http://localhost/RRHHGrupofirma/index.php/inicioPlanillaPagos",
+			"url": "https://www.imlchile.cl/grupofirma/index.php/inicioPlanillaPagos",
 			"webRoot": "${workspaceFolder}"
 		}
 	]
