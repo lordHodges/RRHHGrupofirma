@@ -114,7 +114,7 @@ class PagosModel extends CI_Model
 		$fechaTerminoPrestamo =  $anoPrestamo . '-' . $mesPrestamo . '-' . '05';
 
 
-		$this->db->select(" t.cp_trabajador, t.atr_nombres, t.atr_apellidos, t.atr_rut, t.cf_cargo,r.atr_sueldoMensual,
+		$this->db->select(" t.cp_trabajador, t.atr_nombres, t.atr_apellidos, t.atr_rut, t.cf_cargo, r.atr_sueldoMensual,
 		t.atr_plan,
 		t.atr_cargas,
 		e.cp_estado as estado,
@@ -228,7 +228,7 @@ class PagosModel extends CI_Model
 			}
 
 
-			// CONSULTA DE LOS ADELANTOS EN EL MES CONSULTADO
+			// CONSULTA DE LOS PRESTAMOS EN EL MES CONSULTADO
 			$this->db->select("");
 			$this->db->from("fa_prestamo p");
 			$this->db->join("fa_detalle_prestamo dp", "dp.cf_prestamo = p.cp_prestamo");
@@ -241,6 +241,7 @@ class PagosModel extends CI_Model
 			$montoPrestamo = 0;
 			foreach ($prestamos as $key => $p) {
 				$montoPrestamo = $montoPrestamo + $p->atr_montoDescontar;
+				console.log($montoPrestamo);
 			}
 
 
@@ -253,8 +254,8 @@ class PagosModel extends CI_Model
 				$sueldo = $sueldo * $diasPago;
 			}
 			$gratificacion = round(($sueldo + $bonoAsistencia) * 0.25);
-			if ($gratificacion >= 126865) {
-				$gratificacion = 126865;
+			if ($gratificacion >= 129240) {
+				$gratificacion = 129240;
 			}
 			$totalImponible = $sueldo + $gratificacion + $bonoAsistencia;
 			$totalImponible2 = $totalImponible;
@@ -283,13 +284,13 @@ class PagosModel extends CI_Model
 			}
 			$totalTributable = ($totalImponible2) - ($valorSalud + $valorAfp + $valorCesantia);
 
-			if ($totalImponible <= 336055) {
-				$cargasFamiliaresMonto = 13155 * $t->atr_cargas;
-			} else if ($totalImponible > 336055 && $totalImponible <= 490844) {
-				$cargasFamiliaresMonto = 8073 * $t->atr_cargas;
-			} else if ($totalImponible > 490844 && $totalImponible <= 765550) {
-				$cargasFamiliaresMonto = 2551 * $t->atr_cargas;
-			} else if ($totalImponible > 765550) {
+			if ($totalImponible <= 342346) {
+				$cargasFamiliaresMonto = 13401 * $t->atr_cargas;
+			} else if ($totalImponible > 342346 && $totalImponible <= 500033) {
+				$cargasFamiliaresMonto = 8224 * $t->atr_cargas;
+			} else if ($totalImponible > 500033 && $totalImponible <= 779882) {
+				$cargasFamiliaresMonto = 2599 * $t->atr_cargas;
+			} else if ($totalImponible > 779882) {
 				$cargasFamiliaresMonto = 0 * $t->atr_cargas;
 			}
 			$tr_UTM = $totalTributable / $valorUTM;
@@ -319,12 +320,19 @@ class PagosModel extends CI_Model
 			}
 			$totalDescuentosLegales = ($valorAfp + $valorSalud + $valorCesantia + $adicionalPlan + $valorImpuestoUnico);
 
+			// totalOtrosDescuentos = montoAdelanto + montoPrestamo en caso de que fechaPago (prestamo) sea = 05 Sino 
+			// totalOtrosDescuentos = montoAdelanto - montoPrestamo si fechaPago es igual a 20
 			$totalOtrosDescuentos = $montoAdelanto + $montoPrestamo;
+
+	
+
+
 			// GENERAR VARIABLE SUELDOLIQUIDO
 			$totalDescuentos = $totalOtrosDescuentos + $totalDescuentosLegales;
 			$totalNoImponible = $cargasFamiliaresMonto + $colacion + $movilizacion;
 			$totalHaberes = ($totalNoImponible + $totalImponible2);
 			$valorAlcanceLiquido = $totalHaberes - $totalDescuentos;
+
 			//CALCULAR EL MONTO TOTAL A PAGAR
 
 			$montoTotalPagar = $valorAlcanceLiquido;
@@ -667,7 +675,7 @@ class PagosModel extends CI_Model
 						"valorSueldoLiquido" => round($valorSueldoLiquido),
 						"total"           => round($montoTotalPagar)
 					);
-
+ 
 
 					//agregar nuevo elemento al array fina
 					$dataFinal[] = $data;
