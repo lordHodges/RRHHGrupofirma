@@ -309,6 +309,7 @@ function cargarTablaPagosFinDeMes() {
 			[100, 50, 25, "All"],
 		],
 	});
+
 }
 
 function getDetallePagoTrabajador(idTrabajador) {

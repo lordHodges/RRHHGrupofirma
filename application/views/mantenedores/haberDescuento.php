@@ -207,7 +207,7 @@ if ($usuario[0]->atr_activo == "1") {?>
             <?php } ?>
 
             getSelectHaberDescuento();
-            cargarTablaHaberDescuento(exportar);
+            cargarTablaHaberDescuento(permisoExportar);
         });
 
         $("#btnAgregarHaberDescuento").click(function(e) {
@@ -217,11 +217,11 @@ if ($usuario[0]->atr_activo == "1") {?>
             table.ajax.reload(function(json) {
                 $('#btnAgregarHaberDescuento').val(json.lastInput);
             });
-            cargarTablaHaberDescuento(exportar);
+            cargarTablaHaberDescuento(permisoExportar);
         });
     </script>
 <?php } else {
-    header("Location: http://localhost/rrhh/");
+    header("Location: https://www.imlchile.cl/grupofirma/");
 } ?>
 
 </body>

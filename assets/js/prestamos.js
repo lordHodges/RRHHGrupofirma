@@ -492,7 +492,7 @@ function editarDetallePrestamo() {
 				fechaPagoDetalle_[1] +
 				"-" +
 				fechaPagoDetalle_[0];
-				console.log('Fecha de Pago:[', i,']',fechaPagoDetalle_);
+
 			$.ajax({
 				url: "editarDetalleDePrestamo",
 				type: "POST",

@@ -1,4 +1,4 @@
-var base_url = "http://localhost/rrhh/index.php/";
+var base_url = "https://www.imlchile.cl/grupofirma/index.php/";
 
 function cargarTablaHaberDescuento(permisoExportar){
     // console.log("cargarTablaHaberDescuento");
