@@ -1,6 +1,6 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
-
+//getegte
 $route['default_controller'] = 'Welcome/index';
 $route['login'] = 'Welcome/index';
 $route['miPerfil'] = 'SesionesController/miPerfil';
