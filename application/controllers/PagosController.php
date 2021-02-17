@@ -33,6 +33,7 @@ class PagosController extends CI_Controller
 				break;
 			case '02':
 				$detalle = 'PAGO FEBRERO ' . $ano;
+				$diaTermino = 28;
 				break;
 			case '03':
 				$detalle = 'PAGO MARZO ' . $ano;
