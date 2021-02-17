@@ -129,7 +129,9 @@ class PagosController extends CI_Controller
 		$mes = $this->input->get("mes");
 		$diaTermino = $this->input->get("diaTermino");
 		$empresa = $this->input->get("empresa");
-
+		if($mes=='02'){
+			$diaTermino = 28;
+		}
 		$historial = $this->PagosModel->getHistorialPagosMensuales($ano, $mes);
 
 		//requiriendo valores de UF y UTM
