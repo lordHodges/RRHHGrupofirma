@@ -1,6 +1,6 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
-
+//tomame
 
 $config['base_url'] = 'https://www.imlchile.cl/grupofirma/';
 
