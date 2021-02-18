@@ -234,6 +234,9 @@ class PagosController extends CI_Controller
 		$ano = $this->input->post("year");
 		$mes = $this->input->post("mes");
 		$diaTermino = $this->input->post("diaTermino");
+		if ($mes =='02') {
+			$diaTermino=28;
+		}
 		//requiriendo valores de UF y UTM
 		$consultaApi = file_get_contents("https://mindicador.cl/api/uf/$diaTermino-$mes-$ano");
 		$decodeUF = json_decode($consultaApi);
