@@ -254,8 +254,8 @@ class PagosModel extends CI_Model
 				$sueldo = $sueldo * $diasPago;
 			}
 			$gratificacion = round(($sueldo + $bonoAsistencia) * 0.25);
-			if ($gratificacion >= 129240) {
-				$gratificacion = 129240;
+			if ($gratificacion >= 129239) {
+				$gratificacion = 129239;
 			}
 			$totalImponible = $sueldo + $gratificacion + $bonoAsistencia;
 			$totalImponible2 = $totalImponible;
@@ -577,8 +577,8 @@ class PagosModel extends CI_Model
 				}
 				//
 				$gratificacion = round(($sueldo + $bonoAsistencia) * 0.25);
-				if ($gratificacion >= 126865) {
-					$gratificacion = 126865;
+				if ($gratificacion >= 129239) {
+					$gratificacion = 129239;
 				}
 				$totalImponible = $sueldo + $gratificacion + $bonoAsistencia;
 				$totalImponible2 = $totalImponible;
@@ -854,8 +854,8 @@ class PagosModel extends CI_Model
 
 			//CALCULAR EL MONTO TOTAL A PAGAR
 			$gratificacion = round(($sueldo + $bonoAsistencia) * 0.25);
-			if ($gratificacion >= 126865) {
-				$gratificacion = 126865;
+			if ($gratificacion >= 129239) {
+				$gratificacion = 129239;
 			}
 			$totalImponible = $sueldo + $gratificacion + $bonoAsistencia;
 			$totalImponible2 = $totalImponible;
@@ -1157,8 +1157,8 @@ class PagosModel extends CI_Model
 			}
 
 			$gratificacion = round(($sueldoBaseLiquidacion + $bonoAsistencia) * 0.25); //bonoAsistenciaGratificable
-			if ($gratificacion >= 126865) {
-				$gratificacion = 126865;
+			if ($gratificacion >= 129239) {
+				$gratificacion = 129239;
 			}
 			$totalImponible = $sueldoBaseLiquidacion + $gratificacion + $bonoAsistencia; //bonoAsistenciaImponible
 			$totalImponible2 = $totalImponible;
